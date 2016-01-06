@@ -1,0 +1,56 @@
+
+#header {
+    background-color: lightgray;
+    color: black;
+    text-align: center;
+    padding: 5px;
+}
+
+#ILBoks{
+    margin-top: auto;
+    margin: auto;
+    border-radius: 12px;
+    position: relative;
+    top: 15%;
+    /* left: 50%; */
+    background-color: lightgray;
+    box-shadow: darkgray 2px 2px 2px;
+    width: 500px;
+    height: 350px;
+    /* margin-left: -250px; */
+    /* margin-top: -175px; */
+}
+
+#section {
+    position: absolute;
+    top: 110%;
+    left: 50%;
+    margin-left: -250px;
+    margin-top: -250px;
+    width: 500px;
+}
+
+#inputwrap {
+    border-radius: 8px;
+    border: 1px solid black;
+    background: white;
+    witdh: 480px;
+    padding: 10px;
+    margin: 20px;
+}
+
+#feilmelding{
+    position: absolute;
+    top: 90%;
+    left: 50%;
+    margin-left: -250px;
+    margin-top: -200px;
+    width: 400px;
+    color: red;
+}
+input{
+    border: none;
+    width: 160px;
+    padding: 5px 10px;
+    outline: none;
+}

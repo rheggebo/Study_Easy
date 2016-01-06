@@ -1,0 +1,70 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Nov 18, 2015, 2:41:45 AM
+    Author     : Stein-Erik
+*/
+
+
+/*#header {
+    background-color: lightgray;
+    color: black;
+    text-align: center;
+    padding: 5px;
+}*/
+
+#boks{
+    border-radius: 12px;
+    position: relative;
+    margin: auto;
+    top: 35%;
+    /* left: 50%; */
+    background-color: lightgray;
+    box-shadow: darkgray 2px 2px 2px;
+    width: 500px;
+    height: 150px;
+    /* margin-left: -250px; */
+    /* margin-top: -175px; */
+}
+
+#inputFelt {
+    position: relative;
+    left: 23px;
+    top: 19px;
+    width: 450px;
+    height: 40px;
+    border-top-width: 2px;
+    border-left-width: 2px;
+    padding-bottom: 1px;
+    font-size: 18px;
+    border-radius: 8px;
+}
+
+/*#inputwrap {
+    border-radius: 8px;
+    border: 1px solid black;
+    background: white;
+    witdh: 480px;
+    padding: 10px;
+    margin: 20px;
+}
+
+#feilmelding {
+    position: absolute;
+    top: 90%;
+    left: 50%;
+    margin-left: -250px;
+    margin-top: -200px;
+    width: 400px;
+    color: red;
+}
+
+input{
+    border: none;
+    width: 160px;
+    padding: 5px 10px;
+    outline: none;
+}*/
