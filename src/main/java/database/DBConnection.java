@@ -160,7 +160,7 @@ public class DBConnection implements DBInterface{
     public boolean oppdaterRom(Rom r) {
         int antallRader = jT.update(endreRom,new Object[]{
             r.getRomNavn(),
-            r.getTilgangniva(),
+            r.getType(),
             r.getEtasje(),
             r.getStorrelse(),
             r.getRomID()
@@ -246,7 +246,7 @@ public class DBConnection implements DBInterface{
         int antallRader = jT.update(endreRom,new Object[]{
             r.getRomID(),
             r.getRomNavn(),
-            r.getTilgangniva(),
+            r.getType(),
             r.getEtasje(),
             r.getStorrelse()
         });
@@ -259,13 +259,13 @@ public class DBConnection implements DBInterface{
     @Override
     public boolean leggTilKalenderEvent(KalenderEvent ke) {
         int antallRader = jT.update(leggTilKalenderEvent,new Object[]{
-            ke.getiD(),
+            ke.getId(),
             ke.getStartDato(),
             ke.getSluttDato(),
             ke.getEier(),
             ke.isPrivat(),
             ke.getType(),
-            ke.getFag().getFagID()
+            ke.getFag()
         });
         if(antallRader > 0){
             return true;
@@ -276,7 +276,7 @@ public class DBConnection implements DBInterface{
     @Override
     public boolean fjernKalenderEvent(KalenderEvent ke) {
         int antallRader = jT.update(fjernKalenderEvent,new Object[]{
-            ke.getiD()
+            ke.getId()
         });
         if(antallRader > 0){
             return true;
@@ -292,7 +292,7 @@ public class DBConnection implements DBInterface{
     @Override
     public Bruker getKalenderEventDeltaker(KalenderEvent ke, Bruker b) {
         return (Bruker) jT.queryForObject(getKalenderEventDeltaker, new Object[]{
-            ke.getiD(),
+            ke.getId(),
             b.getEpost()
         }, new BrukerMapper());
     }
