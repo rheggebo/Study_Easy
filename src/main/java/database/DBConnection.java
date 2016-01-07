@@ -26,7 +26,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 public class DBConnection implements DBInterface{
     
     //private final String getBrukerNavn = "SELECT * FROM BRUKERE WHERE BRUKERNAVN=?";
-    private final String getBrukerEpost = "SELECT * FROM BRUKERE WHERE EMAIL=?";
+    private final String getBrukerEpost = "SELECT * FROM BRUKERE WHERE EPOST=?";
     private final String endreBruker = "UPDATE BRUKERE SET PASSORD=?, TYPE=?, NAVN=? WHERE EPOST=?";
     private final String nyBruker = "INSERT INTO BRUKERE VALUES(?,?,?,?)";
     private final String slettBruker = "DELETE FROM BRUKERE WHERE EPOST=?";
@@ -196,7 +196,7 @@ public class DBConnection implements DBInterface{
 
     @Override
     public boolean slettRomInnhold(Rom r, String innholdNavn) {
-        int antallRader = jT.update(endreKlasseFag,new Object[]{
+        int antallRader = jT.update(slettRomInnhold,new Object[]{
             r.getRomID(),
             innholdNavn
         });
@@ -208,7 +208,7 @@ public class DBConnection implements DBInterface{
 
     @Override
     public boolean leggTilInnhold(Rom r, String innholdNavn) {
-        int antallRader = jT.update(endreKlasseFag,new Object[]{
+        int antallRader = jT.update(leggTilInnhold,new Object[]{
             r.getRomID(),
             innholdNavn
         });
@@ -243,7 +243,7 @@ public class DBConnection implements DBInterface{
 
     @Override
     public boolean leggTilRom(Rom r) {
-        int antallRader = jT.update(endreRom,new Object[]{
+        int antallRader = jT.update(leggTilRom,new Object[]{
             r.getRomID(),
             r.getRomNavn(),
             r.getTilgangniva(),
@@ -286,7 +286,9 @@ public class DBConnection implements DBInterface{
 
     @Override
     public List<Bruker> getKalenderEventDeltakere(KalenderEvent ke) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return jT.query(getKalenderEventDeltakere, new Object[]{
+            ke.getiD()
+        }, new BrukerMapper());
     }
 
     @Override
@@ -328,9 +330,13 @@ public class DBConnection implements DBInterface{
 
     @Override
     public List<Rom> getRomFraNavn(Rom r) {
-        return jT.query(getRomFraNavn, new Object[]{
+        List<Rom> liste = jT.query(getRomFraNavn, new Object[]{
         r.getRomNavn()
         }, new RomMapper());
+        for (Rom rom : liste) {
+            
+        }
+        return liste;
     }
 
     @Override

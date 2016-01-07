@@ -12,14 +12,27 @@ import java.util.ArrayList;
  * @author Stein-Erik
  */
 public class BrukerB {
-    
     private String navn;
     private String epost;
     private Klasse klasse;
     private String notat;
-    private int tilgangniva;
+    private int tilgangsniva;
     private ArrayList<KalenderEvent> kalenderEvents;
     private boolean innlogget;
+    
+    public BrukerB(){
+        
+    }
+    
+    public BrukerB(Bruker b){
+        navn = b.getNavn();
+        epost = b.getEpost();
+        klasse = b.getKlasse();
+        notat = b.getNotat();
+        tilgangsniva = b.getTilgangniva();
+        kalenderEvents = b.getKalenderEvents();
+        innlogget = false;
+    }
 
     public String getNavn() {
         return navn;
@@ -53,12 +66,12 @@ public class BrukerB {
         this.notat = notat;
     }
 
-    public int getTilgangniva() {
-        return tilgangniva;
+    public int getTilgangsniva() {
+        return tilgangsniva;
     }
 
-    public void setTilgangniva(int tilgangniva) {
-        this.tilgangniva = tilgangniva;
+    public void setTilgangsniva(int tilgangsniva) {
+        this.tilgangsniva = tilgangsniva;
     }
 
     public ArrayList<KalenderEvent> getKalenderEvents() {
@@ -71,6 +84,10 @@ public class BrukerB {
     
     public boolean isInnlogget(){
         return innlogget;
+    }
+    
+    public void setInnlogget(boolean innlogget){
+        this.innlogget = innlogget;
     }
     
 }
