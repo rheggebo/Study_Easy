@@ -152,17 +152,17 @@ public class BrukerserviceImpl implements Brukerservice{
     }
 
     @Override
-    public KalenderEvent getKalenderEventEier(Bruker b) {
+    public List<KalenderEvent> getKalenderEventEier(Bruker b) {
         return dbc.getKalenderEventEier(b);
     }
 
     @Override
-    public KalenderEvent getKalenderEventRomID(Rom r) {
+    public List<KalenderEvent> getKalenderEventRomID(Rom r) {
         return dbc.getKalenderEventRomID(r);
     }
 
     @Override
-    public Fag getFagLaerer(Bruker b) {
+    public List<Fag> getFagLaerer(Bruker b) {
         return dbc.getFagLaerer(b);
     }
 
@@ -172,27 +172,27 @@ public class BrukerserviceImpl implements Brukerservice{
     }
 
     @Override
-    public Rom getRomFraNavn(Rom r) {
+    public List<Rom> getRomFraNavn(Rom r) {
         return dbc.getRomFraNavn(r);
     }
 
     @Override
-    public Rom getRomFraInnhold(Rom r) {
+    public List<Rom> getRomFraInnhold(Rom r) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Rom getRomFraType(Rom r) {
+    public List<Rom> getRomFraType(Rom r) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Rom getRomFraStoerrelse(Rom r) {
+    public List<Rom> getRomFraStoerrelse(Rom r) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Klasse getLaererKlasse(Bruker b) {
+    public List<Klasse> getLaererKlasse(Bruker b) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

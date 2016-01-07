@@ -13,7 +13,6 @@ import beans.KalenderEvent;
 import beans.Klasse;
 import beans.Rom;
 import java.util.List;
-import java.util.Map;
 import javax.sql.DataSource;
 import mapper.FagMapper;
 import mapper.KalenderEventMapper;
@@ -299,22 +298,22 @@ public class DBConnection implements DBInterface{
     }
 
     @Override
-    public KalenderEvent getKalenderEventEier(Bruker b) {
-        return (KalenderEvent) jT.queryForObject(getKalenderEventEier, new Object[]{
+    public List<KalenderEvent> getKalenderEventEier(Bruker b) {
+        return jT.query(getKalenderEventEier, new Object[]{
             b.getEpost()
         }, new KalenderEventMapper());
     }
 
     @Override
-    public KalenderEvent getKalenderEventRomID(Rom r) {
-        return (KalenderEvent) jT.queryForObject(getKalenderEventRomID, new Object[]{
+    public List<KalenderEvent> getKalenderEventRomID(Rom r) {
+        return jT.query(getKalenderEventRomID, new Object[]{
             r.getRomID()
         }, new KalenderEventMapper());
     }
 
     @Override
-    public Fag getFagLaerer(Bruker b) {
-        return (Fag) jT.queryForObject(getFagLaerer, new Object[]{
+    public List<Fag> getFagLaerer(Bruker b) {
+        return jT.query(getFagLaerer, new Object[]{
             b.getEpost()
         }, new FagMapper());
     }

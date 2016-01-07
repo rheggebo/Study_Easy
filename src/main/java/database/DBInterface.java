@@ -58,11 +58,11 @@ public interface DBInterface {
     
     public Bruker getKalenderEventDeltaker(KalenderEvent ke, Bruker b);
     
-    public KalenderEvent getKalenderEventEier(Bruker b);
+    public List<KalenderEvent> getKalenderEventEier(Bruker b);
     
-    public KalenderEvent getKalenderEventRomID(Rom r);
+    public List<KalenderEvent> getKalenderEventRomID(Rom r);
     
-    public Fag getFagLaerer(Bruker b);
+    public List<Fag> getFagLaerer(Bruker b);
     
     public Rom getRombestilling();
     
