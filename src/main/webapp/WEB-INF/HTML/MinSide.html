@@ -7,73 +7,80 @@
     </head>
 
     <body>
-        <a href="Forside.html"><img id="logo" src="LogoTeam1.png"></a><br>
-        <td><nav class="dropdownmenu">
-            <ul>
-                <li><a href="Forside.html">Forside</a></li>
-                <li><a href="MinSide.html">Min side</a></li>
-                <li><a href="#">Valg</a>
-                    <ul id="submenu">
-                        <li><a href="VelgRom.html">Bestill rom</a></li>
-                        <li><a href="Forside.html">Finn rom</a></li>
-                        <li><a href="Forside.html">Søk</a></li>
-                    </ul>
-                </li>
-                <li><a href="Forside.html">FAQ</a></li>
-                <li><a href="Forside.html">Kontakt oss</a></li>
-            </ul>
-        </nav>
+        <header>
+            <a href="Forside.html"><img id="logo" src="LogoTeam1.png"></a>
+            Norges teknisk-naturvitenskapelige universitet<br>
+            <nav class="dropdownmenu">
+                <ul>
+                    <li><a href="Forside.html">Forside</a></li>
+                    <li><a href="MinSide.html">Min side</a></li>
+                    <li><a href="#">Valg</a>
+                        <ul id="submenu">
+                            <li><a href="VelgRom.html">Bestill rom</a></li>
+                            <li><a href="Forside.html">Finn rom</a></li>
+                            <li><a href="Forside.html">Søk</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="Forside.html">FAQ</a></li>
+                    <li><a href="Forside.html">Kontakt oss</a></li>
+                </ul>
+            </nav>
+        </header>
 
-        <form action="MinSideRed.html" id="formen">
-            <fieldset>
-                <legend>Personopplysninger</legend>
-                <dl>
-                    Fornavn:<br>
-                    <dd><input type="text" name="fornavn" placeholder="Ola" readonly></dd>
+        <div id="container">
+            <div id="content">
 
-                    Etternavn:<br>
-                    <dd><input type="text" name="etternavn" placeholder="Nordmann" readonly></dd>
+                <form action="MinSideRed.html" id="formen">
+                    <fieldset>
+                        <legend>Personopplysninger</legend>
+                        <dl>
+                            Fornavn:<br>
+                            <dd><input type="text" name="fornavn" placeholder="Ola" readonly></dd>
 
-                    Telefonnummer:<br>
-                    <dd><input id="telefon" name="telefon" type="tel" pattern="\d{8}$" readonly></dd>
+                            Etternavn:<br>
+                            <dd><input type="text" name="etternavn" placeholder="Nordmann" readonly></dd>
 
-                    E-post:<br>
-                    <dd><input type="email" name="email1" readonly></dd>
+                            Telefonnummer:<br>
+                            <dd><input id="telefon" name="telefon" type="tel" pattern="\d{8}$" readonly></dd>
 
-                    Fødselsdato:<br>
-                    <dd><input type="date" name="date" readonly></dd>
+                            E-post:<br>
+                            <dd><input type="email" name="email1" readonly></dd>
 
-                    Klasse:<br>
-                    <dd><input type="text" name="ref"  list="ref-list1" readonly>
-                        <datalist id="ref-list1">
-                            <option value="Dataingeniør">
-                            <option value="Drift av datasystemer">
-                            <option value="IT-støttet bedriftsutvikling">
-                        </datalist>
+                            Fødselsdato:<br>
+                            <dd><input type="date" name="date" readonly></dd>
 
-                </dl>
-                <input type="submit" value="Endre opplysninger">
-            </fieldset>
+                            Klasse:<br>
+                            <dd><input type="text" name="ref"  list="ref-list1" readonly>
+                                <datalist id="ref-list1">
+                                    <option value="Dataingeniør">
+                                    <option value="Drift av datasystemer">
+                                    <option value="IT-støttet bedriftsutvikling">
+                                </datalist>
+
+                        </dl>
+                        <input type="submit" value="Endre opplysninger">
+                    </fieldset>
+
+                </form>
+            </div>
+        </div>
 
 
-        </form>
-
-
-    <footer>
-        <h4>NTNU - Norges Teknisk-naturvitenskapelige Universitet</h4>
-        <a class="footerLenke" href="Forside.html">Hjem</a>
-        ·
-        <a class="footerLenke" href="MinSide.html">Min side</a>
-        ·
-        <a class="footerLenke" href="VelgRom.html">Velg rom</a>
-        ·
-        <a class="footerLenke" href="Forside.html">Om oss</a>
-        ·
-        <a class="footerLenke" href="Forside.html">FAQ</a>
-        ·
-        <a class="footerLenke" href="Forside.html">Contact</a>
-        <h4>Study Easy © 2016</h4>
-    </footer>
+        <footer>
+            <h4>NTNU - Norges Teknisk-naturvitenskapelige Universitet</h4>
+            <a class="footerLenke" href="Forside.html">Hjem</a>
+            ·
+            <a class="footerLenke" href="MinSide.html">Min side</a>
+            ·
+            <a class="footerLenke" href="VelgRom.html">Velg rom</a>
+            ·
+            <a class="footerLenke" href="Forside.html">Om oss</a>
+            ·
+            <a class="footerLenke" href="Forside.html">FAQ</a>
+            ·
+            <a class="footerLenke" href="Forside.html">Contact</a>
+            <h4>Study Easy © 2016</h4>
+        </footer>
 
     </body>
 </html>
