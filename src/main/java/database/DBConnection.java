@@ -344,7 +344,7 @@ public class DBConnection implements DBInterface{
     @Override
     public List<Rom> getRomFraType(Rom r) {
         return jT.query(getRomFraType, new Object[]{
-            r.getTilgangniva()
+            r.getType()
         }, new RomMapper());
     }
 

@@ -6,7 +6,7 @@ public class Rom {
     private String romID;
     private String romNavn;
     private int etasje;
-    private int tilgangniva;
+    private int type;
     private int storrelse;
     private ArrayList<String> innhold;
 
@@ -42,11 +42,11 @@ public class Rom {
         this.etasje = etasje;
     }
 
-    public int getTilgangniva() {
-        return tilgangniva;
+    public int getType() {
+        return type;
     }
 
-    public void setTilgangniva(int tilgangniva) {
-        this.tilgangniva = tilgangniva;
+    public void setType(int type) {
+        this.type = type;
     }
 }
