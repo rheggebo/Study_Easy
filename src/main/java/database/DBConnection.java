@@ -254,7 +254,7 @@ public class DBConnection implements DBInterface{
         }
         return false;
     }
-
+    
     @Override
     public boolean leggTilKalenderEvent(KalenderEvent ke) {
         int antallRader = jT.update(leggTilKalenderEvent,new Object[]{

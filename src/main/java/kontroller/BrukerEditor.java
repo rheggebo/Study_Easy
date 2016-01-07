@@ -12,7 +12,7 @@ import java.beans.PropertyEditorSupport;
 /**
  *
  * @author Stein-Erik
- */
+ */ 
 public class BrukerEditor extends PropertyEditorSupport{
     private Brukerservice brukerservice;
 

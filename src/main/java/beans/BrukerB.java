@@ -19,6 +19,7 @@ public class BrukerB {
     private String notat;
     private int tilgangniva;
     private ArrayList<KalenderEvent> kalenderEvents;
+    private boolean innlogget;
 
     public String getNavn() {
         return navn;
@@ -66,6 +67,10 @@ public class BrukerB {
 
     public void setKalenderEvents(ArrayList<KalenderEvent> kalenderEvents) {
         this.kalenderEvents = kalenderEvents;
+    }
+    
+    public boolean isInnlogget(){
+        return innlogget;
     }
     
 }

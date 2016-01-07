@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="no">
+    <head>
+        <link rel="stylesheet" href="TheStyle.css">
+        <meta charset="UTF-8">
+        <title>Min Side</title>
+    </head>
+
+    <body>
+    <header>
+        <a href="Forside.html"><img id="logo" src="LogoTeam1.png"></a><br>
+        <td><nav class="dropdownmenu">
+            <ul>
+                <li><a href="Forside.html">Forside</a></li>
+                <li><a href="MinSide.html">Min side</a></li>
+                <li><a href="#">Alternativer</a>
+                    <ul id="submenu">
+                        <li><a href="Forside.html">Velg rom</a></li>
+                        <li><a href="Forside.html">Kalender 2</a></li>
+                        <li><a href="Forside.html">Kalender 3</a></li>
+                    </ul>
+                </li>
+                <li><a href="Forside.html">FAQ</a></li>
+                <li><a href="Forside.html">Kontakt oss</a></li>
+            </ul>
+        </nav>
+
+    </header>
+
+    <section>
+
+        <form action="MinSideRed.html" id="formen">
+            <fieldset style = "width:20%">
+                <legend>Personopplysninger</legend>
+                <dl>
+                    Fornavn:<br>
+                    <dd><input type="text" name="fornavn" placeholder="Ola" readonly></dd>
+
+                    Etternavn:<br>
+                    <dd><input type="text" name="etternavn" placeholder="Nordmann" readonly></dd>
+
+                    Telefonnummer:<br>
+                    <dd><input id="telefon" name="telefon" type="tel" pattern="\d{8}$" readonly></dd>
+
+                    E-post:<br>
+                    <dd><input type="email" name="email1" readonly></dd>
+
+                    Fødselsdato:<br>
+                    <dd><input type="date" name="date" readonly></dd>
+
+                    Klasse:<br>
+                    <dd><input type="text" name="ref"  list="ref-list1" readonly>
+                        <datalist id="ref-list1">
+                            <option value="Dataingeniør">
+                            <option value="Drift av datasystemer">
+                            <option value="IT-støttet bedriftsutvikling">
+                        </datalist>
+
+                </dl>
+
+                <p><input type="submit" value="Endre opplysninger" onclick="behandle()"></p>
+            </fieldset>
+
+
+        </form>
+
+
+        </section>
+
+
+    <footer>
+        <h4>NTNU - Norges Teknisk-naturvitenskapelige Universitet</h4>
+        <a class="footerLenke" href="Forside.html">Hjem</a>
+        ·
+        <a class="footerLenke" href="MinSide.html">Min side</a>
+        ·
+        <a class="footerLenke" href="VelgRom.html">Velg rom</a>
+        ·
+        <a class="footerLenke" href="Forside.html">Om oss</a>
+        ·
+        <a class="footerLenke" href="Forside.html">FAQ</a>
+        ·
+        <a class="footerLenke" href="Forside.html">Contact</a>
+        <h4>Study Easy © 2016</h4>
+    </footer>
+
+    </body>
+</html>

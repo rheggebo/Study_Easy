@@ -32,7 +32,7 @@ public class Bruker {
         return epost;
     }
 
-    public void setEpost(String epost) {
+    public void epost(String epost) {
         this.epost = epost;
     }
 
@@ -67,4 +67,6 @@ public class Bruker {
     public void setKalenderEvents(ArrayList<KalenderEvent> kalenderEvents) {
         this.kalenderEvents = kalenderEvents;
     }
+    
+    
 }

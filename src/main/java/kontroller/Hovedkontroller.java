@@ -7,6 +7,7 @@ package kontroller;
 
 import beans.Bruker;
 import beans.BrukerB;
+import email.Email;
 import java.util.List;
 import java.util.Random;
 import javax.servlet.http.HttpServletRequest;
@@ -21,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import service.Brukerservice;
 
 /**
- *
+ * 
  * @author Stein-Erik
  */
 @Controller
@@ -90,14 +91,14 @@ public class Hovedkontroller {
     }
     
     private Boolean sendNyPass(Bruker temp){
-        String mottaker = temp.getEmail();
-        String tema = "Nytt passord for bruker: "+temp.getBrukernavn();
+        String mottaker = temp.getEpost();
+        String tema = "Nytt passord for bruker: "+temp.getEpost();
         String nyttPassord = genererPassord();
         temp.setPassord(nyttPassord);
         Email email = new Email();
         String melding= 
                 "Dine nye innloggingsdetaljer er: \n \n "
-                + "Brukernavn: "+temp.getBrukernavn()+"\n "
+                + "Brukernavn: "+temp.getEpost()+"\n "
                 + "Passord: "+nyttPassord+"\n \n "
                 + "Vi anbefaler at du bytter dette passordet ved neste innlogging. \n \n "
                 + "Hilsen Bookolini-teamet";
