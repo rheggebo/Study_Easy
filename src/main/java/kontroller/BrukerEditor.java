@@ -8,11 +8,13 @@ package Kontroller;
 import service.Brukerservice;
 import beans.Bruker;
 import java.beans.PropertyEditorSupport;
+import org.springframework.stereotype.Controller;
 
 /**
  *
  * @author Stein-Erik
  */ 
+@Controller
 public class BrukerEditor extends PropertyEditorSupport{
     private Brukerservice brukerservice;
 
