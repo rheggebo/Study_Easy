@@ -7,6 +7,7 @@ package database;
 
 import mapper.BrukerMapper;
 import mapper.StringMapper;
+import mapper.RomMapper;
 import beans.Bruker;
 import beans.Fag;
 import beans.KalenderEvent;
@@ -15,6 +16,8 @@ import beans.Rom;
 import java.util.List;
 import java.util.Map;
 import javax.sql.DataSource;
+import mapper.FagMapper;
+import mapper.KalenderEventMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -251,70 +254,104 @@ public class DBConnection implements DBInterface{
         }
         return false;
     }
-
-    @Override
-    public List<Bruker> getAlleBrukere() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
+    
     @Override
     public boolean leggTilKalenderEvent(KalenderEvent ke) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        int antallRader = jT.update(leggTilKalenderEvent,new Object[]{
+            ke.getiD(),
+            ke.getStartDato(),
+            ke.getSluttDato(),
+            ke.getEier(),
+            ke.isPrivat(),
+            ke.getType(),
+            ke.getFag().getFagID()
+        });
+        if(antallRader > 0){
+            return true;
+        }
+        return false;
     }
 
     @Override
     public boolean fjernKalenderEvent(KalenderEvent ke) {
+        int antallRader = jT.update(fjernKalenderEvent,new Object[]{
+            ke.getiD()
+        });
+        if(antallRader > 0){
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public KalenderEvent getKalenderEventDeltakere(KalenderEvent ke) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public KalenderEvent getKalenderDeltakere(KalenderEvent ke) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Bruker getKalenderDeltaker(KalenderEvent ke, Bruker b) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Bruker getKalenderEventDeltaker(KalenderEvent ke, Bruker b) {
+        return (KalenderEvent) jT.queryForObject(getKalenderEventDeltaker, new Object[]{
+            ke.getiD(),
+            b.getEpost()
+        }, new KalenderEventMapper());
     }
 
     @Override
     public KalenderEvent getKalenderEventEier(Bruker b) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return (KalenderEvent) jT.queryForObject(getKalenderEventEier, new Object[]{
+            b.getEpost()
+        }, new KalenderEventMapper());
     }
 
     @Override
     public KalenderEvent getKalenderEventRomID(Rom r) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return (KalenderEvent) jT.queryForObject(getKalenderEventRomID, new Object[]{
+            r.getRomID()
+        }, new KalenderEventMapper());
     }
 
     @Override
     public Fag getFagLaerer(Bruker b) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return (Fag) jT.queryForObject(getFagLaerer, new Object[]{
+            b.getEpost()
+        }, new FagMapper());
     }
 
     @Override
     public Rom getRombestilling() {
+        //return (Rom) jT.queryForObject(getRombestilling, new Object[]{
+        
+        //}, new RomMapper());
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public Rom getRomFraNavn(Rom r) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return (Rom) jT.queryForObject(getRomFraNavn, new Object[]{
+        r.getRomNavn()
+        }, new RomMapper());
     }
 
     @Override
     public Rom getRomFraInnhold(Rom r) {
+        //return (Rom) jT.queryForObject(getRomFraInnhold, Object[]{
+        
+        //}, new RomMapper());
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public Rom getRomFraType(Rom r) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return (Rom) jT.queryForObject(getRomFraType, new Object[]{
+            r.getTilgangniva()
+        }, new RomMapper());
     }
 
     @Override
     public Rom getRomFraStoerrelse(Rom r) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return (Rom) jT.queryForObject(getRomFraStoerrelse, new Object[]{
+            r.getStorrelse()
+        }, new RomMapper());
     }
 
     @Override

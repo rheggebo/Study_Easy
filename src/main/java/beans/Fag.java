@@ -49,3 +49,20 @@ public class Fag {
         this.kalenderEvents = kalenderEvents;
     }
 }
+
+/*    private final String leggTilRom = "INSERT INTO ROM VALUES(?,?,?,?,?)";
+    private final String leggTilKalenderEvent = "INSERT INTO KALENDER_EVENT VALUES(?,?,?,?,?,?,?,?)";
+    private final String fjernKalenderEvent = "DELETE FROM KALENDER_EVENT WHERE ID=?";
+    private final String getKalenderEventDeltakere = "SELECT DELTAKERID FROM KLANEDER_DELTAKER WHERE EVENTID=?";
+    private final String getKalenderEventDeltaker = "SELECT * FROM KALENDER_DELTAKER WHERE EVENTID=? AND DELTAKERID=?";
+    private final String getKalenderEventEier = "SELECT * FROM KALENDER_EVENT WHERE EIER=?";
+    private final String getKalenderEventRomID = "SELECT * FROM KALENDER_EVENT WHERE ROMID=?";
+    private final String getFagLaerer = "SELECT FAGID FROM FAG_LÆRER WHERE BRUKERID=?";
+    private final String getRombestilling = "sindre";
+    private final String getRomFraNavn = "SELECT * FROM ROM WHERE ROMNAVN=?";
+    private final String getRomFraInnhold = "sindre";
+    private final String getRomFraType = "SELECT * FROM ROM WHERE TYPE=?";
+    private final String getRomFraStoerrelse = "SELECT * FROM ROM WHERE STØRRELSE=?";
+    private final String getLaererKlasse = "sindre";
+    private final String getKlasseDeltaker = "sindre";
+*/

@@ -6,6 +6,9 @@
 package service;
 
 import beans.Bruker;
+import beans.Fag;
+import beans.Klasse;
+import beans.Rom;
 import java.util.List;
 
 /**
@@ -31,4 +34,20 @@ public interface Brukerservice {
     public boolean endreBrukere(List<Bruker> brukere);
     
     public List<Bruker> hentAlleBrukere();
+    
+    public boolean oppdaterRom(Rom r);
+    
+    public boolean slettRom(Rom r);
+    
+    public boolean oppdaterKlasseFag(Klasse k, Fag f);
+    
+    public boolean slettRomInnhold(Rom r, String innholdNavn);
+    
+    public boolean leggTilInnhold(Rom r, String innholdNavn);
+    
+    public boolean slettBrukerFag(Bruker b, Fag f);
+    
+    public boolean leggTilFag(Fag f);
+    
+    public boolean leggTilRom(Rom r);
 }

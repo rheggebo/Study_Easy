@@ -54,9 +54,9 @@ public interface DBInterface {
     
     public boolean fjernKalenderEvent(KalenderEvent ke);
     
-    public KalenderEvent getKalenderDeltakere(KalenderEvent ke);
+    public KalenderEvent getKalenderEventDeltakere(KalenderEvent ke);
     
-    public Bruker getKalenderDeltaker(KalenderEvent ke, Bruker b);
+    public Bruker getKalenderEventDeltaker(KalenderEvent ke, Bruker b);
     
     public KalenderEvent getKalenderEventEier(Bruker b);
     

@@ -20,7 +20,7 @@ public class BrukerMapper implements RowMapper<Bruker>{
     public Bruker mapRow(ResultSet rs, int i) throws SQLException {
         Bruker bruker = new Bruker();
         
-        bruker.setBrukernavn(rs.getString("brukernavn"));
+        bruker.(rs.getString("brukernavn"));
         bruker.setPassord(rs.getString("passord"));
         bruker.setEmail(rs.getString("email"));
         bruker.setTilgang(rs.getInt("tilgang"));
