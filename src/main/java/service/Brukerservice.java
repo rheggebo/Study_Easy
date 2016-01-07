@@ -12,11 +12,11 @@ import java.util.List;
  *
  * @author Stein-Erik
  */
-public interface BrukerService {
+public interface Brukerservice {
     
     public boolean sjekkPassord(String brukernavn, String passord);
     
-    public Bruker hentBruker(String brukernavn, String email);
+    public Bruker hentBruker(String epost);
     
     public Bruker hentBruker(Bruker bruker);
     

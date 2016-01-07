@@ -3,24 +3,40 @@ package beans;
 import java.util.Date;
 
 public class KalenderEvent {
-    private String navn;
+    private int iD;
     private Bruker eier;
     private Date startDato;
-    private int varighet;
+    private Date sluttDato;
     private Rom rom;
     private Fag fag;
-    private String type;
+    private int type;
     private boolean privat;
     private String notat;
-
-    public String getNavn() {
-        return navn;
+    
+    public int getiD() {
+        return iD;
     }
 
-    public void setNavn(String navn) {
-        this.navn = navn;
+    public void setiD(int iD) {
+        this.iD = iD;
     }
 
+    public Date getSluttDato() {
+        return sluttDato;
+    }
+
+    public void setSluttDato(Date sluttDato) {
+        this.sluttDato = sluttDato;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+    
     public Bruker getEier() {
         return eier;
     }
@@ -37,14 +53,6 @@ public class KalenderEvent {
         this.startDato = startDato;
     }
 
-    public int getVarighet() {
-        return varighet;
-    }
-
-    public void setVarighet(int varighet) {
-        this.varighet = varighet;
-    }
-
     public Rom getRom() {
         return rom;
     }
@@ -59,14 +67,6 @@ public class KalenderEvent {
 
     public void setFag(Fag fag) {
         this.fag = fag;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 
     public boolean isPrivat() {

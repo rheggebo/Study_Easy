@@ -3,6 +3,15 @@ package beans;
 import java.util.ArrayList;
 
 public class Fag {
+    private String fagID;
+
+    public String getFagID() {
+        return fagID;
+    }
+
+    public void setFagID(String fagID) {
+        this.fagID = fagID;
+    }
     private String navn;
     private Klasse klasse;
     private ArrayList<Bruker> laerere;

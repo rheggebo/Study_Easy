@@ -5,38 +5,67 @@
  */
 package beans;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Stein-Erik
  */
 public class BrukerB {
     
-    private String brukernavn;
-    private int tilgangsNiva;
-    private boolean innlogget;
+    private String navn;
+    private String epost;
+    private Klasse klasse;
+    private String notat;
+    private int tilgangniva;
+    private ArrayList<KalenderEvent> kalenderEvents;
 
-    public String getBrukernavn() {
-        return brukernavn;
+    public String getNavn() {
+        return navn;
     }
 
-    public void setBrukernavn(String brukernavn) {
-        this.brukernavn = brukernavn;
+    public void setNavn(String navn) {
+        this.navn = navn;
     }
 
-    public int getTilgangsNiva() {
-        return tilgangsNiva;
+    public String getEpost() {
+        return epost;
     }
 
-    public void setTilgangsNiva(int tilgangsNiva) {
-        this.tilgangsNiva = tilgangsNiva;
+    public void setEpost(String epost) {
+        this.epost = epost;
     }
 
-    public boolean isInnlogget() {
-        return innlogget;
+    public Klasse getKlasse() {
+        return klasse;
     }
 
-    public void setInnlogget(boolean innlogget) {
-        this.innlogget = innlogget;
+    public void setKlasse(Klasse klasse) {
+        this.klasse = klasse;
+    }
+
+    public String getNotat() {
+        return notat;
+    }
+
+    public void setNotat(String notat) {
+        this.notat = notat;
+    }
+
+    public int getTilgangniva() {
+        return tilgangniva;
+    }
+
+    public void setTilgangniva(int tilgangniva) {
+        this.tilgangniva = tilgangniva;
+    }
+
+    public ArrayList<KalenderEvent> getKalenderEvents() {
+        return kalenderEvents;
+    }
+
+    public void setKalenderEvents(ArrayList<KalenderEvent> kalenderEvents) {
+        this.kalenderEvents = kalenderEvents;
     }
     
 }

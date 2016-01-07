@@ -6,6 +6,9 @@
 package service;
 
 import beans.Bruker;
+import beans.Fag;
+import beans.Klasse;
+import beans.Rom;
 import database.DBConnection;
 import database.DBInterface;
 import java.util.List;
@@ -15,7 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  *
  * @author Stein-Erik
  */
-public class BrukerServiceImpl implements BrukerService{
+public class BrukerserviceImpl implements Brukerservice{
     
     private DBInterface dbc;
     
@@ -25,26 +28,22 @@ public class BrukerServiceImpl implements BrukerService{
     }
     
     @Override
-    public Bruker hentBruker(String brukernavn, String email) {
-        System.out.println("Kobler til DB");
-        if(brukernavn != null && !brukernavn.isEmpty()){
-            System.out.println("Går i db etter brukernavn");
-            return dbc.getBrukerN(brukernavn);
-        }else if(email != null && !email.isEmpty()){
-            return dbc.getBrukerE(email);
+    public Bruker hentBruker(String email) {
+        Bruker bruker = dbc.getBruker(email);
+        if(bruker != null){
+            return bruker;
         }
         return new Bruker();
     }
     
     @Override
     public boolean sjekkPassord(String brukernavn, String passord) {
-        System.out.println("Sender inn til DB: "+brukernavn + " "+passord);
         return dbc.loggInn(brukernavn, passord);
     }
 
     @Override
     public Bruker hentBruker(Bruker bruker) {
-        return dbc.getBrukerN(bruker.getBrukernavn());
+        return dbc.getBruker(bruker.getEpost());
     }
 
     @Override
@@ -89,5 +88,45 @@ public class BrukerServiceImpl implements BrukerService{
     @Override
     public List<Bruker> hentAlleBrukere(){
         return dbc.hentAlleBrukere();
+    }
+
+    @Override
+    public boolean oppdaterRom(Rom r) {
+        return dbc.oppdaterRom(r);
+    }
+
+    @Override
+    public boolean slettRom(Rom r) {
+        return dbc.slettRom(r);
+    }
+
+    @Override
+    public boolean oppdaterKlasseFag(Klasse k, Fag f) {
+        return dbc.oppdaterKlasseFag(k, f);
+    }
+
+    @Override
+    public boolean slettRomInnhold(Rom r, String innholdNavn) {
+        return dbc.slettRomInnhold(r, innholdNavn);
+    }
+
+    @Override
+    public boolean leggTilInnhold(Rom r, String innholdNavn) {
+        return dbc.leggTilInnhold(r, innholdNavn);
+    }
+
+    @Override
+    public boolean slettBrukerFag(Bruker b, Fag f) {
+        return dbc.slettBrukerFag(b, f);
+    }
+
+    @Override
+    public boolean leggTilFag(Fag f) {
+        return dbc.leggTilFag(f);
+    }
+
+    @Override
+    public boolean leggTilRom(Rom r) {
+        return dbc.leggTilRom(r);
     }
 }

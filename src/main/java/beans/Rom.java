@@ -1,9 +1,30 @@
 package beans;
 
+import java.util.ArrayList;
+
 public class Rom {
     private String romID;
+    private String romNavn;
     private int etasje;
     private int tilgangniva;
+    private int storrelse;
+    private ArrayList<String> innhold;
+
+    public int getStorrelse() {
+        return storrelse;
+    }
+
+    public void setStorrelse(int storrelse) {
+        this.storrelse = storrelse;
+    }
+
+    public String getRomNavn() {
+        return romNavn;
+    }
+
+    public void setRomNavn(String romNavn) {
+        this.romNavn = romNavn;
+    }
 
     public String getRomID() {
         return romID;

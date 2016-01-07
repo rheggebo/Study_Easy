@@ -7,10 +7,18 @@ package kontroller;
 
 import beans.Bruker;
 import beans.BrukerB;
+import java.util.List;
+import java.util.Random;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.ServletRequestDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import service.Brukerservice;
 
 /**
  *
@@ -18,6 +26,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 public class Hovedkontroller {
+    
+    @Autowired
+    private Brukerservice brukerservice;
+    
+    @InitBinder
+     protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) {
+        binder.registerCustomEditor(Bruker.class, new BrukerEditor(brukerservice));
+    }
     
     @RequestMapping(value = "/*")
     public String start(Model model, HttpSession sess){
@@ -34,6 +50,66 @@ public class Hovedkontroller {
     public String glemtPassord(Model model){
         model.addAttribute("bruker", new Bruker());
         return "Glemsk";
+    }
+    
+    @RequestMapping(value="sendNyttPassord")
+    public String glemsk(@ModelAttribute("bruker") Bruker bruker, Model model, HttpServletRequest request){
+        String sjekk = bruker.getEpost();
+        Bruker temp;
+        List<Bruker> tabell = brukerservice.hentAlleBrukere();
+        for (Bruker bruker1 : tabell) {
+            if(bruker1.getEpost().equals(sjekk)){
+                temp = brukerservice.hentBruker(sjekk);
+                if(sendNyPass(temp)){
+                    return "EmailRedirect";
+                }else{
+                    model.addAttribute("melding", "feilmelding.email");
+                    return "Glemsk";
+                }
+            }
+        }  
+        
+        model.addAttribute("melding", "feilside.email");
+        model.addAttribute("bruker", new Bruker());
+        return "Glemsk";
+        
+    }
+    
+    private String genererPassord(){
+        String alfabet = "1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM";
+        char[] nyttPass = new char[7];
+        Random rng = new Random();
+        for (int i = 0; i < nyttPass.length; i++) {
+            nyttPass[i] = alfabet.charAt(rng.nextInt(alfabet.length()));
+        }
+        String nyttPassord = new String(nyttPass);
+        if(nyttPassord.toLowerCase().equals(nyttPassord) || nyttPassord.toUpperCase().equals(nyttPassord)){
+            nyttPassord = genererPassord();
+        }
+        return nyttPassord;
+    }
+    
+    private Boolean sendNyPass(Bruker temp){
+        String mottaker = temp.getEmail();
+        String tema = "Nytt passord for bruker: "+temp.getBrukernavn();
+        String nyttPassord = genererPassord();
+        temp.setPassord(nyttPassord);
+        Email email = new Email();
+        String melding= 
+                "Dine nye innloggingsdetaljer er: \n \n "
+                + "Brukernavn: "+temp.getBrukernavn()+"\n "
+                + "Passord: "+nyttPassord+"\n \n "
+                + "Vi anbefaler at du bytter dette passordet ved neste innlogging. \n \n "
+                + "Hilsen Bookolini-teamet";
+        System.out.println("Oppdater bruker: "+temp);
+        if(brukerservice.endreBruker(temp)){
+            if(email.sendEpost(mottaker, tema, melding)){
+                System.out.println("Email sendt!****");
+                return true;
+            }
+            System.out.println("Email ikke sendt :( *****");
+        }
+        return false;
     }
     
     
