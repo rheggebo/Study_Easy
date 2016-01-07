@@ -6,7 +6,6 @@
 package database;
 
 import mapper.BrukerMapper;
-import mapper.StringMapper;
 import mapper.RomMapper;
 import beans.Bruker;
 import beans.Fag;
@@ -14,7 +13,6 @@ import beans.KalenderEvent;
 import beans.Klasse;
 import beans.Rom;
 import java.util.List;
-import java.util.Map;
 import javax.sql.DataSource;
 import mapper.FagMapper;
 import mapper.KalenderEventMapper;
@@ -61,6 +59,9 @@ public class DBConnection implements DBInterface{
     private final String getRomFraStoerrelse = "SELECT * FROM ROM WHERE STØRRELSE=?";
     private final String getLaererKlasse = "sindre";
     private final String getKlasseDeltaker = "sindre";
+    private final String leggTilAbonnement = "";
+    private final String slettAbonnement = "";
+    private final String getAbonnement = "";
     
     
     
@@ -284,35 +285,35 @@ public class DBConnection implements DBInterface{
     }
 
     @Override
-    public KalenderEvent getKalenderEventDeltakere(KalenderEvent ke) {
+    public List<Bruker> getKalenderEventDeltakere(KalenderEvent ke) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public Bruker getKalenderEventDeltaker(KalenderEvent ke, Bruker b) {
-        return (KalenderEvent) jT.queryForObject(getKalenderEventDeltaker, new Object[]{
+        return (Bruker) jT.queryForObject(getKalenderEventDeltaker, new Object[]{
             ke.getiD(),
             b.getEpost()
-        }, new KalenderEventMapper());
+        }, new BrukerMapper());
     }
 
     @Override
-    public KalenderEvent getKalenderEventEier(Bruker b) {
-        return (KalenderEvent) jT.queryForObject(getKalenderEventEier, new Object[]{
+    public List<KalenderEvent> getKalenderEventEier(Bruker b) {
+        return jT.query(getKalenderEventEier, new Object[]{
             b.getEpost()
         }, new KalenderEventMapper());
     }
 
     @Override
-    public KalenderEvent getKalenderEventRomID(Rom r) {
-        return (KalenderEvent) jT.queryForObject(getKalenderEventRomID, new Object[]{
+    public List<KalenderEvent> getKalenderEventRomID(Rom r) {
+        return jT.query(getKalenderEventRomID, new Object[]{
             r.getRomID()
         }, new KalenderEventMapper());
     }
 
     @Override
-    public Fag getFagLaerer(Bruker b) {
-        return (Fag) jT.queryForObject(getFagLaerer, new Object[]{
+    public List<Fag> getFagLaerer(Bruker b) {
+        return jT.query(getFagLaerer, new Object[]{
             b.getEpost()
         }, new FagMapper());
     }
@@ -326,14 +327,14 @@ public class DBConnection implements DBInterface{
     }
 
     @Override
-    public Rom getRomFraNavn(Rom r) {
-        return (Rom) jT.queryForObject(getRomFraNavn, new Object[]{
+    public List<Rom> getRomFraNavn(Rom r) {
+        return jT.query(getRomFraNavn, new Object[]{
         r.getRomNavn()
         }, new RomMapper());
     }
 
     @Override
-    public Rom getRomFraInnhold(Rom r) {
+    public List<Rom> getRomFraInnhold(String[] innhold) {
         //return (Rom) jT.queryForObject(getRomFraInnhold, Object[]{
         
         //}, new RomMapper());
@@ -341,15 +342,15 @@ public class DBConnection implements DBInterface{
     }
 
     @Override
-    public Rom getRomFraType(Rom r) {
-        return (Rom) jT.queryForObject(getRomFraType, new Object[]{
+    public List<Rom> getRomFraType(Rom r) {
+        return jT.query(getRomFraType, new Object[]{
             r.getTilgangniva()
         }, new RomMapper());
     }
 
     @Override
-    public Rom getRomFraStoerrelse(Rom r) {
-        return (Rom) jT.queryForObject(getRomFraStoerrelse, new Object[]{
+    public List<Rom> getRomFraStoerrelse(Rom r) {
+        return jT.query(getRomFraStoerrelse, new Object[]{
             r.getStorrelse()
         }, new RomMapper());
     }

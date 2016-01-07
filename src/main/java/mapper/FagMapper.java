@@ -21,6 +21,7 @@ public class FagMapper implements RowMapper<Fag>{
     public Fag mapRow(ResultSet rs, int i) throws SQLException {
         Fag fag = new Fag();
         fag.setFagID(rs.getString("id"));
+        return fag;
         
     }
     

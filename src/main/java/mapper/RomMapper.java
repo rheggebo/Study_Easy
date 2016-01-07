@@ -5,10 +5,20 @@
  */
 package mapper;
 
+import beans.Rom;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import org.springframework.jdbc.core.RowMapper;
+
 /**
  *
  * @author Stein-Erik
  */
-public class RomMapper {
+public class RomMapper implements RowMapper<Rom>{
+
+    @Override
+    public Rom mapRow(ResultSet rs, int i) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
