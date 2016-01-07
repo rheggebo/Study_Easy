@@ -57,7 +57,7 @@ public class Hovedkontroller {
     public String glemsk(@ModelAttribute("bruker") Bruker bruker, Model model, HttpServletRequest request){
         String sjekk = bruker.getEpost();
         Bruker temp;
-        List<Bruker> tabell = brukerservice.hentAlleBrukere();
+        List<Bruker> tabell = brukerservice.getAlleBrukere();
         for (Bruker bruker1 : tabell) {
             if(bruker1.getEpost().equals(sjekk)){
                 temp = brukerservice.hentBruker(sjekk);

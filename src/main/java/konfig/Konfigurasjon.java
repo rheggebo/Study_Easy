@@ -93,9 +93,9 @@ public class Konfigurasjon extends WebMvcConfigurationSupport{
     
     @Bean
     public DataSource dataSource(){
-        String url = "jdbc:derby://localhost:1527/BDS";
-        String username = "asd";
-        String password = "asd";
+        String url = "mysql.stud.iie.ntnu.no";
+        String username = "g_scrum_t1";
+        String password = "0GPgcC6H";
         DriverManagerDataSource dmds = new DriverManagerDataSource(url, username, password);
         dmds.setDriverClassName("org.apache.derby.jdbc.ClientDriver");
         try{

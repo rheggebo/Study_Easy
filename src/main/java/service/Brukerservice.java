@@ -7,6 +7,7 @@ package service;
 
 import beans.Bruker;
 import beans.Fag;
+import beans.KalenderEvent;
 import beans.Klasse;
 import beans.Rom;
 import java.util.List;
@@ -33,7 +34,7 @@ public interface Brukerservice {
     
     public boolean endreBrukere(List<Bruker> brukere);
     
-    public List<Bruker> hentAlleBrukere();
+    public List<Bruker> getAlleBrukere();
     
     public boolean oppdaterRom(Rom r);
     
@@ -50,4 +51,30 @@ public interface Brukerservice {
     public boolean leggTilFag(Fag f);
     
     public boolean leggTilRom(Rom r);
+    
+    public boolean leggTilKalenderEvent(KalenderEvent ke);
+    
+    public boolean fjernKalenderEvent(KalenderEvent ke);
+    
+    public List<Bruker> getKalenderEventDeltakere(KalenderEvent ke);
+    
+    public Bruker getKalenderEventDeltaker(KalenderEvent ke, Bruker b);
+    
+    public List<KalenderEvent> getKalenderEventEier(Bruker b);
+    
+    public List<KalenderEvent> getKalenderEventRomID(Rom r);
+    
+    public List<Fag> getFagLaerer(Bruker b);
+    
+    public Rom getRombestilling();
+    
+    public List<Rom> getRomFraNavn(Rom r);
+    
+    public List<Rom> getRomFraInnhold(Rom r);
+    
+    public List<Rom> getRomFraType(Rom r);
+    
+    public List<Rom> getRomFraStoerrelse(Rom r);
+    
+    public List<Klasse> getLaererKlasse(Bruker b);
 }

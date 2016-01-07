@@ -7,6 +7,7 @@ package service;
 
 import beans.Bruker;
 import beans.Fag;
+import beans.KalenderEvent;
 import beans.Klasse;
 import beans.Rom;
 import database.DBConnection;
@@ -86,8 +87,8 @@ public class BrukerserviceImpl implements Brukerservice{
     } 
     
     @Override
-    public List<Bruker> hentAlleBrukere(){
-        return dbc.hentAlleBrukere();
+    public List<Bruker> getAlleBrukere(){
+        return dbc.getAlleBrukere();
     }
 
     @Override
@@ -128,5 +129,70 @@ public class BrukerserviceImpl implements Brukerservice{
     @Override
     public boolean leggTilRom(Rom r) {
         return dbc.leggTilRom(r);
+    }
+
+    @Override
+    public boolean leggTilKalenderEvent(KalenderEvent ke) {
+        return dbc.leggTilKalenderEvent(ke);
+    }
+
+    @Override
+    public boolean fjernKalenderEvent(KalenderEvent ke) {
+        return dbc.fjernKalenderEvent(ke);
+    }
+
+    @Override
+    public List<Bruker> getKalenderEventDeltakere(KalenderEvent ke) {
+        return dbc.getKalenderEventDeltakere(ke);
+    }
+
+    @Override
+    public Bruker getKalenderEventDeltaker(KalenderEvent ke, Bruker b) {
+        return dbc.getKalenderEventDeltaker(ke, b);
+    }
+
+    @Override
+    public KalenderEvent getKalenderEventEier(Bruker b) {
+        return dbc.getKalenderEventEier(b);
+    }
+
+    @Override
+    public KalenderEvent getKalenderEventRomID(Rom r) {
+        return dbc.getKalenderEventRomID(r);
+    }
+
+    @Override
+    public Fag getFagLaerer(Bruker b) {
+        return dbc.getFagLaerer(b);
+    }
+
+    @Override
+    public Rom getRombestilling() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Rom getRomFraNavn(Rom r) {
+        return dbc.getRomFraNavn(r);
+    }
+
+    @Override
+    public Rom getRomFraInnhold(Rom r) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Rom getRomFraType(Rom r) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Rom getRomFraStoerrelse(Rom r) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Klasse getLaererKlasse(Bruker b) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

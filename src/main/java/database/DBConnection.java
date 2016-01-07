@@ -6,7 +6,6 @@
 package database;
 
 import mapper.BrukerMapper;
-import mapper.StringMapper;
 import mapper.RomMapper;
 import beans.Bruker;
 import beans.Fag;
@@ -61,6 +60,9 @@ public class DBConnection implements DBInterface{
     private final String getRomFraStoerrelse = "SELECT * FROM ROM WHERE STØRRELSE=?";
     private final String getLaererKlasse = "sindre";
     private final String getKlasseDeltaker = "sindre";
+    private final String leggTilAbonnement = "";
+    private final String slettAbonnement = "";
+    private final String getAbonnement = "";
     
     
     
@@ -284,16 +286,16 @@ public class DBConnection implements DBInterface{
     }
 
     @Override
-    public KalenderEvent getKalenderEventDeltakere(KalenderEvent ke) {
+    public List<Bruker> getKalenderEventDeltakere(KalenderEvent ke) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public Bruker getKalenderEventDeltaker(KalenderEvent ke, Bruker b) {
-        return (KalenderEvent) jT.queryForObject(getKalenderEventDeltaker, new Object[]{
+        return (Bruker) jT.queryForObject(getKalenderEventDeltaker, new Object[]{
             ke.getiD(),
             b.getEpost()
-        }, new KalenderEventMapper());
+        }, new BrukerMapper());
     }
 
     @Override
@@ -326,14 +328,14 @@ public class DBConnection implements DBInterface{
     }
 
     @Override
-    public Rom getRomFraNavn(Rom r) {
-        return (Rom) jT.queryForObject(getRomFraNavn, new Object[]{
+    public List<Rom> getRomFraNavn(Rom r) {
+        return jT.query(getRomFraNavn, new Object[]{
         r.getRomNavn()
         }, new RomMapper());
     }
 
     @Override
-    public Rom getRomFraInnhold(Rom r) {
+    public List<Rom> getRomFraInnhold(String[] innhold) {
         //return (Rom) jT.queryForObject(getRomFraInnhold, Object[]{
         
         //}, new RomMapper());
@@ -341,15 +343,15 @@ public class DBConnection implements DBInterface{
     }
 
     @Override
-    public Rom getRomFraType(Rom r) {
-        return (Rom) jT.queryForObject(getRomFraType, new Object[]{
+    public List<Rom> getRomFraType(Rom r) {
+        return jT.query(getRomFraType, new Object[]{
             r.getTilgangniva()
         }, new RomMapper());
     }
 
     @Override
-    public Rom getRomFraStoerrelse(Rom r) {
-        return (Rom) jT.queryForObject(getRomFraStoerrelse, new Object[]{
+    public List<Rom> getRomFraStoerrelse(Rom r) {
+        return jT.query(getRomFraStoerrelse, new Object[]{
             r.getStorrelse()
         }, new RomMapper());
     }
