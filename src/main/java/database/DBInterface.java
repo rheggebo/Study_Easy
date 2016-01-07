@@ -54,25 +54,25 @@ public interface DBInterface {
     
     public boolean fjernKalenderEvent(KalenderEvent ke);
     
-    public KalenderEvent getKalenderEventDeltakere(KalenderEvent ke);
+    public List<Bruker> getKalenderEventDeltakere(KalenderEvent ke);
     
     public Bruker getKalenderEventDeltaker(KalenderEvent ke, Bruker b);
     
-    public KalenderEvent getKalenderEventEier(Bruker b);
+    public List<KalenderEvent> getKalenderEventEier(Bruker b);
     
-    public KalenderEvent getKalenderEventRomID(Rom r);
+    public List<KalenderEvent> getKalenderEventRomID(Rom r);
     
-    public Fag getFagLaerer(Bruker b);
+    public List<Fag> getFagLaerer(Bruker b);
     
     public Rom getRombestilling();
     
-    public Rom getRomFraNavn(Rom r);
+    public List<Rom> getRomFraNavn(Rom r);
     
-    public Rom getRomFraInnhold(Rom r);
+    public List<Rom> getRomFraInnhold(String[] innhold);
     
-    public Rom getRomFraType(Rom r);
+    public List<Rom> getRomFraType(Rom r);
     
-    public Rom getRomFraStoerrelse(Rom r);
+    public List<Rom> getRomFraStoerrelse(Rom r);
     
     public Klasse getLaererKlasse(Bruker b);
 }

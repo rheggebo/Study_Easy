@@ -6,38 +6,11 @@ date:      06/01/16
 author:    Ingvild
 ---------------*/
 
-html{
-    margin: 0px;
-    height: 100%;
-    width: 100%;
-}
-
-body{
-    margin: 0px;
-    min-height: 100%;
-    width: 100%;
-}
-
-header{
-    width:100%;
-
-}
-
 aside{
     float:right;
+    width:30%;
     text-align: left;
-    position: relative;
-    width:40%;
-    border: 3px solid red;
-}
-section{
-    float:left;
-}
-
-#wrapper {
-    width: 960px;
-    margin: 0 auto 0 auto;
-    position: relative;
+    border: 1px solid red;
 }
 
 footer {
@@ -70,7 +43,6 @@ footer, header{
     transition: all .25s ease;
 }
 
-
 .dropdownmenu ul, .dropdownmenu li {
     margin: 0;
     padding: 0;
@@ -90,7 +62,7 @@ footer, header{
     color: #FFFFFF;
     display: block;
     font: bold 12px/20px Microsoft YaHei Light;
-    padding: 12px 99px;
+    padding: 12px 96.5px;
     text-align: center;
     text-decoration: none;
 }
@@ -102,7 +74,6 @@ footer, header{
     left: 0;
     opacity: 0;
     position: absolute;
-    top: 35px;
     visibility: hidden;
     z-index: 1;
 }
@@ -112,7 +83,6 @@ li:hover ul#submenu {
     visibility: visible;
 }
 #submenu li {
-    float: none;
     width: 100%;
 }
 #submenu a:hover {
