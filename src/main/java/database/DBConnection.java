@@ -251,7 +251,7 @@ public class DBConnection implements DBInterface{
         }
         return false;
     }
-
+    
     @Override
     public List<Bruker> getAlleBrukere() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
