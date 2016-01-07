@@ -17,7 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 /**
  *
  * @author Stein-Erik
- */
+ */ 
 public class BrukerserviceImpl implements Brukerservice{
     
     private DBInterface dbc;
@@ -87,7 +87,7 @@ public class BrukerserviceImpl implements Brukerservice{
     
     @Override
     public List<Bruker> hentAlleBrukere(){
-        return dbc.hentAlleBrukere();
+        return dbc.getAlleBrukere();
     }
 
     @Override

@@ -32,7 +32,7 @@ public class Bruker {
         return epost;
     }
 
-    public void epost(String epost) {
+    public void setEpost(String epost) {
         this.epost = epost;
     }
 

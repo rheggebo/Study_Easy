@@ -18,7 +18,7 @@ public class BrukerEditor extends PropertyEditorSupport{
 
     public BrukerEditor(Brukerservice brukerservice) {
         this.brukerservice = brukerservice;
-    }
+    } 
     
     @Override
     public void setAsText(String text) throws IllegalArgumentException{
