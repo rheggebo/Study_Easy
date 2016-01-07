@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Kontroller;
+package kontroller;
 
 import service.Brukerservice;
 import beans.Bruker;
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Controller;
  *
  * @author Stein-Erik
  */ 
-@Controller
+
 public class BrukerEditor extends PropertyEditorSupport{
     private Brukerservice brukerservice;
 
