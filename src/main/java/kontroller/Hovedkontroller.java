@@ -39,7 +39,7 @@ public class Hovedkontroller {
         BrukerB brukerBean = (BrukerB) sess.getAttribute("brukerBean");
         
         if(brukerBean != null && brukerBean.isInnlogget()){
-            return "Hoved";
+            return "Forside";
         }
         model.addAttribute("bruker", new Bruker());
         return "Innlogging";
@@ -52,7 +52,7 @@ public class Hovedkontroller {
             BrukerB brukerBean = new BrukerB(service.hentBruker(bruker));
             brukerBean.setInnlogget(true);
             sess.setAttribute("brukerBean", brukerBean);
-            return "Hoved";
+            return "Forside";
         }
         model.addAttribute("melding", "feilmelding.login");
         bruker.setPassord("");
@@ -85,7 +85,26 @@ public class Hovedkontroller {
         model.addAttribute("melding", "feilside.email");
         model.addAttribute("bruker", new Bruker());
         return "Glemsk";
-        
+    }
+    
+    @RequestMapping("MinSide")
+    public String minSide(){
+        return "MinSide";
+    }
+    
+    @RequestMapping("MinSideRed")
+    public String minSideRed(){
+        return "MinSideRed";
+    }
+    
+    @RequestMapping("VelgRom")
+    public String velgRom(){
+        return "VelgRom";
+    }
+    
+    @RequestMapping("Forside")
+    public String forside(){
+        return "Forside";
     }
     
     private String genererPassord(){
@@ -122,7 +141,8 @@ public class Hovedkontroller {
             }
             System.out.println("Email ikke sendt :( *****");
         }
-        return false;
+        //asdasdasd
+        return false; 
     }
     
     
