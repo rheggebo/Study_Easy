@@ -6,7 +6,7 @@
 <html lang="no">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="<c:url value="/resources/css/TheStyle.css"/>">
+    <link rel="stylesheet" href="<c:url value="/resources/css/Hovedstilen.css"/>">
     <title>Velg rom</title>
 </head>
     <body>
