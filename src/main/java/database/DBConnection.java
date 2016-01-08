@@ -13,11 +13,14 @@ import beans.KalenderEvent;
 import beans.Klasse;
 import beans.Rom;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.sql.DataSource;
 import mapper.FagMapper;
 import mapper.KalenderEventMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import verktøy.PasswordHasher;
 
 /**
  *
@@ -82,10 +85,16 @@ public class DBConnection implements DBInterface{
     @Override
     public boolean loggInn(String epost, String passord) {
         Bruker bruker = (Bruker) jT.queryForObject(getBrukerEpost, new Object[]{epost},new BrukerMapper());
-        
-        if(bruker.getPassord().equals(passord)){
+        if (bruker.getPassord().equals(passord)){
             return true;
         }
+       /* try {
+            if (PasswordHasher.check(passord, bruker.getPassord())){
+                return true;
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(DBConnection.class.getName()).log(Level.SEVERE, null, ex);
+        }*/
         return false;
     }
 
@@ -160,7 +169,7 @@ public class DBConnection implements DBInterface{
     public boolean oppdaterRom(Rom r) {
         int antallRader = jT.update(endreRom,new Object[]{
             r.getRomNavn(),
-            r.getTilgangniva(),
+            r.getType(),
             r.getEtasje(),
             r.getStorrelse(),
             r.getRomID()
@@ -246,7 +255,7 @@ public class DBConnection implements DBInterface{
         int antallRader = jT.update(leggTilRom,new Object[]{
             r.getRomID(),
             r.getRomNavn(),
-            r.getTilgangniva(),
+            r.getType(),
             r.getEtasje(),
             r.getStorrelse()
         });
@@ -259,13 +268,13 @@ public class DBConnection implements DBInterface{
     @Override
     public boolean leggTilKalenderEvent(KalenderEvent ke) {
         int antallRader = jT.update(leggTilKalenderEvent,new Object[]{
-            ke.getiD(),
+            ke.getId(),
             ke.getStartDato(),
             ke.getSluttDato(),
             ke.getEier(),
             ke.isPrivat(),
             ke.getType(),
-            ke.getFag().getFagID()
+            ke.getFag()
         });
         if(antallRader > 0){
             return true;
@@ -276,7 +285,7 @@ public class DBConnection implements DBInterface{
     @Override
     public boolean fjernKalenderEvent(KalenderEvent ke) {
         int antallRader = jT.update(fjernKalenderEvent,new Object[]{
-            ke.getiD()
+            ke.getId()
         });
         if(antallRader > 0){
             return true;
@@ -294,7 +303,7 @@ public class DBConnection implements DBInterface{
     @Override
     public Bruker getKalenderEventDeltaker(KalenderEvent ke, Bruker b) {
         return (Bruker) jT.queryForObject(getKalenderEventDeltaker, new Object[]{
-            ke.getiD(),
+            ke.getId(),
             b.getEpost()
         }, new BrukerMapper());
     }
@@ -350,7 +359,7 @@ public class DBConnection implements DBInterface{
     @Override
     public List<Rom> getRomFraType(Rom r) {
         return jT.query(getRomFraType, new Object[]{
-            r.getTilgangniva()
+            r.getType()
         }, new RomMapper());
     }
 

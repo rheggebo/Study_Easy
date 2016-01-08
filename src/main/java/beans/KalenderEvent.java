@@ -3,22 +3,23 @@ package beans;
 import java.util.Date;
 
 public class KalenderEvent {
-    private int iD;
-    private Bruker eier;
+    private int id;
+    private String eier;
+    private String eierNavn;
     private Date startDato;
     private Date sluttDato;
-    private Rom rom;
-    private Fag fag;
+    private String rom;
+    private String fag;
     private int type;
     private boolean privat;
     private String notat;
     
-    public int getiD() {
-        return iD;
+    public int getId() {
+        return id;
     }
 
-    public void setiD(int iD) {
-        this.iD = iD;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public Date getSluttDato() {
@@ -37,11 +38,11 @@ public class KalenderEvent {
         this.type = type;
     }
     
-    public Bruker getEier() {
+    public String getEier() {
         return eier;
     }
 
-    public void setEier(Bruker eier) {
+    public void setEier(String eier) {
         this.eier = eier;
     }
 
@@ -53,19 +54,19 @@ public class KalenderEvent {
         this.startDato = startDato;
     }
 
-    public Rom getRom() {
+    public String getRom() {
         return rom;
     }
 
-    public void setRom(Rom rom) {
+    public void setRom(String rom) {
         this.rom = rom;
     }
 
-    public Fag getFag() {
+    public String getFag() {
         return fag;
     }
 
-    public void setFag(Fag fag) {
+    public void setFag(String fag) {
         this.fag = fag;
     }
 
@@ -83,5 +84,12 @@ public class KalenderEvent {
 
     public void setNotat(String notat) {
         this.notat = notat;
+    }
+    
+    public void setEierNavn(String eierNavn){
+        this.eierNavn = eierNavn;
+    }
+    public String getEierNavn(){
+        return eierNavn;
     }
 }

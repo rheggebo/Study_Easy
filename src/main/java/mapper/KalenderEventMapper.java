@@ -18,7 +18,16 @@ public class KalenderEventMapper implements RowMapper<KalenderEvent>{
 
     @Override
     public KalenderEvent mapRow(ResultSet rs, int i) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        KalenderEvent event = new KalenderEvent();
+        event.setId(rs.getInt("id"));
+        event.setEier(rs.getString("epost"));
+        event.setEierNavn(rs.getString("navn"));
+        event.setStartDato(rs.getDate("dato_start"));
+        event.setSluttDato(rs.getDate("dato_slutt"));
+        event.setRom(rs.getString("romID"));
+        event.setFag(rs.getString("fagID"));
+        
+        return event;
     }
     
 }
