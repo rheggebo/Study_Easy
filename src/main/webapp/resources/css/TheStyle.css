@@ -127,11 +127,11 @@ footer{
     z-index: 1;
 }
 /***** BOTTOM FOOTER END**/
-
+/*****SokeSide*******/
 .searchForm{
     float: left;
     position: relative;
-    border-width: 1px 1px 0px 1px;
+    border-width: 1px 1px 0px 1px; 
     padding: 2px;
     background-color: lightgray;
     border-radius: 5px;
@@ -140,7 +140,7 @@ footer{
     cursor: pointer;
     outline: medium none;
     text-align: center;
-    padding-right: 10px;
+    padding-right: 10px;  
     padding-left: 10px;
     text-transform: uppercase;
     text-decoration: none;
@@ -148,25 +148,39 @@ footer{
     color: #FFF;
     background: #00BFFF;
     border-radius: 5px;
-
+    
 }
 #searchEng{
     margin: 5px auto;
     width: 300px;
 }
 .searchNav ul li{
-    margin: 0;
+    margin: 0px;
     list-style: none;
-    height: 300px;
+    /**height: 100px;**/
     width: 260px;
     padding: 15px 5px 5px 5px;
-    font: bold 12px Microsoft YaHei Light ;
+    font: bold 12px Microsoft YaHei Light ;   
+    display: inline-block;
 }
 .checkboxes{
     cursor: pointer;
+    
+}
+.searchNav {
+    float: left;
+    display: inline-block;
+}
+.searchInfo {
+    display: inline-block;
+    margin: 30px;  
+    width: 600px;
+    height: 400px;
+    border:1px solid red;
+    padding:10px;
 }
 
-
+/***SokeSide***/
 label em {
     color: red;
 }
