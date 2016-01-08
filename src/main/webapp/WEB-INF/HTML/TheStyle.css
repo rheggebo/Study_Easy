@@ -162,8 +162,7 @@ footer{
     height: 300px;
     width: 260px;
     padding: 15px 5px 5px 5px;
-    font: bold 12px Microsoft YaHei Light ;  
-   
+    font: bold 12px Microsoft YaHei Light ;   
     display: inline-block;
 }
 .checkboxes{
@@ -174,6 +173,6 @@ footer{
     
     display: inline-block;
 }
-.searchInfo{
-    
+.searchInfo {
+   
 }
