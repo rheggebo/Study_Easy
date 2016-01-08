@@ -8,11 +8,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/Glemsk.css"/>">
 <!DOCTYPE html>
 <html>
     <head>
         <link rel="shortcut icon" href="<c:url value="/resources/images/BBIkon2.png"/>">
+        <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/GlemtPassord.css"/>">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Glemt passord</title>
     </head>
@@ -20,7 +20,7 @@
         <div id="boks">
             <form:form action="sendNyttPassord" modelAttribute="bruker">
                 <div id="inputFelt">
-                <form:input type="text" path="brukernavn" placeholder="Brukernavn eller E-mail" style="
+                <form:input type="text" path="epost" placeholder="Epost" style="
                                 width: 455px;
                                 height: 50px;
                                 border-top-width: 2px;
