@@ -14,21 +14,18 @@ body { margin:0; padding:0; }
 
 
 header{
-    position:fixed;
     top:0px;
     left:0px;
     width:100%;
     background:#FFFFFF;
     text-transform: uppercase;
     font: 12px Microsoft YaHei Light;
-    padding:20px;
 
 }
 
 footer {
     text-transform: uppercase;
     font: 12px Microsoft YaHei Light;
-    position: fixed;
     width:100%;
     bottom: 0;
     left:0;
