@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html lang="no">
     <head>
-        <link rel="stylesheet" href="<c:url value="/resources/css/Hovedstilen.css"/>">
+        <link rel="stylesheet" href="<c:url value="/resources/css/TheStyle.css"/>">
         <meta charset="UTF-8">
         <title>Min Side</title>
     </head>
