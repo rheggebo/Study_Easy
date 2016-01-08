@@ -55,13 +55,13 @@ public class DBConnection implements DBInterface{
     private final String getKalenderEventEier = "SELECT * FROM KALENDER_EVENT WHERE EIER=?";
     private final String getKalenderEventRomID = "SELECT * FROM KALENDER_EVENT WHERE ROMID=?";
     private final String getFagLaerer = "SELECT FAGID FROM FAG_LÆRER WHERE BRUKERID=?";
-    private final String getRombestilling = "sindre";
+    private final String getRombestilling = "";
     private final String getRomFraNavn = "SELECT * FROM ROM WHERE ROMNAVN=?";
-    private final String getRomFraInnhold = "sindre";
+    private final String getRomFraInnhold = "";
     private final String getRomFraType = "SELECT * FROM ROM WHERE TYPE=?";
     private final String getRomFraStoerrelse = "SELECT * FROM ROM WHERE STØRRELSE=?";
-    private final String getLaererKlasse = "sindre";
-    private final String getKlasseDeltaker = "sindre";
+    private final String getLaererKlasse = "";
+    private final String getKlasseDeltaker = "";
     private final String leggTilAbonnement = "";
     private final String slettAbonnement = "";
     private final String getAbonnement = "";
@@ -296,7 +296,7 @@ public class DBConnection implements DBInterface{
     @Override
     public List<Bruker> getKalenderEventDeltakere(KalenderEvent ke) {
         return jT.query(getKalenderEventDeltakere, new Object[]{
-            ke.getiD()
+            ke.getId()
         }, new BrukerMapper());
     }
 
