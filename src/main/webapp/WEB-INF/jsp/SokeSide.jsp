@@ -10,34 +10,29 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
 <html>
-    <head>
-        <link rel="stylesheet" href="<c:url value="/resources/css/Hocedstilen.css"/>">
-        <title>SokeSide</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <a href="Forside.html"><img id="logo" src="<c:url value="/resources/images/LogoTeam1.png"/>"></a><br>
-                <nav class="dropdownmenu">
-                <ul>
-                    <li><a href="Forside.html">Forside</a></li>
-                    <li><a href="MinSide.html">Min side</a></li>
-                    <li><a href="#">Valg</a>
-                        <ul id="submenu">
-                            <li><a href="VelgRom.html">Bestill rom</a></li>
-                            <li><a href="Forside.html">Finn rom</a></li>
-                            <li><a href="SokeSide.html">Søk</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="Forside.html">FAQ</a></li>
-                    <li><a href="Forside.html">Kontakt oss</a></li>
+   <header>
+    <a href="Forside.html"><img id="logo" src="<c:url value="/resources/images/LogoTeam1.png"/>"></a>
+    Norges teknisk-naturvitenskapelige universitet<br>
+    <nav class="dropdownmenu">
+        <ul>
+            <li><a href="Forside.html">Forside</a></li>
+            <li><a href="MinSide.html">Min side</a></li>
+            <li><a href="#">Romvalg</a>
+                <ul id="submenu">
+                    <li><a href="VelgRom.html">Bestill rom</a></li>
+                    <li><a href="Forside.html">Finn rom</a></li>
                 </ul>
-            </nav>
-        
-        <br><br><br>
+            </li>
+            <li><a href="Forside.html">Søk</a></li>
+            <li><a href="Forside.html">Logg ut</a></li>
+        </ul>
+    </nav>
+</header>
+
+    <body>
+      <br><br><br>
        
-        
-        <div class="searchNav">
+ <div class="searchNav">
             <ul>
                 <li><div><form action="/search" role="search"> 
                 <input class="searchForm" type=search size="30">
@@ -67,20 +62,24 @@
         
         
         
-           <footer>
-        <h4>NTNU - Norges Teknisk-naturvitenskapelige Universitet</h4>
-        <a class="footerLenke" href="Forside.html">Hjem</a>
-        ·
-        <a class="footerLenke" href="MinSide.html">Min side</a>
-        ·
-        <a class="footerLenke" href="VelgRom.html">Velg rom</a>
-        ·
-        <a class="footerLenke" href="Forside.html">Om oss</a>
-        ·
-        <a class="footerLenke" href="Forside.html">FAQ</a>
-        ·
-        <a class="footerLenke" href="Forside.html">Contact</a>
-        <h4>Study Easy © 2016</h4>
-    </footer>
+           <!--Footer-->
+<div class="space"></div>
+<!--Må være med for å funke i Chrome-->
+
+<footer>
+    <h4>NTNU - Norges Teknisk-naturvitenskapelige Universitet</h4>
+    <a class="footerLenke" href="Forside.html">Hjem</a>
+    ·
+    <a class="footerLenke" href="MinSide.html">Min side</a>
+    ·
+    <a class="footerLenke" href="VelgRom.html">Velg rom</a>
+    ·
+    <a class="footerLenke" href="Forside.html">Om oss</a>
+    ·
+    <a class="footerLenke" href="Forside.html">FAQ</a>
+    ·
+    <a class="footerLenke" href="Forside.html">Contact</a>
+    <h4>Study Easy © 2016</h4>
+</footer>
     </body>
 </html>
