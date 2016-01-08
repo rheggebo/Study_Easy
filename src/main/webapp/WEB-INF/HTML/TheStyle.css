@@ -15,7 +15,7 @@ body {
 main {
     margin:0 auto;
     overflow:auto;
-    padding:40px 0;
+    padding:40px;
     width:940px;
 }
 
@@ -111,3 +111,20 @@ li:hover ul#submenu {
     height: 80px;
     width: 100px;
 }
+
+/******* BOTTOM FOOTER START****/
+main{
+    min-height: 100%;
+    margin-bottom: -100px;
+}
+
+.space, footer{
+    height: 100px;
+}
+
+footer{
+    height: 100px;
+    position: relative;
+    z-index: 1;
+}
+/***** BOTTOM FOOTER END**/
