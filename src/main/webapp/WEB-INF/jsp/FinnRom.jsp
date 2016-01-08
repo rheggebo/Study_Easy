@@ -12,7 +12,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="TheStyle.css">
+    <link rel="stylesheet" href="<c:url value="/resources/css/TheStyle.css"/>">
     <meta charset="UTF-8">
     <title>Finn rom</title>
 
@@ -30,7 +30,7 @@
 
 <body>
 <header>
-    <a href="Forside.html"><img id="logo" src="LogoTeam1.png"></a>
+    <a href="Forside.html"><img id="logo" src="<c:url value="/resources/images/LogoTeam1.png"/>"></a>
     Norges teknisk-naturvitenskapelige universitet<br>
     <nav class="dropdownmenu">
         <ul>

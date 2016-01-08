@@ -68,6 +68,10 @@ public class Hovedkontroller {
         return "Glemsk";
     }
     
+    @RequestMapping(value="kalenderTest")
+    public String kalenderTest (Model model, HttpServletRequest request){
+        return "fullcalendar/demos/basic_views";
+    }
     @RequestMapping(value="sendNyttPassord")
     public String glemsk(@ModelAttribute("bruker") Bruker bruker, Model model, HttpServletRequest request){
         String sjekk = bruker.getEpost();
@@ -94,10 +98,12 @@ public class Hovedkontroller {
                 }
         }
         
+        
         model.addAttribute("melding", "feilside.email");
         model.addAttribute("bruker", new Bruker());
         return "Glemsk";
     }
+    
     
     @RequestMapping("MinSide")
     public String minSide(){
@@ -123,6 +129,10 @@ public class Hovedkontroller {
     public String finnRom(){
         System.out.println("FinnRomm");
         return "FinnRom";
+    }
+    @RequestMapping("SokeSide")
+    public String sokeSide(){
+        return "SokeSide";
     }
     
     /*private String genererPassord(){
