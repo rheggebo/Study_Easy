@@ -85,22 +85,21 @@ public class DBConnection implements DBInterface{
     @Override
     public boolean loggInn(String epost, String passord) {
         Bruker bruker = (Bruker) jT.queryForObject(getBrukerEpost, new Object[]{epost},new BrukerMapper());
-        return true;
-        /*try {
-            System.out.println("----" + PasswordHasher.getSaltedHash(passord));
+        try {
             if (PasswordHasher.check(passord, bruker.getPassord())){
                 return true;
             }
         } catch (Exception ex) {
             Logger.getLogger(DBConnection.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
-       // return false;
+        }
+        return false;
     }
 
     @Override
     public boolean oppdaterBruker(Bruker b) {
+        try{
         int antallRader = jT.update(endreBruker, new Object[]{
-            b.getPassord(),
+            PasswordHasher.getSaltedHash(b.getPassord()),
             b.getTilgangniva(),
             b.getNavn(),
             b.getEpost()
@@ -108,6 +107,7 @@ public class DBConnection implements DBInterface{
         if(antallRader>0){
             return true;
         }
+        }catch(Exception e){}
         return false;   
     }
 
@@ -122,15 +122,17 @@ public class DBConnection implements DBInterface{
 
     @Override
     public boolean leggTilBruker(Bruker b) {
+        try{
         int antallRader = jT.update(nyBruker,new Object[]{
             b.getEpost(),
-            b.getPassord(),
+            PasswordHasher.getSaltedHash(b.getPassord()),
             b.getTilgangniva(),
             b.getNavn()
         });
         if(antallRader > 0){
             return true;
         }
+        }catch(Exception e){}
         return false;
     }
     
