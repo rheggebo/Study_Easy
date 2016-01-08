@@ -68,6 +68,10 @@ public class Hovedkontroller {
         return "Glemsk";
     }
     
+    @RequestMapping(value="kalenderTest")
+    public String kalenderTest (Model model, HttpServletRequest request){
+        return "fullcalendar/demos/basic_views";
+    }
     @RequestMapping(value="sendNyttPassord")
     public String glemsk(@ModelAttribute("bruker") Bruker bruker, Model model, HttpServletRequest request){
         String sjekk = bruker.getEpost();
@@ -93,6 +97,7 @@ public class Hovedkontroller {
                     return "Glemsk";
                 }
         }
+        
         
         model.addAttribute("melding", "feilside.email");
         model.addAttribute("bruker", new Bruker());
