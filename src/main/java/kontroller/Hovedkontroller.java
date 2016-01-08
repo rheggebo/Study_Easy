@@ -123,6 +123,10 @@ public class Hovedkontroller {
     public String finnRom(){
         return "FinnRom";
     }
+    @RequestMapping("SokeSide")
+    public String sokeSide(){
+        return "SokeSide";
+    }
     
     /*private String genererPassord(){
         String characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ~`!@#$%^&*()-_=+[{]}\\|;:\'\",<.>/?0123456789";
