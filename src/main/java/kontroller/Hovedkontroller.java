@@ -87,6 +87,7 @@ public class Hovedkontroller {
         return "Glemsk";
     }
     
+    
     @RequestMapping("MinSide")
     public String minSide(){
         return "MinSide";
