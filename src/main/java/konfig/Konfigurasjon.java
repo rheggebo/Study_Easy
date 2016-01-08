@@ -90,7 +90,7 @@ public class Konfigurasjon extends WebMvcConfigurationSupport{
     
     @Bean
     public DataSource dataSource(){
-        String url = "jdbc:mysql://mysql.stud.iie.ntnu.no:g_scrum_t1";
+        String url = "jdbc:mysql://mysql.stud.iie.ntnu.no/g_scrum_t1";
         String username = "g_scrum_t1";
         String password = "0GPgcC6H";
         DriverManagerDataSource dmds = new DriverManagerDataSource(url, username, password);

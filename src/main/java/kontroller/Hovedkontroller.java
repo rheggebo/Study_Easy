@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import service.Service;
+import verktøy.PasswordHasher;
 
 /**
  * 
@@ -33,6 +34,7 @@ public class Hovedkontroller {
     
     @RequestMapping(value = "/*")
     public String start(Model model, HttpSession sess){
+        System.out.println("Hei");
         BrukerB brukerBean = (BrukerB) sess.getAttribute("brukerBean");
         
         if(brukerBean != null && brukerBean.isInnlogget()){
@@ -44,7 +46,14 @@ public class Hovedkontroller {
     
     @RequestMapping(value="logInSjekk")
     public String logIn(@ModelAttribute("bruker") Bruker bruker, Model model, HttpSession sess){
+        System.out.println("hei)");
         if(service.sjekkPassord(bruker.getEpost(), bruker.getPassord())){
+            System.out.println("---");
+            try{
+            System.out.println("---" + PasswordHasher.getSaltedHash("passord"));}
+            catch(Exception e){
+                
+            }
             BrukerB brukerBean = new BrukerB(service.hentBruker(bruker));
             brukerBean.setInnlogget(true);
             sess.setAttribute("brukerBean", brukerBean);

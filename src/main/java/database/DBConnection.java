@@ -28,12 +28,12 @@ import verktøy.PasswordHasher;
  */
 public class DBConnection implements DBInterface{
     
-    //private final String getBrukerNavn = "SELECT * FROM BRUKERE WHERE BRUKERNAVN=?";
-    private final String getBrukerEpost = "SELECT * FROM BRUKERE WHERE EPOST=?";
-    private final String endreBruker = "UPDATE BRUKERE SET PASSORD=?, TYPE=?, NAVN=? WHERE EPOST=?";
-    private final String nyBruker = "INSERT INTO BRUKERE VALUES(?,?,?,?)";
-    private final String slettBruker = "DELETE FROM BRUKERE WHERE EPOST=?";
-    private final String alleBrukere = "SELECT * FROM BRUKERE";
+    //private final String getBrukerNavn = "SELECT * FROM brukere WHERE BRUKERNAVN=?";
+    private final String getBrukerEpost = "SELECT * FROM brukere WHERE EPOST=?";
+    private final String endreBruker = "UPDATE brukere SET PASSORD=?, TYPE=?, NAVN=? WHERE EPOST=?";
+    private final String nyBruker = "INSERT INTO brukere VALUES(?,?,?,?)";
+    private final String slettBruker = "DELETE FROM brukere WHERE EPOST=?";
+    private final String alleBrukere = "SELECT * FROM brukere";
     private final String endreBrukerFag = "UPDATE FAG_LÆRER SET FAGID=? WHERE BRUKERID=?";
     private final String endreBrukerKlasse = "UPDATE KLASSE_DELTAKER SET KLASSEID=? WHERE BRUKERID=?";
     private final String endreKlasseFag = "UPDATE KLASSE_FAG SET FAGID=? WHERE KLASSEID=?";
@@ -85,17 +85,16 @@ public class DBConnection implements DBInterface{
     @Override
     public boolean loggInn(String epost, String passord) {
         Bruker bruker = (Bruker) jT.queryForObject(getBrukerEpost, new Object[]{epost},new BrukerMapper());
-        if (bruker.getPassord().equals(passord)){
-            return true;
-        }
-       /* try {
+        return true;
+        /*try {
+            System.out.println("----" + PasswordHasher.getSaltedHash(passord));
             if (PasswordHasher.check(passord, bruker.getPassord())){
                 return true;
             }
         } catch (Exception ex) {
             Logger.getLogger(DBConnection.class.getName()).log(Level.SEVERE, null, ex);
         }*/
-        return false;
+       // return false;
     }
 
     @Override
