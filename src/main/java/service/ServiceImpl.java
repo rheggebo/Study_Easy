@@ -39,7 +39,7 @@ public class ServiceImpl implements Service{
     
     @Override
     public boolean sjekkPassord(String brukernavn, String passord) {
-        return dbc.loggInn(brukernavn, passord);
+        return dbc.sjekkPassord(brukernavn, passord);
     }
 
     @Override

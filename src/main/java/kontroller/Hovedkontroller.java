@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Random;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import service.Service;
 import verktøy.PasswordHasher;
+import verktøy.Passordgenerator;
 
 /**
  * 
@@ -33,6 +35,7 @@ public class Hovedkontroller {
     
     @Autowired
     private Service service;
+    private Passordgenerator generator;
     
     @RequestMapping(value = "/*")
     public String start(Model model, HttpSession sess){
@@ -65,11 +68,15 @@ public class Hovedkontroller {
         return "Glemsk";
     }
     
+    @RequestMapping(value="kalenderTest")
+    public String kalenderTest (Model model, HttpServletRequest request){
+        return "fullcalendar/demos/basic_views";
+    }
     @RequestMapping(value="sendNyttPassord")
     public String glemsk(@ModelAttribute("bruker") Bruker bruker, Model model, HttpServletRequest request){
         String sjekk = bruker.getEpost();
         Bruker temp;
-        List<Bruker> tabell = service.getAlleBrukere();
+        /*List<Bruker> tabell = service.getAlleBrukere();
         for (Bruker bruker1 : tabell) {
             if(bruker1.getEpost().equals(sjekk)){
                 temp = service.hentBruker(sjekk);
@@ -80,12 +87,23 @@ public class Hovedkontroller {
                     return "Glemsk";
                 }
             }
-        }  
+        }*/
+        temp = service.hentBruker(sjekk);
+        if(temp != null){
+            if(sendNyPass(temp)){
+                    return "Innlogging";
+                }else{
+                    model.addAttribute("melding", "feilmelding.email");
+                    return "Glemsk";
+                }
+        }
+        
         
         model.addAttribute("melding", "feilside.email");
         model.addAttribute("bruker", new Bruker());
         return "Glemsk";
     }
+    
     
     @RequestMapping("MinSide")
     public String minSide(){
@@ -107,9 +125,19 @@ public class Hovedkontroller {
         return "Forside";
     }
     
-    private String genererPassord(){
-        String alfabet = "1234567890qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM";
-        char[] nyttPass = new char[7];
+    @RequestMapping("FinnRom")
+    public String finnRom(){
+        System.out.println("FinnRomm");
+        return "FinnRom";
+    }
+    @RequestMapping("SokeSide")
+    public String sokeSide(){
+        return "SokeSide";
+    }
+    
+    /*private String genererPassord(){
+        String characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ~`!@#$%^&*()-_=+[{]}\\|;:\'\",<.>/?0123456789";
+        /*char[] nyttPass = new char[8];
         Random rng = new Random();
         for (int i = 0; i < nyttPass.length; i++) {
             nyttPass[i] = alfabet.charAt(rng.nextInt(alfabet.length()));
@@ -118,13 +146,15 @@ public class Hovedkontroller {
         if(nyttPassord.toLowerCase().equals(nyttPassord) || nyttPassord.toUpperCase().equals(nyttPassord)){
             nyttPassord = genererPassord();
         }
+        String nyttPassord = RandomStringUtils.random( 15, characters );
+        System.out.println(nyttPassord);
         return nyttPassord;
-    }
+    }*/
     
     private Boolean sendNyPass(Bruker temp){
         String mottaker = temp.getEpost();
         String tema = "Nytt passord for bruker: "+temp.getEpost();
-        String nyttPassord = genererPassord();
+        String nyttPassord = generator.genererPassord();
         temp.setPassord(nyttPassord);
         Email email = new Email();
         String melding= 
