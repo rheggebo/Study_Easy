@@ -11,13 +11,13 @@
 
 <html>
     <head>
-        <link rel="stylesheet" href="/resources/css/TheStyle.css">
+        <link rel="stylesheet" <c:url value="/resources/css/TheStyle.css"/>>
         <title>SokeSide</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <a href="Forside.html"><img id="logo" src="LogoTeam1.png"></a><br>
+        <a href="Forside.html"><img id="logo" src="<c:url value="/resources/images/LogoTeam1.png"/>"></a><br>
                 <nav class="dropdownmenu">
                 <ul>
                     <li><a href="Forside.html">Forside</a></li>
