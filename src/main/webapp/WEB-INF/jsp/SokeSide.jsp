@@ -11,7 +11,7 @@
 
 <html>
     <head>
-        <link rel="stylesheet" href="<c:url value="/resources/css/Hoedstilen.css"/>">
+        <link rel="stylesheet" href="<c:url value="/resources/css/Hovedstilen.css"/>">
 
         <title>SokeSide</title>
         <meta charset="UTF-8">
