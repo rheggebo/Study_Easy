@@ -20,14 +20,14 @@
             <li><a href="Forside">Forside</a></li>
             <li><a href="Forside">Kontakt</a></li>
             <li><a href="#">Romvalg</a>
-                <ul class="submenu">
+                <ul id="submenu">
                     <li><a href="VelgRom">Bestill rom</a></li>
                     <li><a href="Forside">Finn rom</a></li>
                 </ul>
             </li>
             <li><a href="SokeSide">Søk</a></li>
             <li><a href="MinSide">Min side</a>
-                <ul class="submenu">
+                <ul id="submenu">
                     <li><a href="MinSideRed">Endre instillinger</a></li>
                     <li><a href="Forside">Logg ut</a></li>
                 </ul>
