@@ -85,13 +85,16 @@ public class DBConnection implements DBInterface{
     @Override
     public boolean loggInn(String epost, String passord) {
         Bruker bruker = (Bruker) jT.queryForObject(getBrukerEpost, new Object[]{epost},new BrukerMapper());
-        try {
+        if (bruker.getPassord().equals(passord)){
+            return true;
+        }
+       /* try {
             if (PasswordHasher.check(passord, bruker.getPassord())){
                 return true;
             }
         } catch (Exception ex) {
             Logger.getLogger(DBConnection.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
         return false;
     }
 
