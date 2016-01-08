@@ -83,7 +83,7 @@ public class DBConnectionImpl implements DBConnection{
     }
     
     @Override
-    public boolean loggInn(String epost, String passord) {
+    public boolean sjekkPassord(String epost, String passord) {
         Bruker bruker = (Bruker) jT.queryForObject(getBrukerEpost, new Object[]{epost},new BrukerMapper());
         try {
             if (PasswordHasher.check(passord, bruker.getPassord())){

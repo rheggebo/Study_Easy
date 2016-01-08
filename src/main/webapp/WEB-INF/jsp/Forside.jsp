@@ -22,7 +22,7 @@
                     <li><a href="#">Romvalg</a>
                         <ul id="submenu">
                             <li><a href="VelgRom">Bestill rom</a></li>
-                            <li><a href="Forside">Finn rom</a></li>
+                            <li><a href="FinnRom">Finn rom</a></li>
                         </ul>
                     </li>
                     <li><a href="SokeSide">Søk</a></li>
