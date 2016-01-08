@@ -10,13 +10,14 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
 <html>
-
     <head>
-        <link rel="stylesheet" href="<c:url value="/resources/css/Hovedstilen.css"/>">
+        <link rel="stylesheet" href="<c:url value="/resources/css/Hoedstilen.css"/>">
+
         <title>SokeSide</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
+
    
   <body>
     
@@ -41,6 +42,7 @@
 
       <br><br><br>
       <main> 
+
         <div class="searchNav">
             <ul>
                 <li><div><form action="/search" role="search"> 
@@ -69,8 +71,7 @@
            
         
       </main>   
-        
-        
+
         <!--Footer-->
         <div class="space"></div>
         <!--Må være med for å funke i Chrome-->
