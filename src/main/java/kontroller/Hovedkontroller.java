@@ -121,6 +121,7 @@ public class Hovedkontroller {
     
     @RequestMapping("FinnRom")
     public String finnRom(){
+        System.out.println("FinnRomm");
         return "FinnRom";
     }
     
