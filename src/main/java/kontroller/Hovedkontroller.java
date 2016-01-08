@@ -119,6 +119,11 @@ public class Hovedkontroller {
         return "Forside";
     }
     
+    @RequestMapping("FinnRom")
+    public String finnRom(){
+        return "FinnRom";
+    }
+    
     /*private String genererPassord(){
         String characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ~`!@#$%^&*()-_=+[{]}\\|;:\'\",<.>/?0123456789";
         /*char[] nyttPass = new char[8];
