@@ -10,8 +10,8 @@ import beans.Fag;
 import beans.KalenderEvent;
 import beans.Klasse;
 import beans.Rom;
+import database.DBConnectionImpl;
 import database.DBConnection;
-import database.DBInterface;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -21,10 +21,10 @@ import org.springframework.beans.factory.annotation.Autowired;
  */ 
 public class ServiceImpl implements Service{
     
-    private DBInterface dbc;
+    private DBConnection dbc;
     
     @Autowired
-    public void setDBC(DBInterface dbc){
+    public void setDBC(DBConnection dbc){
         this.dbc = dbc;
     }
     
@@ -39,7 +39,7 @@ public class ServiceImpl implements Service{
     
     @Override
     public boolean sjekkPassord(String brukernavn, String passord) {
-        return dbc.loggInn(brukernavn, passord);
+        return dbc.sjekkPassord(brukernavn, passord);
     }
 
     @Override
