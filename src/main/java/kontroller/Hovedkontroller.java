@@ -8,6 +8,8 @@ package kontroller;
 import beans.Bruker;
 import beans.BrukerB;
 import email.Email;
+import java.io.PrintWriter;
+import static java.lang.System.console;
 import java.util.List;
 import java.util.Random;
 import javax.servlet.http.HttpServletRequest;
@@ -34,7 +36,6 @@ public class Hovedkontroller {
     
     @RequestMapping(value = "/*")
     public String start(Model model, HttpSession sess){
-        System.out.println("Hei");
         BrukerB brukerBean = (BrukerB) sess.getAttribute("brukerBean");
         
         if(brukerBean != null && brukerBean.isInnlogget()){
@@ -48,12 +49,6 @@ public class Hovedkontroller {
     public String logIn(@ModelAttribute("bruker") Bruker bruker, Model model, HttpSession sess){
         System.out.println("hei)");
         if(service.sjekkPassord(bruker.getEpost(), bruker.getPassord())){
-            System.out.println("---");
-            try{
-            System.out.println("---" + PasswordHasher.getSaltedHash("passord"));}
-            catch(Exception e){
-                
-            }
             BrukerB brukerBean = new BrukerB(service.hentBruker(bruker));
             brukerBean.setInnlogget(true);
             sess.setAttribute("brukerBean", brukerBean);
