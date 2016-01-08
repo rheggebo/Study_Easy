@@ -10,7 +10,15 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
 <html>
-   <header>
+    <head>
+        <link rel="stylesheet" href="<c:url value="/resources/css/Hoedstilen.css"/>">
+        <title>SokeSide</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    
+    <body>
+       <header>
     <a href="Forside.html"><img id="logo" src="<c:url value="/resources/images/LogoTeam1.png"/>"></a>
     Norges teknisk-naturvitenskapelige universitet<br>
     <nav class="dropdownmenu">
@@ -28,11 +36,11 @@
         </ul>
     </nav>
 </header>
-
-    <body>
-      <br><br><br>
+        
+        <br><br><br>
        
- <div class="searchNav">
+        
+        <div class="searchNav">
             <ul>
                 <li><div><form action="/search" role="search"> 
                 <input class="searchForm" type=search size="30">
@@ -62,7 +70,7 @@
         
         
         
-           <!--Footer-->
+<!--Footer-->
 <div class="space"></div>
 <!--Må være med for å funke i Chrome-->
 
@@ -81,5 +89,4 @@
     <a class="footerLenke" href="Forside.html">Contact</a>
     <h4>Study Easy © 2016</h4>
 </footer>
-    </body>
 </html>
