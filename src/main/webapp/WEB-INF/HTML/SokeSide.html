@@ -32,15 +32,15 @@ and open the template in the editor.
         <br><br><br>
        
         
-        <nav class="searchNav">
+        <div class="searchNav">
             <ul>
-            <li><form action="/search" role="search"> 
+                <li><div><form action="/search" role="search"> 
                 <input class="searchForm" type=search size="30">
-                <input class="searchButton" value="Søk" type="submit"></form>
+                <input class="searchButton" value="Søk" type="submit"></form></div>
                 
                 <br>
-                
-                <form action="">
+                <div>
+                <form class="checkboxes" action="">
                     <input type="checkbox" name="Spes" value="Ansatt">Ansatt
                     <br>
                     <input type="checkbox" name="Spes" value="Student">Student
@@ -49,9 +49,13 @@ and open the template in the editor.
                     <br>
                     <input type="checkbox" name="Spes" value="Rom">Rom
                     <br>
-                    <input type="checkbox" name="Spes" value="Klasse">Klasse</form>                
-            </li>         
-            </ul></nav>
+                    <input type="checkbox" name="Spes" value="Klasse">Klasse</form></div>                
+            </li>
+           
+            </ul></div>
+        <div class="searchInfo">
+            
+        </div>
            
         
         
