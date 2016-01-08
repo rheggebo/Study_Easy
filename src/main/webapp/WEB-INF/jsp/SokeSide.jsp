@@ -21,24 +21,28 @@
    
   <body>
     
-   <header>
-    <a href="Forside.html"><img id="logo" src="<c:url value="/resources/images/LogoTeam1.png"/>"></a>
-    Norges teknisk-naturvitenskapelige universitet<br>
-        <nav class="dropdownmenu">
-            <ul>
-                <li><a href="Forsidel">Forside</a></li>
-                <li><a href="MinSide">Min side</a></li>
-                <li><a href="#">Romvalg</a>
-                    <ul id="submenu">
-                        <li><a href="VelgRom">Bestill rom</a></li>
-                        <li><a href="FinnRom">Finn rom</a></li>
-                    </ul>
-                </li>
-                <li><a href="SokeSide">Søk</a></li>
-                <li><a href="Forside">Logg ut</a></li>
-            </ul>
-        </nav>
-    </header>
+  <header>
+            <a href="Forside"><img id="logo" src="<c:url value="/resources/images/LogoTeam1.png"/>"></a>
+            NTNU - Norges Teknisk-naturvitenskapelige Universitet · Study Easy © 2016<br>
+            <nav class="dropdownmenu">
+                <ul>
+                    <li><a href="Forside">Forside</a></li>
+                    <li><a href="Forside">Kontakt</a></li>
+                    <li><a href="#">Romvalg</a>
+                        <ul id="submenu">
+                            <li><a href="VelgRom">Bestill rom</a></li>
+                            <li><a href="FinnRom">Finn rom</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="SokeSide">Søk</a></li>
+                    <li><a href="MinSide">Min side</a>
+                        <ul id="submenu">
+                            <li><a href="MinSideRed">Endre instillinger</a></li>
+                            <li><a href="Forside">Logg ut</a></li>
+                        </ul>
+                </ul>
+            </nav>
+        </header>
 
       <br><br><br>
       <main> 
