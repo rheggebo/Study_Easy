@@ -6,12 +6,10 @@
 package konfig;
 
 
-/*import Service.BrukerService;
-import Service.BrukerServiceImpl;
-import bruker.Bruker;
-import bruker.BrukerB;
+import service.Service;
+import service.ServiceImpl;
 import database.DBConnection;
-import database.DBInterface;*/
+import database.DBInterface;
 import java.sql.Connection;
 import javax.sql.DataSource;
 import org.springframework.context.annotation.Bean;
@@ -21,7 +19,6 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.web.servlet.HandlerMapping;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
@@ -93,11 +90,11 @@ public class Konfigurasjon extends WebMvcConfigurationSupport{
     
     @Bean
     public DataSource dataSource(){
-        String url = "mysql.stud.iie.ntnu.no";
+        String url = "jdbc:mysql://mysql.stud.iie.ntnu.no/g_scrum_t1";
         String username = "g_scrum_t1";
         String password = "0GPgcC6H";
         DriverManagerDataSource dmds = new DriverManagerDataSource(url, username, password);
-        dmds.setDriverClassName("org.apache.derby.jdbc.ClientDriver");
+        dmds.setDriverClassName("com.mysql.jdbc.Driver");
         try{
             Connection con = dmds.getConnection();
             System.out.println(" *********  Konfig " + con );
@@ -108,17 +105,17 @@ public class Konfigurasjon extends WebMvcConfigurationSupport{
         return dmds;
     }
     
-    /*@Bean
+    @Bean
     public DBInterface repository(){
         return new DBConnection();
     }
     
     @Bean
-    public BrukerService brukerServuce(){
-        return new BrukerServiceImpl();
+    public Service brukerService(){
+        return new ServiceImpl();
     }
     
-    @Bean
+    /*@Bean
     @Scope(value="session", proxyMode = ScopedProxyMode.TARGET_CLASS)
     public BrukerB brukerBean(){
         return new BrukerB(new Bruker());

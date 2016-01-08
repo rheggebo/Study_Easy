@@ -18,6 +18,14 @@ public class RomMapper implements RowMapper<Rom>{
 
     @Override
     public Rom mapRow(ResultSet rs, int i) throws SQLException {
+        Rom rom = new Rom();
+        rom.setRomID(rs.getString("romID"));
+        rom.setRomNavn(rs.getString("romnavn"));
+        rom.setEtasje(rs.getInt("etasje"));
+        rom.setType(rs.getInt("type"));
+        rom.setStorrelse(rs.getInt("størrelse"));
+        
+        
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

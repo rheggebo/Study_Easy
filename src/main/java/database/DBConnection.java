@@ -13,11 +13,14 @@ import beans.KalenderEvent;
 import beans.Klasse;
 import beans.Rom;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.sql.DataSource;
 import mapper.FagMapper;
 import mapper.KalenderEventMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import verktøy.PasswordHasher;
 
 /**
  *
@@ -25,12 +28,12 @@ import org.springframework.jdbc.core.JdbcTemplate;
  */
 public class DBConnection implements DBInterface{
     
-    //private final String getBrukerNavn = "SELECT * FROM BRUKERE WHERE BRUKERNAVN=?";
-    private final String getBrukerEpost = "SELECT * FROM BRUKERE WHERE EMAIL=?";
-    private final String endreBruker = "UPDATE BRUKERE SET PASSORD=?, TYPE=?, NAVN=? WHERE EPOST=?";
-    private final String nyBruker = "INSERT INTO BRUKERE VALUES(?,?,?,?)";
-    private final String slettBruker = "DELETE FROM BRUKERE WHERE EPOST=?";
-    private final String alleBrukere = "SELECT * FROM BRUKERE";
+    //private final String getBrukerNavn = "SELECT * FROM brukere WHERE BRUKERNAVN=?";
+    private final String getBrukerEpost = "SELECT * FROM brukere WHERE EPOST=?";
+    private final String endreBruker = "UPDATE brukere SET PASSORD=?, TYPE=?, NAVN=? WHERE EPOST=?";
+    private final String nyBruker = "INSERT INTO brukere VALUES(?,?,?,?)";
+    private final String slettBruker = "DELETE FROM brukere WHERE EPOST=?";
+    private final String alleBrukere = "SELECT * FROM brukere";
     private final String endreBrukerFag = "UPDATE FAG_LÆRER SET FAGID=? WHERE BRUKERID=?";
     private final String endreBrukerKlasse = "UPDATE KLASSE_DELTAKER SET KLASSEID=? WHERE BRUKERID=?";
     private final String endreKlasseFag = "UPDATE KLASSE_FAG SET FAGID=? WHERE KLASSEID=?";
@@ -52,13 +55,13 @@ public class DBConnection implements DBInterface{
     private final String getKalenderEventEier = "SELECT * FROM KALENDER_EVENT WHERE EIER=?";
     private final String getKalenderEventRomID = "SELECT * FROM KALENDER_EVENT WHERE ROMID=?";
     private final String getFagLaerer = "SELECT FAGID FROM FAG_LÆRER WHERE BRUKERID=?";
-    private final String getRombestilling = "sindre";
+    private final String getRombestilling = "";
     private final String getRomFraNavn = "SELECT * FROM ROM WHERE ROMNAVN=?";
-    private final String getRomFraInnhold = "sindre";
+    private final String getRomFraInnhold = "";
     private final String getRomFraType = "SELECT * FROM ROM WHERE TYPE=?";
     private final String getRomFraStoerrelse = "SELECT * FROM ROM WHERE STØRRELSE=?";
-    private final String getLaererKlasse = "sindre";
-    private final String getKlasseDeltaker = "sindre";
+    private final String getLaererKlasse = "";
+    private final String getKlasseDeltaker = "";
     private final String leggTilAbonnement = "";
     private final String slettAbonnement = "";
     private final String getAbonnement = "";
@@ -82,11 +85,16 @@ public class DBConnection implements DBInterface{
     @Override
     public boolean loggInn(String epost, String passord) {
         Bruker bruker = (Bruker) jT.queryForObject(getBrukerEpost, new Object[]{epost},new BrukerMapper());
-        
-        if(bruker.getPassord().equals(passord)){
-            return true;
-        }
-        return false;
+        return true;
+        /*try {
+            System.out.println("----" + PasswordHasher.getSaltedHash(passord));
+            if (PasswordHasher.check(passord, bruker.getPassord())){
+                return true;
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(DBConnection.class.getName()).log(Level.SEVERE, null, ex);
+        }*/
+       // return false;
     }
 
     @Override
@@ -160,7 +168,7 @@ public class DBConnection implements DBInterface{
     public boolean oppdaterRom(Rom r) {
         int antallRader = jT.update(endreRom,new Object[]{
             r.getRomNavn(),
-            r.getTilgangniva(),
+            r.getType(),
             r.getEtasje(),
             r.getStorrelse(),
             r.getRomID()
@@ -196,7 +204,7 @@ public class DBConnection implements DBInterface{
 
     @Override
     public boolean slettRomInnhold(Rom r, String innholdNavn) {
-        int antallRader = jT.update(endreKlasseFag,new Object[]{
+        int antallRader = jT.update(slettRomInnhold,new Object[]{
             r.getRomID(),
             innholdNavn
         });
@@ -208,7 +216,7 @@ public class DBConnection implements DBInterface{
 
     @Override
     public boolean leggTilInnhold(Rom r, String innholdNavn) {
-        int antallRader = jT.update(endreKlasseFag,new Object[]{
+        int antallRader = jT.update(leggTilInnhold,new Object[]{
             r.getRomID(),
             innholdNavn
         });
@@ -243,10 +251,10 @@ public class DBConnection implements DBInterface{
 
     @Override
     public boolean leggTilRom(Rom r) {
-        int antallRader = jT.update(endreRom,new Object[]{
+        int antallRader = jT.update(leggTilRom,new Object[]{
             r.getRomID(),
             r.getRomNavn(),
-            r.getTilgangniva(),
+            r.getType(),
             r.getEtasje(),
             r.getStorrelse()
         });
@@ -259,13 +267,13 @@ public class DBConnection implements DBInterface{
     @Override
     public boolean leggTilKalenderEvent(KalenderEvent ke) {
         int antallRader = jT.update(leggTilKalenderEvent,new Object[]{
-            ke.getiD(),
+            ke.getId(),
             ke.getStartDato(),
             ke.getSluttDato(),
             ke.getEier(),
             ke.isPrivat(),
             ke.getType(),
-            ke.getFag().getFagID()
+            ke.getFag()
         });
         if(antallRader > 0){
             return true;
@@ -276,7 +284,7 @@ public class DBConnection implements DBInterface{
     @Override
     public boolean fjernKalenderEvent(KalenderEvent ke) {
         int antallRader = jT.update(fjernKalenderEvent,new Object[]{
-            ke.getiD()
+            ke.getId()
         });
         if(antallRader > 0){
             return true;
@@ -286,13 +294,15 @@ public class DBConnection implements DBInterface{
 
     @Override
     public List<Bruker> getKalenderEventDeltakere(KalenderEvent ke) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return jT.query(getKalenderEventDeltakere, new Object[]{
+            ke.getId()
+        }, new BrukerMapper());
     }
 
     @Override
     public Bruker getKalenderEventDeltaker(KalenderEvent ke, Bruker b) {
         return (Bruker) jT.queryForObject(getKalenderEventDeltaker, new Object[]{
-            ke.getiD(),
+            ke.getId(),
             b.getEpost()
         }, new BrukerMapper());
     }
@@ -328,9 +338,13 @@ public class DBConnection implements DBInterface{
 
     @Override
     public List<Rom> getRomFraNavn(Rom r) {
-        return jT.query(getRomFraNavn, new Object[]{
+        List<Rom> liste = jT.query(getRomFraNavn, new Object[]{
         r.getRomNavn()
         }, new RomMapper());
+        for (Rom rom : liste) {
+            
+        }
+        return liste;
     }
 
     @Override
@@ -344,7 +358,7 @@ public class DBConnection implements DBInterface{
     @Override
     public List<Rom> getRomFraType(Rom r) {
         return jT.query(getRomFraType, new Object[]{
-            r.getTilgangniva()
+            r.getType()
         }, new RomMapper());
     }
 

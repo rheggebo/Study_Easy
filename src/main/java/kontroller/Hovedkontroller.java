@@ -19,7 +19,8 @@ import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import service.Brukerservice;
+import service.Service;
+import verktøy.PasswordHasher;
 
 /**
  * 
@@ -29,21 +30,37 @@ import service.Brukerservice;
 public class Hovedkontroller {
     
     @Autowired
-    private Brukerservice brukerservice;
-    
-    @InitBinder
-     protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) {
-        binder.registerCustomEditor(Bruker.class, new BrukerEditor(brukerservice));
-    }
+    private Service service;
     
     @RequestMapping(value = "/*")
     public String start(Model model, HttpSession sess){
+        System.out.println("Hei");
         BrukerB brukerBean = (BrukerB) sess.getAttribute("brukerBean");
         
         if(brukerBean != null && brukerBean.isInnlogget()){
             return "Hoved";
         }
         model.addAttribute("bruker", new Bruker());
+        return "Innlogging";
+    }
+    
+    @RequestMapping(value="logInSjekk")
+    public String logIn(@ModelAttribute("bruker") Bruker bruker, Model model, HttpSession sess){
+        System.out.println("hei)");
+        if(service.sjekkPassord(bruker.getEpost(), bruker.getPassord())){
+            System.out.println("---");
+            try{
+            System.out.println("---" + PasswordHasher.getSaltedHash("passord"));}
+            catch(Exception e){
+                
+            }
+            BrukerB brukerBean = new BrukerB(service.hentBruker(bruker));
+            brukerBean.setInnlogget(true);
+            sess.setAttribute("brukerBean", brukerBean);
+            return "Hoved";
+        }
+        model.addAttribute("melding", "feilmelding.login");
+        bruker.setPassord("");
         return "Innlogging";
     }
     
@@ -57,10 +74,10 @@ public class Hovedkontroller {
     public String glemsk(@ModelAttribute("bruker") Bruker bruker, Model model, HttpServletRequest request){
         String sjekk = bruker.getEpost();
         Bruker temp;
-        List<Bruker> tabell = brukerservice.getAlleBrukere();
+        List<Bruker> tabell = service.getAlleBrukere();
         for (Bruker bruker1 : tabell) {
             if(bruker1.getEpost().equals(sjekk)){
-                temp = brukerservice.hentBruker(sjekk);
+                temp = service.hentBruker(sjekk);
                 if(sendNyPass(temp)){
                     return "EmailRedirect";
                 }else{
@@ -103,7 +120,7 @@ public class Hovedkontroller {
                 + "Vi anbefaler at du bytter dette passordet ved neste innlogging. \n \n "
                 + "Hilsen Bookolini-teamet";
         System.out.println("Oppdater bruker: "+temp);
-        if(brukerservice.endreBruker(temp)){
+        if(service.endreBruker(temp)){
             if(email.sendEpost(mottaker, tema, melding)){
                 System.out.println("Email sendt!****");
                 return true;

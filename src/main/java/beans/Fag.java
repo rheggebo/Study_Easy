@@ -13,7 +13,6 @@ public class Fag {
         this.fagID = fagID;
     }
     private String navn;
-    private Klasse klasse;
     private ArrayList<Bruker> laerere;
     private ArrayList<KalenderEvent> kalenderEvents;
 
@@ -25,13 +24,6 @@ public class Fag {
         this.navn = navn;
     }
 
-    public Klasse getKlasse() {
-        return klasse;
-    }
-
-    public void setKlasse(Klasse klasse) {
-        this.klasse = klasse;
-    }
 
     public ArrayList<Bruker> getLaerere() {
         return laerere;

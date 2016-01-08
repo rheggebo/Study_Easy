@@ -16,7 +16,7 @@ import java.util.List;
  *
  * @author Stein-Erik
  */
-public interface Brukerservice {
+public interface Service {
     
     public boolean sjekkPassord(String brukernavn, String passord);
     

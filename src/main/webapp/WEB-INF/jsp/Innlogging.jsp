@@ -10,7 +10,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<jsp:useBean id="brukerBean" class="bruker.Bruker"/>
+
 <html lang="en">
 <head>
     <link rel="shortcut icon" href="<c:url value="/resources/images/BBIkon2.png"/>">
@@ -28,7 +28,7 @@
   <form:form action="logInSjekk" modelAttribute="bruker">
     <div id="section">
       <div id="inputwrap">
-        <form:input type="text" placeholder="Brukernavn" path="brukernavn" style="width: 420px"/><hr>
+        <form:input type="text" placeholder="Epost" path="epost" style="width: 420px"/><hr>
         <form:input type="password" placeholder="Passord" path="passord" style="width: 420px"/>
       </div>
 
