@@ -8,8 +8,8 @@ package konfig;
 
 import service.Service;
 import service.ServiceImpl;
+import database.DBConnectionImpl;
 import database.DBConnection;
-import database.DBInterface;
 import java.sql.Connection;
 import javax.sql.DataSource;
 import org.springframework.context.annotation.Bean;
@@ -106,8 +106,8 @@ public class Konfigurasjon extends WebMvcConfigurationSupport{
     }
     
     @Bean
-    public DBInterface repository(){
-        return new DBConnection();
+    public DBConnection repository(){
+        return new DBConnectionImpl();
     }
     
     @Bean

@@ -1,10 +1,11 @@
 /*--------
 [StudyEasy] Screen Stylesheet
 
-version:   1.2
+version:   1.5
 date:      08/01/16
-author:    Ingvild and Ane
+author:    Ingvild, Ane og Sigrid
 ---------------*/
+
 
 
 body {
@@ -78,7 +79,7 @@ footer, header{
     color: #FFFFFF;
     display: block;
     font: bold 12px/20px Microsoft YaHei Light;
-    padding: 12px 96.5px;
+    padding: 12px 90px;
     text-align: center;
     text-decoration: none;
 }
