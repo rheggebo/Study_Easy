@@ -164,5 +164,26 @@ footer{
 }
 .checkboxes{
     cursor: pointer;
+}
 
+
+label em {
+    color: red;
+}
+
+input.red {
+    border: 1px solid red;
+}
+
+aside{
+    float: left;
+    width: 300px;
+}
+
+.info{
+    float: left;
+    width: 600px;
+    height: 400px;
+    border:1px solid red;
+    padding:10px;
 }
