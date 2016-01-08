@@ -141,7 +141,8 @@ public class Hovedkontroller {
             }
             System.out.println("Email ikke sendt :( *****");
         }
-        return false;
+        //asdasdasd
+        return false; 
     }
     
     
