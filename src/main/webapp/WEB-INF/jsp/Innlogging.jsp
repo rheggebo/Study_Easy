@@ -16,7 +16,7 @@
     <link rel="shortcut icon" href="<c:url value="/resources/images/BBIkon2.png"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/Login.css"/>">
   <meta charset="UTF-8">
-  <title>Bookolini 2.0</title>
+  <title>Study Easy</title>
 </head>
 <body>
 <div id = "header">
