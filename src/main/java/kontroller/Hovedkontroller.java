@@ -132,7 +132,7 @@ public class Hovedkontroller {
                 + "Brukernavn: "+temp.getEpost()+"\n "
                 + "Passord: "+nyttPassord+"\n \n "
                 + "Vi anbefaler at du bytter dette passordet ved neste innlogging. \n \n "
-                + "Hilsen Bookolini-teamet";
+                + "Hilsen Study Easy teamet";
         System.out.println("Oppdater bruker: "+temp);
         if(service.endreBruker(temp)){
             if(email.sendEpost(mottaker, tema, melding)){
