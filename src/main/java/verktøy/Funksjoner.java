@@ -5,20 +5,42 @@
  */
 package verktøy;
 
-import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
 import java.util.List;
 import beans.Sok;
+import java.util.ArrayList;
+import service.ServiceImpl;
 
 /**
  *
  * @author Sigrid
  */
 public class Funksjoner {
-    
-    
-    public List<String>sok(String sokeord){
+  ServiceImpl si=new ServiceImpl();
+  
+  public List<Object> getAlleSokeTreff(String s){
+        ArrayList<Object> liste=new ArrayList<Object>();
+        for(int i=0; i<si.getAlleBrukere().size();i++){
+            if(s.equals(si.getAlleBrukere().get(i).getNavn())){
+                     liste.add(si.getAlleBrukere().get(i));        
+            }
+        }
+        for(int i=0;i<si.getAlleRom().size();i++){
+            if(s.equals(si.getAlleRom().get(i).getRomNavn())){
+                liste.add(si.getAlleRom().get(i));
+            }
+        }
+        for(int i=0;i<si.getAlleFag().size();i++){
+            if(s.equals(si.getAlleFag().get(i).getNavn())){
+                liste.add(si.getAlleRom().get(i));
+            }
+        }
+        for(int i=0;i<si.getAlleRom().size();i++){
+            if(s.equals(si.getAlleRom().get(i).getRomNavn())){
+                liste.add(si.getAlleRom().get(i));
+            }     
+        }
         
-        //String ord=request.getParameter("sokeord");
+     
+      return liste;
     }
-    
 }
