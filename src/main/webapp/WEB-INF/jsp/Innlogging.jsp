@@ -14,17 +14,14 @@
 <html lang="en">
 <head>
     <link rel="shortcut icon" href="<c:url value="/resources/images/BBIkon2.png"/>">
-    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/Login.css"/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/Login3.css"/>">
   <meta charset="UTF-8">
   <title>Study Easy</title>
 </head>
 <body>
-<div id = "header">
-  <h1>Velkommen til Study Easy</h1>
-</div>
 
 <div id="ILBoks">
-  <img src="resources/images/study_easy_logo_utkast_2.png" style="border-radius: 8px; padding: 20px; top: 10%"/>
+  <img src="resources/images/Study_Easy_Login1.png" style="border-radius: 8px; padding: 10px; top: 10%; margin-left: 78px"/>
   <form:form action="logInSjekk" modelAttribute="bruker">
     <div id="section">
       <div id="inputwrap">
@@ -37,10 +34,10 @@
     width: 460px;
     padding: 15px 10px;
     position: absolute;
-    top: 143%;
+    top: 145%;
     left: 50%;
     margin-left: -230px;
-    margin-top: -240px;
+    margin-top: -277px;
     background-color: dodgerblue;
     color: white;
     border-radius: 12px;"><br>
@@ -48,13 +45,9 @@
 
     <a href="glemtPassord" name="glemsk" style="
     position: absolute;
-    top: 91%;
+    top: 93%;
     left: 75%;">Glemt passord?</a>
     
-    <a href="nyBrukerKnapp" name="nyBruk" style="
-    position: absolute;
-    top: 91%;
-    left: 4.8%;">Ny bruker</a>
 
   </form:form>
   

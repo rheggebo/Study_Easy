@@ -7,6 +7,7 @@ package verktøy;
 
 import java.security.SecureRandom;
 import org.apache.commons.lang3.RandomStringUtils;
+import beans.Passord;
 
 /**
  *
@@ -19,11 +20,13 @@ public class Passordgenerator {
     
     
     public String genererPassord(){
-        return RandomStringUtils.random(15, 0, 0, false, false, alfabet.toCharArray());
+        return RandomStringUtils.random(10, 0, 0, false, false, alfabet.toCharArray());
     }
     
     public static void main(String[] args) {
-        System.out.println("Nytt passord: "+new Passordgenerator().genererPassord());
+        for (int i = 0; i < 10; i++) {
+            System.out.println(new Passordgenerator().genererPassord());
+        }
     }
     
 }
