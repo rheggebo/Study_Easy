@@ -9,6 +9,12 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
+<%@page import="beans.Sok" %>
+
+<jsp:useBean id="sokeord" class="beans.Sok"/>
+<jsp:setProperty name="sokeord" property="*"/>
+
+
 <!DOCTYPE html>
 <html lang="no">
 <head>
@@ -46,8 +52,8 @@
 
 <div class="searchNav">
     <ul>
-        <li><div><form action="/search" role="search">
-            <input class="searchForm" type=search size="30">
+        <li><div><form action="/search" method="POST"  role="search">
+            <input class="searchForm" type=search name="sokeord" size="30">
             <input class="searchButton" value="Søk" type="submit"></form></div>
 
             <br>
@@ -63,9 +69,9 @@
                     <br>
                     <input type="checkbox" name="Spes" value="Klasse">Klasse</form></div>
         </li>
-
     </ul></div>
 
+ 
 <div class="searchInfo">
     <p>Resultatet kan inn her</p>
 </div>
@@ -91,3 +97,4 @@
 </footer>
 </body>
 </html>
+
