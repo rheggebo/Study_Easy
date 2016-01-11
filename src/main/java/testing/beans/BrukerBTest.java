@@ -4,9 +4,14 @@
  * and open the template in the editor.
  */
 package testing.beans;
+
 import org.junit.*;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
+import java.util.ArrayList;
+
+import beans.BrukerB;
+import beans.KalenderEvent;
 /**
  *
  * @author Sindre
@@ -16,7 +21,8 @@ public class BrukerBTest {
 
 public class SearchEngineJUnitTest {
     //@InjectMocks private PageReader reader;
-
+    KalenderEvent[] kalenderEvent; 
+    
     @BeforeClass
     public void setUpClass() throws Exception {
         // Koden her eksekveres før første test i klassen
@@ -25,20 +31,20 @@ public class SearchEngineJUnitTest {
     @Before
     public void setUp() throws Exception {
         // Koden her eksekveres før hver av testmetodene i klassen
-
+        kalenderEvent=mock(KalenderEvent[].class);
     }
 
     @Test
-    public void test_har_indeksert (){
+    public void test_1 (){
 
     }
-
-
-    public void test_riktig_rekkefølge (){
+    
+    public void test_2 (){
         
     }
+ 
 
-    public void test_ukjent_org (){
+    public void test_3 (){
 
     }
     /*
