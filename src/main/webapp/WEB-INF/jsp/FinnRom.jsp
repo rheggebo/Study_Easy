@@ -12,7 +12,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="<c:url value="/resources/css/TheStyle.css"/>">
+    <link rel="stylesheet" href="<c:url value="/resources/css/Hovedstilen.css"/>">
     <meta charset="UTF-8">
     <title>Finn rom</title>
 

@@ -11,32 +11,42 @@
 
 <html>
     <head>
-        <link rel="stylesheet" <c:url value="/resources/css/TheStyle.css"/>>
+        <link rel="stylesheet" href="<c:url value="/resources/css/Hovedstilen.css"/>">
+
         <title>SokeSide</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
-    <body>
-        <a href="Forside.html"><img id="logo" src="<c:url value="/resources/images/LogoTeam1.png"/>"></a><br>
-                <nav class="dropdownmenu">
+
+   
+  <body>
+    
+  <header>
+            <a href="Forside"><img id="logo" src="<c:url value="/resources/images/LogoTeam1.png"/>"></a>
+            NTNU - Norges Teknisk-naturvitenskapelige Universitet · Study Easy © 2016<br>
+            <nav class="dropdownmenu">
                 <ul>
-                    <li><a href="Forside.html">Forside</a></li>
-                    <li><a href="MinSide.html">Min side</a></li>
-                    <li><a href="#">Valg</a>
+                    <li><a href="Forside">Forside</a></li>
+                    <li><a href="Forside">Kontakt</a></li>
+                    <li><a href="#">Romvalg</a>
                         <ul id="submenu">
-                            <li><a href="VelgRom.html">Bestill rom</a></li>
-                            <li><a href="Forside.html">Finn rom</a></li>
-                            <li><a href="SokeSide.html">Søk</a></li>
+                            <li><a href="VelgRom">Bestill rom</a></li>
+                            <li><a href="FinnRom">Finn rom</a></li>
                         </ul>
                     </li>
-                    <li><a href="Forside.html">FAQ</a></li>
-                    <li><a href="Forside.html">Kontakt oss</a></li>
+                    <li><a href="SokeSide">Søk</a></li>
+                    <li><a href="MinSide">Min side</a>
+                        <ul id="submenu">
+                            <li><a href="MinSideRed">Endre instillinger</a></li>
+                            <li><a href="Forside">Logg ut</a></li>
+                        </ul>
                 </ul>
             </nav>
-        
-        <br><br><br>
-       
-        
+        </header>
+
+      <br><br><br>
+      <main> 
+
         <div class="searchNav">
             <ul>
                 <li><div><form action="/search" role="search"> 
@@ -64,23 +74,26 @@
         </section>
            
         
-        
-        
-        
-           <footer>
-        <h4>NTNU - Norges Teknisk-naturvitenskapelige Universitet</h4>
-        <a class="footerLenke" href="Forside.html">Hjem</a>
-        ·
-        <a class="footerLenke" href="MinSide.html">Min side</a>
-        ·
-        <a class="footerLenke" href="VelgRom.html">Velg rom</a>
-        ·
-        <a class="footerLenke" href="Forside.html">Om oss</a>
-        ·
-        <a class="footerLenke" href="Forside.html">FAQ</a>
-        ·
-        <a class="footerLenke" href="Forside.html">Contact</a>
-        <h4>Study Easy © 2016</h4>
-    </footer>
+      </main>   
+
+        <!--Footer-->
+        <div class="space"></div>
+        <!--Må være med for å funke i Chrome-->
+
+        <footer>
+            <h4>NTNU - Norges Teknisk-naturvitenskapelige Universitet</h4>
+            <a class="footerLenke" href="Forside.html">Hjem</a>
+            ·
+            <a class="footerLenke" href="MinSide.html">Min side</a>
+            ·
+            <a class="footerLenke" href="VelgRom.html">Velg rom</a>
+            ·
+            <a class="footerLenke" href="Forside.html">Om oss</a>
+            ·
+            <a class="footerLenke" href="Forside.html">FAQ</a>
+            ·
+            <a class="footerLenke" href="Forside.html">Contact</a>
+            <h4>Study Easy © 2016</h4>
+        </footer>
     </body>
 </html>
