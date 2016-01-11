@@ -24,14 +24,14 @@ public class RomTest {
     
     @BeforeClass
     public static void setUpClass() throws Exception {
-        // Koden her eksekveres fÃ¸r fÃ¸rste test i klassen
-        System.out.println("JUNIT: fÃ¸r klassen.");
+        // Koden her eksekveres før første test i klassen
+        System.out.println("JUNIT: før klassen.");
         
     }
 
     @Before
     public void setUp() throws Exception {
-        // Koden her eksekveres fÃ¸r hver av testmetodene i klassen
+        // Koden her eksekveres før hver av testmetodene i klassen
      
         rom = new Rom();
         rom.setRomID("KAUD");
@@ -40,7 +40,12 @@ public class RomTest {
         rom.setType(3);
         rom.setStorrelse(100);
         
-        rom1 = rom; 
+        rom1 = new Rom();
+        rom1.setRomID("Labben");
+        rom1.setRomNavn("Labben");
+        rom1.setEtasje(2);
+        rom1.setType(2);
+        rom1.setStorrelse(200);
         
         innhold = new ArrayList();
                      
@@ -76,8 +81,8 @@ public class RomTest {
     public void test_sammenligning(){
         /**
          *tester med forandring, 
-         * eks: finn en str pÃ¥ et rom for Ã¥ sÃ¥ forandre det
-         * og sÃ¥ finne den forandra stÃ¸rrelsen 
+         * eks: finn en str på et rom for å så forandre det
+         * og så finne den forandra størrelsen 
          */
        rom1.setStorrelse(100);
        
@@ -86,27 +91,29 @@ public class RomTest {
        
     }
     
- 
     @Test
-    public void test_3 (){
-        //rom1.setEtasje(2);
+    public void test_RomObjekter (){
+               
+        System.out.println(rom1.getEtasje());
+        System.out.println(rom.getEtasje());
+        
         assertSame(rom.getEtasje(), rom1.getEtasje());
     }
     /*
     @Test(expected = NullPointerException.class)
-    public void test_at_koden_som kjÃ¸res_kaster_en_NullPointerException() {
-        // Kode som gjÃ¸r noe annet
+    public void test_at_koden_som kjøres_kaster_en_NullPointerException() {
+        // Kode som gjør noe annet
     }
     */
 
     @After
     public void tearDown() throws Exception {
-        // Koden her kjÃ¸res etter hver test
+        // Koden her kjøres etter hver test
         
     }
 
     @AfterClass
     public static void tearDownClass() throws Exception {
-        // Koden her kjÃ¸rer etter alle testmetodene i klassen er ferdig
+        // Koden her kjører etter alle testmetodene i klassen er ferdig
     }
 }

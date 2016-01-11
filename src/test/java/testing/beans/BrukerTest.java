@@ -49,9 +49,8 @@ public class BrukerTest {
          * eks: finn en str på et rom for å så forandre det
          * og så finne den forandra størrelsen 
          */
-      
     }
-
+    
     public void test_3 (){
 
     }
