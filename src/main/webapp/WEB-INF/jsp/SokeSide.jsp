@@ -73,7 +73,7 @@
 
  
 <div class="searchInfo">
-    <p>Resultatet kan inn her</p>
+    <p></p>
 </div>
 
 
