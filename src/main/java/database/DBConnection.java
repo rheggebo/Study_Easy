@@ -75,4 +75,8 @@ public interface DBConnection {
     public List<Rom> getRomFraStoerrelse(Rom r);
     
     public Klasse getLaererKlasse(Bruker b);
+    
+    public List<Rom> getAlleRom();
+    
+    public List<Fag> getAlleFag();
 }

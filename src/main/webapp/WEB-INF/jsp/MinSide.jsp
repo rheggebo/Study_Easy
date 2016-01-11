@@ -30,7 +30,7 @@
             <li><a href="#">Min side</a>
                 <ul id="submenu">
                     <li><a href="MinSide">Min informasjon</a></li>
-                    <li><a href="Forside">Logg ut</a></li>
+                    <li><a href="loggUt">Logg ut</a></li>
                 </ul>
         </ul>
     </nav>
@@ -42,23 +42,23 @@
         <fieldset>
             <legend>Personopplysninger</legend>
             <dl>
+                <form:form modelAttribute="bruker">
                 Fornavn:<br>
-                <dd><input type="text" name="fornavn" placeholder="Ola" readonly></dd>
-
+                    <dd><form:input type="text" name="fornavn" path="navn" readonly="true"/></dd>
                 Etternavn:<br>
-                <dd><input type="text" name="etternavn" placeholder="Nordmann" readonly></dd>
+                <dd><input type="text" name="etternavn" placeholder="Nordmann" readonly="true"/></dd>
 
                 Telefonnummer:<br>
-                <dd><input id="telefon" name="telefon" type="tel" pattern="\d{8}$" readonly></dd>
+                <dd><form:input id="telefon" name="telefon" type="tel" pattern="\d{8}$" readonly="true" path="telefonnummer"/></dd>
 
                 E-post:<br>
-                <dd><input type="email" name="email1" readonly></dd>
+                <dd><form:input type="email" name="email1" readonly="true" path="epost"/></dd>
 
                 Fødselsdato:<br>
-                <dd><input type="date" name="date" readonly></dd>
+                <dd><form:input type="date" name="date" readonly="true" path="fodedato"/></dd>
 
                 Klasse:<br>
-                <dd><input type="text" name="ref"  list="ref-list1" readonly>
+                <dd><form:input type="text" name="ref"  list="ref-list1" readonly="true" path="klasse"/>
                     <datalist id="ref-list1">
                         <option value="Dataingeniør">
                         <option value="Drift av datasystemer">
@@ -66,7 +66,8 @@
                     </datalist>
 
             </dl>
-            <input type="submit" value="Endre opplysninger">
+            <input type="submit" value="Endre opplysninger"/>
+            </form:form>
         </fieldset>
 
         <fieldset>

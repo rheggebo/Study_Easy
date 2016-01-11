@@ -118,6 +118,7 @@ NOTE: use percentage font sizes or else old IE chokes
 	left: -3%;
 }
 
+
 .fc-icon-left-double-arrow:after {
 	content: "\000AB";
 	font-size: 160%;

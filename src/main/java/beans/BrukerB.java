@@ -6,6 +6,7 @@
 package beans;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -19,6 +20,8 @@ public class BrukerB {
     private int tilgangsniva;
     private ArrayList<KalenderEvent> kalenderEvents;
     private boolean innlogget;
+    private Date fodedato;
+    private int telefonnummer;
     
     public BrukerB(){
         
@@ -32,6 +35,8 @@ public class BrukerB {
         tilgangsniva = b.getTilgangniva();
         kalenderEvents = b.getKalenderEvents();
         innlogget = false;
+        fodedato= b.getFodedato();
+        telefonnummer = b.getTelefonnummer();
     }
 
     public String getNavn() {
@@ -89,5 +94,23 @@ public class BrukerB {
     public void setInnlogget(boolean innlogget){
         this.innlogget = innlogget;
     }
+
+    public Date getFodedato() {
+        return fodedato;
+    }
+
+    public void setFodedato(Date fodedato) {
+        this.fodedato = fodedato;
+    }
+
+    public int getTelefonnummer() {
+        return telefonnummer;
+    }
+
+    public void setTelefonnummer(int telefonnummer) {
+        this.telefonnummer = telefonnummer;
+    }
+    
+    
     
 }

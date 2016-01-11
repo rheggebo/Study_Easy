@@ -12,6 +12,7 @@ import beans.Fag;
 import beans.KalenderEvent;
 import beans.Klasse;
 import beans.Rom;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -65,6 +66,11 @@ public class DBConnectionImpl implements DBConnection{
     private final String leggTilAbonnement = "";
     private final String slettAbonnement = "";
     private final String getAbonnement = "";
+    
+    /**Søkefunksjon**/
+    private final String alleRom="SELECT * FROM rom";
+    private final String  alleFag="SELECT * FROM fag";
+
     
     
     
@@ -133,12 +139,20 @@ public class DBConnectionImpl implements DBConnection{
         }catch(Exception e){}
         return false;
     }
-    
-
+   /***Søkefunksjon**/
+    @Override
+    public List<Rom> getAlleRom(){
+        return jT.query(alleRom, new RomMapper());
+    }
+    @Override
+    public List<Fag> getAlleFag(){
+        return jT.query(alleFag, new FagMapper());
+    }
     @Override
     public List<Bruker> getAlleBrukere() {
         return jT.query(alleBrukere, new BrukerMapper());
     }
+    /***Søkefunksjon***/
 
     @Override
     public boolean oppdaterBrukerFag(Bruker b, Fag f) {
