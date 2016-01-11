@@ -5,43 +5,67 @@
  */
 package testing.beans;
 
+import beans.Rom;
 import org.junit.*;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 import java.util.ArrayList;
 
-import beans.BrukerB;
-import beans.KalenderEvent;
+
 /**
  *
  * @author Sindre
  */
-public class BrukerBTest {
-
-
-public class SearchEngineJUnitTest {
-    //@InjectMocks private PageReader reader;
-    KalenderEvent[] kalenderEvent; 
+public class RomTest {
+    
+    Rom rom;
     
     @BeforeClass
-    public void setUpClass() throws Exception {
+    public static void setUpClass() throws Exception {
         // Koden her eksekveres før første test i klassen
     }
 
     @Before
     public void setUp() throws Exception {
         // Koden her eksekveres før hver av testmetodene i klassen
-        kalenderEvent=mock(KalenderEvent[].class);
+     
+        rom = new Rom();
+        
     }
 
     @Test
-    public void test_1 (){
-
-    }
-    
-    public void test_2 (){
+    public void testrom_1 (){
+        /**
+         * Test set- og get-metoder
+         **/
+        Rom rom = new Rom();
+        rom.setRomID("KAUD");
+        assertEquals(rom.getRomID(),"KAUD");
+        
+        rom.setRomNavn("KAUD");
+        assertEquals(rom.getRomNavn(),"KAUD");
+        
+        rom.setEtasje(3);
+        assertEquals(rom.getEtasje(), 3);
+        
+        rom.setType(3);
+        assertEquals(rom.getType(), 3);
+        
+        rom.setStorrelse(100);
+        assertEquals(rom.getStorrelse(),100);        
         
     }
+    
+    public void testrom_2 (){
+        /**
+         *tester med forandring, 
+         * eks: finn en str på et rom for å så forandre det
+         * og så finne den forandra størrelsen 
+         */
+        
+      
+    }
+    
  
 
     public void test_3 (){
@@ -60,9 +84,7 @@ public class SearchEngineJUnitTest {
     }
 
     @AfterClass
-    public void tearDownClass() throws Exception {
+    public static void tearDownClass() throws Exception {
         // Koden her kjører etter alle testmetodene i klassen er ferdig
     }
-}
-
 }
