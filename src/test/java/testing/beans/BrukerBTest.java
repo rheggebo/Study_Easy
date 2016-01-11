@@ -7,21 +7,24 @@ package testing.beans;
 
 import org.junit.*;
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
+//import static org.mockito.Mockito.*;
 import java.util.ArrayList;
 
 import beans.BrukerB;
 import beans.KalenderEvent;
+//import org.mockito.Mockito;
 /**
  *
  * @author Sindre
  */
 public class BrukerBTest {
+    BrukerB test;
+    BrukerB objektTest = new BrukerB();
 
 
 //public class SearchEngineJUnitTest {
     //@InjectMocks private PageReader reader;
-    KalenderEvent[] kalenderEvent; 
+    //KalenderEvent[] kalenderEvent; 
     
     @BeforeClass
     public static void setUpClass() throws Exception {
@@ -30,22 +33,62 @@ public class BrukerBTest {
 
     @Before
     public void setUp() throws Exception {
+        test.setNavn("Per");
+        test.setEpost("per@hotmail.no");
+        test.setNotat("Jeg liker fotball");
+        test.setTilgangsniva(3);
         // Koden her eksekveres før hver av testmetodene i klassen
-        kalenderEvent=mock(KalenderEvent[].class);
+        //kalenderEvent=mock(KalenderEvent[].class);
     
     }
 
     @Test
     public void test_1 (){
+        assertEquals(test.getNavn(),"Per");
+        assertEquals(test.getEpost(),"per@hotmail.no");
+        assertEquals(test.getNotat(),"Jeg liker fotball");
+        assertEquals(test.getTilgangsniva(),3);
+    }
+    
+    /*
+    
+    @Test   
+    public void testInnlogget(){
+        test.setInnlogget(true);
+        assertTrue(test.isInnlogget());
+    }
+    
+    @Test
+    public void testIkkeInnlogget(){
+        test.setInnlogget(false);
+        assertFalse(test.isInnlogget());
+        
+    }
+        
+    /**@Test
+    public void objektTesting(){
+        assertSame(objektTest.getKlasse(), objektTest.getKlasse());
+        
+        //assertNotSame(objektTest.getKlasse(), objektTest.getKlasse());
+                
+    } **/
+        /** EKSEMPEL PÅ MOCKITO-TESTING
+         * 
+         * //Create mock
+        BrukerB test = Mockito.mock(BrukerB.class);
+        
+        when(test.getNavn()).thenReturn("Ingvild");
+        
+        assertEquals(test.getNavn(),"Ingvild");
+        **/
+        
+        
         /**
          Tester enkle get-metoder som:
          getId(), getType(), getEier(), getRom()
          **/
-        
-        
 
-    }
-    
+
     @Test
     public void test_2 (){
         /**
