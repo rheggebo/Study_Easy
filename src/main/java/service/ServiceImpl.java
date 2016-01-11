@@ -36,7 +36,7 @@ public class ServiceImpl implements Service{
         }
         return new Bruker();
     }
-    
+
     @Override
     public boolean sjekkPassord(String brukernavn, String passord) {
         return dbc.sjekkPassord(brukernavn, passord);
@@ -194,5 +194,14 @@ public class ServiceImpl implements Service{
     @Override
     public List<Klasse> getLaererKlasse(Bruker b) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    /***Søkefunksjon**/
+    @Override
+    public List<Rom> getAlleRom(){
+        return dbc.getAlleRom();
+    }
+    @Override
+    public List<Fag> getAlleFag(){
+        return dbc.getAlleFag();
     }
 }
