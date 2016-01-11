@@ -37,7 +37,7 @@
             <li><a href="#">Min side</a>
                 <ul id="submenu">
                     <li><a href="MinSide">Min informasjon</a></li>
-                    <li><a href="Forside">Logg ut</a></li>
+                    <li><a href="loggUt">Logg ut</a></li>
                 </ul>
         </ul>
     </nav>

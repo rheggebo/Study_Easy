@@ -6,15 +6,56 @@
 package beans;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
 
 /**
  *
  * @author Stein-Erik
  */
-public class Passord {
-    @NotNull
-    @Size(min=8)
-    
-    String passord;
+public class Passord implements Validator{
+    //@NotNull
+    //@Size(min=8)
+    //@Pattern(regexp="^[a-z]{1,}[A-Z]{1,}[0-9]{1,}[~`!@#$%^&*()\\-\\_=+[{\\]}\\|;:\'\",<\\.>/?]{2,}$")
+    private String passord;
+
+    public String getPassord() {
+        return passord;
+    }
+
+    public void setPassord(String passord) {
+        this.passord = passord;
+    }
+
+    @Override
+    public boolean supports(Class<?> type) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void validate(Object o, Errors errors) {
+        String spesialbok = "~`!@#$%^&*()-_=+[{]}|;:'\",<.>/?]$";
+        Passord pass = (Passord) o;
+        String nyttPassord = pass.getPassord();
+        if(nyttPassord.equals(nyttPassord.toLowerCase())||nyttPassord.equals(nyttPassord.toUpperCase())){
+            errors.rejectValue("passord", "feilmelding.smastorepassord");
+        }
+        int spesial = 0;
+        for (int i = 0; i < nyttPassord.length(); i++) {
+            for (int j = 0; j < spesialbok.length(); j++) {
+                if(nyttPassord.charAt(i)==spesialbok.charAt(j)){
+                    spesial++;
+                }
+            }
+        }
+        if(spesial<2){
+            errors.rejectValue("passord", "feilmelding.spesialpassord");
+        }
+        
+        if(passord.length()<8){
+            errors.rejectValue("passord", "feilmelding.lengdepassord");
+        }
+    }
 }
