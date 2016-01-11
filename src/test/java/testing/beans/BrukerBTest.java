@@ -25,12 +25,12 @@ public class BrukerBTest {
     
     @BeforeClass
     public static void setUpClass() throws Exception {
-        // Koden her eksekveres fÃ¸r fÃ¸rste test i klassen
+        // Koden her eksekveres før første test i klassen
     }
 
     @Before
     public void setUp() throws Exception {
-        // Koden her eksekveres fÃ¸r hver av testmetodene i klassen
+        // Koden her eksekveres før hver av testmetodene i klassen
         kalenderEvent=mock(KalenderEvent[].class);
     
     }
@@ -62,19 +62,19 @@ public class BrukerBTest {
     }
     /*
     @Test(expected = NullPointerException.class)
-    public void test_at_koden_som kjÃ¸res_kaster_en_NullPointerException() {
-        // Kode som gjÃ¸r noe annet
+    public void test_at_koden_som kjøres_kaster_en_NullPointerException() {
+        // Kode som gjør noe annet
     }
     */
 
     @After
     public void tearDown() throws Exception {
-        // Koden her kjÃ¸res etter hver test
+        // Koden her kjøres etter hver test
     }
 
     @AfterClass
     public static void tearDownClass() throws Exception {
-        // Koden her kjÃ¸rer etter alle testmetodene i klassen er ferdig
+        // Koden her kjører etter alle testmetodene i klassen er ferdig
     }
 }
 
