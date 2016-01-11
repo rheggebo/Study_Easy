@@ -13,13 +13,10 @@ and open the template in the editor.
     position: relative;
     margin: auto;
     top: 35%;
-    /* left: 50%; */
     background-color: lightgray;
     box-shadow: darkgray 2px 2px 2px;
     width: 500px;
     height: 150px;
-    /* margin-left: -250px; */
-    /* margin-top: -175px; */
 }
 
 #inputFelt {
@@ -34,29 +31,3 @@ and open the template in the editor.
     font-size: 18px;
     border-radius: 8px;
 }
-
-/*#inputwrap {
-    border-radius: 8px;
-    border: 1px solid black;
-    background: white;
-    witdh: 480px;
-    padding: 10px;
-    margin: 20px;
-}
-
-#feilmelding {
-    position: absolute;
-    top: 90%;
-    left: 50%;
-    margin-left: -250px;
-    margin-top: -200px;
-    width: 400px;
-    color: red;
-}
-
-input{
-    border: none;
-    width: 160px;
-    padding: 5px 10px;
-    outline: none;
-}*/

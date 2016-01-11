@@ -13,7 +13,10 @@ import beans.Rom;
 import database.DBConnectionImpl;
 import database.DBConnection;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import verktøy.PasswordHasher;
 
 /**
  *
@@ -29,14 +32,14 @@ public class ServiceImpl implements Service{
     }
     
     @Override
-    public Bruker hentBruker(String email) {
-        Bruker bruker = dbc.getBruker(email);
+    public Bruker hentBruker(String epost) {
+        Bruker bruker = dbc.getBruker(epost);
         if(bruker != null){
             return bruker;
         }
         return new Bruker();
     }
-    
+
     @Override
     public boolean sjekkPassord(String brukernavn, String passord) {
         return dbc.sjekkPassord(brukernavn, passord);
@@ -49,6 +52,7 @@ public class ServiceImpl implements Service{
 
     @Override
     public boolean endreBruker(Bruker bruker) {
+        bruker.setPassord(bruker.getPassord());
         return dbc.oppdaterBruker(bruker);
     }
 
@@ -194,5 +198,14 @@ public class ServiceImpl implements Service{
     @Override
     public List<Klasse> getLaererKlasse(Bruker b) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    /***Søkefunksjon**/
+    @Override
+    public List<Rom> getAlleRom(){
+        return dbc.getAlleRom();
+    }
+    @Override
+    public List<Fag> getAlleFag(){
+        return dbc.getAlleFag();
     }
 }

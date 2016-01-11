@@ -10,10 +10,11 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="no">
 <head>
     <link rel="stylesheet" href="<c:url value="/resources/css/Hovedstilen.css"/>">
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Finn rom</title>
 
     <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
@@ -30,26 +31,30 @@
 
 <body>
 <header>
-    <a href="Forside.html"><img id="logo" src="<c:url value="/resources/images/LogoTeam1.png"/>"></a>
-    Norges teknisk-naturvitenskapelige universitet<br>
+    <a href="Forside"><img id="logo" src="<c:url value="/resources/images/LogoTeam1.png"/>"></a>
+    NTNU - Norges Teknisk-naturvitenskapelige Universitet · Study Easy © 2016<br>
     <nav class="dropdownmenu">
         <ul>
-            <li><a href="Forside.html">Forside</a></li>
-            <li><a href="MinSide.html">Min side</a></li>
+            <li><a href="Forside">Forside</a></li>
+            <li><a href="Forside">Kontakt</a></li>
             <li><a href="#">Romvalg</a>
                 <ul id="submenu">
-                    <li><a href="VelgRom.html">Bestill rom</a></li>
-                    <li><a href="Forside.html">Finn rom</a></li>
+                    <li><a href="VelgRom">Bestill rom</a></li>
+                    <li><a href="FinnRom">Finn rom</a></li>
                 </ul>
             </li>
-            <li><a href="Forside.html">Søk</a></li>
-            <li><a href="Forside.html">Logg ut</a></li>
+            <li><a href="SokeSide">Søk</a></li>
+            <li><a href="#">Min side</a>
+                <ul id="submenu">
+                    <li><a href="MinSide">Min informasjon</a></li>
+                    <li><a href="loggUt">Logg ut</a></li>
+                </ul>
         </ul>
     </nav>
 </header>
 
 <main>
-        <aside>
+    <aside>
         <form action="" method="post" onsubmit="return validate();">
 
             <legend>Velg ønsket spesifikasjoner rommet skal ha:</legend>
@@ -63,9 +68,9 @@
                 </select>
 
                 </dd>
-               <!-- <dd><input type="text" name="romtype" list="ref-romtype" placeholder="Nedtrekksliste"></dd>
-                <datalist id="ref-romtype">
-                </datalist> -->
+                <!-- <dd><input type="text" name="romtype" list="ref-romtype" placeholder="Nedtrekksliste"></dd>
+                 <datalist id="ref-romtype">
+                 </datalist> -->
 
                 Antall stolplasser:<em>*</em><br>
                 <dd><input type="number" name="num-stoler" min="1" max="150" value="1" required></dd>
@@ -75,23 +80,23 @@
 
                 Utstyr:<br>
                 <dd><input type="checkbox" id="skjerm" value="Skjerm">PC-skjerm <br>
-                <input type="checkbox" id="tavle" value="tavle">Tavle <br>
-                <input type="checkbox" id="stikkontakter" value="stikkontakter">Stikkontakter <br>
-                <input type="checkbox" id="prosjektor" value="prosjektor">Prosjektor <br></dd>
+                    <input type="checkbox" id="tavle" value="tavle">Tavle <br>
+                    <input type="checkbox" id="stikkontakter" value="stikkontakter">Stikkontakter <br>
+                    <input type="checkbox" id="prosjektor" value="prosjektor">Prosjektor <br></dd>
 
 
 
                 Dato:<em>*</em><br>
                 <dd><input type="date" name="date" required></dd>
 
-                </dl>
-                <input type="submit" value="Finn ledig rom">
+            </dl>
+            <input type="submit" value="Finn ledig rom">
         </form>
-        </aside>
+    </aside>
 
-        <section class="info">
-            <p>Resultatet kan inn her</p>
-        </section>
+    <section class="info">
+        <p>Resultatet kan inn her</p>
+    </section>
 
 </main>
 

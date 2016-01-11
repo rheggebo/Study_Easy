@@ -2,6 +2,7 @@ package beans;
 import beans.KalenderEvent;
 import beans.Klasse;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Bruker {
     private String navn;
@@ -10,8 +11,17 @@ public class Bruker {
     private Klasse klasse;
     private String notat;
     private int tilgangniva;
+    private Date fodedato;
+    private int telefonnummer;
     private ArrayList<KalenderEvent> kalenderEvents;
 
+    public Date getFodedato() {
+        return fodedato;
+    }
+
+    public void setFodedato(Date fodedato) {
+        this.fodedato = fodedato;
+    }
     public String getNavn() {
         return navn;
     }
@@ -67,6 +77,16 @@ public class Bruker {
     public void setKalenderEvents(ArrayList<KalenderEvent> kalenderEvents) {
         this.kalenderEvents = kalenderEvents;
     }
+
+    public int getTelefonnummer() {
+        return telefonnummer;
+    }
+
+    public void setTelefonnummer(int telefonnummer) {
+        this.telefonnummer = telefonnummer;
+    }
+    
+    
     
     
 }

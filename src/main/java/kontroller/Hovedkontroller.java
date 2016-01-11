@@ -8,21 +8,26 @@ package kontroller;
 import com.google.gson.Gson;
 import beans.Bruker;
 import beans.BrukerB;
+import beans.Klasse;
+import beans.Passord;
 import email.Email;
 import java.io.PrintWriter;
 import static java.lang.System.console;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.sql.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -42,10 +47,18 @@ public class Hovedkontroller {
     
     @Autowired
     private Service service;
-    private Passordgenerator generator;
+    private Passordgenerator generator = new Passordgenerator();
+    private Bruker testBruker = new Bruker();
     
     @RequestMapping(value = "/*")
     public String start(Model model, HttpSession sess){
+        testBruker.setNavn("Stein-Erik Bjørnnes");
+        testBruker.setEpost("steinerikbjornnes@gmail.com");
+        testBruker.setFodedato(new Date(94, 04, 03));
+        Klasse testKlasse = new Klasse();
+        testKlasse.setNavn("Dataingeniør");
+        testBruker.setKlasse(testKlasse);
+        testBruker.setTelefonnummer(99475118);
         BrukerB brukerBean = (BrukerB) sess.getAttribute("brukerBean");
         
         if(brukerBean != null && brukerBean.isInnlogget()){
@@ -57,12 +70,14 @@ public class Hovedkontroller {
     
     @RequestMapping(value="logInSjekk")
     public String logIn(@ModelAttribute("bruker") Bruker bruker, Model model, HttpSession sess){
-        System.out.println("hei)");
-        if(service.sjekkPassord(bruker.getEpost(), bruker.getPassord())){
-            BrukerB brukerBean = new BrukerB(service.hentBruker(bruker));
-            brukerBean.setInnlogget(true);
-            sess.setAttribute("brukerBean", brukerBean);
-            return "Forside";
+        if(bruker.getEpost() != null && !bruker.getEpost().equals("")
+                && bruker.getPassord() != null && !bruker.getPassord().equals("")){
+            if(service.sjekkPassord(bruker.getEpost(), bruker.getPassord())){
+                BrukerB brukerBean = new BrukerB(service.hentBruker(bruker));
+                brukerBean.setInnlogget(true);
+                sess.setAttribute("brukerBean", brukerBean);
+                return "Forside";
+            }    
         }
         model.addAttribute("melding", "feilmelding.login");
         bruker.setPassord("");
@@ -80,7 +95,7 @@ public class Hovedkontroller {
         return "kalenderTest";
     }
     @RequestMapping(value="sendNyttPassord")
-    public String glemsk(@ModelAttribute("bruker") Bruker bruker, Model model, HttpServletRequest request){
+    public String glemsk(@ModelAttribute("bruker") Bruker bruker, Model model, HttpServletRequest request, Errors errors){
         String sjekk = bruker.getEpost();
         Bruker temp;
         /*List<Bruker> tabell = service.getAlleBrukere();
@@ -97,7 +112,7 @@ public class Hovedkontroller {
         }*/
         temp = service.hentBruker(sjekk);
         if(temp != null){
-            if(sendNyPass(temp)){
+            if(sendNyPass(temp, errors)){
                     return "Innlogging";
                 }else{
                     model.addAttribute("melding", "feilmelding.email");
@@ -144,12 +159,16 @@ public class Hovedkontroller {
     
     
     @RequestMapping("MinSide")
-    public String minSide(){
+    public String minSide(HttpSession sess, Model model){
+        BrukerB brukerb = (BrukerB)sess.getAttribute("brukerBean");
+        model.addAttribute("bruker", testBruker);
         return "MinSide";
     }
     
     @RequestMapping("MinSideRed")
-    public String minSideRed(){
+    public String minSideRed(HttpSession sess, Model model){
+        BrukerB bruker = (BrukerB) sess.getAttribute("brukerBean");
+        model.addAttribute("bruker", testBruker);
         return "MinSideRed";
     }
     
@@ -165,12 +184,18 @@ public class Hovedkontroller {
     
     @RequestMapping("FinnRom")
     public String finnRom(){
-        System.out.println("FinnRomm");
         return "FinnRom";
     }
     @RequestMapping("SokeSide")
     public String sokeSide(){
         return "SokeSide";
+    }
+    
+    @RequestMapping("loggUt")
+    public String loggUt(HttpSession sess, Model model){
+        sess.removeAttribute("brukerbean");
+        model.addAttribute("bruker", new Bruker());
+        return "Innlogging";
     }
     
     /*private String genererPassord(){
@@ -189,10 +214,22 @@ public class Hovedkontroller {
         return nyttPassord;
     }*/
     
-    private Boolean sendNyPass(Bruker temp){
+    private String genererPassord(Errors errors){
+        String nyttPassord = generator.genererPassord();
+        Passord pass = new Passord();
+        pass.setPassord(nyttPassord);
+        pass.validate(pass, errors);
+        if(errors.hasErrors()){
+            System.out.println(errors.getErrorCount()+ nyttPassord);
+            nyttPassord = genererPassord(errors);
+        }
+        return nyttPassord;
+    }
+    
+    private Boolean sendNyPass(Bruker temp, Errors errors){
         String mottaker = temp.getEpost();
         String tema = "Nytt passord for bruker: "+temp.getEpost();
-        String nyttPassord = generator.genererPassord();
+        String nyttPassord = genererPassord(errors);
         temp.setPassord(nyttPassord);
         Email email = new Email();
         String melding= 
@@ -201,7 +238,6 @@ public class Hovedkontroller {
                 + "Passord: "+nyttPassord+"\n \n "
                 + "Vi anbefaler at du bytter dette passordet ved neste innlogging. \n \n "
                 + "Hilsen Study Easy teamet";
-        System.out.println("Oppdater bruker: "+temp);
         if(service.endreBruker(temp)){
             if(email.sendEpost(mottaker, tema, melding)){
                 System.out.println("Email sendt!****");
@@ -209,7 +245,6 @@ public class Hovedkontroller {
             }
             System.out.println("Email ikke sendt :( *****");
         }
-        //asdasdasd
         return false; 
     }
     
