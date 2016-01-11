@@ -20,6 +20,15 @@ public class Passord implements Validator{
     //@Size(min=8)
     //@Pattern(regexp="^[a-z]{1,}[A-Z]{1,}[0-9]{1,}[~`!@#$%^&*()\\-\\_=+[{\\]}\\|;:\'\",<\\.>/?]{2,}$")
     private String passord;
+    private String passord2;
+
+    public String getPassord2() {
+        return passord2;
+    }
+
+    public void setPassord2(String passord2) {
+        this.passord2 = passord2;
+    }
 
     public String getPassord() {
         return passord;
@@ -40,7 +49,7 @@ public class Passord implements Validator{
         Passord pass = (Passord) o;
         String nyttPassord = pass.getPassord();
         if(nyttPassord.equals(nyttPassord.toLowerCase())||nyttPassord.equals(nyttPassord.toUpperCase())){
-            errors.rejectValue("passord", "feilmelding.smastorepassord");
+            errors.rejectValue("passord2", "feilmelding.smastorepassord");
         }
         int spesial = 0;
         for (int i = 0; i < nyttPassord.length(); i++) {
@@ -51,11 +60,15 @@ public class Passord implements Validator{
             }
         }
         if(spesial<2){
-            errors.rejectValue("passord", "feilmelding.spesialpassord");
+            errors.rejectValue("passord2", "feilmelding.spesialpassord");
         }
         
         if(passord.length()<8){
-            errors.rejectValue("passord", "feilmelding.lengdepassord");
+            errors.rejectValue("passord2", "feilmelding.lengdepassord");
+        }
+        
+        if(!passord.equals(passord2)){
+            errors.rejectValue("passord2", "feilmelding.ulikepassord");
         }
     }
 }

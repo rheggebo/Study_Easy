@@ -90,30 +90,21 @@ public class Hovedkontroller {
     @RequestMapping(value="sendNyttPassord")
     public String glemsk(@ModelAttribute("bruker") Bruker bruker, Model model, HttpServletRequest request, Errors errors){
         String sjekk = bruker.getEpost();
-        Bruker temp;
-        /*List<Bruker> tabell = service.getAlleBrukere();
-        for (Bruker bruker1 : tabell) {
-            if(bruker1.getEpost().equals(sjekk)){
-                temp = service.hentBruker(sjekk);
-                if(sendNyPass(temp)){
-                    return "EmailRedirect";
-                }else{
-                    model.addAttribute("melding", "feilmelding.email");
-                    return "Glemsk";
-                }
-            }
-        }*/
-        temp = service.hentBruker(sjekk);
-        if(temp != null){
-            if(sendNyPass(temp, errors)){
-                    return "Innlogging";
-                }else{
-                    model.addAttribute("melding", "feilmelding.email");
-                    return "Glemsk";
-                }
+        Bruker temp = null;
+        try{
+            temp = service.hentBruker(sjekk);
+        }catch (Exception e){
+            
         }
         
-        
+        if(temp != null){
+            if(sendNyPass(temp, errors)){
+                return "Innlogging";
+            }else{
+                model.addAttribute("melding", "feilmelding.email");
+                return "Glemsk";
+            }
+        }
         model.addAttribute("melding", "feilside.email");
         model.addAttribute("bruker", new Bruker());
         return "Glemsk";
