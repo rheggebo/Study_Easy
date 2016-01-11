@@ -5,14 +5,19 @@
  */
 package kontroller;
 
+import com.google.gson.Gson;
 import beans.Bruker;
 import beans.BrukerB;
 import email.Email;
 import java.io.PrintWriter;
 import static java.lang.System.console;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +27,8 @@ import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import service.Service;
 import verktøy.PasswordHasher;
 import verktøy.Passordgenerator;
@@ -70,7 +77,7 @@ public class Hovedkontroller {
     
     @RequestMapping(value="kalenderTest")
     public String kalenderTest (Model model, HttpServletRequest request){
-        return "fullcalendar/demos/basic_views";
+        return "kalenderTest";
     }
     @RequestMapping(value="sendNyttPassord")
     public String glemsk(@ModelAttribute("bruker") Bruker bruker, Model model, HttpServletRequest request){
@@ -102,6 +109,37 @@ public class Hovedkontroller {
         model.addAttribute("melding", "feilside.email");
         model.addAttribute("bruker", new Bruker());
         return "Glemsk";
+    }
+    
+@RequestMapping(value = "/vacation/getVacation", method = RequestMethod.GET)
+    public
+    @ResponseBody
+    String getVacation(HttpServletResponse response) {
+        
+        
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("id", 111);
+        map.put("title", "event1");
+        map.put("start", "2016-1-4");
+        map.put("url", "http://yahoo.com/");
+
+        // Convert to JSON string.
+        String json = new Gson().toJson(map);
+        
+        Map<String, Object> map2 = new HashMap<String, Object>();
+        map2.put("id", 121);
+        map2.put("title", "event2");
+        map2.put("start", "2016-01-15");
+        
+        String json2 = new Gson().toJson(map2);
+        
+        json +=", " + json2;
+
+        // Write JSON string.
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+
+        return "[" + json + "]";
     }
     
     
