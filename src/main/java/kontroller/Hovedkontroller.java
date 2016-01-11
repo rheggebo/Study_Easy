@@ -7,6 +7,7 @@ package kontroller;
 
 import beans.Bruker;
 import beans.BrukerB;
+import beans.Passord;
 import email.Email;
 import java.io.PrintWriter;
 import static java.lang.System.console;
@@ -14,10 +15,12 @@ import java.util.List;
 import java.util.Random;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -35,7 +38,7 @@ public class Hovedkontroller {
     
     @Autowired
     private Service service;
-    private Passordgenerator generator;
+    private Passordgenerator generator = new Passordgenerator();
     
     @RequestMapping(value = "/*")
     public String start(Model model, HttpSession sess){
@@ -73,7 +76,7 @@ public class Hovedkontroller {
         return "fullcalendar/demos/basic_views";
     }
     @RequestMapping(value="sendNyttPassord")
-    public String glemsk(@ModelAttribute("bruker") Bruker bruker, Model model, HttpServletRequest request){
+    public String glemsk(@ModelAttribute("bruker") Bruker bruker, Model model, HttpServletRequest request, Errors errors){
         String sjekk = bruker.getEpost();
         Bruker temp;
         /*List<Bruker> tabell = service.getAlleBrukere();
@@ -90,7 +93,7 @@ public class Hovedkontroller {
         }*/
         temp = service.hentBruker(sjekk);
         if(temp != null){
-            if(sendNyPass(temp)){
+            if(sendNyPass(temp, errors)){
                     return "Innlogging";
                 }else{
                     model.addAttribute("melding", "feilmelding.email");
@@ -127,7 +130,6 @@ public class Hovedkontroller {
     
     @RequestMapping("FinnRom")
     public String finnRom(){
-        System.out.println("FinnRomm");
         return "FinnRom";
     }
     @RequestMapping("SokeSide")
@@ -151,10 +153,22 @@ public class Hovedkontroller {
         return nyttPassord;
     }*/
     
-    private Boolean sendNyPass(Bruker temp){
+    private String genererPassord(Errors errors){
+        String nyttPassord = generator.genererPassord();
+        Passord pass = new Passord();
+        pass.setPassord(nyttPassord);
+        pass.validate(pass, errors);
+        if(errors.hasErrors()){
+            System.out.println(errors.getErrorCount()+ nyttPassord);
+            nyttPassord = genererPassord(errors);
+        }
+        return nyttPassord;
+    }
+    
+    private Boolean sendNyPass(Bruker temp, Errors errors){
         String mottaker = temp.getEpost();
         String tema = "Nytt passord for bruker: "+temp.getEpost();
-        String nyttPassord = generator.genererPassord();
+        String nyttPassord = genererPassord(errors);
         temp.setPassord(nyttPassord);
         Email email = new Email();
         String melding= 
@@ -163,7 +177,6 @@ public class Hovedkontroller {
                 + "Passord: "+nyttPassord+"\n \n "
                 + "Vi anbefaler at du bytter dette passordet ved neste innlogging. \n \n "
                 + "Hilsen Study Easy teamet";
-        System.out.println("Oppdater bruker: "+temp);
         if(service.endreBruker(temp)){
             if(email.sendEpost(mottaker, tema, melding)){
                 System.out.println("Email sendt!****");
@@ -171,7 +184,6 @@ public class Hovedkontroller {
             }
             System.out.println("Email ikke sendt :( *****");
         }
-        //asdasdasd
         return false; 
     }
     
