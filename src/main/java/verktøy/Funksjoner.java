@@ -5,11 +5,20 @@
  */
 package verktøy;
 
+import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
+import java.util.List;
+import beans.Sok;
+
 /**
  *
  * @author Sigrid
  */
 public class Funksjoner {
     
+    
+    public List<String>sok(String sokeord){
+        
+        //String ord=request.getParameter("sokeord");
+    }
     
 }
