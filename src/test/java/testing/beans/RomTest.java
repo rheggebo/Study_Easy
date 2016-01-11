@@ -19,10 +19,14 @@ import java.util.ArrayList;
 public class RomTest {
     
     Rom rom;
+    Rom rom1;
+    private ArrayList innhold;
     
     @BeforeClass
     public static void setUpClass() throws Exception {
         // Koden her eksekveres før første test i klassen
+        System.out.println("JUNIT: før klassen.");
+        
     }
 
     @Before
@@ -30,46 +34,63 @@ public class RomTest {
         // Koden her eksekveres før hver av testmetodene i klassen
      
         rom = new Rom();
+        rom.setRomID("KAUD");
+        rom.setRomNavn("KAUD");
+        rom.setEtasje(3);
+        rom.setType(3);
+        rom.setStorrelse(100);
         
+        rom1 = rom; 
+        
+        innhold = new ArrayList();
+                     
     }
 
     @Test
-    public void testrom_1 (){
+    public void tester_getmetoder (){
         /**
          * Test set- og get-metoder
          **/
-        Rom rom = new Rom();
-        rom.setRomID("KAUD");
         assertEquals(rom.getRomID(),"KAUD");
-        
-        rom.setRomNavn("KAUD");
         assertEquals(rom.getRomNavn(),"KAUD");
-        
-        rom.setEtasje(3);
         assertEquals(rom.getEtasje(), 3);
-        
-        rom.setType(3);
         assertEquals(rom.getType(), 3);
-        
-        rom.setStorrelse(100);
-        assertEquals(rom.getStorrelse(),100);        
+        assertEquals(rom.getStorrelse(),100);
         
     }
     
-    public void testrom_2 (){
+    @Test
+    public void tester_Arraylist(){
+        assertTrue(innhold.isEmpty());
+    }
+    
+    @Test
+    public void tester_Liste(){
+        innhold.add("prosjektor");
+        assertEquals(1, innhold.size());
+        assertEquals(innhold.get(0), "prosjektor");
+        
+    }
+    
+    @Test
+    public void test_sammenligning(){
         /**
          *tester med forandring, 
          * eks: finn en str på et rom for å så forandre det
          * og så finne den forandra størrelsen 
          */
-        
-      
+       rom1.setStorrelse(100);
+       
+       assertSame(rom1.getStorrelse(), rom.getStorrelse());
+       assertSame(rom.getType(), rom.getEtasje());
+       
     }
     
  
-
+    @Test
     public void test_3 (){
-
+        //rom1.setEtasje(2);
+        assertSame(rom.getEtasje(), rom1.getEtasje());
     }
     /*
     @Test(expected = NullPointerException.class)
@@ -81,6 +102,7 @@ public class RomTest {
     @After
     public void tearDown() throws Exception {
         // Koden her kjøres etter hver test
+        
     }
 
     @AfterClass
