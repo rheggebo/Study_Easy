@@ -7,10 +7,12 @@ package kontroller;
 
 import beans.Bruker;
 import beans.BrukerB;
+import beans.Klasse;
 import beans.Passord;
 import email.Email;
 import java.io.PrintWriter;
 import static java.lang.System.console;
+import java.sql.Date;
 import java.util.List;
 import java.util.Random;
 import javax.servlet.http.HttpServletRequest;
@@ -39,9 +41,17 @@ public class Hovedkontroller {
     @Autowired
     private Service service;
     private Passordgenerator generator = new Passordgenerator();
+    private Bruker testBruker = new Bruker();
     
     @RequestMapping(value = "/*")
     public String start(Model model, HttpSession sess){
+        testBruker.setNavn("Stein-Erik Bjørnnes");
+        testBruker.setEpost("steinerikbjornnes@gmail.com");
+        testBruker.setFodedato(new Date(94, 04, 03));
+        Klasse testKlasse = new Klasse();
+        testKlasse.setNavn("Dataingeniør");
+        testBruker.setKlasse(testKlasse);
+        testBruker.setTelefonnummer(99475118);
         BrukerB brukerBean = (BrukerB) sess.getAttribute("brukerBean");
         
         if(brukerBean != null && brukerBean.isInnlogget()){
@@ -53,12 +63,14 @@ public class Hovedkontroller {
     
     @RequestMapping(value="logInSjekk")
     public String logIn(@ModelAttribute("bruker") Bruker bruker, Model model, HttpSession sess){
-        System.out.println("hei)");
-        if(service.sjekkPassord(bruker.getEpost(), bruker.getPassord())){
-            BrukerB brukerBean = new BrukerB(service.hentBruker(bruker));
-            brukerBean.setInnlogget(true);
-            sess.setAttribute("brukerBean", brukerBean);
-            return "Forside";
+        if(bruker.getEpost() != null && !bruker.getEpost().equals("")
+                && bruker.getPassord() != null && !bruker.getPassord().equals("")){
+            if(service.sjekkPassord(bruker.getEpost(), bruker.getPassord())){
+                BrukerB brukerBean = new BrukerB(service.hentBruker(bruker));
+                brukerBean.setInnlogget(true);
+                sess.setAttribute("brukerBean", brukerBean);
+                return "Forside";
+            }    
         }
         model.addAttribute("melding", "feilmelding.login");
         bruker.setPassord("");
@@ -109,12 +121,16 @@ public class Hovedkontroller {
     
     
     @RequestMapping("MinSide")
-    public String minSide(){
+    public String minSide(HttpSession sess, Model model){
+        BrukerB brukerb = (BrukerB)sess.getAttribute("brukerBean");
+        model.addAttribute("bruker", testBruker);
         return "MinSide";
     }
     
     @RequestMapping("MinSideRed")
-    public String minSideRed(){
+    public String minSideRed(HttpSession sess, Model model){
+        BrukerB bruker = (BrukerB) sess.getAttribute("brukerBean");
+        model.addAttribute("bruker", testBruker);
         return "MinSideRed";
     }
     
@@ -135,6 +151,13 @@ public class Hovedkontroller {
     @RequestMapping("SokeSide")
     public String sokeSide(){
         return "SokeSide";
+    }
+    
+    @RequestMapping("loggUt")
+    public String loggUt(HttpSession sess, Model model){
+        sess.removeAttribute("brukerbean");
+        model.addAttribute("bruker", new Bruker());
+        return "Innlogging";
     }
     
     /*private String genererPassord(){
