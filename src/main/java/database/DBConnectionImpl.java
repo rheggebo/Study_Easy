@@ -86,9 +86,7 @@ public class DBConnectionImpl implements DBConnection{
     public boolean sjekkPassord(String epost, String passord) {
         Bruker bruker = (Bruker) jT.queryForObject(getBrukerEpost, new Object[]{epost},new BrukerMapper());
         try {
-            if (PasswordHasher.check(passord, bruker.getPassord())){
-                return true;
-            }
+            return PasswordHasher.check(passord, bruker.getPassord());
         } catch (Exception ex) {
             Logger.getLogger(DBConnectionImpl.class.getName()).log(Level.SEVERE, null, ex);
         }

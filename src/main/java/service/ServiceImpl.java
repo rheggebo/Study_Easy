@@ -13,7 +13,10 @@ import beans.Rom;
 import database.DBConnectionImpl;
 import database.DBConnection;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import verktøy.PasswordHasher;
 
 /**
  *
@@ -29,8 +32,8 @@ public class ServiceImpl implements Service{
     }
     
     @Override
-    public Bruker hentBruker(String email) {
-        Bruker bruker = dbc.getBruker(email);
+    public Bruker hentBruker(String epost) {
+        Bruker bruker = dbc.getBruker(epost);
         if(bruker != null){
             return bruker;
         }
@@ -49,6 +52,7 @@ public class ServiceImpl implements Service{
 
     @Override
     public boolean endreBruker(Bruker bruker) {
+        bruker.setPassord(bruker.getPassord());
         return dbc.oppdaterBruker(bruker);
     }
 

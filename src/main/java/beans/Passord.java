@@ -15,5 +15,6 @@ import javax.validation.constraints.Size;
 public class Passord {
     @NotNull
     @Size(min=8)
+    
     String passord;
 }
