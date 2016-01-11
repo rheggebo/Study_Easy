@@ -77,4 +77,8 @@ public interface Service {
     public List<Rom> getRomFraStoerrelse(Rom r);
     
     public List<Klasse> getLaererKlasse(Bruker b);
+    
+    public List<Rom> getAlleRom();
+    
+    public List<Fag> getAlleFag();
 }
