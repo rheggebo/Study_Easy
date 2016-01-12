@@ -6,6 +6,7 @@
 package testing.service;
 
 import beans.Bruker;
+import beans.BrukerB;
 import beans.Fag;
 import beans.KalenderEvent;
 import beans.Klasse;
@@ -61,6 +62,7 @@ public class ServiceImplTest {
     DBConnection dBConnection;
     Bruker sindre;
     Bruker henrik;
+    BrukerB sindreB;
     Rom rom272;
     List<Bruker> liste;
     Klasse k;
@@ -120,6 +122,9 @@ public class ServiceImplTest {
         when(dBConnection.getKalenderEventRomID(rom272)).thenReturn(liste2);
         when(dBConnection.getFagLaerer(sindre)).thenReturn(liste3);
         when(dBConnection.getRomFraNavn(rom272)).thenReturn(liste4);
+        when(dBConnection.getAlleRom()).thenReturn(liste4);
+        when(dBConnection.getAlleFag()).thenReturn(liste3);
+        when(dBConnection.getAlleEventsFraBruker(sindreB)).thenReturn(liste2);
     }
     
     @Test
@@ -342,7 +347,35 @@ public class ServiceImplTest {
         assertEquals(test.getRomFraNavn(rom272),liste4);
     }
     
+    @Test
+    public void test_GtAlleRom(){
+        ServiceImpl test = new ServiceImpl();
+        test.setDBC(dBConnection);
+        
+        
+        //Slett liste med bruere:
+        assertEquals(test.getAlleRom(),liste4);
+    }
     
+    @Test
+    public void test_GetAlleFag(){
+        ServiceImpl test = new ServiceImpl();
+        test.setDBC(dBConnection);
+        
+        
+        //Slett liste med bruere:
+        assertEquals(test.getAlleFag(),liste3);
+    }
+    
+    @Test
+    public void test_getAlleEventsFraBruker(){
+        ServiceImpl test = new ServiceImpl();
+        test.setDBC(dBConnection);
+        
+        
+        //Slett liste med bruere:
+        assertEquals(test.getAlleEventsFraBruker(sindreB),liste2);
+    }
     
     /*
     @Test
