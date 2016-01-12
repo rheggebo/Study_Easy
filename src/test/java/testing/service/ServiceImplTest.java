@@ -7,6 +7,7 @@ package testing.service;
 
 import beans.Bruker;
 import beans.Fag;
+import beans.KalenderEvent;
 import beans.Klasse;
 import beans.Rom;
 import database.DBConnection;
@@ -64,6 +65,10 @@ public class ServiceImplTest {
     List<Bruker> liste;
     Klasse k;
     Fag f;
+    KalenderEvent ke;
+    List<KalenderEvent> liste2;
+    List<Fag> liste3;
+    List<Rom> liste4;
     
     @BeforeClass
     public static void setUpClass() throws Exception {
@@ -77,11 +82,19 @@ public class ServiceImplTest {
         sindre = new Bruker();
         henrik = new Bruker();
         rom272 = new Rom();
+        ke= new KalenderEvent();
         f = new Fag();
         k = new Klasse();
         liste= new ArrayList<>();
+        liste2 = new ArrayList<>();
+        liste3 = new ArrayList<>();
+        liste4 = new ArrayList<>();
+        liste2.add(ke);
         liste.add(henrik);
         liste.add(sindre);
+        liste3.add(f);
+        liste4.add(rom272);
+        
         when(dBConnection.sjekkPassord("sindre@gmail.com","passord")).thenReturn(true);
         when(dBConnection.getBruker("sindre@gmail.com")).thenReturn(sindre);
         when(dBConnection.oppdaterBruker(sindre)).thenReturn(true);
@@ -97,6 +110,16 @@ public class ServiceImplTest {
         when(dBConnection.slettRomInnhold(rom272, "tavle")).thenReturn(true);
         when(dBConnection.leggTilInnhold(rom272, "tavle")).thenReturn(true);
         when(dBConnection.slettBrukerFag(sindre, f)).thenReturn(true);
+        when(dBConnection.leggTilFag(f)).thenReturn(true);
+        when(dBConnection.leggTilRom(rom272)).thenReturn(false);
+        when(dBConnection.leggTilKalenderEvent(ke)).thenReturn(true);
+        when(dBConnection.fjernKalenderEvent(ke)).thenReturn(true);
+        when(dBConnection.getKalenderEventDeltakere(ke)).thenReturn(liste);
+        when(dBConnection.getKalenderEventDeltaker(ke,sindre)).thenReturn(sindre);
+        when(dBConnection.getKalenderEventEier(sindre)).thenReturn(liste2);
+        when(dBConnection.getKalenderEventRomID(rom272)).thenReturn(liste2);
+        when(dBConnection.getFagLaerer(sindre)).thenReturn(liste3);
+        when(dBConnection.getRomFraNavn(rom272)).thenReturn(liste4);
     }
     
     @Test
@@ -110,7 +133,6 @@ public class ServiceImplTest {
         //assertEquals(test.getTilgangsniva(),3);
     }
     
-    
     @Test
     public void test_sePassord (){
         ServiceImpl test = new ServiceImpl();
@@ -118,7 +140,6 @@ public class ServiceImplTest {
         
         //Ser på passordet:
         assertEquals(test.sjekkPassord("sindre@gmail.com","passord"),true);
-        
     }
     
     @Test
@@ -131,7 +152,6 @@ public class ServiceImplTest {
         assertEquals(test.endreBruker(sindre),true);
     }
     
-    
     @Test
     public void test_slettBruker (){
         ServiceImpl test = new ServiceImpl();
@@ -141,7 +161,6 @@ public class ServiceImplTest {
         assertEquals(test.slettBruker(sindre),true);
     }
     
-    
     @Test
     public void test_NyBruker (){
         ServiceImpl test = new ServiceImpl();
@@ -150,7 +169,6 @@ public class ServiceImplTest {
         //Ny bruker:
         assertEquals(test.nyBruker(sindre),true);
     }
-    
     
     @Test
     public void test_SlettListe (){
@@ -232,26 +250,99 @@ public class ServiceImplTest {
         //Slett liste med bruere:
         assertEquals(test.slettBrukerFag(sindre, f),true);
     }
-    /*
+    
     @Test
-    public void test_SlettBrukerFag (){
+    public void test_LeggTilFag (){
         ServiceImpl test = new ServiceImpl();
         test.setDBC(dBConnection);
         
         //Slett liste med bruere:
-        assertEquals(test.slettBrukerFag(sindre, f),true);
+        assertEquals(test.leggTilFag(f),true);
     }
-    */
-    /*
+    
     @Test
-    public void test_OppdatereRom (){
+    public void test_LeggTilRom (){
         ServiceImpl test = new ServiceImpl();
         test.setDBC(dBConnection);
         
         //Slett liste med bruere:
-        assertEquals(test.oppdaterRom(rom272),true);
+        assertEquals(test.leggTilRom(rom272),false);
     }
-    */
+    
+    @Test
+    public void test_LeggTilKalenderEvent (){
+        ServiceImpl test = new ServiceImpl();
+        test.setDBC(dBConnection);
+        
+        //Slett liste med bruere:
+        assertEquals(test.leggTilKalenderEvent(ke),true);
+    }
+    
+    @Test
+    public void test_FjernTilKalenderEvent (){
+        ServiceImpl test = new ServiceImpl();
+        test.setDBC(dBConnection);
+        
+        //Slett liste med bruere:
+        assertEquals(test.fjernKalenderEvent(ke),true);
+    }
+    
+    @Test
+    public void test_GetKalenderEventDeltakere (){
+        ServiceImpl test = new ServiceImpl();
+        test.setDBC(dBConnection);
+        
+        //Slett liste med bruere:
+        assertEquals(test.getKalenderEventDeltakere(ke),liste);
+    }
+    
+    @Test
+    public void test_GetKalenderEventDeltaker (){
+        ServiceImpl test = new ServiceImpl();
+        test.setDBC(dBConnection);
+        
+        //Slett liste med bruere:
+        assertEquals(test.getKalenderEventDeltaker(ke,sindre),sindre);
+    }
+    
+    @Test
+    public void test_GetKalenderEventEier (){
+        ServiceImpl test = new ServiceImpl();
+        test.setDBC(dBConnection);
+        
+        //Slett liste med bruere:
+        assertEquals(test.getKalenderEventEier(sindre),liste2);
+    }
+    
+    @Test
+    public void test_GetKalenderEventRomID (){
+        ServiceImpl test = new ServiceImpl();
+        test.setDBC(dBConnection);
+        
+        //Slett liste med bruere:
+        assertEquals(test.getKalenderEventRomID(rom272),liste2);
+    }
+    
+    @Test
+    public void test_GetFagLaerer (){
+        ServiceImpl test = new ServiceImpl();
+        test.setDBC(dBConnection);
+        
+        //Slett liste med bruere:
+        assertEquals(test.getFagLaerer(sindre),liste3);
+    }
+    
+    @Test
+    public void test_GetRomFraNavn(){
+        ServiceImpl test = new ServiceImpl();
+        test.setDBC(dBConnection);
+        
+        //Slett liste med bruere:
+        assertEquals(test.getRomFraNavn(rom272),liste4);
+    }
+    
+    
+    
     /*
     @Test
     public void test_SlettL (){
