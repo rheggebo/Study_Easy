@@ -77,6 +77,7 @@ public class ServiceImplTest {
     @BeforeClass
     public static void setUpClass() throws Exception {
         // Koden her eksekveres for første test i klassen
+        System.out.println("JUNIT: før ServiceImplTest-klassen.");
     }
 
     @Before
