@@ -96,20 +96,12 @@ public class Hovedkontroller {
     @RequestMapping(value="sendNyttPassord")
     public String glemsk(@ModelAttribute("bruker") Bruker bruker, Model model, HttpServletRequest request, Errors errors){
         String sjekk = bruker.getEpost();
-        Bruker temp;
-        /*List<Bruker> tabell = service.getAlleBrukere();
-        for (Bruker bruker1 : tabell) {
-            if(bruker1.getEpost().equals(sjekk)){
-                temp = service.hentBruker(sjekk);
-                if(sendNyPass(temp)){
-                    return "EmailRedirect";
-                }else{
-                    model.addAttribute("melding", "feilmelding.email");
-                    return "Glemsk";
-                }
-            }
-        }*/
-        temp = service.hentBruker(sjekk);
+        Bruker temp = null;
+        try{
+            temp = service.hentBruker(sjekk);
+        }catch (Exception e){
+            
+        }
         if(temp != null){
             if(sendNyPass(temp, errors)){
                     return "Innlogging";
@@ -164,6 +156,7 @@ public class Hovedkontroller {
         if(brukerb != null && brukerb.isInnlogget()){
             return "MinSide";
         }
+        model.addAttribute("bruker", new Bruker());
         return "Innlogging";
     }
     
@@ -174,24 +167,27 @@ public class Hovedkontroller {
         if(brukerb != null && brukerb.isInnlogget()){
             return "MinSideRed";
         }
+        model.addAttribute("bruker", new Bruker());
         return "Innlogging";
     }
     
     @RequestMapping("VelgRom")
-    public String velgRom(HttpSession sess){
+    public String velgRom(HttpSession sess, Model model){
         BrukerB brukerb = (BrukerB) sess.getAttribute("brukerBean");
         if(brukerb != null && brukerb.isInnlogget()){
             return "VelgRom";
         }
+        model.addAttribute("bruker", new Bruker());
         return "Innlogging";
     }
     
     @RequestMapping("Forside")
-    public String forside(HttpSession sess){
+    public String forside(HttpSession sess, Model model){
         BrukerB brukerb = (BrukerB) sess.getAttribute("brukerBean");
         if(brukerb != null && brukerb.isInnlogget()){
             return "Forside";
         }
+        model.addAttribute("bruker", new Bruker());
         return "Innlogging";
     }
     
@@ -202,6 +198,7 @@ public class Hovedkontroller {
         if(brukerb != null && brukerb.isInnlogget()){
             return "FinnRom";
         }
+        model.addAttribute("bruker", new Bruker());
         return "Innlogging";
     }
     
@@ -211,20 +208,22 @@ public class Hovedkontroller {
     }
     
     @RequestMapping("EndrePassord")
-    public String endrePassord(HttpSession sess){
+    public String endrePassord(HttpSession sess, Model model){
         BrukerB brukerb = (BrukerB) sess.getAttribute("brukerBean");
         if(brukerb != null && brukerb.isInnlogget()){
             return "";
         }
+        model.addAttribute("bruker", new Bruker());
         return "Innlogging";
     }
     
     @RequestMapping("SokeSide")
-    public String sokeSide(HttpSession sess){
+    public String sokeSide(HttpSession sess, Model model){
         BrukerB brukerb = (BrukerB) sess.getAttribute("brukerBean");
         if(brukerb != null && brukerb.isInnlogget()){
             return "SokeSide";
         }
+        model.addAttribute("bruker", new Bruker());
         return "Innlogging";
     }
     
@@ -254,6 +253,7 @@ public class Hovedkontroller {
     private String genererPassord(Errors errors){
         String nyttPassord = generator.genererPassord();
         Passord pass = new Passord();
+        pass.setGenerert(true);
         pass.setPassord(nyttPassord);
         pass.validate(pass, errors);
         if(errors.hasErrors()){

@@ -21,6 +21,17 @@ public class Passord implements Validator{
     //@Pattern(regexp="^[a-z]{1,}[A-Z]{1,}[0-9]{1,}[~`!@#$%^&*()\\-\\_=+[{\\]}\\|;:\'\",<\\.>/?]{2,}$")
     private String passord;
     private String passord2;
+    private boolean generert;
+
+    public boolean isGenerert() {
+        return generert;
+    }
+
+    public void setGenerert(boolean generert) {
+        this.generert = generert;
+    }
+    
+    
 
     public String getPassord2() {
         return passord2;
@@ -45,7 +56,7 @@ public class Passord implements Validator{
 
     @Override
     public void validate(Object o, Errors errors) {
-        String spesialbok = "~`!@#$%^&*()-_=+[{]}|;:'\",<.>/?]$";
+        String spesialbok = "~`!@#$%^&*()-_=+[{]}|;:'\",<.>/?]$€£";
         Passord pass = (Passord) o;
         String nyttPassord = pass.getPassord();
         if(nyttPassord.equals(nyttPassord.toLowerCase())||nyttPassord.equals(nyttPassord.toUpperCase())){
@@ -60,15 +71,15 @@ public class Passord implements Validator{
             }
         }
         if(spesial<2){
-            errors.rejectValue("passord2", "feilmelding.spesialpassord");
+            errors.rejectValue("passord", "feilmelding.spesialpassord");
         }
         
         if(passord.length()<8){
-            errors.rejectValue("passord2", "feilmelding.lengdepassord");
+            errors.rejectValue("passord", "feilmelding.lengdepassord");
         }
         
-        if(!passord.equals(passord2)){
-            errors.rejectValue("passord2", "feilmelding.ulikepassord");
+        if(!generert && !passord.equals(passord2)){
+            errors.rejectValue("passord", "feilmelding.ulikepassord");
         }
     }
 }
