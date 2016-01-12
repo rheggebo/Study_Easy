@@ -64,28 +64,20 @@ public class BrukerKontroller {
     }
     
     @RequestMapping("EndrePassord")
-    public String endrePassord(HttpSession sess, @ModelAttribute("passord") Passord pass, BindingResult error, Model model){
+    public String endrePassord(HttpSession sess, @ModelAttribute("passord") Passord pass, BindingResult error, Model model) throws Exception{
         System.out.println("Endrer passord*********");
         BrukerB brukerb = (BrukerB) sess.getAttribute("brukerBean");
         Bruker bruker = (Bruker) service.hentBruker(brukerb.getEpost());
-        String gammeltPassord = "";
-        try{
-            gammeltPassord = hasher.getSaltedHash(pass.getPassord());
-        }catch (Exception e){
-            error.rejectValue("passord", "feilmelding.passordGenerell");
-            model.addAttribute("passord", new Passord());
-            return "EndrePassordRed";
-        }
-        if(gammeltPassord.equals(bruker.getPassord())){
-            
-        }else{
-            error.rejectValue("passord", "feilmelding.gammeltPassord");
+        if(hasher.check(pass.getPassord(),bruker.getPassord())){
+            System.out.println(bruker.getPassord());
+            model.addAttribute("melding", "feilmelding.gammeltPassord");
             model.addAttribute("passord", new Passord());
             return "EndrePassordRed";
         }
         pass.validate(pass, error);
         if(error.hasErrors()){
             model.addAttribute("passord", new Passord());
+            model.addAttribute("melding", "");
             return "EndrePassordRed";
         }else{
             bruker.setPassord(pass.getPassord1());
@@ -93,7 +85,7 @@ public class BrukerKontroller {
                 return "MinSide";
             }
         }
-        error.rejectValue("passord", "feilmelding.passordGenerell");
+        model.addAttribute("melding", "feilmelding.passordGenerell");
         model.addAttribute("passord", new Passord());
         return "EndrePassordRed";
     }

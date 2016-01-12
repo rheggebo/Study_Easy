@@ -44,7 +44,7 @@
                 <form:input type="password" placeholder="Gammelt passord" path="passord" style="width: 420px"/>
                 <form:input type="password" placeholder="Nytt passord" path="passord1" style="width: 420px"/>
                 <form:input type="password" placeholder="Gjenta nytt passord" path="passord2" style="width: 420px"/>
-                <form:errors path="passord"></form:errors>
+                <form:errors path="passord"/>
             </dl>
                 
 
