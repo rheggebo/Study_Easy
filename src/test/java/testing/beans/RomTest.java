@@ -8,6 +8,7 @@ package testing.beans;
 import beans.Rom;
 import org.junit.*;
 import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.*;
 import static org.mockito.Mockito.*;
 import java.util.ArrayList;
 
@@ -25,7 +26,7 @@ public class RomTest {
     @BeforeClass
     public static void setUpClass() throws Exception {
         // Koden her eksekveres f�r f�rste test i klassen
-        System.out.println("JUNIT: f�r klassen.");
+        System.out.println("JUNIT: før RomTest-klassen.");
         
     }
 
@@ -78,7 +79,7 @@ public class RomTest {
     }
     
     @Test
-    public void test_sammenligning(){
+    public void test_Sammenligning(){
         /**
          *tester med forandring, 
          * eks: finn en str p� et rom for � s� forandre det
@@ -93,11 +94,24 @@ public class RomTest {
     
     @Test
     public void test_RomObjekter (){
+        /*
+        *Tester at de to rom-objektene ikke er like.
+        */
                
-        System.out.println(rom1.getEtasje());
+       /* System.out.println(rom1.getEtasje());
         System.out.println(rom.getEtasje());
+        */
         
-        //assertSame(rom.getEtasje(), rom1.getEtasje());
+        assertThat(rom.getEtasje(), not(rom1.getEtasje())); //tester at resultatet blir forskjellig
+        
+        rom1.setRomID("KAUD");
+        
+        assertEquals(rom.getRomID(), rom1.getRomID());
+        
+        rom.setType(1);
+        
+        assertThat(rom.getType(), not(rom1.getType()));
+        
     }
     /*
     @Test(expected = NullPointerException.class)
@@ -109,11 +123,13 @@ public class RomTest {
     @After
     public void tearDown() throws Exception {
         // Koden her kj�res etter hver test
-        
+      
+        innhold.clear();
     }
 
     @AfterClass
     public static void tearDownClass() throws Exception {
         // Koden her kj�rer etter alle testmetodene i klassen er ferdig
+        
     }
 }

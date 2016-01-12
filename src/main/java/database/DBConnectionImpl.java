@@ -113,7 +113,8 @@ public class DBConnectionImpl implements DBConnection{
         int antallRader = jT.update(endreBruker, new Object[]{
             PasswordHasher.getSaltedHash(b.getPassord()),
             b.getTilgangniva(),
-            b.getNavn(),
+            b.getFornavn(),
+            b.getEtternavn(),
             b.getEpost()
         });
         if(antallRader>0){
@@ -139,7 +140,8 @@ public class DBConnectionImpl implements DBConnection{
             b.getEpost(),
             PasswordHasher.getSaltedHash(b.getPassord()),
             b.getTilgangniva(),
-            b.getNavn()
+            b.getFornavn(),
+            b.getEtternavn()
         });
         if(antallRader > 0){
             return true;

@@ -3,6 +3,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+
 <!DOCTYPE html>
 <html lang="no">
 <head>
@@ -35,57 +36,79 @@
         </ul>
     </nav>
 </header>
-
 <main>
-
-    <form action="MinSideRed.html" id="formen">
-        <fieldset>
+    <form action="MinSide" id="formen" autocomplete="on" method="post" onsubmit="return checkEmail(this);">
+        <fieldset style = "width:20%">
             <legend>Personopplysninger</legend>
             <dl>
                 <form:form modelAttribute="bruker">
-                Fornavn:<br>
-                    <dd><form:input type="text" name="fornavn" path="navn" readonly="true"/></dd>
-                Etternavn:<br>
-                <dd><input type="text" name="etternavn" placeholder="Nordmann" readonly="true"/></dd>
-
-                Telefonnummer:<br>
-                <dd><form:input id="telefon" name="telefon" type="tel" pattern="\d{8}$" readonly="true" path="telefonnummer"/></dd>
-
-                E-post:<br>
-                <dd><form:input type="email" name="email1" readonly="true" path="epost"/></dd>
-
-                Fødselsdato:<br>
-                <dd><form:input type="date" name="date" readonly="true" path="fodedato"/></dd>
-
-                Klasse:<br>
-                <dd><form:input type="text" name="ref"  list="ref-list1" readonly="true" path="klasse"/>
-                    <datalist id="ref-list1">
-                        <option value="Dataingeniør">
-                        <option value="Drift av datasystemer">
-                        <option value="IT-støttet bedriftsutvikling">
-                    </datalist>
-
+                <form:input type="password" placeholder="Gammelt passord" path="passord" style="width: 420px"/>
+                <form:input type="password" placeholder="Nytt passord" path="passord" style="width: 420px"/>
+                <form:input type="password" placeholder="Gjenta nytt passord" path="passord" style="width: 420px"/>
             </dl>
-            <input type="submit" value="Endre opplysninger"/>
-            </form:form>
-            
-            <form:form modelAttribute="bruker" action="EndrePassordRed">
-                <input type="submit" value="Endre passord" style="width: 131px"/>
+                
+
+            <p><input type="submit" value="Endre passord" onclick="behandle()"></p>
             </form:form>
         </fieldset>
 
-        <fieldset>
-            <legend>Fag</legend>
-            <input type="submit" value="Endre opplysninger">
-        </fieldset>
-
-        <fieldset>
-            <legend>Abonnement</legend>
-            <input type="submit" value="Endre opplysninger">
-        </fieldset>
 
     </form>
 </main>
+
+
+
+<script>  
+    window.onload = function(){
+        document.getElementById('epost0').addEventListener('change', function() {
+        var s = getElementById('epost1');
+        s.value = document.getElementById('epost0');
+    });
+    };
+ </script>   
+<script>
+    function elementSupportsAttribute(element,attribute) {
+        return (attribute in document.createElement(element));
+    }
+
+    // Sjekker om et element har en klasse.
+    function hasClass(element, cls) {
+        return (' ' + element.className + ' ').indexOf(' ' + cls + ' ') > -1;
+    }
+    //Funksjon for å sjekke om emailene stemmer overens
+    function checkEmail(formen) {
+        if (formen.epost1.value != formen.epost2.value)
+        {
+            alert('E-postene samsvarer ikke!');
+            return false;
+        } else {
+            return true;
+        }
+    }
+    //Validerer utfyllingen
+    function behandle(){
+
+        var inputs = [document.getElementById('fornavn'),document.getElementById('etternavn'),
+            document.getElementById('telefon'), document.getElementById('epost1'),
+            document.getElementById('epost2'), document.getElementById('dato1')];
+
+        var error;
+
+        for(var i = 0; i<inputs.length; i++)
+        {
+            if(inputs[i].value == '')
+            {
+                error = 'Fullfør alle felt';
+                alert(error);
+                return false;
+                break;
+            }
+        }
+
+
+    }
+</script>
+
 
 <!--Footer-->
 <div class="space"></div>
@@ -106,6 +129,7 @@
     <a class="footerLenke" href="Forside">Kontakt</a>
     <h4>·Study Easy © 2016·</h4>
 </footer>
+
 
 </body>
 </html>

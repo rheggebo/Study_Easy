@@ -33,10 +33,6 @@ public class BrukerBTest {
     @Before
     public void setUp() throws Exception {
         // Koden her eksekveres f�r hver av testmetodene i klassen
-        test.setNavn("Per");
-        test.setEpost("per@hotmail.no");
-        test.setNotat("Jeg liker fotball");
-        test.setTilgangsniva(3);
         // Koden her eksekveres før hver av testmetodene i klassen
         //kalenderEvent=mock(KalenderEvent[].class);
     
@@ -44,13 +40,22 @@ public class BrukerBTest {
 
     @Test
     public void test_1 (){
-        assertEquals(test.getNavn(),"Per");
+        test.setFornavn("Per");
+        assertEquals(test.getFornavn(),"Per");
+        
+        test.setEtternavn("Aas");
+        assertEquals(test.getEtternavn(),"Aas");
+        
+        test.setEpost("per@hotmail.no");
         assertEquals(test.getEpost(),"per@hotmail.no");
+        
+        test.setNotat("Jeg liker fotball");
         assertEquals(test.getNotat(),"Jeg liker fotball");
+        
+        test.setTilgangsniva(3);
         assertEquals(test.getTilgangsniva(),3);
+        
     }
-    
-    /*
     
     @Test   
     public void testInnlogget(){
@@ -119,5 +124,3 @@ public class BrukerBTest {
         // Koden her kj�rer etter alle testmetodene i klassen er ferdig
     }
 }
-
-

@@ -13,7 +13,8 @@ import java.util.Date;
  * @author Stein-Erik
  */
 public class BrukerB {
-    private String navn;
+    private String fornavn;
+    private String etternavn;
     private String epost;
     private Klasse klasse;
     private String notat;
@@ -28,7 +29,8 @@ public class BrukerB {
     }
     
     public BrukerB(Bruker b){
-        navn = b.getNavn();
+        fornavn = b.getFornavn();
+        etternavn = b.getEtternavn();
         epost = b.getEpost();
         klasse = b.getKlasse();
         notat = b.getNotat();
@@ -39,12 +41,20 @@ public class BrukerB {
         telefonnummer = b.getTelefonnummer();
     }
 
-    public String getNavn() {
-        return navn;
+     public String getFornavn() {
+        return fornavn;
     }
-
-    public void setNavn(String navn) {
-        this.navn = navn;
+    
+    public void setFornavn(String fornavn){
+        this.fornavn = fornavn;
+    }
+    
+    public String getEtternavn(){
+        return etternavn;
+    }
+    
+    public void setEtternavn(String etternavn){
+        this.etternavn = etternavn;
     }
 
     public String getEpost() {

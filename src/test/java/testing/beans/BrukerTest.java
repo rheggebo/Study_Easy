@@ -18,7 +18,7 @@ import java.util.ArrayList;
  */
 public class BrukerTest {
     
-    Bruker test;
+    Bruker test = new Bruker();
     
     @BeforeClass
     public static void setUpClass() throws Exception {
@@ -28,18 +28,27 @@ public class BrukerTest {
     @Before
     public void setUp() throws Exception {
         // Koden her eksekveres før hver av testmetodene i klassen
-        test = new Bruker();
-        test.setNavn("Per");
-        test.setEpost("per@hotmail.com");
-        test.setNotat("Jeg liker fotball");
-        test.setTilgangniva(3);
-        test.setPassord("123");
     }
 
     @Test
     public void testrom_1 (){
-        assertEquals(test.getNavn(),"Per");
+        test.setFornavn("Per");
+        assertEquals(test.getFornavn(),"Per");
+       
+        test.setEtternavn("Aas");
+        assertEquals(test.getEtternavn(),"Aas");
+        
+        test.setEpost("per@hotmail.com");
         assertEquals(test.getEpost(),"per@hotmail.com");
+        
+        test.setNotat("Jeg liker fotball");
+        assertEquals(test.getNotat(),"Jeg liker fotball");
+        
+        test.setTilgangniva(3);
+        assertEquals(test.getTilgangniva(),3);
+        
+        test.setPassord("123");
+        assertEquals(test.getPassord(),"123");
      
         
     }
@@ -72,3 +81,4 @@ public class BrukerTest {
         // Koden her kjører etter alle testmetodene i klassen er ferdig
     }
 }
+

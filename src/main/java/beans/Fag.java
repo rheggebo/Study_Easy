@@ -4,6 +4,9 @@ import java.util.ArrayList;
 
 public class Fag {
     private String fagID;
+    private String navn;
+    private ArrayList<Bruker> laerere;
+    private ArrayList<KalenderEvent> kalenderEvents;
 
     public String getFagID() {
         return fagID;
@@ -12,10 +15,7 @@ public class Fag {
     public void setFagID(String fagID) {
         this.fagID = fagID;
     }
-    private String navn;
-    private ArrayList<Bruker> laerere;
-    private ArrayList<KalenderEvent> kalenderEvents;
-
+   
     public String getNavn() {
         return navn;
     }

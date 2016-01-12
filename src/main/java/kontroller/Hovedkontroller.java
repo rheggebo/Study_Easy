@@ -3,7 +3,6 @@ package kontroller;
 import com.google.gson.Gson;
 import beans.Bruker;
 import beans.BrukerB;
-import beans.KalenderEvent;
 import beans.Klasse;
 import beans.Passord;
 import beans.Rom;
@@ -37,12 +36,12 @@ public class Hovedkontroller {
     
     @Autowired
     private Service service;
-    private Passordgenerator generator = new Passordgenerator();
     private Bruker testBruker = new Bruker();
     
     @RequestMapping(value = "/*")
     public String start(Model model, HttpSession sess){
-        testBruker.setNavn("Stein-Erik Bjørnnes");
+        testBruker.setFornavn("Stein-Erik");
+        testBruker.setEtternavn("Bjørnnes");
         testBruker.setEpost("steinerikbjornnes@gmail.com");
         testBruker.setFodedato(new Date(94, 04, 03));
         Klasse testKlasse = new Klasse();
@@ -79,88 +78,6 @@ public class Hovedkontroller {
         return "Innlogging";
     }
     
-    @RequestMapping(value = "glemtPassord")
-    public String glemtPassord(Model model){
-        model.addAttribute("bruker", new Bruker());
-        return "Glemsk";
-    }
-    
-    @RequestMapping(value="sendNyttPassord")
-    public String glemsk(@ModelAttribute("bruker") Bruker bruker, Model model, HttpServletRequest request, Errors errors){
-        String sjekk = bruker.getEpost();
-        Bruker temp;
-        /*List<Bruker> tabell = service.getAlleBrukere();
-        for (Bruker bruker1 : tabell) {
-            if(bruker1.getEpost().equals(sjekk)){
-                temp = service.hentBruker(sjekk);
-                if(sendNyPass(temp)){
-                    return "EmailRedirect";
-                }else{
-                    model.addAttribute("melding", "feilmelding.email");
-                    return "Glemsk";
-                }
-            }
-        }*/
-        temp = service.hentBruker(sjekk);
-        if(temp != null){
-            if(sendNyPass(temp, errors)){
-                    return "Innlogging";
-                }else{
-                    model.addAttribute("melding", "feilmelding.email");
-                    return "Glemsk";
-                }
-        }
-        
-        
-        model.addAttribute("melding", "feilside.email");
-        model.addAttribute("bruker", new Bruker());
-        return "Glemsk";
-    }
-    
-@RequestMapping(value = "/events/getEvents", method = RequestMethod.GET)
-    public
-    @ResponseBody
-    String getVacation(HttpServletResponse response, HttpSession sess) {
-        
-        //kall til database for å finne relevant info.
-        //ID, tittel, start, slutt, descr, rom, type, eiernavn, fag
-        BrukerB brukerb = (BrukerB)sess.getAttribute("brukerBean");
-        List<KalenderEvent> events = service.getAlleEventsFraBruker(brukerb);
-        
-        String tittel = events.get(0).getTittel();
-        System.out.println(tittel);
-        
-        String[] farger = {"#FFA500", "#00FF7F", "#00BFFF", "#FFFF00"};
-        
-        Map<String, Object> map;
-        String jsonSend = "";
-        
-        for (KalenderEvent event : events){
-            System.out.println(event.getTittel() + " " + event.getType());
-            System.out.println(event.getStartTid());
-            String start = "" + event.getStartTid();
-            String slutt = "" + event.getSluttTid();
-            map = new HashMap<String, Object>();
-            map.put("id", event.getId());
-            map.put("title", event.getTittel());
-            map.put("start", start);
-            map.put("end", slutt);
-            map.put("color", farger[event.getType()]);
-            String json = new Gson().toJson(map);
-            if (!jsonSend.isEmpty()){
-                jsonSend += ", ";
-            }
-            jsonSend += json;
-        }
-
-        // Write JSON string.
-        response.setContentType("application/json");
-        response.setCharacterEncoding("UTF-8");
-
-        return "[" + jsonSend + "]";
-    }
-    
-    
     @RequestMapping("MinSide")
     public String minSide(HttpSession sess, Model model){
         BrukerB brukerb = (BrukerB)sess.getAttribute("brukerBean");
@@ -168,34 +85,32 @@ public class Hovedkontroller {
         if(brukerb != null && brukerb.isInnlogget()){
             return "MinSide";
         }
-        return "Innlogging";
-    }
-    
-    @RequestMapping("MinSideRed")
-    public String minSideRed(HttpSession sess, Model model){
-        BrukerB brukerb = (BrukerB) sess.getAttribute("brukerBean");
-        model.addAttribute("bruker", testBruker);
-        if(brukerb != null && brukerb.isInnlogget()){
-            return "MinSideRed";
-        }
+        model.addAttribute("bruker", new Bruker());
         return "Innlogging";
     }
     
     @RequestMapping("VelgRom")
-    public String velgRom(HttpSession sess){
+    public String velgRom(HttpSession sess, Model model){
         BrukerB brukerb = (BrukerB) sess.getAttribute("brukerBean");
         if(brukerb != null && brukerb.isInnlogget()){
             return "VelgRom";
         }
+        model.addAttribute("bruker", new Bruker());
         return "Innlogging";
     }
     
+    @RequestMapping("Kontakt")
+    public String kontakt(HttpSession sess, Model model){
+        return "Kontakt";
+    }
+    
     @RequestMapping("Forside")
-    public String forside(HttpSession sess){
+    public String forside(HttpSession sess, Model model){
         BrukerB brukerb = (BrukerB) sess.getAttribute("brukerBean");
         if(brukerb != null && brukerb.isInnlogget()){
             return "Forside";
         }
+        model.addAttribute("bruker", new Bruker());
         return "Innlogging";
     }
     
@@ -206,29 +121,17 @@ public class Hovedkontroller {
         if(brukerb != null && brukerb.isInnlogget()){
             return "FinnRom";
         }
-        return "Innlogging";
-    }
-    
-    @RequestMapping("FinnRomSok")
-    public void finnRomSok(@ModelAttribute("rom") Rom rom){
-        
-    }
-    
-    @RequestMapping("EndrePassord")
-    public String endrePassord(HttpSession sess){
-        BrukerB brukerb = (BrukerB) sess.getAttribute("brukerBean");
-        if(brukerb != null && brukerb.isInnlogget()){
-            return "";
-        }
+        model.addAttribute("bruker", new Bruker());
         return "Innlogging";
     }
     
     @RequestMapping("SokeSide")
-    public String sokeSide(HttpSession sess){
+    public String sokeSide(HttpSession sess, Model model){
         BrukerB brukerb = (BrukerB) sess.getAttribute("brukerBean");
         if(brukerb != null && brukerb.isInnlogget()){
             return "SokeSide";
         }
+        model.addAttribute("bruker", new Bruker());
         return "Innlogging";
     }
     
@@ -237,55 +140,5 @@ public class Hovedkontroller {
         sess.removeAttribute("brukerBean");
         model.addAttribute("bruker", new Bruker());
         return "Innlogging";
-    }
-    
-    /*private String genererPassord(){
-        String characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ~`!@#$%^&*()-_=+[{]}\\|;:\'\",<.>/?0123456789";
-        /*char[] nyttPass = new char[8];
-        Random rng = new Random();
-        for (int i = 0; i < nyttPass.length; i++) {
-            nyttPass[i] = alfabet.charAt(rng.nextInt(alfabet.length()));
-        }
-        String nyttPassord = new String(nyttPass);
-        if(nyttPassord.toLowerCase().equals(nyttPassord) || nyttPassord.toUpperCase().equals(nyttPassord)){
-            nyttPassord = genererPassord();
-        }
-        String nyttPassord = RandomStringUtils.random( 15, characters );
-        System.out.println(nyttPassord);
-        return nyttPassord;
-    }*/
-    
-    private String genererPassord(Errors errors){
-        String nyttPassord = generator.genererPassord();
-        Passord pass = new Passord();
-        pass.setPassord(nyttPassord);
-        pass.validate(pass, errors);
-        if(errors.hasErrors()){
-            System.out.println(errors.getErrorCount()+ nyttPassord);
-            nyttPassord = genererPassord(errors);
-        }
-        return nyttPassord;
-    }
-    
-    private Boolean sendNyPass(Bruker temp, Errors errors){
-        String mottaker = temp.getEpost();
-        String tema = "Nytt passord for bruker: "+temp.getEpost();
-        String nyttPassord = genererPassord(errors);
-        temp.setPassord(nyttPassord);
-        Email email = new Email();
-        String melding= 
-                "Dine nye innloggingsdetaljer er: \n \n "
-                + "Brukernavn: "+temp.getEpost()+"\n "
-                + "Passord: "+nyttPassord+"\n \n "
-                + "Vi anbefaler at du bytter dette passordet ved neste innlogging. \n \n "
-                + "Hilsen Study Easy teamet";
-        if(service.endreBruker(temp)){
-            if(email.sendEpost(mottaker, tema, melding)){
-                System.out.println("Email sendt!****");
-                return true;
-            }
-            System.out.println("Email ikke sendt :( *****");
-        }
-        return false; 
     }
 }

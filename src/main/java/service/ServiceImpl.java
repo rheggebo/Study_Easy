@@ -53,7 +53,6 @@ public class ServiceImpl implements Service{
 
     @Override
     public boolean endreBruker(Bruker bruker) {
-        bruker.setPassord(bruker.getPassord());
         return dbc.oppdaterBruker(bruker);
     }
 
