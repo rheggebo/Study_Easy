@@ -8,6 +8,7 @@ package testing.beans;
 import beans.Rom;
 import org.junit.*;
 import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.*;
 import static org.mockito.Mockito.*;
 import java.util.ArrayList;
 
@@ -24,14 +25,14 @@ public class RomTest {
     
     @BeforeClass
     public static void setUpClass() throws Exception {
-        // Koden her eksekveres før første test i klassen
-        System.out.println("JUNIT: før klassen.");
+        // Koden her eksekveres fï¿½r fï¿½rste test i klassen
+        System.out.println("JUNIT: fÃ¸r RomTest-klassen.");
         
     }
 
     @Before
     public void setUp() throws Exception {
-        // Koden her eksekveres før hver av testmetodene i klassen
+        // Koden her eksekveres fï¿½r hver av testmetodene i klassen
      
         rom = new Rom();
         rom.setRomID("KAUD");
@@ -78,11 +79,11 @@ public class RomTest {
     }
     
     @Test
-    public void test_sammenligning(){
+    public void test_Sammenligning(){
         /**
          *tester med forandring, 
-         * eks: finn en str på et rom for å så forandre det
-         * og så finne den forandra størrelsen 
+         * eks: finn en str pï¿½ et rom for ï¿½ sï¿½ forandre det
+         * og sï¿½ finne den forandra stï¿½rrelsen 
          */
        rom1.setStorrelse(100);
        
@@ -93,27 +94,42 @@ public class RomTest {
     
     @Test
     public void test_RomObjekter (){
+        /*
+        *Tester at de to rom-objektene ikke er like.
+        */
                
-        System.out.println(rom1.getEtasje());
+       /* System.out.println(rom1.getEtasje());
         System.out.println(rom.getEtasje());
+        */
         
-        assertSame(rom.getEtasje(), rom1.getEtasje());
+        assertThat(rom.getEtasje(), not(rom1.getEtasje())); //tester at resultatet blir forskjellig
+        
+        rom1.setRomID("KAUD");
+        
+        assertEquals(rom.getRomID(), rom1.getRomID());
+        
+        rom.setType(1);
+        
+        assertThat(rom.getType(), not(rom1.getType()));
+        
     }
     /*
     @Test(expected = NullPointerException.class)
-    public void test_at_koden_som kjøres_kaster_en_NullPointerException() {
-        // Kode som gjør noe annet
+    public void test_at_koden_som kjï¿½res_kaster_en_NullPointerException() {
+        // Kode som gjï¿½r noe annet
     }
     */
 
     @After
     public void tearDown() throws Exception {
-        // Koden her kjøres etter hver test
-        
+        // Koden her kjï¿½res etter hver test
+      
+        innhold.clear();
     }
 
     @AfterClass
     public static void tearDownClass() throws Exception {
-        // Koden her kjører etter alle testmetodene i klassen er ferdig
+        // Koden her kjï¿½rer etter alle testmetodene i klassen er ferdig
+        
     }
 }
