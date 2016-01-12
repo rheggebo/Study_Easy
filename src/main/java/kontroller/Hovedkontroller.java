@@ -1,32 +1,17 @@
 package kontroller;
 
-import com.google.gson.Gson;
 import beans.Bruker;
 import beans.BrukerB;
-import beans.KalenderEvent;
 import beans.Klasse;
-import beans.Passord;
 import beans.Rom;
-import email.Email;
-import java.util.HashMap;
 import java.sql.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import service.Service;
-import verktøy.Passordgenerator;
 import verktøy.PasswordHasher;
 
 /**
@@ -86,8 +71,8 @@ public class Hovedkontroller {
     @RequestMapping("MinSide")
     public String minSide(HttpSession sess, Model model){
         BrukerB brukerb = (BrukerB)sess.getAttribute("brukerBean");
-        model.addAttribute("bruker", testBruker);
         if(brukerb != null && brukerb.isInnlogget()){
+            model.addAttribute("bruker", brukerb);
             return "MinSide";
         }
         model.addAttribute("bruker", new Bruker());

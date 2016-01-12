@@ -65,7 +65,7 @@ public class BrukerKontroller {
     
     @RequestMapping("EndrePassord")
     public String endrePassord(HttpSession sess, @ModelAttribute("passord") Passord pass, BindingResult error, Model model){
-        System.out.println("Enderer passord*********");
+        System.out.println("Endrer passord*********");
         BrukerB brukerb = (BrukerB) sess.getAttribute("brukerBean");
         Bruker bruker = (Bruker) service.hentBruker(brukerb.getEpost());
         String gammeltPassord = "";
@@ -147,8 +147,8 @@ public class BrukerKontroller {
     @RequestMapping("MinSideRed")
     public String minSideRed(HttpSession sess, Model model){
         BrukerB brukerb = (BrukerB) sess.getAttribute("brukerBean");
-        model.addAttribute("bruker", testBruker);
         if(brukerb != null && brukerb.isInnlogget()){
+            model.addAttribute("bruker", brukerb);
             return "MinSideRed";
         }
         model.addAttribute("bruker", new Bruker());

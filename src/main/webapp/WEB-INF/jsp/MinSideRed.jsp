@@ -43,10 +43,10 @@
             <dl>
                 <form:form modelAttribute="bruker">
                 Fornavn:<em>*</em><br>
-                <dd><form:input type="text" name="fornavn" placeholder="Ola" autofocus="true" required="true" path="navn"/></dd>
+                <dd><form:input type="text" name="fornavn" placeholder="Ola" autofocus="true" required="true" path="fornavn"/></dd>
 
                 Etternavn:<em>*</em><br>
-                <dd><input type="text" name="etternavn" placeholder="Nordmann" required></dd>
+                <dd><form:input type="text" name="etternavn" placeholder="Nordmann" required="true" path="etternavn"/></dd>
 
                 <dt><label for="telefon">Telefonnummer<em>*</em></label></dt>
                 <dd><form:input id="telefon" name="telefon" type="tel" pattern="\d{8}$" placeholder="Skriv inn ditt telefonnummer" required="true" path="telefonnummer"/></dd>

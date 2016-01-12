@@ -44,9 +44,9 @@
             <dl>
                 <form:form modelAttribute="bruker">
                 Fornavn:<br>
-                    <dd><form:input type="text" name="fornavn" path="navn" readonly="true"/></dd>
+                    <dd><form:input type="text" name="fornavn" path="fornavn" readonly="true"/></dd>
                 Etternavn:<br>
-                <dd><input type="text" name="etternavn" placeholder="Nordmann" readonly="true"/></dd>
+                <dd><input type="text" name="etternavn" placeholder="Nordmann" path="etternavn" readonly="true"/></dd>
 
                 Telefonnummer:<br>
                 <dd><form:input id="telefon" name="telefon" type="tel" pattern="\d{8}$" readonly="true" path="telefonnummer"/></dd>
