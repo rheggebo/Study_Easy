@@ -74,19 +74,19 @@ public class BrukerKontroller {
         }catch (Exception e){
             error.rejectValue("passord", "feilmelding.passordGenerell");
             model.addAttribute("passord", new Passord());
-            return "EnrePassordRed";
+            return "EndrePassordRed";
         }
         if(gammeltPassord.equals(bruker.getPassord())){
             
         }else{
             error.rejectValue("passord", "feilmelding.gammeltPassord");
             model.addAttribute("passord", new Passord());
-            return "EnrePassordRed";
+            return "EndrePassordRed";
         }
         pass.validate(pass, error);
         if(error.hasErrors()){
             model.addAttribute("passord", new Passord());
-            return "EnrePassordRed";
+            return "EndrePassordRed";
         }else{
             bruker.setPassord(pass.getPassord1());
             if(service.endreBruker(bruker)){
@@ -95,7 +95,7 @@ public class BrukerKontroller {
         }
         error.rejectValue("passord", "feilmelding.passordGenerell");
         model.addAttribute("passord", new Passord());
-        return "EnderPassordRed";
+        return "EndrePassordRed";
     }
     
     @RequestMapping("EndrePassordRed")
