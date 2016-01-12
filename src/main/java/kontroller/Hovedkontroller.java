@@ -10,6 +10,7 @@ import beans.Bruker;
 import beans.BrukerB;
 import beans.Klasse;
 import beans.Passord;
+import beans.Rom;
 import email.Email;
 import java.util.HashMap;
 import java.sql.Date;
@@ -160,38 +161,76 @@ public class Hovedkontroller {
     public String minSide(HttpSession sess, Model model){
         BrukerB brukerb = (BrukerB)sess.getAttribute("brukerBean");
         model.addAttribute("bruker", testBruker);
-        return "MinSide";
+        if(brukerb != null && brukerb.isInnlogget()){
+            return "MinSide";
+        }
+        return "Innlogging";
     }
     
     @RequestMapping("MinSideRed")
     public String minSideRed(HttpSession sess, Model model){
-        BrukerB bruker = (BrukerB) sess.getAttribute("brukerBean");
+        BrukerB brukerb = (BrukerB) sess.getAttribute("brukerBean");
         model.addAttribute("bruker", testBruker);
-        return "MinSideRed";
+        if(brukerb != null && brukerb.isInnlogget()){
+            return "MinSideRed";
+        }
+        return "Innlogging";
     }
     
     @RequestMapping("VelgRom")
-    public String velgRom(){
-        return "VelgRom";
+    public String velgRom(HttpSession sess){
+        BrukerB brukerb = (BrukerB) sess.getAttribute("brukerBean");
+        if(brukerb != null && brukerb.isInnlogget()){
+            return "VelgRom";
+        }
+        return "Innlogging";
     }
     
     @RequestMapping("Forside")
-    public String forside(){
-        return "Forside";
+    public String forside(HttpSession sess){
+        BrukerB brukerb = (BrukerB) sess.getAttribute("brukerBean");
+        if(brukerb != null && brukerb.isInnlogget()){
+            return "Forside";
+        }
+        return "Innlogging";
     }
     
     @RequestMapping("FinnRom")
-    public String finnRom(){
-        return "FinnRom";
+    public String finnRom(Model model, HttpSession sess){
+        model.addAttribute("rom", new Rom());
+        BrukerB brukerb = (BrukerB) sess.getAttribute("brukerBean");
+        if(brukerb != null && brukerb.isInnlogget()){
+            return "FinnRom";
+        }
+        return "Innlogging";
     }
+    
+    @RequestMapping("FinnRomSok")
+    public void finnRomSok(@ModelAttribute("rom") Rom rom){
+        
+    }
+    
+    @RequestMapping("EndrePassord")
+    public String endrePassord(HttpSession sess){
+        BrukerB brukerb = (BrukerB) sess.getAttribute("brukerBean");
+        if(brukerb != null && brukerb.isInnlogget()){
+            return "";
+        }
+        return "Innlogging";
+    }
+    
     @RequestMapping("SokeSide")
-    public String sokeSide(){
-        return "SokeSide";
+    public String sokeSide(HttpSession sess){
+        BrukerB brukerb = (BrukerB) sess.getAttribute("brukerBean");
+        if(brukerb != null && brukerb.isInnlogget()){
+            return "SokeSide";
+        }
+        return "Innlogging";
     }
     
     @RequestMapping("loggUt")
     public String loggUt(HttpSession sess, Model model){
-        sess.removeAttribute("brukerbean");
+        sess.removeAttribute("brukerBean");
         model.addAttribute("bruker", new Bruker());
         return "Innlogging";
     }
