@@ -65,15 +65,14 @@ public class ServiceImplTest {
     public void setUp() throws Exception {
         // Koden her eksekveres for hver av testmetodene i klassen
         dBConnection=mock(DBConnection.class);
-
-    
     }
-    
     
     @Test
     public void test_hentBruker (){
         ServiceImpl test = new ServiceImpl();
         Bruker sindre = new Bruker();
+        sindre.setEpost("sindre@gmail.com");
+        test.setDBC(dBConnection);
         when(dBConnection.getBruker("sindre@gmail.com")).thenReturn(sindre);
         assertEquals(test.hentBruker("sindre@gmail.com"),sindre);        
         
@@ -84,12 +83,10 @@ public class ServiceImplTest {
     public void test_Mange_Funksjoener_Til_DBConnection (){
         ServiceImpl test = new ServiceImpl();
         Bruker sindre = new Bruker();
+        test.setDBC(dBConnection);
         
         when(dBConnection.sjekkPassord("sindre@gmail.com","passord")).thenReturn(true);
-        assertEquals(test.sjekkPassord("sindre@gmail.com","passord"),true); 
-        
-        when(dBConnection.sjekkPassord("sindre@gmail.com","passord")).thenReturn(true);
-        assertEquals(test.sjekkPassord("sindre@gmail.com","passord"),true); 
+        assertEquals(test.sjekkPassord("sindre@gmail.com","passord"),true);
         
         //assertEquals(test.getTilgangsniva(),3);
     }
