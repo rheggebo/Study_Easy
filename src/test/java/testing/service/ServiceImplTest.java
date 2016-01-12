@@ -112,7 +112,7 @@ public class ServiceImplTest {
     
     
     @Test
-    public void test_sePassord (){
+    public void test_setPassord (){
         ServiceImpl test = new ServiceImpl();
         test.setDBC(dBConnection);
         
