@@ -77,6 +77,7 @@ public class ServiceImplTest {
     @BeforeClass
     public static void setUpClass() throws Exception {
         // Koden her eksekveres for første test i klassen
+        System.out.println("JUNIT: før ServiceImplTest-klassen.");
     }
 
     @Before
@@ -141,7 +142,7 @@ public class ServiceImplTest {
     }
     
     @Test
-    public void test_sePassord (){
+    public void test_setPassord (){
         ServiceImpl test = new ServiceImpl();
         test.setDBC(dBConnection);
         

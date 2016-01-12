@@ -13,6 +13,7 @@ import beans.Klasse;
 import beans.Rom;
 import database.DBConnectionImpl;
 import database.DBConnection;
+import java.io.Console;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
