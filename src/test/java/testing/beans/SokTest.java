@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package testing.verktøy;
+package testing.beans;
 
-import verktøy.Funksjoner;
+import beans.Sok;
 import org.junit.*;
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
@@ -14,26 +14,29 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Sindre
+ * @author Ane
  */
-public class FunksjonerTest {
+public class SokTest {
+    
+    Sok sok;
     
     @BeforeClass
     public static void setUpClass() throws Exception {
         // Koden her eksekveres f�r f�rste test i klassen
-        System.out.println("JUNIT: før FunkjsonTest-klassen.");
+        System.out.println("JUNIT: før SokTest-klassen.");
         
     }
     
     @Before
     public void setUp() throws Exception {
         // Koden her eksekveres f�r hver av testmetodene i klassen
-        
+        sok = new Sok();
+        sok.setSokeord("KAUD");
     }
     
     @Test
     public void tester_getmetoder (){
-    
+        assertEquals(sok.getSokeord(), "KAUD");
     }
     
     @After
