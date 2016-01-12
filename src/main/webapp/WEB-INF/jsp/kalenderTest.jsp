@@ -11,6 +11,7 @@
 <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 <link rel="stylesheet" href="<c:url value="/resources/css/fullcalendar.css"/>">
 <link rel="stylesheet" href="<c:url value="/resources/css/jquery.qtip.css"/>">
+<link rel="stylesheet" href="<c:url value="/resources/css/Hovedstilen.css"/>">
 
 <script src="<c:url value="/resources/fullcalendarJS/moment.min.js"/>"></script>
 <script src="<c:url value="/resources/fullcalendarJS/fullcalendar.js"/>"></script>
@@ -24,36 +25,75 @@
             var d = date.getDate();
             var m = date.getMonth();
             var y = date.getFullYear();
-          $.getJSON('vacation/getVacation', function (data) {
+          $.getJSON('events/getEvents', function (data) {
             var calendar = $('#calendar').fullCalendar({
                 header: {
                     left: 'prev,next today',
                     center: 'title',
                     right: 'month,agendaWeek,agendaDay'
                 },
-                editable: true,
-                events:data
+                editable: false,
+                events:data,
+                eventRender: function(event, element) {
+                    element.qtip({
+                        content: event.description,
+                        hide: {
+                            fixed: true,
+                            delay: 300
+                        }
+                    });
+                }
             });
          });
         });
         
 </script>
-<style>
-	body {
-		margin: 40px 10px;
-		padding: 0;
-		font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
-		font-size: 14px;
-	}
-	#calendar {
-		max-width: 900px;
-		margin: 0 auto;
-	}
-</style>
 </head>
 <body>
+    <header>
+    <a href="Forside"><img id="logo" src="<c:url value="/resources/images/LogoTeam1.png"/>"></a>
+    NTNU - Norges Teknisk-naturvitenskapelige Universitet · Study Easy © 2016<br>
+    <nav class="dropdownmenu">
+        <ul>
+            <li><a href="Forside">Forside</a></li>
+            <li><a href="Forside">Kontakt</a></li>
+            <li><a href="#">Romvalg</a>
+                <ul id="submenu">
+                    <li><a href="VelgRom">Bestill rom</a></li>
+                    <li><a href="FinnRom">Finn rom</a></li>
+                </ul>
+            </li>
+            <li><a href="SokeSide">Søk</a></li>
+            <li><a href="#">Min side</a>
+                <ul id="submenu">
+                    <li><a href="MinSide">Min informasjon</a></li>
+                    <li><a href="loggUt">Logg ut</a></li>
+                </ul>
+        </ul>
+    </nav>
+</header>
+    <main>
 
 	<div id='calendar'></div>
+    </main>
+    
+    <footer>
+        <footer>
+    <h4>NTNU - Norges Teknisk-naturvitenskapelige Universitet</h4>
+    <a class="footerLenke" href="Forside">Hjem</a>
+    ·
+    <a class="footerLenke" href="MinSide">Min side</a>
+    ·
+    <a class="footerLenke" href="VelgRom">Bestill rom</a>
+    ·
+    <a class="footerLenke" href="Forside">Finn rom</a>
+    ·
+    <a class="footerLenke" href="SokeSide">Søk</a>
+    ·
+    <a class="footerLenke" href="Forside">Kontakt</a>
+    <h4>·Study Easy © 2016·</h4>
+</footer>
+    </footer>
 
 </body>
 </html>
