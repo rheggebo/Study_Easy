@@ -49,6 +49,10 @@
                 
 
             <p><input type="submit" value="Endre passord" onclick="behandle()"></p>
+            <c:set var="meldingS" value="${melding}"></c:set>
+            <c:if test="${not empty meldingS}">
+                <spring:message code="${melding}" />
+            </c:if>
             </form:form>
         </fieldset>
 </main>
