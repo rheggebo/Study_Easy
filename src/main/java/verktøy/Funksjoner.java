@@ -20,7 +20,7 @@ public class Funksjoner {
   public ArrayList<Object> getAlleSokeTreff(String s){
         ArrayList<Object> liste=new ArrayList<Object>();
         for(int i=0; i<si.getAlleBrukere().size();i++){
-            if(s.equals(si.getAlleBrukere().get(i).getNavn())){
+            if(s.equals(si.getAlleBrukere().get(i).getFornavn() + " " + si.getAlleBrukere().get(i).getEtternavn())){
                      liste.add(si.getAlleBrukere().get(i));        
             }
         }

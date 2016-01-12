@@ -7,6 +7,8 @@ package testing.service;
 
 import beans.Bruker;
 import database.DBConnection;
+import java.util.ArrayList;
+import java.util.List;
 import service.ServiceImpl;
 import org.junit.*;
 import static org.junit.Assert.*;
@@ -53,8 +55,9 @@ import static org.mockito.Mockito.*;
 */
 public class ServiceImplTest {
     DBConnection dBConnection;
-    
-    //@InjectMocks private PageReader reader;
+    Bruker sindre;
+    Bruker henrik;
+    List<Bruker> liste;
     
     @BeforeClass
     public static void setUpClass() throws Exception {
@@ -65,31 +68,111 @@ public class ServiceImplTest {
     public void setUp() throws Exception {
         // Koden her eksekveres for hver av testmetodene i klassen
         dBConnection=mock(DBConnection.class);
+        sindre = new Bruker();
+        henrik = new Bruker();
+        liste= new ArrayList<>();
+        liste.add(henrik);
+        liste.add(sindre);
+        when(dBConnection.sjekkPassord("sindre@gmail.com","passord")).thenReturn(true);
+        when(dBConnection.getBruker("sindre@gmail.com")).thenReturn(sindre);
+        when(dBConnection.oppdaterBruker(sindre)).thenReturn(true);
+        when(dBConnection.oppdaterBruker(henrik)).thenReturn(true);
+        when(dBConnection.slettBruker(sindre)).thenReturn(true);
+        when(dBConnection.slettBruker(henrik)).thenReturn(true);
+        when(dBConnection.leggTilBruker(sindre)).thenReturn(true);
+        when(dBConnection.leggTilBruker(sindre)).thenReturn(true);
+        when(dBConnection.getAlleBrukere()).thenReturn(liste);
     }
     
     @Test
     public void test_hentBruker (){
         ServiceImpl test = new ServiceImpl();
-        Bruker sindre = new Bruker();
         sindre.setEpost("sindre@gmail.com");
         test.setDBC(dBConnection);
-        when(dBConnection.getBruker("sindre@gmail.com")).thenReturn(sindre);
+        
         assertEquals(test.hentBruker("sindre@gmail.com"),sindre);        
         
         //assertEquals(test.getTilgangsniva(),3);
     }
     
+    
     @Test
-    public void test_Mange_Funksjoener_Til_DBConnection (){
+    public void test_sePassord (){
         ServiceImpl test = new ServiceImpl();
-        Bruker sindre = new Bruker();
         test.setDBC(dBConnection);
         
-        when(dBConnection.sjekkPassord("sindre@gmail.com","passord")).thenReturn(true);
+        //Ser på passordet:
         assertEquals(test.sjekkPassord("sindre@gmail.com","passord"),true);
+        
+    }
+    
+    @Test
+    public void test_EndreBruker (){
+        ServiceImpl test = new ServiceImpl();
+        test.setDBC(dBConnection);
+        
+        //Endrer bruker
+        sindre.setPassord("Passord");
+        assertEquals(test.endreBruker(sindre),true);
+    }
+    
+    
+    @Test
+    public void test_slettBruker (){
+        ServiceImpl test = new ServiceImpl();
+        test.setDBC(dBConnection);
+        
+        //Slett bruker
+        assertEquals(test.slettBruker(sindre),true);
+    }
+    
+    
+    @Test
+    public void test_NyBruker (){
+        ServiceImpl test = new ServiceImpl();
+        test.setDBC(dBConnection);
+        
+        //Ny bruker:
+        assertEquals(test.nyBruker(sindre),true);
+    }
+    
+    
+    @Test
+    public void test_SlettListe (){
+        ServiceImpl test = new ServiceImpl();
+        test.setDBC(dBConnection);
+        
+        //Slett liste med bruere:
+        assertEquals(test.slettBrukere(liste),true);
+    }
+    
+    @Test
+    public void test_EndreBrukere (){
+        ServiceImpl test = new ServiceImpl();
+        test.setDBC(dBConnection);
+        
+        //Slett liste med bruere:
+        assertEquals(test.endreBrukere(liste),true);
+    }
+    
+    /*
+    @Test
+    public void test_SlettL (){
+        ServiceImpl test = new ServiceImpl();
+        Bruker sindre = new Bruker();
+        Bruker henrik = new Bruker();
+        ArrayList<Bruker> liste = new ArrayList<>();
+        liste.add(henrik);
+        liste.add(sindre);
+        test.setDBC(dBConnection);
+        
+        //Få alle brureke:
+        //when(dBConnection.getAlleBrukere().get(0).thenReturn(sindre));
+        
         
         //assertEquals(test.getTilgangsniva(),3);
     }
+    */
         
     /**@Test
     public void objektTesting(){

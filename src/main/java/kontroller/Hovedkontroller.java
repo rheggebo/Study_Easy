@@ -40,7 +40,8 @@ public class Hovedkontroller {
     
     @RequestMapping(value = "/*")
     public String start(Model model, HttpSession sess){
-        testBruker.setNavn("Stein-Erik Bjørnnes");
+        testBruker.setFornavn("Stein-Erik");
+        testBruker.setEtternavn("Bjørnnes");
         testBruker.setEpost("steinerikbjornnes@gmail.com");
         testBruker.setFodedato(new Date(94, 04, 03));
         Klasse testKlasse = new Klasse();
@@ -96,6 +97,11 @@ public class Hovedkontroller {
         }
         model.addAttribute("bruker", new Bruker());
         return "Innlogging";
+    }
+    
+    @RequestMapping("Kontakt")
+    public String kontakt(HttpSession sess, Model model){
+        return "Kontakt";
     }
     
     @RequestMapping("Forside")

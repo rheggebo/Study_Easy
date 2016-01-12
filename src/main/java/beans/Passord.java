@@ -49,7 +49,7 @@ public class Passord implements Validator{
 
     @Override
     public boolean supports(Class<?> type) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return Passord.class.equals(type);
     }
 
     @Override
