@@ -37,23 +37,20 @@
     </nav>
 </header>
 <main>
-    <form action="MinSide" id="formen" autocomplete="on" method="post" onsubmit="return checkEmail(this);">
         <fieldset style = "width:20%">
             <legend>Endre passord</legend>
             <dl>
-                <form:form modelAttribute="bruker">
+            <form:form modelAttribute="passord" action="EndrePassord" onsubmit="return checkEmail(this)" id="formen" autocomplete="on">
                 <form:input type="password" placeholder="Gammelt passord" path="passord" style="width: 420px"/>
-                <form:input type="password" placeholder="Nytt passord" path="passord" style="width: 420px"/>
-                <form:input type="password" placeholder="Gjenta nytt passord" path="passord" style="width: 420px"/>
+                <form:input type="password" placeholder="Nytt passord" path="passord1" style="width: 420px"/>
+                <form:input type="password" placeholder="Gjenta nytt passord" path="passord2" style="width: 420px"/>
+                <form:errors path="passord"></form:errors>
             </dl>
                 
 
             <p><input type="submit" value="Endre passord" onclick="behandle()"></p>
             </form:form>
         </fieldset>
-
-
-    </form>
 </main>
 
 <!--Footer-->

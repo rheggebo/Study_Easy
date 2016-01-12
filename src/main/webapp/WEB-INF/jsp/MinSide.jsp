@@ -38,7 +38,7 @@
 
 <main>
 
-    <form action="MinSideRed.html" id="formen">
+    <form action="MinSideRed" id="formen">
         <fieldset>
             <legend>Personopplysninger</legend>
             <dl>
@@ -68,7 +68,7 @@
             </dl>
             <input type="submit" value="Endre opplysninger"/>
             </form:form>
-            
+            <br>
             <form:form modelAttribute="bruker" action="EndrePassordRed">
                 <input type="submit" value="Endre passord" style="width: 131px"/>
             </form:form>
