@@ -38,6 +38,7 @@ import service.Service;
 import verktøy.PasswordHasher;
 import verktøy.Passordgenerator;
 
+
 /**
  * 
  * @author Stein-Erik
@@ -52,11 +53,11 @@ public class Hovedkontroller {
     
     @RequestMapping(value = "/*")
     public String start(Model model, HttpSession sess){
-        testBruker.setNavn("Stein-Erik Bjørnnes");
+        testBruker.setNavn("Stein-Erik BjÃ¸rnnes");
         testBruker.setEpost("steinerikbjornnes@gmail.com");
         testBruker.setFodedato(new Date(94, 04, 03));
         Klasse testKlasse = new Klasse();
-        testKlasse.setNavn("Dataingeniør");
+        testKlasse.setNavn("DataingeniÃ¸r");
         testBruker.setKlasse(testKlasse);
         testBruker.setTelefonnummer(99475118);
         BrukerB brukerBean = (BrukerB) sess.getAttribute("brukerBean");
