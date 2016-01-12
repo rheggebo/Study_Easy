@@ -5,7 +5,8 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Bruker {
-    private String navn;
+    private String fornavn;
+    private String etternavn;
     private String passord;
     private String epost;
     private Klasse klasse;
@@ -22,12 +23,21 @@ public class Bruker {
     public void setFodedato(Date fodedato) {
         this.fodedato = fodedato;
     }
-    public String getNavn() {
-        return navn;
+    
+    public String getFornavn() {
+        return fornavn;
     }
-
-    public void setNavn(String navn) {
-        this.navn = navn;
+    
+    public void setFornavn(String fornavn){
+        this.fornavn = fornavn;
+    }
+    
+    public String getEtternavn(){
+        return etternavn;
+    }
+    
+    public void setEtternavn(String etternavn){
+        this.etternavn = etternavn;
     }
 
     public String getPassord() {
