@@ -337,6 +337,7 @@ public class ServiceImplTest {
         ServiceImpl test = new ServiceImpl();
         test.setDBC(dBConnection);
         
+        
         //Slett liste med bruere:
         assertEquals(test.getRomFraNavn(rom272),liste4);
     }
