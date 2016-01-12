@@ -3,6 +3,7 @@ package kontroller;
 import com.google.gson.Gson;
 import beans.Bruker;
 import beans.BrukerB;
+import beans.KalenderEvent;
 import beans.Klasse;
 import beans.Passord;
 import beans.Rom;
@@ -84,10 +85,6 @@ public class Hovedkontroller {
         return "Glemsk";
     }
     
-    @RequestMapping(value="kalenderTest")
-    public String kalenderTest (Model model, HttpServletRequest request){
-        return "kalenderTest";
-    }
     @RequestMapping(value="sendNyttPassord")
     public String glemsk(@ModelAttribute("bruker") Bruker bruker, Model model, HttpServletRequest request, Errors errors){
         String sjekk = bruker.getEpost();
@@ -123,36 +120,44 @@ public class Hovedkontroller {
 @RequestMapping(value = "/events/getEvents", method = RequestMethod.GET)
     public
     @ResponseBody
-    String getVacation(HttpServletResponse response) {
+    String getVacation(HttpServletResponse response, HttpSession sess) {
         
         //kall til database for å finne relevant info.
-        //ID, tittel, start, slutt, descr, rom, type.
+        //ID, tittel, start, slutt, descr, rom, type, eiernavn, fag
+        BrukerB brukerb = (BrukerB)sess.getAttribute("brukerBean");
+        List<KalenderEvent> events = service.getAlleEventsFraBruker(brukerb);
         
+        String tittel = events.get(0).getTittel();
+        System.out.println(tittel);
         
-        Map<String, Object> map = new HashMap<String, Object>();
-        map.put("id", 111);
-        map.put("title", "event1");
-        map.put("start", "2016-1-4");
-        map.put("url", "http://yahoo.com/");
-
-        // Convert to JSON string.
-        String json = new Gson().toJson(map);
+        String[] farger = {"#FFA500", "#00FF7F", "#00BFFF", "#FFFF00"};
         
-        Map<String, Object> map2 = new HashMap<String, Object>();
-        map2.put("id", 121);
-        map2.put("title", "event2");
-        map2.put("start", "2016-01-15-12:00:00");
-        map2.put("description", "Hallaballa. <a href='http://google.com'>link</a>");
+        Map<String, Object> map;
+        String jsonSend = "";
         
-        String json2 = new Gson().toJson(map2);
-        
-        json +=", " + json2;
+        for (KalenderEvent event : events){
+            System.out.println(event.getTittel() + " " + event.getType());
+            System.out.println(event.getStartTid());
+            String start = "" + event.getStartTid();
+            String slutt = "" + event.getSluttTid();
+            map = new HashMap<String, Object>();
+            map.put("id", event.getId());
+            map.put("title", event.getTittel());
+            map.put("start", start);
+            map.put("end", slutt);
+            map.put("color", farger[event.getType()]);
+            String json = new Gson().toJson(map);
+            if (!jsonSend.isEmpty()){
+                jsonSend += ", ";
+            }
+            jsonSend += json;
+        }
 
         // Write JSON string.
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
 
-        return "[" + json + "]";
+        return "[" + jsonSend + "]";
     }
     
     

@@ -8,6 +8,7 @@ package database;
 import mapper.BrukerMapper;
 import mapper.RomMapper;
 import beans.Bruker;
+import beans.BrukerB;
 import beans.Fag;
 import beans.KalenderEvent;
 import beans.Klasse;
@@ -66,11 +67,19 @@ public class DBConnectionImpl implements DBConnection{
     private final String slettAbonnement = "";
     private final String getAbonnement = "";
     
+    private final String getAlleEventsFraBruker = 
+            "SELECT DISTINCT kalender_event.id, kalender_event.tittel, kalender_event.dato_start, kalender_event.dato_slutt, kalender_event.eier, kalender_event.eier_navn, kalender_event.romID, kalender_event.fagID, kalender_event.type, kalender_event.descr, kalender_event.hidden "
+            + "FROM kalender_event, brukere WHERE kalender_event.eier =? UNION "
+            + "SELECT DISTINCT kalender_event.id, kalender_event.tittel, kalender_event.dato_start, kalender_event.dato_slutt, kalender_event.eier, kalender_event.eier_navn, kalender_event.romID, "
+            + "kalender_event.fagID, kalender_event.type, kalender_event.descr, kalender_event.hidden FROM kalender_event, brukere, abonemennt_bruker "
+            + "WHERE kalender_event.eier = abonemennt_bruker.brukerID  AND abonemennt_bruker.eierID =?  AND kalender_event.hidden = 0 UNION "
+            + "SELECT DISTINCT kalender_event.id, kalender_event.tittel, kalender_event.dato_start, kalender_event.dato_slutt, kalender_event.eier, "
+            + "kalender_event.eier_navn, kalender_event.romID, kalender_event.fagID, kalender_event.type, kalender_event.descr, kalender_event.hidden FROM kalender_event, brukere, abonemennt_fag WHERE kalender_event.fagID = abonemennt_fag.fagID AND abonemennt_fag.eierID =?;";
+
     /**Søkefunksjon**/
     private final String alleRom="SELECT * FROM rom";
     private final String  alleFag="SELECT * FROM fag";
 
-    
     
     
     private DataSource dS;
@@ -281,9 +290,9 @@ public class DBConnectionImpl implements DBConnection{
     public boolean leggTilKalenderEvent(KalenderEvent ke) {
         int antallRader = jT.update(leggTilKalenderEvent,new Object[]{
             ke.getId(),
-            ke.getStartDato(),
-            ke.getSluttDato(),
-            ke.getEier(),
+            ke.getStartTid(),
+            ke.getSluttTid(),
+            ke.getEpost(),
             ke.isPrivat(),
             ke.getType(),
             ke.getFag()
@@ -385,5 +394,14 @@ public class DBConnectionImpl implements DBConnection{
     @Override
     public Klasse getLaererKlasse(Bruker b) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    @Override
+    public List<KalenderEvent> getAlleEventsFraBruker(BrukerB b){
+        return jT.query(getAlleEventsFraBruker, new Object[]{
+            b.getEpost(),
+            b.getEpost(),
+            b.getEpost()
+        }, new KalenderEventMapper());
     }
 }
