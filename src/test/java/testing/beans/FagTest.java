@@ -31,6 +31,7 @@ public class FagTest {
     public void setUp() throws Exception {
         // Koden her eksekveres før hver av testmetodene i klassen
         fag = new Fag();
+        fag1 = new Fag();
         fag.setFagID("Data");
         fag.setNavn("Per");
     }
