@@ -24,14 +24,14 @@ public class RomTest {
     
     @BeforeClass
     public static void setUpClass() throws Exception {
-        // Koden her eksekveres før første test i klassen
-        System.out.println("JUNIT: før klassen.");
+        // Koden her eksekveres fï¿½r fï¿½rste test i klassen
+        System.out.println("JUNIT: fï¿½r klassen.");
         
     }
 
     @Before
     public void setUp() throws Exception {
-        // Koden her eksekveres før hver av testmetodene i klassen
+        // Koden her eksekveres fï¿½r hver av testmetodene i klassen
      
         rom = new Rom();
         rom.setRomID("KAUD");
@@ -81,8 +81,8 @@ public class RomTest {
     public void test_sammenligning(){
         /**
          *tester med forandring, 
-         * eks: finn en str på et rom for å så forandre det
-         * og så finne den forandra størrelsen 
+         * eks: finn en str pï¿½ et rom for ï¿½ sï¿½ forandre det
+         * og sï¿½ finne den forandra stï¿½rrelsen 
          */
        rom1.setStorrelse(100);
        
@@ -101,19 +101,19 @@ public class RomTest {
     }
     /*
     @Test(expected = NullPointerException.class)
-    public void test_at_koden_som kjøres_kaster_en_NullPointerException() {
-        // Kode som gjør noe annet
+    public void test_at_koden_som kjï¿½res_kaster_en_NullPointerException() {
+        // Kode som gjï¿½r noe annet
     }
     */
 
     @After
     public void tearDown() throws Exception {
-        // Koden her kjøres etter hver test
+        // Koden her kjï¿½res etter hver test
         
     }
 
     @AfterClass
     public static void tearDownClass() throws Exception {
-        // Koden her kjører etter alle testmetodene i klassen er ferdig
+        // Koden her kjï¿½rer etter alle testmetodene i klassen er ferdig
     }
 }
