@@ -6,6 +6,9 @@
 package kontroller;
 
 import beans.Rom;
+import beans.Sok;
+import java.util.ArrayList;
+import verktøy.Funksjoner;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +21,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class SokeKontroller {
     @RequestMapping("FinnRomSok")
     public void finnRomSok(@ModelAttribute("rom") Rom rom){
+        
+    }
+    @RequestMapping("/search")
+    public String sok(@ModelAttribute("sok") Sok sok){
+        Funksjoner funk=new Funksjoner();
+        String s=sok.getSokeord();
+        funk.getAlleSokeTreff(s);
+        return "SokeSide";
         
     }
     

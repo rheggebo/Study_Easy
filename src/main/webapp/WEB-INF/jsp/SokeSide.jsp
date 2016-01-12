@@ -73,7 +73,9 @@
 
  
 <div class="searchInfo">
-    <p></p>
+    <p><c:forEach items="${getAlleSokeTreff}" var="liste">
+            <c:out value="liste" ></c:out>
+        </c:forEach> </p>
 </div>
 
 

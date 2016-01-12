@@ -17,7 +17,7 @@ import service.ServiceImpl;
 public class Funksjoner {
   ServiceImpl si=new ServiceImpl();
   
-  public List<Object> getAlleSokeTreff(String s){
+  public ArrayList<Object> getAlleSokeTreff(String s){
         ArrayList<Object> liste=new ArrayList<Object>();
         for(int i=0; i<si.getAlleBrukere().size();i++){
             if(s.equals(si.getAlleBrukere().get(i).getNavn())){
@@ -43,4 +43,10 @@ public class Funksjoner {
      
       return liste;
     }
+  public ArrayList<Object> getListe(){
+      ArrayList liste=new ArrayList();
+      liste.add("Sigrid");
+      liste.add("Kasper");
+      return liste;
+  }
 }
