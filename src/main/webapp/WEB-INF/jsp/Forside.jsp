@@ -56,14 +56,15 @@
 </script>
 </head>
 
+
 <body>
 <header>
     <a href="Forside"><img id="logo" src="<c:url value="/resources/images/LogoTeam1.png"/>"></a>
     NTNU - Norges Teknisk-naturvitenskapelige Universitet · Study Easy © 2016<br>
     <nav class="dropdownmenu">
-        <ul>
+        <ul> 
             <li><a href="Forside">Forside</a></li>
-            <li><a href="Forside">Kontakt</a></li>
+            <li><a href="Kontakt">Kontakt</a></li>
             <li><a href="#">Romvalg</a>
                 <ul id="submenu">
                     <li><a href="VelgRom">Bestill rom</a></li>
@@ -101,7 +102,7 @@
     ·
     <a class="footerLenke" href="SokeSide">Søk</a>
     ·
-    <a class="footerLenke" href="Forside">Kontakt</a>
+    <a class="footerLenke" href="Kontakt">Kontakt</a>
     <h4>·Study Easy © 2016·</h4>
 </footer>
 

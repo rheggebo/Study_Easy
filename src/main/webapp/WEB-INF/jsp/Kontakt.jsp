@@ -54,7 +54,7 @@
     ·
     <a class="footerLenke" href="SokeSide">Søk</a>
     ·
-    <a class="footerLenke" href="Forside">Kontakt</a>
+    <a class="footerLenke" href="Kontakt">Kontakt</a>
     <h4>·Study Easy © 2016·</h4>
 </footer>
 

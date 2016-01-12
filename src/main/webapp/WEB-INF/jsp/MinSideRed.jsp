@@ -20,7 +20,7 @@
     <nav class="dropdownmenu">
         <ul>
             <li><a href="Forside">Forside</a></li>
-            <li><a href="Forside">Kontakt</a></li>
+            <li><a href="Kontakt">Kontakt</a></li>
             <li><a href="#">Romvalg</a>
                 <ul id="submenu">
                     <li><a href="VelgRom">Bestill rom</a></li>
@@ -43,10 +43,10 @@
             <dl>
                 <form:form modelAttribute="bruker">
                 Fornavn:<em>*</em><br>
-                <dd><form:input type="text" name="fornavn" placeholder="Ola" autofocus="true" required="true" path="navn"/></dd>
+                <dd><form:input type="text" name="fornavn" placeholder="Ola" autofocus="true" required="true" path="fornavn"/></dd>
 
                 Etternavn:<em>*</em><br>
-                <dd><input type="text" name="etternavn" placeholder="Nordmann" required></dd>
+                <dd><form:input type="text" name="etternavn" placeholder="Nordmann" required="true" path="etternavn"/></dd>
 
                 <dt><label for="telefon">Telefonnummer<em>*</em></label></dt>
                 <dd><form:input id="telefon" name="telefon" type="tel" pattern="\d{8}$" placeholder="Skriv inn ditt telefonnummer" required="true" path="telefonnummer"/></dd>
@@ -151,7 +151,7 @@
     ·
     <a class="footerLenke" href="SokeSide">Søk</a>
     ·
-    <a class="footerLenke" href="Forside">Kontakt</a>
+    <a class="footerLenke" href="Kontakt">Kontakt</a>
     <h4>·Study Easy © 2016·</h4>
 </footer>
 
