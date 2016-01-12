@@ -71,6 +71,17 @@ public class BrukerKontroller {
         return "Innlogging";
     }
     
+    @RequestMapping("EndrePassordRed")
+    public String endrePassordRed(HttpSession sess, Model model){
+        BrukerB brukerb = (BrukerB)sess.getAttribute("brukerBean");
+        model.addAttribute("bruker", testBruker);
+        if(brukerb != null && brukerb.isInnlogget()){
+            return "EndrePassordRed";
+        }
+        model.addAttribute("bruker", new Bruker());
+        return "Innlogging";
+    }
+    
     private String genererPassord(Errors errors){
         String nyttPassord = generator.genererPassord();
         Passord pass = new Passord();
@@ -115,5 +126,5 @@ public class BrukerKontroller {
         }
         model.addAttribute("bruker", new Bruker());
         return "Innlogging";
-    }    
+    }
 }
