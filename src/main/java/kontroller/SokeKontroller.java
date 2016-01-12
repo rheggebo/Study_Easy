@@ -28,6 +28,7 @@ public class SokeKontroller {
         Funksjoner funk=new Funksjoner();
         String s=sok.getSokeord();
         funk.getAlleSokeTreff(s);
+        
         return "SokeSide"; 
         
     }
