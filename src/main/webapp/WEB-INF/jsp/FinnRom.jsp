@@ -36,7 +36,7 @@
     <nav class="dropdownmenu">
         <ul>
             <li><a href="Forside">Forside</a></li>
-            <li><a href="Forside">Kontakt</a></li>
+            <li><a href="Kontakt">Kontakt</a></li>
             <li><a href="#">Romvalg</a>
                 <ul id="submenu">
                     <li><a href="VelgRom">Bestill rom</a></li>
@@ -117,7 +117,7 @@
     ·
     <a class="footerLenke" href="Forside.html">FAQ</a>
     ·
-    <a class="footerLenke" href="Forside.html">Contact</a>
+    <a class="footerLenke" href="Kontakt.html">Contact</a>
     <h4>Study Easy © 2016</h4>
 </footer>
 
