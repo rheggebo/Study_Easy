@@ -142,46 +142,4 @@ public class Hovedkontroller {
         model.addAttribute("bruker", new Bruker());
         return "Innlogging";
     }
-    @RequestMapping(value = "/events/getEvents", method = RequestMethod.GET)
-    public
-    @ResponseBody
-    String getVacation(HttpServletResponse response, HttpSession sess) {
-        
-        //kall til database for å finne relevant info.
-        //ID, tittel, start, slutt, descr, rom, type, eiernavn, fag
-        BrukerB brukerb = (BrukerB)sess.getAttribute("brukerBean");
-        List<KalenderEvent> events = service.getAlleEventsFraBruker(brukerb);
-        
-        String tittel = events.get(0).getTittel();
-        System.out.println(tittel);
-        
-        String[] farger = {"#FFA500", "#00FF7F", "#00BFFF", "#FFFF00"};
-        
-        Map<String, Object> map;
-        String jsonSend = "";
-        
-        for (KalenderEvent event : events){
-            System.out.println(event.getTittel() + " " + event.getType());
-            System.out.println(event.getStartTid());
-            String start = "" + event.getStartTid();
-            String slutt = "" + event.getSluttTid();
-            map = new HashMap<String, Object>();
-            map.put("id", event.getId());
-            map.put("title", event.getTittel());
-            map.put("start", start);
-            map.put("end", slutt);
-            map.put("color", farger[event.getType()]);
-            String json = new Gson().toJson(map);
-            if (!jsonSend.isEmpty()){
-                jsonSend += ", ";
-            }
-            jsonSend += json;
-        }
-
-        // Write JSON string.
-        response.setContentType("application/json");
-        response.setCharacterEncoding("UTF-8");
-
-        return "[" + jsonSend + "]";
-    }
 }
