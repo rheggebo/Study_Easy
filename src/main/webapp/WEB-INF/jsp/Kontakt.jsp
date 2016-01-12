@@ -7,62 +7,17 @@
 <html lang="no">
 <head>
     <link rel="stylesheet" href="<c:url value="/resources/css/Hovedstilen.css"/>">
-    
-    <link rel="stylesheet" href="<c:url value="/resources/css/fullcalendar.css"/>">
-    <link rel="stylesheet" href="<c:url value="/resources/css/jquery.qtip.css"/>">
-    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-    <script src="<c:url value="/resources/fullcalendarJS/moment.min.js"/>"></script>
-    <script src="<c:url value="/resources/fullcalendarJS/fullcalendar.js"/>"></script>
-    <script src ="<c:url value="/resources/fullcalendarJS/jquery.qtip.js"/>"></script>
-    <script src="<c:url value="/resources/fullcalendarJS/nb.js"/>"></script>
-
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fremside</title>
-    
-<script>
-       $(document).ready(function() {
-            var currentLangCode = 'en';
-            var date = new Date();
-            var d = date.getDate();
-            var m = date.getMonth();
-            var y = date.getFullYear();
-
-
-          $.getJSON('events/getEvents', function (data) {
-            var calendar = $('#calendar').fullCalendar({
-                header: {
-                    left: 'prev,next today',
-                    center: 'title',
-                    right: 'month,agendaWeek,agendaDay'
-                },
-                weekNumbers: true,
-                editable: false,
-                events:data,
-                eventRender: function(event, element) {
-                    element.qtip({
-                        content: event.description,
-                        hide: {
-                            fixed: true,
-                            delay: 300
-                        }
-                    });
-                }
-            });
-         });
-        });
-        
-</script>
+    <title>Kontakt</title>
 </head>
-
 
 <body>
 <header>
     <a href="Forside"><img id="logo" src="<c:url value="/resources/images/LogoTeam1.png"/>"></a>
     NTNU - Norges Teknisk-naturvitenskapelige Universitet · Study Easy © 2016<br>
     <nav class="dropdownmenu">
-        <ul> 
+        <ul>
             <li><a href="Forside">Forside</a></li>
             <li><a href="Kontakt">Kontakt</a></li>
             <li><a href="#">Romvalg</a>
@@ -80,17 +35,14 @@
         </ul>
     </nav>
 </header>
-
-<main>
-
-    	<div id='calendar'></div>
-</main>
-
-<!--Footer-->
-<div class="space"></div>
-<!--Må være med for å funke i Chrome-->
-
-<footer>
+    <main>
+        <textarea rows="4" cols="50" center>
+        Systemansvarlig:
+        Stein-Erik Bjørnnes
+        steinerikbjornnes@gmail.com
+</textarea>
+    </main>
+        <footer>
     <h4>NTNU - Norges Teknisk-naturvitenskapelige Universitet</h4>
     <a class="footerLenke" href="Forside">Hjem</a>
     ·

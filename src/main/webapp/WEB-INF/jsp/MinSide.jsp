@@ -19,7 +19,7 @@
     <nav class="dropdownmenu">
         <ul>
             <li><a href="Forside">Forside</a></li>
-            <li><a href="Forside">Kontakt</a></li>
+            <li><a href="Kontakt">Kontakt</a></li>
             <li><a href="#">Romvalg</a>
                 <ul id="submenu">
                     <li><a href="VelgRom">Bestill rom</a></li>
@@ -38,15 +38,15 @@
 
 <main>
 
-    <form action="MinSideRed.html" id="formen">
+    <form action="MinSideRed" id="formen">
         <fieldset>
             <legend>Personopplysninger</legend>
             <dl>
                 <form:form modelAttribute="bruker">
                 Fornavn:<br>
-                    <dd><form:input type="text" name="fornavn" path="navn" readonly="true"/></dd>
+                    <dd><form:input type="text" name="fornavn" path="fornavn" readonly="true"/></dd>
                 Etternavn:<br>
-                <dd><input type="text" name="etternavn" placeholder="Nordmann" readonly="true"/></dd>
+                <dd><input type="text" name="etternavn" placeholder="Nordmann" path="etternavn" readonly="true"/></dd>
 
                 Telefonnummer:<br>
                 <dd><form:input id="telefon" name="telefon" type="tel" pattern="\d{8}$" readonly="true" path="telefonnummer"/></dd>
@@ -68,9 +68,9 @@
             </dl>
             <input type="submit" value="Endre opplysninger"/>
             </form:form>
-            
+            <br>
             <form:form modelAttribute="bruker" action="EndrePassordRed">
-                <input type="submit" value="Endre passord" style="width: 131px"/>
+                <input type="submit" value="Endre passord" style="width: 130px"/>
             </form:form>
         </fieldset>
 
@@ -103,7 +103,7 @@
     ·
     <a class="footerLenke" href="SokeSide">Søk</a>
     ·
-    <a class="footerLenke" href="Forside">Kontakt</a>
+    <a class="footerLenke" href="Kontakt">Kontakt</a>
     <h4>·Study Easy © 2016·</h4>
 </footer>
 

@@ -3,11 +3,15 @@
     Created on : 08.jan.2016, 15:27:40
     Author     : Sigrid
 --%>
+<%@page import="verktøy.Funksjoner"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>  
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 
 <%@page import="beans.Sok" %>
 
@@ -32,7 +36,7 @@
     <nav class="dropdownmenu">
         <ul>
             <li><a href="Forside">Forside</a></li>
-            <li><a href="Forside">Kontakt</a></li>
+            <li><a href="Kontakt">Kontakt</a></li>
             <li><a href="#">Romvalg</a>
                 <ul id="submenu">
                     <li><a href="VelgRom">Bestill rom</a></li>
@@ -52,7 +56,7 @@
 
 <div class="searchNav">
     <ul>
-        <li><div><form action="/search" method="POST"  role="search">
+        <li><div><form action="search" method="POST"  role="search">
             <input class="searchForm" type=search name="sokeord" size="30">
             <input class="searchButton" value="Søk" type="submit"></form></div>
 
@@ -73,9 +77,15 @@
 
  
 <div class="searchInfo">
-    <p><c:forEach items="${getAlleSokeTreff}" var="liste">
-            <c:out value="liste" ></c:out>
-        </c:forEach> </p>
+    <%
+      ArrayList<Object> getAlleSokeTreff=(ArrayList<Object>)request.getAttribute("getAlleSokeTreff");
+      
+    %> 
+    <c:forEach begin="0" end="${fn:length(getAlleSokeTreff) - 1}" var="index">
+   <tr>
+      <td><c:out value="${getAlleSokeTreff[index]}"/></td>
+   </tr>
+</c:forEach>
 </div>
 
 
@@ -94,7 +104,7 @@
     ·
     <a class="footerLenke" href="Forside.html">FAQ</a>
     ·
-    <a class="footerLenke" href="Forside.html">Contact</a>
+    <a class="footerLenke" href="Kontakt.html">Contact</a>
     <h4>Study Easy © 2016</h4>
 </footer>
 </body>
