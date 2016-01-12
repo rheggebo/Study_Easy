@@ -58,7 +58,7 @@ import static org.mockito.Mockito.*;
     public List<Rom> getAlleRom();
     public List<Fag> getAlleFag();
     | tatt
-        | ikke tatt
+        |ikke tatt
 */
 public class ServiceImplTest {
     DBConnection dBConnection;
