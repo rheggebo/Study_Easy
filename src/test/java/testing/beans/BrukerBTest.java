@@ -1,122 +1,157 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package testing.beans;
 
 import org.junit.*;
 import static org.junit.Assert.*;
-//import static org.mockito.Mockito.*;
 import java.util.ArrayList;
 import beans.BrukerB;
 import beans.KalenderEvent;
-//import org.mockito.Mockito;
+import beans.Klasse;
+import beans.Fag;
+import beans.Bruker;
+import java.util.Date;
+
 /**
  *
- * @author Sindre
- */
+ * @author Ingvild
+ *
+ * */
+
 public class BrukerBTest {
-    BrukerB test = new BrukerB();
-    BrukerB objektTest = new BrukerB();
+    BrukerB bruker1;
+    Klasse klasse1;
+    Date fdato;
+    private ArrayList kalenderEvents;
+    private ArrayList fag;
 
 
-//public class SearchEngineJUnitTest {
-    //@InjectMocks private PageReader reader;
-    //KalenderEvent[] kalenderEvent; 
+    BrukerB brukeren;
+    Bruker bruker;
+    Klasse brukerKlasse;
+    Date fdatoBruker;
+    private ArrayList kalenderEventsBruker;
+    private ArrayList fagBruker;
+    
+    BrukerB tombruker;
+    
     
     @BeforeClass
     public static void setUpClass() throws Exception {
         // Koden her eksekveres f�r f�rste test i klassen
+        System.out.println("JUNIT: før FagTest-klassen.");
     }
 
     @Before
     public void setUp() throws Exception {
-        // Koden her eksekveres f�r hver av testmetodene i klassen
         // Koden her eksekveres før hver av testmetodene i klassen
-        //kalenderEvent=mock(KalenderEvent[].class);
+        
+        /** Bruker 1 **/
+        
+        bruker1 = new BrukerB();
+        klasse1 = new Klasse();
+        fdato = new Date(1991-1-2);
+        kalenderEvents = new ArrayList();
+        fag = new ArrayList();
+        
+        bruker1.setFornavn("Per");
+        bruker1.setEtternavn("Aas");
+        bruker1.setEpost("per@hotmail.no");
+        bruker1.setNotat("Jeg liker fotball");
+        bruker1.setTilgangsniva(3);
+        bruker1.setInnlogget(true);
+        bruker1.setTelefonnummer(91000000);
+        bruker1.setFodedato(fdato);
+        
+        klasse1.setNavn("Data");
+        klasse1.setFag(fag);
     
+        bruker1.setKalenderEvents(kalenderEvents);
+        bruker1.setKlasse(klasse1);
+        
+        /** Bruker 2 **/
+        brukerKlasse = new Klasse();
+        bruker = new Bruker();
+        brukeren = new BrukerB(bruker);
+        kalenderEventsBruker = new ArrayList();
+        fagBruker = new ArrayList();
+        fdatoBruker = new Date(1990-2-1);
+        
+        bruker.setFornavn("Roar");
+        bruker.setEtternavn("Toresen");
+        bruker.setPassord("123");
+        bruker.setEpost("roar@hotmail.com");
+        bruker.setNotat("Jeg liker musikk");
+        bruker.setTilgangniva(2);
+        bruker.setTelefonnummer(92000000);
+
+        
+        bruker.setFodedato(fdatoBruker);
+        bruker.setKalenderEvents(kalenderEventsBruker);
+
+        bruker.setKalenderEvents(kalenderEvents);
+        bruker.setKlasse(klasse1);
+        
     }
 
     @Test
-    public void test_1 (){
-        test.setFornavn("Per");
-        assertEquals(test.getFornavn(),"Per");
+    public void test1 (){
+        /*Test set- og get-metoder*/
+        assertEquals(bruker1.getFornavn(),"Per");
         
-        test.setEtternavn("Aas");
-        assertEquals(test.getEtternavn(),"Aas");
+        assertEquals(bruker1.getEtternavn(),"Aas");
         
-        test.setEpost("per@hotmail.no");
-        assertEquals(test.getEpost(),"per@hotmail.no");
+        assertEquals(bruker1.getEpost(),"per@hotmail.no");
         
-        test.setNotat("Jeg liker fotball");
-        assertEquals(test.getNotat(),"Jeg liker fotball");
+        assertEquals(bruker1.getNotat(),"Jeg liker fotball");
+       
+        assertEquals(bruker1.getTilgangsniva(),3);
         
-        test.setTilgangsniva(3);
-        assertEquals(test.getTilgangsniva(),3);
+        assertEquals(bruker1.getTelefonnummer(),91000000);
+                
+        assertEquals(klasse1.getNavn(),"Data");
         
+        assertEquals(klasse1.getFag(),fag);
+        
+        assertEquals(bruker1.getFodedato(), fdato);
+        
+        assertEquals(bruker1.getKlasse(),klasse1);
+        
+        assertEquals(bruker1.getKalenderEvents(),kalenderEvents);
+
     }
     
     @Test   
     public void testInnlogget(){
-        test.setInnlogget(true);
-        assertTrue(test.isInnlogget());
+        assertTrue(bruker1.isInnlogget());
+        
+        bruker1.setInnlogget(false);
+        assertFalse(bruker1.isInnlogget());
     }
     
+    
     @Test
-    public void testIkkeInnlogget(){
-        test.setInnlogget(false);
-        assertFalse(test.isInnlogget());
-        
+    public void testArrayList(){
+        /* Tester ArrayList */
+        bruker1.setKalenderEvents(kalenderEvents);
+        assertTrue(bruker1.getKalenderEvents().isEmpty());
     }
         
-    /**@Test
-    public void objektTesting(){
-        assertSame(objektTest.getKlasse(), objektTest.getKlasse());
-        
-        //assertNotSame(objektTest.getKlasse(), objektTest.getKlasse());
+    @Test
+    public void testTomBruker(){
+        assertNull("Brukeren er tom", tombruker);
                 
-    } **/
-        /** EKSEMPEL PÅ MOCKITO-TESTING
-         * 
-         * //Create mock
-        BrukerB test = Mockito.mock(BrukerB.class);
-        
-        when(test.getNavn()).thenReturn("Ingvild");
-        
-        assertEquals(test.getNavn(),"Ingvild");
-        **/
-        
-        
-        /**
-         Tester enkle get-metoder som:
-         getId(), getType(), getEier(), getRom()
-         **/
-
+    } 
+    
     @Test
-    public void test_2 (){
-        /**
-         * Tester enkle set-metoder
-         * setId(int id), setType(int Type), setEier(String eier),
-         * setRom(String rom)
-         */
-        
+    public void testIkkeTomBruker(){
+        tombruker = new BrukerB();
+        assertNotNull("Brukeren er opprettet", tombruker);
     }
- 
-    @Test
-    public void test_3 (){
-
-    }
-    /*
-    @Test(expected = NullPointerException.class)
-    public void test_at_koden_som kj�res_kaster_en_NullPointerException() {
-        // Kode som gj�r noe annet
-    }
-    */
 
     @After
     public void tearDown() throws Exception {
         // Koden her kj�res etter hver test
+        fag.clear();
+        kalenderEvents.clear();
     }
 
     @AfterClass

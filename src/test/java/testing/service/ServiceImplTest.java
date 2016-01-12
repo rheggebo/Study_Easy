@@ -6,6 +6,11 @@
 package testing.service;
 
 import beans.Bruker;
+import beans.BrukerB;
+import beans.Fag;
+import beans.KalenderEvent;
+import beans.Klasse;
+import beans.Rom;
 import database.DBConnection;
 import java.util.ArrayList;
 import java.util.List;
@@ -44,24 +49,35 @@ import static org.mockito.Mockito.*;
     public List<KalenderEvent> getKalenderEventEier(Bruker b);
     public List<KalenderEvent> getKalenderEventRomID(Rom r);
     public List<Fag> getFagLaerer(Bruker b);
-    public Rom getRombestilling();
+        public Rom getRombestilling();
     public List<Rom> getRomFraNavn(Rom r);
-    public List<Rom> getRomFraInnhold(Rom r);
-    public List<Rom> getRomFraType(Rom r);
-    public List<Rom> getRomFraStoerrelse(Rom r);
-    public List<Klasse> getLaererKlasse(Bruker b);
+        public List<Rom> getRomFraInnhold(Rom r);
+        public List<Rom> getRomFraType(Rom r);
+        public List<Rom> getRomFraStoerrelse(Rom r);
+        public List<Klasse> getLaererKlasse(Bruker b);
     public List<Rom> getAlleRom();
     public List<Fag> getAlleFag();
+    | tatt
+        |ikke tatt
 */
 public class ServiceImplTest {
     DBConnection dBConnection;
     Bruker sindre;
     Bruker henrik;
+    BrukerB sindreB;
+    Rom rom272;
     List<Bruker> liste;
+    Klasse k;
+    Fag f;
+    KalenderEvent ke;
+    List<KalenderEvent> liste2;
+    List<Fag> liste3;
+    List<Rom> liste4;
     
     @BeforeClass
     public static void setUpClass() throws Exception {
         // Koden her eksekveres for første test i klassen
+        System.out.println("JUNIT: før ServiceImplTest-klassen.");
     }
 
     @Before
@@ -70,9 +86,20 @@ public class ServiceImplTest {
         dBConnection=mock(DBConnection.class);
         sindre = new Bruker();
         henrik = new Bruker();
+        rom272 = new Rom();
+        ke= new KalenderEvent();
+        f = new Fag();
+        k = new Klasse();
         liste= new ArrayList<>();
+        liste2 = new ArrayList<>();
+        liste3 = new ArrayList<>();
+        liste4 = new ArrayList<>();
+        liste2.add(ke);
         liste.add(henrik);
         liste.add(sindre);
+        liste3.add(f);
+        liste4.add(rom272);
+        
         when(dBConnection.sjekkPassord("sindre@gmail.com","passord")).thenReturn(true);
         when(dBConnection.getBruker("sindre@gmail.com")).thenReturn(sindre);
         when(dBConnection.oppdaterBruker(sindre)).thenReturn(true);
@@ -82,6 +109,25 @@ public class ServiceImplTest {
         when(dBConnection.leggTilBruker(sindre)).thenReturn(true);
         when(dBConnection.leggTilBruker(sindre)).thenReturn(true);
         when(dBConnection.getAlleBrukere()).thenReturn(liste);
+        when(dBConnection.oppdaterRom(rom272)).thenReturn(true);
+        when(dBConnection.slettRom(rom272)).thenReturn(true);
+        when(dBConnection.oppdaterKlasseFag(k, f)).thenReturn(true);
+        when(dBConnection.slettRomInnhold(rom272, "tavle")).thenReturn(true);
+        when(dBConnection.leggTilInnhold(rom272, "tavle")).thenReturn(true);
+        when(dBConnection.slettBrukerFag(sindre, f)).thenReturn(true);
+        when(dBConnection.leggTilFag(f)).thenReturn(true);
+        when(dBConnection.leggTilRom(rom272)).thenReturn(false);
+        when(dBConnection.leggTilKalenderEvent(ke)).thenReturn(true);
+        when(dBConnection.fjernKalenderEvent(ke)).thenReturn(true);
+        when(dBConnection.getKalenderEventDeltakere(ke)).thenReturn(liste);
+        when(dBConnection.getKalenderEventDeltaker(ke,sindre)).thenReturn(sindre);
+        when(dBConnection.getKalenderEventEier(sindre)).thenReturn(liste2);
+        when(dBConnection.getKalenderEventRomID(rom272)).thenReturn(liste2);
+        when(dBConnection.getFagLaerer(sindre)).thenReturn(liste3);
+        when(dBConnection.getRomFraNavn(rom272)).thenReturn(liste4);
+        when(dBConnection.getAlleRom()).thenReturn(liste4);
+        when(dBConnection.getAlleFag()).thenReturn(liste3);
+        when(dBConnection.getAlleEventsFraBruker(sindreB)).thenReturn(liste2);
     }
     
     @Test
@@ -95,15 +141,13 @@ public class ServiceImplTest {
         //assertEquals(test.getTilgangsniva(),3);
     }
     
-    
     @Test
-    public void test_sePassord (){
+    public void test_setPassord (){
         ServiceImpl test = new ServiceImpl();
         test.setDBC(dBConnection);
         
         //Ser på passordet:
         assertEquals(test.sjekkPassord("sindre@gmail.com","passord"),true);
-        
     }
     
     @Test
@@ -116,7 +160,6 @@ public class ServiceImplTest {
         assertEquals(test.endreBruker(sindre),true);
     }
     
-    
     @Test
     public void test_slettBruker (){
         ServiceImpl test = new ServiceImpl();
@@ -126,7 +169,6 @@ public class ServiceImplTest {
         assertEquals(test.slettBruker(sindre),true);
     }
     
-    
     @Test
     public void test_NyBruker (){
         ServiceImpl test = new ServiceImpl();
@@ -135,7 +177,6 @@ public class ServiceImplTest {
         //Ny bruker:
         assertEquals(test.nyBruker(sindre),true);
     }
-    
     
     @Test
     public void test_SlettListe (){
@@ -153,6 +194,190 @@ public class ServiceImplTest {
         
         //Slett liste med bruere:
         assertEquals(test.endreBrukere(liste),true);
+    }
+    
+    @Test
+    public void test_FåAlleBrukere (){
+        ServiceImpl test = new ServiceImpl();
+        test.setDBC(dBConnection);
+        
+        //Slett liste med bruere:
+        assertEquals(test.getAlleBrukere(),liste);
+    }
+    
+    @Test
+    public void test_OppdatereRom (){
+        ServiceImpl test = new ServiceImpl();
+        test.setDBC(dBConnection);
+        
+        //Slett liste med bruere:
+        assertEquals(test.oppdaterRom(rom272),true);
+    }
+    
+    @Test
+    public void test_SlettRom (){
+        ServiceImpl test = new ServiceImpl();
+        test.setDBC(dBConnection);
+        
+        //Slett liste med bruere:
+        assertEquals(test.slettRom(rom272),true);
+    }
+    
+    @Test
+    public void test_OppdaterKlasseFag (){
+        ServiceImpl test = new ServiceImpl();
+        test.setDBC(dBConnection);
+        
+        //Slett liste med bruere:
+        assertEquals(test.oppdaterKlasseFag(k, f),true);
+    }
+    
+    @Test
+    public void test_SlettRomInnhold (){
+        ServiceImpl test = new ServiceImpl();
+        test.setDBC(dBConnection);
+        
+        //Slett liste med bruere:
+        assertEquals(test.slettRomInnhold(rom272, "tavle"),true);
+    }
+    
+    @Test
+    public void test_LeggTilInnhold (){
+        ServiceImpl test = new ServiceImpl();
+        test.setDBC(dBConnection);
+        
+        //Slett liste med bruere:
+        assertEquals(test.leggTilInnhold(rom272, "tavle"),true);
+    }
+    
+    @Test
+    public void test_SlettBrukerFag (){
+        ServiceImpl test = new ServiceImpl();
+        test.setDBC(dBConnection);
+        
+        //Slett liste med bruere:
+        assertEquals(test.slettBrukerFag(sindre, f),true);
+    }
+    
+    @Test
+    public void test_LeggTilFag (){
+        ServiceImpl test = new ServiceImpl();
+        test.setDBC(dBConnection);
+        
+        //Slett liste med bruere:
+        assertEquals(test.leggTilFag(f),true);
+    }
+    
+    @Test
+    public void test_LeggTilRom (){
+        ServiceImpl test = new ServiceImpl();
+        test.setDBC(dBConnection);
+        
+        //Slett liste med bruere:
+        assertEquals(test.leggTilRom(rom272),false);
+    }
+    
+    @Test
+    public void test_LeggTilKalenderEvent (){
+        ServiceImpl test = new ServiceImpl();
+        test.setDBC(dBConnection);
+        
+        //Slett liste med bruere:
+        assertEquals(test.leggTilKalenderEvent(ke),true);
+    }
+    
+    @Test
+    public void test_FjernTilKalenderEvent (){
+        ServiceImpl test = new ServiceImpl();
+        test.setDBC(dBConnection);
+        
+        //Slett liste med bruere:
+        assertEquals(test.fjernKalenderEvent(ke),true);
+    }
+    
+    @Test
+    public void test_GetKalenderEventDeltakere (){
+        ServiceImpl test = new ServiceImpl();
+        test.setDBC(dBConnection);
+        
+        //Slett liste med bruere:
+        assertEquals(test.getKalenderEventDeltakere(ke),liste);
+    }
+    
+    @Test
+    public void test_GetKalenderEventDeltaker (){
+        ServiceImpl test = new ServiceImpl();
+        test.setDBC(dBConnection);
+        
+        //Slett liste med bruere:
+        assertEquals(test.getKalenderEventDeltaker(ke,sindre),sindre);
+    }
+    
+    @Test
+    public void test_GetKalenderEventEier (){
+        ServiceImpl test = new ServiceImpl();
+        test.setDBC(dBConnection);
+        
+        //Slett liste med bruere:
+        assertEquals(test.getKalenderEventEier(sindre),liste2);
+    }
+    
+    @Test
+    public void test_GetKalenderEventRomID (){
+        ServiceImpl test = new ServiceImpl();
+        test.setDBC(dBConnection);
+        
+        //Slett liste med bruere:
+        assertEquals(test.getKalenderEventRomID(rom272),liste2);
+    }
+    
+    @Test
+    public void test_GetFagLaerer (){
+        ServiceImpl test = new ServiceImpl();
+        test.setDBC(dBConnection);
+        
+        //Slett liste med bruere:
+        assertEquals(test.getFagLaerer(sindre),liste3);
+    }
+    
+    @Test
+    public void test_GetRomFraNavn(){
+        ServiceImpl test = new ServiceImpl();
+        test.setDBC(dBConnection);
+        
+        
+        //Slett liste med bruere:
+        assertEquals(test.getRomFraNavn(rom272),liste4);
+    }
+    
+    @Test
+    public void test_GtAlleRom(){
+        ServiceImpl test = new ServiceImpl();
+        test.setDBC(dBConnection);
+        
+        
+        //Slett liste med bruere:
+        assertEquals(test.getAlleRom(),liste4);
+    }
+    
+    @Test
+    public void test_GetAlleFag(){
+        ServiceImpl test = new ServiceImpl();
+        test.setDBC(dBConnection);
+        
+        
+        //Slett liste med bruere:
+        assertEquals(test.getAlleFag(),liste3);
+    }
+    
+    @Test
+    public void test_getAlleEventsFraBruker(){
+        ServiceImpl test = new ServiceImpl();
+        test.setDBC(dBConnection);
+        
+        
+        //Slett liste med bruere:
+        assertEquals(test.getAlleEventsFraBruker(sindreB),liste2);
     }
     
     /*

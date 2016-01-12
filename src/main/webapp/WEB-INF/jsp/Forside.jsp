@@ -14,6 +14,8 @@
     <script src="<c:url value="/resources/fullcalendarJS/moment.min.js"/>"></script>
     <script src="<c:url value="/resources/fullcalendarJS/fullcalendar.js"/>"></script>
     <script src ="<c:url value="/resources/fullcalendarJS/jquery.qtip.js"/>"></script>
+    <script src="<c:url value="/resources/fullcalendarJS/nb.js"/>"></script>
+
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,10 +23,13 @@
     
 <script>
        $(document).ready(function() {
-                       var date = new Date();
+            var currentLangCode = 'en';
+            var date = new Date();
             var d = date.getDate();
             var m = date.getMonth();
             var y = date.getFullYear();
+
+
           $.getJSON('events/getEvents', function (data) {
             var calendar = $('#calendar').fullCalendar({
                 header: {
@@ -32,6 +37,7 @@
                     center: 'title',
                     right: 'month,agendaWeek,agendaDay'
                 },
+                weekNumbers: true,
                 editable: false,
                 events:data,
                 eventRender: function(event, element) {
@@ -50,14 +56,15 @@
 </script>
 </head>
 
+
 <body>
 <header>
     <a href="Forside"><img id="logo" src="<c:url value="/resources/images/LogoTeam1.png"/>"></a>
     NTNU - Norges Teknisk-naturvitenskapelige Universitet · Study Easy © 2016<br>
     <nav class="dropdownmenu">
-        <ul>
+        <ul> 
             <li><a href="Forside">Forside</a></li>
-            <li><a href="Forside">Kontakt</a></li>
+            <li><a href="Kontakt">Kontakt</a></li>
             <li><a href="#">Romvalg</a>
                 <ul id="submenu">
                     <li><a href="VelgRom">Bestill rom</a></li>
@@ -75,6 +82,7 @@
 </header>
 
 <main>
+
     	<div id='calendar'></div>
 </main>
 
@@ -94,7 +102,7 @@
     ·
     <a class="footerLenke" href="SokeSide">Søk</a>
     ·
-    <a class="footerLenke" href="Forside">Kontakt</a>
+    <a class="footerLenke" href="Kontakt">Kontakt</a>
     <h4>·Study Easy © 2016·</h4>
 </footer>
 

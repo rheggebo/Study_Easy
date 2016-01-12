@@ -9,6 +9,7 @@ import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 
 import java.security.SecureRandom;
+import java.util.logging.Logger;
 
 import org.apache.commons.codec.binary.Base64;
 

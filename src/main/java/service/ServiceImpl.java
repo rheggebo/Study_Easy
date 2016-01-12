@@ -6,12 +6,14 @@
 package service;
 
 import beans.Bruker;
+import beans.BrukerB;
 import beans.Fag;
 import beans.KalenderEvent;
 import beans.Klasse;
 import beans.Rom;
 import database.DBConnectionImpl;
 import database.DBConnection;
+import java.io.Console;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -206,5 +208,10 @@ public class ServiceImpl implements Service{
     @Override
     public List<Fag> getAlleFag(){
         return dbc.getAlleFag();
+    }
+    
+    @Override
+    public List<KalenderEvent> getAlleEventsFraBruker(BrukerB b){
+        return dbc.getAlleEventsFraBruker(b);
     }
 }

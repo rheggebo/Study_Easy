@@ -14,11 +14,12 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.Errors;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import service.Service;
 import verktøy.Passordgenerator;
+import verktøy.PasswordHasher;
 
 /**
  *
@@ -30,6 +31,7 @@ public class BrukerKontroller {
     private Service service;
     private Passordgenerator generator = new Passordgenerator();
     private Bruker testBruker = new Bruker();
+    private PasswordHasher hasher = new PasswordHasher();
     
     @RequestMapping(value = "glemtPassord")
     public String glemtPassord(Model model){
@@ -38,7 +40,7 @@ public class BrukerKontroller {
     }
     
     @RequestMapping(value="sendNyttPassord")
-    public String glemsk(@ModelAttribute("bruker") Bruker bruker, Model model, HttpServletRequest request, Errors errors){
+    public String glemsk(@ModelAttribute("bruker") Bruker bruker, Model model, HttpServletRequest request, BindingResult error){
         String sjekk = bruker.getEpost();
         Bruker temp = null;
         try{
@@ -47,7 +49,7 @@ public class BrukerKontroller {
             
         }   
         if(temp != null){
-            if(sendNyPass(temp, errors)){
+            if(sendNyPass(temp, error)){
                     return "Innlogging";
                 }else{
                     model.addAttribute("melding", "feilmelding.email");
@@ -62,43 +64,60 @@ public class BrukerKontroller {
     }
     
     @RequestMapping("EndrePassord")
-    public String endrePassord(HttpSession sess, Model model){
+    public String endrePassord(HttpSession sess, @ModelAttribute("passord") Passord pass, BindingResult error, Model model) throws Exception{
+        System.out.println("Endrer passord*********");
         BrukerB brukerb = (BrukerB) sess.getAttribute("brukerBean");
-        if(brukerb != null && brukerb.isInnlogget()){
-            return "";
+        Bruker bruker = (Bruker) service.hentBruker(brukerb.getEpost());
+        if(hasher.check(pass.getPassord(),bruker.getPassord())){
+            System.out.println(bruker.getPassord());
+            model.addAttribute("melding", "feilmelding.gammeltPassord");
+            model.addAttribute("passord", new Passord());
+            return "EndrePassordRed";
         }
-        model.addAttribute("bruker", new Bruker());
-        return "Innlogging";
+        pass.validate(pass, error);
+        if(error.hasErrors()){
+            model.addAttribute("passord", new Passord());
+            model.addAttribute("melding", "");
+            return "EndrePassordRed";
+        }else{
+            bruker.setPassord(pass.getPassord1());
+            if(service.endreBruker(bruker)){
+                return "MinSide";
+            }
+        }
+        model.addAttribute("melding", "feilmelding.passordGenerell");
+        model.addAttribute("passord", new Passord());
+        return "EndrePassordRed";
     }
     
     @RequestMapping("EndrePassordRed")
     public String endrePassordRed(HttpSession sess, Model model){
         BrukerB brukerb = (BrukerB)sess.getAttribute("brukerBean");
-        model.addAttribute("bruker", testBruker);
         if(brukerb != null && brukerb.isInnlogget()){
+            model.addAttribute("passord", new Passord());
             return "EndrePassordRed";
         }
         model.addAttribute("bruker", new Bruker());
         return "Innlogging";
     }
     
-    private String genererPassord(Errors errors){
+    private String genererPassord(BindingResult error){
         String nyttPassord = generator.genererPassord();
         Passord pass = new Passord();
         pass.setGenerert(true);
         pass.setPassord(nyttPassord);
-        pass.validate(pass, errors);
-        if(errors.hasErrors()){
-            System.out.println(errors.getErrorCount()+ nyttPassord);
-            nyttPassord = genererPassord(errors);
+        pass.validate(pass, error);
+        if(error.hasErrors()){
+            System.out.println(error.getErrorCount()+ nyttPassord);
+            nyttPassord = genererPassord(error);
         }
         return nyttPassord;
     }    
     
-    private Boolean sendNyPass(Bruker temp, Errors errors){
+    private Boolean sendNyPass(Bruker temp, BindingResult error){
         String mottaker = temp.getEpost();
         String tema = "Nytt passord for bruker: "+temp.getEpost();
-        String nyttPassord = genererPassord(errors);
+        String nyttPassord = genererPassord(error);
         temp.setPassord(nyttPassord);
         Email email = new Email();
         String melding= 
@@ -120,8 +139,8 @@ public class BrukerKontroller {
     @RequestMapping("MinSideRed")
     public String minSideRed(HttpSession sess, Model model){
         BrukerB brukerb = (BrukerB) sess.getAttribute("brukerBean");
-        model.addAttribute("bruker", testBruker);
         if(brukerb != null && brukerb.isInnlogget()){
+            model.addAttribute("bruker", brukerb);
             return "MinSideRed";
         }
         model.addAttribute("bruker", new Bruker());
