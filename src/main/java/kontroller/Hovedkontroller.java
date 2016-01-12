@@ -98,6 +98,11 @@ public class Hovedkontroller {
         return "Innlogging";
     }
     
+    @RequestMapping("Kontakt")
+    public String kontakt(HttpSession sess, Model model){
+        return "Kontakt";
+    }
+    
     @RequestMapping("Forside")
     public String forside(HttpSession sess, Model model){
         BrukerB brukerb = (BrukerB) sess.getAttribute("brukerBean");
