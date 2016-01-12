@@ -16,6 +16,7 @@ main {
     overflow:auto;
     padding:40px;
     width:940px;
+    height: 800px;
 }
 
 header{

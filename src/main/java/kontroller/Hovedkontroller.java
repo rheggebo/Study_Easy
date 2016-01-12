@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package kontroller;
 
 import com.google.gson.Gson;
@@ -117,10 +112,13 @@ public class Hovedkontroller {
         return "Glemsk";
     }
     
-@RequestMapping(value = "/vacation/getVacation", method = RequestMethod.GET)
+@RequestMapping(value = "/events/getEvents", method = RequestMethod.GET)
     public
     @ResponseBody
     String getVacation(HttpServletResponse response) {
+        
+        //kall til database for å finne relevant info.
+        //ID, tittel, start, slutt, descr, rom, type.
         
         
         Map<String, Object> map = new HashMap<String, Object>();
@@ -135,7 +133,8 @@ public class Hovedkontroller {
         Map<String, Object> map2 = new HashMap<String, Object>();
         map2.put("id", 121);
         map2.put("title", "event2");
-        map2.put("start", "2016-01-15");
+        map2.put("start", "2016-01-15-12:00:00");
+        map2.put("description", "Hallaballa. <a href='http://google.com'>link</a>");
         
         String json2 = new Gson().toJson(map2);
         
