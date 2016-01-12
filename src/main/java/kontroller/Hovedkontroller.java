@@ -29,7 +29,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import service.Service;
-import verktøy.PasswordHasher;
 import verktøy.Passordgenerator;
 
 /**
@@ -66,12 +65,17 @@ public class Hovedkontroller {
     public String logIn(@ModelAttribute("bruker") Bruker bruker, Model model, HttpSession sess){
         if(bruker.getEpost() != null && !bruker.getEpost().equals("")
                 && bruker.getPassord() != null && !bruker.getPassord().equals("")){
-            if(service.sjekkPassord(bruker.getEpost(), bruker.getPassord())){
-                BrukerB brukerBean = new BrukerB(service.hentBruker(bruker));
-                brukerBean.setInnlogget(true);
-                sess.setAttribute("brukerBean", brukerBean);
-                return "Forside";
-            }    
+            try{
+                if(service.sjekkPassord(bruker.getEpost(), bruker.getPassord())){
+                    BrukerB brukerBean = new BrukerB(service.hentBruker(bruker));
+                    brukerBean.setInnlogget(true);
+                    sess.setAttribute("brukerBean", brukerBean);
+                    return "Forside";
+                }
+            }catch (Exception e){
+                
+            }
+                
         }
         model.addAttribute("melding", "feilmelding.login");
         bruker.setPassord("");
