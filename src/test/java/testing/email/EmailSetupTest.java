@@ -5,10 +5,17 @@
  */
 package testing.email;
 
+import org.junit.BeforeClass;
+
 /**
  *
  * @author Sindre
  */
 public class EmailSetupTest {
+    @BeforeClass
+    public static void setUpClass() throws Exception {
+        // Koden her eksekveres for første test i klassen
+    }
+    
     
 }
