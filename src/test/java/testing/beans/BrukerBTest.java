@@ -17,7 +17,7 @@ import beans.KalenderEvent;
  * @author Sindre
  */
 public class BrukerBTest {
-    BrukerB test;
+    BrukerB test = new BrukerB();
     BrukerB objektTest = new BrukerB();
 
 

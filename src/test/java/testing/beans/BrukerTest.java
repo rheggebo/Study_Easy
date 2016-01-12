@@ -28,11 +28,12 @@ public class BrukerTest {
     @Before
     public void setUp() throws Exception {
         // Koden her eksekveres før hver av testmetodene i klassen
-     test.setNavn("Per");
-     test.setEpost("per@hotmail.com");
-     test.setNotat("Jeg liker fotball");
-     test.setTilgangniva(3);
-     test.setPassord("123");
+        test = new Bruker();
+        test.setNavn("Per");
+        test.setEpost("per@hotmail.com");
+        test.setNotat("Jeg liker fotball");
+        test.setTilgangniva(3);
+        test.setPassord("123");
     }
 
     @Test
