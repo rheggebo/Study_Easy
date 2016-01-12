@@ -47,7 +47,6 @@ public class Kalenderkontroller {
         
         String[] farger = {"#FFA500", "#00FF7F", "#00BFFF", "#FFFF00"};
         
-        Map<String, Object> map;
         String jsonSend = "";
         
         for (KalenderEvent event : events){
@@ -55,11 +54,13 @@ public class Kalenderkontroller {
             System.out.println(event.getStartTid());
             String start = "" + event.getStartTid();
             String slutt = "" + event.getSluttTid();
-            map = new HashMap<String, Object>();
+            String descr = "Rom: " + event.getRom() + "<br>Notat: " + event.getNotat();
+            Map<String, Object> map = new HashMap<String, Object>();
             map.put("id", event.getId());
             map.put("title", event.getTittel());
             map.put("start", start);
             map.put("end", slutt);
+            map.put("description", descr);
             map.put("color", farger[event.getType()]);
             String json = new Gson().toJson(map);
             if (!jsonSend.isEmpty()){
