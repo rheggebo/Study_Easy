@@ -35,14 +35,31 @@
         </ul>
     </nav>
 </header>
-    <main>
-        <textarea rows="4" cols="50" center>
-        Systemansvarlig:
-        Stein-Erik Bjørnnes
-        steinerikbjornnes@gmail.com
-</textarea>
+<main>  <details>
+                    <summary><p1><b>Systemansvarlig <br> Stein-Erik Bjørnnes</b></p1></summary>
+                    <p2><dt>
+                        <br><b>Kontaktinformasjon</b><br>
+                        Tlf:    994 75 118<br>
+                        E-post: steinerikbjornnes@gmail.com<br>
+                    </dt></p2>
+                </details>
+
+                <br><br>
+
+                <details>
+                    <summary><p1><b>Databaseansvarlig <br> Arne Røen</b></p1></summary>
+                    <p2><dt>
+                        <br><b>Kontaktinformasjon</b><br>
+                        Tlf:    994 75 118<br>
+                        E-post: steinerikbjornnes@gmail.com<br>
+                    </dt></p2>
+                </details>
     </main>
-        <footer>
+    
+    <!--Footer-->
+<div class="space"></div>
+<!--Må være med for å funke i Chrome-->
+<footer>
     <h4>NTNU - Norges Teknisk-naturvitenskapelige Universitet</h4>
     <a class="footerLenke" href="Forside">Hjem</a>
     ·

@@ -29,6 +29,7 @@ public class KalenderEventMapper implements RowMapper<KalenderEvent>{
         event.setTittel(rs.getString("tittel"));
         event.setPrivat(rs.getBoolean("hidden"));
         event.setType(rs.getInt("type"));
+        event.setNotat(rs.getString("descr"));
         
         return event;
     }
