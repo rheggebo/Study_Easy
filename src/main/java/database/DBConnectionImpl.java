@@ -29,7 +29,6 @@ import verktøy.PasswordHasher;
  */
 public class DBConnectionImpl implements DBConnection{
     
-    //private final String getBrukerNavn = "SELECT * FROM brukere WHERE BRUKERNAVN=?";
     private final String getBrukerEpost = "SELECT * FROM brukere WHERE EPOST=?";
     private final String endreBruker = "UPDATE brukere SET PASSORD=?, TYPE=?, NAVN=? WHERE EPOST=?";
     private final String nyBruker = "INSERT INTO brukere VALUES(?,?,?,?)";
