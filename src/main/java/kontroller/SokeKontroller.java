@@ -23,12 +23,12 @@ public class SokeKontroller {
     public void finnRomSok(@ModelAttribute("rom") Rom rom){
         
     }
-    @RequestMapping("/search")
+    @RequestMapping("search")
     public String sok(@ModelAttribute("sok") Sok sok){
         Funksjoner funk=new Funksjoner();
         String s=sok.getSokeord();
         funk.getAlleSokeTreff(s);
-        return "SokeSide";
+        return "SokeSide"; 
         
     }
     
