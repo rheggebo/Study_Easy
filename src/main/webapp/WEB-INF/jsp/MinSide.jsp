@@ -70,7 +70,7 @@
             </form:form>
             <br>
             <form:form modelAttribute="bruker" action="EndrePassordRed">
-                <input type="submit" value="Endre passord" style="width: 131px"/>
+                <input type="submit" value="Endre passord" style="width: 130px"/>
             </form:form>
         </fieldset>
 
