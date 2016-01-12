@@ -6,6 +6,7 @@
 package testing.beans;
 
 import beans.Fag;
+import beans.Bruker;
 import org.junit.*;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
@@ -20,51 +21,69 @@ public class FagTest {
     Fag fag;
     Fag fag1;
     
+    Bruker brukerA;
+    Bruker brukerB;
+    
+    private ArrayList laerere;
+    private ArrayList kalenderE;
+    
     @BeforeClass
     public static void setUpClass() throws Exception {
         // Koden her eksekveres før første test i klassen
-       
-        
+       System.out.println("JUNIT: før FagTest-klassen.");
+      
     }
 
     @Before
     public void setUp() throws Exception {
         // Koden her eksekveres før hver av testmetodene i klassen
+        
         fag = new Fag();
+        fag.setFagID("01234");
+        fag.setNavn("AlgDat");
+        
         fag1 = new Fag();
-        fag.setFagID("Data");
-        fag.setNavn("Per");
+        fag1.setFagID("00123");
+        fag1.setNavn("Matematikk 2");
+                       
+        laerere = new ArrayList();
+        kalenderE = new ArrayList();
+        
+        
+        
     }
 
     @Test
     public void testfag_1 (){
         /**
-         * Test set- og get-metoder
+         * Tester set og get-metoder
          **/
-        assertEquals(fag.getFagID(),"Data");
-        assertEquals(fag.getNavn(),"Per");
+        assertEquals(fag.getFagID(),"01234");
+        assertEquals(fag.getNavn(),"AlgDat");
         
-        fag1.setFagID("ALgDat");
+        fag.setFagID("01235");
         
+        assertNotSame("01234", fag.getFagID());
         
+        fag.setNavn("DataKom");
         
+        assertNotSame("AlgDat", fag.getNavn());
+                
     }
     
     @Test
     public void testfag_2 (){
         /**
-         *tester med forandring, 
-         * eks: finn en str på et rom for å så forandre det
-         * og så finne den forandra størrelsen 
+         *Tester ArrayList for laerere. 
          */
+               
+        fag.setLaerere(laerere);
+        assertTrue(fag.getLaerere().isEmpty());
         
- 
+        fag1.setKalenderEvents(kalenderE);
+        assertTrue(fag1.getKalenderEvents().isEmpty());         
     }
     
-    @Test
-    public void test_3 (){
-
-    }
     /*
     @Test(expected = NullPointerException.class)
     public void test_at_koden_som kjøres_kaster_en_NullPointerException() {
@@ -75,6 +94,8 @@ public class FagTest {
     @After
     public void tearDown() throws Exception {
         // Koden her kjøres etter hver test
+        laerere.clear();
+        kalenderE.clear();
     }
 
     @AfterClass
