@@ -17,6 +17,15 @@ import service.ServiceImpl;
 public class Funksjoner {
   ServiceImpl si=new ServiceImpl();
   
+  private static Funksjoner instance;
+       public Funksjoner() {
+           instance = this;
+}
+// static method to get instance of view
+    public static Funksjoner getInstance() {
+        return instance;
+}
+  
   public ArrayList<Object> getAlleSokeTreff(String s){
         ArrayList<Object> liste=new ArrayList<Object>();
         for(int i=0; i<si.getAlleBrukere().size();i++){
@@ -43,9 +52,10 @@ public class Funksjoner {
      
       return liste;
     }
-  public ArrayList<Object> getListe(){
+  public ArrayList<String> getListe(){
       ArrayList liste=new ArrayList();
       liste.add("Sigrid");
+      liste.add("Silje");
       liste.add("Kasper");
       return liste;
   }

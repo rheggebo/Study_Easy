@@ -56,7 +56,7 @@
 
 <div class="searchNav">
     <ul>
-        <li><div><form action="search" method="POST"  role="search">
+        <li><div><form action="Search" method="GET"  role="search">
             <input class="searchForm" type=search name="sokeord" size="30">
             <input class="searchButton" value="Søk" type="submit"></form></div>
 
@@ -77,15 +77,12 @@
 
  
 <div class="searchInfo">
-    <%
-      ArrayList<Object> getAlleSokeTreff=(ArrayList<Object>)request.getAttribute("getAlleSokeTreff");
-      
-    %> 
-    <c:forEach begin="0" end="${fn:length(getAlleSokeTreff) - 1}" var="index">
+    
+   <%-- <c:forEach var="ting" items="${SokeKontroller.sok(sokeord)}">--%>
    <tr>
-      <td><c:out value="${getAlleSokeTreff[index]}"/></td>
+      <td value="${sok}"></td>
    </tr>
-</c:forEach>
+   <%-- </c:forEach>--%>
 </div>
 
 
