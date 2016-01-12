@@ -31,8 +31,6 @@ public class Passord implements Validator{
         this.generert = generert;
     }
     
-    
-
     public String getPassord2() {
         return passord2;
     }
