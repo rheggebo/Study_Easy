@@ -11,7 +11,7 @@ import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
 import static org.mockito.Mockito.*;
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Timestamp;
 
 /**
  *
@@ -20,8 +20,8 @@ import java.util.Date;
 public class KalenderEventTest {
     
     KalenderEvent kEvent;
-    Date fraDato;
-    Date tilDato;
+    Timestamp fraTid;
+    Timestamp tilTid;
     
     @BeforeClass
     public static void setUpClass() throws Exception {
@@ -34,20 +34,21 @@ public class KalenderEventTest {
     public void setUp() throws Exception {
         // Koden her eksekveres f�r hver av testmetodene i klassen
        
-        fraDato = new Date(2016-1-1);
-        tilDato = new Date(2014-1-22);
+        fraTid = new Timestamp(2016-11-1);
+        tilTid = new Timestamp(2014-1-22);
         
         kEvent = new KalenderEvent();
         kEvent.setId(0001);
-        kEvent.setEier("test1@aol.com"); //eierID som i e-post
+        kEvent.setEpost("test1@aol.com"); //eierID som i e-post
         kEvent.setEierNavn("Per Hansen");
-        kEvent.setStartDato(fraDato);
-        kEvent.setSluttDato(tilDato);
+        kEvent.setStartTid(fraTid);
+        kEvent.setSluttTid(tilTid);
         kEvent.setRom("KAUD");
         kEvent.setFag("AlgDat");
         kEvent.setType(2);
         kEvent.setPrivat(false);
         kEvent.setNotat("Hallaballa :) ");
+        kEvent.setTittel("Stakk");
         
         
     }
@@ -55,14 +56,15 @@ public class KalenderEventTest {
     @Test
     public void tester_getmetoder (){
         assertEquals(kEvent.getId(), 0001);
-        assertEquals(kEvent.getEier(), "test1@aol.com");
+        assertEquals(kEvent.getEpost(), "test1@aol.com");
         assertEquals(kEvent.getEierNavn(), "Per Hansen");
-        assertNotSame(kEvent.getStartDato(), kEvent.getSluttDato());
+        assertNotSame(kEvent.getStartTid(), kEvent.getSluttTid());
         assertEquals(kEvent.getRom(),"KAUD");
         assertEquals(kEvent.getFag(),"AlgDat");
         assertEquals(kEvent.getType(),2);
         assertFalse(kEvent.isPrivat());
         assertEquals(kEvent.getNotat(),"Hallaballa :) ");
+        assertEquals(kEvent.getTittel(), "Stakk");
         
     }
     

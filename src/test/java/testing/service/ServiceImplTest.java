@@ -6,6 +6,9 @@
 package testing.service;
 
 import beans.Bruker;
+import beans.Fag;
+import beans.Klasse;
+import beans.Rom;
 import database.DBConnection;
 import java.util.ArrayList;
 import java.util.List;
@@ -57,7 +60,10 @@ public class ServiceImplTest {
     DBConnection dBConnection;
     Bruker sindre;
     Bruker henrik;
+    Rom rom272;
     List<Bruker> liste;
+    Klasse k;
+    Fag f;
     
     @BeforeClass
     public static void setUpClass() throws Exception {
@@ -70,6 +76,9 @@ public class ServiceImplTest {
         dBConnection=mock(DBConnection.class);
         sindre = new Bruker();
         henrik = new Bruker();
+        rom272 = new Rom();
+        f = new Fag();
+        k = new Klasse();
         liste= new ArrayList<>();
         liste.add(henrik);
         liste.add(sindre);
@@ -82,6 +91,12 @@ public class ServiceImplTest {
         when(dBConnection.leggTilBruker(sindre)).thenReturn(true);
         when(dBConnection.leggTilBruker(sindre)).thenReturn(true);
         when(dBConnection.getAlleBrukere()).thenReturn(liste);
+        when(dBConnection.oppdaterRom(rom272)).thenReturn(true);
+        when(dBConnection.slettRom(rom272)).thenReturn(true);
+        when(dBConnection.oppdaterKlasseFag(k, f)).thenReturn(true);
+        when(dBConnection.slettRomInnhold(rom272, "tavle")).thenReturn(true);
+        when(dBConnection.leggTilInnhold(rom272, "tavle")).thenReturn(true);
+        when(dBConnection.slettBrukerFag(sindre, f)).thenReturn(true);
     }
     
     @Test
@@ -155,6 +170,88 @@ public class ServiceImplTest {
         assertEquals(test.endreBrukere(liste),true);
     }
     
+    @Test
+    public void test_FåAlleBrukere (){
+        ServiceImpl test = new ServiceImpl();
+        test.setDBC(dBConnection);
+        
+        //Slett liste med bruere:
+        assertEquals(test.getAlleBrukere(),liste);
+    }
+    
+    @Test
+    public void test_OppdatereRom (){
+        ServiceImpl test = new ServiceImpl();
+        test.setDBC(dBConnection);
+        
+        //Slett liste med bruere:
+        assertEquals(test.oppdaterRom(rom272),true);
+    }
+    
+    @Test
+    public void test_SlettRom (){
+        ServiceImpl test = new ServiceImpl();
+        test.setDBC(dBConnection);
+        
+        //Slett liste med bruere:
+        assertEquals(test.slettRom(rom272),true);
+    }
+    
+    @Test
+    public void test_OppdaterKlasseFag (){
+        ServiceImpl test = new ServiceImpl();
+        test.setDBC(dBConnection);
+        
+        //Slett liste med bruere:
+        assertEquals(test.oppdaterKlasseFag(k, f),true);
+    }
+    
+    @Test
+    public void test_SlettRomInnhold (){
+        ServiceImpl test = new ServiceImpl();
+        test.setDBC(dBConnection);
+        
+        //Slett liste med bruere:
+        assertEquals(test.slettRomInnhold(rom272, "tavle"),true);
+    }
+    
+    @Test
+    public void test_LeggTilInnhold (){
+        ServiceImpl test = new ServiceImpl();
+        test.setDBC(dBConnection);
+        
+        //Slett liste med bruere:
+        assertEquals(test.leggTilInnhold(rom272, "tavle"),true);
+    }
+    
+    @Test
+    public void test_SlettBrukerFag (){
+        ServiceImpl test = new ServiceImpl();
+        test.setDBC(dBConnection);
+        
+        //Slett liste med bruere:
+        assertEquals(test.slettBrukerFag(sindre, f),true);
+    }
+    /*
+    @Test
+    public void test_SlettBrukerFag (){
+        ServiceImpl test = new ServiceImpl();
+        test.setDBC(dBConnection);
+        
+        //Slett liste med bruere:
+        assertEquals(test.slettBrukerFag(sindre, f),true);
+    }
+    */
+    /*
+    @Test
+    public void test_OppdatereRom (){
+        ServiceImpl test = new ServiceImpl();
+        test.setDBC(dBConnection);
+        
+        //Slett liste med bruere:
+        assertEquals(test.oppdaterRom(rom272),true);
+    }
+    */
     /*
     @Test
     public void test_SlettL (){
