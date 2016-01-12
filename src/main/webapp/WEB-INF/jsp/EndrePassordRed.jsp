@@ -39,7 +39,7 @@
 <main>
     <form action="MinSide" id="formen" autocomplete="on" method="post" onsubmit="return checkEmail(this);">
         <fieldset style = "width:20%">
-            <legend>Personopplysninger</legend>
+            <legend>Endre passord</legend>
             <dl>
                 <form:form modelAttribute="bruker">
                 <form:input type="password" placeholder="Gammelt passord" path="passord" style="width: 420px"/>
@@ -55,60 +55,6 @@
 
     </form>
 </main>
-
-
-
-<script>  
-    window.onload = function(){
-        document.getElementById('epost0').addEventListener('change', function() {
-        var s = getElementById('epost1');
-        s.value = document.getElementById('epost0');
-    });
-    };
- </script>   
-<script>
-    function elementSupportsAttribute(element,attribute) {
-        return (attribute in document.createElement(element));
-    }
-
-    // Sjekker om et element har en klasse.
-    function hasClass(element, cls) {
-        return (' ' + element.className + ' ').indexOf(' ' + cls + ' ') > -1;
-    }
-    //Funksjon for å sjekke om emailene stemmer overens
-    function checkEmail(formen) {
-        if (formen.epost1.value != formen.epost2.value)
-        {
-            alert('E-postene samsvarer ikke!');
-            return false;
-        } else {
-            return true;
-        }
-    }
-    //Validerer utfyllingen
-    function behandle(){
-
-        var inputs = [document.getElementById('fornavn'),document.getElementById('etternavn'),
-            document.getElementById('telefon'), document.getElementById('epost1'),
-            document.getElementById('epost2'), document.getElementById('dato1')];
-
-        var error;
-
-        for(var i = 0; i<inputs.length; i++)
-        {
-            if(inputs[i].value == '')
-            {
-                error = 'Fullfør alle felt';
-                alert(error);
-                return false;
-                break;
-            }
-        }
-
-
-    }
-</script>
-
 
 <!--Footer-->
 <div class="space"></div>
