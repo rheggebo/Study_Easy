@@ -49,14 +49,16 @@ import static org.mockito.Mockito.*;
     public List<KalenderEvent> getKalenderEventEier(Bruker b);
     public List<KalenderEvent> getKalenderEventRomID(Rom r);
     public List<Fag> getFagLaerer(Bruker b);
-    public Rom getRombestilling();
+        public Rom getRombestilling();
     public List<Rom> getRomFraNavn(Rom r);
-    public List<Rom> getRomFraInnhold(Rom r);
-    public List<Rom> getRomFraType(Rom r);
-    public List<Rom> getRomFraStoerrelse(Rom r);
-    public List<Klasse> getLaererKlasse(Bruker b);
+        public List<Rom> getRomFraInnhold(Rom r);
+        public List<Rom> getRomFraType(Rom r);
+        public List<Rom> getRomFraStoerrelse(Rom r);
+        public List<Klasse> getLaererKlasse(Bruker b);
     public List<Rom> getAlleRom();
     public List<Fag> getAlleFag();
+    | tatt
+        | ikke tatt
 */
 public class ServiceImplTest {
     DBConnection dBConnection;
