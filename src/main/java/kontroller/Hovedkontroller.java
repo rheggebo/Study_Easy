@@ -3,6 +3,7 @@ package kontroller;
 import com.google.gson.Gson;
 import beans.Bruker;
 import beans.BrukerB;
+import beans.KalenderEvent;
 import beans.Klasse;
 import beans.Passord;
 import beans.Rom;
@@ -26,6 +27,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import service.Service;
 import verktøy.Passordgenerator;
+import verktøy.PasswordHasher;
 
 /**
  * 
@@ -40,7 +42,8 @@ public class Hovedkontroller {
     
     @RequestMapping(value = "/*")
     public String start(Model model, HttpSession sess){
-        testBruker.setNavn("Stein-Erik Bjørnnes");
+        testBruker.setFornavn("Stein-Erik");
+        testBruker.setEtternavn("Bjørnnes");
         testBruker.setEpost("steinerikbjornnes@gmail.com");
         testBruker.setFodedato(new Date(94, 04, 03));
         Klasse testKlasse = new Klasse();
@@ -61,6 +64,9 @@ public class Hovedkontroller {
         if(bruker.getEpost() != null && !bruker.getEpost().equals("")
                 && bruker.getPassord() != null && !bruker.getPassord().equals("")){
             try{
+                System.out.println("Passord: " + PasswordHasher.getSaltedHash(bruker.getPassord()));
+                System.out.println("database: " + "90j4U5FMkZ42KnFvPd9lnld668838F2rwRtbbnjpdyc=$JjzOSYKb7qRBEOL+PKNrF5uhlL+JLrMbHRqSecIWgIw=");
+                
                 if(service.sjekkPassord(bruker.getEpost(), bruker.getPassord())){
                     BrukerB brukerBean = new BrukerB(service.hentBruker(bruker));
                     brukerBean.setInnlogget(true);
@@ -96,6 +102,11 @@ public class Hovedkontroller {
         }
         model.addAttribute("bruker", new Bruker());
         return "Innlogging";
+    }
+    
+    @RequestMapping("Kontakt")
+    public String kontakt(HttpSession sess, Model model){
+        return "Kontakt";
     }
     
     @RequestMapping("Forside")

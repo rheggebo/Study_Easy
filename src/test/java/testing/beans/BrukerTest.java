@@ -6,10 +6,13 @@
 package testing.beans;
 
 import beans.Bruker;
+import beans.Klasse;
+import beans.KalenderEvent;
 import org.junit.*;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 import java.util.ArrayList;
+import java.util.Date;
 
 
 /**
@@ -18,7 +21,11 @@ import java.util.ArrayList;
  */
 public class BrukerTest {
     
+    Klasse klasse;
     Bruker test;
+    Date fDato;
+    KalenderEvent kEvent;
+    private ArrayList<KalenderEvent> liste;
     
     @BeforeClass
     public static void setUpClass() throws Exception {
@@ -28,19 +35,42 @@ public class BrukerTest {
     @Before
     public void setUp() throws Exception {
         // Koden her eksekveres før hver av testmetodene i klassen
+        
+        liste = new ArrayList();
+        
+        
+        klasse = new Klasse();
+        klasse.setNavn("2.ing");
+        
+        fDato = new Date(1992-1-3);
+        
         test = new Bruker();
-        test.setNavn("Per");
+        test.setFornavn("Per");
+        test.setEtternavn("Aas");
         test.setEpost("per@hotmail.com");
         test.setNotat("Jeg liker fotball");
         test.setTilgangniva(3);
         test.setPassord("123");
+        test.setFodedato(fDato);
+        test.setKlasse(klasse);
+        test.setTelefonnummer(12345678);
+        test.setKalenderEvents(liste);
     }
 
     @Test
-    public void testrom_1 (){
-        assertEquals(test.getNavn(),"Per");
+    public void test_getMetoder (){
+        
+        assertEquals(test.getFornavn(),"Per");
+        assertEquals(test.getEtternavn(),"Aas");
         assertEquals(test.getEpost(),"per@hotmail.com");
-     
+        assertEquals(test.getNotat(),"Jeg liker fotball");
+        assertEquals(test.getTilgangniva(),3);
+        assertEquals(test.getPassord(),"123");
+        assertEquals(test.getFodedato(), fDato);
+        assertEquals(test.getKlasse(), klasse);
+        assertEquals(test.getTelefonnummer(),12345678);
+        assertTrue(test.getKalenderEvents().isEmpty());
+        
         
     }
     
@@ -52,15 +82,6 @@ public class BrukerTest {
          */
     }
     
-    public void test_3 (){
-
-    }
-    /*
-    @Test(expected = NullPointerException.class)
-    public void test_at_koden_som kjøres_kaster_en_NullPointerException() {
-        // Kode som gjør noe annet
-    }
-    */
 
     @After
     public void tearDown() throws Exception {
@@ -72,3 +93,4 @@ public class BrukerTest {
         // Koden her kjører etter alle testmetodene i klassen er ferdig
     }
 }
+

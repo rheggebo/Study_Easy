@@ -6,6 +6,7 @@
 package database;
 
 import beans.Bruker;
+import beans.BrukerB;
 import beans.Fag;
 import beans.KalenderEvent;
 import beans.Klasse;
@@ -79,4 +80,6 @@ public interface DBConnection {
     public List<Rom> getAlleRom();
     
     public List<Fag> getAlleFag();
+    
+    public List<KalenderEvent> getAlleEventsFraBruker(BrukerB b);
 }

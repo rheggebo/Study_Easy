@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="<c:url value="/resources/css/Hovedstilen.css"/>">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Min Side</title>
+    <title>Endre Passord</title>
 </head>
 
 <body>
@@ -38,7 +38,7 @@
 </header>
 <main>
         <fieldset style = "width:20%">
-            <legend>Personopplysninger</legend>
+            <legend>Endre passord</legend>
             <dl>
             <form:form modelAttribute="passord" action="EndrePassord" onsubmit="return checkEmail(this)" id="formen" autocomplete="on">
                 <form:input type="password" placeholder="Gammelt passord" path="passord" style="width: 420px"/>
@@ -52,60 +52,6 @@
             </form:form>
         </fieldset>
 </main>
-
-
-
-<script>  
-    window.onload = function(){
-        document.getElementById('epost0').addEventListener('change', function() {
-        var s = getElementById('epost1');
-        s.value = document.getElementById('epost0');
-    });
-    };
- </script>   
-<script>
-    function elementSupportsAttribute(element,attribute) {
-        return (attribute in document.createElement(element));
-    }
-
-    // Sjekker om et element har en klasse.
-    function hasClass(element, cls) {
-        return (' ' + element.className + ' ').indexOf(' ' + cls + ' ') > -1;
-    }
-    //Funksjon for å sjekke om emailene stemmer overens
-    function checkEmail(formen) {
-        if (formen.epost1.value != formen.epost2.value)
-        {
-            alert('E-postene samsvarer ikke!');
-            return false;
-        } else {
-            return true;
-        }
-    }
-    //Validerer utfyllingen
-    function behandle(){
-
-        var inputs = [document.getElementById('fornavn'),document.getElementById('etternavn'),
-            document.getElementById('telefon'), document.getElementById('epost1'),
-            document.getElementById('epost2'), document.getElementById('dato1')];
-
-        var error;
-
-        for(var i = 0; i<inputs.length; i++)
-        {
-            if(inputs[i].value == '')
-            {
-                error = 'Fullfør alle felt';
-                alert(error);
-                return false;
-                break;
-            }
-        }
-
-
-    }
-</script>
-
 
 <!--Footer-->
 <div class="space"></div>

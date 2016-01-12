@@ -20,12 +20,15 @@ public class KalenderEventMapper implements RowMapper<KalenderEvent>{
     public KalenderEvent mapRow(ResultSet rs, int i) throws SQLException {
         KalenderEvent event = new KalenderEvent();
         event.setId(rs.getInt("id"));
-        event.setEier(rs.getString("epost"));
-        event.setEierNavn(rs.getString("navn"));
-        event.setStartDato(rs.getDate("dato_start"));
-        event.setSluttDato(rs.getDate("dato_slutt"));
+        event.setEpost(rs.getString("eier"));
+        event.setEierNavn(rs.getString("eier_navn"));
+        event.setStartTid(rs.getTimestamp("dato_start"));
+        event.setSluttTid(rs.getTimestamp("dato_slutt"));
         event.setRom(rs.getString("romID"));
         event.setFag(rs.getString("fagID"));
+        event.setTittel(rs.getString("tittel"));
+        event.setPrivat(rs.getBoolean("hidden"));
+        event.setType(rs.getInt("type"));
         
         return event;
     }

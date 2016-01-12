@@ -6,6 +6,7 @@
 package service;
 
 import beans.Bruker;
+import beans.BrukerB;
 import beans.Fag;
 import beans.KalenderEvent;
 import beans.Klasse;
@@ -206,5 +207,10 @@ public class ServiceImpl implements Service{
     @Override
     public List<Fag> getAlleFag(){
         return dbc.getAlleFag();
+    }
+    
+    @Override
+    public List<KalenderEvent> getAlleEventsFraBruker(BrukerB b){
+        return dbc.getAlleEventsFraBruker(b);
     }
 }
