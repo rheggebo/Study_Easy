@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="<c:url value="/resources/css/Hovedstilen.css"/>">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Min Side</title>
+    <title>Endre Passord</title>
 </head>
 
 <body>
