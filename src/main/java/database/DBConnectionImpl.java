@@ -57,7 +57,7 @@ public class DBConnectionImpl implements DBConnection{
     private final String getKalenderEventRomID = "SELECT * FROM KALENDER_EVENT WHERE ROMID=?";
     private final String getFagLaerer = "SELECT FAGID FROM FAG_LÆRER WHERE BRUKERID=?";
     private final String getRombestilling = "";
-    private final String getRomFraNavn = "SELECT * FROM ROM WHERE ROMNAVN=?";
+    private final String getRomFraNavn = "SELECT * FROM rom WHERE romnavn=?";
     private final String getRomFraInnhold = "";
     private final String getRomFraType = "SELECT * FROM ROM WHERE TYPE=?";
     private final String getRomFraStoerrelse = "SELECT * FROM ROM WHERE STØRRELSE=?";
