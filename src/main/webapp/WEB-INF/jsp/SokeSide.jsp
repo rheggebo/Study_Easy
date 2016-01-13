@@ -81,7 +81,7 @@
     
     <table><tr>
             <c:forEach var="liste" items="${liste}">
-                <c:out value="${liste}"> </c:out>                               
+                <c:out value="${liste}"></c:out>                               
             </c:forEach>           
             
     </tr></table>
