@@ -40,19 +40,22 @@
         <fieldset style = "width:20%">
             <legend>Endre passord</legend>
             <dl>
-            <form:form modelAttribute="passord" action="EndrePassord" onsubmit="return checkEmail(this)" id="formen" autocomplete="on">
+            <form:form modelAttribute="passord" action="EndrePassord" onsubmit="return checkEmail(this)" id="formen">
                 <form:input type="password" placeholder="Gammelt passord" path="passord" style="width: 420px"/>
                 <form:input type="password" placeholder="Nytt passord" path="passord1" style="width: 420px"/>
                 <form:input type="password" placeholder="Gjenta nytt passord" path="passord2" style="width: 420px"/>
-                <form:errors path="passord"/>
             </dl>
-                
 
             <p><input type="submit" value="Endre passord" onclick="behandle()"></p>
-            <c:set var="meldingS" value="${melding}"></c:set>
-            <c:if test="${not empty meldingS}">
-                <spring:message code="${melding}" />
-            </c:if>
+            <div id="tekst">
+                <c:set var="meldingS" value="${melding}"></c:set>
+                <c:if test="${not empty meldingS}">
+                    <spring:message code="${melding}" />
+                </c:if>
+                <form:errors path="passord"/>
+                <form:errors path="passord1"/>
+                <form:errors path="passord2"/>
+            </div>
             </form:form>
         </fieldset>
 </main>

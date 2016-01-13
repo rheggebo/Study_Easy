@@ -31,8 +31,8 @@ import verktøy.PasswordHasher;
 public class DBConnectionImpl implements DBConnection{
     
     private final String getBrukerEpost = "SELECT * FROM brukere WHERE EPOST=?";
-    private final String endreBruker = "UPDATE brukere SET PASSORD=?, TYPE=?, NAVN=? WHERE EPOST=?";
-    private final String nyBruker = "INSERT INTO brukere VALUES(?,?,?,?)";
+    private final String endreBruker = "UPDATE brukere SET PASSORD=?, TYPE=?, FORNAVN=?, ETTERNAVN=? WHERE EPOST=?";
+    private final String nyBruker = "INSERT INTO brukere VALUES(?,?,?,?,?)";
     private final String slettBruker = "DELETE FROM brukere WHERE EPOST=?";
     private final String alleBrukere = "SELECT * FROM brukere";
     private final String endreBrukerFag = "UPDATE FAG_LÆRER SET FAGID=? WHERE BRUKERID=?";
@@ -110,6 +110,11 @@ public class DBConnectionImpl implements DBConnection{
     @Override
     public boolean oppdaterBruker(Bruker b) {
         try{
+            System.out.println(PasswordHasher.getSaltedHash(b.getPassord())+ " "
+            +b.getTilgangniva()+" "
+            +b.getFornavn()+" "
+            +b.getEtternavn()+ " "
+            +b.getEpost());
         int antallRader = jT.update(endreBruker, new Object[]{
             PasswordHasher.getSaltedHash(b.getPassord()),
             b.getTilgangniva(),

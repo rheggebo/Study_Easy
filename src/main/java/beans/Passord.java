@@ -78,14 +78,17 @@ public class Passord implements Validator{
             }
         }
         if(spesial<2){
-            errors.rejectValue("passord", "feilmelding.spesialpassord");
+            System.out.println("Passord, spesial");
+            errors.rejectValue("passord1", "feilmelding.spesialpassord");
         }
         
-        if(passord.length()<8){
-            errors.rejectValue("passord", "feilmelding.lengdepassord");
+        if(nyttPassord.length()<8){
+            System.out.println("Passord, lengde");
+            errors.rejectValue("passord1", "feilmelding.lengdepassord");
         }
         
-        if(!generert && !passord1.equals(passord2)){
+        if(!generert && !nyttPassord.equals(pass.getPassord2())){
+            System.out.println("Passord, ulike");
             errors.rejectValue("passord", "feilmelding.ulikepassord");
         }
     }
