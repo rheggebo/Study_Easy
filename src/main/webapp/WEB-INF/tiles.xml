@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+    <definition name="baseLayout" template="/WEB-INF/tiles/baseLayout.jsp">
+        <put-attribute name="title"  value="BaseLayout"/>
+        <put-attribute name="header" value="/WEB-INF/tiles/header.jsp"/>
+        <put-attribute name="menu"   value="/WEB-INF/tiles/menu.jsp"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/innlogging.jsp"/>
+        <put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp"/>
+    </definition>
+  
+    <definition name="Innlogging" extends="baseLayout">
+        <put-attribute name="Innlogging"  value="Innlogging"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/Innlogging.jsp"/>      
+    </definition>
+    
+    <definition name="Forside" extends="baseLayout">
+        <put-attribute name="title"  value="Forside"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/Forside.jsp"/>      
+    </definition>
+  
+    <definition name="manipulerPersoner" extends="baseLayout">
+        <put-attribute name="title"  value="Velg Person"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/manipulerPersoner.jsp"/>      
+    </definition>
+  
+    <definition name="nyperson" extends="baseLayout">
+        <put-attribute name="title"  value="Registrer person"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/nyperson.jsp"/>      
+    </definition>
+    
+    <definition name="svarside" extends="baseLayout">
+        <put-attribute name="title"  value="Tilbakemelding"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/svarside.jsp"/>      
+    </definition>
+    
+    <definition name="error" extends="baseLayout">
+        <put-attribute name="title"  value="Feilmelding"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/error.jsp"/>      
+    </definition>
+</tiles-definitions>
