@@ -54,7 +54,17 @@ public class Kalenderkontroller {
             System.out.println(event.getStartTid());
             String start = "" + event.getStartTid();
             String slutt = "" + event.getSluttTid();
-            String descr = "Rom: " + event.getRom() + "<br>Notat: " + event.getNotat();
+            
+            String descr = "";
+            /*if (event.getFag() != null){
+                descr += "Fag: " + event.getFag() + "<br>";
+            }
+            if (event.getRom() != null){
+                descr += "Rom: <a href='" + event.getRom() + "'>" + event.getRom() + "</a><br>";
+            }
+            if (event.getNotat() != null){
+                descr += "Notat: " + event.getNotat();
+            }*/
             Map<String, Object> map = new HashMap<String, Object>();
             map.put("id", event.getId());
             map.put("title", event.getTittel());
