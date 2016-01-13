@@ -35,6 +35,7 @@
         </ul>
     </nav>
 </header>
+    
 <main>  <details>
                     <summary><p1><b>Systemansvarlig <br> Stein-Erik Bjørnnes</b></p1></summary>
                     <p2><dt>

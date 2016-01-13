@@ -44,9 +44,7 @@ public class EmailTest {
     
     @Test
     public void tester_email (){
-        assertEquals(test.sendEpost(mottaker, tema, melding), true);
-        
-        
+        assertEquals(test.sendEpost(mottaker, tema, melding), true);  
     }
     
     @After
