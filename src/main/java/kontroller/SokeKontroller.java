@@ -10,6 +10,8 @@ import beans.Sok;
 import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import verktøy.Funksjoner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,44 +28,15 @@ public class SokeKontroller {
     public void finnRomSok(@ModelAttribute("rom") Rom rom){
         
     }
-  /*
-    @RequestMapping("search") 
-    public void KontrollerListe(@ModelAttribute("sok") Sok sok) throws IOException{
-        // 
-       //Here I want to invoke gotoRegister
-        Funksjoner.getInstance().getListe();
-    }
-    */
-    @RequestMapping("Search")
-    public String sok(@ModelAttribute ("sok") Sok sok ){
-       /**Funksjoner f=new Funksjoner();
-       String s=sok.getSokeord();
-       ArrayList list=new ArrayList();
-       for(int i=0;i<f.getAlleSokeTreff(s).size();i++){
-           list.add(f.getAlleSokeTreff(s).get(i));
-       }
-       //sok.getSokeord().toString();
-       return list;*/
-        
-        Funksjoner f=new Funksjoner();
-        String s=sok.getSokeord();
-        ArrayList list=new ArrayList();
-        for(int i=0;i<f.getListe().size();i++){
-           list.add(f.getListe().get(i));
-       }
-        for(int i=0;i<list.size();i++){
-            
-        }
-       //sok.getSokeord().toString();
-      // return list;
+@RequestMapping(value="search")
+    public String searchView(@ModelAttribute(value="soke")Sok sok, Model model){
+        Funksjoner fu= new Funksjoner();
+        model.addAttribute("liste",fu.getListe());
         return "SokeSide";
-    }
-    /**Sok s=new Sok();
-        if(session.getAttribute("sokeord")!=null){
-            s=(Sok)session.getAttribute("sokeord");
-        }
-        Funksjoner f=new Funksjoner();
-        ArrayList<Object> ls=new ArrayList();
-        ls=f.getAlleSokeTreff(s); 
+            
+            }
+	}
+      
+    /**
    */
-}
+
