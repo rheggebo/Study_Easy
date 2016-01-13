@@ -9,7 +9,8 @@ import java.util.List;
 import beans.*;
 
 import java.util.ArrayList;
-import service.ServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import service.Service;
 
 /**
  *
@@ -17,27 +18,32 @@ import service.ServiceImpl;
  */
 public class Funksjoner {
   public List liste=new ArrayList();
+
   
-  ServiceImpl si=new ServiceImpl();
-  
-  public ArrayList<Object> getAlleSokeTreff(String s){
+
+  public ArrayList<Object> getAlleSokeTreff(String s, Service si){
         ArrayList<Object> liste=new ArrayList();
         ArrayList<Object> testListe=new ArrayList();
         ArrayList<Object> testOut=new ArrayList();
         testListe.add("Sigrid");
         testListe.add("Sigrid");
         testListe.add("Kasper");
+        Bruker b = new Bruker();
+        Bruker bruker = new Bruker();
         
       /*for(int i=0; i<si.getAlleBrukere().size();i++){
             liste.add(si.getAlleBrukere().get(i));
         }*/
-        liste.add("heioghopp");
         
         String epost = "test1@aol.com";
-        Bruker bruker = new Bruker();
         bruker.setEpost(epost);
         
-        Bruker b = si.hentBruker(bruker);
+        b = si.hentBruker(bruker);
+        if(b.getFornavn() != null) {
+            liste.add("Fant bruker " + b.getFornavn() + " på epost " + epost + " !");
+        } else {
+            liste.add("Fant ingen brukere på epost " + epost + " !");
+        }
         
         
        
