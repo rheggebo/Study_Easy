@@ -20,14 +20,15 @@
               <form:input type="password" placeholder="Passord" path="passord" style="width: 420px"/>
             </div>
         </div>
+    <div id="feilmelding">
+    <c:set var="meldingS" value="${melding}"></c:set>
+    <c:if test="${not empty meldingS}">
+        <spring:message code="${melding}" />
+    </c:if>
+    </div>
     <a id="loggInnGlemtPassord" href="glemtPassord" name="glemsk">Glemt passord?</a>
     <input id="loggInnKnapp" type="submit" value="Logg inn"><br>
   </form:form>
   
 </div>
-    <div id="feilmelding">
-        <c:set var="meldingS" value="${melding}"></c:set>
-    <c:if test="${not empty meldingS}">
-        <spring:message code="${melding}" />
-    </c:if>
-</div>
+

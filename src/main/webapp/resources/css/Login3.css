@@ -60,11 +60,8 @@
 
 #feilmelding{
     position: absolute;
-    top: 110%;
-    left: 52%;
-    margin-left: -246px;
-    margin-top: -203px;
-    width: 400px;
+    top: 93%;
+    left: 6%;
     color: red;
 }
 input{
