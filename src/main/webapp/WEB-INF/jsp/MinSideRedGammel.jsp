@@ -43,19 +43,24 @@
             <dl>
                 <form:form modelAttribute="bruker">
                 Fornavn:<em>*</em><br>
-                <dd><form:input type="text" name="fornavn" placeholder="Ola" autofocus="true" required="true" path="fornavn" disabled="true"/></dd>
+                <dd><form:input type="text" name="fornavn" placeholder="Ola" autofocus="true" required="true" path="fornavn"/></dd>
 
                 Etternavn:<em>*</em><br>
-                <dd><form:input type="text" name="etternavn" placeholder="Nordmann" required="true" path="etternavn" disabled="true"/></dd>
+                <dd><form:input type="text" name="etternavn" placeholder="Nordmann" required="true" path="etternavn"/></dd>
 
                 <dt><label for="telefon">Telefonnummer<em>*</em></label></dt>
                 <dd><form:input id="telefon" name="telefon" type="tel" pattern="\d{8}$" placeholder="Skriv inn ditt telefonnummer" required="true" path="telefonnummer"/></dd>
 
+
                 E-post:<em>*</em><br>
-                <dd><form:input type="email" id="epost0" placeholder="Skriv inn din e-post" required="true" path="epost" disabled="true"/></dd>
+                <dd><form:input type="email" id="epost0" placeholder="Skriv inn din e-post" required="true" path="epost"/></dd>
+                <input type="hidden" name="epost1" id="epost1"/>
+                
+                Gjenta E-post:<em>*</em><br>
+                <dd><input type="email" name="epost2" placeholder="Gjenta din e-post" required="true"/></dd>
 
                 Fødselsdato:<em>*</em><br>
-                <dd><form:input type="date" name="dato1" maks="2010-01-01" min="1930-01-01" required="true" path="fodedato" disabled="true"/></dd>
+                <dd><form:input type="date" name="dato1" maks="2010-01-01" min="1930-01-01" required="true" path="fodedato"/></dd>
 
                 Klasse:<br>
                 <dd><form:input type="text" name="ref"  list="ref-list1" path="klasse"/></dd>

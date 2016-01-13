@@ -5,6 +5,8 @@ import beans.BrukerB;
 import beans.Klasse;
 import beans.Rom;
 import java.sql.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,14 +29,6 @@ public class Hovedkontroller {
     
     @RequestMapping(value = "/*")
     public String start(Model model, HttpSession sess){
-        testBruker.setFornavn("Stein-Erik");
-        testBruker.setEtternavn("Bjørnnes");
-        testBruker.setEpost("steinerikbjornnes@gmail.com");
-        testBruker.setFodedato(new Date(94, 04, 03));
-        Klasse testKlasse = new Klasse();
-        testKlasse.setNavn("Dataingeniør");
-        testBruker.setKlasse(testKlasse);
-        testBruker.setTelefonnummer(99475118);
         BrukerB brukerBean = (BrukerB) sess.getAttribute("brukerBean");
         
         if(brukerBean != null && brukerBean.isInnlogget()){
