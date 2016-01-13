@@ -37,43 +37,36 @@
     </nav>
 </header>
 <main>
-    <form action="MinSide.html" id="formen" autocomplete="on" method="post" onsubmit="return checkEmail(this);">
-        <fieldset style = "width:20%">
-            <legend>Personopplysninger</legend>
-            <dl>
-                <form:form modelAttribute="bruker">
-                Fornavn:<em>*</em><br>
-                <dd><form:input type="text" name="fornavn" placeholder="Ola" autofocus="true" required="true" path="fornavn" disabled="true"/></dd>
+    <fieldset style = "width:20%">
+        <legend>Personopplysninger</legend>
+        <dl>
+            <form:form action="MinSideRedLagre" modelAttribute="bruker">
+            Fornavn:<em>*</em><br>
+            <dd><form:input type="text" name="fornavn" placeholder="Ola" autofocus="true" required="true" path="fornavn" disabled="true"/></dd>
 
-                Etternavn:<em>*</em><br>
-                <dd><form:input type="text" name="etternavn" placeholder="Nordmann" required="true" path="etternavn" disabled="true"/></dd>
+            Etternavn:<em>*</em><br>
+            <dd><form:input type="text" name="etternavn" placeholder="Nordmann" required="true" path="etternavn" disabled="true"/></dd>
 
-                <dt><label for="telefon">Telefonnummer<em>*</em></label></dt>
-                <dd><form:input id="telefon" name="telefon" type="tel" pattern="\d{8}$" placeholder="Skriv inn ditt telefonnummer" required="true" path="telefonnummer"/></dd>
+            <dt><label for="telefon">Telefonnummer<em>*</em></label></dt>
+            <dd><form:input id="telefon" name="telefon" type="tel" pattern="\d{8}$" placeholder="Skriv inn ditt telefonnummer" required="true" path="telefonnummer"/></dd>
 
-                E-post:<em>*</em><br>
-                <dd><form:input type="email" id="epost0" placeholder="Skriv inn din e-post" required="true" path="epost" disabled="true"/></dd>
+            E-post:<em>*</em><br>
+            <dd><form:input type="email" id="epost0" placeholder="Skriv inn din e-post" required="true" path="epost" disabled="true"/></dd>
 
-                Fødselsdato:<em>*</em><br>
-                <dd><form:input type="date" name="dato1" maks="2010-01-01" min="1930-01-01" required="true" path="fodedato" disabled="true"/></dd>
+            Fødselsdato:<em>*</em><br>
+            <dd><form:input type="date" name="dato1" maks="2010-01-01" min="1930-01-01" required="true" path="fodedato" disabled="true"/></dd>
 
-                Klasse:<br>
-                <dd><form:input type="text" name="ref"  list="ref-list1" path="klasse"/></dd>
-                <datalist id="ref-list1">
-                    <option value="Dataingeniør">
-                    <option value="Drift av datasystemer">
-                    <option value="IT-støttet bedriftsutvikling">
-                </datalist>
-
+            Klasse:<br>
+            <dd><form:input type="text" name="ref"  list="ref-list1" path="klasse"/></dd>
+            <datalist id="ref-list1">
+                <option value="Dataingeniør">
+                <option value="Drift av datasystemer">
+                <option value="IT-støttet bedriftsutvikling">
+            </datalist>
             </dl>
-                
-
             <p><input type="submit" value="Lagre" onclick="behandle()"></p>
-            </form:form>
-        </fieldset>
-
-
-    </form>
+        </form:form>
+    </fieldset>
 </main>
 
 
