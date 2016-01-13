@@ -49,9 +49,6 @@ public class Hovedkontroller {
         if(bruker.getEpost() != null && !bruker.getEpost().equals("")
                 && bruker.getPassord() != null && !bruker.getPassord().equals("")){
             try{
-                System.out.println("Passord: " + PasswordHasher.getSaltedHash(bruker.getPassord()));
-                System.out.println("database: " + "90j4U5FMkZ42KnFvPd9lnld668838F2rwRtbbnjpdyc=$JjzOSYKb7qRBEOL+PKNrF5uhlL+JLrMbHRqSecIWgIw=");
-                
                 if(service.sjekkPassord(bruker.getEpost(), bruker.getPassord())){
                     BrukerB brukerBean = new BrukerB(service.hentBruker(bruker));
                     brukerBean.setInnlogget(true);

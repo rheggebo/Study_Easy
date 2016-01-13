@@ -27,6 +27,7 @@ import verktøy.PasswordHasher;
  */
 @Controller
 public class BrukerKontroller {
+    
     @Autowired
     private Service service;
     private Passordgenerator generator = new Passordgenerator();
@@ -68,22 +69,28 @@ public class BrukerKontroller {
         System.out.println("Endrer passord*********");
         BrukerB brukerb = (BrukerB) sess.getAttribute("brukerBean");
         Bruker bruker = (Bruker) service.hentBruker(brukerb.getEpost());
-        if(hasher.check(pass.getPassord(),bruker.getPassord())){
+        bruker.setEtternavn("asdasd");
+        Passord valider = new Passord();
+        if(!hasher.check(pass.getPassord(),bruker.getPassord())){
             System.out.println(bruker.getPassord());
+            System.out.println(pass.getPassord());
             model.addAttribute("melding", "feilmelding.gammeltPassord");
             model.addAttribute("passord", new Passord());
             return "EndrePassordRed";
         }
-        pass.validate(pass, error);
+        valider.validate(pass, error);
         if(error.hasErrors()){
             model.addAttribute("passord", new Passord());
             model.addAttribute("melding", "");
             return "EndrePassordRed";
         }else{
             bruker.setPassord(pass.getPassord1());
+            System.out.println("Skal endre passord");
             if(service.endreBruker(bruker)){
+                model.addAttribute("bruker", bruker);
                 return "MinSide";
             }
+            System.out.println("Kunne ikke endre passord");
         }
         model.addAttribute("melding", "feilmelding.passordGenerell");
         model.addAttribute("passord", new Passord());
