@@ -6,9 +6,11 @@
 package verktøy;
 
 import java.util.List;
-import beans.Sok;
+import beans.*;
+
 import java.util.ArrayList;
-import service.ServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import service.Service;
 
 /**
  *
@@ -16,17 +18,55 @@ import service.ServiceImpl;
  */
 public class Funksjoner {
   public List liste=new ArrayList();
- 
-  ServiceImpl si=new ServiceImpl();
+
   
-  public ArrayList<Object> getAlleSokeTreff(String s){
-        ArrayList<Object> liste=new ArrayList<Object>();
-        for(int i=0; i<si.getAlleBrukere().size();i++){
-            if(s.equalsIgnoreCase(si.getAlleBrukere().get(i).getFornavn())||s.equalsIgnoreCase(si.getAlleBrukere().get(i).getEtternavn())){
-                     liste.add(si.getAlleBrukere().get(i));        
-            }
+
+  public ArrayList<Object> getAlleSokeTreff(String s, Service si){
+        ArrayList<Object> liste=new ArrayList();
+        ArrayList<Object> testListe=new ArrayList();
+        ArrayList<Object> testOut=new ArrayList();
+        testListe.add("Sigrid");
+        testListe.add("Sigrid");
+        testListe.add("Kasper");
+        Bruker b = new Bruker();
+        Bruker bruker = new Bruker();
+        
+      /*for(int i=0; i<si.getAlleBrukere().size();i++){
+            liste.add(si.getAlleBrukere().get(i));
+        }*/
+        
+        String epost = "test1@aol.com";
+        bruker.setEpost(epost);
+        
+        b = si.hentBruker(bruker);
+        if(b.getFornavn() != null) {
+            liste.add("Fant bruker " + b.getFornavn() + " på epost " + epost + " !");
+        } else {
+            liste.add("Fant ingen brukere på epost " + epost + " !");
         }
-        for(int i=0;i<si.getAlleRom().size();i++){
+        
+        
+       
+        return liste; 
+        
+       /* for(int i=0; i<testListe.size();i++){
+            if(s.equalsIgnoreCase(testListe.get(i).toString())){
+                     testOut.add(testListe.get(i));        
+            }         
+        }  
+      return testOut;*/
+    }
+  
+  
+  /*public ArrayList<String> getListe(){
+      ArrayList liste=new ArrayList();
+      liste.add("Sigrid");
+      liste.add("Silje");
+      liste.add("Kasper");
+      return liste;
+  }*/
+}
+  /*for(int i=0;i<si.getAlleRom().size();i++){
             if(s.equalsIgnoreCase(si.getAlleRom().get(i).getRomNavn())){
                 liste.add(si.getAlleRom().get(i));
             }
@@ -41,17 +81,4 @@ public class Funksjoner {
                 liste.add(si.getAlleRom().get(i));
             }     
         }
-        
-     
-      return liste;
-    }
-  
-  
-  public ArrayList<String> getListe(){
-      ArrayList liste=new ArrayList();
-      liste.add("Sigrid");
-      liste.add("Silje");
-      liste.add("Kasper");
-      return liste;
-  }
-}
+        */
