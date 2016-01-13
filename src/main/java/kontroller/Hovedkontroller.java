@@ -2,11 +2,7 @@ package kontroller;
 
 import beans.Bruker;
 import beans.BrukerB;
-import beans.Klasse;
 import beans.Rom;
-import java.sql.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import service.Service;
-import verktøy.PasswordHasher;
 
 /**
  * 
