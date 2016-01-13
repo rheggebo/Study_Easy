@@ -3,7 +3,8 @@
     margin: auto;
     border-radius: 12px;
     position: relative;
-    top: 15%;
+    
+    top: -25%;
     /* left: 50%; */
     background-color: lightgray;
     box-shadow: darkgray 2px 2px 2px;
