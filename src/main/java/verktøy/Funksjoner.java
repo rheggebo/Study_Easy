@@ -6,7 +6,8 @@
 package verktøy;
 
 import java.util.List;
-import beans.Sok;
+import beans.*;
+
 import java.util.ArrayList;
 import service.ServiceImpl;
 
@@ -27,8 +28,15 @@ public class Funksjoner {
         testListe.add("Sigrid");
         testListe.add("Kasper");
         
-      for(int i=0; i<si.getAlleBrukere().size();i++){
+      /*for(int i=0; i<si.getAlleBrukere().size();i++){
             liste.add(si.getAlleBrukere().get(i));
+        }*/
+        liste.add("heioghopp");
+        
+        Rom rom = new Rom();
+        rom.setRomNavn("KAUD");
+        if(si.getRomFraNavn(rom).isEmpty()) {
+            
         }
         return liste; 
         
