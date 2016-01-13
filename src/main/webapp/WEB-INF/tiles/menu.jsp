@@ -2,7 +2,8 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 
-    <nav class="dropdownmenu">
+
+    <div class="dropdownmenu">
         <ul> 
             <li><a href="Forside">Forside</a></li>
             <li><a href="Kontakt">Kontakt</a></li>
@@ -20,4 +21,4 @@
                 </ul>
             </li>
         </ul>
-    </nav>
+    </div>

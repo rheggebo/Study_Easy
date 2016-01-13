@@ -7,24 +7,24 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
             <title><tiles:insertAttribute name="title" ignore="true" /></title>
     </head>
-    <body bgcolor="lightgreen" >
-        <table border="1" cellpadding="2" cellspacing="2" width="800" align="center">
+    <body bgcolor="green">
+        <table border="1" cellpadding="2" cellspacing="1" width="800" align="center">
             <tr>
-                <td height="30" colspan="3">
+                <td height="50" colspan="1">
                     <tiles:insertAttribute name="header" />
                 </td>
             </tr>
             <tr>
-                <td  valign="top">
+                <td height="70" colspan="1">
                      <tiles:insertAttribute name="menu" />
                 </td>
             </tr>
-                <td width="590" height="600" valign="top">
+                <td height="70" colspan="1">
                     <tiles:insertAttribute name="body" />
                 </td>
             </tr>
             <tr>
-                <td height="30" colspan="2">
+                <td height="50" colspan="1">
                     <tiles:insertAttribute name="footer" />
                 </td>
             </tr>
