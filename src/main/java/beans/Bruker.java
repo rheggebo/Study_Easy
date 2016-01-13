@@ -96,7 +96,9 @@ public class Bruker {
         this.telefonnummer = telefonnummer;
     }
     
-    
+    public String toString(){
+        return epost + fornavn + etternavn + tilgangniva;
+    }
     
     
 }

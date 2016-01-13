@@ -112,7 +112,7 @@ public class BrukerKontroller {
         String nyttPassord = generator.genererPassord();
         Passord pass = new Passord();
         pass.setGenerert(true);
-        pass.setPassord(nyttPassord);
+        pass.setPassord1(nyttPassord);
         pass.validate(pass, error);
         if(error.hasErrors()){
             System.out.println(error.getErrorCount()+ nyttPassord);
@@ -148,7 +148,12 @@ public class BrukerKontroller {
         BrukerB brukerb = (BrukerB) sess.getAttribute("brukerBean");
         if(brukerb != null && brukerb.isInnlogget()){
             model.addAttribute("bruker", brukerb);
-            return "MinSideRed";
+            if(brukerb.getTilgangsniva() == 2){
+                return "MinSideRedAdmin";
+            }else{
+                return "MinSideRed";
+            }
+            
         }
         model.addAttribute("bruker", new Bruker());
         return "Innlogging";
