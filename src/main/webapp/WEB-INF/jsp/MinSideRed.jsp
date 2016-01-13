@@ -40,7 +40,7 @@
     <fieldset style = "width:20%">
         <legend>Personopplysninger</legend>
         <dl>
-            <form:form action="MinSideRedLagre" modelAttribute="bruker">
+        <form:form action="MinSideRedLagrer" modelAttribute="bruker">
             Fornavn:<em>*</em><br>
             <dd><form:input type="text" name="fornavn" placeholder="Ola" autofocus="true" required="true" path="fornavn" disabled="true"/></dd>
 
@@ -64,21 +64,13 @@
                 <option value="IT-støttet bedriftsutvikling">
             </datalist>
             </dl>
-            <p><input type="submit" value="Lagre" onclick="behandle()"></p>
+            <p><input type="submit" value="Lagre"></p>
         </form:form>
     </fieldset>
 </main>
 
 
-
-<script>  
-    window.onload = function(){
-        document.getElementById('epost0').addEventListener('change', function() {
-        var s = getElementById('epost1');
-        s.value = document.getElementById('epost0');
-    });
-    };
- </script>   
+ 
 <script>
     function elementSupportsAttribute(element,attribute) {
         return (attribute in document.createElement(element));
