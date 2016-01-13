@@ -1,6 +1,12 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<!--<div align="center"><%-- spring:message code="forfatter" /> --%> </div>-->
-<div class = "footer">
+<!--
+<div align="center"><%-- spring:message code="forfatter" /> --%> </div>
+
+
+<div class="space"></div>
+<!--Må være med for å funke i Chrome
+-->
+<footer>
     <h4>NTNU - Norges Teknisk-naturvitenskapelige Universitet</h4>
     <a class="footerLenke" href="Forside">Hjem</a>
     ·
@@ -14,4 +20,4 @@
     ·
     <a class="footerLenke" href="Kontakt">Kontakt</a>
     <h4>·Study Easy © 2016·</h4>
-</div>
+</footer>
