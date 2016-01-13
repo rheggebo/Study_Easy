@@ -7,9 +7,14 @@ package kontroller;
 
 import beans.Rom;
 import beans.Sok;
+import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import verktøy.Funksjoner;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -23,14 +28,15 @@ public class SokeKontroller {
     public void finnRomSok(@ModelAttribute("rom") Rom rom){
         
     }
-    @RequestMapping("search")
-    public String sok(@ModelAttribute("sok") Sok sok){
-        Funksjoner funk=new Funksjoner();
-        String s=sok.getSokeord();
-        funk.getAlleSokeTreff(s);
-        
-        return "SokeSide"; 
-        
-    }
-    
-}
+@RequestMapping(value="search")
+    public String searchView(@ModelAttribute(value="soke")Sok sok, Model model){
+        Funksjoner fu= new Funksjoner();
+        model.addAttribute("liste",fu.getListe());
+        return "SokeSide";
+            
+            }
+	}
+      
+    /**
+   */
+

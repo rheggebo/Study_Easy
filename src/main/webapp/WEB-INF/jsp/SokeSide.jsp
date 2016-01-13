@@ -56,7 +56,7 @@
 
 <div class="searchNav">
     <ul>
-        <li><div><form action="search" method="POST"  role="search">
+        <li><div><form action="search" method="POST"  role="search" modelAttribute="soke">
             <input class="searchForm" type=search name="sokeord" size="30">
             <input class="searchButton" value="Søk" type="submit"></form></div>
 
@@ -72,20 +72,19 @@
                     <input type="checkbox" name="Spes" value="Rom">Rom
                     <br>
                     <input type="checkbox" name="Spes" value="Klasse">Klasse</form></div>
-        </li>
+        </li>       
+        
     </ul></div>
 
  
 <div class="searchInfo">
-    <%
-      ArrayList<Object> getAlleSokeTreff=(ArrayList<Object>)request.getAttribute("getAlleSokeTreff");
-      
-    %> 
-    <c:forEach begin="0" end="${fn:length(getAlleSokeTreff) - 1}" var="index">
-   <tr>
-      <td><c:out value="${getAlleSokeTreff[index]}"/></td>
-   </tr>
-</c:forEach>
+    
+    <table><tr>
+            <c:forEach var="liste" items="${liste}">
+                <c:out value="${liste}"> </c:out>                               
+            </c:forEach>           
+            
+    </tr></table>
 </div>
 
 

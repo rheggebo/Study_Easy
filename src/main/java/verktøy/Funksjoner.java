@@ -15,27 +15,29 @@ import service.ServiceImpl;
  * @author Sigrid
  */
 public class Funksjoner {
+  public List liste=new ArrayList();
+ 
   ServiceImpl si=new ServiceImpl();
   
   public ArrayList<Object> getAlleSokeTreff(String s){
         ArrayList<Object> liste=new ArrayList<Object>();
         for(int i=0; i<si.getAlleBrukere().size();i++){
-            if(s.equals(si.getAlleBrukere().get(i).getFornavn() + " " + si.getAlleBrukere().get(i).getEtternavn())){
+            if(s.equalsIgnoreCase(si.getAlleBrukere().get(i).getFornavn())||s.equalsIgnoreCase(si.getAlleBrukere().get(i).getEtternavn())){
                      liste.add(si.getAlleBrukere().get(i));        
             }
         }
         for(int i=0;i<si.getAlleRom().size();i++){
-            if(s.equals(si.getAlleRom().get(i).getRomNavn())){
+            if(s.equalsIgnoreCase(si.getAlleRom().get(i).getRomNavn())){
                 liste.add(si.getAlleRom().get(i));
             }
         }
         for(int i=0;i<si.getAlleFag().size();i++){
-            if(s.equals(si.getAlleFag().get(i).getNavn())){
+            if(s.equalsIgnoreCase(si.getAlleFag().get(i).getNavn())){
                 liste.add(si.getAlleRom().get(i));
             }
         }
         for(int i=0;i<si.getAlleRom().size();i++){
-            if(s.equals(si.getAlleRom().get(i).getRomNavn())){
+            if(s.equalsIgnoreCase(si.getAlleRom().get(i).getRomNavn())){
                 liste.add(si.getAlleRom().get(i));
             }     
         }
@@ -43,9 +45,12 @@ public class Funksjoner {
      
       return liste;
     }
-  public ArrayList<Object> getListe(){
+  
+  
+  public ArrayList<String> getListe(){
       ArrayList liste=new ArrayList();
       liste.add("Sigrid");
+      liste.add("Silje");
       liste.add("Kasper");
       return liste;
   }
