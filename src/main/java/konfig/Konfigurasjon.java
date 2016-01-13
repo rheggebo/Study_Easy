@@ -40,7 +40,7 @@ import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
 @ComponentScan(basePackages = {"kontroller"}) // pakken der controllerne ligger
 public class Konfigurasjon extends WebMvcConfigurationSupport{
     
-    /*@Bean
+    @Bean
     public TilesConfigurer tilesConfigurer() {
         return new TilesConfigurer();
     }
@@ -50,7 +50,7 @@ public class Konfigurasjon extends WebMvcConfigurationSupport{
         TilesViewResolver tilesViewResolver = new TilesViewResolver();
         //tilesViewResolver.setOrder(0);
         return tilesViewResolver;
-    }*/
+    }
  
     @Bean
     public ReloadableResourceBundleMessageSource messageSource() {
