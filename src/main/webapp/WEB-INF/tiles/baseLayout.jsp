@@ -21,14 +21,14 @@
 
     <div class="space"></div>
     
-        <table id="baseLayoutTable" border="1" cellpadding="2" cellspacing="2" width="800" align="center">
+        <table id="baseLayoutTable" border="0" cellpadding="2" cellspacing="2" width="800" align="center">
             <tr>
                 <td height="0">
                     <tiles:insertAttribute name="header" />
                 </td>
             </tr>
             <tr>
-                <td height="50">
+                <td height="0">
                      <tiles:insertAttribute name="menu" />
                 </td>
             </tr>
