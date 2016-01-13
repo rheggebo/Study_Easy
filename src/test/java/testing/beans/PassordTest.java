@@ -30,15 +30,16 @@ public class PassordTest {
     public void setUp() throws Exception {
         // Koden her eksekveres f�r hver av testmetodene i klassen
         pord = new Passord();
-        pord.setPassord("Passord#5");
-        pord.setPassord2("Passord#5");
-        pord.setGenerert(false);
+        pord.setPassord("Passord#£5");
+        pord.setPassord1("Passord#£5");
+        pord.setPassord2("Passord#£5");
+        pord.setGenerert(true);
     }
     
     @Test
     public void tester_getmetoder (){
-        assertSame(pord.getPassord(),pord.getPassord2());
-        assertFalse(pord.isGenerert());
+        assertSame(pord.getPassord(),pord.getPassord1());
+        assertTrue(pord.isGenerert());
     }
     
     @Test
@@ -46,6 +47,8 @@ public class PassordTest {
         /*
         * Tester valideringsmetoden i passord-klassen
         */
+        
+        Passord pass = new Passord();
         
         
     }

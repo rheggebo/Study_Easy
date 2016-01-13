@@ -6,7 +6,8 @@
 package verktøy;
 
 import java.util.List;
-import beans.Sok;
+import beans.*;
+
 import java.util.ArrayList;
 import service.ServiceImpl;
 
@@ -27,9 +28,19 @@ public class Funksjoner {
         testListe.add("Sigrid");
         testListe.add("Kasper");
         
-      for(int i=0; i<si.getAlleBrukere().size();i++){
+      /*for(int i=0; i<si.getAlleBrukere().size();i++){
             liste.add(si.getAlleBrukere().get(i));
-        }
+        }*/
+        liste.add("heioghopp");
+        
+        String epost = "test1@aol.com";
+        Bruker bruker = new Bruker();
+        bruker.setEpost(epost);
+        
+        Bruker b = si.hentBruker(bruker);
+        
+        
+       
         return liste; 
         
        /* for(int i=0; i<testListe.size();i++){
