@@ -13,7 +13,6 @@
         <put-attribute name="body"   value="/WEB-INF/jsp/Innlogging.jsp"/>
         <put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp"/>
     </definition>
-  
     <definition name="Innlogging" extends="baseLayout">
         <put-attribute name="title"  value="Innlogging"/>
         <put-attribute name="body"   value="/WEB-INF/jsp/Innlogging.jsp"/>      
@@ -38,14 +37,9 @@
         <put-attribute name="title"  value="Min side"/>
         <put-attribute name="body"   value="/WEB-INF/jsp/MinSideRed.jsp"/>      
     </definition>
-    <definition name="SokeSide" extends="baseLayout">
-        <put-attribute name="title"  value="Søkeside"/>
-        <put-attribute name="body"   value="/WEB-INF/jsp/SøkeSide.jsp"/>      
-    </definition>
     <definition name="VelgRom" extends="baseLayout">
         <put-attribute name="title"  value="Velg rom"/>
         <put-attribute name="body"   value="/WEB-INF/jsp/VelgRom.jsp"/>      
     </definition>
-  
-
+    
 </tiles-definitions>

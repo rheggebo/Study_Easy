@@ -1,4 +1,8 @@
-
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <main>
     <form action="MinSideRed" id="formen">
         <fieldset>
@@ -16,15 +20,15 @@
                 E-post:<br>
                 <dd><form:input type="email" name="email1" readonly="true" path="epost"/></dd>
 
-                Fødselsdato:<br>
+                FÃ¸dselsdato:<br>
                 <dd><form:input type="date" name="date" readonly="true" path="fodedato"/></dd>
 
                 Klasse:<br>
                 <dd><form:input type="text" name="ref"  list="ref-list1" readonly="true" path="klasse"/>
                     <datalist id="ref-list1">
-                        <option value="Dataingeniør">
+                        <option value="DataingeniÃ¸r">
                         <option value="Drift av datasystemer">
-                        <option value="IT-støttet bedriftsutvikling">
+                        <option value="IT-stÃ¸ttet bedriftsutvikling">
                     </datalist>
 
             </dl>

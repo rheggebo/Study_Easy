@@ -63,7 +63,7 @@ public class Konfigurasjon extends WebMvcConfigurationSupport{
     public void addResourceHandlers(final ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/resources/**").addResourceLocations("/resources/").setCachePeriod(31556926);
     }
-    
+    /*
     @Bean  
     public UrlBasedViewResolver setupViewResolver() {  
         UrlBasedViewResolver resolver = new UrlBasedViewResolver();  
@@ -72,7 +72,7 @@ public class Konfigurasjon extends WebMvcConfigurationSupport{
         resolver.setViewClass(JstlView.class);
         return resolver;  
     }  
-
+    */
 
     @Override
     @Bean

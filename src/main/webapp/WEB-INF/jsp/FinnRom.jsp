@@ -16,6 +16,7 @@
     //implement all unsupported features || call polyfill before DOM-Ready to implement everything as soon and as fast as possible
     $.webshims.polyfill();
 </script>
+
 <main>
     <aside>
         <form action="" method="post" onsubmit="return validate();">
