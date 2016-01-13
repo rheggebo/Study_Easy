@@ -64,6 +64,7 @@ footer, header{
 .dropdownmenu ul, .dropdownmenu li {
     margin: 0;
     padding: 0;
+    
 }
 .dropdownmenu ul {
     background: #00BFFF;
@@ -73,6 +74,7 @@ footer, header{
 .dropdownmenu li {
     float: left;
     position: relative;
+    width: 20%; //Dette funka
 }
 .dropdownmenu a {
     text-transform: uppercase;
