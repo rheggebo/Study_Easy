@@ -32,7 +32,7 @@
                 </td>
             </tr>
             <tr>
-                <td height="600">
+                <td height="800">
                     <tiles:insertAttribute name="body" />
                 </td>
             </tr>
