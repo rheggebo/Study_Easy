@@ -33,11 +33,14 @@ public class Funksjoner {
         }*/
         liste.add("heioghopp");
         
-        Rom rom = new Rom();
-        rom.setRomNavn("KAUD");
-        if(si.getRomFraNavn(rom).isEmpty()) {
-            
-        }
+        String epost = "test1@aol.com";
+        Bruker bruker = new Bruker();
+        bruker.setEpost(epost);
+        
+        Bruker b = si.hentBruker(bruker);
+        
+        
+       
         return liste; 
         
        /* for(int i=0; i<testListe.size();i++){
