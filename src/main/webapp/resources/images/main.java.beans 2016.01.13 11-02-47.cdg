@@ -1,0 +1,874 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="main.java.beans">
+  <ClassDiagramComponents>
+    <Class name="Bruker" package="beans" visibility="public" xPosition="83.0" yPosition="739.0">
+      <Fields>
+        <Field name="fornavn" type="String" visibility="private"/>
+        <Field name="etternavn" type="String" visibility="private"/>
+        <Field name="passord" type="String" visibility="private"/>
+        <Field name="epost" type="String" visibility="private"/>
+        <Field name="klasse" type="Klasse" visibility="private"/>
+        <Field name="notat" type="String" visibility="private"/>
+        <Field name="tilgangniva" type="int" visibility="private"/>
+        <Field name="fodedato" type="Date" visibility="private"/>
+        <Field name="telefonnummer" type="int" visibility="private"/>
+        <Field name="kalenderEvents" type="ArrayList&lt;KalenderEvent&gt;" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getFodedato" returnType="Date" visibility="public"/>
+        <Method name="setFodedato" returnType="Date" visibility="public">
+          <Argument type="Date" name="fodedato"/>
+        </Method>
+        <Method name="getFornavn" returnType="String" visibility="public"/>
+        <Method name="setFornavn" returnType="String" visibility="public">
+          <Argument type="String" name="fornavn"/>
+        </Method>
+        <Method name="getEtternavn" returnType="String" visibility="public"/>
+        <Method name="setEtternavn" returnType="String" visibility="public">
+          <Argument type="String" name="etternavn"/>
+        </Method>
+        <Method name="getPassord" returnType="String" visibility="public"/>
+        <Method name="setPassord" returnType="String" visibility="public">
+          <Argument type="String" name="passord"/>
+        </Method>
+        <Method name="getEpost" returnType="String" visibility="public"/>
+        <Method name="setEpost" returnType="String" visibility="public">
+          <Argument type="String" name="epost"/>
+        </Method>
+        <Method name="getKlasse" returnType="Klasse" visibility="public"/>
+        <Method name="setKlasse" returnType="Klasse" visibility="public">
+          <Argument type="Klasse" name="klasse"/>
+        </Method>
+        <Method name="getNotat" returnType="String" visibility="public"/>
+        <Method name="setNotat" returnType="String" visibility="public">
+          <Argument type="String" name="notat"/>
+        </Method>
+        <Method name="getTilgangniva" returnType="int" visibility="public"/>
+        <Method name="setTilgangniva" returnType="int" visibility="public">
+          <Argument type="int" name="tilgangniva"/>
+        </Method>
+        <Method name="getKalenderEvents" returnType="ArrayList&lt;KalenderEvent&gt;" visibility="public"/>
+        <Method name="setKalenderEvents" returnType="ArrayList&lt;KalenderEvent&gt;" visibility="public">
+          <Argument type="ArrayList&lt;KalenderEvent&gt;" name="kalenderEvents"/>
+        </Method>
+        <Method name="getTelefonnummer" returnType="int" visibility="public"/>
+        <Method name="setTelefonnummer" returnType="int" visibility="public">
+          <Argument type="int" name="telefonnummer"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="BrukerB" package="beans" visibility="public" xPosition="1420.0" yPosition="550.0">
+      <Fields>
+        <Field name="fornavn" type="String" visibility="private"/>
+        <Field name="etternavn" type="String" visibility="private"/>
+        <Field name="epost" type="String" visibility="private"/>
+        <Field name="klasse" type="Klasse" visibility="private"/>
+        <Field name="notat" type="String" visibility="private"/>
+        <Field name="tilgangsniva" type="int" visibility="private"/>
+        <Field name="kalenderEvents" type="ArrayList&lt;KalenderEvent&gt;" visibility="private"/>
+        <Field name="innlogget" type="boolean" visibility="private"/>
+        <Field name="fodedato" type="Date" visibility="private"/>
+        <Field name="telefonnummer" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="Bruker" name="b"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getFornavn" returnType="String" visibility="public"/>
+        <Method name="setFornavn" returnType="String" visibility="public">
+          <Argument type="String" name="fornavn"/>
+        </Method>
+        <Method name="getEtternavn" returnType="String" visibility="public"/>
+        <Method name="setEtternavn" returnType="String" visibility="public">
+          <Argument type="String" name="etternavn"/>
+        </Method>
+        <Method name="getEpost" returnType="String" visibility="public"/>
+        <Method name="setEpost" returnType="String" visibility="public">
+          <Argument type="String" name="epost"/>
+        </Method>
+        <Method name="getKlasse" returnType="Klasse" visibility="public"/>
+        <Method name="setKlasse" returnType="Klasse" visibility="public">
+          <Argument type="Klasse" name="klasse"/>
+        </Method>
+        <Method name="getNotat" returnType="String" visibility="public"/>
+        <Method name="setNotat" returnType="String" visibility="public">
+          <Argument type="String" name="notat"/>
+        </Method>
+        <Method name="getTilgangsniva" returnType="int" visibility="public"/>
+        <Method name="setTilgangsniva" returnType="int" visibility="public">
+          <Argument type="int" name="tilgangsniva"/>
+        </Method>
+        <Method name="getKalenderEvents" returnType="ArrayList&lt;KalenderEvent&gt;" visibility="public"/>
+        <Method name="setKalenderEvents" returnType="ArrayList&lt;KalenderEvent&gt;" visibility="public">
+          <Argument type="ArrayList&lt;KalenderEvent&gt;" name="kalenderEvents"/>
+        </Method>
+        <Method name="isInnlogget" returnType="boolean" visibility="public"/>
+        <Method name="setInnlogget" returnType="boolean" visibility="public">
+          <Argument type="boolean" name="innlogget"/>
+        </Method>
+        <Method name="getFodedato" returnType="Date" visibility="public"/>
+        <Method name="setFodedato" returnType="Date" visibility="public">
+          <Argument type="Date" name="fodedato"/>
+        </Method>
+        <Method name="getTelefonnummer" returnType="int" visibility="public"/>
+        <Method name="setTelefonnummer" returnType="int" visibility="public">
+          <Argument type="int" name="telefonnummer"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Fag" package="beans" visibility="public" xPosition="83.0" yPosition="275.0">
+      <Fields>
+        <Field name="fagID" type="String" visibility="private"/>
+        <Field name="navn" type="String" visibility="private"/>
+        <Field name="laerere" type="ArrayList&lt;Bruker&gt;" visibility="private"/>
+        <Field name="kalenderEvents" type="ArrayList&lt;KalenderEvent&gt;" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getFagID" returnType="String" visibility="public"/>
+        <Method name="setFagID" returnType="String" visibility="public">
+          <Argument type="String" name="fagID"/>
+        </Method>
+        <Method name="getNavn" returnType="String" visibility="public"/>
+        <Method name="setNavn" returnType="String" visibility="public">
+          <Argument type="String" name="navn"/>
+        </Method>
+        <Method name="getLaerere" returnType="ArrayList&lt;Bruker&gt;" visibility="public"/>
+        <Method name="setLaerere" returnType="ArrayList&lt;Bruker&gt;" visibility="public">
+          <Argument type="ArrayList&lt;Bruker&gt;" name="laerere"/>
+        </Method>
+        <Method name="getKalenderEvents" returnType="ArrayList&lt;KalenderEvent&gt;" visibility="public"/>
+        <Method name="setKalenderEvents" returnType="ArrayList&lt;KalenderEvent&gt;" visibility="public">
+          <Argument type="ArrayList&lt;KalenderEvent&gt;" name="kalenderEvents"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="KalenderEvent" package="beans" visibility="public" xPosition="919.0" yPosition="208.0">
+      <Fields>
+        <Field name="id" type="int" visibility="private"/>
+        <Field name="epost" type="String" visibility="private"/>
+        <Field name="eierNavn" type="String" visibility="private"/>
+        <Field name="startTid" type="Timestamp" visibility="private"/>
+        <Field name="sluttTid" type="Timestamp" visibility="private"/>
+        <Field name="rom" type="String" visibility="private"/>
+        <Field name="fag" type="String" visibility="private"/>
+        <Field name="type" type="int" visibility="private"/>
+        <Field name="privat" type="boolean" visibility="private"/>
+        <Field name="notat" type="String" visibility="private"/>
+        <Field name="tittel" type="String" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getId" returnType="int" visibility="public"/>
+        <Method name="setId" returnType="int" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="getType" returnType="int" visibility="public"/>
+        <Method name="setType" returnType="int" visibility="public">
+          <Argument type="int" name="type"/>
+        </Method>
+        <Method name="getEpost" returnType="String" visibility="public"/>
+        <Method name="setEpost" returnType="String" visibility="public">
+          <Argument type="String" name="epost"/>
+        </Method>
+        <Method name="getRom" returnType="String" visibility="public"/>
+        <Method name="setRom" returnType="String" visibility="public">
+          <Argument type="String" name="rom"/>
+        </Method>
+        <Method name="getFag" returnType="String" visibility="public"/>
+        <Method name="setFag" returnType="String" visibility="public">
+          <Argument type="String" name="fag"/>
+        </Method>
+        <Method name="isPrivat" returnType="boolean" visibility="public"/>
+        <Method name="setPrivat" returnType="boolean" visibility="public">
+          <Argument type="boolean" name="privat"/>
+        </Method>
+        <Method name="getNotat" returnType="String" visibility="public"/>
+        <Method name="setNotat" returnType="String" visibility="public">
+          <Argument type="String" name="notat"/>
+        </Method>
+        <Method name="setEierNavn" returnType="String" visibility="public">
+          <Argument type="String" name="eierNavn"/>
+        </Method>
+        <Method name="getEierNavn" returnType="String" visibility="public"/>
+        <Method name="getTittel" returnType="String" visibility="public"/>
+        <Method name="setTittel" returnType="String" visibility="public">
+          <Argument type="String" name="tittel"/>
+        </Method>
+        <Method name="getStartTid" returnType="Timestamp" visibility="public"/>
+        <Method name="setStartTid" returnType="Timestamp" visibility="public">
+          <Argument type="Timestamp" name="startTid"/>
+        </Method>
+        <Method name="getSluttTid" returnType="Timestamp" visibility="public"/>
+        <Method name="setSluttTid" returnType="Timestamp" visibility="public">
+          <Argument type="Timestamp" name="sluttTid"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Klasse" package="beans" visibility="public" xPosition="926.0" yPosition="1136.0">
+      <Fields>
+        <Field name="navn" type="String" visibility="private"/>
+        <Field name="fag" type="ArrayList&lt;Fag&gt;" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getFag" returnType="ArrayList&lt;Fag&gt;" visibility="public"/>
+        <Method name="setFag" returnType="ArrayList&lt;Fag&gt;" visibility="public">
+          <Argument type="ArrayList&lt;Fag&gt;" name="fag"/>
+        </Method>
+        <Method name="getNavn" returnType="String" visibility="public"/>
+        <Method name="setNavn" returnType="String" visibility="public">
+          <Argument type="String" name="navn"/>
+        </Method>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Passord" package="beans" visibility="public" xPosition="1551.0" yPosition="109.0">
+      <Fields>
+        <Field name="passord" type="String" visibility="private"/>
+        <Field name="passord1" type="String" visibility="private"/>
+        <Field name="passord2" type="String" visibility="private"/>
+        <Field name="generert" type="boolean" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getPassord1" returnType="String" visibility="public"/>
+        <Method name="setPassord1" returnType="String" visibility="public">
+          <Argument type="String" name="passord1"/>
+        </Method>
+        <Method name="isGenerert" returnType="boolean" visibility="public"/>
+        <Method name="setGenerert" returnType="boolean" visibility="public">
+          <Argument type="boolean" name="generert"/>
+        </Method>
+        <Method name="getPassord2" returnType="String" visibility="public"/>
+        <Method name="setPassord2" returnType="String" visibility="public">
+          <Argument type="String" name="passord2"/>
+        </Method>
+        <Method name="getPassord" returnType="String" visibility="public"/>
+        <Method name="setPassord" returnType="String" visibility="public">
+          <Argument type="String" name="passord"/>
+        </Method>
+        <Method name="supports" returnType="Class&lt;?&gt;" visibility="public">
+          <Argument type="Class&lt;?&gt;" name="type"/>
+        </Method>
+        <Method name="validate" returnType="Errors" visibility="public">
+          <Argument type="Object" name="o"/>
+          <Argument type="Errors" name="errors"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Rom" package="beans" visibility="public" xPosition="1842.0" yPosition="109.0">
+      <Fields>
+        <Field name="romID" type="String" visibility="private"/>
+        <Field name="romNavn" type="String" visibility="private"/>
+        <Field name="etasje" type="int" visibility="private"/>
+        <Field name="type" type="int" visibility="private"/>
+        <Field name="storrelse" type="int" visibility="private"/>
+        <Field name="innhold" type="ArrayList&lt;String&gt;" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getStorrelse" returnType="int" visibility="public"/>
+        <Method name="setStorrelse" returnType="int" visibility="public">
+          <Argument type="int" name="storrelse"/>
+        </Method>
+        <Method name="getRomNavn" returnType="String" visibility="public"/>
+        <Method name="setRomNavn" returnType="String" visibility="public">
+          <Argument type="String" name="romNavn"/>
+        </Method>
+        <Method name="getRomID" returnType="String" visibility="public"/>
+        <Method name="setRomID" returnType="String" visibility="public">
+          <Argument type="String" name="romID"/>
+        </Method>
+        <Method name="getEtasje" returnType="int" visibility="public"/>
+        <Method name="setEtasje" returnType="int" visibility="public">
+          <Argument type="int" name="etasje"/>
+        </Method>
+        <Method name="getType" returnType="int" visibility="public"/>
+        <Method name="setType" returnType="int" visibility="public">
+          <Argument type="int" name="type"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Sok" package="beans" visibility="public" xPosition="1332.0" yPosition="109.0">
+      <Fields>
+        <Field name="sokeord" type="String" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getSokeord" returnType="String" visibility="public"/>
+        <Method name="setSokeord" returnType="String" visibility="public">
+          <Argument type="String" name="s"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Email" package="" visibility="public" xPosition="1485.0" yPosition="1286.0">
+      <Fields>
+        <Field name="USER_NAME" type="String" visibility="private"/>
+        <Field name="PASSWORD" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="sendEpost" returnType="String" visibility="public">
+          <Argument type="String" name="mottaker"/>
+          <Argument type="String" name="tema"/>
+          <Argument type="String" name="melding"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Interface name="DBConnection" package="" visibility="public" xPosition="1962.0" yPosition="619.0">
+      <Methods>
+        <Method name="getBruker" returnType="String" visibility="public">
+          <Argument type="String" name="epost"/>
+        </Method>
+        <Method name="sjekkPassord" returnType="String" visibility="public">
+          <Argument type="String" name="epost"/>
+          <Argument type="String" name="passord"/>
+        </Method>
+        <Method name="oppdaterBruker" returnType="Bruker" visibility="public">
+          <Argument type="Bruker" name="b"/>
+        </Method>
+        <Method name="oppdaterBrukerFag" returnType="Fag" visibility="public">
+          <Argument type="Bruker" name="b"/>
+          <Argument type="Fag" name="f"/>
+        </Method>
+        <Method name="oppdaterBrukerKlasse" returnType="Klasse" visibility="public">
+          <Argument type="Bruker" name="b"/>
+          <Argument type="Klasse" name="k"/>
+        </Method>
+        <Method name="slettBruker" returnType="Bruker" visibility="public">
+          <Argument type="Bruker" name="b"/>
+        </Method>
+        <Method name="leggTilBruker" returnType="Bruker" visibility="public">
+          <Argument type="Bruker" name="b"/>
+        </Method>
+        <Method name="getAlleBrukere" returnType="List&lt;Bruker&gt;" visibility="public"/>
+        <Method name="oppdaterRom" returnType="Rom" visibility="public">
+          <Argument type="Rom" name="r"/>
+        </Method>
+        <Method name="slettRom" returnType="Rom" visibility="public">
+          <Argument type="Rom" name="r"/>
+        </Method>
+        <Method name="oppdaterKlasseFag" returnType="Fag" visibility="public">
+          <Argument type="Klasse" name="k"/>
+          <Argument type="Fag" name="f"/>
+        </Method>
+        <Method name="slettRomInnhold" returnType="String" visibility="public">
+          <Argument type="Rom" name="r"/>
+          <Argument type="String" name="innholdNavn"/>
+        </Method>
+        <Method name="leggTilInnhold" returnType="String" visibility="public">
+          <Argument type="Rom" name="r"/>
+          <Argument type="String" name="innholdNavn"/>
+        </Method>
+        <Method name="slettBrukerFag" returnType="Fag" visibility="public">
+          <Argument type="Bruker" name="b"/>
+          <Argument type="Fag" name="f"/>
+        </Method>
+        <Method name="leggTilFag" returnType="Fag" visibility="public">
+          <Argument type="Fag" name="f"/>
+        </Method>
+        <Method name="leggTilRom" returnType="Rom" visibility="public">
+          <Argument type="Rom" name="r"/>
+        </Method>
+        <Method name="leggTilKalenderEvent" returnType="KalenderEvent" visibility="public">
+          <Argument type="KalenderEvent" name="ke"/>
+        </Method>
+        <Method name="fjernKalenderEvent" returnType="KalenderEvent" visibility="public">
+          <Argument type="KalenderEvent" name="ke"/>
+        </Method>
+        <Method name="getKalenderEventDeltakere" returnType="KalenderEvent" visibility="public">
+          <Argument type="KalenderEvent" name="ke"/>
+        </Method>
+        <Method name="getKalenderEventDeltaker" returnType="Bruker" visibility="public">
+          <Argument type="KalenderEvent" name="ke"/>
+          <Argument type="Bruker" name="b"/>
+        </Method>
+        <Method name="getKalenderEventEier" returnType="Bruker" visibility="public">
+          <Argument type="Bruker" name="b"/>
+        </Method>
+        <Method name="getKalenderEventRomID" returnType="Rom" visibility="public">
+          <Argument type="Rom" name="r"/>
+        </Method>
+        <Method name="getFagLaerer" returnType="Bruker" visibility="public">
+          <Argument type="Bruker" name="b"/>
+        </Method>
+        <Method name="getRombestilling" returnType="Rom" visibility="public"/>
+        <Method name="getRomFraNavn" returnType="Rom" visibility="public">
+          <Argument type="Rom" name="r"/>
+        </Method>
+        <Method name="getRomFraInnhold" returnType="String[]" visibility="public">
+          <Argument type="String[]" name="innhold"/>
+        </Method>
+        <Method name="getRomFraType" returnType="Rom" visibility="public">
+          <Argument type="Rom" name="r"/>
+        </Method>
+        <Method name="getRomFraStoerrelse" returnType="Rom" visibility="public">
+          <Argument type="Rom" name="r"/>
+        </Method>
+        <Method name="getLaererKlasse" returnType="Bruker" visibility="public">
+          <Argument type="Bruker" name="b"/>
+        </Method>
+        <Method name="getAlleRom" returnType="List&lt;Rom&gt;" visibility="public"/>
+        <Method name="getAlleFag" returnType="List&lt;Fag&gt;" visibility="public"/>
+        <Method name="getAlleEventsFraBruker" returnType="BrukerB" visibility="public">
+          <Argument type="BrukerB" name="b"/>
+        </Method>
+      </Methods>
+    </Interface>
+    <Class name="EmailSetup" package="" visibility="public" xPosition="1917.0" yPosition="1337.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="main" returnType="String[]" visibility="public">
+          <Argument type="String[]" name="args"/>
+        </Method>
+        <Method name="sendFromGMail" returnType="String" visibility="public">
+          <Argument type="String" name="from"/>
+          <Argument type="String" name="pass"/>
+          <Argument type="String[]" name="to"/>
+          <Argument type="String" name="subject"/>
+          <Argument type="String" name="body"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="InitialiserDispatcherServlet" package="" visibility="public" xPosition="1436.0" yPosition="1626.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="onStartup" returnType="ServletContext" visibility="public">
+          <Argument type="ServletContext" name="servletContext"/>
+        </Method>
+        <Method name="registerDispatcherServlet" returnType="ServletContext" visibility="public">
+          <Argument type="ServletContext" name="servletContext"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Konfigurasjon" package="" visibility="public" xPosition="1896.0" yPosition="1589.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="messageSource" returnType="ReloadableResourceBundleMessageSource" visibility="public"/>
+        <Method name="addResourceHandlers" returnType="ResourceHandlerRegistry" visibility="public">
+          <Argument type="ResourceHandlerRegistry" name="registry"/>
+        </Method>
+        <Method name="setupViewResolver" returnType="UrlBasedViewResolver" visibility="public"/>
+        <Method name="resourceHandlerMapping" returnType="HandlerMapping" visibility="public"/>
+        <Method name="configureDefaultServletHandling" returnType="DefaultServletHandlerConfigurer" visibility="public">
+          <Argument type="DefaultServletHandlerConfigurer" name="configurer"/>
+        </Method>
+        <Method name="dataSource" returnType="DataSource" visibility="public"/>
+        <Method name="repository" returnType="DBConnection" visibility="public"/>
+        <Method name="brukerService" returnType="Service" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Kalenderkontroller" package="" visibility="public" xPosition="83.0" yPosition="1448.0">
+      <Fields>
+        <Field name="service" type="Service" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getEvents" returnType="HttpSession" visibility="public">
+          <Argument type="HttpServletResponse" name="response"/>
+          <Argument type="HttpSession" name="sess"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Hovedkontroller" package="" visibility="public" xPosition="83.0" yPosition="1926.0">
+      <Fields>
+        <Field name="service" type="Service" visibility="private"/>
+        <Field name="testBruker" type="Bruker" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="start" returnType="String" visibility="public">
+          <Argument type="Model" name="model"/>
+          <Argument type="HttpSession" name="sess"/>
+        </Method>
+        <Method name="logIn" returnType="String" visibility="public"/>
+        <Method name="minSide" returnType="String" visibility="public">
+          <Argument type="HttpSession" name="sess"/>
+          <Argument type="Model" name="model"/>
+        </Method>
+        <Method name="velgRom" returnType="String" visibility="public">
+          <Argument type="HttpSession" name="sess"/>
+          <Argument type="Model" name="model"/>
+        </Method>
+        <Method name="kontakt" returnType="String" visibility="public">
+          <Argument type="HttpSession" name="sess"/>
+          <Argument type="Model" name="model"/>
+        </Method>
+        <Method name="forside" returnType="String" visibility="public">
+          <Argument type="HttpSession" name="sess"/>
+          <Argument type="Model" name="model"/>
+        </Method>
+        <Method name="finnRom" returnType="String" visibility="public">
+          <Argument type="Model" name="model"/>
+          <Argument type="HttpSession" name="sess"/>
+        </Method>
+        <Method name="sokeSide" returnType="String" visibility="public">
+          <Argument type="HttpSession" name="sess"/>
+          <Argument type="Model" name="model"/>
+        </Method>
+        <Method name="loggUt" returnType="String" visibility="public">
+          <Argument type="HttpSession" name="sess"/>
+          <Argument type="Model" name="model"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Brukerkontroller" package="" visibility="public" xPosition="83.0" yPosition="1597.0">
+      <Fields>
+        <Field name="service" type="Service" visibility="private"/>
+        <Field name="generator" type="Passordgenerator" visibility="private"/>
+        <Field name="testBruker" type="Bruker" visibility="private"/>
+        <Field name="hasher" type="PasswordHasher" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="glemtPassord" returnType="String" visibility="public">
+          <Argument type="Model" name="model"/>
+        </Method>
+        <Method name="glemsk" returnType="String" visibility="public"/>
+        <Method name="endrePassord" returnType="String" visibility="public"/>
+        <Method name="endrePassordRed" returnType="String" visibility="public">
+          <Argument type="HttpSession" name="sess"/>
+          <Argument type="Model" name="model"/>
+        </Method>
+        <Method name="genererPassord" returnType="String" visibility="public">
+          <Argument type="BindingResult" name="error"/>
+        </Method>
+        <Method name="sendNyPass" returnType="Boolean" visibility="public">
+          <Argument type="Bruker" name="temp"/>
+          <Argument type="BindingResult" name="error"/>
+        </Method>
+        <Method name="minSideRed" returnType="String" visibility="public">
+          <Argument type="HttpSession" name="sess"/>
+          <Argument type="Model" name="model"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Sokekontroller" package="" visibility="public" xPosition="83.0" yPosition="2288.0">
+      <Fields/>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="BrukerMapper" package="" visibility="public" xPosition="616.0" yPosition="1448.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="mapRow" returnType="int" visibility="public">
+          <Argument type="ResultSet" name="rs"/>
+          <Argument type="int" name="i"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="FagMapper" package="" visibility="public" xPosition="616.0" yPosition="1572.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="mapRow" returnType="int" visibility="public">
+          <Argument type="ResultSet" name="rs"/>
+          <Argument type="int" name="i"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="KalenderEventMapper" package="" visibility="public" xPosition="616.0" yPosition="1690.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="mapRow" returnType="int" visibility="public">
+          <Argument type="ResultSet" name="rs"/>
+          <Argument type="int" name="i"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="RomMapper" package="" visibility="public" xPosition="616.0" yPosition="1824.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="mapRow" returnType="int" visibility="public">
+          <Argument type="ResultSet" name="rs"/>
+          <Argument type="int" name="i"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Interface name="Service" package="" visibility="public" xPosition="2416.0" yPosition="619.0">
+      <Methods>
+        <Method name="sjekkPassord" returnType="String" visibility="public">
+          <Argument type="String" name="brukernavn"/>
+          <Argument type="String" name="passord"/>
+        </Method>
+        <Method name="hentBruker" returnType="String" visibility="public">
+          <Argument type="String" name="epost"/>
+        </Method>
+        <Method name="hentBruker" returnType="Bruker" visibility="public">
+          <Argument type="Bruker" name="bruker"/>
+        </Method>
+        <Method name="endreBruker" returnType="Bruker" visibility="public">
+          <Argument type="Bruker" name="bruker"/>
+        </Method>
+        <Method name="slettBruker" returnType="Bruker" visibility="public">
+          <Argument type="Bruker" name="bruker"/>
+        </Method>
+        <Method name="nyBruker" returnType="Bruker" visibility="public">
+          <Argument type="Bruker" name="bruker"/>
+        </Method>
+        <Method name="slettBrukere" returnType="List&lt;Bruker&gt;" visibility="public">
+          <Argument type="List&lt;Bruker&gt;" name="brukere"/>
+        </Method>
+        <Method name="endreBrukere" returnType="List&lt;Bruker&gt;" visibility="public">
+          <Argument type="List&lt;Bruker&gt;" name="brukere"/>
+        </Method>
+        <Method name="getAlleBrukere" returnType="List&lt;Bruker&gt;" visibility="public"/>
+        <Method name="oppdaterRom" returnType="Rom" visibility="public">
+          <Argument type="Rom" name="r"/>
+        </Method>
+        <Method name="slettRom" returnType="Rom" visibility="public">
+          <Argument type="Rom" name="r"/>
+        </Method>
+        <Method name="oppdaterKlasseFag" returnType="Fag" visibility="public">
+          <Argument type="Klasse" name="k"/>
+          <Argument type="Fag" name="f"/>
+        </Method>
+        <Method name="slettRomInnhold" returnType="String" visibility="public">
+          <Argument type="Rom" name="r"/>
+          <Argument type="String" name="innholdNavn"/>
+        </Method>
+        <Method name="leggTilInnhold" returnType="String" visibility="public">
+          <Argument type="Rom" name="r"/>
+          <Argument type="String" name="innholdNavn"/>
+        </Method>
+        <Method name="slettBrukerFag" returnType="Fag" visibility="public">
+          <Argument type="Bruker" name="b"/>
+          <Argument type="Fag" name="f"/>
+        </Method>
+        <Method name="leggTilFag" returnType="Fag" visibility="public">
+          <Argument type="Fag" name="f"/>
+        </Method>
+        <Method name="leggTilRom" returnType="Rom" visibility="public">
+          <Argument type="Rom" name="r"/>
+        </Method>
+        <Method name="leggTilKalenderEvent" returnType="KalenderEvent" visibility="public">
+          <Argument type="KalenderEvent" name="ke"/>
+        </Method>
+        <Method name="fjernKalenderEvent" returnType="KalenderEvent" visibility="public">
+          <Argument type="KalenderEvent" name="ke"/>
+        </Method>
+        <Method name="getKalenderEventDeltakere" returnType="KalenderEvent" visibility="public">
+          <Argument type="KalenderEvent" name="ke"/>
+        </Method>
+        <Method name="getKalenderEventDeltaker" returnType="Bruker" visibility="public">
+          <Argument type="KalenderEvent" name="ke"/>
+          <Argument type="Bruker" name="b"/>
+        </Method>
+        <Method name="getKalenderEventEier" returnType="Bruker" visibility="public">
+          <Argument type="Bruker" name="b"/>
+        </Method>
+        <Method name="getKalenderEventRomID" returnType="Rom" visibility="public">
+          <Argument type="Rom" name="r"/>
+        </Method>
+        <Method name="getFagLaerer" returnType="Bruker" visibility="public">
+          <Argument type="Bruker" name="b"/>
+        </Method>
+        <Method name="getRombestilling" returnType="Rom" visibility="public"/>
+        <Method name="getRomFraNavn" returnType="Rom" visibility="public">
+          <Argument type="Rom" name="r"/>
+        </Method>
+        <Method name="getRomFraInnhold" returnType="Rom" visibility="public">
+          <Argument type="Rom" name="r"/>
+        </Method>
+        <Method name="getRomFraType" returnType="Rom" visibility="public">
+          <Argument type="Rom" name="r"/>
+        </Method>
+        <Method name="getRomFraStoerrelse" returnType="Rom" visibility="public">
+          <Argument type="Rom" name="r"/>
+        </Method>
+        <Method name="getLaererKlasse" returnType="Bruker" visibility="public">
+          <Argument type="Bruker" name="b"/>
+        </Method>
+        <Method name="getAlleRom" returnType="List&lt;Rom&gt;" visibility="public"/>
+        <Method name="getAlleFag" returnType="List&lt;Fag&gt;" visibility="public"/>
+        <Method name="getAlleEventsFraBruker" returnType="BrukerB" visibility="public">
+          <Argument type="BrukerB" name="b"/>
+        </Method>
+      </Methods>
+    </Interface>
+    <Class name="ServiceImpl" package="" visibility="public" xPosition="2951.0" yPosition="619.0">
+      <Fields>
+        <Field name="dbc" type="DBConnection" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="setDBC" returnType="DBConnection" visibility="public">
+          <Argument type="DBConnection" name="dbc"/>
+        </Method>
+        <Method name="hentBruker" returnType="String" visibility="public">
+          <Argument type="String" name="epost"/>
+        </Method>
+        <Method name="sjekkPassord" returnType="String" visibility="public">
+          <Argument type="String" name="brukernavn"/>
+          <Argument type="String" name="passord"/>
+        </Method>
+        <Method name="endreBruker" returnType="Bruker" visibility="public">
+          <Argument type="Bruker" name="bruker"/>
+        </Method>
+        <Method name="slettBruker" returnType="Bruker" visibility="public">
+          <Argument type="Bruker" name="bruker"/>
+        </Method>
+        <Method name="nyBruker" returnType="Bruker" visibility="public">
+          <Argument type="Bruker" name="bruker"/>
+        </Method>
+        <Method name="slettBrukere" returnType="List&lt;Bruker&gt;" visibility="public">
+          <Argument type="List&lt;Bruker&gt;" name="brukere"/>
+        </Method>
+        <Method name="endreBrukere" returnType="List&lt;Bruker&gt;" visibility="public">
+          <Argument type="List&lt;Bruker&gt;" name="brukere"/>
+        </Method>
+        <Method name="getAlleBrukere" returnType="List&lt;Bruker&gt;" visibility="public"/>
+        <Method name="oppdaterRom" returnType="Rom" visibility="public">
+          <Argument type="Rom" name="r"/>
+        </Method>
+        <Method name="slettRom" returnType="Rom" visibility="public">
+          <Argument type="Rom" name="r"/>
+        </Method>
+        <Method name="oppdaterKlasseFag" returnType="Fag" visibility="public">
+          <Argument type="Klasse" name="k"/>
+          <Argument type="Fag" name="f"/>
+        </Method>
+        <Method name="slettRomInnhold" returnType="String" visibility="public">
+          <Argument type="Rom" name="r"/>
+          <Argument type="String" name="innholdNavn"/>
+        </Method>
+        <Method name="untitledMethod" returnType="void" visibility="public"/>
+        <Method name="leggTilInnhold" returnType="String" visibility="public">
+          <Argument type="Rom" name="r"/>
+          <Argument type="String" name="innholdNavn"/>
+        </Method>
+        <Method name="slettBrukerFag" returnType="Fag" visibility="public">
+          <Argument type="Bruker" name="b"/>
+          <Argument type="Fag" name="f"/>
+        </Method>
+        <Method name="leggTilFag" returnType="Fag" visibility="public">
+          <Argument type="Fag" name="f"/>
+        </Method>
+        <Method name="leggTilRom" returnType="Rom" visibility="public">
+          <Argument type="Rom" name="r"/>
+        </Method>
+        <Method name="leggTilKalenderEvent" returnType="KalenderEvent" visibility="public">
+          <Argument type="KalenderEvent" name="ke"/>
+        </Method>
+        <Method name="fjernKalenderEvent" returnType="KalenderEvent" visibility="public">
+          <Argument type="KalenderEvent" name="ke"/>
+        </Method>
+        <Method name="getKalenderEventDeltakere" returnType="KalenderEvent" visibility="public">
+          <Argument type="KalenderEvent" name="ke"/>
+        </Method>
+        <Method name="getKalenderEventDeltaker" returnType="Bruker" visibility="public">
+          <Argument type="KalenderEvent" name="ke"/>
+          <Argument type="Bruker" name="b"/>
+        </Method>
+        <Method name="getKalenderEventEier" returnType="Bruker" visibility="public">
+          <Argument type="Bruker" name="b"/>
+        </Method>
+        <Method name="getKalenderEventRomID" returnType="Rom" visibility="public">
+          <Argument type="Rom" name="r"/>
+        </Method>
+        <Method name="getFagLaerer" returnType="Bruker" visibility="public">
+          <Argument type="Bruker" name="b"/>
+        </Method>
+        <Method name="getRombestilling" returnType="Rom" visibility="public"/>
+        <Method name="getRomFraNavn" returnType="Rom" visibility="public">
+          <Argument type="Rom" name="r"/>
+        </Method>
+        <Method name="getRomFraInnhold" returnType="Rom" visibility="public">
+          <Argument type="Rom" name="r"/>
+        </Method>
+        <Method name="getRomFraType" returnType="Rom" visibility="public">
+          <Argument type="Rom" name="r"/>
+        </Method>
+        <Method name="getRomFraStoerrelse" returnType="Rom" visibility="public">
+          <Argument type="Rom" name="r"/>
+        </Method>
+        <Method name="getLaererKlasse" returnType="Bruker" visibility="public">
+          <Argument type="Bruker" name="b"/>
+        </Method>
+        <Method name="getAlleRom" returnType="List&lt;Rom&gt;" visibility="public"/>
+        <Method name="getAlleFag" returnType="List&lt;Fag&gt;" visibility="public"/>
+        <Method name="getAlleEventsFraBruker" returnType="BrukerB" visibility="public">
+          <Argument type="BrukerB" name="b"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Funksjoner" package="" visibility="public" xPosition="2732.0" yPosition="1413.0">
+      <Fields>
+        <Field name="liste" type="List" visibility="private"/>
+        <Field name="si" type="ServiceImpl" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getAlleSokeTreff" returnType="String" visibility="public">
+          <Argument type="String" name="s"/>
+        </Method>
+        <Method name="getListe" returnType="ArrayList&lt;Object&gt;" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Passordgenerator" package="" visibility="public" xPosition="2732.0" yPosition="1597.0">
+      <Fields>
+        <Field name="nyttPassord" type="String" visibility="private"/>
+        <Field name="alfabet" type="String" visibility="private"/>
+        <Field name="alfabet2" type="String" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="genererPassord" returnType="String" visibility="public"/>
+        <Method name="main" returnType="String[]" visibility="public">
+          <Argument type="String[]" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="PasswordHasher" package="" visibility="public" xPosition="2732.0" yPosition="1867.0">
+      <Fields>
+        <Field name="iterations" type="int" visibility="private"/>
+        <Field name="saltLen" type="int" visibility="private"/>
+        <Field name="desiredKeyLen" type="int" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getSaltedHash" returnType="String" visibility="public">
+          <Argument type="String" name="password"/>
+        </Method>
+        <Method name="check" returnType="boolean" visibility="public">
+          <Argument type="String" name="password"/>
+          <Argument type="String" name="stored"/>
+        </Method>
+        <Method name="hash" returnType="String" visibility="public">
+          <Argument type="String" name="password"/>
+          <Argument type="byte[]" name="salt"/>
+        </Method>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <HasRelation name="kalenderEvents" source="beans.Bruker" target="beans.KalenderEvent" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;KalenderEvent&gt;"/>
+    <HasRelation name="kalenderEvents" source="beans.BrukerB" target="beans.KalenderEvent" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;KalenderEvent&gt;"/>
+    <UseRelation source="beans.Fag" target="beans.KalenderEvent" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="laerere" source="beans.Fag" target="beans.Bruker" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Bruker&gt;"/>
+    <UseRelation source="beans.BrukerB" target="beans.KalenderEvent" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="beans.Klasse" target="beans.Fag" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="kalenderEvents" source="beans.Fag" target="beans.KalenderEvent" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;KalenderEvent&gt;"/>
+    <UseRelation source="beans.Bruker" target="beans.Klasse" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="fag" source="beans.Klasse" target="beans.Fag" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Fag&gt;"/>
+    <HasRelation name="klasse" source="beans.BrukerB" target="beans.Klasse" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="beans.Fag" target="beans.Bruker" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="beans.Bruker" target="beans.KalenderEvent" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="beans.BrukerB" target="beans.Klasse" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="klasse" source="beans.Bruker" target="beans.Klasse" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
+</ClassDiagram>
