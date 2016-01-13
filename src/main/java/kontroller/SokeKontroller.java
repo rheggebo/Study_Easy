@@ -31,7 +31,7 @@ public class SokeKontroller {
 @RequestMapping(value="search")
     public String searchView(@ModelAttribute(value="soke")Sok sok, Model model){
         Funksjoner fu= new Funksjoner();
-        model.addAttribute("liste",fu.getListe());
+        model.addAttribute("liste",fu.getAlleSokeTreff(sok.getSokeord()));
         return "SokeSide";
             
             }
