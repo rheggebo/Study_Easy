@@ -1,43 +1,5 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<!DOCTYPE html>
-<html lang="no">
-<head>
-    <link rel="stylesheet" href="<c:url value="/resources/css/Hovedstilen.css"/>">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Min Side</title>
-</head>
-
-<body>
-<header>
-    <a href="Forside"><img id="logo" src="<c:url value="/resources/images/LogoTeam1.png"/>"></a>
-    NTNU - Norges Teknisk-naturvitenskapelige Universitet 路 Study Easy 漏 2016<br>
-    <nav class="dropdownmenu">
-        <ul>
-            <li><a href="Forside">Forside</a></li>
-            <li><a href="Kontakt">Kontakt</a></li>
-            <li><a href="#">Romvalg</a>
-                <ul id="submenu">
-                    <li><a href="VelgRom">Bestill rom</a></li>
-                    <li><a href="FinnRom">Finn rom</a></li>
-                </ul>
-            </li>
-            <li><a href="SokeSide">S酶k</a></li>
-            <li><a href="#">Min side</a>
-                <ul id="submenu">
-                    <li><a href="MinSide">Min informasjon</a></li>
-                    <li><a href="loggUt">Logg ut</a></li>
-                </ul>
-        </ul>
-    </nav>
-</header>
 
 <main>
-
     <form action="MinSideRed" id="formen">
         <fieldset>
             <legend>Personopplysninger</legend>
@@ -54,15 +16,15 @@
                 E-post:<br>
                 <dd><form:input type="email" name="email1" readonly="true" path="epost"/></dd>
 
-                F酶dselsdato:<br>
+                F鴇selsdato:<br>
                 <dd><form:input type="date" name="date" readonly="true" path="fodedato"/></dd>
 
                 Klasse:<br>
                 <dd><form:input type="text" name="ref"  list="ref-list1" readonly="true" path="klasse"/>
                     <datalist id="ref-list1">
-                        <option value="Dataingeni酶r">
+                        <option value="Dataingeni鴕">
                         <option value="Drift av datasystemer">
-                        <option value="IT-st酶ttet bedriftsutvikling">
+                        <option value="IT-st鴗tet bedriftsutvikling">
                     </datalist>
 
             </dl>
@@ -86,26 +48,3 @@
 
     </form>
 </main>
-
-<!--Footer-->
-<div class="space"></div>
-<!--M氓 v忙re med for 氓 funke i Chrome-->
-
-<footer>
-    <h4>NTNU - Norges Teknisk-naturvitenskapelige Universitet</h4>
-    <a class="footerLenke" href="Forside">Hjem</a>
-    路
-    <a class="footerLenke" href="MinSide">Min side</a>
-    路
-    <a class="footerLenke" href="VelgRom">Bestill rom</a>
-    路
-    <a class="footerLenke" href="Forside">Finn rom</a>
-    路
-    <a class="footerLenke" href="SokeSide">S酶k</a>
-    路
-    <a class="footerLenke" href="Kontakt">Kontakt</a>
-    <h4>路Study Easy 漏 2016路</h4>
-</footer>
-
-</body>
-</html>
