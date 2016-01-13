@@ -26,6 +26,21 @@
             <version>1.7.6</version>
         </dependency>
         <dependency>
+            <groupId>org.apache.tiles</groupId>
+            <artifactId>tiles-servlet</artifactId>
+            <version>3.0.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tiles</groupId>
+            <artifactId>tiles-core</artifactId>
+            <version>3.0.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tiles</groupId>
+            <artifactId>tiles-extras</artifactId>
+            <version>3.0.5</version>
+        </dependency>
+        <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
             <version>5.1.2.Final</version>
