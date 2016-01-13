@@ -31,6 +31,32 @@
     margin: 20px;
 }
 
+#loggInnBilde {
+    border-radius: 8px; 
+    padding: 10px; 
+    top: 10%; 
+    margin-left: 78px;
+}
+
+#loggInnGlemtPassord{
+    position: absolute;
+    top: 93%;
+    left: 75%;
+}
+
+#loggInnKnapp{
+    width: 460px;
+    padding: 15px 10px;
+    position: absolute;
+    top: 145%;
+    left: 50%;
+    margin-left: -230px;
+    margin-top: -277px;
+    background-color: dodgerblue;
+    color: white;
+    border-radius: 12px;
+}
+
 #feilmelding{
     position: absolute;
     top: 110%;
