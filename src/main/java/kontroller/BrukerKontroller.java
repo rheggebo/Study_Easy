@@ -17,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import service.Service;
 import verktøy.Passordgenerator;
 import verktøy.PasswordHasher;
@@ -157,5 +158,23 @@ public class BrukerKontroller {
         }
         model.addAttribute("bruker", new Bruker());
         return "Innlogging";
+    }
+    
+    @RequestMapping("MinSideRedLagre")
+    public String minSideRedLagre(@ModelAttribute("bruker")BrukerB brukerb, HttpSession sess){
+        System.out.println("MinSideRedLagre************");
+        BrukerB brukerbb = (BrukerB) sess.getAttribute("brukerBean");
+        BrukerB nyBrukerInfo = new BrukerB();
+        if(brukerbb.getTilgangsniva()==2){
+            nyBrukerInfo.setFornavn(brukerb.getFornavn());
+            nyBrukerInfo.setEtternavn(brukerb.getEtternavn());
+            nyBrukerInfo.setTelefonnummer(brukerb.getTelefonnummer());
+            nyBrukerInfo.setKlasse(brukerb.getKlasse());
+            nyBrukerInfo.setFodedato(brukerb.getFodedato());
+        }else{
+            nyBrukerInfo.setTelefonnummer(brukerb.getTelefonnummer());
+            nyBrukerInfo.setKlasse(brukerb.getKlasse());
+        }
+        return "MinSide";
     }
 }
