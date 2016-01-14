@@ -116,6 +116,17 @@ public class Hovedkontroller {
         return "Innlogging";
     }
     
+        @RequestMapping("LeggTilBruker")
+    public String leggTilBruker(HttpSession sess, Model model){
+        BrukerB brukerb = (BrukerB)sess.getAttribute("brukerBean");
+        if(brukerb != null && brukerb.isInnlogget()){
+            model.addAttribute("bruker", brukerb);
+            return "LeggTilBruker";
+        }
+        model.addAttribute("bruker", new Bruker());
+        return "Innlogging";
+    }
+    
     @RequestMapping("loggUt")
     public String loggUt(HttpSession sess, Model model){
         sess.removeAttribute("brukerBean");
