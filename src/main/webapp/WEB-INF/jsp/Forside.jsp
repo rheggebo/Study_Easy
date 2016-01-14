@@ -20,8 +20,8 @@
                     <div id="openInfoWindow" class="modalDialog">
                         <div><a href="#close" title="Close" class="close">X</a>
                             <h2>Informasjon</h2>
-                                <p>Denne kalenderen gir deg oversikt over dine forelesninger og øvinger. Du kan knytte dine personlige hendelser
-                                    til denne kalenderen, og abonnere på andre. Håper den kommer i bruk!</p>
+                                Denne kalenderen gir deg oversikt over dine forelesninger og øvinger. Du kan knytte dine personlige hendelser
+                                    til denne kalenderen, og abonnere på andre. Håper den kommer i bruk!
                         </div>
                     </div>
 
