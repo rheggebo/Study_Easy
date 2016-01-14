@@ -69,6 +69,8 @@ public interface DBConnection {
     
     public List<Rom> getRomFraNavn(Rom r);
     
+    public List<Rom> getRomFraNavn(String navn);
+    
     public List<Rom> getRomFraInnhold(String[] innhold);
     
     public List<Rom> getRomFraType(Rom r);

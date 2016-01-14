@@ -45,17 +45,9 @@
         <put-attribute name="title"  value="Sok"/>
         <put-attribute name="body"   value="/WEB-INF/jsp/SokeSide.jsp"/>      
     </definition>
-    <definition name="MinSideRedAdmin" extends="baseLayout">
-        <put-attribute name="title"  value="Min Side"/>
-        <put-attribute name="body"   value="/WEB-INF/jsp/MinSideRedAdmin.jsp"/>      
-    </definition>
-    <definition name="MinSideRedGammel" extends="baseLayout">
-        <put-attribute name="title"  value="Min Side"/>
-        <put-attribute name="body"   value="/WEB-INF/jsp/MinSideRedGammel.jsp"/>      
-    </definition>
-    <definition name="EndrePassordRed" extends="baseLayout">
-        <put-attribute name="title"  value="Endre Passord"/>
-        <put-attribute name="body"   value="/WEB-INF/jsp/EndrePassordRed.jsp"/>      
+    <definition name="LeggTilBruker" extends="baseLayout">
+        <put-attribute name="title"  value="LeggTilBruker"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/LeggTilBruker.jsp"/>      
     </definition>
     
 </tiles-definitions>
