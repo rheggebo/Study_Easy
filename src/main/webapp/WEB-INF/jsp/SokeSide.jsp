@@ -31,15 +31,15 @@
             <br>
             <div>
                 <form class="checkboxes" action="">
-                    <input type="checkbox" name="Spes" value="Ansatt">Ansatt
+                    <input type="checkbox" id="ansatt" name="Spes" value="Ansatt">Ansatt
                     <br>
-                    <input type="checkbox" name="Spes" value="Student">Student
+                    <input type="checkbox" id="student" name="Spes" value="Student">Student
                     <br>
-                    <input type="checkbox" name="Spes" value="Fag">Fag
+                    <input type="checkbox" id="fag" name="Spes" value="Fag">Fag
                     <br>
-                    <input type="checkbox" name="Spes" value="Rom">Rom
+                    <input type="checkbox" id="rom" name="Spes" value="Rom">Rom
                     <br>
-                    <input type="checkbox" name="Spes" value="Klasse">Klasse</form></div>
+                    <input type="checkbox" id="klasse" name="Spes" value="Klasse">Klasse</form></div>
         </li>               
     </ul></div>
 
@@ -56,3 +56,10 @@
 </body>
 </html>
 
+    <script>
+    var ansatt=$("#ansatt").attr("checked") ? 1 : 0;
+    var student=$("#student").attr("checked") ? 1 : 0;
+    var fag=$("#fag").attr("checked") ? 1 : 0;
+    var rom=$("#rom").attr("checked") ? 1 : 0;
+    var klasse=$("#klasse").attr("checked") ? 1 : 0;
+   </script>
