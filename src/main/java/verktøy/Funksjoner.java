@@ -30,7 +30,10 @@ public class Funksjoner {
         testListe.add("Kasper");
         Bruker b = new Bruker();
         Bruker bruker = new Bruker();
+        Rom r=new Rom();
+        Rom rom=new Rom();
         
+         
       /*for(int i=0; i<si.getAlleBrukere().size();i++){
             liste.add(si.getAlleBrukere().get(i));
         }*/
@@ -44,8 +47,8 @@ public class Funksjoner {
         } else {
             liste.add("Fant ingen brukere på epost " + epost + " !");
         }
-        
-        
+      
+       
        
         return liste; 
         

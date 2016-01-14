@@ -79,12 +79,14 @@
  
 <div class="searchInfo">
     
-    <table><tr>
+    <table>
             <c:forEach var="liste" items="${liste}">
-                <c:out value="${liste}"></c:out>                               
+                <tr>
+                    <td><c:out value="${liste}"></c:out> </td>
+                </tr>                              
             </c:forEach>           
             
-    </tr></table>
+    </table>
 </div>
 
 
