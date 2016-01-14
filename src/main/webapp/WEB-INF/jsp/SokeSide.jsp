@@ -21,39 +21,7 @@
 
 <!DOCTYPE html>
 <html lang="no">
-<head>
-    <link rel="stylesheet" href="<c:url value="/resources/css/Hovedstilen.css"/>">
-    <title>SokeSide</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-
-
 <body>
-<header>
-    <a href="Forside"><img id="logo" src="<c:url value="/resources/images/LogoTeam1.png"/>"></a>
-    NTNU - Norges Teknisk-naturvitenskapelige Universitet · Study Easy © 2016<br>
-    <nav class="dropdownmenu">
-        <ul>
-            <li><a href="Forside">Forside</a></li>
-            <li><a href="Kontakt">Kontakt</a></li>
-            <li><a href="#">Romvalg</a>
-                <ul id="submenu">
-                    <li><a href="VelgRom">Bestill rom</a></li>
-                    <li><a href="FinnRom">Finn rom</a></li>
-                </ul>
-            </li>
-            <li><a href="SokeSide">Søk</a></li>
-            <li><a href="#">Min side</a>
-                <ul id="submenu">
-                    <li><a href="MinSide">Min informasjon</a></li>
-                    <li><a href="loggUt">Logg ut</a></li>
-                </ul>
-        </ul>
-    </nav>
-</header>
-
-
 <div class="searchNav">
     <ul>
         <li><div><form action="search" method="POST"  role="search" modelAttribute="soke">
@@ -63,51 +31,35 @@
             <br>
             <div>
                 <form class="checkboxes" action="">
-                    <input type="checkbox" name="Spes" value="Ansatt">Ansatt
+                    <input type="checkbox" id="ansatt" name="Spes" value="Ansatt">Ansatt
                     <br>
-                    <input type="checkbox" name="Spes" value="Student">Student
+                    <input type="checkbox" id="student" name="Spes" value="Student">Student
                     <br>
-                    <input type="checkbox" name="Spes" value="Fag">Fag
+                    <input type="checkbox" id="fag" name="Spes" value="Fag">Fag
                     <br>
-                    <input type="checkbox" name="Spes" value="Rom">Rom
+                    <input type="checkbox" id="rom" name="Spes" value="Rom">Rom
                     <br>
-                    <input type="checkbox" name="Spes" value="Klasse">Klasse</form></div>
-        </li>       
-        
+                    <input type="checkbox" id="klasse" name="Spes" value="Klasse">Klasse</form></div>
+        </li>               
     </ul></div>
 
  
-<div class="searchInfo">
-    
+<div class="searchInfo">    
     <table>
             <c:forEach var="liste" items="${liste}">
                 <tr>
                     <td><c:out value="${liste}"></c:out> </td>
                 </tr>                              
-            </c:forEach>           
-            
+            </c:forEach>                      
     </table>
 </div>
-
-
-
-
-
-<footer>
-    <h4>NTNU - Norges Teknisk-naturvitenskapelige Universitet</h4>
-    <a class="footerLenke" href="Forside.html">Hjem</a>
-    ·
-    <a class="footerLenke" href="MinSide.html">Min side</a>
-    ·
-    <a class="footerLenke" href="VelgRom.html">Velg rom</a>
-    ·
-    <a class="footerLenke" href="Forside.html">Om oss</a>
-    ·
-    <a class="footerLenke" href="Forside.html">FAQ</a>
-    ·
-    <a class="footerLenke" href="Kontakt.html">Contact</a>
-    <h4>Study Easy © 2016</h4>
-</footer>
 </body>
 </html>
 
+    <script>
+    var ansatt=$("#ansatt").attr("checked") ? 1 : 0;
+    var student=$("#student").attr("checked") ? 1 : 0;
+    var fag=$("#fag").attr("checked") ? 1 : 0;
+    var rom=$("#rom").attr("checked") ? 1 : 0;
+    var klasse=$("#klasse").attr("checked") ? 1 : 0;
+   </script>

@@ -8,38 +8,34 @@ package testing.kontroller;
 import kontroller.Hovedkontroller;
 import org.junit.*;
 import static org.junit.Assert.*;
-import static org.hamcrest.CoreMatchers.*;
 import static org.mockito.Mockito.*;
+
 import java.util.ArrayList;
+
+
 
 /**
  *
  * @author Ane
  */
+
 public class HovedkontrollerTest {
+
     
     public HovedkontrollerTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
     }
     
     @Before
     public void setUp() {
     }
     
-    @After
-    public void tearDown() {
-    }
-
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
     //
-    // @Test
-    // public void hello() {}
+    @Test
+    public void hello() {}
+    
+    @After
+    public void tearDown() {
+    }
 }
