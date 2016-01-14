@@ -25,6 +25,8 @@ public interface Service {
     
     public Bruker hentBruker(Bruker bruker);
     
+    public List<Bruker> hentBrukerSok(String sokeord);
+    
     public boolean endreBruker(Bruker bruker);
     
     public boolean slettBruker(Bruker bruker);
@@ -70,6 +72,8 @@ public interface Service {
     public Rom getRombestilling();
     
     public List<Rom> getRomFraNavn(Rom r);
+    
+    public List<Rom> getRomFraNavn(String navn);
     
     public List<Rom> getRomFraInnhold(Rom r);
     

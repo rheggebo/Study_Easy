@@ -10,6 +10,7 @@ import beans.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import javax.faces.application.ProjectStage;
 import org.springframework.beans.factory.annotation.Autowired;
 import service.Service;
 
@@ -24,6 +25,7 @@ public class Funksjoner {
 
   public ArrayList<Object> getAlleSokeTreff(String s, Service si){
         ArrayList<Object> liste=new ArrayList();
+
         ArrayList<Object> testListe=new ArrayList();
         ArrayList<Object> testOut=new ArrayList();
         testListe.add("Sigrid");
@@ -36,6 +38,19 @@ public class Funksjoner {
         
         //Bruker br=si.getRomFraNavn(s);
         
+        ArrayList<Bruker> brukerListe = new ArrayList<Bruker>();
+                
+        System.out.println("heioghåogenflaskemedrom");
+        List<Bruker> brukerSokListe = si.hentBrukerSok(s);
+        System.out.println(brukerSokListe.toString());
+        System.out.println("heioghåogenflaskemedrom");
+        /*Bruker brukerEmail = si.hentBruker(s);*/
+        /*if(brukerEmail != null) {
+            brukerListe.add(brukerEmail);
+        }
+        */
+        brukerListe.addAll(brukerSokListe);
+        liste.addAll(brukerListe);
         
         
         return liste; 

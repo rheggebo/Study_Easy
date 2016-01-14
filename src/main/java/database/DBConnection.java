@@ -21,6 +21,8 @@ public interface DBConnection {
     
     public Bruker getBruker(String epost);
     
+    public List<Bruker> getBrukerSok(String sokeord);
+    
     public boolean sjekkPassord(String epost, String passord);
     
     public boolean oppdaterBruker(Bruker b);

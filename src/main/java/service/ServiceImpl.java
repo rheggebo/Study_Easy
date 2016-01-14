@@ -51,7 +51,12 @@ public class ServiceImpl implements Service{
     public Bruker hentBruker(Bruker bruker) {
         return dbc.getBruker(bruker.getEpost());
     }
-
+    
+    @Override
+    public List<Bruker> hentBrukerSok(String sokeord) {
+        return dbc.getBrukerSok(sokeord);
+    }
+   
     @Override
     public boolean endreBruker(Bruker bruker) {
         System.out.println("ASDASDASDASDASDASD");
@@ -180,6 +185,11 @@ public class ServiceImpl implements Service{
     @Override
     public List<Rom> getRomFraNavn(Rom r) {
         return dbc.getRomFraNavn(r);
+    }
+    
+    @Override
+    public List<Rom> getRomFraNavn(String navn) {
+        return dbc.getRomFraNavn(navn);
     }
 
     @Override

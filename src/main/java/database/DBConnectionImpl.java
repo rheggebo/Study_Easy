@@ -31,6 +31,7 @@ import verktøy.PasswordHasher;
 public class DBConnectionImpl implements DBConnection{
     
     private final String getBrukerEpost = "SELECT * FROM brukere WHERE EPOST=?";
+    private final String getBrukerSok = "SELECT * FROM brukere WHERE (fornavn LIKE '%?%') OR (etternavn LIKE '%?%')";
     private final String endreBruker = "UPDATE brukere SET PASSORD=?, TYPE=?, FORNAVN=?, ETTERNAVN=? WHERE EPOST=?";
     private final String nyBruker = "INSERT INTO brukere VALUES(?,?,?,?,?)";
     private final String slettBruker = "DELETE FROM brukere WHERE EPOST=?";
@@ -94,6 +95,11 @@ public class DBConnectionImpl implements DBConnection{
     @Override
     public Bruker getBruker(String epost) {
         return (Bruker) jT.queryForObject(getBrukerEpost, new Object[]{epost},new BrukerMapper());
+    }
+    
+    @Override
+    public List<Bruker> getBrukerSok(String sokeord) {
+        return jT.query(getBrukerSok, new Object[]{sokeord},new BrukerMapper());
     }
     
     @Override
