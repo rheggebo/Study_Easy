@@ -22,7 +22,7 @@ public class Funksjoner {
 
   
 
-  public ArrayList<Object> getAlleSokeTreff(String s, Service si, String[] select){
+  public ArrayList<Object> getAlleSokeTreff(String s, Service si, String[] select, String str){
         ArrayList<Object> liste=new ArrayList();
         ArrayList<Object> testListe=new ArrayList();
         ArrayList<Object> testOut=new ArrayList();
@@ -43,6 +43,15 @@ public class Funksjoner {
         } else {
             liste.add("Fant ingen brukere på epost " + epost + " !");
         }
+        
+        liste.add(str);
+        
+        /*if(select == null) {
+            liste.add("checkboxlisten er lik null");
+        }*/
+        /*if(select.length == 0) {
+            liste.add("checkboxlisten har 0 elementer");
+        }*/
       
        
        
