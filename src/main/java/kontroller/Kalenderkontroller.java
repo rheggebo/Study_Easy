@@ -45,7 +45,8 @@ public class Kalenderkontroller {
         String tittel = events.get(0).getTittel();
         System.out.println(tittel);
         
-        String[] farger = {"#FFA500", "#00FF7F", "#00BFFF", "#FFFF00"};
+        //0: forelesning, 1: øving, 2: privat ting, 3: romreservasjon
+        String[] farger = {"#00BFFF", "#00FF7F", "#FFFF00", "#FFA500"};
         
         String jsonSend = "";
         
@@ -56,7 +57,7 @@ public class Kalenderkontroller {
             String slutt = "" + event.getSluttTid();
             
             String descr = "";
-            /*if (event.getFag() != null){
+            if (event.getFag() != null){
                 descr += "Fag: " + event.getFag() + "<br>";
             }
             if (event.getRom() != null){
@@ -64,7 +65,7 @@ public class Kalenderkontroller {
             }
             if (event.getNotat() != null){
                 descr += "Notat: " + event.getNotat();
-            }*/
+            }
             Map<String, Object> map = new HashMap<String, Object>();
             map.put("id", event.getId());
             map.put("title", event.getTittel());
