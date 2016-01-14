@@ -47,10 +47,8 @@ public class Funksjoner {
         } else {
             liste.add("Fant ingen brukere på epost " + epost + " !");
         }
-      if(s!=null){
-          
-      }
-        
+      
+       
        
         return liste; 
         
