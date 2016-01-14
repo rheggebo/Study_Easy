@@ -31,6 +31,7 @@ public class Hovedkontroller {
             return "Forside";
         }
         model.addAttribute("bruker", new Bruker());
+        model.addAttribute("brukerb", new BrukerB());
         return "Innlogging";
     }
     
@@ -91,6 +92,7 @@ public class Hovedkontroller {
     public String forside(HttpSession sess, Model model){
         BrukerB brukerb = (BrukerB) sess.getAttribute("brukerBean");
         if(brukerb != null && brukerb.isInnlogget()){
+            model.addAttribute("brukerb", brukerb);
             return "Forside";
         }
         model.addAttribute("bruker", new Bruker());
