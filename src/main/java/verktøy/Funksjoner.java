@@ -34,12 +34,9 @@ public class Funksjoner {
         Rom r=new Rom();
         Rom rom=new Rom();
         
-        Bruker br=si.hentBruker(s);
-        for(int i=0;i<liste2.size();i++){
-            if(s.contains(liste2.get(i).toString())){
-            liste.add(liste2.get(i));
-            }
-        }
+        Bruker br=si.getRomFraNavn(s);
+        
+        
         
         return liste; 
        
