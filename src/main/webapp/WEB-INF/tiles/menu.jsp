@@ -1,9 +1,5 @@
-<!--
-<a href="<c:url value="Forside"/>" >           <spring:message code="menyvalg1" />  </a><br>
-<a href="<c:url value="MinSide"/>" >   <spring:message code="menyvalg2" />  </a><br>
-<a href="<c:url value="Kontakt"/>">         <spring:message code="menyvalg3" />  </a><br>
--->
 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <nav class="dropdownmenu">
     <ul> 
         <li><a href="Forside">Forside</a></li>
