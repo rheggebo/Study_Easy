@@ -4,7 +4,7 @@
     <fieldset style = "width:20%">
         <legend>LeggeTilBruker</legend>
         <dl>
-            <form:form action="LeggTilBrukerLagre" modelAttribute="bruker">
+            <form:form action="LeggTilBrukerLagre" modelAttribute="nyBruker">
                 
             <dt><label for="fornavn">Fornavn:<em>*</em></label></dt>
             <dd><form:input id="fornavn" type="text" name="fornavn" placeholder="Ola" autofocus="true" required="true" path="fornavn"/></dd>
@@ -16,9 +16,9 @@
             <dd><form:input type="email" id="epost" placeholder="Skriv inn e-post" required="true" path="epost"/></dd>
 
             <dt><label for="tilgangniva">Type:<em>*</em></label></dt>
-            <dd><select id="tilgangniva" required="true" path="tilgangniva">
+            <dd><select name="tilgangniva" id="tilgangniva" required="true" path="tilgangniva">
                     <option value="Elev">Elev</option>
-                    <option value="Lærer">Lærer</option>
+                    <option value="L?rer">Lærer</option>
                     <option value="Timeeplansansvarlig">Timeplanansvarlig</option>
                 </select>
             </dd>

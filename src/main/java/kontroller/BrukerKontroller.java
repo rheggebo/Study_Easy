@@ -175,8 +175,8 @@ public class BrukerKontroller {
     }
     
     @RequestMapping(value="LeggTilBrukerLagre")
-    public String leggTilBrukerLagre(@Valid @ModelAttribute("bruker") Bruker bruker, @RequestParam("tilgangniva")String tilgang, Model model, BindingResult error){
-        if(error.hasErrors()){
+    public String leggTilBrukerLagre(@Valid @ModelAttribute("bruker") Bruker bruker, @RequestParam("tilgangniva")int tilgang, Model model, BindingResult error){
+        /*if(error.hasErrors()){
             model.addAttribute("melding", "feilmelding.nyBrukerValidering");
             return "LeggTilBruker";
         }
@@ -192,6 +192,8 @@ public class BrukerKontroller {
         }else{
             model.addAttribute("melding", "feilmelding.nyBruker");
             return "LeggTilbruker";
-        }
+        }*/
+        System.out.println(tilgang);
+        return "MinSide";
     }
 }
