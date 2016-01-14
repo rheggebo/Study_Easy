@@ -160,8 +160,8 @@ public class BrukerKontroller {
         return "Innlogging";
     }
     
-    @RequestMapping("MinSideRedLagre")
-    public String minSideRedLagre(@ModelAttribute("bruker")BrukerB brukerb, HttpSession sess){
+    @RequestMapping(value="MinSideRedLagrer", method=RequestMethod.POST)
+    public String minSideRedLagre(@ModelAttribute("bruker") BrukerB brukerb, HttpSession sess){
         System.out.println("MinSideRedLagre************");
         BrukerB brukerbb = (BrukerB) sess.getAttribute("brukerBean");
         BrukerB nyBrukerInfo = new BrukerB();

@@ -3,7 +3,8 @@
     margin: auto;
     border-radius: 12px;
     position: relative;
-    top: 15%;
+    
+    top: -25%;
     /* left: 50%; */
     background-color: lightgray;
     box-shadow: darkgray 2px 2px 2px;
@@ -31,13 +32,36 @@
     margin: 20px;
 }
 
+#loggInnBilde {
+    border-radius: 8px; 
+    padding: 10px; 
+    top: 10%; 
+    margin-left: 78px;
+}
+
+#loggInnGlemtPassord{
+    position: absolute;
+    top: 93%;
+    left: 75%;
+}
+
+#loggInnKnapp{
+    width: 460px;
+    padding: 15px 10px;
+    position: absolute;
+    top: 145%;
+    left: 50%;
+    margin-left: -230px;
+    margin-top: -277px;
+    background-color: #00BFFF;
+    color: white;
+    border-radius: 12px;
+}
+
 #feilmelding{
     position: absolute;
-    top: 110%;
-    left: 52%;
-    margin-left: -246px;
-    margin-top: -203px;
-    width: 400px;
+    top: 93%;
+    left: 6%;
     color: red;
 }
 input{

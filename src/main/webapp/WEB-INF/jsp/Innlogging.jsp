@@ -7,56 +7,28 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
-<html lang="en">
-<head>
-    <link rel="shortcut icon" href="<c:url value="/resources/images/BBIkon2.png"/>">
-    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/Login3.css"/>">
-  <meta charset="UTF-8">
-  <title>Study Easy</title>
-</head>
-<body>
 
 <div id="ILBoks">
-  <img src="resources/images/Study_Easy_Login1.png" style="border-radius: 8px; padding: 10px; top: 10%; margin-left: 78px"/>
-  <form:form action="logInSjekk" modelAttribute="bruker">
-    <div id="section">
-      <div id="inputwrap">
-        <form:input type="text" placeholder="Epost" path="epost" style="width: 420px"/><hr>
-        <form:input type="password" placeholder="Passord" path="passord" style="width: 420px"/>
-      </div>
-
-    </div>
-    <input type="submit" value="Logg inn" style="
-    width: 460px;
-    padding: 15px 10px;
-    position: absolute;
-    top: 145%;
-    left: 50%;
-    margin-left: -230px;
-    margin-top: -277px;
-    background-color: dodgerblue;
-    color: white;
-    border-radius: 12px;"><br>
-
-
-    <a href="glemtPassord" name="glemsk" style="
-    position: absolute;
-    top: 93%;
-    left: 75%;">Glemt passord?</a>
-    
-
-  </form:form>
-  
-</div>
+    <img id="loggInnBilde" alt="Test" src="resources/images/Study_Easy_Login1.png"/>
+    <form:form action="logInSjekk" modelAttribute="bruker">
+        <div id="section">
+            <div id="inputwrap">
+              <form:input type="text" placeholder="Epost" path="epost" style="width: 420px"/><hr>
+              <form:input type="password" placeholder="Passord" path="passord" style="width: 420px"/>
+            </div>
+        </div>
     <div id="feilmelding">
-        <c:set var="meldingS" value="${melding}"></c:set>
+    <c:set var="meldingS" value="${melding}"></c:set>
     <c:if test="${not empty meldingS}">
         <spring:message code="${melding}" />
     </c:if>
     </div>
-</body>
-</html>
+    <a id="loggInnGlemtPassord" href="glemtPassord" name="glemsk">Glemt passord?</a>
+    <input id="loggInnKnapp" type="submit" value="Logg inn"><br>
+  </form:form>
+  
+</div>
+

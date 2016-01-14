@@ -6,17 +6,23 @@ date:      08/01/16
 author:    Ingvild, Ane og Sigrid
 ---------------*/
 
+html {
+    
+}
+
+#baseLayoutTable{
+    
+}
+
 body {
     margin:0;
     padding:0;
 }
 
 main {
-    margin:0 auto;
-    overflow:auto;
+    margin:0;
+    //overflow:auto;
     padding:40px;
-    width:940px;
-    height: 800px;
 }
 
 header{
@@ -26,7 +32,6 @@ header{
     font: 12px Microsoft YaHei Light;
     margin-left: auto;
     margin-right: auto;
-
 }
 
 footer {
@@ -73,6 +78,7 @@ footer, header{
 .dropdownmenu li {
     float: left;
     position: relative;
+    width: 20%; 
 }
 .dropdownmenu a {
     text-transform: uppercase;
@@ -80,7 +86,7 @@ footer, header{
     color: #FFFFFF;
     display: block;
     font: bold 12px/20px Microsoft YaHei Light;
-    padding: 12px 90px;
+    padding: 12px;
     text-align: center;
     text-decoration: none;
 }
