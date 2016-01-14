@@ -21,7 +21,7 @@
                 <li><a href="MinSide">Min informasjon</a></li>
                 
                 <li>
-                    <c:set var="tilgang" value="${bruker.getTilgangsniva()}"></c:set>
+                    <c:set var="tilgang" value="${brukerb.getTilgangsniva()}"></c:set>
                     <c:if test="${tilgang == 2}">
                         <a href="LeggTilBruker">Legg til bruker</a>
                     </c:if>
