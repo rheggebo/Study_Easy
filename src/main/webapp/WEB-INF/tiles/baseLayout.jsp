@@ -21,7 +21,7 @@
 
     <div class="space"></div>
     
-        <table id="baseLayoutTable" border="0" cellpadding="2" cellspacing="2" width="800" align="center">
+        <table id="baseLayoutTable" border="0" cellpadding="2" cellspacing="2" width="900" align="center">
             <tr>
                 <td height="0">
                     <tiles:insertAttribute name="header" />
