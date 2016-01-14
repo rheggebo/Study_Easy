@@ -21,7 +21,7 @@ body {
 
 main {
     margin:0;
-    //overflow:auto;
+    overflow:auto;
     padding:40px;
 }
 
@@ -120,7 +120,7 @@ li:hover ul#submenu {
     width: 100px;
 }
 
-label em {
+em {
     color: red;
 }
 
@@ -211,4 +211,8 @@ footer{
 
 #tekst {
     color: red;
+}
+
+.utstyr{
+    width: 30px;
 }

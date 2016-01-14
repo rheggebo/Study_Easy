@@ -6,27 +6,35 @@
 
 
 <main>
+    <div id='calendar'></div>
     <form>
         <ul style="list-style-type: none">
             <li>
                <label for="background-color1"></label>
-               <input id="background-color1" type="color" value="#00BFFF" disabled="true"/>
-               <input type="checkbox" name="color" value="#00BFFF" checked>Forelesning</li>
+               <input id="background-color1" type="color" value="#00BFFF" style="width: 20px; background-color: white" disabled="true"/>
+               <label for="checkbox_1">Forelesning</label>
+               <input type="checkbox" name="checkbox1" id="checkbox_1" value="background-color1"  style="width: 15px" checked>
+            </li>
             <li>
                <label for="background-color2"></label>
-               <input id="background-color2" type="color" value="#00FF7F" disabled="true"/>
-               <input type="checkbox" name="color" value="00FF7F" checked>Øving</li>
+               <input id="background-color2" type="color" value="#00FF7F" style="width: 20px; background-color: white" style="background-color: #ffffff" disabled="true"/>
+               <label for="checkbox_2">Øving</label>
+               <input type="checkbox" name="checkbox2" id="checkbox_2" value="background-color2"  style="width: 15px" checked>
+            </li>
             <li>
                <label for="background-color3"></label>
-               <input id="background-color3" type="color" value="#FFA500" disabled="true"/>
-               <input type="checkbox" name="color" value="FFA500" checked>Rom reservasjon</li>
+               <input id="background-color3" type="color" value="#FFA500" style="width: 20px; background-color: white" style="background-color: #ffffff" disabled="true"/>
+               <label for="checkbox_3">Rom reservasjon</label>
+               <input type="checkbox" name="checkbox3" id="checkbox_3" value="background-color3"  style="width: 15px" checked>
+            </li>
             <li>
                <label for="background-color4"></label>
-               <input id="background-color4" type="color" value="#FFFF00" disabled="true"/>
-               <input type="checkbox" name="color" value="#FFFF00" checked>Privat hendelse</li>
+               <input id="background-color4" type="color" value="#FFFF00" style="width: 20px; background-color: white" style="background-color: #ffffff" disabled="true"/>
+               <label for="checkbox_4">Privat hendelse</label>
+               <input type="checkbox" name="checkbox4" id="checkbox_4" value="background-color4"  style="width: 15px" checked>
+            </li>
         </ul>
     </form>
-    <div id='calendar'></div>
 </main>
 
 

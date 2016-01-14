@@ -20,41 +20,42 @@
 <main>
     <aside>
         <form action="" method="post" onsubmit="return validate();">
+            <fieldset>
+                <legend>Velg ønsket spesifikasjoner:</legend>
+                <dl>
+                    <dt><label for="romtype">Romtype:<em>*</em></label></dt>
+                    <dd><select id="romtype" name="romtype" required >
+                        <option value="forelesingssal">Forelesingssal</option>
+                        <option value="møterom">Møterom</option>
+                        <option value="grupperom">Grupperom</option>
+                        <option value="klasserom">Klasserom</option>
+                    </select>
 
-            <legend>Velg ønsket spesifikasjoner rommet skal ha:</legend>
-            <dl>
-                Romtype:<em>*</em><br>
-                <dd><select name="romtype" required >
-                    <option value="forelesingssal">Forelesingssal</option>
-                    <option value="møterom">Møterom</option>
-                    <option value="grupperom">Grupperom</option>
-                    <option value="klasserom">Klasserom</option>
-                </select>
+                    </dd>
+                    <!-- <dd><input type="text" name="romtype" list="ref-romtype" placeholder="Nedtrekksliste"></dd>
+                     <datalist id="ref-romtype">
+                     </datalist> -->
 
-                </dd>
-                <!-- <dd><input type="text" name="romtype" list="ref-romtype" placeholder="Nedtrekksliste"></dd>
-                 <datalist id="ref-romtype">
-                 </datalist> -->
+                    <dt><label for="antStolplasser">Antall stolplasser:<em>*</em></label></dt>
+                    <dd><input id="antStolplasser" type="number" name="num-stoler" min="1" max="150" value="1" required></dd>
 
-                Antall stolplasser:<em>*</em><br>
-                <dd><input type="number" name="num-stoler" min="1" max="150" value="1" required></dd>
+                    <dt><label for="str">Strørrelse(m2):</label></dt>
+                    <dd><input id="str" name="størrelse" type="number" min="5" max="200" value="5"></dd>
 
-                Størrelse(m2):<br>
-                <dd><input id="str" name="størrelse" type="number" min="5" max="200" value="5"></dd>
+                    <dt><label for="utstyr">Utstyr:</label></dt>
+                    <dd><input class="utstyr" type="checkbox" id="skjerm" value="Skjerm">PC-skjerm<br>
+                        <input class="utstyr"type="checkbox" id="tavle" value="tavle">Tavle<br>
+                        <input class="utstyr"type="checkbox" id="stikkontakter" value="stikkontakter">Stikkontakter<br>
+                        <input class="utstyr"type="checkbox" id="prosjektor" value="prosjektor">Prosjektor<br>
+                    </dd>
+                    
 
-                Utstyr:<br>
-                <dd><input type="checkbox" id="skjerm" value="Skjerm">PC-skjerm <br>
-                    <input type="checkbox" id="tavle" value="tavle">Tavle <br>
-                    <input type="checkbox" id="stikkontakter" value="stikkontakter">Stikkontakter <br>
-                    <input type="checkbox" id="prosjektor" value="prosjektor">Prosjektor <br></dd>
+                   <dt><label for="datoFinnRom">Dato:<em>*</em></label></dt>
+                    <dd><input id="datoFinnRom" type="date" name="date" required></dd>
 
-
-
-                Dato:<em>*</em><br>
-                <dd><input type="date" name="date" required></dd>
-
-            </dl>
-            <input type="submit" value="Finn ledig rom">
+                </dl>
+                <input type="submit" value="Finn ledig rom">
+            </fieldset>
         </form>
     </aside>
 
