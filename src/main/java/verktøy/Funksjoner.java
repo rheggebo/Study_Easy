@@ -22,7 +22,7 @@ public class Funksjoner {
 
   
 
-  public ArrayList<Object> getAlleSokeTreff(String s, Service si, String[] select, String str){
+  public ArrayList<Object> getAlleSokeTreff(String s, Service si){
         ArrayList<Object> liste=new ArrayList();
         ArrayList<Object> testListe=new ArrayList();
         ArrayList<Object> testOut=new ArrayList();
@@ -33,7 +33,14 @@ public class Funksjoner {
         Bruker bruker = new Bruker();
         Rom r=new Rom();
         Rom rom=new Rom();
-            
+        
+        Bruker br=si.getRomFraNavn(s);
+        
+        
+        
+        return liste; 
+       
+         /**     
         String epost = "test1@aol.com";
         bruker.setEpost(epost);
         
@@ -43,9 +50,7 @@ public class Funksjoner {
         } else {
             liste.add("Fant ingen brukere på epost " + epost + " !");
         }
-        
-        liste.add(str);
-        
+        */
         /*if(select == null) {
             liste.add("checkboxlisten er lik null");
         }*/
@@ -53,9 +58,8 @@ public class Funksjoner {
             liste.add("checkboxlisten har 0 elementer");
         }*/
       
-       
-       
-        return liste; 
+   
+        
         
        /* for(int i=0; i<testListe.size();i++){
             if(s.equalsIgnoreCase(testListe.get(i).toString())){
