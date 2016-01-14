@@ -9,6 +9,7 @@ import beans.Bruker;
 import beans.BrukerB;
 import beans.Passord;
 import email.Email;
+import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import service.Service;
 import verktøy.Passordgenerator;
 import verktøy.PasswordHasher;
@@ -152,7 +153,7 @@ public class BrukerKontroller {
             if(brukerb.getTilgangsniva() == 2){
                 return "MinSideRedAdmin";
             }else{
-                return "MinSideRed";
+                return "MinSideRedGammel";
             }
             
         }
@@ -160,8 +161,8 @@ public class BrukerKontroller {
         return "Innlogging";
     }
     
-    @RequestMapping(value="MinSideRedLagrer", method=RequestMethod.POST)
-    public String minSideRedLagre(@ModelAttribute("bruker") BrukerB brukerb, HttpSession sess){
+    @RequestMapping(value="MinSideRedLagre")
+    public String minSideRedLagre(@ModelAttribute("bruker") BrukerB brukerb, @RequestParam("dato1")Date dato, HttpSession sess){
         System.out.println("MinSideRedLagre************");
         BrukerB brukerbb = (BrukerB) sess.getAttribute("brukerBean");
         BrukerB nyBrukerInfo = new BrukerB();

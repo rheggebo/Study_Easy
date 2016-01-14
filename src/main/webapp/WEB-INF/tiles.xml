@@ -45,5 +45,13 @@
         <put-attribute name="title"  value="Sok"/>
         <put-attribute name="body"   value="/WEB-INF/jsp/SokeSide.jsp"/>      
     </definition>
+    <definition name="MinSideRedAdmin" extends="baseLayout">
+        <put-attribute name="title"  value="Min Side"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/MinSideRedAdmin.jsp"/>      
+    </definition>
+    <definition name="MinSideRedGammel" extends="baseLayout">
+        <put-attribute name="title"  value="Min Side"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/MinSideRedGammel.jsp"/>      
+    </definition>
     
 </tiles-definitions>
