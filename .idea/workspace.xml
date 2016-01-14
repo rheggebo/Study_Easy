@@ -1,0 +1,1564 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="493b3861-99b4-4724-8f47-a3f58c321067" name="Default" comment="" />
+    <ignored path="Study_Easy.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <ignored path="$PROJECT_DIR$/out/" />
+    <ignored path=".idea/dataSources.local.xml" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="Study_Easy" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="JAVA/beans.Klasse" pinned="false" current-in-tab="false">
+        <entry file="uml://JAVA/beans.Klasse">
+          <provider selected="true" editor-type-id="UmlEditorProvider">
+            <state>
+              <ID>JAVA</ID>
+              <OriginalElement>beans.Klasse</OriginalElement>
+              <nodes />
+              <notes />
+              <edges />
+              <settings layout="Hierarchic Group" zoom="1.0" x="-164.0" y="24.0" />
+              <SelectedNodes />
+              <Categories>
+                <Category>Methods</Category>
+                <Category>Fields</Category>
+              </Categories>
+              <SCOPE>All</SCOPE>
+              <VISIBILITY>public</VISIBILITY>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="JAVA/beans.Fag" pinned="false" current-in-tab="true">
+        <entry file="uml://JAVA/beans.Fag">
+          <provider selected="true" editor-type-id="UmlEditorProvider">
+            <state>
+              <ID>JAVA</ID>
+              <OriginalElement>beans.Fag</OriginalElement>
+              <nodes>
+                <node x="846.5922619047615" y="756.0">beans.Klasse</node>
+                <node x="3680.2919217687067" y="1782.0">mapper.BrukerMapper</node>
+                <node x="1026.0" y="3241.0">java</node>
+                <node x="675.0" y="3241.0">org.springframework</node>
+                <node x="1818.0126984126975" y="2570.0">kontroller.SokeKontroller</node>
+                <node x="877.0" y="3241.0">javax</node>
+                <node x="3903.2919217687067" y="1782.0">mapper.RomMapper</node>
+                <node x="1090.6" y="2500.0">kontroller.Hovedkontroller</node>
+                <node x="0.0" y="3241.0">beans.Sok</node>
+                <node x="1146.5126984126975" y="934.0">beans.Bruker</node>
+                <node x="1429.904761904762" y="518.0">beans.Fag</node>
+                <node x="0.0" y="1772.0">verktøy.PasswordHasher</node>
+                <node x="1738.9464285714282" y="1462.0">service.Service</node>
+                <node x="3441.2919217687063" y="2270.0">database.DBConnectionImpl</node>
+                <node x="4011.7919217687067" y="796.0">mapper.FagMapper</node>
+                <node x="2868.2919217687067" y="1472.0">database.DBConnection</node>
+                <node x="443.0" y="1782.0">email.Email</node>
+                <node x="233.0" y="1772.0">verktøy.Passordgenerator</node>
+                <node x="715.0" y="1692.0">beans.Passord</node>
+                <node x="2044.8335884353733" y="2580.0">kontroller.Kalenderkontroller</node>
+                <node x="3136.7499433106573" y="3008.0">konfig.Konfigurasjon</node>
+                <node x="2396.7085884353733" y="2250.0">service.ServiceImpl</node>
+                <node x="4091.2919217687067" y="588.0">mapper.KalenderEventMapper</node>
+                <node x="423.0" y="3241.0">konfig.InitialiserDispatcherServlet</node>
+                <node x="1605.9464285714284" y="1771.5">verktøy.Funksjoner</node>
+                <node x="1193.3335884353737" y="0.0">beans.KalenderEvent</node>
+                <node x="2561.487103174602" y="1044.0">beans.Rom</node>
+                <node x="365.1912698412689" y="2530.0">kontroller.BrukerKontroller</node>
+                <node x="438.78353174603035" y="944.0">beans.BrukerB</node>
+                <node x="214.0" y="3241.0">email.EmailSetup</node>
+              </nodes>
+              <notes />
+              <edges>
+                <edge source="kontroller.BrukerKontroller" target="verktøy.PasswordHasher">
+                  <point x="-128.7000000000001" y="-74.0" />
+                  <point x="379.49126984126883" y="2230.0" />
+                  <point x="53.0" y="2230.0" />
+                  <point x="-53.0" y="34.0" />
+                </edge>
+                <edge source="kontroller.BrukerKontroller" target="service.Service">
+                  <point x="128.70000000000005" y="-74.0" />
+                  <point x="636.8912698412689" y="2210.0" />
+                  <point x="1825.8464285714283" y="2210.0" />
+                  <point x="-347.5999999999999" y="344.0" />
+                </edge>
+                <edge source="beans.BrukerB" target="beans.Klasse">
+                  <point x="132.5" y="-214.0" />
+                  <point x="836.2835317460303" y="909.0" />
+                  <point x="910.8422619047615" y="909.0" />
+                  <point x="-64.25" y="64.0" />
+                </edge>
+                <edge source="service.ServiceImpl" target="service.Service">
+                  <point x="-282.66666666666697" y="-354.0" />
+                  <point x="2538.0419217687063" y="2230.0" />
+                  <point x="2521.046428571428" y="2230.0" />
+                  <point x="347.5999999999999" y="344.0" />
+                </edge>
+                <edge source="kontroller.BrukerKontroller" target="beans.Bruker">
+                  <point x="100.09999999999991" y="-74.0" />
+                  <point x="608.2912698412688" y="2200.0" />
+                  <point x="1070.5" y="2200.0" />
+                  <point x="1070.5" y="1442.0" />
+                  <point x="1264.5841269841262" y="1442.0" />
+                  <point x="-157.42857142857133" y="224.0" />
+                </edge>
+                <edge source="verktøy.Funksjoner" target="beans.Bruker">
+                  <point x="0.0" y="-34.5" />
+                  <point x="1662.4464285714284" y="1432.0" />
+                  <point x="1500.7269841269833" y="1432.0" />
+                  <point x="78.71428571428578" y="224.0" />
+                </edge>
+                <edge source="kontroller.Hovedkontroller" target="beans.Bruker">
+                  <point x="0.0" y="-104.0" />
+                  <point x="1275.1" y="2200.0" />
+                  <point x="1306.5" y="2200.0" />
+                  <point x="1306.5" y="1442.0" />
+                  <point x="1422.0126984126975" y="1442.0" />
+                  <point x="0.0" y="224.0" />
+                </edge>
+                <edge source="service.ServiceImpl" target="database.DBConnection">
+                  <point x="282.6666666666665" y="-354.0" />
+                  <point x="3103.37525510204" y="2230.0" />
+                  <point x="3066.2919217687067" y="2230.0" />
+                  <point x="-198.0" y="334.0" />
+                </edge>
+                <edge source="kontroller.SokeKontroller" target="service.Service">
+                  <point x="45.75" y="-34.0" />
+                  <point x="1955.2626984126975" y="2230.0" />
+                  <point x="2173.4464285714284" y="2230.0" />
+                  <point x="0.0" y="344.0" />
+                </edge>
+                <edge source="mapper.KalenderEventMapper" target="beans.KalenderEvent">
+                  <point x="0.0" y="-24.0" />
+                  <point x="4212.291921768707" y="493.0" />
+                  <point x="1651.8335884353737" y="493.0" />
+                  <point x="196.5" y="234.0" />
+                </edge>
+                <edge source="database.DBConnectionImpl" target="mapper.FagMapper">
+                  <point x="158.4000000000001" y="-334.0" />
+                  <point x="3995.6919217687064" y="2230.0" />
+                  <point x="4106.791921768707" y="2230.0" />
+                  <point x="0.0" y="24.0" />
+                </edge>
+                <edge source="kontroller.Hovedkontroller" target="service.Service">
+                  <point x="147.5999999999999" y="-104.0" />
+                  <point x="1422.6999999999998" y="2220.0" />
+                  <point x="1999.6464285714283" y="2220.0" />
+                  <point x="-173.79999999999995" y="344.0" />
+                </edge>
+                <edge source="kontroller.BrukerKontroller" target="email.Email">
+                  <point x="14.299999999999955" y="-74.0" />
+                  <point x="522.4912698412688" y="2170.0" />
+                  <point x="569.0" y="2170.0" />
+                  <point x="0.0" y="24.0" />
+                </edge>
+                <edge source="service.ServiceImpl" target="beans.Bruker">
+                  <point x="0.0" y="-354.0" />
+                  <point x="2820.7085884353733" y="2230.0" />
+                  <point x="2857.7919217687067" y="2230.0" />
+                  <point x="2857.7919217687067" y="1422.0" />
+                  <point x="1579.441269841269" y="1422.0" />
+                  <point x="157.42857142857156" y="224.0" />
+                </edge>
+                <edge source="mapper.BrukerMapper" target="beans.Bruker">
+                  <point x="0.0" y="-24.0" />
+                  <point x="3781.7919217687067" y="1412.0" />
+                  <point x="1658.1555555555547" y="1412.0" />
+                  <point x="236.1428571428571" y="224.0" />
+                </edge>
+                <edge source="kontroller.BrukerKontroller" target="beans.Passord">
+                  <point x="42.89999999999998" y="-74.0" />
+                  <point x="551.091269841269" y="2180.0" />
+                  <point x="882.0" y="2180.0" />
+                  <point x="0.0" y="114.0" />
+                </edge>
+                <edge source="beans.Bruker" target="beans.KalenderEvent">
+                  <point x="0.0" y="-224.0" />
+                  <point x="1422.0126984126975" y="909.0" />
+                  <point x="1419.404761904762" y="909.0" />
+                  <point x="1419.404761904762" y="493.0" />
+                  <point x="1389.8335884353737" y="493.0" />
+                  <point x="-65.5" y="234.0" />
+                </edge>
+                <edge source="kontroller.Hovedkontroller" target="beans.BrukerB">
+                  <point x="-147.60000000000014" y="-104.0" />
+                  <point x="1127.4999999999998" y="2200.0" />
+                  <point x="1081.5" y="2200.0" />
+                  <point x="1081.5" y="1422.0" />
+                  <point x="836.2835317460303" y="1422.0" />
+                  <point x="132.5" y="214.0" />
+                </edge>
+                <edge source="beans.Fag" target="beans.KalenderEvent">
+                  <point x="0.0" y="-94.0" />
+                  <point x="1569.404761904762" y="493.0" />
+                  <point x="1520.8335884353737" y="493.0" />
+                  <point x="65.5" y="234.0" />
+                </edge>
+                <edge source="konfig.Konfigurasjon" target="database.DBConnectionImpl">
+                  <point x="121.5" y="-94.0" />
+                  <point x="3501.2499433106573" y="2983.0" />
+                  <point x="3837.2919217687063" y="2983.0" />
+                  <point x="0.0" y="334.0" />
+                </edge>
+                <edge source="mapper.RomMapper" target="beans.Rom">
+                  <point x="0.0" y="-24.0" />
+                  <point x="3999.7919217687067" y="1402.0" />
+                  <point x="2799.237103174602" y="1402.0" />
+                  <point x="79.25" y="114.0" />
+                </edge>
+                <edge source="beans.Fag" target="beans.Bruker">
+                  <point x="0.0" y="94.0" />
+                  <point x="1569.404761904762" y="909.0" />
+                  <point x="1605.6793650793643" y="909.0" />
+                  <point x="183.66666666666674" y="-224.0" />
+                </edge>
+                <edge source="kontroller.SokeKontroller" target="verktøy.Funksjoner">
+                  <point x="-45.75" y="-34.0" />
+                  <point x="1863.7626984126975" y="2200.0" />
+                  <point x="1662.4464285714284" y="2200.0" />
+                  <point x="0.0" y="34.5" />
+                </edge>
+                <edge source="kontroller.Hovedkontroller" target="beans.Rom">
+                  <point x="73.79999999999995" y="-104.0" />
+                  <point x="1348.8999999999999" y="2200.0" />
+                  <point x="1595.4464285714284" y="2200.0" />
+                  <point x="1595.4464285714284" y="1442.0" />
+                  <point x="2640.737103174602" y="1442.0" />
+                  <point x="-79.25" y="114.0" />
+                </edge>
+                <edge source="mapper.FagMapper" target="beans.Fag">
+                  <point x="0.0" y="-24.0" />
+                  <point x="4106.791921768707" y="731.0" />
+                  <point x="1662.404761904762" y="731.0" />
+                  <point x="93.0" y="94.0" />
+                </edge>
+                <edge source="kontroller.BrukerKontroller" target="beans.BrukerB">
+                  <point x="-71.5" y="-74.0" />
+                  <point x="436.6912698412689" y="2210.0" />
+                  <point x="222.5" y="2210.0" />
+                  <point x="222.5" y="1442.0" />
+                  <point x="571.2835317460303" y="1442.0" />
+                  <point x="-132.5" y="214.0" />
+                </edge>
+                <edge source="beans.BrukerB" target="beans.KalenderEvent">
+                  <point x="-132.5" y="-214.0" />
+                  <point x="571.2835317460303" y="909.0" />
+                  <point x="666.4085317460303" y="909.0" />
+                  <point x="666.4085317460303" y="493.0" />
+                  <point x="1258.8335884353737" y="493.0" />
+                  <point x="-196.5" y="234.0" />
+                </edge>
+                <edge source="database.DBConnectionImpl" target="mapper.KalenderEventMapper">
+                  <point x="316.8000000000002" y="-334.0" />
+                  <point x="4154.091921768706" y="2230.0" />
+                  <point x="4212.291921768707" y="2230.0" />
+                  <point x="0.0" y="24.0" />
+                </edge>
+                <edge source="database.DBConnectionImpl" target="mapper.RomMapper">
+                  <point x="0.0" y="-334.0" />
+                  <point x="3837.2919217687063" y="2220.0" />
+                  <point x="3999.7919217687067" y="2220.0" />
+                  <point x="0.0" y="24.0" />
+                </edge>
+                <edge source="beans.Bruker" target="beans.Klasse">
+                  <point x="-183.66666666666652" y="-224.0" />
+                  <point x="1238.346031746031" y="909.0" />
+                  <point x="1039.3422619047615" y="909.0" />
+                  <point x="64.25" y="64.0" />
+                </edge>
+                <edge source="kontroller.BrukerKontroller" target="verktøy.Passordgenerator">
+                  <point x="-42.900000000000034" y="-74.0" />
+                  <point x="465.2912698412688" y="2200.0" />
+                  <point x="280.5" y="2200.0" />
+                  <point x="-47.5" y="34.0" />
+                </edge>
+                <edge source="beans.Klasse" target="beans.Fag">
+                  <point x="0.0" y="-64.0" />
+                  <point x="975.0922619047615" y="731.0" />
+                  <point x="1476.404761904762" y="731.0" />
+                  <point x="-93.0" y="94.0" />
+                </edge>
+                <edge source="database.DBConnectionImpl" target="mapper.BrukerMapper">
+                  <point x="-158.39999999999964" y="-334.0" />
+                  <point x="3678.8919217687067" y="2230.0" />
+                  <point x="3781.7919217687067" y="2230.0" />
+                  <point x="0.0" y="24.0" />
+                </edge>
+                <edge source="konfig.Konfigurasjon" target="service.ServiceImpl">
+                  <point x="-121.5" y="-94.0" />
+                  <point x="3258.2499433106573" y="2983.0" />
+                  <point x="2820.7085884353733" y="2983.0" />
+                  <point x="0.0" y="354.0" />
+                </edge>
+                <edge source="kontroller.Kalenderkontroller" target="service.Service">
+                  <point x="0.0" y="-24.0" />
+                  <point x="2199.3335884353733" y="2230.0" />
+                  <point x="2347.2464285714286" y="2230.0" />
+                  <point x="173.80000000000018" y="344.0" />
+                </edge>
+                <edge source="database.DBConnectionImpl" target="database.DBConnection">
+                  <point x="-316.7999999999997" y="-334.0" />
+                  <point x="3520.4919217687066" y="2230.0" />
+                  <point x="3462.2919217687067" y="2230.0" />
+                  <point x="198.0" y="334.0" />
+                </edge>
+              </edges>
+              <settings layout="Hierarchic Group" zoom="0.40000000000000013" x="1067.749999999999" y="1387.999999999999" />
+              <SelectedNodes />
+              <Categories>
+                <Category>Fields</Category>
+                <Category>Methods</Category>
+                <Category>Inner Classes</Category>
+              </Categories>
+              <SCOPE>All</SCOPE>
+              <VISIBILITY>public</VISIBILITY>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="GradleLocalSettings">
+    <option name="externalProjectsViewState">
+      <projects_view />
+    </option>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/main/java/beans/Bruker.java" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" />
+  <component name="JsBuildToolPackageJson" detection-done="true" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="Bundled (Maven 3)" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="PhpServers">
+    <servers />
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1382" />
+    <option name="height" value="744" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Study_Easy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Study_Easy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Study_Easy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="verktøy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Study_Easy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="validering" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Study_Easy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="service" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Study_Easy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mapper" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Study_Easy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="kontroller" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Study_Easy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="konfig" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Study_Easy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="email" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Study_Easy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="database" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Study_Easy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="beans" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.splitter.proportion" value="0.2" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Bilder" />
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
+      <module name="" />
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
+      <option name="PROGRAM_PARAMETERS" />
+      <method />
+    </configuration>
+    <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
+      <module name="" />
+      <option name="ACTIVITY_CLASS" value="" />
+      <option name="MODE" value="default_activity" />
+      <option name="DEPLOY" value="true" />
+      <option name="ARTIFACT_NAME" value="" />
+      <option name="TARGET_SELECTION_MODE" value="EMULATOR" />
+      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
+      <option name="PREFERRED_AVD" value="" />
+      <option name="USE_COMMAND_LINE" value="true" />
+      <option name="COMMAND_LINE" value="" />
+      <option name="WIPE_USER_DATA" value="false" />
+      <option name="DISABLE_BOOT_ANIMATION" value="false" />
+      <option name="NETWORK_SPEED" value="full" />
+      <option name="NETWORK_LATENCY" value="none" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
+      <option name="FILTER_LOGCAT_AUTOMATICALLY" value="true" />
+      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="0" />
+      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
+      <option name="SELECTED_CLOUD_DEVICE_CONFIGURATION_ID" value="0" />
+      <option name="SELECTED_CLOUD_DEVICE_PROJECT_ID" value="" />
+      <option name="IS_VALID_CLOUD_MATRIX_SELECTION" value="false" />
+      <option name="INVALID_CLOUD_MATRIX_SELECTION_ERROR" value="" />
+      <option name="IS_VALID_CLOUD_DEVICE_SELECTION" value="false" />
+      <option name="INVALID_CLOUD_DEVICE_SELECTION_ERROR" value="" />
+      <option name="CLOUD_DEVICE_SERIAL_NUMBER" value="" />
+      <method />
+    </configuration>
+    <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Tests">
+      <module name="" />
+      <option name="TESTING_TYPE" value="0" />
+      <option name="INSTRUMENTATION_RUNNER_CLASS" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TARGET_SELECTION_MODE" value="EMULATOR" />
+      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
+      <option name="PREFERRED_AVD" value="" />
+      <option name="USE_COMMAND_LINE" value="true" />
+      <option name="COMMAND_LINE" value="" />
+      <option name="WIPE_USER_DATA" value="false" />
+      <option name="DISABLE_BOOT_ANIMATION" value="false" />
+      <option name="NETWORK_SPEED" value="full" />
+      <option name="NETWORK_LATENCY" value="none" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
+      <option name="FILTER_LOGCAT_AUTOMATICALLY" value="true" />
+      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="0" />
+      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
+      <option name="SELECTED_CLOUD_DEVICE_CONFIGURATION_ID" value="0" />
+      <option name="SELECTED_CLOUD_DEVICE_PROJECT_ID" value="" />
+      <option name="IS_VALID_CLOUD_MATRIX_SELECTION" value="false" />
+      <option name="INVALID_CLOUD_MATRIX_SELECTION_ERROR" value="" />
+      <option name="IS_VALID_CLOUD_DEVICE_SELECTION" value="false" />
+      <option name="INVALID_CLOUD_DEVICE_SELECTION_ERROR" value="" />
+      <option name="CLOUD_DEVICE_SERIAL_NUMBER" value="" />
+      <method />
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <module />
+      <method />
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="true" type="ArquillianTestNG" factoryName="">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <envs />
+      <properties />
+      <listeners />
+      <method />
+    </configuration>
+    <configuration default="true" type="CucumberJavaRunConfigurationType" factoryName="Cucumber java">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="myFilePath" />
+      <option name="GLUE" />
+      <option name="myNameFilter" />
+      <option name="myGeneratedName" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="FlashRunConfigurationType" factoryName="Flash App">
+      <option name="BCName" value="" />
+      <option name="IOSSimulatorSdkPath" value="" />
+      <option name="adlOptions" value="" />
+      <option name="airProgramParameters" value="" />
+      <option name="appDescriptorForEmulator" value="Android" />
+      <option name="debugTransport" value="USB" />
+      <option name="debuggerSdkRaw" value="BC SDK" />
+      <option name="emulator" value="NexusOne" />
+      <option name="emulatorAdlOptions" value="" />
+      <option name="fastPackaging" value="true" />
+      <option name="fullScreenHeight" value="0" />
+      <option name="fullScreenWidth" value="0" />
+      <option name="launchUrl" value="false" />
+      <option name="launcherParameters">
+        <LauncherParameters>
+          <option name="browser" value="a7bb68e0-33c0-4d6f-a81a-aac1fdb870c8" />
+          <option name="launcherType" value="OSDefault" />
+          <option name="newPlayerInstance" value="false" />
+          <option name="playerPath" value="FlashPlayerDebugger.exe" />
+        </LauncherParameters>
+      </option>
+      <option name="mobileRunTarget" value="Emulator" />
+      <option name="moduleName" value="" />
+      <option name="overriddenMainClass" value="" />
+      <option name="overriddenOutputFileName" value="" />
+      <option name="overrideMainClass" value="false" />
+      <option name="runTrusted" value="true" />
+      <option name="screenDpi" value="0" />
+      <option name="screenHeight" value="0" />
+      <option name="screenWidth" value="0" />
+      <option name="url" value="http://" />
+      <option name="usbDebugPort" value="7936" />
+      <method />
+    </configuration>
+    <configuration default="true" type="FlexUnitRunConfigurationType" factoryName="FlexUnit" appDescriptorForEmulator="Android" class_name="" emulatorAdlOptions="" method_name="" package_name="" scope="Class">
+      <option name="BCName" value="" />
+      <option name="launcherParameters">
+        <LauncherParameters>
+          <option name="browser" value="a7bb68e0-33c0-4d6f-a81a-aac1fdb870c8" />
+          <option name="launcherType" value="OSDefault" />
+          <option name="newPlayerInstance" value="false" />
+          <option name="playerPath" value="FlashPlayerDebugger.exe" />
+        </LauncherParameters>
+      </option>
+      <option name="moduleName" value="" />
+      <option name="trusted" value="true" />
+      <method />
+    </configuration>
+    <configuration default="true" type="GradleRunConfiguration" factoryName="Gradle">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list />
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <method />
+    </configuration>
+    <configuration default="true" type="GrailsRunConfigurationType" factoryName="Grails">
+      <module name="" />
+      <setting name="vmparams" value="" />
+      <setting name="cmdLine" value="run-app" />
+      <setting name="depsClasspath" value="false" />
+      <setting name="passParentEnv" value="true" />
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <setting name="launchBrowser" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="true" type="JUnitTestDiscovery" factoryName="JUnit Test Discovery" changeList="All">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="true" type="JarApplication" factoryName="JAR Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="Java Scratch" factoryName="Java Scratch">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="SCRATCH_FILE_ID" value="0" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType" factoryName="Kotlin">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="main" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" working-dir="">
+      <method />
+    </configuration>
+    <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <TestRunner />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpLocalRunConfigurationType" factoryName="PHP Console">
+      <method />
+    </configuration>
+    <configuration default="true" type="Remote" factoryName="Remote">
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" value="javadebug" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="5005" />
+      <method />
+    </configuration>
+    <configuration default="true" type="ScalaTestRunConfiguration" factoryName="ScalaTest">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <setting name="path" value="" />
+      <setting name="package" value="" />
+      <setting name="vmparams" value="" />
+      <setting name="params" value="" />
+      <setting name="workingDirectory" value="" />
+      <setting name="searchForTest" value="Across module dependencies" />
+      <setting name="testName" value="" />
+      <setting name="testKind" value="Class" />
+      <setting name="showProgressMessages" value="true" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="Specs2RunConfiguration" factoryName="Specs2">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <setting name="path" value="" />
+      <setting name="package" value="" />
+      <setting name="vmparams" value="" />
+      <setting name="params" value="" />
+      <setting name="workingDirectory" value="" />
+      <setting name="searchForTest" value="Across module dependencies" />
+      <setting name="testName" value="" />
+      <setting name="testKind" value="Class" />
+      <setting name="showProgressMessages" value="true" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="TestNG" factoryName="TestNG">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <envs />
+      <properties />
+      <listeners />
+      <method />
+    </configuration>
+    <configuration default="true" type="TestNGTestDiscovery" factoryName="TestNG Test Discovery" changeList="All">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <envs />
+      <properties />
+      <listeners />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.npm" factoryName="npm">
+      <command value="run-script" />
+      <scripts />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="mocha-javascript-test-runner" factoryName="Mocha">
+      <node-options />
+      <working-directory>$PROJECT_DIR$</working-directory>
+      <pass-parent-env>true</pass-parent-env>
+      <envs />
+      <ui>bdd</ui>
+      <extra-mocha-options />
+      <test-kind>DIRECTORY</test-kind>
+      <test-directory />
+      <recursive>false</recursive>
+      <method />
+    </configuration>
+    <configuration default="true" type="osgi.bnd.run" factoryName="Run Launcher">
+      <method />
+    </configuration>
+    <configuration default="true" type="osgi.bnd.run" factoryName="Test Launcher (JUnit)">
+      <method />
+    </configuration>
+    <configuration default="true" type="uTestRunConfiguration" factoryName="utest">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <setting name="path" value="" />
+      <setting name="package" value="" />
+      <setting name="vmparams" value="" />
+      <setting name="params" value="" />
+      <setting name="workingDirectory" value="" />
+      <setting name="searchForTest" value="Across module dependencies" />
+      <setting name="testName" value="" />
+      <setting name="testKind" value="Class" />
+      <setting name="showProgressMessages" value="true" />
+      <envs />
+      <method />
+    </configuration>
+  </component>
+  <component name="SbtLocalSettings">
+    <option name="externalProjectsViewState">
+      <projects_view />
+    </option>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="493b3861-99b4-4724-8f47-a3f58c321067" name="Default" comment="" />
+      <created>1452687582487</created>
+      <option name="number" value="Default" />
+      <updated>1452687582487</updated>
+      <workItem from="1452687594014" duration="781000" />
+      <workItem from="1452690244874" duration="2668000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="3449000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="false" />
+    <layout>
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14425983" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/main/java/beans/Bruker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://JAVA/">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>JAVA</ID>
+          <OriginalElement />
+          <nodes>
+            <node x="" y="">com</node>
+            <node x="" y="">netscape</node>
+            <node x="" y="">junit</node>
+            <node x="" y="">oracle</node>
+            <node x="" y="">lib</node>
+            <node x="" y="">org</node>
+            <node x="" y="">validering</node>
+            <node x="" y="">testing</node>
+            <node x="" y="">mapper</node>
+            <node x="" y="">sun</node>
+            <node x="" y="">META-INF</node>
+            <node x="" y="">jdk</node>
+            <node x="" y="">database</node>
+            <node x="" y="">java</node>
+            <node x="" y="">javax</node>
+            <node x="" y="">service</node>
+            <node x="" y="">beans</node>
+            <node x="" y="">javafx</node>
+            <node x="" y="">konfig</node>
+            <node x="" y="">verktøy</node>
+            <node x="" y="">kontroller</node>
+            <node x="" y="">email</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="1.0" x="243.0" y="214.0" />
+          <SelectedNodes />
+          <Categories />
+          <SCOPE>All</SCOPE>
+          <VISIBILITY>private</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/beans/Bruker.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.23168655">
+          <caret line="14" column="26" selection-start-line="14" selection-start-column="26" selection-end-line="14" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://SpringLocalModels/beans.Bruker">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>SpringLocalModels</ID>
+          <OriginalElement>beans.Bruker</OriginalElement>
+          <nodes>
+            <node x="" y="">beans.Bruker</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="1.0" x="27.5" y="9.0" />
+          <SelectedNodes />
+          <Categories>
+            <Category>Show filesets as groups</Category>
+          </Categories>
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://JAVA/beans.Bruker">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>JAVA</ID>
+          <OriginalElement>beans.Bruker</OriginalElement>
+          <nodes>
+            <node x="0.0" y="0.0">beans.Bruker</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="1.0" x="-260.0" y="-26.0" />
+          <SelectedNodes />
+          <Categories />
+          <SCOPE>All</SCOPE>
+          <VISIBILITY>public</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://JAVA/beans.BrukerB">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>JAVA</ID>
+          <OriginalElement>beans.BrukerB</OriginalElement>
+          <nodes>
+            <node x="" y="">beans.BrukerB</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="1.0" x="35.5" y="14.0" />
+          <SelectedNodes />
+          <Categories />
+          <SCOPE>All</SCOPE>
+          <VISIBILITY>private</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/beans/Klasse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.43441227">
+          <caret line="19" column="5" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/beans/BrukerB.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://JAVA/beans.Klasse">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>JAVA</ID>
+          <OriginalElement>beans.Klasse</OriginalElement>
+          <nodes />
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="1.0" x="-164.0" y="24.0" />
+          <SelectedNodes />
+          <Categories>
+            <Category>Methods</Category>
+            <Category>Fields</Category>
+          </Categories>
+          <SCOPE>All</SCOPE>
+          <VISIBILITY>public</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://JAVA/beans.Fag">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>JAVA</ID>
+          <OriginalElement>beans.Fag</OriginalElement>
+          <nodes>
+            <node x="846.5922619047615" y="756.0">beans.Klasse</node>
+            <node x="3680.2919217687067" y="1782.0">mapper.BrukerMapper</node>
+            <node x="1026.0" y="3241.0">java</node>
+            <node x="675.0" y="3241.0">org.springframework</node>
+            <node x="1818.0126984126975" y="2570.0">kontroller.SokeKontroller</node>
+            <node x="877.0" y="3241.0">javax</node>
+            <node x="3903.2919217687067" y="1782.0">mapper.RomMapper</node>
+            <node x="1090.6" y="2500.0">kontroller.Hovedkontroller</node>
+            <node x="0.0" y="3241.0">beans.Sok</node>
+            <node x="1146.5126984126975" y="934.0">beans.Bruker</node>
+            <node x="1429.904761904762" y="518.0">beans.Fag</node>
+            <node x="0.0" y="1772.0">verktøy.PasswordHasher</node>
+            <node x="1738.9464285714282" y="1462.0">service.Service</node>
+            <node x="3441.2919217687063" y="2270.0">database.DBConnectionImpl</node>
+            <node x="4011.7919217687067" y="796.0">mapper.FagMapper</node>
+            <node x="2868.2919217687067" y="1472.0">database.DBConnection</node>
+            <node x="443.0" y="1782.0">email.Email</node>
+            <node x="233.0" y="1772.0">verktøy.Passordgenerator</node>
+            <node x="715.0" y="1692.0">beans.Passord</node>
+            <node x="2044.8335884353733" y="2580.0">kontroller.Kalenderkontroller</node>
+            <node x="3136.7499433106573" y="3008.0">konfig.Konfigurasjon</node>
+            <node x="2396.7085884353733" y="2250.0">service.ServiceImpl</node>
+            <node x="4091.2919217687067" y="588.0">mapper.KalenderEventMapper</node>
+            <node x="423.0" y="3241.0">konfig.InitialiserDispatcherServlet</node>
+            <node x="1605.9464285714284" y="1771.5">verktøy.Funksjoner</node>
+            <node x="1193.3335884353737" y="0.0">beans.KalenderEvent</node>
+            <node x="2561.487103174602" y="1044.0">beans.Rom</node>
+            <node x="365.1912698412689" y="2530.0">kontroller.BrukerKontroller</node>
+            <node x="438.78353174603035" y="944.0">beans.BrukerB</node>
+            <node x="214.0" y="3241.0">email.EmailSetup</node>
+          </nodes>
+          <notes />
+          <edges>
+            <edge source="kontroller.BrukerKontroller" target="verktøy.PasswordHasher">
+              <point x="-128.7000000000001" y="-74.0" />
+              <point x="379.49126984126883" y="2230.0" />
+              <point x="53.0" y="2230.0" />
+              <point x="-53.0" y="34.0" />
+            </edge>
+            <edge source="kontroller.BrukerKontroller" target="service.Service">
+              <point x="128.70000000000005" y="-74.0" />
+              <point x="636.8912698412689" y="2210.0" />
+              <point x="1825.8464285714283" y="2210.0" />
+              <point x="-347.5999999999999" y="344.0" />
+            </edge>
+            <edge source="beans.BrukerB" target="beans.Klasse">
+              <point x="132.5" y="-214.0" />
+              <point x="836.2835317460303" y="909.0" />
+              <point x="910.8422619047615" y="909.0" />
+              <point x="-64.25" y="64.0" />
+            </edge>
+            <edge source="service.ServiceImpl" target="service.Service">
+              <point x="-282.66666666666697" y="-354.0" />
+              <point x="2538.0419217687063" y="2230.0" />
+              <point x="2521.046428571428" y="2230.0" />
+              <point x="347.5999999999999" y="344.0" />
+            </edge>
+            <edge source="kontroller.BrukerKontroller" target="beans.Bruker">
+              <point x="100.09999999999991" y="-74.0" />
+              <point x="608.2912698412688" y="2200.0" />
+              <point x="1070.5" y="2200.0" />
+              <point x="1070.5" y="1442.0" />
+              <point x="1264.5841269841262" y="1442.0" />
+              <point x="-157.42857142857133" y="224.0" />
+            </edge>
+            <edge source="verktøy.Funksjoner" target="beans.Bruker">
+              <point x="0.0" y="-34.5" />
+              <point x="1662.4464285714284" y="1432.0" />
+              <point x="1500.7269841269833" y="1432.0" />
+              <point x="78.71428571428578" y="224.0" />
+            </edge>
+            <edge source="kontroller.Hovedkontroller" target="beans.Bruker">
+              <point x="0.0" y="-104.0" />
+              <point x="1275.1" y="2200.0" />
+              <point x="1306.5" y="2200.0" />
+              <point x="1306.5" y="1442.0" />
+              <point x="1422.0126984126975" y="1442.0" />
+              <point x="0.0" y="224.0" />
+            </edge>
+            <edge source="service.ServiceImpl" target="database.DBConnection">
+              <point x="282.6666666666665" y="-354.0" />
+              <point x="3103.37525510204" y="2230.0" />
+              <point x="3066.2919217687067" y="2230.0" />
+              <point x="-198.0" y="334.0" />
+            </edge>
+            <edge source="kontroller.SokeKontroller" target="service.Service">
+              <point x="45.75" y="-34.0" />
+              <point x="1955.2626984126975" y="2230.0" />
+              <point x="2173.4464285714284" y="2230.0" />
+              <point x="0.0" y="344.0" />
+            </edge>
+            <edge source="mapper.KalenderEventMapper" target="beans.KalenderEvent">
+              <point x="0.0" y="-24.0" />
+              <point x="4212.291921768707" y="493.0" />
+              <point x="1651.8335884353737" y="493.0" />
+              <point x="196.5" y="234.0" />
+            </edge>
+            <edge source="database.DBConnectionImpl" target="mapper.FagMapper">
+              <point x="158.4000000000001" y="-334.0" />
+              <point x="3995.6919217687064" y="2230.0" />
+              <point x="4106.791921768707" y="2230.0" />
+              <point x="0.0" y="24.0" />
+            </edge>
+            <edge source="kontroller.Hovedkontroller" target="service.Service">
+              <point x="147.5999999999999" y="-104.0" />
+              <point x="1422.6999999999998" y="2220.0" />
+              <point x="1999.6464285714283" y="2220.0" />
+              <point x="-173.79999999999995" y="344.0" />
+            </edge>
+            <edge source="kontroller.BrukerKontroller" target="email.Email">
+              <point x="14.299999999999955" y="-74.0" />
+              <point x="522.4912698412688" y="2170.0" />
+              <point x="569.0" y="2170.0" />
+              <point x="0.0" y="24.0" />
+            </edge>
+            <edge source="service.ServiceImpl" target="beans.Bruker">
+              <point x="0.0" y="-354.0" />
+              <point x="2820.7085884353733" y="2230.0" />
+              <point x="2857.7919217687067" y="2230.0" />
+              <point x="2857.7919217687067" y="1422.0" />
+              <point x="1579.441269841269" y="1422.0" />
+              <point x="157.42857142857156" y="224.0" />
+            </edge>
+            <edge source="mapper.BrukerMapper" target="beans.Bruker">
+              <point x="0.0" y="-24.0" />
+              <point x="3781.7919217687067" y="1412.0" />
+              <point x="1658.1555555555547" y="1412.0" />
+              <point x="236.1428571428571" y="224.0" />
+            </edge>
+            <edge source="kontroller.BrukerKontroller" target="beans.Passord">
+              <point x="42.89999999999998" y="-74.0" />
+              <point x="551.091269841269" y="2180.0" />
+              <point x="882.0" y="2180.0" />
+              <point x="0.0" y="114.0" />
+            </edge>
+            <edge source="beans.Bruker" target="beans.KalenderEvent">
+              <point x="0.0" y="-224.0" />
+              <point x="1422.0126984126975" y="909.0" />
+              <point x="1419.404761904762" y="909.0" />
+              <point x="1419.404761904762" y="493.0" />
+              <point x="1389.8335884353737" y="493.0" />
+              <point x="-65.5" y="234.0" />
+            </edge>
+            <edge source="kontroller.Hovedkontroller" target="beans.BrukerB">
+              <point x="-147.60000000000014" y="-104.0" />
+              <point x="1127.4999999999998" y="2200.0" />
+              <point x="1081.5" y="2200.0" />
+              <point x="1081.5" y="1422.0" />
+              <point x="836.2835317460303" y="1422.0" />
+              <point x="132.5" y="214.0" />
+            </edge>
+            <edge source="beans.Fag" target="beans.KalenderEvent">
+              <point x="0.0" y="-94.0" />
+              <point x="1569.404761904762" y="493.0" />
+              <point x="1520.8335884353737" y="493.0" />
+              <point x="65.5" y="234.0" />
+            </edge>
+            <edge source="konfig.Konfigurasjon" target="database.DBConnectionImpl">
+              <point x="121.5" y="-94.0" />
+              <point x="3501.2499433106573" y="2983.0" />
+              <point x="3837.2919217687063" y="2983.0" />
+              <point x="0.0" y="334.0" />
+            </edge>
+            <edge source="mapper.RomMapper" target="beans.Rom">
+              <point x="0.0" y="-24.0" />
+              <point x="3999.7919217687067" y="1402.0" />
+              <point x="2799.237103174602" y="1402.0" />
+              <point x="79.25" y="114.0" />
+            </edge>
+            <edge source="beans.Fag" target="beans.Bruker">
+              <point x="0.0" y="94.0" />
+              <point x="1569.404761904762" y="909.0" />
+              <point x="1605.6793650793643" y="909.0" />
+              <point x="183.66666666666674" y="-224.0" />
+            </edge>
+            <edge source="kontroller.SokeKontroller" target="verktøy.Funksjoner">
+              <point x="-45.75" y="-34.0" />
+              <point x="1863.7626984126975" y="2200.0" />
+              <point x="1662.4464285714284" y="2200.0" />
+              <point x="0.0" y="34.5" />
+            </edge>
+            <edge source="kontroller.Hovedkontroller" target="beans.Rom">
+              <point x="73.79999999999995" y="-104.0" />
+              <point x="1348.8999999999999" y="2200.0" />
+              <point x="1595.4464285714284" y="2200.0" />
+              <point x="1595.4464285714284" y="1442.0" />
+              <point x="2640.737103174602" y="1442.0" />
+              <point x="-79.25" y="114.0" />
+            </edge>
+            <edge source="mapper.FagMapper" target="beans.Fag">
+              <point x="0.0" y="-24.0" />
+              <point x="4106.791921768707" y="731.0" />
+              <point x="1662.404761904762" y="731.0" />
+              <point x="93.0" y="94.0" />
+            </edge>
+            <edge source="kontroller.BrukerKontroller" target="beans.BrukerB">
+              <point x="-71.5" y="-74.0" />
+              <point x="436.6912698412689" y="2210.0" />
+              <point x="222.5" y="2210.0" />
+              <point x="222.5" y="1442.0" />
+              <point x="571.2835317460303" y="1442.0" />
+              <point x="-132.5" y="214.0" />
+            </edge>
+            <edge source="beans.BrukerB" target="beans.KalenderEvent">
+              <point x="-132.5" y="-214.0" />
+              <point x="571.2835317460303" y="909.0" />
+              <point x="666.4085317460303" y="909.0" />
+              <point x="666.4085317460303" y="493.0" />
+              <point x="1258.8335884353737" y="493.0" />
+              <point x="-196.5" y="234.0" />
+            </edge>
+            <edge source="database.DBConnectionImpl" target="mapper.KalenderEventMapper">
+              <point x="316.8000000000002" y="-334.0" />
+              <point x="4154.091921768706" y="2230.0" />
+              <point x="4212.291921768707" y="2230.0" />
+              <point x="0.0" y="24.0" />
+            </edge>
+            <edge source="database.DBConnectionImpl" target="mapper.RomMapper">
+              <point x="0.0" y="-334.0" />
+              <point x="3837.2919217687063" y="2220.0" />
+              <point x="3999.7919217687067" y="2220.0" />
+              <point x="0.0" y="24.0" />
+            </edge>
+            <edge source="beans.Bruker" target="beans.Klasse">
+              <point x="-183.66666666666652" y="-224.0" />
+              <point x="1238.346031746031" y="909.0" />
+              <point x="1039.3422619047615" y="909.0" />
+              <point x="64.25" y="64.0" />
+            </edge>
+            <edge source="kontroller.BrukerKontroller" target="verktøy.Passordgenerator">
+              <point x="-42.900000000000034" y="-74.0" />
+              <point x="465.2912698412688" y="2200.0" />
+              <point x="280.5" y="2200.0" />
+              <point x="-47.5" y="34.0" />
+            </edge>
+            <edge source="beans.Klasse" target="beans.Fag">
+              <point x="0.0" y="-64.0" />
+              <point x="975.0922619047615" y="731.0" />
+              <point x="1476.404761904762" y="731.0" />
+              <point x="-93.0" y="94.0" />
+            </edge>
+            <edge source="database.DBConnectionImpl" target="mapper.BrukerMapper">
+              <point x="-158.39999999999964" y="-334.0" />
+              <point x="3678.8919217687067" y="2230.0" />
+              <point x="3781.7919217687067" y="2230.0" />
+              <point x="0.0" y="24.0" />
+            </edge>
+            <edge source="konfig.Konfigurasjon" target="service.ServiceImpl">
+              <point x="-121.5" y="-94.0" />
+              <point x="3258.2499433106573" y="2983.0" />
+              <point x="2820.7085884353733" y="2983.0" />
+              <point x="0.0" y="354.0" />
+            </edge>
+            <edge source="kontroller.Kalenderkontroller" target="service.Service">
+              <point x="0.0" y="-24.0" />
+              <point x="2199.3335884353733" y="2230.0" />
+              <point x="2347.2464285714286" y="2230.0" />
+              <point x="173.80000000000018" y="344.0" />
+            </edge>
+            <edge source="database.DBConnectionImpl" target="database.DBConnection">
+              <point x="-316.7999999999997" y="-334.0" />
+              <point x="3520.4919217687066" y="2230.0" />
+              <point x="3462.2919217687067" y="2230.0" />
+              <point x="198.0" y="334.0" />
+            </edge>
+          </edges>
+          <settings layout="Hierarchic Group" zoom="0.40000000000000013" x="1067.749999999999" y="1387.999999999999" />
+          <SelectedNodes />
+          <Categories>
+            <Category>Fields</Category>
+            <Category>Methods</Category>
+            <Category>Inner Classes</Category>
+          </Categories>
+          <SCOPE>All</SCOPE>
+          <VISIBILITY>public</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

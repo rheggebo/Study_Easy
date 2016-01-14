@@ -151,9 +151,9 @@ public class BrukerKontroller {
         if(brukerb != null && brukerb.isInnlogget()){
             model.addAttribute("bruker", brukerb);
             if(brukerb.getTilgangsniva() == 2){
-                return "MinSideRedAdmin";
+                return "MinSideRed";
             }else{
-                return "MinSideRedGammel";
+                return "MinSide";
             }
             
         }
@@ -169,13 +169,9 @@ public class BrukerKontroller {
         if(brukerbb.getTilgangsniva()==2){
             nyBrukerInfo.setFornavn(brukerb.getFornavn());
             nyBrukerInfo.setEtternavn(brukerb.getEtternavn());
-            nyBrukerInfo.setTelefonnummer(brukerb.getTelefonnummer());
-            nyBrukerInfo.setKlasse(brukerb.getKlasse());
-            nyBrukerInfo.setFodedato(brukerb.getFodedato());
-        }else{
-            nyBrukerInfo.setTelefonnummer(brukerb.getTelefonnummer());
-            nyBrukerInfo.setKlasse(brukerb.getKlasse());
         }
         return "MinSide";
     }
+    
+    
 }

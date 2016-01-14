@@ -9,6 +9,8 @@ import beans.Passord;
 import org.junit.*;
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
+import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
 import static org.mockito.Mockito.*;
 import java.util.ArrayList;
 
@@ -47,10 +49,8 @@ public class PassordTest {
         /*
         * Tester valideringsmetoden i passord-klassen
         */
-        
-        Passord pass = new Passord();
-        
-        
+                
+       
     }
     
     @After

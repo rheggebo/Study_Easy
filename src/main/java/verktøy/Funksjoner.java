@@ -9,6 +9,7 @@ import java.util.List;
 import beans.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import service.Service;
 
@@ -21,7 +22,7 @@ public class Funksjoner {
 
   
 
-  public ArrayList<Object> getAlleSokeTreff(String s, Service si){
+  public ArrayList<Object> getAlleSokeTreff(String s, Service si, String[] select){
         ArrayList<Object> liste=new ArrayList();
         ArrayList<Object> testListe=new ArrayList();
         ArrayList<Object> testOut=new ArrayList();
@@ -32,12 +33,7 @@ public class Funksjoner {
         Bruker bruker = new Bruker();
         Rom r=new Rom();
         Rom rom=new Rom();
-        
-         
-      /*for(int i=0; i<si.getAlleBrukere().size();i++){
-            liste.add(si.getAlleBrukere().get(i));
-        }*/
-        
+            
         String epost = "test1@aol.com";
         bruker.setEpost(epost);
         

@@ -25,26 +25,29 @@
         </script>
 
         <form>
-            <p>Velg dato for rombestilling</p>
-            <input type="date" name="date" id="datoen" required placeholder="ÅÅÅÅ-MM-DD">
+            <fieldset>
+                <legend>Bestill rom</legend>
+                <p>Velg dato for rombestilling:<em>*</em></p>
+                <input type="date" name="date" id="datoen" placeholder="ÅÅÅÅ-MM-DD required">
 
-            <p>Velg klokkeslett<em>(kan velge flere)</em></p>
-            <select id="klokkeslett" multiple required name="klokkeslett">
-                <option value="1">08.00 - 09.00</option>
-                <option value="2">09.00 - 10.00</option>
-                <option value="3">10.00 - 11.00</option>
-                <option value="4">11.00 - 12.00</option>
-                <option value="5">12.00 - 13.00</option>
-                <option value="6">13.00 - 14.00</option>
-                <option value="7">14.00 - 15.00</option>
-                <option value="8">15.00 - 16.00</option>
-                <option value="9">16.00 - 17.00</option>
-                <option value="10">17.00 - 18.00</option>
-            </select>
-            <br>
-            <p>Her skal ledige rom listes ut</p>
-            <br>
-            <input type="submit" value="Velg rom">
+                <p>Velg klokkeslett<em>(kan velge flere)</em></p>
+                <select id="klokkeslett" multiple required name="klokkeslett">
+                    <option value="1">08.00 - 09.00</option>
+                    <option value="2">09.00 - 10.00</option>
+                    <option value="3">10.00 - 11.00</option>
+                    <option value="4">11.00 - 12.00</option>
+                    <option value="5">12.00 - 13.00</option>
+                    <option value="6">13.00 - 14.00</option>
+                    <option value="7">14.00 - 15.00</option>
+                    <option value="8">15.00 - 16.00</option>
+                    <option value="9">16.00 - 17.00</option>
+                    <option value="10">17.00 - 18.00</option>
+                </select>
+                <br>
+                <p>Her skal ledige rom listes ut</p>
+                <br>
+                <input type="submit" value="Velg rom">
+            </fieldset>
         </form>
     </aside>
 </main>
