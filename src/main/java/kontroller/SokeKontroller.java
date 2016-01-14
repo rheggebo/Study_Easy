@@ -19,6 +19,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import service.Service;
 
 /**
@@ -37,7 +38,7 @@ public class SokeKontroller {
     }
     
     @RequestMapping(value="search")
-    public String searchView(@ModelAttribute(value="soke")Sok sok, Model model){
+    public String searchView(@RequestParam("Spes")boolean value,@ModelAttribute(value="soke")Sok sok, Model model){
         Funksjoner fu= new Funksjoner();
         model.addAttribute("liste",fu.getAlleSokeTreff(sok.getSokeord(), si));
         return "SokeSide";
