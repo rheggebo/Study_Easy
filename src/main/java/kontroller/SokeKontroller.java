@@ -39,16 +39,23 @@ public class SokeKontroller {
     }
      
     @RequestMapping(value="search")
-    public String searchView(@ModelAttribute(value="soke")Sok sok, Model model, HttpServletRequest request){
-        String select[]=request.getParameterValues("Spes");
-        for (String select1 : select) {
+    public String searchView(@ModelAttribute(value="soke")Sok sok, Model model, 
+        HttpServletRequest request) throws Exception {
+        String[] select = new String[5];
+        String str = "Testtreng";
+        try {
+            select=request.getParameterValues("Spes");
+        } catch (Exception e) {
+            str = "select=request.getParameterValues(\"Spes\") catcher exception";
+        }
+        /*for (Object select1 : select) {
             if (select1.equals("Ansatt")) {
                 
             } 
-        }
+        }*/
             
         Funksjoner fu= new Funksjoner();
-        model.addAttribute("liste",fu.getAlleSokeTreff(sok.getSokeord(),si, select));
+        model.addAttribute("liste",fu.getAlleSokeTreff(sok.getSokeord(),si, select, str));
         return "SokeSide";
             
             }
