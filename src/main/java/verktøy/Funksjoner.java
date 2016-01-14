@@ -28,13 +28,13 @@ public class Funksjoner {
         ArrayList<Object> testOut=new ArrayList();
         testListe.add("Sigrid");
         testListe.add("Sigrid");
-        testListe.add("Kasper");
+        testListe.add("Kaster");
         Bruker b = new Bruker();
         Bruker bruker = new Bruker();
         Rom r=new Rom();
         Rom rom=new Rom();
         
-        Bruker br=si.getRomFraNavn(s);
+        //Bruker br=si.getRomFraNavn(s);
         
         
         

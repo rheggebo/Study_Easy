@@ -12,6 +12,7 @@ import email.Email;
 import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -162,7 +163,7 @@ public class BrukerKontroller {
     }
     
     @RequestMapping(value="MinSideRedLagre")
-    public String minSideRedLagre(@ModelAttribute("bruker") BrukerB brukerb, @RequestParam("dato1")Date dato, HttpSession sess){
+    public String minSideRedLagre(@ModelAttribute("bruker") BrukerB brukerb, HttpSession sess){
         System.out.println("MinSideRedLagre************");
         BrukerB brukerbb = (BrukerB) sess.getAttribute("brukerBean");
         BrukerB nyBrukerInfo = new BrukerB();
@@ -173,5 +174,24 @@ public class BrukerKontroller {
         return "MinSide";
     }
     
-    
+    @RequestMapping(value="LeggTilBrukerLagre")
+    public String leggTilBrukerLagre(@Valid @ModelAttribute("bruker") Bruker bruker, @RequestParam("tilgangniva")String tilgang, Model model, BindingResult error){
+        if(error.hasErrors()){
+            model.addAttribute("melding", "feilmelding.nyBrukerValidering");
+            return "LeggTilBruker";
+        }
+        if(tilgang.equals("Elev")){
+            bruker.setTilgangniva(0);
+        }else if(tilgang.equals("Læerer")){
+            bruker.setTilgangniva(1);
+        }else if(tilgang.equals("Timeplansansvarlig")){
+            bruker.setTilgangniva(2);
+        }
+        if(service.nyBruker(bruker)){
+            return "MinSide";
+        }else{
+            model.addAttribute("melding", "feilmelding.nyBruker");
+            return "LeggTilbruker";
+        }
+    }
 }

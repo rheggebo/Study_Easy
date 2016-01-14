@@ -41,8 +41,13 @@ public class Kalenderkontroller {
         //ID, tittel, start, slutt, descr, rom, type, eiernavn, fag
         BrukerB brukerb = (BrukerB)sess.getAttribute("brukerBean");
         List<KalenderEvent> events = service.getAlleEventsFraBruker(brukerb);
+        String tittel = "";
+        try{
+             tittel = events.get(0).getTittel();
+        }catch(Exception e){
+            
+        }
         
-        String tittel = events.get(0).getTittel();
         System.out.println(tittel);
         
         //0: forelesning, 1: øving, 2: privat ting, 3: romreservasjon

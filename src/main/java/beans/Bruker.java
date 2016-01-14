@@ -3,11 +3,16 @@ import beans.KalenderEvent;
 import beans.Klasse;
 import java.util.ArrayList;
 import java.util.Date;
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
 
 public class Bruker {
+    @NotEmpty
     private String fornavn;
+    @NotEmpty
     private String etternavn;
     private String passord;
+    @Email
     private String epost;
     private Klasse klasse;
     private String notat;
