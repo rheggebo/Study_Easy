@@ -30,7 +30,7 @@
 
             <br>
             <div>
-                <form class="checkboxes" action="">
+                <form class="checkboxes" action="checkbox">
                     <input type="checkbox" id="ansatt" name="Spes" value="Ansatt">Ansatt
                     <br>
                     <input type="checkbox" id="student" name="Spes" value="Student">Student
@@ -56,6 +56,7 @@
 </body>
 </html>
 
+<%--
     <script>
     var ansatt=$("#ansatt").attr("checked") ? 1 : 0;
     var student=$("#student").attr("checked") ? 1 : 0;
@@ -63,3 +64,4 @@
     var rom=$("#rom").attr("checked") ? 1 : 0;
     var klasse=$("#klasse").attr("checked") ? 1 : 0;
    </script>
+--%>
