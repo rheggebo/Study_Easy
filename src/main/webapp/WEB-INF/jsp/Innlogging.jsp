@@ -29,6 +29,16 @@
     <a id="loggInnGlemtPassord" href="glemtPassord" name="glemsk">Glemt passord?</a>
     <input id="loggInnKnapp" type="submit" value="Logg inn"><br>
   </form:form>
-  
 </div>
-
+<script>
+    $(document).scroll(function(){
+    localStorage['page'] = document.URL;
+    localStorage['scrollTop'] = $(document).scrollTop();
+    });
+    
+    $(document).ready(function(){
+    if (localStorage['page'] == document.URL) {
+        $(document).scrollTop(localStorage['scrollTop']);
+    }
+});
+</script>

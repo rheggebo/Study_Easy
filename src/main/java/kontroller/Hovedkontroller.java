@@ -77,7 +77,12 @@ public class Hovedkontroller {
     
     @RequestMapping("Kontakt")
     public String kontakt(HttpSession sess, Model model){
-        return "Kontakt";
+        BrukerB brukerb = (BrukerB) sess.getAttribute("brukerBean");
+        if(brukerb != null && brukerb.isInnlogget()){
+            return "Kontakt";
+        }
+        model.addAttribute("bruker", new Bruker());
+        return "Innlogging";
     }
     
     @RequestMapping("Forside")

@@ -21,7 +21,7 @@ body {
 
 main {
     margin:0;
-    //overflow:auto;
+    overflow:auto;
     padding:40px;
 }
 
