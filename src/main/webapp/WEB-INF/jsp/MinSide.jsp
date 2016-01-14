@@ -4,7 +4,7 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <main>
-    <form action="MinSideRed" id="formen">
+    
         <fieldset>
             <legend>Personopplysninger</legend>
             <dl>
@@ -14,14 +14,8 @@
                 Etternavn:<br>
                 <dd><form:input type="text" name="etternavn" placeholder="Nordmann" path="etternavn" readonly="true"/></dd>
 
-                Telefonnummer:<br>
-                <dd><form:input id="telefon" name="telefon" type="tel" pattern="\d{8}$" readonly="true" path="telefonnummer"/></dd>
-
                 E-post:<br>
                 <dd><form:input type="email" name="email1" readonly="true" path="epost"/></dd>
-
-                Fødselsdato:<br>
-                <dd><form:input type="date" name="date" readonly="true" path="fodedato"/></dd>
 
                 Klasse:<br>
                 <dd><form:input type="text" name="ref"  list="ref-list1" readonly="true" path="klasse"/>
@@ -32,10 +26,15 @@
                     </datalist>
 
             </dl>
-            <input type="submit" value="Endre opplysninger"/>
             </form:form>
+            <c:set var="tilgang" value="${bruker.getTilgangsniva()}"></c:set>
+            <c:if test="${tilgang == 2}">
+                <form action="MinSideRed" id="formen">
+                    <input type="submit" value="Endre opplysninger"/>
+                </form>
+            </c:if>
             <br>
-            <form:form modelAttribute="bruker" action="EndrePassordRed">
+            <form:form action="EndrePassordRed">
                 <input type="submit" value="Endre passord"/>
             </form:form>
         </fieldset>

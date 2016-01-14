@@ -3,6 +3,7 @@ package kontroller;
 import beans.Bruker;
 import beans.BrukerB;
 import beans.Rom;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -55,10 +56,11 @@ public class Hovedkontroller {
     }
     
     @RequestMapping("MinSide")
-    public String minSide(HttpSession sess, Model model){
+    public String minSide(HttpSession sess, Model model, HttpServletRequest req){
         BrukerB brukerb = (BrukerB)sess.getAttribute("brukerBean");
         if(brukerb != null && brukerb.isInnlogget()){
             model.addAttribute("bruker", brukerb);
+            //req.setAttribute("bruker", brukerb);
             return "MinSide";
         }
         model.addAttribute("bruker", new Bruker());
