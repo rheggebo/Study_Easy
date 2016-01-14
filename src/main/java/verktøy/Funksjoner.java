@@ -48,8 +48,7 @@ public class Funksjoner {
             liste.add("Fant ingen brukere på epost " + epost + " !");
         }
       if(s!=null){
-          for(int i=0; i<r.getAlleRom().size();i++){
-          }
+          
       }
         
        
