@@ -38,9 +38,9 @@ public class SokeKontroller {
     }
     
     @RequestMapping(value="search")
-    public String searchView(@RequestParam("Spes")boolean value,@ModelAttribute(value="soke")Sok sok, Model model){
+    public String searchView(@ModelAttribute(value="soke")Sok sok, Model model){
         Funksjoner fu= new Funksjoner();
-        model.addAttribute("liste",fu.getAlleSokeTreff(sok.getSokeord(), si));
+        model.addAttribute("liste",fu.getAlleSokeTreff(sok.getSokeord(),si));
         return "SokeSide";
             
             }

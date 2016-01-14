@@ -41,5 +41,9 @@
         <put-attribute name="title"  value="Velg rom"/>
         <put-attribute name="body"   value="/WEB-INF/jsp/VelgRom.jsp"/>      
     </definition>
+    <definition name="SokeSide" extends="baseLayout">
+        <put-attribute name="title"  value="Sok"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/SokeSide.jsp"/>      
+    </definition>
     
 </tiles-definitions>
