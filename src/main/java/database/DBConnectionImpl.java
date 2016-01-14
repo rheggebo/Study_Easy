@@ -375,6 +375,18 @@ public class DBConnectionImpl implements DBConnection{
         }
         return liste;
     }
+    
+    @Override
+    public List<Rom> getRomFraNavn(String navn) {
+        /*return (Bruker) jT.queryForObject
+                (getBrukerEpost, new Object[]{epost},new BrukerMapper());*/
+        List<Rom> liste = jT.query(getRomFraNavn, new Object[]{navn},
+                new RomMapper());
+        for (Rom rom : liste) {
+            
+        }
+        return liste;
+    }
 
     @Override
     public List<Rom> getRomFraInnhold(String[] innhold) {
