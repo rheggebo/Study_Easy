@@ -49,4 +49,8 @@ public class Rom {
     public void setType(int type) {
         this.type = type;
     }
+    
+    public String toString() {
+        return romID + " " + romNavn + " etasje: " + etasje + " " + type + " størrelse: " + storrelse;
+    }
 }
