@@ -22,7 +22,6 @@ public class Hovedkontroller {
     
     @Autowired
     private Service service;
-    private Bruker testBruker = new Bruker();
     
     @RequestMapping(value = "/*")
     public String start(Model model, HttpSession sess){

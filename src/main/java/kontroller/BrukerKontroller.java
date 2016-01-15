@@ -84,7 +84,7 @@ public class BrukerKontroller {
         valider.validate(pass, error);
         if(error.hasErrors()){
             model.addAttribute("passord", new Passord());
-            model.addAttribute("melding", "");
+            model.addAttribute("melding", "feilmelding.passordGenerell");
             return "EndrePassordRed";
         }else{
             bruker.setPassord(pass.getPassord1());
@@ -183,7 +183,7 @@ public class BrukerKontroller {
     }
     
     @RequestMapping(value="LeggTilBrukerLagre")
-    public String leggTilBrukerLagre(@Valid @ModelAttribute("bruker") Bruker bruker, @RequestParam("tilgangnivaa")String tilgang, Model model, BindingResult error){
+    public String leggTilBrukerLagre(@Valid @ModelAttribute("bruker") Bruker bruker, @RequestParam("tilgangnivaa")String tilgang, Model model, BindingResult error, HttpSession sess){
         if(error.hasErrors()){
             model.addAttribute("melding", "feilmelding.nyBrukerValidering");
             return "LeggTilBruker";
@@ -196,13 +196,12 @@ public class BrukerKontroller {
             bruker.setTilgangniva(2);
         }
         if(sendNyPass(bruker, error, true)){
-            if(service.nyBruker(bruker)){
-                System.out.println("Skal returnere min side");
-                return "MinSide";
-            }
+            model.addAttribute("bruker", (BrukerB)sess.getAttribute("brukerBean"));
+            return "MinSide";
         }
         System.out.println("Skal returnere legg til bruker");
         model.addAttribute("melding", "feilmelding.nyBruker");
-        return "LeggTilbruker";
+        model.addAttribute("nyBruker", new Bruker());
+        return "LeggTilBruker";
     }
 }

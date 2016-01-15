@@ -72,8 +72,9 @@ public class SokeKontroller {
         
         return "FinnRom";
             }
-
+            return "FinnRom";
 	}
+}
       
     /**
      * String[] select = new String[5];

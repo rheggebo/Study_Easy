@@ -54,7 +54,6 @@ public class ServiceImpl implements Service{
    
     @Override
     public boolean endreBruker(Bruker bruker) {
-        System.out.println("ASDASDASDASDASDASD");
         return dbc.oppdaterBruker(bruker);
     }
 
@@ -65,7 +64,7 @@ public class ServiceImpl implements Service{
 
     @Override
     public boolean nyBruker(Bruker bruker) {
-        return dbc.leggTilBruker(bruker);
+        return   dbc.leggTilBruker(bruker);
     }
 
     @Override
