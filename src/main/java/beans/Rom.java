@@ -7,6 +7,7 @@ public class Rom {
     private String romNavn;
     private int etasje;
     private int type;
+    private int antStolplasser;
     private int storrelse;
     private ArrayList<String> innhold;
 
@@ -48,5 +49,17 @@ public class Rom {
 
     public void setType(int type) {
         this.type = type;
+    }
+    
+    public String toString() {
+        return romID + " " + romNavn + " etasje: " + etasje + " " + type + " størrelse: " + storrelse;
+    }
+    
+    public int getAntStolplasser(){
+        return antStolplasser;
+    }
+    
+    public void setAntStolplasser(int antStolplasser) {
+        this.antStolplasser = antStolplasser;
     }
 }

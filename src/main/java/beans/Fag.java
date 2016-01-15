@@ -15,6 +15,7 @@ public class Fag {
     public void setFagID(String fagID) {
         this.fagID = fagID;
     }
+    
    
     public String getNavn() {
         return navn;
@@ -39,6 +40,10 @@ public class Fag {
 
     public void setKalenderEvents(ArrayList<KalenderEvent> kalenderEvents) {
         this.kalenderEvents = kalenderEvents;
+    }
+    
+    public String toString() {
+        return fagID + " " + navn;
     }
 }
 

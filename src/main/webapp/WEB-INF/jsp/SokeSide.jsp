@@ -25,21 +25,21 @@
 <div class="searchNav">
     <ul>
         <li><div><form action="search" method="POST"  role="search" modelAttribute="soke">
-            <input class="searchForm" type=search name="sokeord" size="30">
-            <input class="searchButton" value="Søk" type="submit"></form></div>
+            <input id="searchFormSokeSide" class="searchForm" type=search name="sokeord" size="30">
+            <input id="searchButtonSokeSide" class="searchButton" value="Søk" type="submit"></form></div>
 
             <br>
             <div>
-                <form class="checkboxes" action="checkbox">
-                    <input type="checkbox" id="ansatt" name="Spes" value="Ansatt">Ansatt
+                <form action="checkbox">
+                    <input class="checkboxes" type="checkbox" id="ansattSokeSide" name="Spes" value="Ansatt">Ansatt
                     <br>
-                    <input type="checkbox" id="student" name="Spes" value="Student">Student
+                    <input class="checkboxes" type="checkbox" id="studentSokeSide" name="Spes" value="Student">Student
                     <br>
-                    <input type="checkbox" id="fag" name="Spes" value="Fag">Fag
+                    <input class="checkboxes" type="checkbox" id="fagSokeSide" name="Spes" value="Fag">Fag
                     <br>
-                    <input type="checkbox" id="rom" name="Spes" value="Rom">Rom
+                    <input class="checkboxes" type="checkbox" id="romSokeSide" name="Spes" value="Rom">Rom
                     <br>
-                    <input type="checkbox" id="klasse" name="Spes" value="Klasse">Klasse</form></div>
+                    <input class="checkboxes" type="checkbox" id="klasseSokeSide" name="Spes" value="Klasse">Klasse</form></div>
         </li>               
     </ul></div>
 

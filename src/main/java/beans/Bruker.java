@@ -102,7 +102,7 @@ public class Bruker {
     }
     
     public String toString(){
-        return epost + fornavn + etternavn + tilgangniva;
+        return epost + " " + fornavn + " " + etternavn + " " + tilgangniva;
     }
     
     

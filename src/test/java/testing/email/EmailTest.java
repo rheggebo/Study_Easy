@@ -11,6 +11,7 @@ import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
 import static org.mockito.Mockito.*;
 import java.util.ArrayList;
+import javax.mail.MessagingException;
 
 /**
  *
@@ -18,9 +19,9 @@ import java.util.ArrayList;
  */
 public class EmailTest {
     
-    String mottaker;
-    String tema;
-    String melding;
+    String mottaker = "studyeasytest@gmail.com";
+    String tema = "test";
+    String melding = "spamspamspam";
     
     Email test;
     
@@ -36,16 +37,19 @@ public class EmailTest {
     public void setUp() throws Exception {
         // Koden her eksekveres f�r hver av testmetodene i klassen
         test = new Email();
-        mottaker = "studyeasytest@gmail.com";
-        tema = "test";
-        melding = "spamspamspam";
-        
     }
     
     @Test
     public void tester_email (){
         assertEquals(test.sendEpost(mottaker, tema, melding), true);  
     }
+    /*
+    @Test(expected=NullPointerException.class)
+    public void tester_email2()throws Exception{
+        test.sendEpost(null, tema, melding);
+    }
+    */
+    
     
     @After
     public void tearDown() throws Exception {
@@ -59,5 +63,4 @@ public class EmailTest {
         // Koden her kj�rer etter alle testmetodene i klassen er ferdig
         
     }
-    
 }

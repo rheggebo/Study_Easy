@@ -17,6 +17,9 @@
 body .fc { /* extra precedence to overcome jqui */
 	font-size: 1em;
 }
+h2{
+    font-family: Microsoft YaHei Light;
+}
 
 
 /* Colors
@@ -99,7 +102,7 @@ NOTE: use percentage font sizes or else old IE chokes
 
 .fc-icon:after {
 	position: relative;
-	margin: 0 -1em; /* ensures character will be centered, regardless of width */
+	margin: 0 0; /* ensures character will be centered, regardless of width */
 }
 
 .fc-icon-left-single-arrow:after {
@@ -377,6 +380,7 @@ hr.fc-divider {
 	border-collapse: collapse;
 	border-spacing: 0;
 	font-size: 1em; /* normalize cross-browser */
+        font-family: Microsoft YaHei Light;
 }
 
 .fc th {

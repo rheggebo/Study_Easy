@@ -9,10 +9,13 @@ import beans.Bruker;
 import beans.Rom;
 import beans.Sok;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import verktøy.Funksjoner;
 import org.springframework.stereotype.Controller;
@@ -48,6 +51,28 @@ public class SokeKontroller {
         return "SokeSide";
             
             }
+    
+    @RequestMapping(value="finnromdata")
+    public String finnromdata(@ModelAttribute(value="finnrom") Rom rom, HttpServletRequest request, HttpServletResponse response){
+       String romtype=request.getParameter("romtype");
+       String antStolplasser=request.getParameter("num-stoler");
+       String str=request.getParameter("størrelse");       
+       String dato=request.getParameter("date");
+       int antStoler=Integer.parseInt(antStolplasser);
+       int st=Integer.parseInt(str);
+       SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd"); 
+       String d = format.format(new Date(dato)); 
+       
+       List alleRom=si.getAlleRom();
+       for(int i=0;i<alleRom.size();i++){
+       /*    if(si.getRomFraType(romtype)&&si.getRomFraStoerrelse(st)){
+           }
+       }*/
+       
+        
+        return "FinnRom";
+            }
+
 	}
       
     /**

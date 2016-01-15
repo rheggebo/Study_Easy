@@ -84,4 +84,24 @@ public interface DBConnection {
     public List<Fag> getAlleFag();
     
     public List<KalenderEvent> getAlleEventsFraBruker(BrukerB b);
+    
+    public List<Rom> finnRomTypeStorrelse(Rom r);
+    
+    /*** Søkefunksjonsmetoder:  */
+    
+    public List<Bruker> getBrukerSok(String sokeord);
+    
+    public List<Fag> getFagID(String fagID);
+    
+    public List<Fag> getFagNavn(String fagNavn);
+    
+    public List<Bruker> getBrukerFornavn(String fornavn);
+    
+    public List<Bruker> getBrukerEtternavn(String etternavn);
+    
+    public List<Bruker> getBrukerEpost(String epost);
+    
+    public List<Rom> getRomNavn(String romnavn);
+    
+    public List<Rom> getRomID(String romID);
 }
