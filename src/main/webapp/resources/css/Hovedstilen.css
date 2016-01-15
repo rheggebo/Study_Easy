@@ -216,3 +216,10 @@ footer{
 .checkboxes{
     width: 30px;
 }
+
+#baseLayoutTable{
+    border: 0px;
+    padding: 0px; 
+    width: 900px;
+    
+}
