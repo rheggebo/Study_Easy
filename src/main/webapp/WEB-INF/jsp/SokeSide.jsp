@@ -56,7 +56,7 @@
 </div>
 </body>
 </html>
-
+<%--skal inne i hoveldstilen--%>
 <style>
     .oversikt{
         size: 15px;       

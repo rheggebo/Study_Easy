@@ -44,13 +44,20 @@ public class SokeKontroller {
      
     @RequestMapping(value="search")
     public String searchView(@ModelAttribute(value="soke")Sok sok, Model model, 
-        HttpServletRequest request) throws Exception {
+        HttpServletRequest request, HttpServletResponse response) {
+        Funksjoner fu= new Funksjoner();     
         
-            
-        Funksjoner fu= new Funksjoner();
-        model.addAttribute("liste",fu.getAlleSokeTreff(sok.getSokeord(), si));
+        String[] checked=request.getParameterValues("Spes");
+        if(checked!=null){
+            for(int i=0; i<checked.length;i++){
+                if(!checked[i].isEmpty()){
+               out.println("<td>" + checked[i] + "<td>");  
+                }
+            }
+       }
+        
         for(int i=0;i<fu.liste.size();i++){
-           out.println("<td>" + fu.liste.get(i).toString() + "<td>"); 
+           out.println("<td>" + fu.liste.get(i).toString() + "<td>");           
         }
         return "SokeSide";
     }
