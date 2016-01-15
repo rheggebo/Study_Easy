@@ -23,11 +23,23 @@ body {
     
 }
 
-#plantegningEtasje1{
+//hvorfor funker ikke dette....
+.plantegning{
     width: 100%;
 }
 
+
+//Må gjøre dette:
+#plantegningEtasje1{
+    width: 100%;
+}
 #plantegningEtasje2{
+    width: 100%;
+}
+#plantegningEtasje3{
+    width: 100%;
+}
+#plantegningEtasje4{
     width: 100%;
 }
 
