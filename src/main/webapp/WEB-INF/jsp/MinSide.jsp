@@ -9,16 +9,17 @@
             <legend>Personopplysninger</legend>
             <dl>
                 <form:form modelAttribute="bruker">
-                Fornavn:<br>
-                    <dd><form:input type="text" name="fornavn" path="fornavn" readonly="true"/></dd>
-                Etternavn:<br>
+                <dt><label for="fornavnMinSide">Fornavn:</label></dt>
+                <dd><form:input id="fornavnMinSide" type="text" name="fornavn" path="fornavn" readonly="true"/></dd>
+                
+                <dt><label for="etternavnMinSide">Etternavn:</label></dt>
                 <dd><form:input type="text" name="etternavn" placeholder="Nordmann" path="etternavn" readonly="true"/></dd>
 
-                E-post:<br>
-                <dd><form:input type="email" name="email1" readonly="true" path="epost"/></dd>
+                <dt><label for="emailMinSide">E-post:</label></dt>
+                <dd><form:input id="emailMinSide" type="email" name="email1" readonly="true" path="epost"/></dd>
 
-                Klasse:<br>
-                <dd><form:input type="text" name="ref"  list="ref-list1" readonly="true" path="klasse"/>
+                <dt><label for="klasseMinSide">Klasse:</label></dt>
+                <dd><form:input id="klasseMinSide" type="text" name="ref"  list="ref-list1" readonly="true" path="klasse"/>
                     <datalist id="ref-list1">
                         <option value="Dataingeniør">
                         <option value="Drift av datasystemer">
@@ -49,5 +50,5 @@
             <input type="submit" value="Endre opplysninger">
         </fieldset>
 
-    </form>
+    
 </main>
