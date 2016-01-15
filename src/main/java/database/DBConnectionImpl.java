@@ -83,7 +83,7 @@ public class DBConnectionImpl implements DBConnection{
     private final String getFagID="SELECT * FROM fag WHERE fagID =?";
     private final String getFagNavn="SELECT * FROM fag WHERE fagnavn =?";
     private final String getBrukerSok = "SELECT * FROM brukere WHERE (fornavn LIKE '%?%') OR (etternavn LIKE '%?%')";
-    private final String getBrukerFornavn = "SELECT * FROM brukere WHERE fornavn =?";
+    private final String getBrukerFornavn = "SELECT * FROM brukere WHERE fornavn like ?";
     private final String getBrukerEtternavn = "SELECT * FROM brukere WHERE etternavn =?";
     private final String getRomNavn = "SELECT * FROM rom WHERE romnavn =?";
     private final String getRomID = "SELECT * FROM rom WHERE romID =?";

@@ -6,25 +6,7 @@
 
 
 <main>
-    <iframe src="http://www.w3schools.com" height="325" width="500">
-            </iframe>
-    <aside>
-        <script>
-            var date = new Date();
-
-            var day = date.getDate();
-            var month = date.getMonth() + 1;
-            var year = date.getFullYear();
-
-            if (month < 10) month = "0" + month;
-            if (day < 10) day = "0" + day;
-
-            var today = year + "-" + month + "-" + day;
-            var maks = year+1 + "-" + month + "-" + day;
-
-            document.getElementById('datoen').value = today;
-        </script>
-
+    <div id="velgRomSøkeBokser">
         <form>
             <fieldset>
                 <legend>Bestill rom</legend>
@@ -50,5 +32,24 @@
                 <input type="submit" value="Velg rom">
             </fieldset>
         </form>
-    </aside>
+    </div>
+    
+    <div id="velgRomSøkeSVG">
+        <object width="100%" type="image/svg" data="<c:url value="/resources/SVG/plantegningE1.svg"/>" Din nettleser støtter ikke SVG </object>
+    </div>
 </main>
+    <script>
+            var date = new Date();
+
+            var day = date.getDate();
+            var month = date.getMonth() + 1;
+            var year = date.getFullYear();
+
+            if (month < 10) month = "0" + month;
+            if (day < 10) day = "0" + day;
+
+            var today = year + "-" + month + "-" + day;
+            var maks = year+1 + "-" + month + "-" + day;
+
+            document.getElementById('datoen').value = today;
+        </script>
