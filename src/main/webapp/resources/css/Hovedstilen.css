@@ -19,10 +19,18 @@ body {
     padding:0;
 }
 
+#velgRomSøkeSVG{
+    
+}
+
+#plantegningEtasje1{
+    width: 100%;
+}
+
 main {
     margin:0;
     overflow:auto;
-    padding:40px;
+    padding:0px 40px;
 }
 
 header{
@@ -215,4 +223,11 @@ footer{
 
 .checkboxes{
     width: 30px;
+}
+
+#baseLayoutTable{
+    border: 0px;
+    padding: 0px; 
+    width: 900px;
+    
 }

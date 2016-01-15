@@ -28,7 +28,7 @@
 
             </dl>
             </form:form>
-            <c:set var="tilgang" value="${brukerb.getTilgangsniva()}"></c:set>
+            <c:set var="tilgang" value="${bruker.getTilgangsniva()}"></c:set>
             <c:if test="${tilgang == 2}">
                 <form action="MinSideRed" id="formen">
                     <input type="submit" value="Endre opplysninger"/>

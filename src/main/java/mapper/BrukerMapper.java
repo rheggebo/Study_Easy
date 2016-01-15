@@ -22,7 +22,7 @@ public class BrukerMapper implements RowMapper<Bruker>{
         
         bruker.setEpost(rs.getString("epost"));
         bruker.setPassord(rs.getString("passord"));
-        bruker.setTilgangniva(rs.getInt("type"));
+        bruker.setTilgangsniva(rs.getInt("type"));
         bruker.setFornavn(rs.getString("fornavn"));
         bruker.setEtternavn(rs.getString("etternavn"));
         

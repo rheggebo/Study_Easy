@@ -34,7 +34,7 @@ public class BrukerB {
         epost = b.getEpost();
         klasse = b.getKlasse();
         notat = b.getNotat();
-        tilgangsniva = b.getTilgangniva();
+        tilgangsniva = b.getTilgangsniva();
         kalenderEvents = b.getKalenderEvents();
         innlogget = false;
         fodedato= b.getFodedato();

@@ -19,9 +19,8 @@
         <title>Study Easy</title>
     </head>
 
-    <div class="space"></div>
     
-        <table id="baseLayoutTable" border="0" cellpadding="2" cellspacing="2" width="900" align="center">
+        <table id="baseLayoutTable" align="center">
             <tr>
                 <td height="0">
                     <tiles:insertAttribute name="header" />
@@ -43,5 +42,4 @@
                 </td>
             </tr>
         </table>
-    <div class="space"></div>
 </html>

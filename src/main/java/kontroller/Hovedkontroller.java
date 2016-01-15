@@ -22,17 +22,18 @@ public class Hovedkontroller {
     
     @Autowired
     private Service service;
-    private Bruker testBruker = new Bruker();
     
     @RequestMapping(value = "/*")
     public String start(Model model, HttpSession sess){
         BrukerB brukerBean = (BrukerB) sess.getAttribute("brukerBean");
         
         if(brukerBean != null && brukerBean.isInnlogget()){
+            model.addAttribute("bruker", brukerBean);
             return "Forside";
         }
+        Bruker bruker = new Bruker();
+        bruker.setTilgangsniva(2);
         model.addAttribute("bruker", new Bruker());
-        model.addAttribute("brukerb", new BrukerB());
         return "Innlogging";
     }
     
@@ -45,6 +46,7 @@ public class Hovedkontroller {
                     BrukerB brukerBean = new BrukerB(service.hentBruker(bruker));
                     brukerBean.setInnlogget(true);
                     sess.setAttribute("brukerBean", brukerBean);
+                    model.addAttribute("bruker", brukerBean);
                     return "Forside";
                 }
             }catch (Exception e){
@@ -72,6 +74,7 @@ public class Hovedkontroller {
     public String velgRom(HttpSession sess, Model model){
         BrukerB brukerb = (BrukerB) sess.getAttribute("brukerBean");
         if(brukerb != null && brukerb.isInnlogget()){
+            model.addAttribute("bruker", brukerb);
             return "VelgRom";
         }
         model.addAttribute("bruker", new Bruker());
@@ -82,6 +85,7 @@ public class Hovedkontroller {
     public String kontakt(HttpSession sess, Model model){
         BrukerB brukerb = (BrukerB) sess.getAttribute("brukerBean");
         if(brukerb != null && brukerb.isInnlogget()){
+            model.addAttribute("bruker", brukerb);
             return "Kontakt";
         }
         model.addAttribute("bruker", new Bruker());
@@ -92,7 +96,7 @@ public class Hovedkontroller {
     public String forside(HttpSession sess, Model model){
         BrukerB brukerb = (BrukerB) sess.getAttribute("brukerBean");
         if(brukerb != null && brukerb.isInnlogget()){
-            model.addAttribute("brukerb", brukerb);
+            model.addAttribute("bruker", brukerb);
             return "Forside";
         }
         model.addAttribute("bruker", new Bruker());
@@ -104,6 +108,7 @@ public class Hovedkontroller {
         model.addAttribute("rom", new Rom());
         BrukerB brukerb = (BrukerB) sess.getAttribute("brukerBean");
         if(brukerb != null && brukerb.isInnlogget()){
+            model.addAttribute("bruker", brukerb);
             return "FinnRom";
         }
         model.addAttribute("bruker", new Bruker());
@@ -114,6 +119,7 @@ public class Hovedkontroller {
     public String sokeSide(HttpSession sess, Model model){
         BrukerB brukerb = (BrukerB) sess.getAttribute("brukerBean");
         if(brukerb != null && brukerb.isInnlogget()){
+            model.addAttribute("bruker", brukerb);
             return "SokeSide";
         }
         model.addAttribute("bruker", new Bruker());
@@ -123,10 +129,16 @@ public class Hovedkontroller {
     @RequestMapping("LeggTilBruker")
     public String leggTilBruker(HttpSession sess, Model model){
         BrukerB brukerb = (BrukerB)sess.getAttribute("brukerBean");
-        if(brukerb != null && brukerb.isInnlogget()){
-            model.addAttribute("nyBruker", new Bruker());
-            model.addAttribute("passord", new Passord());
-            return "LeggTilBruker";
+        if(brukerb.getTilgangsniva()==2){
+            if(brukerb != null && brukerb.isInnlogget()){
+                model.addAttribute("nyBruker", new Bruker());
+                model.addAttribute("passord", new Passord());
+                model.addAttribute("bruker", brukerb);
+                return "LeggTilBruker";
+            }
+        }else{
+            model.addAttribute("bruker", brukerb);
+            return "MinSide";
         }
         model.addAttribute("bruker", new Bruker());
         return "Innlogging";

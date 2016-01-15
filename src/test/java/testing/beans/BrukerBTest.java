@@ -80,7 +80,7 @@ public class BrukerBTest {
         bruker.setPassord("123");
         bruker.setEpost("roar@hotmail.com");
         bruker.setNotat("Jeg liker musikk");
-        bruker.setTilgangniva(2);
+        bruker.setTilgangsniva(2);
         bruker.setTelefonnummer(92000000);
 
         

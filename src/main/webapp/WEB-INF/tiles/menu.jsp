@@ -16,12 +16,13 @@
                 
                 <li><a href="MinSide">Min informasjon</a></li>
                 
+                <c:set var="tilgang" value="${bruker.getTilgangsniva()}"></c:set>
+                <c:if test="${tilgang == 2}">
                 <li>
-                    <c:set var="tilgang" value="${brukerb.getTilgangsniva()}"></c:set>
-                    <c:if test="${tilgang == 2}">
-                        <a href="LeggTilBruker">Legg til bruker</a>
-                    </c:if>
+                    <a href="LeggTilBruker">Legg til bruker</a>
+                    
                 </li>
+                </c:if>
                 
                 <li><a href="loggUt">Logg ut</a></li>
                 
