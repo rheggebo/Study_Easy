@@ -6,7 +6,8 @@
 
 
 <main>
-    Her kommer kartet!
+    <iframe src="http://www.w3schools.com" height="325" width="500">
+            </iframe>
     <aside>
         <script>
             var date = new Date();
