@@ -100,9 +100,9 @@ public class Bruker {
     public void setTelefonnummer(int telefonnummer) {
         this.telefonnummer = telefonnummer;
     }
-    
+    @Override
     public String toString(){
-        return epost + " " + fornavn + " " + etternavn + " " + tilgangniva;
+        return epost + " " + fornavn + " " + etternavn;
     }
     
     
