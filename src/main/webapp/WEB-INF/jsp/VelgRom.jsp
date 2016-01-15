@@ -6,8 +6,7 @@
 
 
 <main>
-    <iframe src="http://www.w3schools.com" height="325" width="500">
-            </iframe>
+    <object width="100%" type="image/svg+xml" data="<c:url value="/resources/SVG/plantegningE1.svg"/>" Din nettleser støtter ikke SVG </object>
     <aside>
         <script>
             var date = new Date();
