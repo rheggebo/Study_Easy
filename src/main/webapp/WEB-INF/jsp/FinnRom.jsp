@@ -39,7 +39,7 @@
                     <dt><label for="antStolplasserFinnRom">Antall stolplasser:<em>*</em></label></dt>
                     <dd><input id="antStolplasserFinnRom" type="number" name="num-stoler" min="1" max="150" value="1" required></dd>
 
-                    <dt><label for="strFinnRom">Strørrelse(m2):</label></dt>
+                    <dt><label for="strFinnRom">Strørrelse(m<sup>2</sup>):</label></dt>
                     <dd><input id="strFinnRom" name="størrelse" type="number" min="5" max="200" value="5"></dd>
 
                     <dt><label for="checkboxes">Utstyr:</label></dt>
