@@ -53,9 +53,12 @@ public class Rom {
     
     public String toString() {
         return romID + " " + romNavn + " etasje: " + etasje + " " + type + " størrelse: " + storrelse;
+    }
+    
     public int getAntStolplasser(){
         return antStolplasser;
     }
+    
     public void setAntStolplasser(int antStolplasser) {
         this.antStolplasser = antStolplasser;
     }
