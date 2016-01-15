@@ -2,6 +2,7 @@ package kontroller;
 
 import beans.Bruker;
 import beans.BrukerB;
+import beans.Passord;
 import beans.Rom;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -61,7 +62,6 @@ public class Hovedkontroller {
         BrukerB brukerb = (BrukerB)sess.getAttribute("brukerBean");
         if(brukerb != null && brukerb.isInnlogget()){
             model.addAttribute("bruker", brukerb);
-            //req.setAttribute("bruker", brukerb);
             return "MinSide";
         }
         model.addAttribute("bruker", new Bruker());
@@ -125,6 +125,7 @@ public class Hovedkontroller {
         BrukerB brukerb = (BrukerB)sess.getAttribute("brukerBean");
         if(brukerb != null && brukerb.isInnlogget()){
             model.addAttribute("nyBruker", new Bruker());
+            model.addAttribute("passord", new Passord());
             return "LeggTilBruker";
         }
         model.addAttribute("bruker", new Bruker());

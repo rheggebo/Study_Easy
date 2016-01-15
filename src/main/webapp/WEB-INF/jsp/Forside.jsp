@@ -26,27 +26,43 @@
                     </div>
 
             </li>
-        </ul>
+    </ul>
     
     <form>
         <ul style="list-style-type: none; margin: 0; padding: 0;">
             <li>
-               <input id="background-color1" type="color" value="#00BFFF" style="background-color: #FFFFFF; width: 3em "disabled="true"/>
+             <input type="text" disabled="true" style="
+        background-color: #00BFFF;
+        border: 1px solid gray;
+        width: .8em; 
+        height:.3em;">
                <label for="checkbox_1">Forelesning</label>
                <input type="checkbox" name="checkbox1" class="kalenderCheckB" id="1" value="background-color1"  style="width: 15px; cursor: pointer" checked>
             </li>
             <li>
-               <input id="background-color2" type="color" value="#00FF7F" style="background-color: #FFFFFF; width: 3em" disabled="true"/>
+              <input type="text" disabled="true" style="
+        background-color: #00FF7F; 
+        border: 1px solid gray;
+        width: .8em; 
+        height:.3em;">
                <label for="checkbox_2">Øving</label>
                <input type="checkbox" name="checkbox2" class="kalenderCheckB" id="2" value="background-color2" style="width: 15px; cursor: pointer" checked>
             </li>
             <li>
-               <input id="background-color3" type="color" value="#FFA500" style="background-color: #FFFFFF; width: 3em" disabled="true"/>
+                <input type="text" disabled="true" style="
+        background-color: #FFA500; 
+        border: 1px solid gray;
+        width: .8em; 
+        height:.3em;">
                <label for="checkbox_3">Rom reservasjon</label>
                <input type="checkbox" name="checkbox3" class="kalenderCheckB" id="3" value="background-color3"  style="width: 15px; cursor: pointer" checked>
             </li>
             <li>
-               <input id="background-color4" type="color" value="#FFFF00" style="background-color: #FFFFFF; width: 3em" disabled="true"/>
+              <input type="text" disabled="true" style="
+        background-color: #FFFF00; 
+        border: 1px solid gray;
+        width: .8em; 
+        height:.3em;">
                <label for="checkbox_4">Privat hendelse</label>
                <input type="checkbox" name="checkbox4" class="kalenderCheckB" id="4" value="background-color4"  style="width: 15px; cursor: pointer" checked>
             </li>
@@ -104,6 +120,7 @@ span[class*="fontawesome-"]:before {
 .modalDialog {
 	position: fixed;
 	font-family: Microsoft YaHei Light;
+        text-align: left;
 	top: 0;
 	right: 0;
 	bottom: 0;
