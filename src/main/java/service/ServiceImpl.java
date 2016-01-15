@@ -223,47 +223,22 @@ public class ServiceImpl implements Service{
     }
     
     @Override
-    public List<Bruker> getBrukerSok(String sokeord) {
-        return dbc.getBrukerSok(sokeord);
+    public List<Bruker> getBrukerSok(String sokeord1, String sokeord2, String sokeord3) {
+        return dbc.getBrukerSok(sokeord1, sokeord2, sokeord3);
     }
     
     @Override
-    public List<Rom> getRomFraNavn(String navn) {
-        return dbc.getRomFraNavn(navn);
+    public List<Fag> getFagSok(String sokeord1, String sokeord2) {
+        return dbc.getFagSok(sokeord1, sokeord2);
     }
     
     @Override
-    public List<Fag> getFagID(String fagID) {
-        return dbc.getFagID(fagID);
+    public List<Rom> getRomSok(String sokeord1, String sokeord2, int sokeord3) {
+        return dbc.getRomSok(sokeord1, sokeord2, sokeord3);
     }
     
-    @Override
-    public List<Fag> getFagNavn(String fagNavn) {
-        return dbc.getFagNavn(fagNavn);
-    }
+ 
     
-    @Override
-    public List<Bruker> getBrukerFornavn(String fornavn) {
-        return dbc.getBrukerFornavn(fornavn);
-    }
     
-    @Override
-    public List<Bruker> getBrukerEtternavn(String etternavn) {
-        return dbc.getBrukerEtternavn(etternavn);
-    }
-    
-    @Override
-    public List<Bruker> getBrukerEpost(String epost) {
-        return dbc.getBrukerEpost(epost);
-    }
-    
-    @Override
-    public List<Rom> getRomNavn(String romnavn) {
-        return dbc.getRomNavn(romnavn);
-    }
-    
-    @Override
-    public List<Rom> getRomID(String romID) {
-        return dbc.getRomID(romID);
-    }
+
 }

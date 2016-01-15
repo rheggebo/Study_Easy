@@ -80,14 +80,10 @@ public class DBConnectionImpl implements DBConnection{
     /**Søkefunksjon**/
     private final String alleRom="SELECT * FROM rom";
     private final String alleFag="SELECT * FROM fag";
-    private final String getFagID="SELECT * FROM fag WHERE fagID =?";
-    private final String getFagNavn="SELECT * FROM fag WHERE fagnavn =?";
-    private final String getBrukerSok = "SELECT * FROM brukere WHERE (fornavn LIKE '%?%') OR (etternavn LIKE '%?%')";
-    private final String getBrukerFornavn = "SELECT * FROM brukere WHERE fornavn like ?";
-    private final String getBrukerEtternavn = "SELECT * FROM brukere WHERE etternavn =?";
-    private final String getRomNavn = "SELECT * FROM rom WHERE romnavn =?";
-    private final String getRomID = "SELECT * FROM rom WHERE romID =?";
-
+    
+    private final String getBrukerSok = "SELECT * FROM brukere WHERE fornavn LIKE ? OR etternavn LIKE ? or epost LIKE ?";
+    private final String getFagSok = "SELECT * FROM fag WHERE fagID LIKE ? OR fagnavn LIKE ?";
+    private final String getRomSok = "SELECT * FROM rom WHERE romID LIKE ? OR romnavn LIKE ? OR type LIKE ?";
     
     
     private DataSource dS;
@@ -104,10 +100,6 @@ public class DBConnectionImpl implements DBConnection{
         return (Bruker) jT.queryForObject(getBrukerEpost, new Object[]{epost},new BrukerMapper());
     }
     
-    @Override
-    public List<Bruker> getBrukerSok(String sokeord) {
-        return jT.query(getBrukerSok, new Object[]{sokeord},new BrukerMapper());
-    }
     
     @Override
     public boolean sjekkPassord(String epost, String passord) {
@@ -167,7 +159,6 @@ public class DBConnectionImpl implements DBConnection{
         }catch(Exception e){}
         return false;
     }
-   /***Søkefunksjon metoder:   **/
     
     @Override
     public List<Rom> getAlleRom(){
@@ -182,41 +173,26 @@ public class DBConnectionImpl implements DBConnection{
         return jT.query(alleBrukere, new BrukerMapper());
     }
     
-    @Override 
-    public List<Fag> getFagID(String fagID) {
-        return jT.query(getFagID, new Object[]{fagID}, new FagMapper());
-    }
     
-    @Override 
-    public List<Fag> getFagNavn(String fagNavn) {
-        return jT.query(getFagNavn, new Object[]{fagNavn}, new FagMapper());
+    
+    /***Søkefunksjon metoder:   **/
+    
+    @Override
+    public List<Bruker> getBrukerSok(String sokeord1, String sokeord2, String sokeord3) {
+        return jT.query(getBrukerSok, new Object[]{sokeord1, sokeord2, sokeord3}, new BrukerMapper());
     }
     
     @Override
-    public List<Bruker> getBrukerFornavn(String fornavn) {
-        return jT.query(getBrukerFornavn, new Object[]{fornavn}, new BrukerMapper());
+    public List<Fag> getFagSok(String sokeord1, String sokeord2) {
+        return jT.query(getFagSok, new Object[]{sokeord1, sokeord2}, new FagMapper());
     }
     
     @Override
-    public List<Bruker> getBrukerEtternavn(String etternavn) {
-        return jT.query(getBrukerEtternavn, new Object[]{etternavn}, new BrukerMapper());
+    public List<Rom> getRomSok(String sokeord1, String sokeord2, int sokeord3) {
+        return jT.query(getRomSok, new Object[]{sokeord1, sokeord2, sokeord3}, new RomMapper());
     }
     
-    @Override
-    public List<Bruker> getBrukerEpost(String epost) {
-        return jT.query(getBrukerEpost, new Object[]{epost}, new BrukerMapper());
-    }
-    
-    @Override
-    public List<Rom> getRomNavn(String romnavn) {
-        return jT.query(getRomNavn, new Object[]{romnavn}, new RomMapper());
-    }
-    
-    @Override
-    public List<Rom> getRomID(String romID) {
-        return jT.query(getRomID, new Object[]{romID}, new RomMapper());
-    }
-         
+
     /***Søkefunksjon metoder slutt***/
 
     @Override
