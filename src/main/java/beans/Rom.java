@@ -52,7 +52,7 @@ public class Rom {
     }
     
     public String toString() {
-        return romID + " " + romNavn + " etasje: " + etasje + " " + type + " størrelse: " + storrelse;
+        return romID + " " + romNavn + " etasje: " + etasje + " størrelse: " + storrelse;
     }
     
     public int getAntStolplasser(){

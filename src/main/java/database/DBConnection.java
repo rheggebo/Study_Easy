@@ -89,19 +89,10 @@ public interface DBConnection {
     
     /*** Søkefunksjonsmetoder:  */
     
-    public List<Bruker> getBrukerSok(String sokeord);
+    public List<Bruker> getBrukerSok(String sokeord1, String sokeord2, String sokeord3);
     
-    public List<Fag> getFagID(String fagID);
+    public List<Fag> getFagSok(String sokeord1, String sokeord2);
     
-    public List<Fag> getFagNavn(String fagNavn);
-    
-    public List<Bruker> getBrukerFornavn(String fornavn);
-    
-    public List<Bruker> getBrukerEtternavn(String etternavn);
-    
-    public List<Bruker> getBrukerEpost(String epost);
-    
-    public List<Rom> getRomNavn(String romnavn);
-    
-    public List<Rom> getRomID(String romID);
+    public List<Rom> getRomSok(String sokeord1, String sokeord2);
+
 }
