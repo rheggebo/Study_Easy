@@ -9,6 +9,7 @@ import beans.Bruker;
 import beans.Rom;
 import beans.Sok;
 import java.io.IOException;
+import static java.lang.System.out;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -43,21 +44,35 @@ public class SokeKontroller {
      
     @RequestMapping(value="search")
     public String searchView(@ModelAttribute(value="soke")Sok sok, Model model, 
-        HttpServletRequest request) throws Exception {
+        HttpServletRequest request, HttpServletResponse response) {
+        Funksjoner fu= new Funksjoner();     
+        
+        String[] checked=request.getParameterValues("Spes");
+        if(checked!=null){
+            for(int i=0; i<checked.length;i++){
+                if(!checked[i].isEmpty()){
+               out.println("<td>" + checked[i] + "<td>");  
+                }
+            }
+       }
+        
+        for(int i=0;i<fu.liste.size();i++){
+           out.println("<td>" + fu.liste.get(i).toString() + "<td>");           
+        }
+        return "SokeSide";
+    }
+        
         
             
-        Funksjoner fu= new Funksjoner();
-        model.addAttribute("liste",fu.getAlleSokeTreff(sok.getSokeord(), si));
-        return "SokeSide";
-            
-            }
+ }
     
-    @RequestMapping(value="finnromdata")
+   /** @RequestMapping(value="finnromdata")
     public String finnromdata(@ModelAttribute(value="finnrom") Rom rom, HttpServletRequest request, HttpServletResponse response){
        String romtype=request.getParameter("romtype");
        String antStolplasser=request.getParameter("num-stoler");
        String str=request.getParameter("størrelse");       
        String dato=request.getParameter("date");
+       String[] checked=request.getParameter("")
        int antStoler=Integer.parseInt(antStolplasser);
        int st=Integer.parseInt(str);
        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd"); 
@@ -66,14 +81,16 @@ public class SokeKontroller {
        List alleRom=si.getAlleRom();
        for(int i=0;i<alleRom.size();i++){
        /*    if(si.getRomFraType(romtype)&&si.getRomFraStoerrelse(st)){
+                for(iterer liste){
+                out.println();
+                }
            }
        }*/
        
-        
+        /**
         return "FinnRom";
-            }
+            }**/
 
-	}
       
     /**
      * String[] select = new String[5];
