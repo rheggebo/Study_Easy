@@ -42,7 +42,7 @@ public class Funksjoner {
 
         brukerListe.addAll(si.getBrukerSok("%" + s + "%", "%" + s + "%", "%" + s + "%"));
         fagListe.addAll(si.getFagSok("%" + s + "%", "%" + s + "%"));
-        /*romListe.addAll(si.getRomSok("%" + s + "%", "%" + s + "%", Integer.parseInt(s)));*/
+        romListe.addAll(si.getRomSok("%" + s + "%", "%" + s + "%"));
         
         }
 

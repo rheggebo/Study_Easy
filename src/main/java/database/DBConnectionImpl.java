@@ -188,8 +188,8 @@ public class DBConnectionImpl implements DBConnection{
     }
     
     @Override
-    public List<Rom> getRomSok(String sokeord1, String sokeord2, int sokeord3) {
-        return jT.query(getRomSok, new Object[]{sokeord1, sokeord2, sokeord3}, new RomMapper());
+    public List<Rom> getRomSok(String sokeord1, String sokeord2) {
+        return jT.query(getRomSok, new Object[]{sokeord1, sokeord2}, new RomMapper());
     }
     
 
