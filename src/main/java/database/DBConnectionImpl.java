@@ -83,7 +83,7 @@ public class DBConnectionImpl implements DBConnection{
     
     private final String getBrukerSok = "SELECT * FROM brukere WHERE fornavn LIKE ? OR etternavn LIKE ? or epost LIKE ?";
     private final String getFagSok = "SELECT * FROM fag WHERE fagID LIKE ? OR fagnavn LIKE ?";
-    private final String getRomSok = "SELECT * FROM rom WHERE romID LIKE ? OR romnavn LIKE ? OR type LIKE ?";
+    private final String getRomSok = "SELECT * FROM rom WHERE romID LIKE ? OR romnavn LIKE ?";
     
     
     private DataSource dS;
