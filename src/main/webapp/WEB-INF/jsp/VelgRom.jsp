@@ -29,7 +29,7 @@
             <fieldset>
                 <legend>Bestill rom</legend>
                 <p>Velg dato for rombestilling:<em>*</em></p>
-                <input type="date" name="date" id="datoen" placeholder="ÅÅÅÅ-MM-DD required">
+                <input id="datoVelgRom" type="date" name="date" id="datoen" placeholder="ÅÅÅÅ-MM-DD required">
 
                 <p>Velg klokkeslett<em>(kan velge flere)</em></p>
                 <select id="klokkeslett" multiple required name="klokkeslett">

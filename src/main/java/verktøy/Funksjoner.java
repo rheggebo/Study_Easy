@@ -35,6 +35,7 @@ public class Funksjoner {
         /* henter data fra databasen utifra søkeord s */
         brukerListe.addAll(si.getBrukerFornavn(s));
         brukerListe.addAll(si.getBrukerEtternavn(s));
+        brukerListe.addAll(si.getBrukerEpost(s));
         fagListe.addAll(si.getFagID(s));
         fagListe.addAll(si.getFagNavn(s));
         
@@ -42,9 +43,14 @@ public class Funksjoner {
         romListe.addAll(si.getRomNavn(s));
         romListe.addAll(si.getRomID(s));
         */
-        /* hent bruker epost string funker ikke 
-        brukerListe.add(si.hentBruker(s));
+        
+        
+        Rom r = new Rom();
+        /*r.setType(3);
+        r.setStorrelse(30);
+        romListe.addAll(si.finnRomTypeStorrelse(r));
         */
+
         
         
         
