@@ -11,6 +11,7 @@ import beans.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import javax.faces.application.ProjectStage;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import service.Service;
 
@@ -24,38 +25,34 @@ public class Funksjoner {
   
 
   public ArrayList<Object> getAlleSokeTreff(String s, Service si){
+        
+        HttpServletRequest request = null;
+        HttpServletRequest response;
+        
         ArrayList<Object> liste=new ArrayList();
+      
         
         /* midlertidig lister med objekter */
         ArrayList<Bruker> brukerListe = new ArrayList<Bruker>();
         ArrayList<Fag> fagListe = new ArrayList<Fag>();
         ArrayList<Rom> romListe = new ArrayList<Rom>();
         
-        
+        if(!s.isEmpty()) {
         /* henter data fra databasen utifra søkeord s */
-        brukerListe.addAll(si.getBrukerFornavn(s));
-        brukerListe.addAll(si.getBrukerEtternavn(s));
-        brukerListe.addAll(si.getBrukerEpost(s));
-        fagListe.addAll(si.getFagID(s));
-        fagListe.addAll(si.getFagNavn(s));
+
+        brukerListe.addAll(si.getBrukerSok("%" + s + "%", "%" + s + "%", "%" + s + "%"));
+        fagListe.addAll(si.getFagSok("%" + s + "%", "%" + s + "%"));
+        romListe.addAll(si.getRomSok("%" + s + "%", "%" + s + "%"));
         
-        /*
-        romListe.addAll(si.getRomNavn(s));
-        romListe.addAll(si.getRomID(s));
-        */
-        
+        }
+
         
         Rom r = new Rom();
         /*r.setType(3);
         r.setStorrelse(30);
         romListe.addAll(si.finnRomTypeStorrelse(r));
         */
-
-        
-        
-        
-        
-        
+ 
         /* legger til alle lister i objekt hoved listen og returnerer til siden */
         liste.addAll(brukerListe);
         liste.addAll(fagListe);
