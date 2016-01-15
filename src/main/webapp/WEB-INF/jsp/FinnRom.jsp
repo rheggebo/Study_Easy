@@ -23,8 +23,8 @@
             <fieldset>
                 <legend>Velg ønsket spesifikasjoner:</legend>
                 <dl>
-                    <dt><label for="romtype">Romtype:<em>*</em></label></dt>
-                    <dd><select id="romtype" name="romtype" required >
+                    <dt><label for="romtypeFinnRom">Romtype:<em>*</em></label></dt>
+                    <dd><select id="romtypeFinnRom" name="romtype" required >
                         <option value="forelesingssal">Forelesingssal</option>
                         <option value="møterom">Møterom</option>
                         <option value="grupperom">Grupperom</option>
@@ -36,17 +36,17 @@
                      <datalist id="ref-romtype">
                      </datalist> -->
 
-                    <dt><label for="antStolplasser">Antall stolplasser:<em>*</em></label></dt>
-                    <dd><input id="antStolplasser" type="number" name="num-stoler" min="1" max="150" value="1" required></dd>
+                    <dt><label for="antStolplasserFinnRom">Antall stolplasser:<em>*</em></label></dt>
+                    <dd><input id="antStolplasserFinnRom" type="number" name="num-stoler" min="1" max="150" value="1" required></dd>
 
-                    <dt><label for="str">Strørrelse(m2):</label></dt>
-                    <dd><input id="str" name="størrelse" type="number" min="5" max="200" value="5"></dd>
+                    <dt><label for="strFinnRom">Strørrelse(m2):</label></dt>
+                    <dd><input id="strFinnRom" name="størrelse" type="number" min="5" max="200" value="5"></dd>
 
-                    <dt><label for="utstyr">Utstyr:</label></dt>
-                    <dd><input class="utstyr" type="checkbox" id="skjerm" value="Skjerm">PC-skjerm<br>
-                        <input class="utstyr"type="checkbox" id="tavle" value="tavle">Tavle<br>
-                        <input class="utstyr"type="checkbox" id="stikkontakter" value="stikkontakter">Stikkontakter<br>
-                        <input class="utstyr"type="checkbox" id="prosjektor" value="prosjektor">Prosjektor<br>
+                    <dt><label for="checkboxes">Utstyr:</label></dt>
+                    <dd><input class="checkboxes" type="checkbox" id="skjerm" value="Skjerm">PC-skjerm<br>
+                        <input class="checkboxes" type="checkbox" id="tavle" value="tavle">Tavle<br>
+                        <input class="checkboxes" type="checkbox" id="stikkontakter" value="stikkontakter">Stikkontakter<br>
+                        <input class="checkboxes" type="checkbox" id="prosjektor" value="prosjektor">Prosjektor<br>
                     </dd>
                     
 

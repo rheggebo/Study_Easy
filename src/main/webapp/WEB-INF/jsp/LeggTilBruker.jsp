@@ -7,16 +7,16 @@
             <form:form action="LeggTilBrukerLagre" modelAttribute="nyBruker">
                 
             <dt><label for="fornavn">Fornavn:<em>*</em></label></dt>
-            <dd><form:input id="fornavn" type="text" name="fornavn" placeholder="Ola" autofocus="true" required="true" path="fornavn"/></dd>
+            <dd><form:input id="fornavnLeggTilBruker" type="text" name="fornavn" placeholder="Ola" autofocus="true" required="true" path="fornavn"/></dd>
 
             <dt><label for="etternavn">Etternavn:<em>*</em></label></dt>
-            <dd><form:input id="etternavn" type="text" name="etternavn" placeholder="Nordmann" required="true" path="etternavn"/></dd>
+            <dd><form:input id="etternavnLeggTilBruker" type="text" name="etternavn" placeholder="Nordmann" required="true" path="etternavn"/></dd>
 
             <dt><label for="epost">E-post:<em>*</em></label></dt>
-            <dd><form:input type="email" id="epost" placeholder="Skriv inn e-post" required="true" path="epost"/></dd>
+            <dd><form:input type="email" id="epostLeggTilBruker" placeholder="Skriv inn e-post" required="true" path="epost"/></dd>
 
             <dt><label for="tilgangniva">Type:<em>*</em></label></dt>
-            <dd><select name="tilgangniva" id="tilgangniva" required="true" path="tilgangniva">
+            <dd><select id="tilgangnivaLeggTilBruker" name="tilgangniva" path="tilgangniva" required>
                     <option value="Elev">Elev</option>
                     <option value="L?rer">Lærer</option>
                     <option value="Timeeplansansvarlig">Timeplanansvarlig</option>
