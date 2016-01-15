@@ -49,7 +49,7 @@ public class BrukerTest {
         test.setEtternavn("Aas");
         test.setEpost("per@hotmail.com");
         test.setNotat("Jeg liker fotball");
-        test.setTilgangniva(3);
+        test.setTilgangsniva(3);
         test.setPassord("123");
         test.setFodedato(fDato);
         test.setKlasse(klasse);
@@ -64,7 +64,7 @@ public class BrukerTest {
         assertEquals(test.getEtternavn(),"Aas");
         assertEquals(test.getEpost(),"per@hotmail.com");
         assertEquals(test.getNotat(),"Jeg liker fotball");
-        assertEquals(test.getTilgangniva(),3);
+        assertEquals(test.getTilgangsniva(),3);
         assertEquals(test.getPassord(),"123");
         assertEquals(test.getFodedato(), fDato);
         assertEquals(test.getKlasse(), klasse);
