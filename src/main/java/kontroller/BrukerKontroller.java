@@ -183,17 +183,17 @@ public class BrukerKontroller {
     }
     
     @RequestMapping(value="LeggTilBrukerLagre")
-    public String leggTilBrukerLagre(@Valid @ModelAttribute("bruker") Bruker bruker, @RequestParam("tilgangnivaa")String tilgang, Model model, BindingResult error, HttpSession sess){
+    public String leggTilBrukerLagre(@Valid @ModelAttribute("bruker") Bruker bruker, @RequestParam("Tilgangsnivaa")String tilgang, Model model, BindingResult error, HttpSession sess){
         if(error.hasErrors()){
             model.addAttribute("melding", "feilmelding.nyBrukerValidering");
             return "LeggTilBruker";
         }
         if(tilgang.equals("Elev")){
-            bruker.setTilgangniva(0);
+            bruker.setTilgangsniva(0);
         }else if(tilgang.equals("Lærer")){
-            bruker.setTilgangniva(1);
+            bruker.setTilgangsniva(1);
         }else if(tilgang.equals("Timeplansansvarlig")){
-            bruker.setTilgangniva(2);
+            bruker.setTilgangsniva(2);
         }
         if(sendNyPass(bruker, error, true)){
             model.addAttribute("bruker", (BrukerB)sess.getAttribute("brukerBean"));

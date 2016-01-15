@@ -124,13 +124,13 @@ public class DBConnectionImpl implements DBConnection{
     public boolean oppdaterBruker(Bruker b) {
         try{
             System.out.println(PasswordHasher.getSaltedHash(b.getPassord())+ " "
-            +b.getTilgangniva()+" "
+            +b.getTilgangsniva()+" "
             +b.getFornavn()+" "
             +b.getEtternavn()+ " "
             +b.getEpost());
         int antallRader = jT.update(endreBruker, new Object[]{
             PasswordHasher.getSaltedHash(b.getPassord()),
-            b.getTilgangniva(),
+            b.getTilgangsniva(),
             b.getFornavn(),
             b.getEtternavn(),
             b.getEpost()
@@ -157,7 +157,7 @@ public class DBConnectionImpl implements DBConnection{
         int antallRader = jT.update(nyBruker,new Object[]{
             b.getEpost(),
             PasswordHasher.getSaltedHash(b.getPassord()),
-            b.getTilgangniva(),
+            b.getTilgangsniva(),
             b.getFornavn(),
             b.getEtternavn()
         });

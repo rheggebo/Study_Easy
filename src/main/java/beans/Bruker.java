@@ -16,7 +16,7 @@ public class Bruker {
     private String epost;
     private Klasse klasse;
     private String notat;
-    private int tilgangniva;
+    private int tilgangsniva;
     private Date fodedato;
     private int telefonnummer;
     private ArrayList<KalenderEvent> kalenderEvents;
@@ -77,12 +77,12 @@ public class Bruker {
         this.notat = notat;
     }
 
-    public int getTilgangniva() {
-        return tilgangniva;
+    public int getTilgangsniva() {
+        return tilgangsniva;
     }
 
-    public void setTilgangniva(int tilgangniva) {
-        this.tilgangniva = tilgangniva;
+    public void setTilgangsniva(int tilgangsniva) {
+        this.tilgangsniva = tilgangsniva;
     }
 
     public ArrayList<KalenderEvent> getKalenderEvents() {
@@ -102,7 +102,7 @@ public class Bruker {
     }
     
     public String toString(){
-        return epost + " " + fornavn + " " + etternavn + " " + tilgangniva;
+        return epost + " " + fornavn + " " + etternavn + " " + tilgangsniva;
     }
     
     
