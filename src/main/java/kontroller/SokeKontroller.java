@@ -63,7 +63,11 @@ public class SokeKontroller {
        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd"); 
        String d = format.format(new Date(dato)); 
        
-       
+       List alleRom=si.getAlleRom();
+       for(int i=0;i<alleRom.size();i++){
+       /*    if(si.getRomFraType(romtype)&&si.getRomFraStoerrelse(st)){
+           }
+       }*/
        
         
         return "FinnRom";
