@@ -24,9 +24,11 @@ public class RomMapper implements RowMapper<Rom>{
         rom.setEtasje(rs.getInt("etasje"));
         rom.setType(rs.getInt("type"));
         rom.setStorrelse(rs.getInt("størrelse"));
+        return rom;
         
         
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        /*throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                */
     }
     
 }

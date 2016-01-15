@@ -49,5 +49,9 @@
         <put-attribute name="title"  value="LeggTilBruker"/>
         <put-attribute name="body"   value="/WEB-INF/jsp/LeggTilBruker.jsp"/>      
     </definition>
+    <definition name="EndrePassordRed" extends="baseLayout">
+        <put-attribute name="title"  value="EndrePassordRed"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/EndrePassordRed.jsp"/>      
+    </definition>
     
 </tiles-definitions>
