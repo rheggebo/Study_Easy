@@ -148,6 +148,7 @@ public class DBConnectionImpl implements DBConnection{
             b.getFornavn(),
             b.getEtternavn()
         });
+        System.out.println(antallRader);
         if(antallRader > 0){
             return true;
         }

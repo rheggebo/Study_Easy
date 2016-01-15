@@ -15,11 +15,11 @@
             <dt><label for="epost">E-post:<em>*</em></label></dt>
             <dd><form:input type="email" id="epost" placeholder="Skriv inn e-post" required="true" path="epost"/></dd>
 
-            <dt><label for="tilgangniva">Type:<em>*</em></label></dt>
-            <dd><select name="tilgangniva" id="tilgangniva" required="true" path="tilgangniva">
+            <dt><label for="tilgangnivaa">Type:<em>*</em></label></dt>
+            <dd><select name="tilgangnivaa" id="tilgangnivaa" required="true">
                     <option value="Elev">Elev</option>
-                    <option value="L?rer">Lærer</option>
-                    <option value="Timeeplansansvarlig">Timeplanansvarlig</option>
+                    <option value="Lærer">Lærer</option>
+                    <option value="Timeplansansvarlig">Timeplansansvarlig</option>
                 </select>
             </dd>
         </dl>

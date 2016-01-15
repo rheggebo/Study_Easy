@@ -53,7 +53,7 @@ public class BrukerKontroller {
             
         }   
         if(temp != null){
-            if(sendNyPass(temp, error)){
+            if(sendNyPass(temp, error, false)){
                     return "Innlogging";
                 }else{
                     model.addAttribute("melding", "feilmelding.email");
@@ -124,24 +124,32 @@ public class BrukerKontroller {
         return nyttPassord;
     }    
     
-    private Boolean sendNyPass(Bruker temp, BindingResult error){
+    private Boolean sendNyPass(Bruker temp, BindingResult error, boolean nyBruker){
         String mottaker = temp.getEpost();
         String tema = "Nytt passord for bruker: "+temp.getEpost();
+        String tema2 = "Ny bruker opprettet for: "+temp.getEpost()+" hos Study Easy";
         String nyttPassord = genererPassord(error);
         temp.setPassord(nyttPassord);
         Email email = new Email();
         String melding= 
                 "Dine nye innloggingsdetaljer er: \n \n "
+                + "Logg inn på: http://localhost:8084/Study_Easy/ \n \n"
                 + "Brukernavn: "+temp.getEpost()+"\n "
                 + "Passord: "+nyttPassord+"\n \n "
                 + "Vi anbefaler at du bytter dette passordet ved neste innlogging. \n \n "
                 + "Hilsen Study Easy teamet";
-        if(service.endreBruker(temp)){
+        if(!nyBruker){
             if(email.sendEpost(mottaker, tema, melding)){
-                System.out.println("Email sendt!****");
-                return true;
+                if(service.endreBruker(temp)){
+                    return true;
+                }
             }
-            System.out.println("Email ikke sendt :( *****");
+        }else{
+            if(email.sendEpost(mottaker, tema2, melding)){
+                if(service.nyBruker(temp)){
+                    return true;
+                }
+            }
         }
         return false; 
     }
@@ -175,25 +183,26 @@ public class BrukerKontroller {
     }
     
     @RequestMapping(value="LeggTilBrukerLagre")
-    public String leggTilBrukerLagre(@Valid @ModelAttribute("bruker") Bruker bruker, @RequestParam("tilgangniva")int tilgang, Model model, BindingResult error){
-        /*if(error.hasErrors()){
+    public String leggTilBrukerLagre(@Valid @ModelAttribute("bruker") Bruker bruker, @RequestParam("tilgangnivaa")String tilgang, Model model, BindingResult error){
+        if(error.hasErrors()){
             model.addAttribute("melding", "feilmelding.nyBrukerValidering");
             return "LeggTilBruker";
         }
         if(tilgang.equals("Elev")){
             bruker.setTilgangniva(0);
-        }else if(tilgang.equals("Læerer")){
+        }else if(tilgang.equals("Lærer")){
             bruker.setTilgangniva(1);
         }else if(tilgang.equals("Timeplansansvarlig")){
             bruker.setTilgangniva(2);
         }
-        if(service.nyBruker(bruker)){
-            return "MinSide";
-        }else{
-            model.addAttribute("melding", "feilmelding.nyBruker");
-            return "LeggTilbruker";
-        }*/
-        System.out.println(tilgang);
-        return "MinSide";
+        if(sendNyPass(bruker, error, true)){
+            if(service.nyBruker(bruker)){
+                System.out.println("Skal returnere min side");
+                return "MinSide";
+            }
+        }
+        System.out.println("Skal returnere legg til bruker");
+        model.addAttribute("melding", "feilmelding.nyBruker");
+        return "LeggTilbruker";
     }
 }
