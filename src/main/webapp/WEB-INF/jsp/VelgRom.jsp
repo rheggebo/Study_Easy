@@ -35,7 +35,7 @@
     </div>
     
     <div id="velgRomSøkeSVG">
-        <object width="100%" type="image/svg" data="<c:url value="/resources/SVG/plantegningE1.svg"/>" Din nettleser støtter ikke SVG </object>
+        <object id="plantegningEtasje1" data="<c:url value="/resources/SVG/plantegningE1.svg"/>"> Din nettleser støtter ikke SVG </object>
     </div>
 </main>
     <script>

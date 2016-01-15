@@ -19,6 +19,14 @@ body {
     padding:0;
 }
 
+#velgRomSøkeSVG{
+    
+}
+
+#plantegningEtasje1{
+    width: 100%;
+}
+
 main {
     margin:0;
     overflow:auto;
