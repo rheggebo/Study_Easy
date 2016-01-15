@@ -87,6 +87,8 @@ public interface Service {
     
     public List<KalenderEvent> getAlleEventsFraBruker(BrukerB b);
     
+    public List<Rom> finnRomTypeStorrelse(Rom r);
+    
     /** Søkefunksjon metoder **/
     public List<Bruker> getBrukerSok(String sokeord);
     
@@ -97,6 +99,8 @@ public interface Service {
     public List<Bruker> getBrukerFornavn(String fornavn);
     
     public List<Bruker> getBrukerEtternavn(String etternavn);
+    
+    public List<Bruker> getBrukerEpost(String epost);
     
     public List<Rom> getRomNavn(String romnavn);
     

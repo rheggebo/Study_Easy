@@ -207,6 +207,11 @@ public class ServiceImpl implements Service{
         return dbc.getAlleEventsFraBruker(b);
     }
     
+    @Override
+    public List<Rom> finnRomTypeStorrelse(Rom r) {
+        return dbc.finnRomTypeStorrelse(r);
+    }
+    
     /***Søkefunksjon metoder --- **/
     @Override
     public List<Rom> getAlleRom(){
@@ -246,6 +251,11 @@ public class ServiceImpl implements Service{
     @Override
     public List<Bruker> getBrukerEtternavn(String etternavn) {
         return dbc.getBrukerEtternavn(etternavn);
+    }
+    
+    @Override
+    public List<Bruker> getBrukerEpost(String epost) {
+        return dbc.getBrukerEpost(epost);
     }
     
     @Override

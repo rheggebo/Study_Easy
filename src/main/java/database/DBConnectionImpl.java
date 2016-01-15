@@ -66,6 +66,7 @@ public class DBConnectionImpl implements DBConnection{
     private final String leggTilAbonnement = "";
     private final String slettAbonnement = "";
     private final String getAbonnement = "";
+    private final String finnRomTypeStorrelse = "SELECT type, størrelse FROM rom WHERE type=? AND størrelse=?;";
     
     private final String getAlleEventsFraBruker = 
             "SELECT DISTINCT kalender_event.id, kalender_event.tittel, kalender_event.dato_start, kalender_event.dato_slutt, kalender_event.eier, kalender_event.eier_navn, kalender_event.romID, kalender_event.fagID, kalender_event.type, kalender_event.descr, kalender_event.hidden "
@@ -199,6 +200,11 @@ public class DBConnectionImpl implements DBConnection{
     @Override
     public List<Bruker> getBrukerEtternavn(String etternavn) {
         return jT.query(getBrukerEtternavn, new Object[]{etternavn}, new BrukerMapper());
+    }
+    
+    @Override
+    public List<Bruker> getBrukerEpost(String epost) {
+        return jT.query(getBrukerEpost, new Object[]{epost}, new BrukerMapper());
     }
     
     @Override
@@ -469,4 +475,13 @@ public class DBConnectionImpl implements DBConnection{
             b.getEpost()
         }, new KalenderEventMapper());
     }
+    
+    @Override
+    public List<Rom> finnRomTypeStorrelse(Rom r) {
+        return jT.query(finnRomTypeStorrelse, new Object[]{
+            r.getType(),
+            r.getStorrelse()
+        }, new RomMapper());
+    }
+
 }

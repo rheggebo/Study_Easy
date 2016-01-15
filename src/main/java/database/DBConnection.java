@@ -85,6 +85,8 @@ public interface DBConnection {
     
     public List<KalenderEvent> getAlleEventsFraBruker(BrukerB b);
     
+    public List<Rom> finnRomTypeStorrelse(Rom r);
+    
     /*** Søkefunksjonsmetoder:  */
     
     public List<Bruker> getBrukerSok(String sokeord);
@@ -96,6 +98,8 @@ public interface DBConnection {
     public List<Bruker> getBrukerFornavn(String fornavn);
     
     public List<Bruker> getBrukerEtternavn(String etternavn);
+    
+    public List<Bruker> getBrukerEpost(String epost);
     
     public List<Rom> getRomNavn(String romnavn);
     
