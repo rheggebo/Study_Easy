@@ -25,8 +25,6 @@ public interface Service {
     
     public Bruker hentBruker(Bruker bruker);
     
-    public List<Bruker> hentBrukerSok(String sokeord);
-    
     public boolean endreBruker(Bruker bruker);
     
     public boolean slettBruker(Bruker bruker);
@@ -88,4 +86,21 @@ public interface Service {
     public List<Fag> getAlleFag();
     
     public List<KalenderEvent> getAlleEventsFraBruker(BrukerB b);
+    
+    /** Søkefunksjon metoder **/
+    public List<Bruker> getBrukerSok(String sokeord);
+    
+    public List<Fag> getFag(String fag);
+    
+    public List<Bruker> getBrukerFornavn(String fornavn);
+    
+    public List<Bruker> getBrukerEtternavn(String etternavn);
+    
+    public List<Rom> getRomNavn(String romnavn);
+    
+    public List<Rom> getRomID(String romID);
+    
+    
+    
+    
 }

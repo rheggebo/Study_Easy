@@ -31,7 +31,6 @@ import verktøy.PasswordHasher;
 public class DBConnectionImpl implements DBConnection{
     
     private final String getBrukerEpost = "SELECT * FROM brukere WHERE EPOST=?";
-    private final String getBrukerSok = "SELECT * FROM brukere WHERE (fornavn LIKE '%?%') OR (etternavn LIKE '%?%')";
     private final String endreBruker = "UPDATE brukere SET PASSORD=?, TYPE=?, FORNAVN=?, ETTERNAVN=? WHERE EPOST=?";
     private final String nyBruker = "INSERT INTO brukere VALUES(?,?,?,?,?)";
     private final String slettBruker = "DELETE FROM brukere WHERE EPOST=?";
@@ -79,7 +78,13 @@ public class DBConnectionImpl implements DBConnection{
 
     /**Søkefunksjon**/
     private final String alleRom="SELECT * FROM rom";
-    private final String  alleFag="SELECT * FROM fag";
+    private final String alleFag="SELECT * FROM fag";
+    private final String getFag="SELECT * FROM fag WHERE fagID =?";
+    private final String getBrukerSok = "SELECT * FROM brukere WHERE (fornavn LIKE '%?%') OR (etternavn LIKE '%?%')";
+    private final String getBrukerFornavn = "SELECT * FROM brukere WHERE fornavn=?";
+    private final String getBrukerEtternavn = "SELECT * FROM brukere WHERE etternavn =?";
+    private final String getRomNavn = "SELECT * FROM rom WHERE romnavn =?";
+    private final String getRomID = "SELECT * FROM rom WHERE romID =?";
 
     
     
@@ -160,7 +165,8 @@ public class DBConnectionImpl implements DBConnection{
         }catch(Exception e){}
         return false;
     }
-   /***Søkefunksjon**/
+   /***Søkefunksjon metoder:   **/
+    
     @Override
     public List<Rom> getAlleRom(){
         return jT.query(alleRom, new RomMapper());
@@ -173,7 +179,33 @@ public class DBConnectionImpl implements DBConnection{
     public List<Bruker> getAlleBrukere() {
         return jT.query(alleBrukere, new BrukerMapper());
     }
-    /***Søkefunksjon***/
+    
+    @Override 
+    public List<Fag> getFag(String fag) {
+        return jT.query(getFag, new FagMapper());
+    }
+    
+    @Override
+    public List<Bruker> getBrukerFornavn(String fornavn) {
+        return jT.query(getBrukerFornavn, new BrukerMapper());
+    }
+    
+    @Override
+    public List<Bruker> getBrukerEtternavn(String etternavnnavn) {
+        return jT.query(getBrukerEtternavn, new BrukerMapper());
+    }
+    
+    @Override
+    public List<Rom> getRomNavn(String romnavn) {
+        return jT.query(getRomNavn, new RomMapper());
+    }
+    
+    @Override
+    public List<Rom> getRomID(String romID) {
+        return jT.query(getRomID, new RomMapper());
+    }
+         
+    /***Søkefunksjon metoder slutt***/
 
     @Override
     public boolean oppdaterBrukerFag(Bruker b, Fag f) {
@@ -362,6 +394,8 @@ public class DBConnectionImpl implements DBConnection{
             b.getEpost()
         }, new FagMapper());
     }
+    
+    
 
     @Override
     public Rom getRombestilling() {
