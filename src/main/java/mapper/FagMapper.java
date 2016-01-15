@@ -20,7 +20,8 @@ public class FagMapper implements RowMapper<Fag>{
     @Override
     public Fag mapRow(ResultSet rs, int i) throws SQLException {
         Fag fag = new Fag();
-        fag.setFagID(rs.getString("id"));
+        fag.setFagID(rs.getString("fagid"));
+        fag.setNavn(rs.getString("fagnavn"));
         return fag;
         
     }

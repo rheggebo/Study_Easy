@@ -51,11 +51,6 @@ public class ServiceImpl implements Service{
     public Bruker hentBruker(Bruker bruker) {
         return dbc.getBruker(bruker.getEpost());
     }
-    
-    @Override
-    public List<Bruker> hentBrukerSok(String sokeord) {
-        return dbc.getBrukerSok(sokeord);
-    }
    
     @Override
     public boolean endreBruker(Bruker bruker) {
@@ -186,11 +181,6 @@ public class ServiceImpl implements Service{
     public List<Rom> getRomFraNavn(Rom r) {
         return dbc.getRomFraNavn(r);
     }
-    
-    @Override
-    public List<Rom> getRomFraNavn(String navn) {
-        return dbc.getRomFraNavn(navn);
-    }
 
     @Override
     public List<Rom> getRomFraInnhold(Rom r) {
@@ -211,18 +201,60 @@ public class ServiceImpl implements Service{
     public List<Klasse> getLaererKlasse(Bruker b) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    /***Søkefunksjon**/
+    
+    @Override
+    public List<KalenderEvent> getAlleEventsFraBruker(BrukerB b){
+        return dbc.getAlleEventsFraBruker(b);
+    }
+    
+    /***Søkefunksjon metoder --- **/
     @Override
     public List<Rom> getAlleRom(){
         return dbc.getAlleRom();
     }
+    
     @Override
     public List<Fag> getAlleFag(){
         return dbc.getAlleFag();
     }
     
     @Override
-    public List<KalenderEvent> getAlleEventsFraBruker(BrukerB b){
-        return dbc.getAlleEventsFraBruker(b);
+    public List<Bruker> getBrukerSok(String sokeord) {
+        return dbc.getBrukerSok(sokeord);
+    }
+    
+    @Override
+    public List<Rom> getRomFraNavn(String navn) {
+        return dbc.getRomFraNavn(navn);
+    }
+    
+    @Override
+    public List<Fag> getFagID(String fagID) {
+        return dbc.getFagID(fagID);
+    }
+    
+    @Override
+    public List<Fag> getFagNavn(String fagNavn) {
+        return dbc.getFagNavn(fagNavn);
+    }
+    
+    @Override
+    public List<Bruker> getBrukerFornavn(String fornavn) {
+        return dbc.getBrukerFornavn(fornavn);
+    }
+    
+    @Override
+    public List<Bruker> getBrukerEtternavn(String etternavn) {
+        return dbc.getBrukerEtternavn(etternavn);
+    }
+    
+    @Override
+    public List<Rom> getRomNavn(String romnavn) {
+        return dbc.getRomNavn(romnavn);
+    }
+    
+    @Override
+    public List<Rom> getRomID(String romID) {
+        return dbc.getRomID(romID);
     }
 }
