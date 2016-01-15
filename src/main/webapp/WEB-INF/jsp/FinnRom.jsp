@@ -19,7 +19,7 @@
 
 <main>
     <aside>
-        <form action="" method="post" onsubmit="return validate();">
+        <form action="finnromdata" modelAttribute='finnrom' method="post" onsubmit="return validate();">
             <fieldset>
                 <legend>Velg ønsket spesifikasjoner:</legend>
                 <dl>
