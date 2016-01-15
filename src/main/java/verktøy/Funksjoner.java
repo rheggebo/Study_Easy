@@ -33,7 +33,7 @@ public class Funksjoner {
         
         
         /* henter data fra databasen utifra søkeord s */
-        brukerListe.addAll(si.getBrukerFornavn(s));
+        brukerListe.addAll(si.getBrukerFornavn("%" + s + "%"));
         brukerListe.addAll(si.getBrukerEtternavn(s));
         brukerListe.addAll(si.getBrukerEpost(s));
         fagListe.addAll(si.getFagID(s));
@@ -51,10 +51,6 @@ public class Funksjoner {
         romListe.addAll(si.finnRomTypeStorrelse(r));
         */
 
-        
-        
-        
-        
         
         /* legger til alle lister i objekt hoved listen og returnerer til siden */
         liste.addAll(brukerListe);
