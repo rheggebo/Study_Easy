@@ -102,9 +102,9 @@ public class Bruker {
     }
     
     public String toString(){
-        String str = fornavn + " " + etternavn;
+        String str = fornavn + " " + etternavn + ", ";
         if(!epost.isEmpty() && !epost.equals(null)) {
-            str += "     Epost: " + epost;
+            str += " Epost: " + epost;
         }
         return str;
     }
