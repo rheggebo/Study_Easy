@@ -33,9 +33,11 @@ public class Funksjoner {
         
         
         /* henter data fra databasen utifra søkeord s */
-        /*brukerListe.addAll(si.getBrukerFornavn(s));*/
-        /*brukerListe.addAll(si.getBrukerEtternavn(s));*/
-        /*fagListe.addAll(si.getFag(s));*/
+        brukerListe.addAll(si.getBrukerFornavn(s));
+        brukerListe.addAll(si.getBrukerEtternavn(s));
+        fagListe.addAll(si.getFagID(s));
+        fagListe.addAll(si.getFagNavn(s));
+        
         /*
         romListe.addAll(si.getRomNavn(s));
         romListe.addAll(si.getRomID(s));
@@ -44,7 +46,6 @@ public class Funksjoner {
         brukerListe.add(si.hentBruker(s));
         */
         
-        brukerListe.addAll(si.getAlleBrukere());
         
         
         

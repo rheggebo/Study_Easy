@@ -79,9 +79,10 @@ public class DBConnectionImpl implements DBConnection{
     /**Søkefunksjon**/
     private final String alleRom="SELECT * FROM rom";
     private final String alleFag="SELECT * FROM fag";
-    private final String getFag="SELECT * FROM fag WHERE fagID =?";
+    private final String getFagID="SELECT * FROM fag WHERE fagID =?";
+    private final String getFagNavn="SELECT * FROM fag WHERE fagnavn =?";
     private final String getBrukerSok = "SELECT * FROM brukere WHERE (fornavn LIKE '%?%') OR (etternavn LIKE '%?%')";
-    private final String getBrukerFornavn = "SELECT * FROM brukere WHERE fornavn=?";
+    private final String getBrukerFornavn = "SELECT * FROM brukere WHERE fornavn =?";
     private final String getBrukerEtternavn = "SELECT * FROM brukere WHERE etternavn =?";
     private final String getRomNavn = "SELECT * FROM rom WHERE romnavn =?";
     private final String getRomID = "SELECT * FROM rom WHERE romID =?";
@@ -181,28 +182,33 @@ public class DBConnectionImpl implements DBConnection{
     }
     
     @Override 
-    public List<Fag> getFag(String fag) {
-        return jT.query(getFag, new FagMapper());
+    public List<Fag> getFagID(String fagID) {
+        return jT.query(getFagID, new Object[]{fagID}, new FagMapper());
+    }
+    
+    @Override 
+    public List<Fag> getFagNavn(String fagNavn) {
+        return jT.query(getFagNavn, new Object[]{fagNavn}, new FagMapper());
     }
     
     @Override
     public List<Bruker> getBrukerFornavn(String fornavn) {
-        return jT.query(getBrukerFornavn, new BrukerMapper());
+        return jT.query(getBrukerFornavn, new Object[]{fornavn}, new BrukerMapper());
     }
     
     @Override
-    public List<Bruker> getBrukerEtternavn(String etternavnnavn) {
-        return jT.query(getBrukerEtternavn, new BrukerMapper());
+    public List<Bruker> getBrukerEtternavn(String etternavn) {
+        return jT.query(getBrukerEtternavn, new Object[]{etternavn}, new BrukerMapper());
     }
     
     @Override
     public List<Rom> getRomNavn(String romnavn) {
-        return jT.query(getRomNavn, new RomMapper());
+        return jT.query(getRomNavn, new Object[]{romnavn}, new RomMapper());
     }
     
     @Override
     public List<Rom> getRomID(String romID) {
-        return jT.query(getRomID, new RomMapper());
+        return jT.query(getRomID, new Object[]{romID}, new RomMapper());
     }
          
     /***Søkefunksjon metoder slutt***/

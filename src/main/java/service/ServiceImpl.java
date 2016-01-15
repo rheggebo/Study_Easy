@@ -229,8 +229,13 @@ public class ServiceImpl implements Service{
     }
     
     @Override
-    public List<Fag> getFag(String fag) {
-        return dbc.getFag(fag);
+    public List<Fag> getFagID(String fagID) {
+        return dbc.getFagID(fagID);
+    }
+    
+    @Override
+    public List<Fag> getFagNavn(String fagNavn) {
+        return dbc.getFagNavn(fagNavn);
     }
     
     @Override

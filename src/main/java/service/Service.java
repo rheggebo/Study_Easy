@@ -90,7 +90,9 @@ public interface Service {
     /** Søkefunksjon metoder **/
     public List<Bruker> getBrukerSok(String sokeord);
     
-    public List<Fag> getFag(String fag);
+    public List<Fag> getFagID(String fagID);
+    
+    public List<Fag> getFagNavn(String fagNavn);
     
     public List<Bruker> getBrukerFornavn(String fornavn);
     
