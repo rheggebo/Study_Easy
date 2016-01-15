@@ -48,14 +48,30 @@
     <table>
             <c:forEach var="liste" items="${liste}">
                 <tr>
-                    <td><c:out value="${liste}"></c:out> </td>
-                </tr>                              
+                    <td><c:out value="${liste}"></c:out> <input class=oversikt type='button' value='Se oversikt'/></td>
+                </tr>                    
+                          
             </c:forEach>                      
     </table>
 </div>
 </body>
 </html>
 
+<style>
+    .oversikt{
+        size: 15px;       
+        text-align: center;
+        font: 12px Microsoft YaHei Light;
+        float: right;
+        
+        
+    }
+    .searchInfo table td{
+        width: 800px;
+        border-top: solid black 1px;
+        border-bottom: solid black 1px;
+    }
+</style>
 <%--
     <script>
     var ansatt=$("#ansatt").attr("checked") ? 1 : 0;

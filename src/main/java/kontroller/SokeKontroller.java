@@ -9,6 +9,7 @@ import beans.Bruker;
 import beans.Rom;
 import beans.Sok;
 import java.io.IOException;
+import static java.lang.System.out;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -48,28 +49,41 @@ public class SokeKontroller {
             
         Funksjoner fu= new Funksjoner();
         model.addAttribute("liste",fu.getAlleSokeTreff(sok.getSokeord(), si));
+        for(int i=0;i<fu.liste.size();i++){
+           out.println("<td>" + fu.liste.get(i).toString() + "<td>"); 
+        }
         return "SokeSide";
+    }
+        
+        
             
-            }
+ }
     
-    @RequestMapping(value="finnromdata")
+   /** @RequestMapping(value="finnromdata")
     public String finnromdata(@ModelAttribute(value="finnrom") Rom rom, HttpServletRequest request, HttpServletResponse response){
        String romtype=request.getParameter("romtype");
        String antStolplasser=request.getParameter("num-stoler");
        String str=request.getParameter("størrelse");       
        String dato=request.getParameter("date");
+       String[] checked=request.getParameter("")
        int antStoler=Integer.parseInt(antStolplasser);
        int st=Integer.parseInt(str);
        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd"); 
        String d = format.format(new Date(dato)); 
        
+       List alleRom=si.getAlleRom();
+       for(int i=0;i<alleRom.size();i++){
+       /*    if(si.getRomFraType(romtype)&&si.getRomFraStoerrelse(st)){
+                for(iterer liste){
+                out.println();
+                }
+           }
+       }*/
        
-       
-        
+        /**
         return "FinnRom";
-            }
+            }**/
 
-	}
       
     /**
      * String[] select = new String[5];
