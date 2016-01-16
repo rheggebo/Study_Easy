@@ -19,7 +19,7 @@
 
 <main>
     <aside>
-        <form action="finnromdata" modelAttribute='finnrom' method="post" onsubmit="return validate();">
+        <form:form action="finnromdata" modelAttribute='rom' method="post" onsubmit="return validate();">
             <fieldset>
                 <legend>Velg ønsket spesifikasjoner:</legend>
                 <dl>
@@ -37,10 +37,10 @@
                      </datalist> -->
 
                     <dt><label for="antStolplasserFinnRom">Antall stolplasser:<em>*</em></label></dt>
-                    <dd><input id="antStolplasserFinnRom" type="number" name="num-stoler" min="1" max="150" value="1" required></dd>
+                    <dd><form:input id="antStolplasserFinnRom" type="number" name="num-stoler" min="1" max="150" value="1" required="true" path="antStolplasser"/></dd>
 
                     <dt><label for="strFinnRom">Strørrelse(m2):</label></dt>
-                    <dd><input id="strFinnRom" name="størrelse" type="number" min="5" max="200" value="5"></dd>
+                    <dd><form:input id="strFinnRom" name="størrelse" type="number" min="5" max="200" value="5" path="storrelse"/></dd>
 
                     <dt><label for="checkboxes">Utstyr:</label></dt>
                     <dd><input class="checkboxes" type="checkbox" id="skjerm" value="Skjerm">PC-skjerm<br>
@@ -51,12 +51,12 @@
                     
 
                    <dt><label for="datoFinnRom">Dato:<em>*</em></label></dt>
-                    <dd><input id="datoFinnRom" type="date" name="date" required></dd>
+                    <dd><input id="datoFinnRom" type="date" name="dato" required="true"/></dd>
 
                 </dl>
                 <input type="submit" value="Finn ledig rom">
             </fieldset>
-        </form>
+        </form:form>
     </aside>
 
     <section class="info">
