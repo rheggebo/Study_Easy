@@ -23,7 +23,23 @@ body {
     
 }
 
+//hvorfor funker ikke dette....
+.plantegning{
+    width: 100%;
+}
+
+
+//Må gjøre dette:
 #plantegningEtasje1{
+    width: 100%;
+}
+#plantegningEtasje2{
+    width: 100%;
+}
+#plantegningEtasje3{
+    width: 100%;
+}
+#plantegningEtasje4{
     width: 100%;
 }
 
@@ -31,6 +47,7 @@ main {
     margin:0;
     overflow:auto;
     padding:0px 40px;
+    height: 100%;
 }
 
 header{

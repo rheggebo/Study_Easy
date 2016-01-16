@@ -233,8 +233,8 @@ public class ServiceImpl implements Service{
     }
     
     @Override
-    public List<Rom> getRomSok(String sokeord1, String sokeord2, int sokeord3) {
-        return dbc.getRomSok(sokeord1, sokeord2, sokeord3);
+    public List<Rom> getRomSok(String sokeord1, String sokeord2) {
+        return dbc.getRomSok(sokeord1, sokeord2);
     }
     
     @Override

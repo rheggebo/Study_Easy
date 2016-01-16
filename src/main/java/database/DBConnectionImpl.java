@@ -94,7 +94,7 @@ public class DBConnectionImpl implements DBConnection{
     
     private final String getBrukerSok = "SELECT * FROM brukere WHERE fornavn LIKE ? OR etternavn LIKE ? or epost LIKE ?";
     private final String getFagSok = "SELECT * FROM fag WHERE fagID LIKE ? OR fagnavn LIKE ?";
-    private final String getRomSok = "SELECT * FROM rom WHERE romID LIKE ? OR romnavn LIKE ? OR type LIKE ?";
+    private final String getRomSok = "SELECT * FROM rom WHERE romID LIKE ? OR romnavn LIKE ?";
     
     
     private DataSource dS;
@@ -199,8 +199,8 @@ public class DBConnectionImpl implements DBConnection{
     }
     
     @Override
-    public List<Rom> getRomSok(String sokeord1, String sokeord2, int sokeord3) {
-        return jT.query(getRomSok, new Object[]{sokeord1, sokeord2, sokeord3}, new RomMapper());
+    public List<Rom> getRomSok(String sokeord1, String sokeord2) {
+        return jT.query(getRomSok, new Object[]{sokeord1, sokeord2}, new RomMapper());
     }
     
 

@@ -35,7 +35,10 @@
     </div>
     
     <div id="velgRomSøkeSVG">
-        <object id="plantegningEtasje1" data="<c:url value="/resources/SVG/plantegningE1.svg"/>"> Din nettleser støtter ikke SVG </object>
+        <object id="plantegningEtasje1" class="#plantegning" data="<c:url value="/resources/SVG/plantegningE1.svg"/>"> Din nettleser støtter ikke SVG </object>
+        <object id="plantegningEtasje2" class="#plantegning" data="<c:url value="/resources/SVG/plantegningE2.svg"/>"> Din nettleser støtter ikke SVG </object>
+        <object id="plantegningEtasje3" class="#plantegning" data="<c:url value="/resources/SVG/plantegningE3.svg"/>"> Din nettleser støtter ikke SVG </object>
+        <object id="plantegningEtasje4" class="#plantegning" data="<c:url value="/resources/SVG/plantegningE4.svg"/>"> Din nettleser støtter ikke SVG </object>
     </div>
 </main>
     <script>

@@ -44,20 +44,31 @@ public class SokeKontroller {
      
     @RequestMapping(value="search")
     public String searchView(@ModelAttribute(value="soke")Sok sok, Model model, 
-        HttpServletRequest request) throws Exception {
+        HttpServletRequest request, HttpServletResponse response) {
+        Funksjoner fu= new Funksjoner();     
+       /* 
+       String checkedAnsatt=request.getParameter("Ansatt");
+       String checkedStudent=request.getParameter("Student");      
+       String checkedFag=request.getParameter("Fag");
+       String checkedRom=request.getParameter("Rom");
+       String checkedKlasse=request.getParameter("Klasse");
+        */
         
-            
-        Funksjoner fu= new Funksjoner();
-        model.addAttribute("liste",fu.getAlleSokeTreff(sok.getSokeord(), si));
-        for(int i=0;i<fu.liste.size();i++){
-           out.println("<td>" + fu.liste.get(i).toString() + "<td>"); 
+        
+       model.addAttribute("liste",fu.getAlleSokeTreff(sok.getSokeord(), si));
+       for(int i=0;i<fu.liste.size();i++){
+           out.println("<td>" + fu.liste.get(i).toString() + "<td>");           
         }
-        return "SokeSide";
+        return "SokeSide";  
     }
-        
-        
-            
- }
+      /*
+        (@RequestParam(value="checkbox_1", required=false)boolean forelesning,
+                @RequestParam(value="checkbox_2", required=false)boolean Oving,
+            @RequestParam(value="checkbox_3", required=false)boolean romreservasjon,
+            @RequestParam(value="checkbox_4", required=false)boolean privatHendelse*/
+          
+   
+}
     
    /** @RequestMapping(value="finnromdata")
     public String finnromdata(@ModelAttribute(value="finnrom") Rom rom, HttpServletRequest request, HttpServletResponse response){

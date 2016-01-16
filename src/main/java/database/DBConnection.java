@@ -95,6 +95,6 @@ public interface DBConnection {
     
     public List<Fag> getFagSok(String sokeord1, String sokeord2);
     
-    public List<Rom> getRomSok(String sokeord1, String sokeord2, int sokeord3);
+    public List<Rom> getRomSok(String sokeord1, String sokeord2);
 
 }
