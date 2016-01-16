@@ -237,8 +237,8 @@ public class ServiceImpl implements Service{
         return dbc.getRomSok(sokeord1, sokeord2, sokeord3);
     }
     
- 
-    
-    
-
+    @Override
+    public Rom getRom(Rom r){
+        return dbc.getRom(r);
+    }
 }

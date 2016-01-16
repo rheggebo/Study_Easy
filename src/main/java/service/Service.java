@@ -87,6 +87,8 @@ public interface Service {
     
     public List<Rom> finnRomTypeStorrelse(Rom r);
     
+    public Rom getRom(Rom r);
+    
     /** Søkefunksjon metoder **/
     public List<Bruker> getBrukerSok(String sokeord1, String sokeord2, String sokeord3);
     

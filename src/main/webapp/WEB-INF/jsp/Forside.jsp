@@ -28,7 +28,7 @@
             </li>
     </ul>
     
-    <form>
+    <form action="kalenderEventCheck">
         <ul style="list-style-type: none; margin: 0; padding: 0;">
             <li>
              <input type="text" disabled="true" style="
@@ -37,7 +37,7 @@
         width: .8em; 
         height:.3em;">
                <label for="checkbox_1">Forelesning</label>
-               <input type="checkbox" name="checkbox1" class="kalenderCheckB" id="1" value="background-color1"  style="width: 15px; cursor: pointer" checked>
+               <input type="checkbox" name="checkbox1" class="kalenderCheckB" id="1" value="background-color1"  style="width: 15px; cursor: pointer" onchange="submit()">
             </li>
             <li>
               <input type="text" disabled="true" style="
@@ -46,7 +46,7 @@
         width: .8em; 
         height:.3em;">
                <label for="checkbox_2">Øving</label>
-               <input type="checkbox" name="checkbox2" class="kalenderCheckB" id="2" value="background-color2" style="width: 15px; cursor: pointer" checked>
+               <input type="checkbox" name="checkbox2" class="kalenderCheckB" id="2" value="background-color2" style="width: 15px; cursor: pointer" onchange="submit()">
             </li>
             <li>
                 <input type="text" disabled="true" style="
@@ -54,8 +54,8 @@
         border: 1px solid gray;
         width: .8em; 
         height:.3em;">
-               <label for="checkbox_3">Rom reservasjon</label>
-               <input type="checkbox" name="checkbox3" class="kalenderCheckB" id="3" value="background-color3"  style="width: 15px; cursor: pointer" checked>
+               <label for="checkbox_3">Romreservasjon</label>
+               <input type="checkbox" name="checkbox3" class="kalenderCheckB" id="3" value="background-color3"  style="width: 15px; cursor: pointer" onchange="submit()">
             </li>
             <li>
               <input type="text" disabled="true" style="
@@ -64,7 +64,7 @@
         width: .8em; 
         height:.3em;">
                <label for="checkbox_4">Privat hendelse</label>
-               <input type="checkbox" name="checkbox4" class="kalenderCheckB" id="4" value="background-color4"  style="width: 15px; cursor: pointer" checked>
+               <input type="checkbox" name="checkbox4" class="kalenderCheckB" id="4" value="background-color4"  style="width: 15px; cursor: pointer" onchange="submit()">
             </li>
         </ul>
     </form>

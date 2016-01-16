@@ -67,6 +67,7 @@ public class DBConnectionImpl implements DBConnection{
     private final String slettAbonnement = "";
     private final String getAbonnement = "";
     private final String finnRomTypeStorrelse = "SELECT type, størrelse FROM rom WHERE type=? AND størrelse=?;";
+    private final String getRom = "SELECT * FROM rom WHERE romID=?";
     
     private final String getAlleEventsFraBruker = 
             "SELECT DISTINCT kalender_event.id, kalender_event.tittel, kalender_event.dato_start, kalender_event.dato_slutt, kalender_event.eier, kalender_event.eier_navn, kalender_event.romID, kalender_event.fagID, kalender_event.type, kalender_event.descr, kalender_event.hidden "
@@ -76,6 +77,16 @@ public class DBConnectionImpl implements DBConnection{
             + "WHERE kalender_event.eier = abonemennt_bruker.brukerID  AND abonemennt_bruker.eierID =?  AND kalender_event.hidden = 0 UNION "
             + "SELECT DISTINCT kalender_event.id, kalender_event.tittel, kalender_event.dato_start, kalender_event.dato_slutt, kalender_event.eier, "
             + "kalender_event.eier_navn, kalender_event.romID, kalender_event.fagID, kalender_event.type, kalender_event.descr, kalender_event.hidden FROM kalender_event, brukere, abonemennt_fag WHERE kalender_event.fagID = abonemennt_fag.fagID AND abonemennt_fag.eierID =?;";
+    
+    private final String finnRom0Param = "SELECT DISTINCT rom.romID, romnavn FROM rom LEFT OUTER JOIN rom_innhold ON rom.romID = rom_innhold.romID LEFT OUTER JOIN\n" +
+        "rom_bestilling ON rom.romID = rom_bestilling.romID  \n" +
+        "WHERE (dato_slutt NOT BETWEEN '?' AND '?' AND \n" +
+        "dato_start NOT BETWEEN '?' AND '?'  OR rom_bestilling.romID IS NULL)";
+    
+    private final String finnRom1Param = finnRom0Param +" AND (rom_innhold.innholdID LIKE '?' AND rom_innhold.antall>?)";
+    private final String finnRom2Param = finnRom1Param +" "+finnRom1Param;
+    private final String finnRom3Param = finnRom1Param +" "+finnRom1Param+" "+finnRom1Param;
+    private final String finnRom4Param = finnRom1Param +" "+finnRom1Param+" "+finnRom1Param+" "+finnRom1Param;
 
     /**Søkefunksjon**/
     private final String alleRom="SELECT * FROM rom";
@@ -457,6 +468,13 @@ public class DBConnectionImpl implements DBConnection{
         return jT.query(finnRomTypeStorrelse, new Object[]{
             r.getType(),
             r.getStorrelse()
+        }, new RomMapper());
+    }
+    
+    @Override
+    public Rom getRom(Rom r){
+        return jT.queryForObject(getRom, new Object[]{
+            r.getRomID()
         }, new RomMapper());
     }
 

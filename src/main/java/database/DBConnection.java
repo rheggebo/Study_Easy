@@ -87,6 +87,8 @@ public interface DBConnection {
     
     public List<Rom> finnRomTypeStorrelse(Rom r);
     
+    public Rom getRom(Rom r);
+    
     /*** Søkefunksjonsmetoder:  */
     
     public List<Bruker> getBrukerSok(String sokeord1, String sokeord2, String sokeord3);

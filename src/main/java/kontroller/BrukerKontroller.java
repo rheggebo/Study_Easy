@@ -9,7 +9,6 @@ import beans.Bruker;
 import beans.BrukerB;
 import beans.Passord;
 import email.Email;
-import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
