@@ -53,7 +53,11 @@
                           
             </c:forEach>                      
     </table>
-</div>
+    <script>
+        var x=document.getElementById('Ansatt').val();
+        out.println("Dette skjedde noe" + x);
+    </script>
+</div>         
 </body>
 </html>
 <%--skal inne i hoveldstilen--%>
@@ -72,6 +76,7 @@
         border-bottom: solid black 1px;
     }
 </style>
+<%--skal inne i hoveldstilen--%>
 <%--
     <script>
     var ansatt=$("#ansatt").attr("checked") ? 1 : 0;
