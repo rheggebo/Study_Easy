@@ -5,6 +5,7 @@
  */
 package database;
 
+import beans.Abonemennt;
 import beans.Bruker;
 import beans.BrukerB;
 import beans.Fag;
@@ -89,6 +90,10 @@ public interface DBConnection {
     public List<Rom> finnRomTypeStorrelse(Rom r);
     
     public List<RomBestilling> getAlleBestillingerFraBruker(BrukerB b);
+    
+    public List<Abonemennt> getAbonemenntFraBruker(BrukerB b);
+    
+    public boolean leggTilAbonemennt(Abonemennt ab);
     
     /*** Søkefunksjonsmetoder:  */
     

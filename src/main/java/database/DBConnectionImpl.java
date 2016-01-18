@@ -5,6 +5,7 @@
  */
 package database;
 
+import beans.Abonemennt;
 import mapper.BrukerMapper;
 import mapper.RomMapper;
 import beans.Bruker;
@@ -19,6 +20,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.sql.DataSource;
+import mapper.AbonemenntMapper;
 import mapper.FagMapper;
 import mapper.KalenderEventMapper;
 import mapper.RomBestillingMapper;
@@ -70,6 +72,9 @@ public class DBConnectionImpl implements DBConnection{
     private final String getAbonnement = "";
     private final String finnRomTypeStorrelse = "SELECT type, størrelse FROM rom WHERE type=? AND størrelse=?;";
     
+    private final String leggTilAbonemennt = "INSERT INTO ? (eierID, ?) VALUES (?, ?)";
+    private final String getAbonemenntFraBruker = "SELECT abonemennt_bruker.eierID, abonemennt_bruker.brukerID AS abonererId, 0 AS abType FROM abonemennt_bruker WHERE abonemennt_bruker.eierID =? UNION "
+            + "SELECT abonemennt_fag.eierID, abonemennt_fag.fagID AS abonererId, 1 AS abType FROM abonemennt_fag WHERE abonemennt_fag.eierID =?";
     private final String getAlleBestillingerFraBruker = "SELECT rom_bestilling.eierID, rom_bestilling.romID, rom_bestilling.dato_start, rom_bestilling.dato_slutt FROM rom_bestilling WHERE rom_bestilling.eierID =?";
     private final String getAlleEventsFraBruker = 
             "SELECT DISTINCT kalender_event.id, kalender_event.tittel, kalender_event.dato_start, kalender_event.dato_slutt, kalender_event.eier, kalender_event.eier_navn, kalender_event.romID, kalender_event.fagID, kalender_event.type, kalender_event.descr, kalender_event.hidden "
@@ -386,6 +391,30 @@ public class DBConnectionImpl implements DBConnection{
         }, new FagMapper());
     }
     
+    @Override
+    public boolean leggTilAbonemennt(Abonemennt ab){
+        String table = "";
+        String navn = "";
+        if (ab.getType() == 0){
+            table = "abonemennt_bruker";
+            navn = "eierID";
+        }
+        else{
+            table = "abonemennt_fag";
+            navn = "fagID";
+        }
+        int antallRader = jT.update(leggTilAbonemennt,new Object[]{
+            table,
+            navn,
+            ab.getEierid(),
+            ab.getAbonererId()
+        });
+        if(antallRader > 0){
+            return true;
+        }
+        return false;
+    }
+    
     
 
     @Override
@@ -453,6 +482,13 @@ public class DBConnectionImpl implements DBConnection{
             b.getEpost(),
             b.getEpost()
         }, new KalenderEventMapper());
+    }
+    @Override
+    public List<Abonemennt> getAbonemenntFraBruker(BrukerB b){
+        return jT.query(getAbonemenntFraBruker, new Object[]{
+            b.getEpost(),
+            b.getEpost()
+        }, new AbonemenntMapper());
     }
     
     @Override

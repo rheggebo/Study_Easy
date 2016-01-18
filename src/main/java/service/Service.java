@@ -5,6 +5,7 @@
  */
 package service;
 
+import beans.Abonemennt;
 import beans.Bruker;
 import beans.BrukerB;
 import beans.Fag;
@@ -89,6 +90,10 @@ public interface Service {
     public List<Rom> finnRomTypeStorrelse(Rom r);
     
     public List<RomBestilling> getAlleBestillingerFraBruker(BrukerB b);
+    
+    public List<Abonemennt> getAbonemenntFraBruker(BrukerB b);
+    
+    public boolean leggTilAbonemennt(Abonemennt ab);
     
     /** Søkefunksjon metoder **/
     public List<Bruker> getBrukerSok(String sokeord1, String sokeord2, String sokeord3);

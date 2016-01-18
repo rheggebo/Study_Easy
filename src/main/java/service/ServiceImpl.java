@@ -5,6 +5,7 @@
  */
 package service;
 
+import beans.Abonemennt;
 import beans.Bruker;
 import beans.BrukerB;
 import beans.Fag;
@@ -214,6 +215,14 @@ public class ServiceImpl implements Service{
     @Override
     public List<Rom> finnRomTypeStorrelse(Rom r) {
         return dbc.finnRomTypeStorrelse(r);
+    }
+    
+    @Override
+    public List<Abonemennt> getAbonemenntFraBruker(BrukerB b){
+        return dbc.getAbonemenntFraBruker(b);
+    }
+    public boolean leggTilAbonemennt(Abonemennt ab){
+        return dbc.leggTilAbonemennt(ab);
     }
     
     /***Søkefunksjon metoder --- **/
