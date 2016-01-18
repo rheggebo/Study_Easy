@@ -11,7 +11,7 @@
             <fieldset>
                 <legend>Bestill rom</legend>
                 <p>Velg dato for rombestilling:<em>*</em></p>
-                <input id="datoVelgRom" type="date" name="date" id="datoen" placeholder="ÅÅÅÅ-MM-DD required">
+                <input id="datoVelgRom" type="date" name="date">
 
                 <p>Velg klokkeslett<em>(kan velge flere)</em></p>
                 <select id="klokkeslett" multiple required name="klokkeslett">
@@ -36,21 +36,19 @@
     
     <div id="velgRomSøkeSVG">
         <object id="plantegningEtasje1" data="<c:url value="/resources/SVG/plantegningE1.svg"/>"> Din nettleser støtter ikke SVG </object>
-        <object id="plantegningEtasje2" data="<c:url value="/resources/SVG/plantegningE2.svg"/>"> Din nettleser støtter ikke SVG </object>
-        <object id="plantegningEtasje3" data="<c:url value="/resources/SVG/plantegningE3.svg"/>"> Din nettleser støtter ikke SVG </object>
-        <object id="plantegningEtasje4" data="<c:url value="/resources/SVG/plantegningE4.svg"/>"> Din nettleser støtter ikke SVG </object>
+        <object id="plantegningEtasje2" hidden="true" data="<c:url value="/resources/SVG/plantegningE2.svg"/>"> Din nettleser støtter ikke SVG </object>
+        <object id="plantegningEtasje3" hidden="true" data="<c:url value="/resources/SVG/plantegningE3.svg"/>"> Din nettleser støtter ikke SVG </object>
+        <object id="plantegningEtasje4" hidden="true" data="<c:url value="/resources/SVG/plantegningE4.svg"/>"> Din nettleser støtter ikke SVG </object>
     </div>
 </main>
-    
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 
 <script>
-   $(window).load(function () {
-        //alert("Document loaded, including graphics and embedded documents (like SVG)");
-            $("#Gr103").hover(.attr("fill","#0000"));
-        });
-    });
+    
 </script>
-
+<!--
 <script>
     var date = new Date();
 
@@ -66,3 +64,4 @@
 
     document.getElementById('datoen').value = today;
 </script>
+-->

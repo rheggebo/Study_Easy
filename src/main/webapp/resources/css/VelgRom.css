@@ -4,15 +4,14 @@
     
 }
 
-//hvorfor funker ikke dette....
-/*
-.plantegning{
-    width: 20%;
+#Gr103{
+    fill:blue;
 }
-*/
 
+#plantegningEtasje1 {
+    width: 100%;
+}
 
-//Må gjøre dette:
 #velgRomSøkeSVG{
     width: 100%;
 }
