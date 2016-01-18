@@ -225,6 +225,7 @@ footer{
 
 .checkboxes{
     cursor: pointer;
+    width: 30px;
 
 }
 .searchNav {
@@ -244,6 +245,107 @@ footer{
     color: red;
 }
 
+
+.fargeTekst{
+    border: 1px solid gray;
+    width: .8em; 
+    height:.3em;
+}
+
+//Forside med ikon og pop-up-vindu
+
+a[class*="fontawesome-"]:before{
+}
+span[class*="fontawesome-"]:before {
+	font-family: 'FontAwesome', sans-serif;
+	-webkit-font-smoothing: antialiased;
+}
+
+.ikonForside{
+    text-align: right;
+}
+
+.ikonForside .knappForside, a::-moz-focus-inner {
+	border: 0;
+	padding: 0;
+}
+
+.ikonForside .knappForside, .infoKnappForside, .lukk {
+        cursor:pointer;
+	background: #00BFFF;
+	color: #FFFFFF;
+	padding: .2em 1.2em;
+        border: 0;
+        font-size: 100%;
+        text-transform: none;
+        text-decoration: none;
+        border:none; 
+        outline:none; 
+        button:focus(border:none);
+}
+
+.ikonForside a:hover{
+    background: #3598db;
+    font-size:105%;
+}
+.ikonForside .knappForside:hover {
+	background: #3598db;
+        font-size:105%;
+}
+
+.infoVinduForside {
+	position: fixed;
+	font-family: Microsoft YaHei Light;
+        text-align: left;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: rgba(0,0,0,0.8);
+	z-index: 99999;
+	opacity:0;
+	-webkit-transition: opacity 400ms ease-in;
+	-moz-transition: opacity 400ms ease-in;
+	transition: opacity 400ms ease-in;
+	pointer-events: none;
+}
+        
+
+.infoVinduForside:target {
+	opacity:1;
+	pointer-events: auto;
+}
+
+.infoVinduForside > div {
+	width: 400px;
+	position: relative;
+	margin: 10% auto;
+	padding: 5px 20px 13px 20px;
+	border-radius: 10px;
+	background: #fff;
+	background: -moz-linear-gradient(#fff, #999);
+	background: -webkit-linear-gradient(#fff, #999);
+	background: -o-linear-gradient(#fff, #999);
+}
+
+.lukk {
+	color: #FFFFFF;
+	line-height: 10px;
+	position: absolute;
+	right: -12px;
+	text-align: center;
+	top: -10px;
+	width: 15px;
+	text-decoration: none;
+	font-weight: bold;
+	-webkit-border-radius: 12px;
+	-moz-border-radius: 12px;
+	border-radius: 12px;
+	-moz-box-shadow: 1px 1px 3px #000;
+	-webkit-box-shadow: 1px 1px 3px #000;
+	box-shadow: 1px 1px 3px #000;
+}
+    
 .checkboxes{
     width: 30px;
 }
