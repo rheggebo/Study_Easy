@@ -7,6 +7,7 @@ package kontroller;
 
 import beans.BrukerB;
 import beans.KalenderEvent;
+import beans.RomBestilling;
 import com.google.gson.Gson;
 import java.util.HashMap;
 import java.util.List;
@@ -48,7 +49,6 @@ public class Kalenderkontroller {
             
         }
         
-        System.out.println(tittel);
         
         //0: forelesning, 1: øving, 2: privat ting, 3: romreservasjon
         String[] farger = {"#00BFFF", "#00FF7F", "#FFFF00", "#FFA500"};
@@ -56,8 +56,6 @@ public class Kalenderkontroller {
         String jsonSend = "";
         
         for (KalenderEvent event : events){
-            System.out.println(event.getTittel() + " " + event.getType());
-            System.out.println(event.getStartTid());
             String start = "" + event.getStartTid();
             String slutt = "" + event.getSluttTid();
             
@@ -83,6 +81,27 @@ public class Kalenderkontroller {
                 jsonSend += ", ";
             }
             jsonSend += json;
+        }
+        List<RomBestilling> bestillinger = service.getAlleBestillingerFraBruker(brukerb);
+        for (RomBestilling bestilling : bestillinger){
+            String start = "" + bestilling.getStartDato();
+            String slutt = "" + bestilling.getSluttDato();
+            String descr = "Rom: <a href='" + bestilling.getRomId() + "'>" + bestilling.getRomId() + "</a>";
+            descr += "<br>Fra: " + start + "<br>Til: " + slutt;
+            
+            Map<String, Object> map = new HashMap<String, Object>();
+            map.put("title", "Rombestilling");
+            map.put("start", start);
+            map.put("slutt", slutt);
+            map.put("color", farger[3]);
+            map.put("description", descr);
+            
+            String json = new Gson().toJson(map);
+            if (!jsonSend.isEmpty()){
+                jsonSend += ", ";
+            }
+            jsonSend += json;
+            
         }
 
         // Write JSON string.

@@ -11,6 +11,7 @@ import beans.Fag;
 import beans.KalenderEvent;
 import beans.Klasse;
 import beans.Rom;
+import beans.RomBestilling;
 import database.DBConnectionImpl;
 import database.DBConnection;
 import java.io.Console;
@@ -204,6 +205,10 @@ public class ServiceImpl implements Service{
     @Override
     public List<KalenderEvent> getAlleEventsFraBruker(BrukerB b){
         return dbc.getAlleEventsFraBruker(b);
+    }
+    @Override
+    public List<RomBestilling> getAlleBestillingerFraBruker(BrukerB b){
+        return dbc.getAlleBestillingerFraBruker(b);
     }
     
     @Override

@@ -13,6 +13,7 @@ import beans.Fag;
 import beans.KalenderEvent;
 import beans.Klasse;
 import beans.Rom;
+import beans.RomBestilling;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -20,6 +21,7 @@ import java.util.logging.Logger;
 import javax.sql.DataSource;
 import mapper.FagMapper;
 import mapper.KalenderEventMapper;
+import mapper.RomBestillingMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import verktøy.PasswordHasher;
@@ -68,6 +70,7 @@ public class DBConnectionImpl implements DBConnection{
     private final String getAbonnement = "";
     private final String finnRomTypeStorrelse = "SELECT type, størrelse FROM rom WHERE type=? AND størrelse=?;";
     
+    private final String getAlleBestillingerFraBruker = "SELECT rom_bestilling.eierID, rom_bestilling.romID, rom_bestilling.dato_start, rom_bestilling.dato_slutt FROM rom_bestilling WHERE rom_bestilling.eierID =?";
     private final String getAlleEventsFraBruker = 
             "SELECT DISTINCT kalender_event.id, kalender_event.tittel, kalender_event.dato_start, kalender_event.dato_slutt, kalender_event.eier, kalender_event.eier_navn, kalender_event.romID, kalender_event.fagID, kalender_event.type, kalender_event.descr, kalender_event.hidden "
             + "FROM kalender_event, brukere WHERE kalender_event.eier =? UNION "
@@ -450,6 +453,13 @@ public class DBConnectionImpl implements DBConnection{
             b.getEpost(),
             b.getEpost()
         }, new KalenderEventMapper());
+    }
+    
+    @Override
+    public List<RomBestilling> getAlleBestillingerFraBruker(BrukerB b){
+        return jT.query(getAlleBestillingerFraBruker, new Object[]{
+            b.getEpost()
+        }, new RomBestillingMapper());
     }
     
     @Override
