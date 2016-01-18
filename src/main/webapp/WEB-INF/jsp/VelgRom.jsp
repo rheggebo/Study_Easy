@@ -77,7 +77,6 @@
 </main>
     <script>
         function changeZIndexPlantegningerOpp() {
-            alert(document.getElementById('plantegningEtasje1').style.zIndex);
             if( document.getElementById('plantegningEtasje4').style.zIndex!=9){
                 var teller;
                 document.getElementById('plantegningEtasje1').style.zIndex++;
@@ -107,7 +106,6 @@
                 document.getElementById('plantegningEtasje2').style.zIndex--;
                 document.getElementById('plantegningEtasje3').style.zIndex--;
                 document.getElementById('plantegningEtasje4').style.zIndex--;
-                alert(document.getElementById('plantegningEtasje1').style.zIndex);
                 
                 if(document.getElementById('plantegningEtasje1').style.zIndex==5){
                      document.getElementById('plantegningEtasje1').style.zIndex = 9;
