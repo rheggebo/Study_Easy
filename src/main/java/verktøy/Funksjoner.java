@@ -66,7 +66,8 @@ public class Funksjoner {
                 liste.addAll(sokFag(si, s));
             }
         }
- 
+        
+        liste.add(melding);
         return liste; 
 
   }
