@@ -100,7 +100,7 @@ public class DBConnectionImpl implements DBConnection{
     private JdbcTemplate jT;
     
     @Autowired
-    private void setDatabaseSource(DataSource dS){
+    public void setDatabaseSource(DataSource dS){
         this.dS = dS;
         jT = new JdbcTemplate(dS);
     }

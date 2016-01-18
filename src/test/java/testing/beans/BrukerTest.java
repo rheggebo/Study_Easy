@@ -38,7 +38,6 @@ public class BrukerTest {
         
         liste = new ArrayList();
         
-        
         klasse = new Klasse();
         klasse.setNavn("2.ing");
         
@@ -71,18 +70,14 @@ public class BrukerTest {
         assertEquals(test.getTelefonnummer(),12345678);
         assertTrue(test.getKalenderEvents().isEmpty());
         
+    }
+    
+    @Test
+    public void test_toString(){
+        String bruker = "Per Aas,  Epost: per@hotmail.com";
+        assertEquals(test.toString(), bruker);
+    }
         
-    }
-    
-    public void testrom_2 (){
-        /**
-         *tester med forandring, 
-         * eks: finn en str på et rom for å så forandre det
-         * og så finne den forandra størrelsen 
-         */
-    }
-    
-
     @After
     public void tearDown() throws Exception {
         // Koden her kjøres etter hver test
