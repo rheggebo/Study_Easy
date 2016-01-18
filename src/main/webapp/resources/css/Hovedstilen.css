@@ -211,7 +211,20 @@ footer{
     border:1px dotted black;
     padding:10px;
 }
-
+.oversikt{
+        size: 15px;       
+        text-align: center;
+        font: 12px Microsoft YaHei Light;
+        float: right;
+        
+        
+    }
+    .searchInfo table td{
+        width: 800px;
+        border-top: solid black 1px;
+        border-bottom: solid black 1px;
+    }
+/*****SokeSide*****/
 #tekst {
     color: red;
 }
