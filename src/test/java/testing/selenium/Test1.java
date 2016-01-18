@@ -23,14 +23,88 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class Test1 {
     
-/*
-    WebDriver driver = new FirefoxDriver(); 
+    WebDriver driver = new FirefoxDriver();     
+    
+    /*
     
     @Test
-    public void test_at_man_kan_legge_varer_i_handlekurven_og_bestille() 
-        throws Throwable { 
+    public void testLoggInn() throws Throwable {   
         driver.get("http://localhost:8084/Study_Easy/");
-
+        
+        Thread.sleep(2000);
+        driver.findElement(By.id("epostInnlogging")).sendKeys("test1@aol.com");
+        
+        Thread.sleep(2000);
+        driver.findElement(By.id("passordInnlogging")).sendKeys("passord"); 
+        
+        Thread.sleep(2000);
+        driver.findElement(By.id("loggInnKnapp")).click(); 
+        
+        Thread.sleep(2000);
+    } 
+    
+    @Test
+    public void testFeilPassord() throws Throwable { 
+        driver.get("http://localhost:8084/Study_Easy/");
+        
+        Thread.sleep(2000);
+        driver.findElement(By.id("epostInnlogging")).sendKeys("test1@aol.com");
+        
+        Thread.sleep(2000);
+        driver.findElement(By.id("passordInnlogging")).sendKeys("passord1"); 
+        
+        Thread.sleep(2000);
+        driver.findElement(By.id("loggInnKnapp")).click(); 
+        
+        Thread.sleep(2000);
+        driver.findElement(By.id("loggInnGlemtPassord")).click(); 
+        
+        Thread.sleep(2000);
+    
+    }  */
+    
+    @Test
+    public void testKalenderen() throws Throwable {
+    
+        driver.get("http://localhost:8084/Study_Easy/");
+        
+        Thread.sleep(2000);
+        driver.findElement(By.id("epostInnlogging")).sendKeys("test1@aol.com");
+        
+        Thread.sleep(2000);
+        driver.findElement(By.id("passordInnlogging")).sendKeys("passord"); 
+        
+        Thread.sleep(2000);
+        driver.findElement(By.id("loggInnKnapp")).click(); 
+        
+        Thread.sleep(2000);
+        driver.findElement(By.className("fc-next-button")).click(); 
+        
+        Thread.sleep(2000);
+        driver.findElement(By.className("fc-next-button")).click(); 
+        
+        Thread.sleep(2000);
+        driver.findElement(By.className("fc-prev-button")).click(); 
+        
+        Thread.sleep(2000);
+        driver.findElement(By.className("fc-today-button")).click(); 
+        
+        Thread.sleep(2000);
+        driver.findElement(By.className("fc-agendaWeek-button")).click(); 
+        
+        Thread.sleep(2000);
+        driver.findElement(By.className("fc-agendaDay-button")).click(); 
+        
+        Thread.sleep(2000);
+        driver.findElement(By.className("fc-month-button")).click(); 
+        
+        Thread.sleep(2000);
+       
+    }
+    
+    
+    
+    /*
         Thread.sleep(2000); 
         driver.findElement(By.id("add-item")).click(); 
         
@@ -42,10 +116,7 @@ public class Test1 {
         
         
         assert(driver.findElement(By.id("order-confirmation")) != null);
-        
-        
-        driver.close();
-    } */
+    */
     
     public Test1() {
     }
@@ -64,6 +135,7 @@ public class Test1 {
     
     @After
     public void tearDown() {
+        driver.close();
     }
 
     // TODO add test methods here.
@@ -71,4 +143,5 @@ public class Test1 {
     //
     // @Test
     // public void hello() {}
+    
 }

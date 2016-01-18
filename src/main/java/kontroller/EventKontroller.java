@@ -10,6 +10,7 @@ import beans.KalenderEvent;
 import beans.Rom;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import service.Service;
+import java.util.List;
 
 /**
  *
@@ -31,6 +33,7 @@ import service.Service;
 public class EventKontroller {
     @Autowired
     Service service;
+    
     @InitBinder
     public void initBinder(WebDataBinder binder) {
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -63,5 +66,60 @@ public class EventKontroller {
             model.addAttribute("melding", "feilmelding.rombestillingGenerell");
             return "BestilleRom";
         } 
+    }
+    
+    @RequestMapping("finnromdata")
+    public String finnRom(@ModelAttribute("rom") Rom rom, @RequestParam(value="skjerm", required=false)boolean skjerm, 
+            @RequestParam(value="antSkjerm", required=false)Integer antSkjerm, @RequestParam(value="tavle", required=false)boolean tavle, 
+            @RequestParam(value="antTavle", required=false)Integer antTavle, @RequestParam(value="tavle", required=false)boolean sitteplass, 
+            @RequestParam(value="antSitteplass", required=false)Integer antSitteplass, @RequestParam(value="prosjektor", required=false)boolean prosjektor, 
+            @RequestParam(value="antProsjektor", required=false)Integer antProsjektor, @RequestParam(value="storrelse", required=false)boolean storrelse, 
+            @RequestParam(value="storrelseNum", required=false)Integer storrelseNum, @RequestParam("romtype")String romtype, @RequestParam("fraTid")String fraTid,
+            @RequestParam("tilTid")String tilTid, @RequestParam("fraDato")Date fraDato, @RequestParam(value="tilDato",required=false)Date tilDato, Model model, HttpSession sess/*, 
+            @RequestParam(value="notat", required=false)String notat, @RequestParam(value="tittel",required=false)String tittel, 
+            @RequestParam(value="fag", required=false)String fag*/){
+        KalenderEvent ke = new KalenderEvent();
+        BrukerB brukerb = (BrukerB) sess.getAttribute("brukerBean");
+        ke.setEpost(brukerb.getEpost());
+        ke.setEierNavn(brukerb.getFornavn()+" "+brukerb.getEtternavn());
+        ke.setRom(rom.getRomNavn());
+        ke.setType(brukerb.getTilgangsniva());
+        int fra = Integer.parseInt(fraTid)+5;
+        int til = Integer.parseInt(tilTid)+5;
+        if(brukerb.getTilgangsniva()<1){
+            tilDato = fraDato;
+        }
+        ke.setStartTid(new Timestamp(fraDato.getTime()+fra*3600000));
+        ke.setSluttTid(new Timestamp(tilDato.getTime()+til*3600000));
+        ArrayList<String> innhold = new ArrayList<String>();
+        if(skjerm){
+            innhold.add("skjerm "+antSkjerm);
+        }
+        if(tavle){
+            innhold.add("tavle "+tavle);
+        }
+        if(sitteplass){
+            rom.setAntStolplasser(antSitteplass);
+        }
+        if(prosjektor){
+            innhold.add("prosjektor "+antProsjektor);
+        }
+        if(storrelse){
+            rom.setStorrelse(storrelseNum);
+        }
+        if(romtype.equals("Forelesningssal")){
+            rom.setType(3);
+        }else if(romtype.equals("Møterom")){
+            rom.setType(2);
+        }else if(romtype.equals("Grupperom")){
+            rom.setType(1);
+        }
+        rom.setInnhold(innhold);
+        List<Rom> liste = service.getRom(rom, ke, storrelse, sitteplass);
+        model.addAttribute("liste", liste);
+        model.addAttribute("rom", rom);
+        /*ke.setNotat(notat);
+        ke.setTittel(tittel);*/
+        return "FinnRom";
     }
 }
