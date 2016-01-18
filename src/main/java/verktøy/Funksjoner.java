@@ -24,37 +24,70 @@ public class Funksjoner {
 
   
 
-  public ArrayList<Object> getAlleSokeTreff(String s, Service si){
-        
-        HttpServletRequest request = null;
-        HttpServletRequest response;
+  public ArrayList<Object> getAlleSokeTreff(String s, Service si, String melding){
         
         ArrayList<Object> liste=new ArrayList();
         ArrayList<Boolean> checkboxValues = new ArrayList<Boolean>();
-        for (Boolean checkboxValue : checkboxValues) {
-            
-        }
         
-        /* midlertidig lister med objekter */
-        ArrayList<Bruker> brukerListe = new ArrayList<Bruker>();
-        ArrayList<Fag> fagListe = new ArrayList<Fag>();
-        ArrayList<Rom> romListe = new ArrayList<Rom>();
+        boolean ansatt = false;
+        boolean student = false;
+        boolean rom = false;
+        boolean fag = false;
+        boolean klasse = false;
+        boolean checked = false;
+        
+        for (Boolean checkboxValue : checkboxValues) {
+          if(checkboxValue.toString().equals(ansatt)) ansatt = true;
+          if(checkboxValue.toString().equals(student)) student = true;
+          if(checkboxValue.toString().equals(rom)) rom = true;
+          if(checkboxValue.toString().equals(klasse)) klasse = true;
+          if(checkboxValue.toString().equals(checked)) checked = true;
+        }
         
         if(!s.isEmpty()) {
-        /* henter data fra databasen utifra søkeord s */
-
-        brukerListe.addAll(si.getBrukerSok("%" + s + "%", "%" + s + "%", "%" + s + "%"));
-        fagListe.addAll(si.getFagSok("%" + s + "%", "%" + s + "%"));
-        romListe.addAll(si.getRomSok("%" + s + "%", "%" + s + "%"));
-        
+            if(ansatt) {
+                liste.addAll(sokBruker(si, s));
+            }
+            if(student) {
+                liste.addAll(sokBruker(si, s));
+            }
+            if(rom) {
+                liste.addAll(sokRom(si, s));
+            }
+            if(fag) {
+                liste.addAll(sokFag(si, s));
+            }
+            if(klasse) {
+                liste.addAll(sokFag(si, s));
+            }
+            if(!checked) {
+                liste.addAll(sokBruker(si, s));
+                liste.addAll(sokRom(si, s));
+                liste.addAll(sokFag(si, s));
+            }
         }
  
-        /* legger til alle lister i objekt hoved listen og returnerer til siden */
-        liste.addAll(brukerListe);
-        liste.addAll(fagListe);
-        liste.addAll(romListe);
         return liste; 
 
-    }
+  }
+  
+  public ArrayList<Bruker> sokBruker(Service si, String s) {
+      ArrayList<Bruker> brukerListe = new ArrayList<Bruker>();
+      brukerListe.addAll(si.getBrukerSok("%" + s + "%", "%" + s + "%", "%" + s + "%"));
+      return brukerListe;
+  }
+  
+  public ArrayList<Rom> sokRom(Service si, String s) {
+      ArrayList<Rom> romListe = new ArrayList<Rom>();
+      romListe.addAll(si.getRomSok("%" + s + "%", "%" + s + "%"));
+      return romListe;
+      
+  } 
+  
+  public ArrayList<Fag> sokFag(Service si, String s) {
+      ArrayList<Fag> fagListe = new ArrayList<Fag>();
+      fagListe.addAll(si.getFagSok("%" + s + "%", "%" + s + "%"));
+      return fagListe;
+  }
   
 }
