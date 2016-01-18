@@ -24,6 +24,10 @@ public class Klasse {
     }
     
     public String toString(){
-        return "Klasse: " + navn;
+        String str = "Klasse: " + navn + ", Fag: ";
+        for (int i = 0; i < fag.size(); i++) {
+            str += fag.get(i).getFagID() + " ";
+        }
+        return str;
     }
 }

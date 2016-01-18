@@ -109,7 +109,8 @@ public class DBConnectionImpl implements DBConnection{
             + "OR (etternavn LIKE ? AND  (type = 1 OR type = 2)) OR (epost LIKE ? AND  (type = 1 OR type = 2))"; 
     private final String getFagSok = "SELECT * FROM fag WHERE fagID LIKE ? OR fagnavn LIKE ?";
     private final String getRomSok = "SELECT * FROM rom WHERE romID LIKE ? OR romnavn LIKE ?";
-    private final String getKlasseSok = "SELECT DISTINCT klasseID FROM klasse_fag WHERE klasseID LIKE ?";
+    private final String getKlasseFagSok = "SELECT DISTINCT klasseID FROM klasse_fag WHERE klasseID LIKE ?";
+    private final String getKlasseSok = "SELECT * FROM klasse_fag WHERE klasseID LIKE ?";
     
     
     private DataSource dS;
@@ -225,7 +226,9 @@ public class DBConnectionImpl implements DBConnection{
     
     @Override
     public List<Klasse> getKlasseSok(String sokeord1) {
-        return jT.query(getKlasseSok, new Object[]{sokeord1}, new KlasseFagMapper());
+        List<Klasse> fullListe =  jT.query(getKlasseSok, new Object[]{sokeord1}, new KlasseFagMapper());
+
+        return fullListe;
     }
     
     
