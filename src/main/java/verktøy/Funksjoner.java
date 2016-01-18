@@ -58,13 +58,14 @@ public class Funksjoner {
                 liste.addAll(sokFag(si, s));
             }
             if(klasse) {
-                liste.addAll(sokFag(si, s));
+                liste.addAll(sokKlasse(si, s));
             }
             if(!checked) {
                 liste.addAll(sokAnsatt(si, s));
                 liste.addAll(sokStudent(si, s));
                 liste.addAll(sokRom(si, s));
                 liste.addAll(sokFag(si, s));
+                liste.addAll(sokKlasse(si, s));
             }
         }
         
@@ -95,6 +96,12 @@ public class Funksjoner {
       ArrayList<Fag> fagListe = new ArrayList<Fag>();
       fagListe.addAll(si.getFagSok("%" + s + "%", "%" + s + "%"));
       return fagListe;
+  }
+  
+  public ArrayList<Klasse> sokKlasse(Service si, String s) {
+      ArrayList<Klasse> klasseListe = new ArrayList<Klasse>();
+      klasseListe.addAll(si.getKlasseSok("%" + s + "%"));
+      return klasseListe;
   }
   
 }
