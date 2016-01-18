@@ -42,15 +42,17 @@
         </li></form>               
     </ul></div>
     
-<div class="searchInfo">    
+<div class="searchInfo">
+    <form action="BrukerOversikt" method="POST" >
     <table>
             <c:forEach var="liste" items="${liste}">
                 <tr>
-                    <td><c:out value="${liste}"></c:out> <input class=oversikt type='button' value='Se oversikt'/></td>
+                    <td><c:out value="${liste}"></c:out> <input class=oversikt type='submit' name='knapp' value='Se oversikt'/></td>
                 </tr>                    
                           
             </c:forEach>                      
     </table>
+    </form>
 </div>         
 </body>
 </html>
