@@ -104,11 +104,11 @@ public class Hovedkontroller {
     }
     
     @RequestMapping("FinnRom")
-    public String finnRom(Model model, HttpSession sess){
-        model.addAttribute("rom", new Rom());
+    public String finnRom(Model model, HttpSession sess){        
         BrukerB brukerb = (BrukerB) sess.getAttribute("brukerBean");
         if(brukerb != null && brukerb.isInnlogget()){
             model.addAttribute("bruker", brukerb);
+            model.addAttribute("rom", new Rom());
             return "FinnRom";
         }
         model.addAttribute("bruker", new Bruker());
@@ -149,5 +149,12 @@ public class Hovedkontroller {
         sess.removeAttribute("brukerBean");
         model.addAttribute("bruker", new Bruker());
         return "Innlogging";
+    }
+    
+    @RequestMapping("valgtRom")
+    public String valgtRom(@ModelAttribute("rom")Rom romForm, Model model){
+        Rom rom = service.getRom(romForm);
+        model.addAttribute("rom", rom);
+        return "FinnRom";
     }
 }

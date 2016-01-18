@@ -20,6 +20,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import service.Service;
 
@@ -109,5 +110,14 @@ public class Kalenderkontroller {
         response.setCharacterEncoding("UTF-8");
 
         return "[" + jsonSend + "]";
+    }
+   @RequestMapping(value="kalenderEventCheck")
+    public String asdasda(@RequestParam(value="checkbox_1", required=false)boolean forelesning, @RequestParam(value="checkbox_2", required=false)boolean Oving,
+            @RequestParam(value="checkbox_3", required=false)boolean romreservasjon, @RequestParam(value="checkbox_4", required=false)boolean privatHendelse, HttpServletRequest req){
+        req.setAttribute("checkbox1", forelesning);
+        req.setAttribute("checkbox2", Oving);
+        req.setAttribute("checkbox3", romreservasjon);
+        req.setAttribute("checkbox4", privatHendelse);
+        return "Forside";
     }
 }

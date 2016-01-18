@@ -8,6 +8,7 @@ package database;
 import beans.Abonemennt;
 import mapper.BrukerMapper;
 import mapper.RomMapper;
+import mapper.KlasseFagMapper;
 import beans.Bruker;
 import beans.BrukerB;
 import beans.Fag;
@@ -70,7 +71,8 @@ public class DBConnectionImpl implements DBConnection{
     private final String leggTilAbonnement = "";
     private final String slettAbonnement = "";
     private final String getAbonnement = "";
-    private final String finnRomTypeStorrelse = "SELECT type, størrelse FROM rom WHERE type=? AND størrelse=?;";
+    private final String getRomTypeStorrelse = "SELECT type, størrelse FROM rom WHERE type=? AND størrelse=?;";
+    private final String getRom = "SELECT * FROM rom WHERE romID=?";
     
     private final String leggTilAbonemennt = "INSERT INTO ? (eierID, ?) VALUES (?, ?)";
     private final String getAbonemenntFraBruker = "SELECT abonemennt_bruker.eierID, abonemennt_bruker.brukerID AS abonererId, 0 AS abType FROM abonemennt_bruker WHERE abonemennt_bruker.eierID =? UNION "
@@ -84,6 +86,19 @@ public class DBConnectionImpl implements DBConnection{
             + "WHERE kalender_event.eier = abonemennt_bruker.brukerID  AND abonemennt_bruker.eierID =?  AND kalender_event.hidden = 0 UNION "
             + "SELECT DISTINCT kalender_event.id, kalender_event.tittel, kalender_event.dato_start, kalender_event.dato_slutt, kalender_event.eier, "
             + "kalender_event.eier_navn, kalender_event.romID, kalender_event.fagID, kalender_event.type, kalender_event.descr, kalender_event.hidden FROM kalender_event, brukere, abonemennt_fag WHERE kalender_event.fagID = abonemennt_fag.fagID AND abonemennt_fag.eierID =?;";
+    
+    private final String getRom0Param = "SELECT DISTINCT rom.romID, romnavn FROM rom LEFT OUTER JOIN rom_innhold ON rom.romID = rom_innhold.romID LEFT OUTER JOIN " +
+        "rom_bestilling ON rom.romID = rom_bestilling.romID " +
+        "WHERE (rom.type <= '?' AND dato_slutt NOT BETWEEN '?' AND '?' AND " +
+        "dato_start NOT BETWEEN '?' AND '?'  OR rom_bestilling.romID IS NULL)";
+    
+    private final String getRom1Param = getRom0Param +" AND (rom_innhold.innholdID LIKE '?' AND rom_innhold.antall>=?)";
+    private final String getRom2Param = getRom1Param +getRom1Param;
+    private final String getRom3Param = getRom1Param +getRom1Param+getRom1Param;
+    private final String getRom4Param = getRom1Param +getRom1Param+getRom1Param+getRom1Param;
+    
+    private final String getRomStorrelse = " AND rom.størrelse >= ?";
+    private final String getRomPlasser = " AND rom.sitteplasser >= ?";
 
     /**Søkefunksjon**/
     private final String alleRom="SELECT * FROM rom";
@@ -94,6 +109,7 @@ public class DBConnectionImpl implements DBConnection{
             + "OR (etternavn LIKE ? AND  (type = 1 OR type = 2)) OR (epost LIKE ? AND  (type = 1 OR type = 2))"; 
     private final String getFagSok = "SELECT * FROM fag WHERE fagID LIKE ? OR fagnavn LIKE ?";
     private final String getRomSok = "SELECT * FROM rom WHERE romID LIKE ? OR romnavn LIKE ?";
+    private final String getKlasseSok = "SELECT * FROM klasse_fag WHERE klasseID LIKE ?";
     
     
     private DataSource dS;
@@ -206,6 +222,13 @@ public class DBConnectionImpl implements DBConnection{
     public List<Rom> getRomSok(String sokeord1, String sokeord2) {
         return jT.query(getRomSok, new Object[]{sokeord1, sokeord2}, new RomMapper());
     }
+    
+    @Override
+    public List<Klasse> getKlasseSok(String sokeord1) {
+        return jT.query(getKlasseSok, new Object[]{sokeord1}, new KlasseFagMapper());
+    }
+    
+    
     
 
     /***Søkefunksjon metoder slutt***/
@@ -506,11 +529,247 @@ public class DBConnectionImpl implements DBConnection{
     }
     
     @Override
-    public List<Rom> finnRomTypeStorrelse(Rom r) {
-        return jT.query(finnRomTypeStorrelse, new Object[]{
+    public List<Rom> getRomTypeStorrelse(Rom r) {
+        return jT.query(getRomTypeStorrelse, new Object[]{
             r.getType(),
             r.getStorrelse()
         }, new RomMapper());
     }
+    
+    @Override
+    public List<Rom> getRom0Param(Rom r, KalenderEvent ke, boolean storrelse, boolean sitteplasser){
+        if(storrelse && sitteplasser){
+            return jT.query(getRom0Param+ getRomStorrelse + getRomPlasser, new Object[]{
+            ke.getStartTid(),
+            ke.getSluttTid(),
+            r.getStorrelse(),
+            r.getAntStolplasser()
+            }, new RomMapper());
+        }else if(sitteplasser){
+            return jT.query(getRom0Param+getRomPlasser, new Object[]{
+            ke.getStartTid(),
+            ke.getSluttTid(),
+            r.getAntStolplasser()
+            }, new RomMapper());
+        }else if(storrelse){
+            return jT.query(getRom0Param+getRomStorrelse, new Object[]{
+            ke.getStartTid(),
+            ke.getSluttTid(),
+            r.getStorrelse()
+            }, new RomMapper());
+        }
+        return jT.query(getRom0Param, new Object[]{
+            ke.getStartTid(),
+            ke.getSluttTid()
+        }, new RomMapper());
+    }
+
+    @Override
+    public List<Rom> getRom1Param(Rom r, KalenderEvent ke, boolean storrelse, boolean sitteplasser) {
+        ArrayList<String> tab = r.getInnhold();
+        if(storrelse && sitteplasser){
+            return jT.query(getRom0Param+ getRomStorrelse + getRomPlasser, new Object[]{
+            ke.getStartTid(),
+            ke.getSluttTid(),
+            r.getStorrelse(),
+            tab.get(0),
+            tab.get(1),
+            r.getAntStolplasser()
+            }, new RomMapper());
+        }else if(sitteplasser){
+            return jT.query(getRom0Param+getRomPlasser, new Object[]{
+            ke.getStartTid(),
+            ke.getSluttTid(),
+            tab.get(0),
+            tab.get(1),
+            r.getAntStolplasser()
+            }, new RomMapper());
+        }else if(storrelse){
+            return jT.query(getRom0Param+getRomStorrelse, new Object[]{
+            ke.getStartTid(),
+            ke.getSluttTid(),
+            tab.get(0),
+            tab.get(1),
+            r.getStorrelse()
+            }, new RomMapper());
+        }
+        return jT.query(getRom1Param, new Object[]{
+            ke.getStartTid(),
+            ke.getSluttTid(),
+            tab.get(0),
+            tab.get(1)
+        }, new RomMapper());
+        
+    }
+
+    @Override
+    public List<Rom> getRom2Param(Rom r, KalenderEvent ke, boolean storrelse, boolean sitteplasser) {
+        ArrayList<String> tab = r.getInnhold();
+        if(storrelse && sitteplasser){
+            return jT.query(getRom0Param+ getRomStorrelse + getRomPlasser, new Object[]{
+            ke.getStartTid(),
+            ke.getSluttTid(),
+            tab.get(0),
+            tab.get(1),
+            tab.get(2),
+            tab.get(3),
+            r.getStorrelse(),
+            r.getAntStolplasser()
+            }, new RomMapper());
+        }else if(sitteplasser){
+            return jT.query(getRom0Param+getRomPlasser, new Object[]{
+            ke.getStartTid(),
+            ke.getSluttTid(),
+            tab.get(0),
+            tab.get(1),
+            tab.get(2),
+            tab.get(3),
+            r.getAntStolplasser()
+            }, new RomMapper());
+        }else if(storrelse){
+            return jT.query(getRom0Param+getRomStorrelse, new Object[]{
+            ke.getStartTid(),
+            ke.getSluttTid(),
+            tab.get(0),
+            tab.get(1),
+            tab.get(2),
+            tab.get(3),
+            r.getStorrelse()
+            }, new RomMapper());
+        }
+        return jT.query(getRom2Param, new Object[]{
+            ke.getStartTid(),
+            ke.getSluttTid(),
+            tab.get(0),
+            tab.get(1),
+            tab.get(2),
+            tab.get(3)
+        }, new RomMapper());
+    }
+
+    @Override
+    public List<Rom> getRom3Param(Rom r, KalenderEvent ke, boolean storrelse, boolean sitteplasser) {
+        ArrayList<String> tab = r.getInnhold();
+        if(storrelse && sitteplasser){
+            return jT.query(getRom0Param+ getRomStorrelse + getRomPlasser, new Object[]{
+            ke.getStartTid(),
+            ke.getSluttTid(),
+            tab.get(0),
+            tab.get(1),
+            tab.get(2),
+            tab.get(3),
+            tab.get(4),
+            tab.get(5),
+            r.getStorrelse(),
+            r.getAntStolplasser()
+            }, new RomMapper());
+        }else if(sitteplasser){
+            return jT.query(getRom0Param+getRomPlasser, new Object[]{
+            ke.getStartTid(),
+            ke.getSluttTid(),
+            tab.get(0),
+            tab.get(1),
+            tab.get(2),
+            tab.get(3),
+            tab.get(4),
+            tab.get(5),
+            r.getAntStolplasser()
+            }, new RomMapper());
+        }else if(storrelse){
+            return jT.query(getRom0Param+getRomStorrelse, new Object[]{
+            ke.getStartTid(),
+            ke.getSluttTid(),
+            tab.get(0),
+            tab.get(1),
+            tab.get(2),
+            tab.get(3),
+            tab.get(4),
+            tab.get(5),
+            r.getStorrelse()
+            }, new RomMapper());
+        }
+        return jT.query(getRom3Param, new Object[]{
+            ke.getStartTid(),
+            ke.getSluttTid(),
+            tab.get(0),
+            tab.get(1),
+            tab.get(2),
+            tab.get(3),
+            tab.get(4),
+            tab.get(5)
+        }, new RomMapper());
+    }
+
+    @Override
+    public List<Rom> getRom4Param(Rom r, KalenderEvent ke, boolean storrelse, boolean sitteplasser) {
+        ArrayList<String> tab = r.getInnhold();
+        if(storrelse && sitteplasser){
+            return jT.query(getRom0Param+ getRomStorrelse + getRomPlasser, new Object[]{
+            ke.getStartTid(),
+            ke.getSluttTid(),
+            tab.get(0),
+            tab.get(1),
+            tab.get(2),
+            tab.get(3),
+            tab.get(4),
+            tab.get(5),
+            tab.get(6),
+            tab.get(7),
+            r.getStorrelse(),
+            r.getAntStolplasser()
+            }, new RomMapper());
+        }else if(sitteplasser){
+            return jT.query(getRom0Param+getRomPlasser, new Object[]{
+            ke.getStartTid(),
+            ke.getSluttTid(),
+            tab.get(0),
+            tab.get(1),
+            tab.get(2),
+            tab.get(3),
+            tab.get(4),
+            tab.get(5),
+            tab.get(6),
+            tab.get(7),
+            r.getAntStolplasser()
+            }, new RomMapper());
+        }else if(storrelse){
+            return jT.query(getRom0Param+getRomStorrelse, new Object[]{
+            ke.getStartTid(),
+            ke.getSluttTid(),
+            tab.get(0),
+            tab.get(1),
+            tab.get(2),
+            tab.get(3),
+            tab.get(4),
+            tab.get(5),
+            tab.get(6),
+            tab.get(7),
+            r.getStorrelse()
+            }, new RomMapper());
+        }
+        return jT.query(getRom4Param, new Object[]{
+            ke.getStartTid(),
+            ke.getSluttTid(),
+            tab.get(0),
+            tab.get(1),
+            tab.get(2),
+            tab.get(3),
+            tab.get(4),
+            tab.get(5),
+            tab.get(6),
+            tab.get(7)
+        }, new RomMapper());
+    }
+    
+    @Override
+    public Rom getRom(Rom r){
+        return jT.queryForObject(getRom, new Object[]{
+            r.getRomID()
+        }, new RomMapper());
+    }
+    
+    
+    
+    
 
 }
