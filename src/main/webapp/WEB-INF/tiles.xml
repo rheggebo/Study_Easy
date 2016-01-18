@@ -55,7 +55,8 @@
     </definition>
     <definition name="BekreftBestilling" extends="baseLayout">
         <put-attribute name="title"  value="BekreftBestilling"/>
-        <put-attribute name="body"   value="/WEB-INF/jsp/BekreftBestilling.jsp"/>      
+        <put-attribute name="body"   value="/WEB-INF/jsp/BekreftBestilling.jsp"/>    
+    </definiton>  
     <definition name="BrukerOversikt" extends="baseLayout">
         <put-attribute name="title" value="BrukerOversikt"/>
         <put-attribute name="body" value="/WEB-INF/jsp/BrukerOversikt.jsp"/>
