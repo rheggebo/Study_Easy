@@ -52,11 +52,7 @@
                 <div id="infoVindu2" class="infoVinduForside">
                     <div><a href="#lukk" title="Lukk" class="lukk">X</a>
                         <h2>Informasjon</h2>
-                        <p>Her kan du finne ditt rom på kartet.
-                        Trykk på pilene opp og ned for å bestemme etasje i bygningen,
-                        og rommene som er grønn er mulig å velge.
-                        Trykk på det ønskede rommet, og finn et tidspunkt du kan
-                        reservere det.</p>
+                        <p>Trykk på pilene for å endre etasje og på rommet for å få mer informasjon.</p>
                     </div>
                 </div>
         </li>
@@ -128,13 +124,12 @@
     <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
     
     <script>
-        $(document).ready(function(){
-            function prosjektor(){
-                alert('test');
-            }
-            
-            $("#Gr103").on("click", prosjektor);
-        });
+        var a = document.getElementById("plantegningEtasje1");
+        a.addEventListener("load",function(){
+            var svgDoc = a.contentDocument;
+            var delta = svgDoc.getElementById("Gr103");
+        delta.addEventListener("click",function(){alert(this)},false);
+    },false);
     </script>
 
 
