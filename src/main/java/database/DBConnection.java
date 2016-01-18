@@ -97,6 +97,10 @@ public interface DBConnection {
     
     /*** Søkefunksjonsmetoder:  */
     
+    public List<Bruker> getStudentSok(String sokeord1, String sokeord2, String sokeord3);
+    
+    public List<Bruker> getAnsattSok(String sokeord1, String sokeord2, String sokeord3);
+    
     public List<Bruker> getBrukerSok(String sokeord1, String sokeord2, String sokeord3);
     
     public List<Fag> getFagSok(String sokeord1, String sokeord2);

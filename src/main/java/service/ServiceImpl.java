@@ -237,6 +237,16 @@ public class ServiceImpl implements Service{
     }
     
     @Override
+    public List<Bruker> getStudentSok(String sokeord1, String sokeord2, String sokeord3) {
+        return dbc.getStudentSok(sokeord1, sokeord2, sokeord3);
+    }
+    
+    @Override
+    public List<Bruker> getAnsattSok(String sokeord1, String sokeord2, String sokeord3) {
+        return dbc.getAnsattSok(sokeord1, sokeord2, sokeord3);
+    }
+    
+    @Override
     public List<Bruker> getBrukerSok(String sokeord1, String sokeord2, String sokeord3) {
         return dbc.getBrukerSok(sokeord1, sokeord2, sokeord3);
     }

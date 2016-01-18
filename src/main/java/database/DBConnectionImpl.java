@@ -88,8 +88,13 @@ public class DBConnectionImpl implements DBConnection{
     /**Søkefunksjon**/
     private final String alleRom="SELECT * FROM rom";
     private final String alleFag="SELECT * FROM fag";
-    
-    private final String getBrukerSok = "SELECT * FROM brukere WHERE fornavn LIKE ? OR etternavn LIKE ? or epost LIKE ?";
+    private final String getStudentSok = "SELECT * FROM brukere WHERE fornavn LIKE ? AND  type = 0"
+            + "OR etternavn LIKE ? AND  type = 0 OR epost LIKE ? AND  type = 0";
+    private final String getAnsattSok = "SELECT * FROM brukere WHERE (fornavn LIKE ? AND  (type = 1 OR type = 2))"
+            + "OR (etternavn LIKE ? AND  (type = 1 OR type = 2)) OR (epost LIKE ? AND  (type = 1 OR type = 2))"; 
+    private final String getBrukerSok = "SELECT * FROM brukere WHERE (fornavn LIKE ? AND  (type = 0 OR type = 1))"
+            + "OR (etternavn LIKE ? AND (type = 0 OR type = 1)) OR (epost LIKE ? AND (type = 0 OR type = 1))";
+
     private final String getFagSok = "SELECT * FROM fag WHERE fagID LIKE ? OR fagnavn LIKE ?";
     private final String getRomSok = "SELECT * FROM rom WHERE romID LIKE ? OR romnavn LIKE ?";
     
@@ -184,6 +189,16 @@ public class DBConnectionImpl implements DBConnection{
     
     
     /***Søkefunksjon metoder:   **/
+    
+    @Override
+    public List<Bruker> getStudentSok(String sokeord1, String sokeord2, String sokeord3) {
+        return jT.query(getStudentSok, new Object[]{sokeord1, sokeord2, sokeord3}, new BrukerMapper());
+    } 
+    
+    @Override
+    public List<Bruker> getAnsattSok(String sokeord1, String sokeord2, String sokeord3) {
+        return jT.query(getAnsattSok, new Object[]{sokeord1, sokeord2, sokeord3}, new BrukerMapper());
+    }
     
     @Override
     public List<Bruker> getBrukerSok(String sokeord1, String sokeord2, String sokeord3) {
