@@ -16,8 +16,8 @@
     <form:form action="logInSjekk" modelAttribute="bruker">
         <div id="section">
             <div id="inputwrap">
-              <form:input type="text" placeholder="Epost" path="epost" style="width: 420px"/><hr>
-              <form:input type="password" placeholder="Passord" path="passord" style="width: 420px"/>
+              <form:input type="text" id="epostInnlogging" placeholder="E-post" path="epost" style="width: 420px"/><hr>
+              <form:input type="password" id="passordInnlogging" placeholder="Passord" path="passord" style="width: 420px"/>
             </div>
         </div>
     <div id="feilmelding">
