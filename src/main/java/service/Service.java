@@ -87,7 +87,11 @@ public interface Service {
     
     public List<KalenderEvent> getAlleEventsFraBruker(BrukerB b);
     
-    public List<Rom> finnRomTypeStorrelse(Rom r);
+    public List<Rom> getRomTypeStorrelse(Rom r);
+    
+    public List<Rom> getRom(Rom r, KalenderEvent ke, boolean storrelse, boolean sitteplasser);
+    
+    public Rom getRom(Rom r);
     
     public List<RomBestilling> getAlleBestillingerFraBruker(BrukerB b);
     
