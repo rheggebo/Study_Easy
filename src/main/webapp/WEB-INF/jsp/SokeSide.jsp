@@ -52,36 +52,7 @@
                           
             </c:forEach>                      
     </table>
-    <script>
-        var x=document.getElementById('Ansatt').val();
-        out.println("Dette skjedde noe" + x);
-    </script>
 </div>         
 </body>
 </html>
-<%--skal inne i hoveldstilen--%>
-<style>
-    .oversikt{
-        size: 15px;       
-        text-align: center;
-        font: 12px Microsoft YaHei Light;
-        float: right;
-        
-        
-    }
-    .searchInfo table td{
-        width: 800px;
-        border-top: solid black 1px;
-        border-bottom: solid black 1px;
-    }
-</style>
-<%--skal inne i hoveldstilen--%>
-<%--
-    <script>
-    var ansatt=$("#ansatt").attr("checked") ? 1 : 0;
-    var student=$("#student").attr("checked") ? 1 : 0;
-    var fag=$("#fag").attr("checked") ? 1 : 0;
-    var rom=$("#rom").attr("checked") ? 1 : 0;
-    var klasse=$("#klasse").attr("checked") ? 1 : 0;
-   </script>
---%>
+
