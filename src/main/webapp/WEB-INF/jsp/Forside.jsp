@@ -27,7 +27,7 @@
         </li>
     </ul>
     
-    <form>
+    <form action="kalenderEventCheck">
         <ul style="list-style-type: none; margin: 0; padding: 0;">
             <li>
                 <input type="text" class="fargeTekst" disabled="true" style="background-color: #00BFFF;">

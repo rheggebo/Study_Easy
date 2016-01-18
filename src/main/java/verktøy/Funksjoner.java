@@ -46,10 +46,10 @@ public class Funksjoner {
         
         if(!s.isEmpty()) {
             if(ansatt) {
-                liste.addAll(sokBruker(si, s));
+                liste.addAll(sokAnsatt(si, s));
             }
             if(student) {
-                liste.addAll(sokBruker(si, s));
+                liste.addAll(sokStudent(si, s));
             }
             if(rom) {
                 liste.addAll(sokRom(si, s));
@@ -61,7 +61,8 @@ public class Funksjoner {
                 liste.addAll(sokFag(si, s));
             }
             if(!checked) {
-                liste.addAll(sokBruker(si, s));
+                liste.addAll(sokAnsatt(si, s));
+                liste.addAll(sokStudent(si, s));
                 liste.addAll(sokRom(si, s));
                 liste.addAll(sokFag(si, s));
             }
@@ -71,10 +72,16 @@ public class Funksjoner {
 
   }
   
-  public ArrayList<Bruker> sokBruker(Service si, String s) {
-      ArrayList<Bruker> brukerListe = new ArrayList<Bruker>();
-      brukerListe.addAll(si.getBrukerSok("%" + s + "%", "%" + s + "%", "%" + s + "%"));
-      return brukerListe;
+  public ArrayList<Bruker> sokStudent(Service si, String s) {
+      ArrayList<Bruker> studentListe = new ArrayList<Bruker>();
+      studentListe.addAll(si.getStudentSok("%" + s + "%", "%" + s + "%", "%" + s + "%"));
+      return studentListe;
+  }
+  
+  public ArrayList<Bruker> sokAnsatt(Service si, String s) {
+      ArrayList<Bruker> ansattListe = new ArrayList<Bruker>();
+      ansattListe.addAll(si.getAnsattSok("%" + s + "%", "%" + s + "%", "%" + s + "%"));
+      return ansattListe;
   }
   
   public ArrayList<Rom> sokRom(Service si, String s) {

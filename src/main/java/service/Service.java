@@ -87,7 +87,11 @@ public interface Service {
     
     public List<KalenderEvent> getAlleEventsFraBruker(BrukerB b);
     
-    public List<Rom> finnRomTypeStorrelse(Rom r);
+    public List<Rom> getRomTypeStorrelse(Rom r);
+    
+    public List<Rom> getRom(Rom r, KalenderEvent ke, boolean storrelse, boolean sitteplasser);
+    
+    public Rom getRom(Rom r);
     
     public List<RomBestilling> getAlleBestillingerFraBruker(BrukerB b);
     
@@ -96,8 +100,10 @@ public interface Service {
     public boolean leggTilAbonemennt(Abonemennt ab);
     
     /** Søkefunksjon metoder **/
-    public List<Bruker> getBrukerSok(String sokeord1, String sokeord2, String sokeord3);
+    public List<Bruker> getStudentSok(String sokeord1, String sokeord2, String sokeord3);
     
+    public List<Bruker> getAnsattSok(String sokeord1, String sokeord2, String sokeord3);
+
     public List<Fag> getFagSok(String sokeord1, String sokeord2);
     
     public List<Rom> getRomSok(String sokeord1, String sokeord2);
