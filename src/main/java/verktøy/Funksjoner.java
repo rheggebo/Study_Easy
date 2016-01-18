@@ -24,10 +24,9 @@ public class Funksjoner {
 
   
 
-  public ArrayList<Object> getAlleSokeTreff(String s, Service si, String[] melding){
+  public ArrayList<Object> getAlleSokeTreff(String s, Service si, String[] checkBoxValues){
         
         ArrayList<Object> liste=new ArrayList();
-        ArrayList<Boolean> checkboxValues = new ArrayList<Boolean>();
         
         boolean ansatt = false;
         boolean student = false;
@@ -36,12 +35,13 @@ public class Funksjoner {
         boolean klasse = false;
         boolean checked = false;
         
-        for (Boolean checkboxValue : checkboxValues) {
-          if(checkboxValue.toString().equals(ansatt)) ansatt = true;
-          if(checkboxValue.toString().equals(student)) student = true;
-          if(checkboxValue.toString().equals(rom)) rom = true;
-          if(checkboxValue.toString().equals(klasse)) klasse = true;
-          if(checkboxValue.toString().equals(checked)) checked = true;
+        if(checkBoxValues != null) {
+          for (String checkboxValue : checkBoxValues) {
+          if(checkboxValue.equals("Ansatt")) ansatt = true; checked = true;
+          if(checkboxValue.equals("Student")) student = true; checked = true;
+          if(checkboxValue.equals("Rom")) rom = true; checked = true;
+          if(checkboxValue.equals("Klasse")) klasse = true; checked = true;
+        }
         }
         
         if(!s.isEmpty()) {
@@ -64,11 +64,6 @@ public class Funksjoner {
                 liste.addAll(sokBruker(si, s));
                 liste.addAll(sokRom(si, s));
                 liste.addAll(sokFag(si, s));
-            }
-        }
-        if(melding!=null){
-            for(int i=0;i<melding.length;i++){
-                liste.add(melding[i]);
             }
         }
         
