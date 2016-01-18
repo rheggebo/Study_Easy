@@ -43,10 +43,10 @@
                     <dd><input id="strFinnRom" name="størrelse" type="number" min="5" max="200" value="5"></dd>
 
                     <dt><label for="checkboxes">Utstyr:</label></dt>
-                    <dd><input class="checkboxes" type="checkbox" id="skjerm" value="Skjerm" onchange="skjerm(this)">PC-skjerm<input type="number" id="antSkjerm"><br> 
-                        <input class="checkboxes" type="checkbox" id="tavle" value="tavle" onchange="tavle(this)">Tavle<input type="number" id="antTavle"><br> 
-                        <input class="checkboxes" type="checkbox" id="sitteplass" value="sitteplasser" onchange="sitteplass(this)">Sitteplass<input type="number" id="antSitteplass"><br> 
-                        <input class="checkboxes" type="checkbox" id="prosjektor" value="prosjektor" onchange="prosjektor(this)">Prosjektor<input type="number" id="antProsjektor"><br> 
+                    <dd><input class="checkboxes" type="checkbox" id="skjerm" value="Skjerm">PC-skjerm<input type="number" id="antSkjerm"><br> 
+                        <input class="checkboxes" type="checkbox" id="tavle" value="tavle">Tavle<input type="number" id="antTavle"><br> 
+                        <input class="checkboxes" type="checkbox" id="sitteplass" value="sitteplasser">Sitteplass<input type="number" id="antSitteplass"><br> 
+                        <input class="checkboxes" type="checkbox" id="prosjektor" value="prosjektor">Prosjektor<input type="number" id="antProsjektor"><br> 
                     </dd>
                     
 
