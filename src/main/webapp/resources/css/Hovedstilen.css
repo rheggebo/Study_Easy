@@ -19,35 +19,6 @@ body {
     padding:0;
 }
 
-#velgRomSøkeSVG{
-    
-}
-
-//hvorfor funker ikke dette....
-/*
-.plantegning{
-    width: 20%;
-}
-*/
-
-
-//Må gjøre dette:
-#velgRomSøkeSVG{
-    width: 100%;
-}
-#plantegningEtasje1{
-    width: 100%;
-}
-#plantegningEtasje2{
-    width: 100%;
-}
-#plantegningEtasje3{
-    width: 100%;
-}
-#plantegningEtasje4{
-    width: 100%;
-}
-
 
 main {
     margin:0;
