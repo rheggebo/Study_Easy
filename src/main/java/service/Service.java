@@ -11,6 +11,7 @@ import beans.Fag;
 import beans.KalenderEvent;
 import beans.Klasse;
 import beans.Rom;
+import beans.RomBestilling;
 import java.util.List;
 
 /**
@@ -86,6 +87,8 @@ public interface Service {
     public List<KalenderEvent> getAlleEventsFraBruker(BrukerB b);
     
     public List<Rom> finnRomTypeStorrelse(Rom r);
+    
+    public List<RomBestilling> getAlleBestillingerFraBruker(BrukerB b);
     
     /** Søkefunksjon metoder **/
     public List<Bruker> getBrukerSok(String sokeord1, String sokeord2, String sokeord3);
