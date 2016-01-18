@@ -9,7 +9,15 @@ public class Rom {
     private int type;
     private int antStolplasser;
     private int storrelse;
-    private ArrayList<String> innhold;
+    private ArrayList<String> innhold; //syntax:innhold antall
+
+    public ArrayList<String> getInnhold() {
+        return innhold;
+    }
+
+    public void setInnhold(ArrayList<String> innhold) {
+        this.innhold = innhold;
+    }
 
     public int getStorrelse() {
         return storrelse;
@@ -52,7 +60,7 @@ public class Rom {
     }
     
     public String toString() {
-        return romID + " " + romNavn + " etasje: " + etasje + " størrelse: " + storrelse;
+        return "Rom: " + romID + " " + romNavn + " etasje: " + etasje + " størrelse: " + storrelse;
     }
     
     public int getAntStolplasser(){

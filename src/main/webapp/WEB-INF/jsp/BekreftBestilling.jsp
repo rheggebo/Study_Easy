@@ -20,7 +20,7 @@
 
 <main>
     <aside>
-        <form action="bekreftBestilling" modelAttribute='rom'>
+        <form:form action="bekreftBestilling" modelAttribute="rom">
             <fieldset>
                 <legend>Velg ønsket spesifikasjoner:</legend>
                    <dt><label for="datoFinnRom">Dato:<em>*</em></label></dt>
@@ -47,6 +47,6 @@
                 </dl>
                 <input type="submit" value="Bekreft bestilling">
             </fieldset>
-        </form>
+        </form:form>
     </aside>
 </main>
