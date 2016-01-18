@@ -51,13 +51,14 @@ public class SokeKontroller {
         @RequestParam(value="checkbox_5", required=false)boolean Fag) {
         
         Funksjoner fu= new Funksjoner();     
-       
+        String funker="DEt skjer ingenting!";
         String checkedAnsatt=request.getParameter("Ansatt");
         String checkedStudent=request.getParameter("Student");      
         String checkedFag=request.getParameter("Fag");
         String checkedRom=request.getParameter("Rom");
         String checkedKlasse=request.getParameter("Klasse");
         
+      
         if("Ansatt".equals(checkedAnsatt)){
             //checkbox is selected
             out.println( "Ansatt er huket av!!");
@@ -66,7 +67,7 @@ public class SokeKontroller {
       
         
         
-       model.addAttribute("liste",fu.getAlleSokeTreff(sok.getSokeord(), si));
+       model.addAttribute("liste",fu.getAlleSokeTreff(sok.getSokeord(), si, funker));
        for(int i=0;i<fu.liste.size();i++){
            out.println("<td>" + fu.liste.get(i).toString() + "<td>");           
         }
