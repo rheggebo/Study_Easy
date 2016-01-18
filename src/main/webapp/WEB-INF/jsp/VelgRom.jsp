@@ -29,30 +29,40 @@
                 <br>
                 <p>Her skal ledige rom listes ut</p>
                 <br>
-                <input type="submit" value="Velg rom">
+                <input type="submit" value="søk">
             </fieldset>
         </form>
     </div>
     
     <div id="velgRomSøkeSVG">
-        <object id="plantegningEtasje1" class="#plantegning" data="<c:url value="/resources/SVG/plantegningE1.svg"/>"> Din nettleser støtter ikke SVG </object>
-        <object id="plantegningEtasje2" class="#plantegning" data="<c:url value="/resources/SVG/plantegningE2.svg"/>"> Din nettleser støtter ikke SVG </object>
-        <object id="plantegningEtasje3" class="#plantegning" data="<c:url value="/resources/SVG/plantegningE3.svg"/>"> Din nettleser støtter ikke SVG </object>
-        <object id="plantegningEtasje4" class="#plantegning" data="<c:url value="/resources/SVG/plantegningE4.svg"/>"> Din nettleser støtter ikke SVG </object>
+        <object id="plantegningEtasje1" data="<c:url value="/resources/SVG/plantegningE1.svg"/>"> Din nettleser støtter ikke SVG </object>
+        <object id="plantegningEtasje2" data="<c:url value="/resources/SVG/plantegningE2.svg"/>"> Din nettleser støtter ikke SVG </object>
+        <object id="plantegningEtasje3" data="<c:url value="/resources/SVG/plantegningE3.svg"/>"> Din nettleser støtter ikke SVG </object>
+        <object id="plantegningEtasje4" data="<c:url value="/resources/SVG/plantegningE4.svg"/>"> Din nettleser støtter ikke SVG </object>
     </div>
 </main>
-    <script>
-            var date = new Date();
+    
 
-            var day = date.getDate();
-            var month = date.getMonth() + 1;
-            var year = date.getFullYear();
+<script>
+   $(window).load(function () {
+        //alert("Document loaded, including graphics and embedded documents (like SVG)");
+        var a = document.getElementById("plantegningEtasje1");
+        
+    });
+</script>
 
-            if (month < 10) month = "0" + month;
-            if (day < 10) day = "0" + day;
+<script>
+    var date = new Date();
 
-            var today = year + "-" + month + "-" + day;
-            var maks = year+1 + "-" + month + "-" + day;
+    var day = date.getDate();
+    var month = date.getMonth() + 1;
+    var year = date.getFullYear();
 
-            document.getElementById('datoen').value = today;
-        </script>
+    if (month < 10) month = "0" + month;
+    if (day < 10) day = "0" + day;
+
+    var today = year + "-" + month + "-" + day;
+    var maks = year+1 + "-" + month + "-" + day;
+
+    document.getElementById('datoen').value = today;
+</script>
