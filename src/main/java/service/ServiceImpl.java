@@ -259,6 +259,13 @@ public class ServiceImpl implements Service{
     }
 
     @Override
+    public List<Klasse> getKlasseSok(String sokeord1) {
+        return dbc.getKlasseSok(sokeord1);
+    }
+    
+
+
+    @Override
     public List<Rom> getRom(Rom r, KalenderEvent ke, boolean storrelse, boolean sitteplasser) {
         ArrayList<String> innhold = r.getInnhold();
         int antParam = innhold.size();

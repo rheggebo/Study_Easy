@@ -27,9 +27,6 @@ public class RomMapper implements RowMapper<Rom>{
         rom.setAntStolplasser(rs.getInt("sitteplasser"));
         return rom;
         
-        
-        /*throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                */
     }
     
 }

@@ -54,6 +54,13 @@ public class SokeKontroller {
            out.println("<td>" + fu.liste.get(i).toString() + "<td>");           
         }
         return "SokeSide";  
-    }   
+    }  
+    @RequestMapping(value="BrukerOversikt")
+    public String fetchData(Model model){
+        model.addAttribute("knapp", si);
+      
+        return "BrukerOversikt";
+    }
 }
+
     

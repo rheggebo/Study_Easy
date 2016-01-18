@@ -205,8 +205,15 @@ public class BrukerKontroller {
         return "LeggTilBruker";
     }
     
+    @RequestMapping(value="brukerOversikt")
+    public String test(Model model, HttpSession sess){
+        
+        return "BrukerOversikt";
+    }
+    
     @RequestMapping(value="NyttAbonemennt")
-    public String nyttAbonemennt(@Valid @ModelAttribute("nyttAbonemennt") Abonemennt abonemennt, HttpSession sess){
+    public String nyttAbonemennt(Model model, HttpSession sess){
+
         return "NyttAbonnement";
     }
     

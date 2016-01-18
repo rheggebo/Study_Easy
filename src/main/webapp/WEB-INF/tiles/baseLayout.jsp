@@ -17,6 +17,7 @@
         <link rel="stylesheet" href="<c:url value="/resources/css/jquery.qtip.css"/>">
         
         <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/Login3.css"/>">
+        <style>@import url(http://weloveiconfonts.com/api/?family=fontawesome);</style>
         <title>Study Easy</title>
     </head>
 
