@@ -256,6 +256,11 @@ public class ServiceImpl implements Service{
         return dbc.getRomSok(sokeord1, sokeord2);
     }
     
+    @Override
+    public List<Klasse> getKlasseSok(String sokeord1) {
+        return dbc.getKlasseSok(sokeord1);
+    }
+    
  
     
     
