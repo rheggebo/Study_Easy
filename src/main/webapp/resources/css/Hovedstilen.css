@@ -19,35 +19,6 @@ body {
     padding:0;
 }
 
-#velgRomSøkeSVG{
-    
-}
-
-//hvorfor funker ikke dette....
-/*
-.plantegning{
-    width: 20%;
-}
-*/
-
-
-//Må gjøre dette:
-#velgRomSøkeSVG{
-    width: 100%;
-}
-#plantegningEtasje1{
-    width: 100%;
-}
-#plantegningEtasje2{
-    width: 100%;
-}
-#plantegningEtasje3{
-    width: 100%;
-}
-#plantegningEtasje4{
-    width: 100%;
-}
-
 
 main {
     margin:0;
@@ -240,7 +211,20 @@ footer{
     border:1px dotted black;
     padding:10px;
 }
-
+.oversikt{
+        size: 15px;       
+        text-align: center;
+        font: 12px Microsoft YaHei Light;
+        float: right;
+        
+        
+    }
+    .searchInfo table td{
+        width: 800px;
+        border-top: solid black 1px;
+        border-bottom: solid black 1px;
+    }
+/*****SokeSide*****/
 #tekst {
     color: red;
 }

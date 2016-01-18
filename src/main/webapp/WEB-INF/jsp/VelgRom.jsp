@@ -46,8 +46,8 @@
 <script>
    $(window).load(function () {
         //alert("Document loaded, including graphics and embedded documents (like SVG)");
-        var a = document.getElementById("plantegningEtasje1");
-        
+            $("#Gr103").hover(.attr("fill","#0000"));
+        });
     });
 </script>
 
