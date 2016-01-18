@@ -53,5 +53,9 @@
         <put-attribute name="title"  value="EndrePassordRed"/>
         <put-attribute name="body"   value="/WEB-INF/jsp/EndrePassordRed.jsp"/>      
     </definition>
+    <definition name="BrukerOversikt" extends="baseLayout">
+        <put-attribute name="title" value="BrukerOversikt"/>
+        <put-attribute name="body" value="/WEB-INF/jsp/BrukerOversikt.jsp"/>
+    </definition>
     
 </tiles-definitions>
