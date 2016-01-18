@@ -86,10 +86,10 @@ public class DBConnectionImpl implements DBConnection{
             + "SELECT DISTINCT kalender_event.id, kalender_event.tittel, kalender_event.dato_start, kalender_event.dato_slutt, kalender_event.eier, "
             + "kalender_event.eier_navn, kalender_event.romID, kalender_event.fagID, kalender_event.type, kalender_event.descr, kalender_event.hidden FROM kalender_event, brukere, abonemennt_fag WHERE kalender_event.fagID = abonemennt_fag.fagID AND abonemennt_fag.eierID =?;";
     
-    private final String getRom0Param = "SELECT DISTINCT rom.romID, romnavn FROM rom LEFT OUTER JOIN rom_innhold ON rom.romID = rom_innhold.romID LEFT OUTER JOIN " +
+    private final String getRom0Param = "SELECT DISTINCT rom.romID, romnavn, etasje, størrelse, type, sitteplasser FROM rom LEFT OUTER JOIN rom_innhold ON rom.romID = rom_innhold.romID LEFT OUTER JOIN " +
         "rom_bestilling ON rom.romID = rom_bestilling.romID " +
-        "WHERE (rom.type <= '?' AND dato_slutt NOT BETWEEN '?' AND '?' AND " +
-        "dato_start NOT BETWEEN '?' AND '?'  OR rom_bestilling.romID IS NULL)";
+        "WHERE (rom.type <=? AND dato_slutt NOT BETWEEN ? AND ? AND " +
+        "dato_start NOT BETWEEN ? AND ?  OR rom_bestilling.romID IS NULL)";
     
     private final String getRom1Param = getRom0Param +" AND (rom_innhold.innholdID LIKE '?' AND rom_innhold.antall>=?)";
     private final String getRom2Param = getRom1Param +getRom1Param;
@@ -531,6 +531,9 @@ public class DBConnectionImpl implements DBConnection{
     public List<Rom> getRom0Param(Rom r, KalenderEvent ke, boolean storrelse, boolean sitteplasser){
         if(storrelse && sitteplasser){
             return jT.query(getRom0Param+ getRomStorrelse + getRomPlasser, new Object[]{
+            r.getType(),
+            ke.getStartTid(),
+            ke.getSluttTid(),
             ke.getStartTid(),
             ke.getSluttTid(),
             r.getStorrelse(),
@@ -538,18 +541,27 @@ public class DBConnectionImpl implements DBConnection{
             }, new RomMapper());
         }else if(sitteplasser){
             return jT.query(getRom0Param+getRomPlasser, new Object[]{
+            r.getType(),
+            ke.getStartTid(),
+            ke.getSluttTid(),
             ke.getStartTid(),
             ke.getSluttTid(),
             r.getAntStolplasser()
             }, new RomMapper());
         }else if(storrelse){
             return jT.query(getRom0Param+getRomStorrelse, new Object[]{
+            r.getType(),
+            ke.getStartTid(),
+            ke.getSluttTid(),
             ke.getStartTid(),
             ke.getSluttTid(),
             r.getStorrelse()
             }, new RomMapper());
         }
         return jT.query(getRom0Param, new Object[]{
+            r.getType(),
+            ke.getStartTid(),
+            ke.getSluttTid(),
             ke.getStartTid(),
             ke.getSluttTid()
         }, new RomMapper());
@@ -557,18 +569,30 @@ public class DBConnectionImpl implements DBConnection{
 
     @Override
     public List<Rom> getRom1Param(Rom r, KalenderEvent ke, boolean storrelse, boolean sitteplasser) {
-        ArrayList<String> tab = r.getInnhold();
+        ArrayList<String> innhold = r.getInnhold();
+        ArrayList<String> tab = new ArrayList<String>(innhold.size()*2);
+        for (int i = 0; i < innhold.size(); i++) {
+            String[] midl = innhold.get(i).split(" ");
+            tab.add(midl[0]);
+            tab.add(midl[1]);
+        }
         if(storrelse && sitteplasser){
-            return jT.query(getRom0Param+ getRomStorrelse + getRomPlasser, new Object[]{
+            return jT.query(getRom1Param+ getRomStorrelse + getRomPlasser, new Object[]{
+            r.getType(),
             ke.getStartTid(),
             ke.getSluttTid(),
-            r.getStorrelse(),
+            ke.getStartTid(),
+            ke.getSluttTid(),
             tab.get(0),
             tab.get(1),
+            r.getStorrelse(),
             r.getAntStolplasser()
             }, new RomMapper());
         }else if(sitteplasser){
-            return jT.query(getRom0Param+getRomPlasser, new Object[]{
+            return jT.query(getRom1Param+getRomPlasser, new Object[]{
+            r.getType(),
+            ke.getStartTid(),
+            ke.getSluttTid(),
             ke.getStartTid(),
             ke.getSluttTid(),
             tab.get(0),
@@ -576,7 +600,10 @@ public class DBConnectionImpl implements DBConnection{
             r.getAntStolplasser()
             }, new RomMapper());
         }else if(storrelse){
-            return jT.query(getRom0Param+getRomStorrelse, new Object[]{
+            return jT.query(getRom1Param+getRomStorrelse, new Object[]{
+            r.getType(),
+            ke.getStartTid(),
+            ke.getSluttTid(),
             ke.getStartTid(),
             ke.getSluttTid(),
             tab.get(0),
@@ -585,6 +612,9 @@ public class DBConnectionImpl implements DBConnection{
             }, new RomMapper());
         }
         return jT.query(getRom1Param, new Object[]{
+            r.getType(),
+            ke.getStartTid(),
+            ke.getSluttTid(),
             ke.getStartTid(),
             ke.getSluttTid(),
             tab.get(0),
@@ -595,9 +625,18 @@ public class DBConnectionImpl implements DBConnection{
 
     @Override
     public List<Rom> getRom2Param(Rom r, KalenderEvent ke, boolean storrelse, boolean sitteplasser) {
-        ArrayList<String> tab = r.getInnhold();
+        ArrayList<String> innhold = r.getInnhold();
+        ArrayList<String> tab = new ArrayList<String>(innhold.size()*2);
+        for (int i = 0; i < innhold.size(); i++) {
+            String[] midl = innhold.get(i).split(" ");
+            tab.add(midl[0]);
+            tab.add(midl[1]);
+        }
         if(storrelse && sitteplasser){
-            return jT.query(getRom0Param+ getRomStorrelse + getRomPlasser, new Object[]{
+            return jT.query(getRom2Param+ getRomStorrelse + getRomPlasser, new Object[]{
+            r.getType(),
+            ke.getStartTid(),
+            ke.getSluttTid(),
             ke.getStartTid(),
             ke.getSluttTid(),
             tab.get(0),
@@ -608,7 +647,10 @@ public class DBConnectionImpl implements DBConnection{
             r.getAntStolplasser()
             }, new RomMapper());
         }else if(sitteplasser){
-            return jT.query(getRom0Param+getRomPlasser, new Object[]{
+            return jT.query(getRom2Param+getRomPlasser, new Object[]{
+            r.getType(),
+            ke.getStartTid(),
+            ke.getSluttTid(),
             ke.getStartTid(),
             ke.getSluttTid(),
             tab.get(0),
@@ -618,7 +660,10 @@ public class DBConnectionImpl implements DBConnection{
             r.getAntStolplasser()
             }, new RomMapper());
         }else if(storrelse){
-            return jT.query(getRom0Param+getRomStorrelse, new Object[]{
+            return jT.query(getRom2Param+getRomStorrelse, new Object[]{
+            r.getType(),
+            ke.getStartTid(),
+            ke.getSluttTid(),
             ke.getStartTid(),
             ke.getSluttTid(),
             tab.get(0),
@@ -629,6 +674,9 @@ public class DBConnectionImpl implements DBConnection{
             }, new RomMapper());
         }
         return jT.query(getRom2Param, new Object[]{
+            r.getType(),
+            ke.getStartTid(),
+            ke.getSluttTid(),
             ke.getStartTid(),
             ke.getSluttTid(),
             tab.get(0),
@@ -640,9 +688,18 @@ public class DBConnectionImpl implements DBConnection{
 
     @Override
     public List<Rom> getRom3Param(Rom r, KalenderEvent ke, boolean storrelse, boolean sitteplasser) {
-        ArrayList<String> tab = r.getInnhold();
+        ArrayList<String> innhold = r.getInnhold();
+        ArrayList<String> tab = new ArrayList<String>(innhold.size()*2);
+        for (int i = 0; i < innhold.size(); i++) {
+            String[] midl = innhold.get(i).split(" ");
+            tab.add(midl[0]);
+            tab.add(midl[1]);
+        }
         if(storrelse && sitteplasser){
-            return jT.query(getRom0Param+ getRomStorrelse + getRomPlasser, new Object[]{
+            return jT.query(getRom3Param+ getRomStorrelse + getRomPlasser, new Object[]{
+            r.getType(),
+            ke.getStartTid(),
+            ke.getSluttTid(),
             ke.getStartTid(),
             ke.getSluttTid(),
             tab.get(0),
@@ -655,7 +712,10 @@ public class DBConnectionImpl implements DBConnection{
             r.getAntStolplasser()
             }, new RomMapper());
         }else if(sitteplasser){
-            return jT.query(getRom0Param+getRomPlasser, new Object[]{
+            return jT.query(getRom3Param+getRomPlasser, new Object[]{
+            r.getType(),
+            ke.getStartTid(),
+            ke.getSluttTid(),
             ke.getStartTid(),
             ke.getSluttTid(),
             tab.get(0),
@@ -667,7 +727,10 @@ public class DBConnectionImpl implements DBConnection{
             r.getAntStolplasser()
             }, new RomMapper());
         }else if(storrelse){
-            return jT.query(getRom0Param+getRomStorrelse, new Object[]{
+            return jT.query(getRom3Param+getRomStorrelse, new Object[]{
+            r.getType(),
+            ke.getStartTid(),
+            ke.getSluttTid(),
             ke.getStartTid(),
             ke.getSluttTid(),
             tab.get(0),
@@ -680,6 +743,9 @@ public class DBConnectionImpl implements DBConnection{
             }, new RomMapper());
         }
         return jT.query(getRom3Param, new Object[]{
+            r.getType(),
+            ke.getStartTid(),
+            ke.getSluttTid(),
             ke.getStartTid(),
             ke.getSluttTid(),
             tab.get(0),
@@ -693,9 +759,18 @@ public class DBConnectionImpl implements DBConnection{
 
     @Override
     public List<Rom> getRom4Param(Rom r, KalenderEvent ke, boolean storrelse, boolean sitteplasser) {
-        ArrayList<String> tab = r.getInnhold();
+        ArrayList<String> innhold = r.getInnhold();
+        ArrayList<String> tab = new ArrayList<String>(innhold.size()*2);
+        for (int i = 0; i < innhold.size(); i++) {
+            String[] midl = innhold.get(i).split(" ");
+            tab.add(midl[0]);
+            tab.add(midl[1]);
+        }
         if(storrelse && sitteplasser){
-            return jT.query(getRom0Param+ getRomStorrelse + getRomPlasser, new Object[]{
+            return jT.query(getRom4Param+ getRomStorrelse + getRomPlasser, new Object[]{
+            r.getType(),
+            ke.getStartTid(),
+            ke.getSluttTid(),
             ke.getStartTid(),
             ke.getSluttTid(),
             tab.get(0),
@@ -710,7 +785,10 @@ public class DBConnectionImpl implements DBConnection{
             r.getAntStolplasser()
             }, new RomMapper());
         }else if(sitteplasser){
-            return jT.query(getRom0Param+getRomPlasser, new Object[]{
+            return jT.query(getRom4Param+getRomPlasser, new Object[]{
+            r.getType(),
+            ke.getStartTid(),
+            ke.getSluttTid(),
             ke.getStartTid(),
             ke.getSluttTid(),
             tab.get(0),
@@ -724,7 +802,10 @@ public class DBConnectionImpl implements DBConnection{
             r.getAntStolplasser()
             }, new RomMapper());
         }else if(storrelse){
-            return jT.query(getRom0Param+getRomStorrelse, new Object[]{
+            return jT.query(getRom4Param+getRomStorrelse, new Object[]{
+            r.getType(),
+            ke.getStartTid(),
+            ke.getSluttTid(),
             ke.getStartTid(),
             ke.getSluttTid(),
             tab.get(0),
@@ -739,6 +820,9 @@ public class DBConnectionImpl implements DBConnection{
             }, new RomMapper());
         }
         return jT.query(getRom4Param, new Object[]{
+            r.getType(),
+            ke.getStartTid(),
+            ke.getSluttTid(),
             ke.getStartTid(),
             ke.getSluttTid(),
             tab.get(0),
@@ -758,9 +842,4 @@ public class DBConnectionImpl implements DBConnection{
             r.getRomID()
         }, new RomMapper());
     }
-    
-    
-    
-    
-
 }

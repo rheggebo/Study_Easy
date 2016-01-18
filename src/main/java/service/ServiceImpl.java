@@ -261,7 +261,7 @@ public class ServiceImpl implements Service{
     @Override
     public List<Rom> getRom(Rom r, KalenderEvent ke, boolean storrelse, boolean sitteplasser) {
         ArrayList<String> innhold = r.getInnhold();
-        int antParam = innhold.size()/2;
+        int antParam = innhold.size();
         if(antParam == 0){
             return dbc.getRom0Param(r, ke, storrelse, sitteplasser);
         }else if(antParam == 1){

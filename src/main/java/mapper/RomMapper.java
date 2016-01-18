@@ -24,6 +24,7 @@ public class RomMapper implements RowMapper<Rom>{
         rom.setEtasje(rs.getInt("etasje"));
         rom.setType(rs.getInt("type"));
         rom.setStorrelse(rs.getInt("størrelse"));
+        rom.setAntStolplasser(rs.getInt("sitteplasser"));
         return rom;
         
         

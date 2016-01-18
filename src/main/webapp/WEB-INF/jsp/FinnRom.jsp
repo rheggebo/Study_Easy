@@ -36,25 +36,22 @@
                      <datalist id="ref-romtype">
                      </datalist> -->
 
-                    <dt><label for="antStolplasserFinnRom">Antall stolplasser:<em>*</em></label></dt>
-                    <dd><form:input id="antStolplasserFinnRom" type="number" name="num-stoler" min="1" max="150" value="1" required="true" path="antStolplasser"/></dd>
-
-                    <dt><label for="strFinnRom">Strørrelse(m<sup>2</sup>):</label></dt>
-                    <dd><input id="strFinnRom" name="størrelse" type="number" min="5" max="200" value="5"></dd>
+                    <dt><label for="strFinnRom">Strørrelse(m<sup>2</sup>):</label><input class="checkboxes" type="checkbox" id="storrelse" value="Skjerm" name="storrelse"></dt>
+                    <dd><input id="strFinnRom" name="storrelseNum" type="number" min="5" max="200" value="5" disabled></dd>
 
                     <dt><label for="checkboxes">Utstyr:</label></dt>
-                    <dd><input class="checkboxes" type="checkbox" id="skjerm" value="Skjerm">PC-skjerm<input type="number" id="antSkjerm"><br> 
-                        <input class="checkboxes" type="checkbox" id="tavle" value="tavle">Tavle<input type="number" id="antTavle"><br> 
-                        <input class="checkboxes" type="checkbox" id="sitteplass" value="sitteplasser">Sitteplass<input type="number" id="antSitteplass"><br> 
-                        <input class="checkboxes" type="checkbox" id="prosjektor" value="prosjektor">Prosjektor<input type="number" id="antProsjektor"><br> 
+                    <dd><input class="checkboxes" type="checkbox" id="skjerm" name="skjerm" value="Skjerm">PC-skjerm<input type="number" id="antSkjerm" name="skjerm" min="0" value="0" disabled><br> 
+                        <input class="checkboxes" type="checkbox" id="tavle" name="tavle" value="tavle">Tavle<input type="number" id="antTavle" name="tavle" min="0" value="0" disabled><br> 
+                        <input class="checkboxes" type="checkbox" id="sitteplass" name="sitteplass" value="sitteplasser">Sitteplass<input type="number" id="antSitteplass" name="sitteplass" min="0" value="0" disabled><br> 
+                        <input class="checkboxes" type="checkbox" id="prosjektor" name="prosjektor" value="prosjektor">Prosjektor<input type="number" id="antProsjektor" name="prosjektor" min="0" value="0" disabled><br> 
                     </dd>
                     
 
-                   <dt><label for="datoFinnRom">Dato:<em>*</em></label></dt>
-                    <dd><input id="datoFinnRom" type="date" name="date" required></dd>
+                    <dt><label for="datoFinnRom">Dato:<em>*</em></label></dt>
+                    <dd><input id="datoFinnRom" type="date" name="fraDato" required></dd>
                     
                     <dt><label for="fraTid">Tid fra:<em>*</em></label></dt>
-                    <dd><select id="fraTid" required/></dd>
+                    <dd><select id="fraTid" name="fraTid" required>
                     <option value="1">06.00</option>
                     <option value="2">07.00</option>
                     <option value="3">08.00</option>
@@ -72,9 +69,31 @@
                     <option value="15">20.00</option>
                     <option value="16">21.00</option>
                     <option value="17">22.00</option>
+                    </select>
+                    </dd>
                     
-                    <br><dt><label for="tilTid">Tid til:<em>*</em></label></dt>
-                    <dd><select id="tilTid" required/></dd>
+                    <dt><label for="tilTid">Tid til:<em>*</em></label></dt>
+                    <dd><select id="tilTid" name="tilTid" required>
+                    <option value="1">07.00</option>
+                    <option value="2">08.00</option>
+                    <option value="3">09.00</option>
+                    <option value="4">10.00</option>
+                    <option value="5">11.00</option>
+                    <option value="6">12.00</option>
+                    <option value="7">13.00</option>
+                    <option value="8">14.00</option>
+                    <option value="9">15.00</option>
+                    <option value="10">16.00</option>
+                    <option value="11">17.00</option>
+                    <option value="12">18.00</option>
+                    <option value="13">19.00</option>
+                    <option value="14">20.00</option>
+                    <option value="15">21.00</option>
+                    <option value="16">22.00</option>
+                    <option value="17">23.00</option>
+                    </select></dd>
+                    
+
 
                 </dl>
                 <input type="submit" value="Finn ledig rom">
@@ -82,48 +101,56 @@
         </form:form>
     </aside>
 
-    <section class="info">
+    <section class="searchInfo">
         <table>
             <c:forEach var="liste" items="${liste}">
                 <tr>
-                    <td><c:out value="${liste}"></c:out></td>
+                    <td><c:out value="${liste}"></c:out><input class=oversikt type='button' value='Se oversikt'/></td>
                 </tr>                    
                           
             </c:forEach>                      
-    </table>
+        </table>
     </section>
     <script language="JavaScript">
         $(document).ready(function(){
             function skjerm(){
                 var element = document.getElementById("skjerm");
-                element.checked ? document.getElementById("antSkjerm").disabled = true : 
-                document.getElementById("antSkjerm").disabled = false;
+                element.checked ? document.getElementById("antSkjerm").disabled = false : 
+                document.getElementById("antSkjerm").disabled = true;
             }
             $("#skjerm").on("change", skjerm);
         });
         $(document).ready(function(){
             function tavle(){
                 var element = document.getElementById("tavle");
-                element.checked ? document.getElementById("antTavle").disabled = true : 
-            document.getElementById("antTavle").disabled = false;  
+                element.checked ? document.getElementById("antTavle").disabled = false : 
+            document.getElementById("antTavle").disabled = true;  
             }
             $("#tavle").on("change", tavle);
         });
         $(document).ready(function(){
             function sittplass(){
-                var element = document.getElementById("sittplass");
-                element.checked ? document.getElementById("antSitteplass").disabled = true : 
-            document.getElementById("antSitteplass").disabled = false;  
+                var element = document.getElementById("sitteplass");
+                element.checked ? document.getElementById("antSitteplass").disabled = false : 
+            document.getElementById("antSitteplass").disabled = true;  
             }
             $("#sitteplass").on("change", sittplass);
         });
         $(document).ready(function(){
             function prosjektor(){
                 var element = document.getElementById("prosjektor");
-                element.checked ? document.getElementById("antProsjektor").disabled = true : 
-            document.getElementById("antProsjektor").disabled = false;  
+                element.checked ? document.getElementById("antProsjektor").disabled = false : 
+            document.getElementById("antProsjektor").disabled = true;  
             }
             $("#prosjektor").on("change", prosjektor);
+        });
+        $(document).ready(function(){
+            function prosjektor(){
+                var element = document.getElementById("storrelse");
+                element.checked ? document.getElementById("strFinnRom").disabled = false : 
+            document.getElementById("strFinnRom").disabled = true;  
+            }
+            $("#storrelse").on("change", prosjektor);
         });
     </script>
 </main>
