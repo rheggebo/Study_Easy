@@ -41,8 +41,7 @@
                     <input class="checkboxes" type="checkbox" id="klasseSokeSide" name="Spes" value="Klasse">Klasse</form></div>
         </li></form>               
     </ul></div>
-
- 
+    
 <div class="searchInfo">    
     <table>
             <c:forEach var="liste" items="${liste}">
