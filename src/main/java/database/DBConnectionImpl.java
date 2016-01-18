@@ -116,7 +116,7 @@ public class DBConnectionImpl implements DBConnection{
     private JdbcTemplate jT;
     
     @Autowired
-    public void setDatabaseSource(DataSource dS){
+    private void setDatabaseSource(DataSource dS){
         this.dS = dS;
         jT = new JdbcTemplate(dS);
     }
@@ -767,5 +767,9 @@ public class DBConnectionImpl implements DBConnection{
             r.getRomID()
         }, new RomMapper());
     }
+    
+    
+    
+    
 
 }
