@@ -6,6 +6,7 @@
 package kontroller;
 
 import beans.Bruker;
+import beans.BrukerB;
 import beans.Rom;
 import beans.Sok;
 import java.io.IOException;
@@ -17,6 +18,7 @@ import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.JOptionPane;
 import org.springframework.beans.factory.annotation.Autowired;
 import verktøy.Funksjoner;
 import org.springframework.stereotype.Controller;
@@ -56,11 +58,22 @@ public class SokeKontroller {
         return "SokeSide";  
     }  
     @RequestMapping(value="BrukerOversikt")
-    public String fetchData(Model model){
-        model.addAttribute("knapp", si);
-      
-        return "BrukerOversikt";
+    public String fetchData1(Model model, HttpServletRequest request, HttpServletResponse response){ 
+       /* if("Se oversikt".equals(request.getParameter("knappTilOversikt"))){
+        model.addAttribute("knappTilOversikt", si);
+            return "BrukerOversikt";
+        }*/
+        BrukerB b=new BrukerB();
+        Funksjoner fu=new Funksjoner();
+        
+        if("Abonner".equals(request.getParameter("knappTilAbonnement"))){
+            model.addAttribute("knappTilAbonnement", si);           
+            request.setAttribute("msg", "Lagt til i dine abonnement");           
+                return "SokeSide";
+        }
+        return "SokeSide";
     }
+    
 }
 
     

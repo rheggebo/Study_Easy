@@ -22,8 +22,6 @@ import service.Service;
 public class Funksjoner {
   public List liste=new ArrayList();
 
-  
-
   public ArrayList<Object> getAlleSokeTreff(String s, Service si, String[] checkBoxValues){
         
         ArrayList<Object> liste=new ArrayList();
@@ -43,7 +41,7 @@ public class Funksjoner {
           if(checkboxValue.equals("Rom")) rom = true; checked = true;
           if(checkboxValue.equals("Klasse")) klasse = true; checked = true;
         }
-        }
+    }
         
         if(!s.isEmpty()) {
             if(ansatt) {
@@ -103,6 +101,10 @@ public class Funksjoner {
       ArrayList<Klasse> klasseListe = new ArrayList<Klasse>();
       klasseListe.addAll(si.getKlasseSok("%" + s + "%"));
       return klasseListe;
+  }
+  public Object abonnement(String ab, Service si){
+      
+      return null;
   }
   
 }
