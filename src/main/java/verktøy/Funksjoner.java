@@ -39,6 +39,7 @@ public class Funksjoner {
           for (String checkboxValue : checkBoxValues) {
           if(checkboxValue.equals("Ansatt")) ansatt = true; checked = true;
           if(checkboxValue.equals("Student")) student = true; checked = true;
+          if(checkboxValue.equals("Fag")) fag = true; checked = true;
           if(checkboxValue.equals("Rom")) rom = true; checked = true;
           if(checkboxValue.equals("Klasse")) klasse = true; checked = true;
         }

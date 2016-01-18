@@ -85,9 +85,9 @@ public class Bruker {
     public void setTilgangsniva(int tilgangsniva) {
         this.tilgangsniva = tilgangsniva;
         if(tilgangsniva == 0) {
-            type = "student";
+            type = "Student";
         } else {
-            type = "ansatt";
+            type = "Ansatt";
         }
     }
 
