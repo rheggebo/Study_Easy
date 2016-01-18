@@ -24,7 +24,7 @@ public class Funksjoner {
 
   
 
-  public ArrayList<Object> getAlleSokeTreff(String s, Service si, String melding){
+  public ArrayList<Object> getAlleSokeTreff(String s, Service si, String[] melding){
         
         ArrayList<Object> liste=new ArrayList();
         ArrayList<Boolean> checkboxValues = new ArrayList<Boolean>();
@@ -66,8 +66,12 @@ public class Funksjoner {
                 liste.addAll(sokFag(si, s));
             }
         }
+        if(melding!=null){
+            for(int i=0;i<melding.length;i++){
+                liste.add(melding[i]);
+            }
+        }
         
-        liste.add(melding);
         return liste; 
 
   }

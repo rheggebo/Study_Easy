@@ -44,30 +44,12 @@ public class SokeKontroller {
      
     @RequestMapping(value="search")
     public String searchView(@ModelAttribute(value="soke")Sok sok, Model model, 
-        HttpServletRequest request, HttpServletResponse response, @RequestParam(value="checkbox_1", required=false)boolean Ansatt,
-        @RequestParam(value="checkbox_2", required=false)boolean Student,
-        @RequestParam(value="checkbox_3", required=false)boolean Rom,
-        @RequestParam(value="checkbox_4", required=false)boolean Klasse,
-        @RequestParam(value="checkbox_5", required=false)boolean Fag) {
+        HttpServletRequest request, HttpServletResponse response) {
         
-        Funksjoner fu= new Funksjoner();     
-        String funker="DEt skjer ingenting!";
-        String checkedAnsatt=request.getParameter("Ansatt");
-        String checkedStudent=request.getParameter("Student");      
-        String checkedFag=request.getParameter("Fag");
-        String checkedRom=request.getParameter("Rom");
-        String checkedKlasse=request.getParameter("Klasse");
-        
-      
-        if("Ansatt".equals(checkedAnsatt)){
-            //checkbox is selected
-            out.println( "Ansatt er huket av!!");
-        }
-        
-      
-        
-        
-       model.addAttribute("liste",fu.getAlleSokeTreff(sok.getSokeord(), si, funker));
+        Funksjoner fu= new Funksjoner();      
+        String [] checkboxes=request.getParameterValues("Spes");       
+       
+       model.addAttribute("liste",fu.getAlleSokeTreff(sok.getSokeord(), si, checkboxes));
        for(int i=0;i<fu.liste.size();i++){
            out.println("<td>" + fu.liste.get(i).toString() + "<td>");           
         }

@@ -24,14 +24,12 @@
 <html lang="no">
 <body>
 <div class="searchNav">
-    <ul>
-        <li><div><form action="search" method="POST"  role="search" modelAttribute="soke">
+    <ul><form action="search" method="POST"  role="search" modelAttribute="soke">
+        <li><div>
             <input id="searchFormSokeSide" class="searchForm" type=search name="sokeord" size="30">
-            <input id="searchButtonSokeSide" class="searchButton" value="Søk" type="submit"></form></div>
-
+            <input id="searchButtonSokeSide" class="searchButton" value="Søk" type="submit"></div>
             <br>
-            <div>
-                <form action="checkbox">
+            <div>              
                     <input class="checkboxes" type="checkbox" id="ansattSokeSide" name="Spes" value="Ansatt">Ansatt
                     <br>
                     <input class="checkboxes" type="checkbox" id="studentSokeSide" name="Spes" value="Student">Student
@@ -41,7 +39,7 @@
                     <input class="checkboxes" type="checkbox" id="romSokeSide" name="Spes" value="Rom">Rom
                     <br>
                     <input class="checkboxes" type="checkbox" id="klasseSokeSide" name="Spes" value="Klasse">Klasse</form></div>
-        </li>               
+        </li></form>               
     </ul></div>
 
  
