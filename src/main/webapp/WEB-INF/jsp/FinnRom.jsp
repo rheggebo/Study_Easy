@@ -43,17 +43,17 @@
                     <dd><form:input id="strFinnRom" name="størrelse" type="number" min="5" max="200" value="5" path="storrelse"/></dd>
 
                     <dt><label for="checkboxes">Utstyr:</label></dt>
-                    <dd><input class="checkboxes" type="checkbox" id="skjerm" value="Skjerm">PC-skjerm<input type="number" id="antSkjerm" disabled="true" onchange="skjerm()"><br> 
-                        <input class="checkboxes" type="checkbox" id="tavle" value="tavle">Tavle<input type="number" id="antTavle" disabled="true" onchange="tavle()"><br> 
-                        <input class="checkboxes" type="checkbox" id="sitteplasser" value="sitteplasser">Sitteplass<input type="number" id="antSitteplass" disabled="true" onchange="sitteplass()"><br> 
-                        <input class="checkboxes" type="checkbox" id="prosjektor" value="prosjektor">Prosjektor<input type="number" id="antProsjektor" disabled="true" onchange="prosjektor()"><br> 
+                    <dd><input class="checkboxes" type="checkbox" id="skjerm" value="Skjerm" onchange="skjerm(this)">PC-skjerm<input type="number" id="antSkjerm"><br> 
+                        <input class="checkboxes" type="checkbox" id="tavle" value="tavle" onchange="tavle(this)">Tavle<input type="number" id="antTavle"><br> 
+                        <input class="checkboxes" type="checkbox" id="sitteplass" value="sitteplasser" onchange="sitteplass(this)">Sitteplass<input type="number" id="antSitteplass"><br> 
+                        <input class="checkboxes" type="checkbox" id="prosjektor" value="prosjektor" onchange="prosjektor(this)">Prosjektor<input type="number" id="antProsjektor"><br> 
                     </dd>
                     
 
                    <dt><label for="datoFinnRom">Dato:<em>*</em></label></dt>
-                    <dd><input id="datoFinnRom" type="date" name="dato" required="true"/></dd>
+                    <dd><input id="datoFinnRom" type="date" name="date" required></dd>
                     
-                    <dt><label for="fraTid">Tid fra:<em>*</em></label></dt><br>
+                    <dt><label for="fraTid">Tid fra:<em>*</em></label></dt>
                     <dd><select id="fraTid" required/></dd>
                     <option value="1">06.00</option>
                     <option value="2">07.00</option>
@@ -73,7 +73,7 @@
                     <option value="16">21.00</option>
                     <option value="17">22.00</option>
                     
-                    <dt><label for="tilTid">Tid til:<em>*</em></label></dt>
+                    <br><dt><label for="tilTid">Tid til:<em>*</em></label></dt>
                     <dd><select id="tilTid" required/></dd>
 
                 </dl>
@@ -93,43 +93,37 @@
     </table>
     </section>
     <script language="JavaScript">
-        window.onload = function() { 
-         var checkbox = document.getElementById('skjerm');
-         if (checkbox.checked) {
-            document.getElementById("antSkjerm").disabled = false;
-         } else {
-         document.getElementById("antSkjerm").disabled = true;
-         }
-        };
-        function skjerm(){
-            if(document.getElementById('skjerm').checked === false){
-                document.getElementById('antSkjerm').disabled = false;
-            }else{
-                document.getElementById('antSkjerm').disabled = true;
+        $(document).ready(function(){
+            function skjerm(){
+                var element = document.getElementById("skjerm");
+                element.checked ? document.getElementById("antSkjerm").disabled = true : 
+                document.getElementById("antSkjerm").disabled = false;
             }
-        };
-        function tavle(){
-            if(document.getElementById('tavle').checked === false){
-                document.getElementById('antTavle').disabled = false;
-            }else{
-                document.getElementById('antTavle').disabled = true;
+            $("#skjerm").on("change", skjerm);
+        });
+        $(document).ready(function(){
+            function tavle(){
+                var element = document.getElementById("tavle");
+                element.checked ? document.getElementById("antTavle").disabled = true : 
+            document.getElementById("antTavle").disabled = false;  
             }
-        };
-        function sitteplass(){
-            if(document.getElementById('sitteplass').checked === false){
-                document.getElementById('antSitteplass').disabled = false;
-            }else{
-                document.getElementById('antSitteplass').disabled = true;
+            $("#tavle").on("change", tavle);
+        });
+        $(document).ready(function(){
+            function sittplass(){
+                var element = document.getElementById("sittplass");
+                element.checked ? document.getElementById("antSitteplass").disabled = true : 
+            document.getElementById("antSitteplass").disabled = false;  
             }
-        };
-        function prosjektor(){
-            if(document.getElementById('prosjektor').checked === false){
-                document.getElementById('antProsjektor').disabled = false;
-            }else{
-                document.getElementById('antProsjektor').disabled = true;
+            $("#sitteplass").on("change", sittplass);
+        });
+        $(document).ready(function(){
+            function prosjektor(){
+                var element = document.getElementById("prosjektor");
+                element.checked ? document.getElementById("antProsjektor").disabled = true : 
+            document.getElementById("antProsjektor").disabled = false;  
             }
-        };
-        
+            $("#prosjektor").on("change", prosjektor);
+        });
     </script>
-
 </main>

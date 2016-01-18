@@ -8,6 +8,7 @@ package kontroller;
 import beans.Bruker;
 import beans.BrukerB;
 import beans.Passord;
+import beans.Rom;
 import email.Email;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -182,7 +183,7 @@ public class BrukerKontroller {
     }
     
     @RequestMapping(value="LeggTilBrukerLagre")
-    public String leggTilBrukerLagre(@Valid @ModelAttribute("bruker") Bruker bruker, @RequestParam("Tilgangsnivaa")String tilgang, Model model, BindingResult error, HttpSession sess){
+    public String leggTilBrukerLagre(@Valid @ModelAttribute("nyBruker") Bruker bruker, @RequestParam("Tilgangsnivaa")String tilgang, Model model, BindingResult error, HttpSession sess){
         if(error.hasErrors()){
             model.addAttribute("melding", "feilmelding.nyBrukerValidering");
             return "LeggTilBruker";
@@ -202,5 +203,16 @@ public class BrukerKontroller {
         model.addAttribute("melding", "feilmelding.nyBruker");
         model.addAttribute("nyBruker", new Bruker());
         return "LeggTilBruker";
+    }
+    
+    @RequestMapping("BekreftBestilling")
+    public String bekreftBestilling(Model model, HttpSession sess){
+        BrukerB brukerb = (BrukerB)sess.getAttribute("brukerBean");
+        if(brukerb != null && brukerb.isInnlogget()){
+            model.addAttribute("rom", new Rom());
+            return "BekreftBestilling";
+        }
+        model.addAttribute("bruker", new Bruker());
+        return "Innlogging";
     }
 }

@@ -85,7 +85,17 @@ public interface DBConnection {
     
     public List<KalenderEvent> getAlleEventsFraBruker(BrukerB b);
     
-    public List<Rom> finnRomTypeStorrelse(Rom r);
+    public List<Rom> getRomTypeStorrelse(Rom r);
+    
+    public List<Rom> getRom0Param(Rom r, KalenderEvent ke, boolean storrelse, boolean sitteplasser);
+    
+    public List<Rom> getRom1Param(Rom r, KalenderEvent ke, boolean storrelse, boolean sitteplasser);
+    
+    public List<Rom> getRom2Param(Rom r, KalenderEvent ke, boolean storrelse, boolean sitteplasser);
+    
+    public List<Rom> getRom3Param(Rom r, KalenderEvent ke, boolean storrelse, boolean sitteplasser);
+    
+    public List<Rom> getRom4Param(Rom r, KalenderEvent ke, boolean storrelse, boolean sitteplasser);
     
     public Rom getRom(Rom r);
     
@@ -96,5 +106,7 @@ public interface DBConnection {
     public List<Fag> getFagSok(String sokeord1, String sokeord2);
     
     public List<Rom> getRomSok(String sokeord1, String sokeord2);
+    
+    
 
 }
