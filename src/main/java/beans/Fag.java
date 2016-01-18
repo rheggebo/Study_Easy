@@ -43,7 +43,7 @@ public class Fag {
     }
     
     public String toString() {
-        return fagID + " " + navn;
+        return "Fag: " + fagID + " " + navn;
     }
 }
 

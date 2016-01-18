@@ -24,6 +24,6 @@ public class Klasse {
     }
     
     public String toString(){
-        return navn;
+        return "Klasse: " + navn;
     }
 }

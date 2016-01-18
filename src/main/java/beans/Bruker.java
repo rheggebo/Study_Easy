@@ -20,6 +20,7 @@ public class Bruker {
     private Date fodedato;
     private int telefonnummer;
     private ArrayList<KalenderEvent> kalenderEvents;
+    private String type;
 
     public Date getFodedato() {
         return fodedato;
@@ -83,6 +84,11 @@ public class Bruker {
 
     public void setTilgangsniva(int tilgangsniva) {
         this.tilgangsniva = tilgangsniva;
+        if(tilgangsniva == 0) {
+            type = "Student";
+        } else {
+            type = "Ansatt";
+        }
     }
 
     public ArrayList<KalenderEvent> getKalenderEvents() {
@@ -102,7 +108,7 @@ public class Bruker {
     }
     
     public String toString(){
-        String str = fornavn + " " + etternavn + ", ";
+        String str = type + ": " + fornavn + " " + etternavn + ", ";
         if(!epost.isEmpty() && !epost.equals(null)) {
             str += " Epost: " + epost;
         }
