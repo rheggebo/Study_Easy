@@ -5,12 +5,14 @@
  */
 package service;
 
+import beans.Abonemennt;
 import beans.Bruker;
 import beans.BrukerB;
 import beans.Fag;
 import beans.KalenderEvent;
 import beans.Klasse;
 import beans.Rom;
+import beans.RomBestilling;
 import database.DBConnectionImpl;
 import database.DBConnection;
 import java.io.Console;
@@ -206,10 +208,23 @@ public class ServiceImpl implements Service{
     public List<KalenderEvent> getAlleEventsFraBruker(BrukerB b){
         return dbc.getAlleEventsFraBruker(b);
     }
+    @Override
+    public List<RomBestilling> getAlleBestillingerFraBruker(BrukerB b){
+        return dbc.getAlleBestillingerFraBruker(b);
+    }
+    
     
     @Override
     public List<Rom> getRomTypeStorrelse(Rom r) {
         return dbc.getRomTypeStorrelse(r);
+    }
+    
+    @Override
+    public List<Abonemennt> getAbonemenntFraBruker(BrukerB b){
+        return dbc.getAbonemenntFraBruker(b);
+    }
+    public boolean leggTilAbonemennt(Abonemennt ab){
+        return dbc.leggTilAbonemennt(ab);
     }
     
     /***Søkefunksjon metoder --- **/
@@ -224,8 +239,13 @@ public class ServiceImpl implements Service{
     }
     
     @Override
-    public List<Bruker> getBrukerSok(String sokeord1, String sokeord2, String sokeord3) {
-        return dbc.getBrukerSok(sokeord1, sokeord2, sokeord3);
+    public List<Bruker> getStudentSok(String sokeord1, String sokeord2, String sokeord3) {
+        return dbc.getStudentSok(sokeord1, sokeord2, sokeord3);
+    }
+    
+    @Override
+    public List<Bruker> getAnsattSok(String sokeord1, String sokeord2, String sokeord3) {
+        return dbc.getAnsattSok(sokeord1, sokeord2, sokeord3);
     }
     
     @Override

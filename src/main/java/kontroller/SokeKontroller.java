@@ -44,76 +44,16 @@ public class SokeKontroller {
      
     @RequestMapping(value="search")
     public String searchView(@ModelAttribute(value="soke")Sok sok, Model model, 
-        HttpServletRequest request, HttpServletResponse response, @RequestParam(value="checkbox_1", required=false)boolean Ansatt,
-        @RequestParam(value="checkbox_2", required=false)boolean Student,
-        @RequestParam(value="checkbox_3", required=false)boolean Rom,
-        @RequestParam(value="checkbox_4", required=false)boolean Klasse,
-        @RequestParam(value="checkbox_5", required=false)boolean Fag) {
+        HttpServletRequest request, HttpServletResponse response) {
         
-        Funksjoner fu= new Funksjoner();     
+        Funksjoner fu= new Funksjoner();      
+        String [] checkboxes=request.getParameterValues("Spes");       
        
-        String checkedAnsatt=request.getParameter("Ansatt");
-        String checkedStudent=request.getParameter("Student");      
-        String checkedFag=request.getParameter("Fag");
-        String checkedRom=request.getParameter("Rom");
-        String checkedKlasse=request.getParameter("Klasse");
-        
-        if("Ansatt".equals(checkedAnsatt)){
-            //checkbox is selected
-            out.println( "Ansatt er huket av!!");
-        }
-        
-      
-        
-        
-       model.addAttribute("liste",fu.getAlleSokeTreff(sok.getSokeord(), si));
-       for(int i=0;i<fu.liste.size();i++){
+        model.addAttribute("liste",fu.getAlleSokeTreff(sok.getSokeord(), si, checkboxes));
+        for(int i=0;i<fu.liste.size();i++){
            out.println("<td>" + fu.liste.get(i).toString() + "<td>");           
         }
         return "SokeSide";  
-    }
-      /*
-        (@RequestParam(value="checkbox_1", required=false)boolean forelesning,
-                @RequestParam(value="checkbox_2", required=false)boolean Oving,
-            @RequestParam(value="checkbox_3", required=false)boolean romreservasjon,
-            @RequestParam(value="checkbox_4", required=false)boolean privatHendelse*/
-          
-   
+    }   
 }
     
-   /** @RequestMapping(value="finnromdata")
-    public String finnromdata(@ModelAttribute(value="finnrom") Rom rom, HttpServletRequest request, HttpServletResponse response){
-       String romtype=request.getParameter("romtype");
-       String antStolplasser=request.getParameter("num-stoler");
-       String str=request.getParameter("størrelse");       
-       String dato=request.getParameter("date");
-       String[] checked=request.getParameter("")
-       int antStoler=Integer.parseInt(antStolplasser);
-       int st=Integer.parseInt(str);
-       SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd"); 
-       String d = format.format(new Date(dato)); 
-       
-       List alleRom=si.getAlleRom();
-       for(int i=0;i<alleRom.size();i++){
-       /*    if(si.getRomFraType(romtype)&&si.getRomFraStoerrelse(st)){
-                for(iterer liste){
-                out.println();
-                }
-           }
-       }*/
-       
-        /**
-        return "FinnRom";
-            }**/
-
-      
-    /**
-     * String[] select = new String[5];
-        String str = "Testtreng";
-        try {
-            select=request.getParameterValues("Spes");
-        } catch (Exception e) {
-            str = "select=request.getParameterValues(\"Spes\") catcher exception";
-        }
-   */
-

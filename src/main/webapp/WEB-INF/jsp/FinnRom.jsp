@@ -39,8 +39,8 @@
                     <dt><label for="antStolplasserFinnRom">Antall stolplasser:<em>*</em></label></dt>
                     <dd><form:input id="antStolplasserFinnRom" type="number" name="num-stoler" min="1" max="150" value="1" required="true" path="antStolplasser"/></dd>
 
-                    <dt><label for="strFinnRom">Strørrelse(m2):</label></dt>
-                    <dd><form:input id="strFinnRom" name="størrelse" type="number" min="5" max="200" value="5" path="storrelse"/></dd>
+                    <dt><label for="strFinnRom">Strørrelse(m<sup>2</sup>):</label></dt>
+                    <dd><input id="strFinnRom" name="størrelse" type="number" min="5" max="200" value="5"></dd>
 
                     <dt><label for="checkboxes">Utstyr:</label></dt>
                     <dd><input class="checkboxes" type="checkbox" id="skjerm" value="Skjerm" onchange="skjerm(this)">PC-skjerm<input type="number" id="antSkjerm"><br> 

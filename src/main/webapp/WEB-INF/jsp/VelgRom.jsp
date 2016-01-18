@@ -11,7 +11,7 @@
             <fieldset>
                 <legend>Bestill rom</legend>
                 <p>Velg dato for rombestilling:<em>*</em></p>
-                <input id="datoVelgRom" type="date" name="date" id="datoen" placeholder="ÅÅÅÅ-MM-DD required">
+                <input id="datoVelgRom" type="date" name="date">
 
                 <p>Velg klokkeslett<em>(kan velge flere)</em></p>
                 <select id="klokkeslett" multiple required name="klokkeslett">
@@ -29,30 +29,39 @@
                 <br>
                 <p>Her skal ledige rom listes ut</p>
                 <br>
-                <input type="submit" value="Velg rom">
+                <input type="submit" value="søk">
             </fieldset>
         </form>
     </div>
     
     <div id="velgRomSøkeSVG">
-        <object id="plantegningEtasje1" class="#plantegning" data="<c:url value="/resources/SVG/plantegningE1.svg"/>"> Din nettleser støtter ikke SVG </object>
-        <object id="plantegningEtasje2" class="#plantegning" data="<c:url value="/resources/SVG/plantegningE2.svg"/>"> Din nettleser støtter ikke SVG </object>
-        <object id="plantegningEtasje3" class="#plantegning" data="<c:url value="/resources/SVG/plantegningE3.svg"/>"> Din nettleser støtter ikke SVG </object>
-        <object id="plantegningEtasje4" class="#plantegning" data="<c:url value="/resources/SVG/plantegningE4.svg"/>"> Din nettleser støtter ikke SVG </object>
+        <object id="plantegningEtasje1" data="<c:url value="/resources/SVG/plantegningE1.svg"/>"> Din nettleser støtter ikke SVG </object>
+        <object id="plantegningEtasje2" hidden="true" data="<c:url value="/resources/SVG/plantegningE2.svg"/>"> Din nettleser støtter ikke SVG </object>
+        <object id="plantegningEtasje3" hidden="true" data="<c:url value="/resources/SVG/plantegningE3.svg"/>"> Din nettleser støtter ikke SVG </object>
+        <object id="plantegningEtasje4" hidden="true" data="<c:url value="/resources/SVG/plantegningE4.svg"/>"> Din nettleser støtter ikke SVG </object>
     </div>
 </main>
-    <script>
-            var date = new Date();
 
-            var day = date.getDate();
-            var month = date.getMonth() + 1;
-            var year = date.getFullYear();
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 
-            if (month < 10) month = "0" + month;
-            if (day < 10) day = "0" + day;
+<script>
+    
+</script>
+<!--
+<script>
+    var date = new Date();
 
-            var today = year + "-" + month + "-" + day;
-            var maks = year+1 + "-" + month + "-" + day;
+    var day = date.getDate();
+    var month = date.getMonth() + 1;
+    var year = date.getFullYear();
 
-            document.getElementById('datoen').value = today;
-        </script>
+    if (month < 10) month = "0" + month;
+    if (day < 10) day = "0" + day;
+
+    var today = year + "-" + month + "-" + day;
+    var maks = year+1 + "-" + month + "-" + day;
+
+    document.getElementById('datoen').value = today;
+</script>
+-->

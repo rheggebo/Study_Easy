@@ -5,12 +5,14 @@
  */
 package database;
 
+import beans.Abonemennt;
 import beans.Bruker;
 import beans.BrukerB;
 import beans.Fag;
 import beans.KalenderEvent;
 import beans.Klasse;
 import beans.Rom;
+import beans.RomBestilling;
 import java.util.List;
 
 /**
@@ -99,10 +101,18 @@ public interface DBConnection {
     
     public Rom getRom(Rom r);
     
+    public List<RomBestilling> getAlleBestillingerFraBruker(BrukerB b);
+    
+    public List<Abonemennt> getAbonemenntFraBruker(BrukerB b);
+    
+    public boolean leggTilAbonemennt(Abonemennt ab);
+    
     /*** Søkefunksjonsmetoder:  */
     
-    public List<Bruker> getBrukerSok(String sokeord1, String sokeord2, String sokeord3);
+    public List<Bruker> getStudentSok(String sokeord1, String sokeord2, String sokeord3);
     
+    public List<Bruker> getAnsattSok(String sokeord1, String sokeord2, String sokeord3);
+
     public List<Fag> getFagSok(String sokeord1, String sokeord2);
     
     public List<Rom> getRomSok(String sokeord1, String sokeord2);

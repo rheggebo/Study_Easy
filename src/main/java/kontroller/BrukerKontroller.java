@@ -5,6 +5,7 @@
  */
 package kontroller;
 
+import beans.Abonemennt;
 import beans.Bruker;
 import beans.BrukerB;
 import beans.Passord;
@@ -205,6 +206,10 @@ public class BrukerKontroller {
         return "LeggTilBruker";
     }
     
+    @RequestMapping(value="NyttAbonemennt")
+    public String nyttAbonemennt(@Valid @ModelAttribute("nyttAbonemennt") Abonemennt abonemennt, HttpSession sess){
+        return "NyttAbonnement";
+    }
     @RequestMapping("BekreftBestilling")
     public String bekreftBestilling(Model model, HttpSession sess){
         BrukerB brukerb = (BrukerB)sess.getAttribute("brukerBean");

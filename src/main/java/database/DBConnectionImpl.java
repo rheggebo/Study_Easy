@@ -5,6 +5,7 @@
  */
 package database;
 
+import beans.Abonemennt;
 import mapper.BrukerMapper;
 import mapper.RomMapper;
 import beans.Bruker;
@@ -13,13 +14,16 @@ import beans.Fag;
 import beans.KalenderEvent;
 import beans.Klasse;
 import beans.Rom;
+import beans.RomBestilling;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.sql.DataSource;
+import mapper.AbonemenntMapper;
 import mapper.FagMapper;
 import mapper.KalenderEventMapper;
+import mapper.RomBestillingMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import verktøy.PasswordHasher;
@@ -69,6 +73,10 @@ public class DBConnectionImpl implements DBConnection{
     private final String getRomTypeStorrelse = "SELECT type, størrelse FROM rom WHERE type=? AND størrelse=?;";
     private final String getRom = "SELECT * FROM rom WHERE romID=?";
     
+    private final String leggTilAbonemennt = "INSERT INTO ? (eierID, ?) VALUES (?, ?)";
+    private final String getAbonemenntFraBruker = "SELECT abonemennt_bruker.eierID, abonemennt_bruker.brukerID AS abonererId, 0 AS abType FROM abonemennt_bruker WHERE abonemennt_bruker.eierID =? UNION "
+            + "SELECT abonemennt_fag.eierID, abonemennt_fag.fagID AS abonererId, 1 AS abType FROM abonemennt_fag WHERE abonemennt_fag.eierID =?";
+    private final String getAlleBestillingerFraBruker = "SELECT rom_bestilling.eierID, rom_bestilling.romID, rom_bestilling.dato_start, rom_bestilling.dato_slutt FROM rom_bestilling WHERE rom_bestilling.eierID =?";
     private final String getAlleEventsFraBruker = 
             "SELECT DISTINCT kalender_event.id, kalender_event.tittel, kalender_event.dato_start, kalender_event.dato_slutt, kalender_event.eier, kalender_event.eier_navn, kalender_event.romID, kalender_event.fagID, kalender_event.type, kalender_event.descr, kalender_event.hidden "
             + "FROM kalender_event, brukere WHERE kalender_event.eier =? UNION "
@@ -94,8 +102,10 @@ public class DBConnectionImpl implements DBConnection{
     /**Søkefunksjon**/
     private final String alleRom="SELECT * FROM rom";
     private final String alleFag="SELECT * FROM fag";
-    
-    private final String getBrukerSok = "SELECT * FROM brukere WHERE fornavn LIKE ? OR etternavn LIKE ? or epost LIKE ?";
+    private final String getStudentSok = "SELECT * FROM brukere WHERE fornavn LIKE ? AND  type = 0 "
+            + "OR etternavn LIKE ? AND  type = 0 OR epost LIKE ? AND  type = 0";
+    private final String getAnsattSok = "SELECT * FROM brukere WHERE (fornavn LIKE ? AND  (type = 1 OR type = 2))"
+            + "OR (etternavn LIKE ? AND  (type = 1 OR type = 2)) OR (epost LIKE ? AND  (type = 1 OR type = 2))"; 
     private final String getFagSok = "SELECT * FROM fag WHERE fagID LIKE ? OR fagnavn LIKE ?";
     private final String getRomSok = "SELECT * FROM rom WHERE romID LIKE ? OR romnavn LIKE ?";
     
@@ -192,8 +202,13 @@ public class DBConnectionImpl implements DBConnection{
     /***Søkefunksjon metoder:   **/
     
     @Override
-    public List<Bruker> getBrukerSok(String sokeord1, String sokeord2, String sokeord3) {
-        return jT.query(getBrukerSok, new Object[]{sokeord1, sokeord2, sokeord3}, new BrukerMapper());
+    public List<Bruker> getStudentSok(String sokeord1, String sokeord2, String sokeord3) {
+        return jT.query(getStudentSok, new Object[]{sokeord1, sokeord2, sokeord3}, new BrukerMapper());
+    } 
+    
+    @Override
+    public List<Bruker> getAnsattSok(String sokeord1, String sokeord2, String sokeord3) {
+        return jT.query(getAnsattSok, new Object[]{sokeord1, sokeord2, sokeord3}, new BrukerMapper());
     }
     
     @Override
@@ -397,6 +412,30 @@ public class DBConnectionImpl implements DBConnection{
         }, new FagMapper());
     }
     
+    @Override
+    public boolean leggTilAbonemennt(Abonemennt ab){
+        String table = "";
+        String navn = "";
+        if (ab.getType() == 0){
+            table = "abonemennt_bruker";
+            navn = "eierID";
+        }
+        else{
+            table = "abonemennt_fag";
+            navn = "fagID";
+        }
+        int antallRader = jT.update(leggTilAbonemennt,new Object[]{
+            table,
+            navn,
+            ab.getEierid(),
+            ab.getAbonererId()
+        });
+        if(antallRader > 0){
+            return true;
+        }
+        return false;
+    }
+    
     
 
     @Override
@@ -464,6 +503,20 @@ public class DBConnectionImpl implements DBConnection{
             b.getEpost(),
             b.getEpost()
         }, new KalenderEventMapper());
+    }
+    @Override
+    public List<Abonemennt> getAbonemenntFraBruker(BrukerB b){
+        return jT.query(getAbonemenntFraBruker, new Object[]{
+            b.getEpost(),
+            b.getEpost()
+        }, new AbonemenntMapper());
+    }
+    
+    @Override
+    public List<RomBestilling> getAlleBestillingerFraBruker(BrukerB b){
+        return jT.query(getAlleBestillingerFraBruker, new Object[]{
+            b.getEpost()
+        }, new RomBestillingMapper());
     }
     
     @Override

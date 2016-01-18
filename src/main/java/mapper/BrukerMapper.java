@@ -7,6 +7,7 @@ package mapper;
 
 import beans.Bruker;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import org.springframework.jdbc.core.RowMapper;
 

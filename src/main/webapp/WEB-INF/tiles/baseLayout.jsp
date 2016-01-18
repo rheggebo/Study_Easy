@@ -11,6 +11,7 @@
         <link rel="shortcut icon" href="<c:url value="/resources/images/BBIkon2.png"/>">
         
         <link rel="stylesheet" href="<c:url value="/resources/css/Hovedstilen.css"/>">
+        <link rel="stylesheet" href="<c:url value="/resources/css/VelgRom.css"/>">
         
         <link rel="stylesheet" href="<c:url value="/resources/css/fullcalendar.css"/>">
         <link rel="stylesheet" href="<c:url value="/resources/css/jquery.qtip.css"/>">
