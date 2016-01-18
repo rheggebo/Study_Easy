@@ -24,12 +24,17 @@ body {
 }
 
 //hvorfor funker ikke dette....
+/*
 .plantegning{
-    width: 100%;
+    width: 20%;
 }
+*/
 
 
 //Må gjøre dette:
+#velgRomSøkeSVG{
+    width: 100%;
+}
 #plantegningEtasje1{
     width: 100%;
 }
@@ -42,6 +47,7 @@ body {
 #plantegningEtasje4{
     width: 100%;
 }
+
 
 main {
     margin:0;
