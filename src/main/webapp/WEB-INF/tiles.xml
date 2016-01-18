@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-
+ 
 <!DOCTYPE tiles-definitions PUBLIC
        "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
        "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
-
+ 
 <tiles-definitions>
-
+ 
     <definition name="baseLayout" template="/WEB-INF/tiles/baseLayout.jsp">
         <put-attribute name="title"  value="BaseLayout"/>
         <put-attribute name="header" value="/WEB-INF/tiles/header.jsp"/>
@@ -49,7 +49,7 @@
         <put-attribute name="title"  value="LeggTilBruker"/>
         <put-attribute name="body"   value="/WEB-INF/jsp/LeggTilBruker.jsp"/>      
     </definition>
-
+ 
     <definition name="BrukerOversikt" extends="baseLayout">
         <put-attribute name="title" value="BrukerOversikt"/>
         <put-attribute name="body" value="/WEB-INF/jsp/BrukerOversikt.jsp"/>
@@ -58,5 +58,5 @@
         <put-attribute name="title"  value="BekreftBestilling"/>
         <put-attribute name="body"   value="/WEB-INF/jsp/BekreftBestilling.jsp"/>    
     </definition>
-    
+   
 </tiles-definitions>
