@@ -259,6 +259,15 @@ public class ServiceImpl implements Service{
     }
 
     @Override
+<<<<<<< HEAD
+<<<<<<< HEAD
+    public List<Klasse> getKlasseSok(String sokeord1) {
+        return dbc.getKlasseSok(sokeord1);
+    }
+    
+
+
+    @Override
     public List<Rom> getRom(Rom r, KalenderEvent ke, boolean storrelse, boolean sitteplasser) {
         ArrayList<String> innhold = r.getInnhold();
         int antParam = innhold.size()/2;
@@ -275,6 +284,42 @@ public class ServiceImpl implements Service{
         }
     }
     
+=======
+    public List<Rom> getRom(Rom r, KalenderEvent ke, boolean storrelse, boolean sitteplasser) {
+        ArrayList<String> innhold = r.getInnhold();
+        int antParam = innhold.size()/2;
+        if(antParam == 0){
+            return dbc.getRom0Param(r, ke, storrelse, sitteplasser);
+        }else if(antParam == 1){
+            return dbc.getRom1Param(r, ke, storrelse, sitteplasser);
+        }else if(antParam == 2){
+            return dbc.getRom2Param(r, ke, storrelse, sitteplasser);
+        }else if(antParam == 3){
+            return dbc.getRom3Param(r, ke, storrelse, sitteplasser);
+        }else{
+            return dbc.getRom4Param(r, ke, storrelse, sitteplasser);
+        }
+    }
+    
+>>>>>>> origin/master
+=======
+    public List<Rom> getRom(Rom r, KalenderEvent ke, boolean storrelse, boolean sitteplasser) {
+        ArrayList<String> innhold = r.getInnhold();
+        int antParam = innhold.size()/2;
+        if(antParam == 0){
+            return dbc.getRom0Param(r, ke, storrelse, sitteplasser);
+        }else if(antParam == 1){
+            return dbc.getRom1Param(r, ke, storrelse, sitteplasser);
+        }else if(antParam == 2){
+            return dbc.getRom2Param(r, ke, storrelse, sitteplasser);
+        }else if(antParam == 3){
+            return dbc.getRom3Param(r, ke, storrelse, sitteplasser);
+        }else{
+            return dbc.getRom4Param(r, ke, storrelse, sitteplasser);
+        }
+    }
+    
+>>>>>>> origin/master
     @Override
     public Rom getRom(Rom r){
         return dbc.getRom(r);

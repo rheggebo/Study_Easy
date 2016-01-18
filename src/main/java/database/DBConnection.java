@@ -117,6 +117,16 @@ public interface DBConnection {
     
     public List<Rom> getRomSok(String sokeord1, String sokeord2);
     
+<<<<<<< HEAD
+<<<<<<< HEAD
+
+    public List<Klasse> getKlasseSok(String sokeord1);
+
+=======
     
+>>>>>>> origin/master
+=======
+    
+>>>>>>> origin/master
 
 }

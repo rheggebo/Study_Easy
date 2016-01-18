@@ -26,9 +26,6 @@ public class RomMapper implements RowMapper<Rom>{
         rom.setStorrelse(rs.getInt("størrelse"));
         return rom;
         
-        
-        /*throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                */
     }
     
 }
