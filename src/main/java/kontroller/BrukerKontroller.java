@@ -213,9 +213,8 @@ public class BrukerKontroller {
     }
     
     @RequestMapping(value="NyttAbonemennt")
-    public String nyttAbonemennt(@Valid @ModelAttribute("nyttAbonemennt") Abonemennt abonemennt, HttpSession sess){
-        BrukerB brukerb = (BrukerB) sess.getAttribute("brukerBean");
-        abonemennt.setEierId(brukerb.getEpost());
+    public String nyttAbonemennt(Model model, HttpSession sess){
+
         return "NyttAbonnement";
     }
     @RequestMapping("BekreftBestilling")
