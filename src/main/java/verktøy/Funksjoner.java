@@ -30,7 +30,10 @@ public class Funksjoner {
         HttpServletRequest response;
         
         ArrayList<Object> liste=new ArrayList();
-      
+        ArrayList<Boolean> checkboxValues = new ArrayList<Boolean>();
+        for (Boolean checkboxValue : checkboxValues) {
+            
+        }
         
         /* midlertidig lister med objekter */
         ArrayList<Bruker> brukerListe = new ArrayList<Bruker>();
@@ -45,71 +48,13 @@ public class Funksjoner {
         romListe.addAll(si.getRomSok("%" + s + "%", "%" + s + "%"));
         
         }
-
-        
-        Rom r = new Rom();
-        /*r.setType(3);
-        r.setStorrelse(30);
-        romListe.addAll(si.finnRomTypeStorrelse(r));
-        */
  
         /* legger til alle lister i objekt hoved listen og returnerer til siden */
         liste.addAll(brukerListe);
         liste.addAll(fagListe);
         liste.addAll(romListe);
         return liste; 
-       
-         /**     
-        String epost = "test1@aol.com";
-        bruker.setEpost(epost);
-        
-        b = si.hentBruker(bruker);
-        if(b.getFornavn() != null) {
-            liste.add("Fant bruker " + b.getFornavn() + " på epost " + epost + " !");
-        } else {
-            liste.add("Fant ingen brukere på epost " + epost + " !");
-        }
-        */
-        /*if(select == null) {
-            liste.add("checkboxlisten er lik null");
-        }*/
-        /*if(select.length == 0) {
-            liste.add("checkboxlisten har 0 elementer");
-        }*/
-      
-   
-        
-        
-       /* for(int i=0; i<testListe.size();i++){
-            if(s.equalsIgnoreCase(testListe.get(i).toString())){
-                     testOut.add(testListe.get(i));        
-            }         
-        }  
-      return testOut;*/
+
     }
   
-  
-  /*public ArrayList<String> getListe(){
-      ArrayList liste=new ArrayList();
-      liste.add("Sigrid");
-      liste.add("Silje");
-      liste.add("Kasper");
-      return liste;
-  }*/
 }
-  /*for(int i=0;i<si.getAlleRom().size();i++){
-            if(s.equalsIgnoreCase(si.getAlleRom().get(i).getRomNavn())){
-                liste.add(si.getAlleRom().get(i));
-            }
-        }
-        for(int i=0;i<si.getAlleFag().size();i++){
-            if(s.equalsIgnoreCase(si.getAlleFag().get(i).getNavn())){
-                liste.add(si.getAlleRom().get(i));
-            }
-        }
-        for(int i=0;i<si.getAlleRom().size();i++){
-            if(s.equalsIgnoreCase(si.getAlleRom().get(i).getRomNavn())){
-                liste.add(si.getAlleRom().get(i));
-            }     
-        }
-        */

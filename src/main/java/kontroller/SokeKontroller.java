@@ -44,27 +44,42 @@ public class SokeKontroller {
      
     @RequestMapping(value="search")
     public String searchView(@ModelAttribute(value="soke")Sok sok, Model model, 
-        HttpServletRequest request, HttpServletResponse response) {
+        HttpServletRequest request, HttpServletResponse response, @RequestParam(value="checkbox_1", required=false)boolean Ansatt,
+        @RequestParam(value="checkbox_2", required=false)boolean Student,
+        @RequestParam(value="checkbox_3", required=false)boolean Rom,
+        @RequestParam(value="checkbox_4", required=false)boolean Klasse,
+        @RequestParam(value="checkbox_5", required=false)boolean Fag) {
+        
         Funksjoner fu= new Funksjoner();     
+       
+        String checkedAnsatt=request.getParameter("Ansatt");
+        String checkedStudent=request.getParameter("Student");      
+        String checkedFag=request.getParameter("Fag");
+        String checkedRom=request.getParameter("Rom");
+        String checkedKlasse=request.getParameter("Klasse");
         
-        String[] checked=request.getParameterValues("Spes");
-        if(checked!=null){
-            for(int i=0; i<checked.length;i++){
-                if(!checked[i].isEmpty()){
-               out.println("<td>" + checked[i] + "<td>");  
-                }
-            }
-       }
+        if("Ansatt".equals(checkedAnsatt)){
+            //checkbox is selected
+            out.println( "Ansatt er huket av!!");
+        }
         
-        for(int i=0;i<fu.liste.size();i++){
+      
+        
+        
+       model.addAttribute("liste",fu.getAlleSokeTreff(sok.getSokeord(), si));
+       for(int i=0;i<fu.liste.size();i++){
            out.println("<td>" + fu.liste.get(i).toString() + "<td>");           
         }
-        return "SokeSide";
+        return "SokeSide";  
     }
-        
-        
-            
- }
+      /*
+        (@RequestParam(value="checkbox_1", required=false)boolean forelesning,
+                @RequestParam(value="checkbox_2", required=false)boolean Oving,
+            @RequestParam(value="checkbox_3", required=false)boolean romreservasjon,
+            @RequestParam(value="checkbox_4", required=false)boolean privatHendelse*/
+          
+   
+}
     
    /** @RequestMapping(value="finnromdata")
     public String finnromdata(@ModelAttribute(value="finnrom") Rom rom, HttpServletRequest request, HttpServletResponse response){

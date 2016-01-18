@@ -46,7 +46,7 @@ public class EventKontroller {
         BrukerB brukerb = (BrukerB) sess.getAttribute("brukerBean");
         ke.setEpost(brukerb.getEpost());
         ke.setEierNavn(brukerb.getFornavn()+" "+brukerb.getEtternavn());
-        startDato.setTime(0);
+        startDato.setTime(startDato.getTime());
         sluttDato.setTime(0);
         ke.setStartTid(new Timestamp(startDato.getTime()));
         ke.setSluttTid(new Timestamp(sluttDato.getTime()));
