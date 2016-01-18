@@ -62,11 +62,11 @@
         </li>
         <li class="knappVelgRom">
             <button class="knappForside" id="leggTilKnappForside" onclick="changeZIndexPlantegningerOpp()">
-                <span class="fontawesome-circle-arrow-up" onclick="changeZIndexPlantegningerNed()></span>
+                <span class="fontawesome-circle-arrow-up"></span>
             </button>
         </li>
         <li class="knappVelgRom">
-            <button class="knappForside" id="søkeKnappForside">
+            <button class="knappForside" id="søkeKnappForside"  onclick="changeZIndexPlantegningerNed()">
                 <span class="fontawesome-circle-arrow-down"></span>
             </button>
         </li>
@@ -77,8 +77,8 @@
 </main>
     <script>
         function changeZIndexPlantegningerOpp() {
-            alert(document.getElementById('plantegningEtasje4').style.zIndex);
-            if( document.getElementById('plantegningEtasje4').style.zIndex!=10){
+            alert(document.getElementById('plantegningEtasje1').style.zIndex);
+            if( document.getElementById('plantegningEtasje4').style.zIndex!=9){
                 var teller;
                 document.getElementById('plantegningEtasje1').style.zIndex++;
                 document.getElementById('plantegningEtasje2').style.zIndex++;
@@ -100,14 +100,46 @@
                 }
             }
         }
+        function changeZIndexPlantegningerNed() {
+            if( document.getElementById('plantegningEtasje1').style.zIndex!=9){
+                var teller;
+                document.getElementById('plantegningEtasje1').style.zIndex--;
+                document.getElementById('plantegningEtasje2').style.zIndex--;
+                document.getElementById('plantegningEtasje3').style.zIndex--;
+                document.getElementById('plantegningEtasje4').style.zIndex--;
+                alert(document.getElementById('plantegningEtasje1').style.zIndex);
+                
+                if(document.getElementById('plantegningEtasje1').style.zIndex==5){
+                     document.getElementById('plantegningEtasje1').style.zIndex = 9;
+                     document.getElementById('etasjeTeller').innerHTML="1. etg";
+                     
+                }
+                if( document.getElementById('plantegningEtasje2').style.zIndex==5){
+                     document.getElementById('plantegningEtasje2').style.zIndex = 9;
+                     document.getElementById('etasjeTeller').innerHTML="2. etg";
+                }
+                if( document.getElementById('plantegningEtasje3').style.zIndex==5){
+                     document.getElementById('plantegningEtasje3').style.zIndex = 9;
+                     document.getElementById('etasjeTeller').innerHTML="3. etg";
+                }
+            }
+        }
     </script>
     
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
     
     <script>
-            var date = new Date();
+        $(document).ready(function(){
+            function prosjektor(){
+                alert('test');
+            }
+            
+            $("#Gr103").on("click", prosjektor);
+        });
+    </script>
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+
 
 <script>
     
