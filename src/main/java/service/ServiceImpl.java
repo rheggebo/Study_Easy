@@ -247,11 +247,6 @@ public class ServiceImpl implements Service{
     }
     
     @Override
-    public List<Bruker> getBrukerSok(String sokeord1, String sokeord2, String sokeord3) {
-        return dbc.getBrukerSok(sokeord1, sokeord2, sokeord3);
-    }
-    
-    @Override
     public List<Fag> getFagSok(String sokeord1, String sokeord2) {
         return dbc.getFagSok(sokeord1, sokeord2);
     }
