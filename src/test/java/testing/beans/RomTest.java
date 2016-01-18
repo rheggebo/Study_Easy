@@ -50,7 +50,11 @@ public class RomTest {
         rom1.setStorrelse(200);
         
         innhold = new ArrayList();
-                     
+        innhold.add("Prosjektor");
+        innhold.add("Tavle");
+        rom.setInnhold(innhold);
+        
+                  
     }
 
     @Test
@@ -66,17 +70,10 @@ public class RomTest {
         assertEquals(rom.getAntStolplasser(),40);
         
     }
-    
-    @Test
-    public void tester_Arraylist(){
-        assertTrue(innhold.isEmpty());
-    }
-    
+            
     @Test
     public void tester_Liste(){
-        innhold.add("prosjektor");
-        assertEquals(1, innhold.size());
-        assertEquals(innhold.get(0), "prosjektor");
+        assertEquals(rom.getInnhold(), innhold);
         
     }
     
@@ -123,7 +120,7 @@ public class RomTest {
     */
     @Test
     public void test_toString(){
-        String rommet = "KAUD KAUD etasje: 3 størrelse: 100";
+        String rommet = "Rom: KAUD KAUD etasje: 3 størrelse: 100";
         assertEquals(rom.toString(), rommet);
     }
 

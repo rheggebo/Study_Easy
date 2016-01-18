@@ -37,44 +37,31 @@ public class BrukerTest {
         // Koden her eksekveres før hver av testmetodene i klassen
         
         liste = new ArrayList();
-        
-        klasse = new Klasse();
-        klasse.setNavn("2.ing");
-        
-        fDato = new Date(1992-1-3);
-        
+                
         test = new Bruker();
-        test.setFornavn("Per");
-        test.setEtternavn("Aas");
-        test.setEpost("per@hotmail.com");
-        test.setNotat("Jeg liker fotball");
-        test.setTilgangsniva(3);
-        test.setPassord("123");
-        test.setFodedato(fDato);
-        test.setKlasse(klasse);
-        test.setTelefonnummer(12345678);
+        test.setFornavn("Student en");
+        test.setEtternavn("Pedersen");
+        test.setEpost("pedersen@hotmail.com");
+        test.setTilgangsniva(0);
+        test.setPassord("passord");
         test.setKalenderEvents(liste);
     }
 
     @Test
     public void test_getMetoder (){
         
-        assertEquals(test.getFornavn(),"Per");
-        assertEquals(test.getEtternavn(),"Aas");
-        assertEquals(test.getEpost(),"per@hotmail.com");
-        assertEquals(test.getNotat(),"Jeg liker fotball");
-        assertEquals(test.getTilgangsniva(),3);
-        assertEquals(test.getPassord(),"123");
-        assertEquals(test.getFodedato(), fDato);
-        assertEquals(test.getKlasse(), klasse);
-        assertEquals(test.getTelefonnummer(),12345678);
+        assertEquals(test.getFornavn(),"Student en");
+        assertEquals(test.getEtternavn(),"Pedersen");
+        assertEquals(test.getEpost(),"pedersen@hotmail.com");
+        assertEquals(test.getTilgangsniva(),0);
+        assertEquals(test.getPassord(),"passord");
         assertTrue(test.getKalenderEvents().isEmpty());
         
     }
     
     @Test
     public void test_toString(){
-        String bruker = "Per Aas,  Epost: per@hotmail.com";
+        String bruker = "Student: Student en Pedersen,  Epost: pedersen@hotmail.com";
         assertEquals(test.toString(), bruker);
     }
         

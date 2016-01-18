@@ -142,7 +142,7 @@ public class DBConnectionImplTest {
      @Test
     public void test_getBruker(){
         String epost = "henrik_bjorkheim@hotmail.com";
-        String brukar = "Henrik Pus,  Epost: henrik_bjorkheim@hotmail.com";
+        String brukar = "Ansatt: Henrik Pus,  Epost: henrik_bjorkheim@hotmail.com";
         /*Bruker nb = new Bruker();
         nb = dbc.getBruker(epost);
         System.out.print(nb.toString());*/

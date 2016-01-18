@@ -86,7 +86,7 @@ public class FagTest {
     
     @Test
     public void test_toString(){
-        String faget = "01234 AlgDat";
+        String faget = "Fag: 01234 AlgDat";
         assertEquals(fag.toString(), faget);
     }
     
