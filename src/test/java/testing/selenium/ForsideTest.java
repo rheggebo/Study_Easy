@@ -13,7 +13,9 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
 
 /**
  *
@@ -62,6 +64,43 @@ public class ForsideTest {
         
         Thread.sleep(2000);
        
+    }
+    
+    @Test
+    public void testCheckBox() throws Throwable {
+    
+        driver.get("http://localhost:8084/Study_Easy/");
+        
+        Thread.sleep(2000);
+        driver.findElement(By.id("epostInnlogging")).sendKeys("test1@aol.com");
+        
+        Thread.sleep(2000);
+        driver.findElement(By.id("passordInnlogging")).sendKeys("passord"); 
+        
+        Thread.sleep(2000);
+        driver.findElement(By.id("loggInnKnapp")).click(); 
+        
+        Thread.sleep(2000);
+        driver.findElement(By.id("checkBoxForside1")).click();
+        
+        Thread.sleep(2000);
+        driver.findElement(By.id("checkBoxForside2")).click();
+        
+        Thread.sleep(2000);
+        driver.findElement(By.id("checkBoxForside3")).click();
+        
+        Thread.sleep(2000);
+        driver.findElement(By.id("checkBoxForside4")).click();
+        
+        Thread.sleep(2000);
+        driver.findElement(By.id("checkBoxForside1")).click();
+        
+        Thread.sleep(2000);
+        driver.findElement(By.className("infoKnappForside")).click();
+        
+        Thread.sleep(5000);
+        driver.findElement(By.className("lukk")).click();
+
     }
     
     

@@ -48,7 +48,10 @@
 
         <fieldset>
             <legend>Abonnement</legend>
+            <c:set var="brukerEpost" value="${bruker.getEpost()}"></c:set>
+            <c:out value="${brukerEpost}"></c:out><br>
             <input type="submit" value="Endre opplysninger">
+
         </fieldset>
 
     
