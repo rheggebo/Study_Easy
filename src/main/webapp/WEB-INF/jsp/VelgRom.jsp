@@ -7,6 +7,7 @@
 
 
 <main>
+    <div id="RomInfo"><p id="rom"> </p></div>
     <div id="velgRomSøkeBokser">
         <form>
             <fieldset>
@@ -71,6 +72,15 @@
     
                 
 </main>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <!--
+        Dette er kodet inn for våre 4 bilder hvis vi utvider til flere bygninger må vi endre løsning:
+        1. Burde loade inn blider med Jquary i objectene våre. 
+        2. Endre løsning på hvilket bile som er øverst selv om vi kan sikkert bruke zIndex.
+        3. 
+    -->
+    
     <script>
         function changeZIndexPlantegningerOpp() {
             if( document.getElementById('plantegningEtasje4').style.zIndex!=9){
@@ -120,23 +130,89 @@
         }
     </script>
     
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
     
     <script>
+        
+    
         var a = document.getElementById("plantegningEtasje1");
         a.addEventListener("load",function(){
-            var svgDoc = a.contentDocument;
-            var delta = svgDoc.getElementById("Gr103");
-        delta.addEventListener("click",function(){alert(this)},false);
-    },false);
+          var svgDoc = a.contentDocument;
+          var els = svgDoc.querySelectorAll(".planRom");
+          for (var i = 0, length = els.length; i < length; i++) {
+            var delta= els[i];
+            //Mus over:
+            delta.addEventListener("mouseover", function(){ 
+                   document.getElementById('rom').innerHTML=this.id;
+            }, false);
+            //KlikkFunksjon:
+            delta.addEventListener("click", function(){ 
+                       alert(this.id);
+                }, false);
+        }},false);
+        var a2 = document.getElementById("plantegningEtasje2");
+        a2.addEventListener("load",function(){
+          var svgDoc2 = a2.contentDocument;
+          var els2 = svgDoc2.querySelectorAll(".planRom");
+          for (var i = 0, length = els2.length; i < length; i++) {
+            var delta2= els2[i];
+            delta2.addEventListener("mouseover", function(){ 
+                   document.getElementById('rom').innerHTML=this.id;
+            }, false);
+            delta2.addEventListener("click", function(){ 
+                       alert(this.id);
+                }, false);
+        }},false);
+        var a3 = document.getElementById("plantegningEtasje3");
+        a3.addEventListener("load",function(){
+          var svgDoc3 = a3.contentDocument;
+          var els3 = svgDoc3.querySelectorAll(".planRom");
+          for (var i = 0, length = els3.length; i < length; i++) {
+            var delta3= els3[i];
+            delta3.addEventListener("mouseover", function(){ 
+                   document.getElementById('rom').innerHTML=this.id;
+            }, false);
+            delta3.addEventListener("click", function(){ 
+                       alert(this.id);
+                }, false);
+        }},false);
+        var a4 = document.getElementById("plantegningEtasje4");
+        a4.addEventListener("load",function(){
+          var svgDoc4 = a4.contentDocument;
+          var els4 = svgDoc4.querySelectorAll(".planRom");
+          for (var i = 0, length = els4.length; i < length; i++) {
+            var delta4= els4[i];
+            delta4.addEventListener("mouseover", function(){ 
+                   document.getElementById('rom').innerHTML=this.id;
+            }, false);
+            delta4.addEventListener("click", function(){ 
+                   alert(this.id);
+            }, false);
+        } },false);
     </script>
-
-
-
-<script>
     
-</script>
+    <!--
+    <script>
+        $(window).load(function(){
+            alert("test");
+            $('.pantegningObject').on("click", function(){
+                alert("test");
+            });
+        });
+    </script>
+    -->
+    <!--
+    <script>
+         document.querySelector('object').addEventListener('load',function(){
+         var p = this.contentDocument.documentElement.querySelectorAll('path');
+         for(i=0;i<p.length;i++){
+          p[i].addEventListener('click', function(){ 
+               alert("Hello my name is "+this.id+"…");
+             });
+         }
+         });
+     </script>
+    -->
+
 <!--
 <script>
     var date = new Date();
