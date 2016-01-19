@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.swing.JOptionPane;
 import org.springframework.beans.factory.annotation.Autowired;
 import verktøy.Funksjoner;
@@ -55,25 +56,23 @@ public class SokeKontroller {
         for(int i=0;i<fu.liste.size();i++){
            out.println("<td>" + fu.liste.get(i).toString() + "<td>");           
         }
+        model.addAttribute("bruker", new BrukerB());
         return "SokeSide";  
     }  
     @RequestMapping(value="BrukerOversikt")
-    public String fetchData1(Model model, HttpServletRequest request, HttpServletResponse response){ 
-       /* if("Se oversikt".equals(request.getParameter("knappTilOversikt"))){
-        model.addAttribute("knappTilOversikt", si);
-            return "BrukerOversikt";
-        }*/
-        BrukerB b=new BrukerB();
-        Funksjoner fu=new Funksjoner();
+    public String fetchData1(@ModelAttribute("bruker") BrukerB b, HttpSession sess, HttpServletResponse response){ 
+        BrukerB bruker = (BrukerB) sess.getAttribute("brukerBean");
         
-        
-        
-        if("Abonner".equals(request.getParameter("knappTilAbonnement"))){
-            model.addAttribute("knappTilAbonnement", si);           
-            request.setAttribute("msg", "Lagt til i dine abonnement");           
-                return "SokeSide";
+        String[] split = b.getEtternavn().split(":");
+        if (split[0].equals("Ansatt") || split[0].equals("Student")){
+            System.out.println("plingplong");
         }
-        return "SokeSide";
+        for (int i = 0; i < split.length; i++){
+            System.out.println("Plass " + i + ": " + split[i]);
+        }
+        
+        System.out.println("---" + b.getEtternavn());
+        return "Forside";
     }
     
 }
