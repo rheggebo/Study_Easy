@@ -19,34 +19,32 @@
 </script>
 
 <main>
-    <aside>
         <form:form action="bekreftBestilling" modelAttribute="rom">
             <fieldset>
-                <legend>Velg ønsket spesifikasjoner:</legend>
-                   <dt><label for="datoFinnRom">Dato:<em>*</em></label></dt>
-                    <dd><input id="datoFinnRom" type="date" name="date" required></dd>
-                    
+                <legend>Bekreft din bestilling:</legend>
                     <dt><label for="romNavn">Romnavn:</label></dt>
                     <dd><form:label id="romNavn" path="romNavn"></form:label></dd>
-                    
+                    <br>
+                    <dt><label for="datoFinnRom">Dato:<em>*</em></label></dt>
+                    <dd><input id="datoFinnRom" type="date" name="date" required></dd>
+                    <br>
                     <dt><label for="fraTid">Fra:</label></dt>
                     <dd><label id="fraTid"></label></dd>
-
-                    <dt><label for="tilTid">Fra:</label></dt>
+                    <br>
+                    <dt><label for="tilTid">Til:</label></dt>
                     <dd><label id="tilTid"></label></dd>
-                    
+                    <br>
                     <dt><label for="sitteplasser">Sitteplasser:</label></dt>
                     <dd><form:label id="sitteplasser" path="antStolplasser"></form:label></dd>
-                    
+                    <br>
                     <dt><label for="storrelse">Størrelse:</label></dt>
                     <dd><form:label id="storrelse" path="storrelse"></form:label><label>kvm</label></dd>
-                    
+                    <br>
                     <dt><label for="innhold">Innhold:</label></dt>
                     <dd><form:label id="innhold" path="innhold"></form:label>
-                    
+                    <br>
                 </dl>
                 <input type="submit" value="Bekreft bestilling">
             </fieldset>
         </form:form>
-    </aside>
 </main>

@@ -24,7 +24,7 @@
                 </li>
                 </c:if>
                 
-                <li><a href="loggUt">Logg ut</a></li>
+                <li><a id="loggUt" href="loggUt">Logg ut</a></li>
                 
             </ul>
         </li>
