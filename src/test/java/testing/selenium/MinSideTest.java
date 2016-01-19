@@ -13,18 +13,22 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 /**
  *
- * @author Ingvild
+ * @author erlend
  */
-public class BestillRomTest {
-     WebDriver driver = new FirefoxDriver();     
+public class MinSideTest {
     
-    
-    @Test
-    public void testBestillRom() throws Throwable {   
+     WebDriver driver = new FirefoxDriver();
+     
+     @Test
+    public void SokeSide() throws Throwable {   
+        
         driver.get("http://localhost:8084/Study_Easy/");
         
         Thread.sleep(2000);
@@ -37,15 +41,16 @@ public class BestillRomTest {
         driver.findElement(By.id("loggInnKnapp")).click(); 
         
         Thread.sleep(2000);
-        driver.findElement(By.id("romValg")).click(); 
+        driver.findElement(By.id("minSide")).click(); 
    
         Thread.sleep(2000);
-        driver.findElement(By.id("bestillRom")).click();
+        driver.findElement(By.id("minInfo")).click();
+                
         Thread.sleep(2000);
-
-    } 
+        
+    }
     
-    public BestillRomTest() {
+    public MinSideTest() {
     }
     
     @BeforeClass
@@ -62,12 +67,7 @@ public class BestillRomTest {
     
     @After
     public void tearDown() {
+        WebDriver driver = new ChromeDriver();
         driver.close();
     }
-
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
 }

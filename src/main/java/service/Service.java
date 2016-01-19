@@ -99,6 +99,8 @@ public interface Service {
     
     public boolean leggTilAbonemennt(Abonemennt ab);
     
+    public boolean slettAbonemennt(Abonemennt ab);
+    
     /** Søkefunksjon metoder **/
     public List<Bruker> getStudentSok(String sokeord1, String sokeord2, String sokeord3);
     

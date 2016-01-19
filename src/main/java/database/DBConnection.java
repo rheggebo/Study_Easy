@@ -107,6 +107,8 @@ public interface DBConnection {
     
     public boolean leggTilAbonemennt(Abonemennt ab);
     
+    public boolean slettAbonemennt(Abonemennt ab);
+    
     /*** Søkefunksjonsmetoder:  */
     
     public List<Bruker> getStudentSok(String sokeord1, String sokeord2, String sokeord3);

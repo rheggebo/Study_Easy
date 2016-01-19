@@ -227,6 +227,10 @@ public class ServiceImpl implements Service{
         return dbc.leggTilAbonemennt(ab);
     }
     
+    public boolean slettAbonemennt(Abonemennt ab) {
+        return dbc.slettAbonemennt(ab);
+    }
+    
     /***Søkefunksjon metoder --- **/
     @Override
     public List<Rom> getAlleRom(){

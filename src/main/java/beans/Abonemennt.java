@@ -16,6 +16,15 @@ public class Abonemennt {
     private int type;
     //0 for bruker-abonemennt, 1 for fag-abonemennt
     
+    public Abonemennt(String eierId, String abonererId, int type){
+        this.eierId = eierId;
+        this.abonererId = abonererId;
+        this.type = type;
+    }
+    public Abonemennt(){
+        
+    }
+    
     public int getType(){
         return type;
     }
@@ -34,6 +43,12 @@ public class Abonemennt {
     }
     public void setType(int type){
         this.type = type;
+    }
+    
+    public String toString() {
+        String str = "";
+        str += getAbonererId();
+        return str;
     }
     
 }

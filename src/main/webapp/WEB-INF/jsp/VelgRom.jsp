@@ -8,32 +8,48 @@
 
 <main>
     <div id="velgRomSøkeBokser">
-        <form>
+        <form action="VelgRomSok" method="post" onsubmit=" return validate();">
             <fieldset>
-                <legend>Bestill rom</legend>
-                <p>Velg dato for rombestilling:<em>*</em></p>
-                <input id="datoVelgRom" type="date" name="date">
+                <legend>Velg ønsket spesifikasjoner:</legend>
+                <dl>
+                    <dt><label for="datoFinnRom">Dato:<em>*</em></label></dt>
+                    <dd><input id="datoFinnRom" type="date" name="fraDato" required></dd>
+                    <dt><label for="fraTid">Tid fra:<em>*</em></label></dt>
+                    <dd><select id="fraTid" name="fraTid" required>
+                    <option value="1">06.00</option>
+                    <option value="2">07.00</option>
+                    <option value="3">08.00</option>
+                    <option value="4">09.00</option>
+                    <option value="5">10.00</option>
+                    <option value="6">11.00</option>
+                    <option value="7">12.00</option>
+                    <option value="8">13.00</option>
+                    <option value="9">14.00</option>
+                    <option value="10">15.00</option>
+                    <option value="11">16.00</option>
+                    <option value="12">17.00</option>
+                    <option value="13">18.00</option>
+                    <option value="14">19.00</option>
+                    <option value="15">20.00</option>
+                    <option value="16">21.00</option>
+                    <option value="17">22.00</option>
+                    </select>
+                    </dd>
+                    
+                    <dt><label for="tilTid">Varighet:<em>*</em></label></dt>
+                    <dd><select id="tilTid" name="Varighet" required>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    </select></dd>
 
-                <p>Velg klokkeslett<em>(kan velge flere)</em></p>
-                <select id="klokkeslett" multiple required name="klokkeslett">
-                    <option value="1">08.00 - 09.00</option>
-                    <option value="2">09.00 - 10.00</option>
-                    <option value="3">10.00 - 11.00</option>
-                    <option value="4">11.00 - 12.00</option>
-                    <option value="5">12.00 - 13.00</option>
-                    <option value="6">13.00 - 14.00</option>
-                    <option value="7">14.00 - 15.00</option>
-                    <option value="8">15.00 - 16.00</option>
-                    <option value="9">16.00 - 17.00</option>
-                    <option value="10">17.00 - 18.00</option>
-                </select>
-                <br>
-                <p>Her skal ledige rom listes ut</p>
-                <br>
-                <input type="submit" value="søk">
+                </dl>
+                <input type="submit" value="Finn ledig rom">
             </fieldset>
         </form>
     </div>
+    
+    <div id="RomInfo"><p id="rom"> </p></div>
     
     <div id="velgRomSøkeSVG">
         <object id="plantegningEtasje1" class="pantegningObject" style="z-index:9;"
@@ -46,15 +62,16 @@
                 data="<c:url value="/resources/SVG/plantegningE4.svg"/>"> Din nettleser støtter ikke SVG </object>
     </div>
     
-     <ul class="ikonForside" style="list-style-type: none; margin-top: 200px; text-align: right; z-index:1;">
+     <ul class="ikonForside" style=" z-index:1;">
         <li class="knappVelgRom">
             <a class="infoKnappForside" href="#infoVindu2"><span class="fontawesome-info-sign"></span></a>
-                <div id="infoVindu2" class="infoVinduForside">
-                    <div><a href="#lukk" title="Lukk" class="lukk">X</a>
-                        <h2>Informasjon</h2>
-                        <p>Trykk på pilene for å endre etasje og på rommet for å få mer informasjon.</p>
-                    </div>
+            <div id="infoVindu2" class="infoVinduForside">
+                <div>
+                    <a href="#lukk" title="Lukk" class="lukk">X</a>
+                    <h2>Informasjon</h2>
+                    <p>Trykk på pilene for å endre etasje og på rommet for å få mer informasjon.</p>
                 </div>
+            </div>
         </li>
         <li class="knappVelgRom">
             <button class="knappForside" id="leggTilKnappForside" onclick="changeZIndexPlantegningerOpp()">
@@ -71,6 +88,16 @@
     
                 
 </main>
+    
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <!--
+        Dette er kodet inn for våre 4 bilder hvis vi utvider til flere bygninger må vi endre løsning:
+        1. Burde loade inn blider med Jquary i objectene våre. 
+        2. Endre løsning på hvilket bile som er øverst selv om vi kan sikkert bruke zIndex.
+    -->
+    
     <script>
         function changeZIndexPlantegningerOpp() {
             if( document.getElementById('plantegningEtasje4').style.zIndex!=9){
@@ -120,23 +147,91 @@
         }
     </script>
     
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
     
     <script>
+        //Første etasje:
         var a = document.getElementById("plantegningEtasje1");
         a.addEventListener("load",function(){
-            var svgDoc = a.contentDocument;
-            var delta = svgDoc.getElementById("Gr103");
-        delta.addEventListener("click",function(){alert(this)},false);
-    },false);
+          var svgDoc = a.contentDocument;
+          var els = svgDoc.querySelectorAll(".planRom");
+          for (var i = 0, length = els.length; i < length; i++) {
+            var delta= els[i];
+            //Mus over:
+            delta.addEventListener("mouseover", function(){ 
+                   document.getElementById('rom').innerHTML=this.id;
+            }, false);
+            //KlikkFunksjon:
+            delta.addEventListener("click", function(){ 
+                       alert(this.id);
+                }, false);
+        }},false);
+        //Andre etasje:
+        var a2 = document.getElementById("plantegningEtasje2");
+        a2.addEventListener("load",function(){
+          var svgDoc2 = a2.contentDocument;
+          var els2 = svgDoc2.querySelectorAll(".planRom");
+          for (var i = 0, length = els2.length; i < length; i++) {
+            var delta2= els2[i];
+            delta2.addEventListener("mouseover", function(){ 
+                   document.getElementById('rom').innerHTML=this.id;
+            }, false);
+            delta2.addEventListener("click", function(){ 
+                       alert(this.id);
+                }, false);
+        }},false);
+        //Tredje etasje:    
+        var a3 = document.getElementById("plantegningEtasje3");
+        a3.addEventListener("load",function(){
+          var svgDoc3 = a3.contentDocument;
+          var els3 = svgDoc3.querySelectorAll(".planRom");
+          for (var i = 0, length = els3.length; i < length; i++) {
+            var delta3= els3[i];
+            delta3.addEventListener("mouseover", function(){ 
+                   document.getElementById('rom').innerHTML=this.id;
+            }, false);
+            delta3.addEventListener("click", function(){ 
+                       alert(this.id);
+                }, false);
+        }},false);
+        //Fjerde etasje:
+        var a4 = document.getElementById("plantegningEtasje4");
+        a4.addEventListener("load",function(){
+          var svgDoc4 = a4.contentDocument;
+          var els4 = svgDoc4.querySelectorAll(".planRom");
+          for (var i = 0, length = els4.length; i < length; i++) {
+            var delta4= els4[i];
+            delta4.addEventListener("mouseover", function(){ 
+                   document.getElementById('rom').innerHTML=this.id;
+            }, false);
+            delta4.addEventListener("click", function(){ 
+                   alert(this.id);
+            }, false);
+        } },false);
     </script>
-
-
-
-<script>
     
-</script>
+    <!--
+    <script>
+        $(window).load(function(){
+            alert("test");
+            $('.pantegningObject').on("click", function(){
+                alert("test");
+            });
+        });
+    </script>
+    -->
+    <!--
+    <script>
+         document.querySelector('object').addEventListener('load',function(){
+         var p = this.contentDocument.documentElement.querySelectorAll('path');
+         for(i=0;i<p.length;i++){
+          p[i].addEventListener('click', function(){ 
+               alert("Hello my name is "+this.id+"…");
+             });
+         }
+         });
+     </script>
+    -->
+
 <!--
 <script>
     var date = new Date();

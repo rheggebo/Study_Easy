@@ -5,6 +5,7 @@
  */
 package kontroller;
 
+import beans.Abonemennt;
 import beans.Bruker;
 import beans.BrukerB;
 import beans.Rom;
@@ -54,27 +55,63 @@ public class SokeKontroller {
        
         model.addAttribute("liste",fu.getAlleSokeTreff(sok.getSokeord(), si, checkboxes));
         for(int i=0;i<fu.liste.size();i++){
-           out.println("<td>" + fu.liste.get(i).toString() + "<td>");           
+           out.println("<td>" + fu.liste.get(i).toString() + "<td>");          
         }
         model.addAttribute("bruker", new BrukerB());
+
+        
+
+        model.addAttribute("bruker", new BrukerB());
+
         return "SokeSide";  
     }  
     @RequestMapping(value="BrukerOversikt")
-    public String fetchData1(@ModelAttribute("bruker") BrukerB b, HttpSession sess, HttpServletResponse response){ 
-        BrukerB bruker = (BrukerB) sess.getAttribute("brukerBean");
-        
+    public String fetchData1(@ModelAttribute("bruker") BrukerB b, HttpSession sess, HttpServletResponse response, Model model, HttpServletRequest request){ 
+        BrukerB bruker = (BrukerB) sess.getAttribute("brukerBean");        
         String[] split = b.getEtternavn().split(":");
-        if (split[0].equals("Ansatt") || split[0].equals("Student")){
-            System.out.println("plingplong");
+        if("Abonner".equals(request.getParameter("knappTilAbonnement"))){
+            if (split[0].equals("Ansatt") || split[0].equals("Student")){
+                //person
+                try{
+                    si.leggTilAbonemennt(new Abonemennt(bruker.getEpost(), split[2].trim(), 0));
+                }
+                catch(Exception e){
+                    model.addAttribute("melding", "feilmelding.duplikatAbonnement");
+                }
+                return "SokeSide";
+            }
+            else if (split[0].equals("Fag")){
+                String[] split2 = (split[1].trim()).split(" ");
+                try{
+                    si.leggTilAbonemennt(new Abonemennt(bruker.getEpost(), split2[0].trim(), 1));
+                }
+                catch(Exception e){
+                    model.addAttribute("melding", "feilmelding.duplikatAbonnement");
+                }
+            }
+            else if (split[0].equals("Klasse")){
+                String[] split2 = (split[1].trim()).split(",");
+
+                String[] fagsplit = (split[2].trim()).split(" ");
+                for (int i = 0; i < fagsplit.length; i++){
+                    try{
+                        si.leggTilAbonemennt(new Abonemennt(bruker.getEpost(), fagsplit[i], 1));
+                    }
+                    catch(Exception e){
+                        System.out.println("heiho");
+                        model.addAttribute("melding", "feilmelding.duplikatAbonnement");
+                    }
+                }
+            }
         }
-        for (int i = 0; i < split.length; i++){
-            System.out.println("Plass " + i + ": " + split[i]);
-        }
-        
-        System.out.println("---" + b.getEtternavn());
-        return "Forside";
+        else if("Se kart".equals(request.getParameter("knappTilKart"))){
+                //sørg for at riktig etasje vises           
+                return "VelgRom";
+            }
+        return "SokeSide";             
+        } 
+            
     }
-    
-}
+
 
     

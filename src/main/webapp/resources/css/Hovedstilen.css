@@ -27,6 +27,16 @@ main {
     height: 100%;
 }
 
+p1 {
+    font: 16px Microsoft YaHei Light;
+    font-weight: bold;
+    
+}
+
+p2{
+    font: 14px Microsoft YaHei Light;
+}
+
 header{
     padding:30px;
     background:#FFFFFF;
@@ -220,6 +230,7 @@ footer{
     padding: 4px;
     width: 70px;
     cursor:pointer;
+    margin-top:-18px; 
     }
 .searchInfo table td{
     width: 800px;

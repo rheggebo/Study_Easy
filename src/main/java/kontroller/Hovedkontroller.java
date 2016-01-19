@@ -1,9 +1,11 @@
-package kontroller;
+ package kontroller;
 
+import beans.Abonemennt;
 import beans.Bruker;
 import beans.BrukerB;
 import beans.Passord;
 import beans.Rom;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,6 +66,8 @@ public class Hovedkontroller {
         BrukerB brukerb = (BrukerB)sess.getAttribute("brukerBean");
         if(brukerb != null && brukerb.isInnlogget()){
             model.addAttribute("bruker", brukerb);
+            List<Abonemennt> liste = service.getAbonemenntFraBruker(brukerb);
+            model.addAttribute("abonemenntListe", liste);
             return "MinSide";
         }
         model.addAttribute("bruker", new Bruker());

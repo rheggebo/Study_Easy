@@ -11,12 +11,18 @@ import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
 import static org.mockito.Mockito.*;
 import java.util.ArrayList;
+import service.Service;
 
 /**
  *
  * @author Sindre
  */
 public class FunksjonerTest {
+    Funksjoner test;
+    Service si;
+    String ord;
+    String[] checkboxValues;
+    
     
     @BeforeClass
     public static void setUpClass() throws Exception {
@@ -28,12 +34,15 @@ public class FunksjonerTest {
     @Before
     public void setUp() throws Exception {
         // Koden her eksekveres f�r hver av testmetodene i klassen
+        test=new Funksjoner();
+        ord="Per";
+        checkboxValues=null;
         
     }
     
     @Test
-    public void tester_getmetoder (){
-    
+    public void tester_getAlleSokeTreff (){
+        assertEquals(test.getAlleSokeTreff(ord, si, checkboxValues),true);
     }
     
     @After
