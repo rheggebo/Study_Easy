@@ -107,6 +107,8 @@ public interface DBConnection {
     
     public boolean leggTilAbonemennt(Abonemennt ab);
     
+    public boolean slettAbonemennt(Abonemennt ab);
+    
     /*** Søkefunksjonsmetoder:  */
     
     public List<Bruker> getStudentSok(String sokeord1, String sokeord2, String sokeord3);
@@ -120,5 +122,7 @@ public interface DBConnection {
 
     public List<Klasse> getKlasseSok(String sokeord1);
 
-
+    public boolean leggTilBooking(KalenderEvent ke);
+    
+    public List<Rom> getRomSVG(KalenderEvent ke);
 }

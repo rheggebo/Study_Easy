@@ -31,38 +31,47 @@
             <c:set var="tilgang" value="${bruker.getTilgangsniva()}"></c:set>
             <c:if test="${tilgang == 2}">
                 <form action="MinSideRed" id="formen">
-                    <input type="submit" value="Endre opplysninger"/>
+                    <input id="endreOpplysninger" type="submit" value="Endre opplysninger"/>
                 </form>
             </c:if>
             <br>
             <form:form action="EndrePassordRed">
-                <input type="submit" value="Endre passord"/>
+                <input id="endrePassord" type="submit" value="Endre passord"/>
             </form:form>
         </fieldset>
-
+        
+        <form:form modelAttribute="abonemenntListe" action="Abonnement">
         <fieldset>
             <legend>Fag</legend>
-            <form:form modelAttribute="abonemenntListe"></form:form>
-            <c:forEach var="abliste" items="${abonemenntListe}">
-                <c:if test="${abliste.getType() == 1}">
-                    <c:out value ="${abliste}"></c:out><br>
-                            
-                </c:if>
-            </c:forEach>
             
-            <input type="submit" value="Endre opplysninger">
+                <c:forEach var="abliste" items="${abonemenntListe}">
+                    <c:if test="${abliste.getType() == 1}">
+                        <c:out value ="${abliste}"></c:out>
+                        <input class="slettknapp" type="submit" name="slettAbKnapp" value="Slett"/><br>
+                            
+                    </c:if>
+                </c:forEach>
+            
+
         </fieldset>
 
         <fieldset>
-            <legend>Abonnement</legend>
-            <c:forEach var="abliste" items="${abonemenntListe}">
-                <c:if test="${abliste.getType() == 0}">
-                    <c:out value ="${abliste}"></c:out><br>
+            <legend>Bruker abonnement</legend>
+            
+                <c:forEach var="abliste" items="${abonemenntListe}">
+                    <c:if test="${abliste.getType() == 0}">
+                        <c:out value ="${abliste}"></c:out>
+                        <input class="slettknapp" type="submit" name="slettAbKnapp" value="Slett"/><br>
                             
-                </c:if>
-            </c:forEach>
-           
-            <input type="submit" value="Endre opplysninger">
+                    </c:if>
+                </c:forEach>
+                   
+                       
+        </fieldset>
+        </form:form>
+            
+        <fieldset>
+            <legend>Romreservasjoner</legend>
 
         </fieldset>
 

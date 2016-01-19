@@ -10,6 +10,7 @@ import beans.Bruker;
 import beans.BrukerB;
 import beans.Rom;
 import beans.Sok;
+import beans.SokeValg;
 import java.io.IOException;
 import static java.lang.System.out;
 import java.text.SimpleDateFormat;
@@ -61,13 +62,17 @@ public class SokeKontroller {
 
         return "SokeSide";  
     }  
-    @RequestMapping(value="BrukerOversikt")
-    public String fetchData1(@ModelAttribute("bruker") BrukerB b, HttpSession sess, HttpServletResponse response, Model model, HttpServletRequest request){ 
+    @RequestMapping(value="abonnere")
+    public String fetchData1(@ModelAttribute("resultat") SokeValg sv, HttpSession sess, HttpServletResponse response, Model model, HttpServletRequest request){ 
         BrukerB bruker = (BrukerB) sess.getAttribute("brukerBean");        
-        String[] split = b.getEtternavn().split(":");
+        String[] split = sv.getResultat().split(":");
         if("Abonner".equals(request.getParameter("knappTilAbonnement"))){
             if (split[0].equals("Ansatt") || split[0].equals("Student")){
                 //person
+                if (bruker.getEpost().equals(split[2].trim())){
+                    model.addAttribute("melding", "feilmelding.duplikatAbonnement");
+                    return "SokeSide";
+                }
                 try{
                     si.leggTilAbonemennt(new Abonemennt(bruker.getEpost(), split[2].trim(), 0));
                 }
