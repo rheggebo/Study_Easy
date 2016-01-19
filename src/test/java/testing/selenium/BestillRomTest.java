@@ -24,7 +24,7 @@ public class BestillRomTest {
     
     
     @Test
-    public void testLoggInn() throws Throwable {   
+    public void testBestillRom() throws Throwable {   
         driver.get("http://localhost:8084/Study_Easy/");
         
         Thread.sleep(2000);
@@ -37,6 +37,12 @@ public class BestillRomTest {
         driver.findElement(By.id("loggInnKnapp")).click(); 
         
         Thread.sleep(2000);
+        driver.findElement(By.id("romValg")).click(); 
+   
+        Thread.sleep(2000);
+        driver.findElement(By.id("bestillRom")).click();
+        Thread.sleep(2000);
+
     } 
     
     public BestillRomTest() {
@@ -56,6 +62,7 @@ public class BestillRomTest {
     
     @After
     public void tearDown() {
+        driver.close();
     }
 
     // TODO add test methods here.

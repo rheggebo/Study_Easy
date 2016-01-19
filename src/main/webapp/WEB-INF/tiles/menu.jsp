@@ -4,10 +4,10 @@
     <ul> 
         <li><a href="Forside">Forside</a></li>
         <li><a href="Kontakt">Kontakt</a></li>
-        <li><a href="#">Romvalg</a>
+        <li><a id="romValg" href="#">Romvalg</a>
             <ul id="submenu">
-                <li><a href="VelgRom">Bestill rom</a></li>
-                <li><a href="FinnRom">Finn rom</a></li>
+                <li><a id="bestillRom" href="VelgRom">Bestill rom</a></li>
+                <li><a id="finnRom" href="FinnRom">Finn rom</a></li>
             </ul>
         </li>
         <li><a id="sokeSide" href="SokeSide">Søk</a></li>
