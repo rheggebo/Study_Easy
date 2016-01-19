@@ -10,11 +10,11 @@
                 <li><a href="FinnRom">Finn rom</a></li>
             </ul>
         </li>
-        <li><a href="SokeSide">Søk</a></li>
-        <li><a href="#">Min side</a>
+        <li><a id="sokeSide" href="SokeSide">Søk</a></li>
+        <li><a id="minSide" href="#">Min side</a>
             <ul id="submenu">
                 
-                <li><a href="MinSide">Min informasjon</a></li>
+                <li><a id="minInfo" href="MinSide">Min informasjon</a></li>
                 
                 <c:set var="tilgang" value="${bruker.getTilgangsniva()}"></c:set>
                 <c:if test="${tilgang == 2}">

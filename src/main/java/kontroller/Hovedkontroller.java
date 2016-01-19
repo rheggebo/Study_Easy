@@ -1,4 +1,4 @@
-package kontroller;
+ package kontroller;
 
 import beans.Bruker;
 import beans.BrukerB;
