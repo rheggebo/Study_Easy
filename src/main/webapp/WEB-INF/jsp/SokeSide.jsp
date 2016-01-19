@@ -51,8 +51,12 @@
                     <td><c:out value="${liste}"></c:out>
                         <form:form modelAttribute="bruker" action="BrukerOversikt">
                         <form:input type="hidden" path="etternavn" value="${liste}"/>
-                        <%--<input class=oversikt type='submit' name='knappTilOversikt' value='Se oversikt'/>--%>
+                        <c:if test="${liste.getClass().simpleName=='Bruker' or liste.getClass().simpleName=='Fag' or liste.getClass().simpleName=='Klasse'}"> 
                         <input class="oversikt" id="abonKnapp" type='submit' name='knappTilAbonnement' value='Abonner'/>
+                        </c:if>
+                        <c:if test="${liste.getClass().simpleName=='Rom'}">
+                        <input class="oversikt" id="abonKnapp" type='submit' name='knappTilAbonnement' value='Se kart'/>
+                        </c:if>
                         </form:form>
                     </td>
                 </tr>                    

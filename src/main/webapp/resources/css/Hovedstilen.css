@@ -220,6 +220,7 @@ footer{
     padding: 4px;
     width: 70px;
     cursor:pointer;
+    margin-top:-18px; 
     }
 .searchInfo table td{
     width: 800px;
