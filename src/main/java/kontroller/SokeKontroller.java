@@ -66,18 +66,23 @@ public class SokeKontroller {
         return "SokeSide";  
     }  
     @RequestMapping(value="BrukerOversikt")
-    public String fetchData1(@ModelAttribute("bruker") BrukerB b, HttpSession sess, HttpServletResponse response){ 
+    public String fetchData1(@ModelAttribute("bruker") BrukerB b, HttpSession sess, HttpServletResponse response, HttpServletRequest request){ 
         BrukerB bruker = (BrukerB) sess.getAttribute("brukerBean");        
         String[] split = b.getEtternavn().split(":");
-        if (split[0].equals("Ansatt") || split[0].equals("Student")){
-            //person
-            si.leggTilAbonemennt(new Abonemennt(bruker.getEpost(), split[2].trim(), 0));
-        }
-        for (int i = 0; i < split.length; i++){
-            System.out.println("Plass " + i + ": " + split[i]);
+        if("Abonner".equals(request.getParameter("knappTilAbonnement"))){
+            if (split[0].equals("Ansatt") || split[0].equals("Student")){
+                //person
+                si.leggTilAbonemennt(new Abonemennt(bruker.getEpost(), split[2].trim(), 0));
+                return "SokeSide";
             }
-        System.out.println("---" + b.getEtternavn());
-        return "Forside";             
+                for (int i = 0; i < split.length; i++){
+                    System.out.println("Plass " + i + ": " + split[i]);
+                    }
+            }else if("Se kart".equals(request.getParameter("knappTilKart"))){
+                //sørg for at riktig etasje vises           
+                return "VelgRom";
+            }
+        return "SokeSide";             
         } 
         
     }
