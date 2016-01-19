@@ -5,6 +5,7 @@
  */
 package kontroller;
 
+import beans.Abonemennt;
 import beans.Bruker;
 import beans.BrukerB;
 import beans.Rom;
@@ -69,11 +70,12 @@ public class SokeKontroller {
         BrukerB bruker = (BrukerB) sess.getAttribute("brukerBean");        
         String[] split = b.getEtternavn().split(":");
         if (split[0].equals("Ansatt") || split[0].equals("Student")){
-            System.out.println("plingplong");
+            //person
+            si.leggTilAbonemennt(new Abonemennt(bruker.getEpost(), split[2].trim(), 0));
         }
         for (int i = 0; i < split.length; i++){
             System.out.println("Plass " + i + ": " + split[i]);
-            }  
+            }
         System.out.println("---" + b.getEtternavn());
         return "Forside";             
         } 
