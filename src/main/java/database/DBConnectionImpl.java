@@ -54,7 +54,7 @@ public class DBConnectionImpl implements DBConnection{
     private final String fjernKalenderDeltaker = "DELETE FROM KALENDER_DELTAKER WHERE EVENTID=? AND DELTAKERID=?";
     private final String leggTilFag = "INSERT INTO FAG VALUES(?)";
     private final String leggTilRom = "INSERT INTO ROM VALUES(?,?,?,?,?)";
-    private final String leggTilKalenderEvent = "INSERT INTO KALENDER_EVENT VALUES(?,?,?,?,?,?,?,?)";
+    private final String leggTilKalenderEvent = "INSERT INTO kalender_event VALUES(DEFAULT,?,?,?,?,?,?,?,?,?,?)";
     private final String fjernKalenderEvent = "DELETE FROM KALENDER_EVENT WHERE ID=?";
     private final String getKalenderEventDeltakere = "SELECT DELTAKERID FROM KLANEDER_DELTAKER WHERE EVENTID=?";
     private final String getKalenderEventDeltaker = "SELECT * FROM KALENDER_DELTAKER WHERE EVENTID=? AND DELTAKERID=?";
@@ -115,6 +115,7 @@ public class DBConnectionImpl implements DBConnection{
     private final String getKlasseFagSok = "SELECT DISTINCT klasseID FROM klasse_fag WHERE klasseID LIKE ?";
     private final String getKlasseSok = "SELECT * FROM klasse_fag WHERE klasseID LIKE ?";
     
+    private final String leggTilBooking = "INSERT INTO rom_bestilling (romID, dato_start, dato_slutt, eierID) VALUES (?,?,?,?)";
     
     private DataSource dS;
     private JdbcTemplate jT;
@@ -390,13 +391,16 @@ public class DBConnectionImpl implements DBConnection{
     @Override
     public boolean leggTilKalenderEvent(KalenderEvent ke) {
         int antallRader = jT.update(leggTilKalenderEvent,new Object[]{
-            ke.getId(),
             ke.getStartTid(),
             ke.getSluttTid(),
             ke.getEpost(),
             ke.isPrivat(),
+            ke.getRom(),
             ke.getType(),
-            ke.getFag()
+            ke.getFag(),
+            ke.getNotat(),
+            ke.getTittel(),
+            ke.getEierNavn()
         });
         if(antallRader > 0){
             return true;
@@ -876,5 +880,15 @@ public class DBConnectionImpl implements DBConnection{
         return jT.queryForObject(getRom, new Object[]{
             r.getRomID()
         }, new RomMapper());
+    }
+    
+    @Override
+    public boolean leggTilBooking(KalenderEvent ke){
+        return (0<jT.update(leggTilBooking, new Object[]{
+            ke.getRom(),
+            ke.getStartTid(),
+            ke.getSluttTid(),
+            ke.getEpost()
+        }));
     }
 }

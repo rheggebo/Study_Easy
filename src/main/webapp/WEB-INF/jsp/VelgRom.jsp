@@ -35,9 +35,9 @@
                     <option value="17">22.00</option>
                     </select>
                     </dd>
-                    
+
                     <dt><label for="tilTid">Varighet:<em>*</em></label></dt>
-                    <dd><select id="tilTid" name="Varighet" required>
+                    <dd><select id="tilTid" name="varighet" required>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -49,8 +49,49 @@
         </form>
     </div>
     
-    <div id="RomInfo"><p id="rom"> </p></div>
-    
+    <div id="RomInfo">
+        <fieldset>
+            <legend>Rominformasjon:</legend>
+                <form action="VelgRomRes" method="post">    
+                    <table>
+                        <tr>
+                            <td>Rom-id:</td>
+                            <td><label id="rom"> </td>
+                        </tr>
+                        <tr>
+                            <td>Rom navn:</td>
+                            <td><label id="okRomNavn"></label></td>
+                        </tr>
+                        <tr>
+                            <td>Etasje:</td>
+                            <td><label id="okEtasje"></label></td>
+                        </tr>
+                        <tr>
+                            <td>Plasser:</td>
+                            <td><label id="okPlasser"></label></td>
+                        </tr>
+                        <tr>
+                            <td>Utstyr:</td>
+                            <td><label id="okUtstyr"></label></td>
+                        </tr>
+                        <tr>
+                            <td>Dato:</td>
+                            <td><label id="okDato"></label></td>
+                        </tr>
+                        <tr>
+                            <td>Tid fra:</td>
+                            <td><label id="okTidFra"></label></td>
+                        </tr>
+                        <tr>
+                            <td>Tid til</td>
+                            <td><label id="okTidTil"></label></td>
+                        </tr>
+                    </table>
+                    <input type="submit" value="Reserver rom">
+                </form>
+        </fieldset>
+    </div>
+    <div id="musOverNavn"><p id="romNavn"></p></div>
     <div id="velgRomSøkeSVG">
         <object id="plantegningEtasje1" class="pantegningObject" style="z-index:9;"
                 data="<c:url value="/resources/SVG/plantegningE1.svg"/>"> Din nettleser støtter ikke SVG </object>
@@ -61,6 +102,7 @@
         <object id="plantegningEtasje4" class="pantegningObject" style="z-index:6;" 
                 data="<c:url value="/resources/SVG/plantegningE4.svg"/>"> Din nettleser støtter ikke SVG </object>
     </div>
+    
     
      <ul class="ikonForside" style=" z-index:1;">
         <li class="knappVelgRom">
@@ -149,6 +191,7 @@
     
     
     <script>
+        setLedigeRom();
         //Første etasje:
         var a = document.getElementById("plantegningEtasje1");
         a.addEventListener("load",function(){
@@ -158,11 +201,11 @@
             var delta= els[i];
             //Mus over:
             delta.addEventListener("mouseover", function(){ 
-                   document.getElementById('rom').innerHTML=this.id;
+                   document.getElementById('romNavn').innerHTML=this.id;
             }, false);
             //KlikkFunksjon:
             delta.addEventListener("click", function(){ 
-                       alert(this.id);
+                    document.getElementById('rom').innerHTML=this.id;
                 }, false);
         }},false);
         //Andre etasje:
@@ -173,10 +216,10 @@
           for (var i = 0, length = els2.length; i < length; i++) {
             var delta2= els2[i];
             delta2.addEventListener("mouseover", function(){ 
-                   document.getElementById('rom').innerHTML=this.id;
+                   document.getElementById('romNavn').innerHTML=this.id;
             }, false);
             delta2.addEventListener("click", function(){ 
-                       alert(this.id);
+                    document.getElementById('rom').innerHTML=this.id;
                 }, false);
         }},false);
         //Tredje etasje:    
@@ -187,10 +230,10 @@
           for (var i = 0, length = els3.length; i < length; i++) {
             var delta3= els3[i];
             delta3.addEventListener("mouseover", function(){ 
-                   document.getElementById('rom').innerHTML=this.id;
+                   document.getElementById('romNavn').innerHTML=this.id;
             }, false);
             delta3.addEventListener("click", function(){ 
-                       alert(this.id);
+                   document.getElementById('rom').innerHTML=this.id;
                 }, false);
         }},false);
         //Fjerde etasje:
@@ -201,12 +244,35 @@
           for (var i = 0, length = els4.length; i < length; i++) {
             var delta4= els4[i];
             delta4.addEventListener("mouseover", function(){ 
-                   document.getElementById('rom').innerHTML=this.id;
+                   document.getElementById('romNavn').innerHTML=this.id;
             }, false);
             delta4.addEventListener("click", function(){ 
-                   alert(this.id);
+                   document.getElementById('rom').innerHTML=this.id;
             }, false);
         } },false);
+    </script>
+    
+    <script>
+        function setLedigeRom(){
+            
+        }
+    </script>
+    <script>
+        function finnPos(liste){
+            
+        }
+    </script>
+
+    <script>
+        function bekreftRom(){
+            document.getElementById('okRomNavn').innerHTML=
+            document.getElementById('okEtasje').innerHTML=
+            document.getElementById('okPlasser').innerHTML=
+            document.getElementById('okUtstyr').innerHTML=
+            document.getElementById('okDato').innerHTML=
+            document.getElementById('okTidFra').innerHTML=
+            document.getElementById('okTidTil').innerHTML=
+        }
     </script>
     
     <!--

@@ -112,6 +112,7 @@ public interface Service {
     
     public List<Klasse> getKlasseSok(String sokeord1);
     
+    public boolean leggTilBooking(KalenderEvent ke);
     
     
     
