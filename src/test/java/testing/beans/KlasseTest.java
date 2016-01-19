@@ -10,6 +10,7 @@ package testing.beans;
  * @author Sindre
  */
 
+import beans.Fag;
 import beans.Klasse;
 import org.junit.*;
 import static org.junit.Assert.*;
@@ -21,7 +22,7 @@ import java.util.ArrayList;
 public class KlasseTest {
     
     Klasse klasse;
-    private ArrayList fag;
+    private ArrayList<Fag> fag;
     
     @BeforeClass
     public static void setUpClass() throws Exception {
@@ -38,6 +39,24 @@ public class KlasseTest {
         
         fag = new ArrayList();
         
+        Fag fag1 = new Fag();
+        fag1.setFagID("TDAT2001");
+        fag1.setNavn("Matematikk 1");
+        
+        Fag fag2 = new Fag();
+        fag2.setFagID("TDAT2002");
+        fag2.setNavn("Fysikk 1");
+        
+        Fag fag3 = new Fag();
+        fag3.setFagID("TDAT2003");
+        fag3.setNavn("Matematikk 2");
+        
+        fag.add(fag1);
+        fag.add(fag2);
+        fag.add(fag3);
+        
+         klasse.setFag(fag);
+        
     }
     
     @Test
@@ -47,23 +66,26 @@ public class KlasseTest {
     
     @Test
     public void tester_Arrays (){
-        
-        klasse.setFag(fag);
-        assertTrue(klasse.getFag().isEmpty());
+        assertEquals(klasse.getFag(), fag);
     
     }
     
      @Test
     public void tester_toString (){
-        assertEquals(klasse.toString(), "Klasse: 2.ing");
-    
+        System.out.println(klasse.toString());
+        String str = "Klasse: " + klasse.getNavn() + ", Fag: ";
+        for (int i = 0; i < fag.size(); i++) {
+            str += fag.get(i).getFagID() + " ";
+        }
+        assertEquals(klasse.toString(), str);
+                 
     }
     
     @After
     public void tearDown() throws Exception {
         // Koden her kj�res etter hver test
       
-        
+        fag.clear();
     }
 
     @AfterClass
