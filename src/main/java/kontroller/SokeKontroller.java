@@ -54,27 +54,31 @@ public class SokeKontroller {
        
         model.addAttribute("liste",fu.getAlleSokeTreff(sok.getSokeord(), si, checkboxes));
         for(int i=0;i<fu.liste.size();i++){
-           out.println("<td>" + fu.liste.get(i).toString() + "<td>");           
+           out.println("<td>" + fu.liste.get(i).toString() + "<td>");          
         }
         model.addAttribute("bruker", new BrukerB());
+
+        
+
+        model.addAttribute("bruker", new BrukerB());
+
         return "SokeSide";  
     }  
     @RequestMapping(value="BrukerOversikt")
     public String fetchData1(@ModelAttribute("bruker") BrukerB b, HttpSession sess, HttpServletResponse response){ 
-        BrukerB bruker = (BrukerB) sess.getAttribute("brukerBean");
-        
+        BrukerB bruker = (BrukerB) sess.getAttribute("brukerBean");        
         String[] split = b.getEtternavn().split(":");
         if (split[0].equals("Ansatt") || split[0].equals("Student")){
             System.out.println("plingplong");
         }
         for (int i = 0; i < split.length; i++){
             System.out.println("Plass " + i + ": " + split[i]);
-        }
-        
+            }  
         System.out.println("---" + b.getEtternavn());
-        return "Forside";
+        return "Forside";             
+        } 
+        
     }
-    
-}
+
 
     
