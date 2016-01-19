@@ -59,10 +59,6 @@ public class SokeKontroller {
         }
         model.addAttribute("bruker", new BrukerB());
 
-        
-
-        model.addAttribute("bruker", new BrukerB());
-
         return "SokeSide";  
     }  
     @RequestMapping(value="BrukerOversikt")
@@ -83,9 +79,8 @@ public class SokeKontroller {
                 return "VelgRom";
             }
         return "SokeSide";             
-        } 
-        
-    }
+        }        
+}
 
 
     
