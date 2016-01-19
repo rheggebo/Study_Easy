@@ -27,6 +27,16 @@ main {
     height: 100%;
 }
 
+p1 {
+    font: 16px Microsoft YaHei Light;
+    font-weight: bold;
+    
+}
+
+p2{
+    font: 14px Microsoft YaHei Light;
+}
+
 header{
     padding:30px;
     background:#FFFFFF;
