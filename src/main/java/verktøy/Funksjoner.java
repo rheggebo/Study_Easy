@@ -102,7 +102,7 @@ public class Funksjoner {
       klasseListe.addAll(si.getKlasseSok("%" + s + "%"));
       return klasseListe;
   }
-  public Object abonnement(String ab, Service si){
+  public Object hentAbonnement(String ab, Service si){
       
       return null;
   }
