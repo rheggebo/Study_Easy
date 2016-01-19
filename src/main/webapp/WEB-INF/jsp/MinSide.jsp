@@ -36,7 +36,7 @@
             </c:if>
             <br>
             <form:form action="EndrePassordRed">
-                <input type="submit" value="Endre passord"/>
+                <input id="endrePassord" type="submit" value="Endre passord"/>
             </form:form>
         </fieldset>
 
