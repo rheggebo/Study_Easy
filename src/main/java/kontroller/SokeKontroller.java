@@ -66,25 +66,51 @@ public class SokeKontroller {
         return "SokeSide";  
     }  
     @RequestMapping(value="BrukerOversikt")
-    public String fetchData1(@ModelAttribute("bruker") BrukerB b, HttpSession sess, HttpServletResponse response, HttpServletRequest request){ 
+    public String fetchData1(@ModelAttribute("bruker") BrukerB b, HttpSession sess, HttpServletResponse response, Model model, HttpServletRequest request){ 
         BrukerB bruker = (BrukerB) sess.getAttribute("brukerBean");        
         String[] split = b.getEtternavn().split(":");
         if("Abonner".equals(request.getParameter("knappTilAbonnement"))){
             if (split[0].equals("Ansatt") || split[0].equals("Student")){
                 //person
-                si.leggTilAbonemennt(new Abonemennt(bruker.getEpost(), split[2].trim(), 0));
+                try{
+                    si.leggTilAbonemennt(new Abonemennt(bruker.getEpost(), split[2].trim(), 0));
+                }
+                catch(Exception e){
+                    model.addAttribute("melding", "feilmelding.duplikatAbonnement");
+                }
                 return "SokeSide";
             }
-                for (int i = 0; i < split.length; i++){
-                    System.out.println("Plass " + i + ": " + split[i]);
+            else if (split[0].equals("Fag")){
+                String[] split2 = (split[1].trim()).split(" ");
+                try{
+                    si.leggTilAbonemennt(new Abonemennt(bruker.getEpost(), split2[0].trim(), 1));
+                }
+                catch(Exception e){
+                    model.addAttribute("melding", "feilmelding.duplikatAbonnement");
+                }
+            }
+            else if (split[0].equals("Klasse")){
+                String[] split2 = (split[1].trim()).split(",");
+
+                String[] fagsplit = (split[2].trim()).split(" ");
+                for (int i = 0; i < fagsplit.length; i++){
+                    try{
+                        si.leggTilAbonemennt(new Abonemennt(bruker.getEpost(), fagsplit[i], 1));
                     }
-            }else if("Se kart".equals(request.getParameter("knappTilKart"))){
+                    catch(Exception e){
+                        System.out.println("heiho");
+                        model.addAttribute("melding", "feilmelding.duplikatAbonnement");
+                    }
+                }
+            }
+        }
+        else if("Se kart".equals(request.getParameter("knappTilKart"))){
                 //sørg for at riktig etasje vises           
                 return "VelgRom";
             }
         return "SokeSide";             
         } 
-        
+            
     }
 
 
