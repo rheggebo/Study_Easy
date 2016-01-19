@@ -6,6 +6,12 @@ date:      18/01/16
 author:    Sindre
 ---------------*/
 
+.ikonVelgRom{
+    list-style-type: none; 
+    margin-top: 200px; 
+    text-align: right;
+}
+
 .planRom{
     fill: #00ff00;
 }
