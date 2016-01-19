@@ -19,11 +19,11 @@
             <dd><select name="tilgangnivaa" id="tilgangnivaa" required="true">
                     <option value="Elev">Elev</option>
                     <option value="Lærer">Lærer</option>
-                    <option value="Timeplansansvarlig">Timeplansansvarlig</option>
+                    <option id="timeplansansvarligOption" name="timeplansansvarligOption" var="timeplansansvarligOption" value="Timeplansansvarlig">Timeplansansvarlig</option>
                 </select>
             </dd>
         </dl>
-        <p><input type="submit" value="Legg til" onclick=""></p>
+        <p><input id="leggTil" type="submit" value="Legg til" onclick=""></p>
         </form:form>
     </fieldset>
 </main>
