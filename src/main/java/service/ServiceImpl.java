@@ -270,14 +270,19 @@ public class ServiceImpl implements Service{
         ArrayList<String> innhold = r.getInnhold();
         int antParam = innhold.size();
         if(antParam == 0){
+            System.out.println("0"+r+ke+storrelse+sitteplasser);
             return dbc.getRom0Param(r, ke, storrelse, sitteplasser);
         }else if(antParam == 1){
+            System.out.println("1"+r+ke+storrelse+sitteplasser);
             return dbc.getRom1Param(r, ke, storrelse, sitteplasser);
         }else if(antParam == 2){
+            System.out.println("2"+r+ke+storrelse+sitteplasser);
             return dbc.getRom2Param(r, ke, storrelse, sitteplasser);
         }else if(antParam == 3){
+            System.out.println("3"+r+ke+storrelse+sitteplasser);
             return dbc.getRom3Param(r, ke, storrelse, sitteplasser);
         }else{
+            System.out.println("4"+r+   ke+storrelse+sitteplasser);
             return dbc.getRom4Param(r, ke, storrelse, sitteplasser);
         }
     }
