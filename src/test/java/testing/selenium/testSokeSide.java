@@ -25,13 +25,13 @@ public class testSokeSide {
         
         
        WebDriver driver = new FirefoxDriver();
+       //WebDriver driver = new ChromeDriver();
         
     
     
     @Test
     public void SokeSide() throws Throwable {   
-        //System.setProperty("webdriver.chrome.driver", "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Google Chrome");
-        //WebDriver driver = new ChromeDriver();
+        
         driver.get("http://localhost:8084/Study_Easy");
         
         Thread.sleep(2000);
@@ -43,9 +43,15 @@ public class testSokeSide {
         Thread.sleep(2000);
         driver.findElement(By.id("loggInnKnapp")).click(); 
         
-        Thread.sleep(2000);
-        driver.findElement(By.id("loggInnKnapp")).click(); 
+     /*   Thread.sleep(2000);
+        driver.findElement(By.id("sokeSide")).click(); 
         
+        Thread.sleep(2000);
+        driver.findElement(By.id("searchFormSokeSide")).sendKeys("a"); 
+        
+        Thread.sleep(2000);
+        driver.findElement(By.id("searchButtonSokeSide")).sendKeys("a"); 
+        */
         Thread.sleep(2000);
         
     }
@@ -67,7 +73,6 @@ public class testSokeSide {
     
     @After
     public void tearDown() {
-        //System.setProperty("webdriver.chrome.driver", "C:\\ProgramData\\Microsoft\\Windows\\Start Menu\\Programs\\Google Chrome");
         WebDriver driver = new ChromeDriver();
         driver.close();
     }
