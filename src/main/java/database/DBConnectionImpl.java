@@ -226,9 +226,38 @@ public class DBConnectionImpl implements DBConnection{
     
     @Override
     public List<Klasse> getKlasseSok(String sokeord1) {
-        List<Klasse> fullListe =  jT.query(getKlasseSok, new Object[]{sokeord1}, new KlasseFagMapper());
-
-        return fullListe;
+        List<Klasse> dbListe =  jT.query(getKlasseSok, new Object[]{sokeord1}, new KlasseFagMapper());
+        ArrayList<Klasse> klasseListe = new ArrayList<Klasse>();
+        Klasse klasse;
+        boolean finnes = true;
+        
+        //går gjennom listen hentet fra databasen
+        for (int i = 0; i < dbListe.size(); i++) {
+            klasse = new Klasse();
+            finnes = false;
+            
+            //går gjennom den nye listen som skal bli den ferdige listen
+            for (int j = 0; j < klasseListe.size(); j++) {
+            	
+            	//hvis klassenavn finnes i den nye listen fra før, finnes=true og legg til det nye faget
+				if(klasseListe.get(j).getNavn().equals(dbListe.get(i).getNavn())) {
+					finnes = true;
+					if(dbListe.get(i).getFag().size() > 0) {
+						klasseListe.get(j).addFag(dbListe.get(i).getFag().get(0));
+					}
+				}
+			}
+            
+            //hvis den ikke fantes i listen, legg den til
+            if(!finnes) {
+            	klasseListe.add(dbListe.get(i));
+            }
+        }
+        for (int i = 0; i < klasseListe.size(); i++) {
+			for (int j = 0; j < klasseListe.get(i).getFag().size(); j++) {
+			}
+		}
+        return klasseListe;
     }
     
     
