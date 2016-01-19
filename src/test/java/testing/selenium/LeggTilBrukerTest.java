@@ -10,23 +10,20 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
 
 /**
  *
  * @author erlend
  */
-public class MinSideTest {
+public class LeggTilBrukerTest {
     
-     WebDriver driver = new FirefoxDriver();
+    WebDriver driver = new FirefoxDriver();
      
-     @Test
+    @Test
     public void SokeSide() throws Throwable {   
         
         driver.get("http://localhost:8084/Study_Easy/");
@@ -44,31 +41,21 @@ public class MinSideTest {
         driver.findElement(By.id("minSide")).click(); 
    
         Thread.sleep(2000);
-        driver.findElement(By.id("minInfo")).click();
-                
-        Thread.sleep(2000);
-        driver.findElement(By.id("endrePassord")).click();
-          
-        Thread.sleep(2000);
-        driver.findElement(By.id("gPassord")).sendKeys(".kT?0*CZC_"); 
-       
-        Thread.sleep(2000);
-        driver.findElement(By.id("nPassord")).sendKeys(".kT?0*CZC_"); 
-       
-        Thread.sleep(2000);
-        driver.findElement(By.id("gnPassord")).sendKeys(".kT?0*CZC_"); 
-                
-        Thread.sleep(2000);
-        driver.findElement(By.id("endreGammeltPassord")).click();
+        driver.findElement(By.id("leggTilBruker")).click();
         
         Thread.sleep(2000);
-        driver.findElement(By.id("endreOpplysninger")).click();
+        driver.findElement(By.id("fornavn")).sendKeys("Ling"); 
         
         Thread.sleep(2000);
+        driver.findElement(By.id("etternavn")).sendKeys("Ling"); 
         
+        Thread.sleep(2000);
+        driver.findElement(By.id("epost")).sendKeys("erlendksteinset@hotmail.com"); 
+        
+        Thread.sleep(2000);        
     }
     
-    public MinSideTest() {
+        public LeggTilBrukerTest() {
     }
     
     @BeforeClass
@@ -88,4 +75,5 @@ public class MinSideTest {
         WebDriver driver = new ChromeDriver();
         driver.close();
     }
+    
 }
