@@ -19,7 +19,7 @@
 
 <main>
     <aside>
-        <form:form action="finnromdata" modelAttribute='rom' method="post" onsubmit="return validate();">
+        <form:form action="finnromdata" modelAttribute="rom" method="post" onsubmit="return validate();">
             <fieldset>
                 <legend>Velg ønsket spesifikasjoner:</legend>
                 <dl>
@@ -102,11 +102,14 @@
 
     <section class="searchInfo">
         <table>
-            <c:forEach var="liste" items="${liste}">
-                <tr>
-                    <td><c:out value="${liste}"></c:out><input class=oversikt type='button' value='Se oversikt'/></td>
-                </tr>                    
-                          
+            <c:forEach var="liste" items="${liste}" varStatus="status">
+                <form:form modelAttribute="event" action="BookRom">
+                    <tr>
+                        <form:input type="hidden" path="rom" value="${liste}"/>
+                        <form:input type="hidden" path="epost"/>
+                        <td><c:out value="${liste}"></c:out><input class=oversikt type='submit' value='Book!'/></td>
+                    </tr>
+                </form:form>      
             </c:forEach>                      
         </table>
     </section>
