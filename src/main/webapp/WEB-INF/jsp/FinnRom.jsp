@@ -39,10 +39,10 @@
                     <dd><input id="strFinnRom" name="storrelseNum" type="number" min="5" max="200" value="5" disabled></dd>
 
                     <dt><label for="checkboxes">Utstyr:</label></dt>
-                    <dd><input class="checkboxes" type="checkbox" id="skjerm" name="skjerm" value="Skjerm">PC-skjerm<input type="number" id="antSkjerm" name="skjerm" min="0" value="0" disabled><br> 
-                        <input class="checkboxes" type="checkbox" id="tavle" name="tavle" value="tavle">Tavle<input type="number" id="antTavle" name="tavle" min="0" value="0" disabled><br> 
-                        <input class="checkboxes" type="checkbox" id="sitteplass" name="sitteplass" value="sitteplasser">Sitteplass<input type="number" id="antSitteplass" name="sitteplass" min="0" value="0" disabled><br> 
-                        <input class="checkboxes" type="checkbox" id="prosjektor" name="prosjektor" value="prosjektor">Prosjektor<input type="number" id="antProsjektor" name="prosjektor" min="0" value="0" disabled><br> 
+                    <dd><input class="checkboxes" type="checkbox" id="skjerm" name="skjerm" value="Skjerm">PC-skjerm<input type="number" id="antSkjerm" name="antSkjerm" min="0" value="0" disabled><br> 
+                        <input class="checkboxes" type="checkbox" id="tavle" name="tavle" value="tavle">Tavle<input type="number" id="antTavle" name="antTavle" min="0" value="0" disabled><br> 
+                        <input class="checkboxes" type="checkbox" id="sitteplass" name="sitteplass" value="sitteplasser">Sitteplass<input type="number" id="antSitteplass" name="antSitteplass" min="0" value="0" disabled><br> 
+                        <input class="checkboxes" type="checkbox" id="prosjektor" name="prosjektor" value="prosjektor">Prosjektor<input type="number" id="antProsjektor" name="antProsjektor" min="0" value="0" disabled><br> 
                     </dd>
                     
 

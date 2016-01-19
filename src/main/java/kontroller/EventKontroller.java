@@ -35,7 +35,7 @@ public class EventKontroller {
     Service service;
     
     @InitBinder
-    public void initBinder(WebDataBinder binder) {
+    public void initBinder(WebDataBinder binder){
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
             binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
@@ -71,7 +71,7 @@ public class EventKontroller {
     @RequestMapping("finnromdata")
     public String finnRom(@ModelAttribute("rom") Rom rom, @RequestParam(value="skjerm", required=false)boolean skjerm, 
             @RequestParam(value="antSkjerm", required=false)Integer antSkjerm, @RequestParam(value="tavle", required=false)boolean tavle, 
-            @RequestParam(value="antTavle", required=false)Integer antTavle, @RequestParam(value="tavle", required=false)boolean sitteplass, 
+            @RequestParam(value="antTavle", required=false)Integer antTavle, @RequestParam(value="sitteplass", required=false)boolean sitteplass, 
             @RequestParam(value="antSitteplass", required=false)Integer antSitteplass, @RequestParam(value="prosjektor", required=false)boolean prosjektor, 
             @RequestParam(value="antProsjektor", required=false)Integer antProsjektor, @RequestParam(value="storrelse", required=false)boolean storrelse, 
             @RequestParam(value="storrelseNum", required=false)Integer storrelseNum, @RequestParam("romtype")String romtype, @RequestParam("fraTid")String fraTid,
@@ -92,6 +92,7 @@ public class EventKontroller {
         ke.setStartTid(new Timestamp(fraDato.getTime()+fra*3600000));
         ke.setSluttTid(new Timestamp(tilDato.getTime()+til*3600000));
         ArrayList<String> innhold = new ArrayList<String>();
+        System.out.println(skjerm+""+tavle+sitteplass+prosjektor+storrelse);
         if(skjerm){
             innhold.add("skjerm "+antSkjerm);
         }
@@ -110,7 +111,7 @@ public class EventKontroller {
         System.out.println(romtype);
         if(romtype.equalsIgnoreCase("Forelesningssal")){
             rom.setType(3);
-        }else if(romtype.equalsIgnoreCase("Møterom")){
+        }else if(romtype.equalsIgnoreCase("Moterom")){
             rom.setType(2);
         }else if(romtype.equalsIgnoreCase("Grupperom")){
             rom.setType(1);
