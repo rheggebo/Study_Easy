@@ -39,34 +39,36 @@
                 <input id="endrePassord" type="submit" value="Endre passord"/>
             </form:form>
         </fieldset>
-
+        
+        <form:form modelAttribute="abonemenntListe" action="Abonnement">
         <fieldset>
             <legend>Fag</legend>
-            <form:form modelAttribute="abonemenntListe">
+            
                 <c:forEach var="abliste" items="${abonemenntListe}">
                     <c:if test="${abliste.getType() == 1}">
                         <c:out value ="${abliste}"></c:out>
-                        <input type="submit" name="slettAbKnapp" value="Slett"/><br>
+                        <input class="slettknapp" type="submit" name="slettAbKnapp" value="Slett"/><br>
                             
                     </c:if>
                 </c:forEach>
-            </form:form>
+            
 
         </fieldset>
 
         <fieldset>
             <legend>Bruker abonnement</legend>
-            <form:form modelAttribute="abonemenntListe">
+            
                 <c:forEach var="abliste" items="${abonemenntListe}">
                     <c:if test="${abliste.getType() == 0}">
-                        <input type="submit" name="slettAbKnapp" value="Slett"/>
-                        <c:out value ="${abliste}"></c:out><br>
+                        <c:out value ="${abliste}"></c:out>
+                        <input class="slettKnapp" type="submit" name="slettAbKnapp" value="Slett"/><br>
                             
                     </c:if>
                 </c:forEach>
-            </form:form>        
-
+                   
+                       
         </fieldset>
+        </form:form>
             
         <fieldset>
             <legend>Romreservasjoner</legend>
