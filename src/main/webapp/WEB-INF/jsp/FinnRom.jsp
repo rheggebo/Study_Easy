@@ -25,10 +25,9 @@
                 <dl>
                     <dt><label for="romtypeFinnRom">Romtype:<em>*</em></label></dt>
                     <dd><select id="romtypeFinnRom" name="romtype" required >
-                        <option value="forelesingssal">Forelesingssal</option>
-                        <option value="møterom">Møterom</option>
+                        <option value="forelesningssal">Forelesingssal</option>
+                        <option value="moterom">Møterom</option>
                         <option value="grupperom">Grupperom</option>
-                        <option value="klasserom">Klasserom</option>
                     </select>
 
                     </dd>
@@ -40,15 +39,15 @@
                     <dd><input id="strFinnRom" name="storrelseNum" type="number" min="5" max="200" value="5" disabled></dd>
 
                     <dt><label for="checkboxes">Utstyr:</label></dt>
-                    <dd><input class="checkboxes" type="checkbox" id="skjerm" name="skjerm" value="Skjerm">PC-skjerm<input type="number" id="antSkjerm" name="skjerm" min="0" value="0" disabled><br> 
-                        <input class="checkboxes" type="checkbox" id="tavle" name="tavle" value="tavle">Tavle<input type="number" id="antTavle" name="tavle" min="0" value="0" disabled><br> 
-                        <input class="checkboxes" type="checkbox" id="sitteplass" name="sitteplass" value="sitteplasser">Sitteplass<input type="number" id="antSitteplass" name="sitteplass" min="0" value="0" disabled><br> 
-                        <input class="checkboxes" type="checkbox" id="prosjektor" name="prosjektor" value="prosjektor">Prosjektor<input type="number" id="antProsjektor" name="prosjektor" min="0" value="0" disabled><br> 
+                    <dd><input class="checkboxes" type="checkbox" id="skjerm" name="skjerm" value="Skjerm">PC-skjerm<input type="number" id="antSkjerm" name="antSkjerm" min="0" value="0" disabled><br> 
+                        <input class="checkboxes" type="checkbox" id="tavle" name="tavle" value="tavle">Tavle<input type="number" id="antTavle" name="antTavle" min="0" value="0" disabled><br> 
+                        <input class="checkboxes" type="checkbox" id="sitteplass" name="sitteplass" value="sitteplasser">Sitteplass<input type="number" id="antSitteplass" name="antSitteplass" min="0" value="0" disabled><br> 
+                        <input class="checkboxes" type="checkbox" id="prosjektor" name="prosjektor" value="prosjektor">Prosjektor<input type="number" id="antProsjektor" name="antProsjektor" min="0" value="0" disabled><br> 
                     </dd>
                     
 
                     <dt><label for="datoFinnRom">Dato:<em>*</em></label></dt>
-                    <dd><input id="datoFinnRom" type="date" name="fraDato" required></dd>
+                    <dd><input id="datoFinnRom" type="date" name="fraDato" value="${fraDato}" required></dd>
                     
                     <dt><label for="fraTid">Tid fra:<em>*</em></label></dt>
                     <dd><select id="fraTid" name="fraTid" required>
