@@ -76,7 +76,7 @@ public class EventKontroller {
             @RequestParam(value="antSitteplass", required=false)Integer antSitteplass, @RequestParam(value="prosjektor", required=false)boolean prosjektor, 
             @RequestParam(value="antProsjektor", required=false)Integer antProsjektor, @RequestParam(value="storrelse", required=false)boolean storrelse, 
             @RequestParam(value="storrelseNum", required=false)Integer storrelseNum, @RequestParam("romtype")String romtype, @RequestParam("fraTid")String fraTid,
-            @RequestParam("tilTid")String tilTid, @RequestParam("fraDato")Date fraDato, @RequestParam(value="tilDato",required=false)Date tilDato, Model model, HttpSession sess, HttpServletRequest req/*, 
+            @RequestParam("varighet")String varighet, @RequestParam("fraDato")Date fraDato, @RequestParam(value="tilDato",required=false)Date tilDato, Model model, HttpSession sess, HttpServletRequest req/*, 
             @RequestParam(value="notat", required=false)String notat, @RequestParam(value="tittel",required=false)String tittel, 
             @RequestParam(value="fag", required=false)String fag*/){
         KalenderEvent ke = new KalenderEvent();
@@ -86,7 +86,7 @@ public class EventKontroller {
         ke.setRom(rom.getRomNavn());
         ke.setType(brukerb.getTilgangsniva());
         int fra = Integer.parseInt(fraTid)+5;
-        int til = Integer.parseInt(tilTid)+6;
+        int til = Integer.parseInt(varighet);
         if(brukerb.getTilgangsniva()<1){
             tilDato = fraDato;
         }
@@ -139,11 +139,26 @@ public class EventKontroller {
         event.setRom(tab[1]);
         event.setTittel("testing");
         event.setNotat("notatet");
-        if(service.leggTilBooking(event) && service.leggTilKalenderEvent(event)){
+        if(service.leggTilBooking(event)){
             model.addAttribute("bruker", bruker);
             return "MinSide";
         }
         model.addAttribute("event", new KalenderEvent());
         return "FinnRom";
+    }
+    
+    @RequestMapping("VelgRomSok")
+    public String velgRom(@RequestParam("fraDato")Date fraDato, @RequestParam("fraTid")String fraTid, 
+            @RequestParam("varighet")String varighet, HttpSession sess, Model model){
+        BrukerB bruker = (BrukerB) sess.getAttribute("brukerBean");
+        KalenderEvent ke = new KalenderEvent();
+        int fra = Integer.parseInt(fraTid)+5;
+        int til = Integer.parseInt(varighet);
+        ke.setStartTid(new Timestamp(fraDato.getTime()+fra*3600000));
+        ke.setSluttTid(new Timestamp(fraDato.getTime()+til*3600000));
+        ke.setType(bruker.getTilgangsniva()+1);
+        List<Rom> liste = service.getRomSVG(ke);
+        model.addAttribute("liste", liste);
+        return "VelgRom";
     }
 }

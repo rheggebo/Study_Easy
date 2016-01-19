@@ -41,16 +41,18 @@
                     <input class="checkboxes" type="checkbox" id="klasseSokeSide" name="Spes" value="Klasse">Klasse</form></div>
         </li></form>               
     </ul></div>
-    
+                       <c:set var="meldingS" value="${melding}"></c:set>
+                <c:if test="${not empty meldingS}">
+                    <spring:message code="${melding}" />
+                </c:if>
 <div class="searchInfo">
-   
     <table>
 
             <c:forEach var="liste" items="${liste}">
                 <tr>
                     <td><c:out value="${liste}"></c:out>
-                        <form:form modelAttribute="bruker" action="BrukerOversikt">
-                        <form:input type="hidden" path="etternavn" value="${liste}"/>
+                        <form:form modelAttribute="resultat" action="abonnere">
+                        <form:input type="hidden" path="resultat" value="${liste}"/>
                         <c:if test="${liste.getClass().simpleName=='Bruker' or liste.getClass().simpleName=='Fag' or liste.getClass().simpleName=='Klasse'}"> 
                         <input class="oversikt" id="abonKnapp" type='submit' name='knappTilAbonnement' value='Abonner'/>
                         </c:if>

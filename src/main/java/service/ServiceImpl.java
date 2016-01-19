@@ -301,4 +301,9 @@ public class ServiceImpl implements Service{
         return dbc.leggTilBooking(ke);
     }
     
+    @Override
+    public List<Rom> getRomSVG(KalenderEvent ke){
+        return dbc.getRomSVG(ke);
+    }
+    
 }
