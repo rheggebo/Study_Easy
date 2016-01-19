@@ -40,7 +40,7 @@ public class PassordTest {
     
     @Test
     public void tester_getmetoder (){
-        assertSame(pord.getPassord(),pord.getPassord1());
+        assertSame(pord.getPassord(),pord.getPassord1(), pord.getPassord2());
         assertTrue(pord.isGenerert());
     }
     

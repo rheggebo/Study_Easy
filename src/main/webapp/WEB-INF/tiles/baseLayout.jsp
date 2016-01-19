@@ -34,7 +34,7 @@
                 </td>
             </tr>
             <tr>
-                <td height="1000">
+                <td height="1200">
                     <tiles:insertAttribute name="body" />
                 </td>
             </tr>

@@ -175,10 +175,10 @@ public class BrukerKontroller {
     public String minSideRedLagre(@ModelAttribute("bruker") BrukerB brukerb, HttpSession sess){
         System.out.println("MinSideRedLagre************");
         BrukerB brukerbb = (BrukerB) sess.getAttribute("brukerBean");
-        BrukerB nyBrukerInfo = new BrukerB();
+        Bruker nyBrukerInfo = new Bruker();
         if(brukerbb.getTilgangsniva()==2){
-            nyBrukerInfo.setFornavn(brukerb.getFornavn());
-            nyBrukerInfo.setEtternavn(brukerb.getEtternavn());
+            nyBrukerInfo.setEpost(brukerbb.getEpost());
+            
         }
         return "MinSide";
     }
@@ -200,7 +200,6 @@ public class BrukerKontroller {
             model.addAttribute("bruker", (BrukerB)sess.getAttribute("brukerBean"));
             return "MinSide";
         }
-        System.out.println("Skal returnere legg til bruker");
         model.addAttribute("melding", "feilmelding.nyBruker");
         model.addAttribute("nyBruker", new Bruker());
         return "LeggTilBruker";
@@ -217,6 +216,7 @@ public class BrukerKontroller {
 
         return "NyttAbonnement";
     }
+    
     @RequestMapping("BekreftBestilling")
     public String bekreftBestilling(Model model, HttpSession sess){
         BrukerB brukerb = (BrukerB)sess.getAttribute("brukerBean");

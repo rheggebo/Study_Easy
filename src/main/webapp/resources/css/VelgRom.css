@@ -16,6 +16,7 @@ author:    Sindre
 
 .planRom:hover{
     fill: blue;
+    cursor:pointer;
 }
 .plantegning{
     width: 100%;

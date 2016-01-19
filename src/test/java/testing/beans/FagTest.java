@@ -84,6 +84,12 @@ public class FagTest {
         assertTrue(fag1.getKalenderEvents().isEmpty());         
     }
     
+    @Test
+    public void test_toString(){
+        String faget = "Fag: 01234 AlgDat";
+        assertEquals(fag.toString(), faget);
+    }
+    
     /*
     @Test(expected = NullPointerException.class)
     public void test_at_koden_som kjøres_kaster_en_NullPointerException() {

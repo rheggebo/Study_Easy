@@ -40,6 +40,7 @@ public class RomTest {
         rom.setEtasje(3);
         rom.setType(3);
         rom.setStorrelse(100);
+        rom.setAntStolplasser(40);
         
         rom1 = new Rom();
         rom1.setRomID("Labben");
@@ -49,7 +50,11 @@ public class RomTest {
         rom1.setStorrelse(200);
         
         innhold = new ArrayList();
-                     
+        innhold.add("Prosjektor");
+        innhold.add("Tavle");
+        rom.setInnhold(innhold);
+        
+                  
     }
 
     @Test
@@ -62,19 +67,13 @@ public class RomTest {
         assertEquals(rom.getEtasje(), 3);
         assertEquals(rom.getType(), 3);
         assertEquals(rom.getStorrelse(),100);
+        assertEquals(rom.getAntStolplasser(),40);
         
     }
-    
-    @Test
-    public void tester_Arraylist(){
-        assertTrue(innhold.isEmpty());
-    }
-    
+            
     @Test
     public void tester_Liste(){
-        innhold.add("prosjektor");
-        assertEquals(1, innhold.size());
-        assertEquals(innhold.get(0), "prosjektor");
+        assertEquals(rom.getInnhold(), innhold);
         
     }
     
@@ -119,6 +118,11 @@ public class RomTest {
         // Kode som gj�r noe annet
     }
     */
+    @Test
+    public void test_toString(){
+        String rommet = "Rom: KAUD KAUD etasje: 3 størrelse: 100";
+        assertEquals(rom.toString(), rommet);
+    }
 
     @After
     public void tearDown() throws Exception {

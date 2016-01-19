@@ -24,7 +24,12 @@ public class KlasseFagMapper implements RowMapper<Klasse> {
     public Klasse mapRow(ResultSet rs, int i) throws SQLException {
         
         Klasse klasse = new Klasse();
+        ArrayList<Fag> fagListe = new ArrayList<Fag>();
         klasse.setNavn(rs.getString("klasseid"));
+        Fag fag = new Fag();
+        fag.setFagID(rs.getString("fagid"));
+        fagListe.add(fag);
+        klasse.setFag(fagListe);
         return klasse;
 
     }

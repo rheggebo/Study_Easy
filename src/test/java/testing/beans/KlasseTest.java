@@ -55,7 +55,7 @@ public class KlasseTest {
     
      @Test
     public void tester_toString (){
-        assertEquals(klasse.toString(), "2.ing");
+        assertEquals(klasse.toString(), "Klasse: 2.ing");
     
     }
     
