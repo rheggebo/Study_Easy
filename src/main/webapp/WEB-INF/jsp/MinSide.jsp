@@ -31,7 +31,7 @@
             <c:set var="tilgang" value="${bruker.getTilgangsniva()}"></c:set>
             <c:if test="${tilgang == 2}">
                 <form action="MinSideRed" id="formen">
-                    <input type="submit" value="Endre opplysninger"/>
+                    <input id="endreOpplysninger" type="submit" value="Endre opplysninger"/>
                 </form>
             </c:if>
             <br>
@@ -42,27 +42,34 @@
 
         <fieldset>
             <legend>Fag</legend>
-            <form:form modelAttribute="abonemenntListe"></form:form>
-            <c:forEach var="abliste" items="${abonemenntListe}">
-                <c:if test="${abliste.getType() == 1}">
-                    <c:out value ="${abliste}"></c:out><br>
+            <form:form modelAttribute="abonemenntListe">
+                <c:forEach var="abliste" items="${abonemenntListe}">
+                    <c:if test="${abliste.getType() == 1}">
+                        <c:out value ="${abliste}"></c:out>
+                        <input type="submit" name="slettAbKnapp" value="Slett"/><br>
                             
-                </c:if>
-            </c:forEach>
-            
-            <input type="submit" value="Endre opplysninger">
+                    </c:if>
+                </c:forEach>
+            </form:form>
+
         </fieldset>
 
         <fieldset>
-            <legend>Abonnement</legend>
-            <c:forEach var="abliste" items="${abonemenntListe}">
-                <c:if test="${abliste.getType() == 0}">
-                    <c:out value ="${abliste}"></c:out><br>
+            <legend>Bruker abonnement</legend>
+            <form:form modelAttribute="abonemenntListe">
+                <c:forEach var="abliste" items="${abonemenntListe}">
+                    <c:if test="${abliste.getType() == 0}">
+                        <input type="submit" name="slettAbKnapp" value="Slett"/>
+                        <c:out value ="${abliste}"></c:out><br>
                             
-                </c:if>
-            </c:forEach>
-           
-            <input type="submit" value="Endre opplysninger">
+                    </c:if>
+                </c:forEach>
+            </form:form>        
+
+        </fieldset>
+            
+        <fieldset>
+            <legend>Romreservasjoner</legend>
 
         </fieldset>
 

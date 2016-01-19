@@ -117,6 +117,11 @@ public class DBConnectionImpl implements DBConnection{
     
     private final String leggTilBooking = "INSERT INTO rom_bestilling (romID, dato_start, dato_slutt, eierID) VALUES (?,?,?,?)";
     
+    private final String getRomSVG = "SELECT DISTINCT rom.romID, romnavn, etasje, størrelse, type, sitteplasser FROM rom LEFT OUTER JOIN rom_innhold ON rom.romID = rom_innhold.romID LEFT OUTER JOIN " +
+        "rom_bestilling ON rom.romID = rom_bestilling.romID " +
+        "WHERE (rom.type <= ? AND ? NOT BETWEEN dato_start AND dato_slutt AND " +
+        "? NOT BETWEEN dato_start AND dato_slutt  OR rom_bestilling.romID IS NULL AND rom.type <= ?)";
+    
     private DataSource dS;
     private JdbcTemplate jT;
     
@@ -890,5 +895,15 @@ public class DBConnectionImpl implements DBConnection{
             ke.getSluttTid(),
             ke.getEpost()
         }));
+    }
+    
+    @Override
+    public List<Rom> getRomSVG(KalenderEvent ke){
+        return jT.query(getRomSVG, new Object[]{
+            ke.getType(),
+            ke.getStartTid(),
+            ke.getSluttTid(),
+            ke.getType()
+        }, new RomMapper());
     }
 }
