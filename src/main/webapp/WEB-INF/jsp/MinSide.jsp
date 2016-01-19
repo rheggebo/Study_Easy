@@ -31,7 +31,7 @@
             <c:set var="tilgang" value="${bruker.getTilgangsniva()}"></c:set>
             <c:if test="${tilgang == 2}">
                 <form action="MinSideRed" id="formen">
-                    <input type="submit" value="Endre opplysninger"/>
+                    <input id="endreOpplysninger" type="submit" value="Endre opplysninger"/>
                 </form>
             </c:if>
             <br>

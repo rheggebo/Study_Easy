@@ -14,7 +14,7 @@
                 <form:input id="gnPassord" type="password" placeholder="Gjenta nytt passord" path="passord2" style="width: 420px"/>
             </dl>
 
-            <p><input type="submit" value="Endre passord" onclick="behandle()"></p>
+            <p><input id="endreGammeltPassord" type="submit" value="Endre passord" onclick="behandle()"></p>
             <div id="tekst">
                 <c:set var="meldingS" value="${melding}"></c:set>
                 <c:if test="${not empty meldingS}">

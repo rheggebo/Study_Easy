@@ -57,7 +57,13 @@ public class MinSideTest {
        
         Thread.sleep(2000);
         driver.findElement(By.id("gnPassord")).sendKeys(".kT?0*CZC_"); 
-    
+                
+        Thread.sleep(2000);
+        driver.findElement(By.id("endreGammeltPassord")).click();
+        
+        Thread.sleep(2000);
+        driver.findElement(By.id("endreOpplysninger")).click();
+        
         Thread.sleep(2000);
         
     }
