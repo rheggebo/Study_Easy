@@ -19,7 +19,7 @@
     </head>
     <body>
         <div>
-            <div id='pic'></div>
+            
         </div>
     </body>
 </html>

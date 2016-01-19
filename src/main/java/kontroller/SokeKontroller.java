@@ -66,6 +66,8 @@ public class SokeKontroller {
         BrukerB b=new BrukerB();
         Funksjoner fu=new Funksjoner();
         
+        
+        
         if("Abonner".equals(request.getParameter("knappTilAbonnement"))){
             model.addAttribute("knappTilAbonnement", si);           
             request.setAttribute("msg", "Lagt til i dine abonnement");           
