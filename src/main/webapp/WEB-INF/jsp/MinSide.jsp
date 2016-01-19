@@ -42,6 +42,7 @@
 
         <fieldset>
             <legend>Fag</legend>
+            
             <input type="submit" value="Endre opplysninger">
         </fieldset>
 

@@ -47,7 +47,10 @@
     <table>
             <c:forEach var="liste" items="${liste}">
                 <tr>
-                    <td><c:out value="${liste}"></c:out> <input class=oversikt type='submit' name='knapp' value='Se oversikt'/></td>
+                    <td><c:out value="${liste}"></c:out>
+                        <%--<input class=oversikt type='submit' name='knappTilOversikt' value='Se oversikt'/>--%>
+                        <input class="oversikt" id="abonKnapp" type='submit' name='knappTilAbonnement' value='Abonner'/>
+                    </td>
                 </tr>                    
                           
             </c:forEach>                      
@@ -56,4 +59,3 @@
 </div>         
 </body>
 </html>
-
