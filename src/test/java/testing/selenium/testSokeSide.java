@@ -104,13 +104,43 @@ public class testSokeSide {
         driver.findElement(By.id("ansattSokeSide")).click(); 
         
         Thread.sleep(2000);
+        driver.findElement(By.id("ansattSokeSide")).click(); 
+                
+        Thread.sleep(2000);
+        driver.findElement(By.id("ansattSokeSide")).click(); 
+                
+        Thread.sleep(2000);
+        driver.findElement(By.id("studentSokeSide")).click(); 
+                
+        Thread.sleep(2000);
+        driver.findElement(By.id("studentSokeSide")).click(); 
+                        
+        Thread.sleep(2000);
         driver.findElement(By.id("studentSokeSide")).click(); 
         
         Thread.sleep(2000);
         driver.findElement(By.id("fagSokeSide")).click(); 
         
         Thread.sleep(2000);
+        driver.findElement(By.id("fagSokeSide")).click(); 
+        
+        Thread.sleep(2000);
+        driver.findElement(By.id("fagSokeSide")).click(); 
+        
+        Thread.sleep(2000);
         driver.findElement(By.id("romSokeSide")).click(); 
+        
+        Thread.sleep(2000);
+        driver.findElement(By.id("romSokeSide")).click(); 
+        
+        Thread.sleep(2000);
+        driver.findElement(By.id("romSokeSide")).click(); 
+        
+        Thread.sleep(2000);
+        driver.findElement(By.id("klasseSokeSide")).click(); 
+        
+        Thread.sleep(2000);
+        driver.findElement(By.id("klasseSokeSide")).click(); 
         
         Thread.sleep(2000);
         driver.findElement(By.id("klasseSokeSide")).click(); 
