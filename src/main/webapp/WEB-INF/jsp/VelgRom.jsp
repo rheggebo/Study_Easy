@@ -7,15 +7,13 @@
 
 
 <main>
-    <div id="RomInfo"><p id="rom"> </p></div>
     <div id="velgRomSøkeBokser">
         <form action="VelgRomSok" method="post" onsubmit=" return validate();">
             <fieldset>
                 <legend>Velg ønsket spesifikasjoner:</legend>
                 <dl>
                     <dt><label for="datoFinnRom">Dato:<em>*</em></label></dt>
-                    <dd><input id="datoFinnRom" type="date" name="fraDato" value="${fraDato}" required></dd>
-                    
+                    <dd><input id="datoFinnRom" type="date" name="fraDato" required></dd>
                     <dt><label for="fraTid">Tid fra:<em>*</em></label></dt>
                     <dd><select id="fraTid" name="fraTid" required>
                     <option value="1">06.00</option>
@@ -51,6 +49,8 @@
         </form>
     </div>
     
+    <div id="RomInfo"><p id="rom"> </p></div>
+    
     <div id="velgRomSøkeSVG">
         <object id="plantegningEtasje1" class="pantegningObject" style="z-index:9;"
                 data="<c:url value="/resources/SVG/plantegningE1.svg"/>"> Din nettleser støtter ikke SVG </object>
@@ -62,15 +62,16 @@
                 data="<c:url value="/resources/SVG/plantegningE4.svg"/>"> Din nettleser støtter ikke SVG </object>
     </div>
     
-     <ul class="ikonForside" style="list-style-type: none; margin-top: 200px; text-align: right; z-index:1;">
+     <ul class="ikonForside" style=" z-index:1;">
         <li class="knappVelgRom">
             <a class="infoKnappForside" href="#infoVindu2"><span class="fontawesome-info-sign"></span></a>
-                <div id="infoVindu2" class="infoVinduForside">
-                    <div><a href="#lukk" title="Lukk" class="lukk">X</a>
-                        <h2>Informasjon</h2>
-                        <p>Trykk på pilene for å endre etasje og på rommet for å få mer informasjon.</p>
-                    </div>
+            <div id="infoVindu2" class="infoVinduForside">
+                <div>
+                    <a href="#lukk" title="Lukk" class="lukk">X</a>
+                    <h2>Informasjon</h2>
+                    <p>Trykk på pilene for å endre etasje og på rommet for å få mer informasjon.</p>
                 </div>
+            </div>
         </li>
         <li class="knappVelgRom">
             <button class="knappForside" id="leggTilKnappForside" onclick="changeZIndexPlantegningerOpp()">
@@ -87,13 +88,14 @@
     
                 
 </main>
+    
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
     <!--
         Dette er kodet inn for våre 4 bilder hvis vi utvider til flere bygninger må vi endre løsning:
         1. Burde loade inn blider med Jquary i objectene våre. 
         2. Endre løsning på hvilket bile som er øverst selv om vi kan sikkert bruke zIndex.
-        3. 
     -->
     
     <script>
@@ -147,8 +149,7 @@
     
     
     <script>
-        
-    
+        //Første etasje:
         var a = document.getElementById("plantegningEtasje1");
         a.addEventListener("load",function(){
           var svgDoc = a.contentDocument;
@@ -164,6 +165,7 @@
                        alert(this.id);
                 }, false);
         }},false);
+        //Andre etasje:
         var a2 = document.getElementById("plantegningEtasje2");
         a2.addEventListener("load",function(){
           var svgDoc2 = a2.contentDocument;
@@ -177,6 +179,7 @@
                        alert(this.id);
                 }, false);
         }},false);
+        //Tredje etasje:    
         var a3 = document.getElementById("plantegningEtasje3");
         a3.addEventListener("load",function(){
           var svgDoc3 = a3.contentDocument;
@@ -190,6 +193,7 @@
                        alert(this.id);
                 }, false);
         }},false);
+        //Fjerde etasje:
         var a4 = document.getElementById("plantegningEtasje4");
         a4.addEventListener("load",function(){
           var svgDoc4 = a4.contentDocument;

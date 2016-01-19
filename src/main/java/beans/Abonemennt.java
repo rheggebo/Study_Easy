@@ -45,4 +45,10 @@ public class Abonemennt {
         this.type = type;
     }
     
+    public String toString() {
+        String str = "";
+        str += getAbonererId();
+        return str;
+    }
+    
 }
