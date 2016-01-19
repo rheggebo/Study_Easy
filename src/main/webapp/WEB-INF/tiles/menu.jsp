@@ -10,7 +10,7 @@
                 <li><a href="FinnRom">Finn rom</a></li>
             </ul>
         </li>
-        <li><a href="SokeSide">Søk</a></li>
+        <li><a id="sokeSide" href="SokeSide">Søk</a></li>
         <li><a href="#">Min side</a>
             <ul id="submenu">
                 
