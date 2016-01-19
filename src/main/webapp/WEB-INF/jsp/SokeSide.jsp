@@ -43,19 +43,24 @@
     </ul></div>
     
 <div class="searchInfo">
-    <form action="BrukerOversikt" method="POST" >
+    
+    
+   
     <table>
+
             <c:forEach var="liste" items="${liste}">
                 <tr>
-                    <td><c:out value="${liste}"></c:out>                       
-                        <%--<input class=oversikt type='submit' name='knappTilOversikt' value='Se oversikt'/>--%>                       
+                    <td><c:out value="${liste}"></c:out>
+                        <form:form modelAttribute="bruker" action="BrukerOversikt">
+                        <form:input type="hidden" path="etternavn" value="${liste}"/>
+                        <%--<input class=oversikt type='submit' name='knappTilOversikt' value='Se oversikt'/>--%>
                         <input class="oversikt" id="abonKnapp" type='submit' name='knappTilAbonnement' value='Abonner'/>
+                        </form:form>
                     </td>
                 </tr>                    
                           
             </c:forEach>                      
     </table>
-    </form>
 </div>         
 </body>
 </html>
