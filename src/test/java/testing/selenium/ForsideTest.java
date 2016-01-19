@@ -21,47 +21,9 @@ import org.openqa.selenium.firefox.FirefoxDriver;
  */
 
 
-public class Test1 {
+public class ForsideTest {
     
     WebDriver driver = new FirefoxDriver();     
-    
-    /*
-    
-    @Test
-    public void testLoggInn() throws Throwable {   
-        driver.get("http://localhost:8084/Study_Easy/");
-        
-        Thread.sleep(2000);
-        driver.findElement(By.id("epostInnlogging")).sendKeys("test1@aol.com");
-        
-        Thread.sleep(2000);
-        driver.findElement(By.id("passordInnlogging")).sendKeys("passord"); 
-        
-        Thread.sleep(2000);
-        driver.findElement(By.id("loggInnKnapp")).click(); 
-        
-        Thread.sleep(2000);
-    } 
-    
-    @Test
-    public void testFeilPassord() throws Throwable { 
-        driver.get("http://localhost:8084/Study_Easy/");
-        
-        Thread.sleep(2000);
-        driver.findElement(By.id("epostInnlogging")).sendKeys("test1@aol.com");
-        
-        Thread.sleep(2000);
-        driver.findElement(By.id("passordInnlogging")).sendKeys("passord1"); 
-        
-        Thread.sleep(2000);
-        driver.findElement(By.id("loggInnKnapp")).click(); 
-        
-        Thread.sleep(2000);
-        driver.findElement(By.id("loggInnGlemtPassord")).click(); 
-        
-        Thread.sleep(2000);
-    
-    }  */
     
     @Test
     public void testKalenderen() throws Throwable {
@@ -118,7 +80,7 @@ public class Test1 {
         assert(driver.findElement(By.id("order-confirmation")) != null);
     */
     
-    public Test1() {
+    public ForsideTest() {
     }
     
     @BeforeClass
