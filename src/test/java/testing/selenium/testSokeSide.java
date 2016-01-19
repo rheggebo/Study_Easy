@@ -43,7 +43,7 @@ public class testSokeSide {
         Thread.sleep(2000);
         driver.findElement(By.id("loggInnKnapp")).click(); 
         
-        Thread.sleep(2000);
+       /* Thread.sleep(2000);
         driver.findElement(By.id("sokeSide")).click(); 
         
         Thread.sleep(2000);
@@ -143,10 +143,16 @@ public class testSokeSide {
         driver.findElement(By.id("klasseSokeSide")).click(); 
         
         Thread.sleep(2000);
-        driver.findElement(By.id("klasseSokeSide")).click(); 
+        driver.findElement(By.id("klasseSokeSide")).click();      
                 
         Thread.sleep(2000);
-        driver.findElement(By.id("searchButtonSokeSide")).click();
+        driver.findElement(By.id("klasseSokeSide")).click(); */
+           
+        Thread.sleep(2000);
+        driver.findElement(By.id("minSide")).click(); 
+   
+        Thread.sleep(2000);
+        driver.findElement(By.id("minInfo")).click();
                 
         Thread.sleep(2000);
         
