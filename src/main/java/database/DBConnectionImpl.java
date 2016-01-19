@@ -240,23 +240,20 @@ public class DBConnectionImpl implements DBConnection{
             for (int j = 0; j < klasseListe.size(); j++) {
             	
             	//hvis klassenavn finnes i den nye listen fra før, finnes=true og legg til det nye faget
-				if(klasseListe.get(j).getNavn().equals(dbListe.get(i).getNavn())) {
-					finnes = true;
-					if(dbListe.get(i).getFag().size() > 0) {
-						klasseListe.get(j).addFag(dbListe.get(i).getFag().get(0));
-					}
-				}
-			}
+                if(klasseListe.get(j).getNavn().equals(dbListe.get(i).getNavn())) {
+                    finnes = true;
+                    if(dbListe.get(i).getFag().size() > 0) {
+			klasseListe.get(j).addFag(dbListe.get(i).getFag().get(0));
+                    }
+                }
+            }
             
             //hvis den ikke fantes i listen, legg den til
             if(!finnes) {
             	klasseListe.add(dbListe.get(i));
             }
         }
-        for (int i = 0; i < klasseListe.size(); i++) {
-			for (int j = 0; j < klasseListe.get(i).getFag().size(); j++) {
-			}
-		}
+
         return klasseListe;
     }
     
