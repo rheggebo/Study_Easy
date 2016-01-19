@@ -42,14 +42,26 @@
 
         <fieldset>
             <legend>Fag</legend>
+            <form:form modelAttribute="abonemenntListe"></form:form>
+            <c:forEach var="abliste" items="${abonemenntListe}">
+                <c:if test="${abliste.getType() == 1}">
+                    <c:out value ="${abliste}"></c:out><br>
+                            
+                </c:if>
+            </c:forEach>
             
             <input type="submit" value="Endre opplysninger">
         </fieldset>
 
         <fieldset>
             <legend>Abonnement</legend>
-            <c:set var="brukerEpost" value="${bruker.getEpost()}"></c:set>
-            <c:out value="${brukerEpost}"></c:out><br>
+            <c:forEach var="abliste" items="${abonemenntListe}">
+                <c:if test="${abliste.getType() == 0}">
+                    <c:out value ="${abliste}"></c:out><br>
+                            
+                </c:if>
+            </c:forEach>
+           
             <input type="submit" value="Endre opplysninger">
 
         </fieldset>
