@@ -123,4 +123,6 @@ public interface DBConnection {
     public List<Klasse> getKlasseSok(String sokeord1);
 
     public boolean leggTilBooking(KalenderEvent ke);
+    
+    public List<Rom> getRomSVG(KalenderEvent ke);
 }

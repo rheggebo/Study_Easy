@@ -114,6 +114,6 @@ public interface Service {
     
     public boolean leggTilBooking(KalenderEvent ke);
     
-    
+    public List<Rom> getRomSVG(KalenderEvent ke);
     
 }
