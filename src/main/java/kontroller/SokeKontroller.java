@@ -53,8 +53,9 @@ public class SokeKontroller {
        
         model.addAttribute("liste",fu.getAlleSokeTreff(sok.getSokeord(), si, checkboxes));
         for(int i=0;i<fu.liste.size();i++){
-           out.println("<td>" + fu.liste.get(i).toString() + "<td>");           
+           out.println("<td>" + fu.liste.get(i).toString() + "<td>");          
         }
+        
         return "SokeSide";  
     }  
     @RequestMapping(value="BrukerOversikt")
@@ -66,7 +67,7 @@ public class SokeKontroller {
         BrukerB b=new BrukerB();
         Funksjoner fu=new Funksjoner();
         
-        
+        request.getParameter("knappTilAbonnement");
         
         if("Abonner".equals(request.getParameter("knappTilAbonnement"))){
             model.addAttribute("knappTilAbonnement", si);           
