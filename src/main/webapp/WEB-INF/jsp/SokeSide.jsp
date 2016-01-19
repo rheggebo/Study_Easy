@@ -43,8 +43,6 @@
     </ul></div>
     
 <div class="searchInfo">
-    
-    
    
     <table>
 
