@@ -74,7 +74,8 @@ public class DBConnectionImpl implements DBConnection{
     private final String getRomTypeStorrelse = "SELECT type, størrelse FROM rom WHERE type=? AND størrelse=?;";
     private final String getRom = "SELECT * FROM rom WHERE romID=?";
     
-    private final String leggTilAbonemennt = "INSERT INTO ? (eierID, ?) VALUES (?, ?)";
+    private final String leggTilAbonemenntBruker = "INSERT INTO abonemennt_bruker (eierID, brukerID) VALUES (?, ?)";
+    private final String leggTilAbonemenntFag = "INSERT INTO abonemennt_fag (eierID, fagID) VALUES (?, ?)";
     private final String getAbonemenntFraBruker = "SELECT abonemennt_bruker.eierID, abonemennt_bruker.brukerID AS abonererId, 0 AS abType FROM abonemennt_bruker WHERE abonemennt_bruker.eierID =? UNION "
             + "SELECT abonemennt_fag.eierID, abonemennt_fag.fagID AS abonererId, 1 AS abType FROM abonemennt_fag WHERE abonemennt_fag.eierID =?";
     private final String getAlleBestillingerFraBruker = "SELECT rom_bestilling.eierID, rom_bestilling.romID, rom_bestilling.dato_start, rom_bestilling.dato_slutt FROM rom_bestilling WHERE rom_bestilling.eierID =?";
@@ -450,19 +451,14 @@ public class DBConnectionImpl implements DBConnection{
     
     @Override
     public boolean leggTilAbonemennt(Abonemennt ab){
-        String table = "";
-        String navn = "";
+        String bruk = "";
         if (ab.getType() == 0){
-            table = "abonemennt_bruker";
-            navn = "eierID";
+            bruk = leggTilAbonemenntBruker;
         }
         else{
-            table = "abonemennt_fag";
-            navn = "fagID";
+            bruk = leggTilAbonemenntFag;
         }
-        int antallRader = jT.update(leggTilAbonemennt,new Object[]{
-            table,
-            navn,
+        int antallRader = jT.update(bruk,new Object[]{
             ab.getEierid(),
             ab.getAbonererId()
         });
