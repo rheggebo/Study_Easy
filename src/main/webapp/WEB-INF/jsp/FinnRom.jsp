@@ -25,10 +25,9 @@
                 <dl>
                     <dt><label for="romtypeFinnRom">Romtype:<em>*</em></label></dt>
                     <dd><select id="romtypeFinnRom" name="romtype" required >
-                        <option value="forelesingssal">Forelesingssal</option>
-                        <option value="møterom">Møterom</option>
+                        <option value="forelesningssal">Forelesingssal</option>
+                        <option value="moterom">Møterom</option>
                         <option value="grupperom">Grupperom</option>
-                        <option value="klasserom">Klasserom</option>
                     </select>
 
                     </dd>
@@ -48,7 +47,7 @@
                     
 
                     <dt><label for="datoFinnRom">Dato:<em>*</em></label></dt>
-                    <dd><input id="datoFinnRom" type="date" name="fraDato" required></dd>
+                    <dd><input id="datoFinnRom" type="date" name="fraDato" value="${fraDato}" required></dd>
                     
                     <dt><label for="fraTid">Tid fra:<em>*</em></label></dt>
                     <dd><select id="fraTid" name="fraTid" required>

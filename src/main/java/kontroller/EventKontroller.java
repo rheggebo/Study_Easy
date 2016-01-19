@@ -85,7 +85,7 @@ public class EventKontroller {
         ke.setRom(rom.getRomNavn());
         ke.setType(brukerb.getTilgangsniva());
         int fra = Integer.parseInt(fraTid)+5;
-        int til = Integer.parseInt(tilTid)+5;
+        int til = Integer.parseInt(tilTid)+6;
         if(brukerb.getTilgangsniva()<1){
             tilDato = fraDato;
         }
@@ -107,17 +107,19 @@ public class EventKontroller {
         if(storrelse){
             rom.setStorrelse(storrelseNum);
         }
-        if(romtype.equals("Forelesningssal")){
+        System.out.println(romtype);
+        if(romtype.equalsIgnoreCase("Forelesningssal")){
             rom.setType(3);
-        }else if(romtype.equals("Møterom")){
+        }else if(romtype.equalsIgnoreCase("Møterom")){
             rom.setType(2);
-        }else if(romtype.equals("Grupperom")){
+        }else if(romtype.equalsIgnoreCase("Grupperom")){
             rom.setType(1);
         }
         rom.setInnhold(innhold);
         List<Rom> liste = service.getRom(rom, ke, storrelse, sitteplass);
         model.addAttribute("liste", liste);
         model.addAttribute("rom", rom);
+        model.addAttribute("fraDato", fraDato);
         /*ke.setNotat(notat);
         ke.setTittel(tittel);*/
         return "FinnRom";

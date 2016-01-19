@@ -89,10 +89,10 @@ public class DBConnectionImpl implements DBConnection{
     
     private final String getRom0Param = "SELECT DISTINCT rom.romID, romnavn, etasje, størrelse, type, sitteplasser FROM rom LEFT OUTER JOIN rom_innhold ON rom.romID = rom_innhold.romID LEFT OUTER JOIN " +
         "rom_bestilling ON rom.romID = rom_bestilling.romID " +
-        "WHERE (rom.type <=? AND dato_slutt NOT BETWEEN ? AND ? AND " +
-        "dato_start NOT BETWEEN ? AND ?  OR rom_bestilling.romID IS NULL)";
+        "WHERE (rom.type LIKE ? AND dato_slutt NOT BETWEEN ? AND ? AND " +
+        "dato_start NOT BETWEEN ? AND ?  OR rom_bestilling.romID IS NULL AND rom.type LIKE ?)";
     
-    private final String getRom1Param = getRom0Param +" AND (rom_innhold.innholdID LIKE '?' AND rom_innhold.antall>=?)";
+    private final String getRom1Param = getRom0Param +" AND (rom_innhold.innholdID LIKE ? AND rom_innhold.antall>=?)";
     private final String getRom2Param = getRom1Param +getRom1Param;
     private final String getRom3Param = getRom1Param +getRom1Param+getRom1Param;
     private final String getRom4Param = getRom1Param +getRom1Param+getRom1Param+getRom1Param;
@@ -548,16 +548,19 @@ public class DBConnectionImpl implements DBConnection{
             ke.getSluttTid(),
             ke.getStartTid(),
             ke.getSluttTid(),
+            r.getType(),
             r.getStorrelse(),
             r.getAntStolplasser()
             }, new RomMapper());
         }else if(sitteplasser){
+            System.out.println(getRom0Param+" "+getRomPlasser+" "+r.getAntStolplasser());
             return jT.query(getRom0Param+getRomPlasser, new Object[]{
             r.getType(),
             ke.getStartTid(),
             ke.getSluttTid(),
             ke.getStartTid(),
             ke.getSluttTid(),
+            r.getType(),
             r.getAntStolplasser()
             }, new RomMapper());
         }else if(storrelse){
@@ -567,15 +570,18 @@ public class DBConnectionImpl implements DBConnection{
             ke.getSluttTid(),
             ke.getStartTid(),
             ke.getSluttTid(),
+            r.getType(),
             r.getStorrelse()
             }, new RomMapper());
         }
+        System.out.println("Romtype "+r.getType()+" "+ke.getStartTid()+" "+ke.getSluttTid());
         return jT.query(getRom0Param, new Object[]{
             r.getType(),
             ke.getStartTid(),
             ke.getSluttTid(),
             ke.getStartTid(),
-            ke.getSluttTid()
+            ke.getSluttTid(),
+            r.getType()
         }, new RomMapper());
     }
 
@@ -595,6 +601,7 @@ public class DBConnectionImpl implements DBConnection{
             ke.getSluttTid(),
             ke.getStartTid(),
             ke.getSluttTid(),
+            r.getType(),
             tab.get(0),
             tab.get(1),
             r.getStorrelse(),
@@ -607,6 +614,7 @@ public class DBConnectionImpl implements DBConnection{
             ke.getSluttTid(),
             ke.getStartTid(),
             ke.getSluttTid(),
+            r.getType(),
             tab.get(0),
             tab.get(1),
             r.getAntStolplasser()
@@ -618,6 +626,7 @@ public class DBConnectionImpl implements DBConnection{
             ke.getSluttTid(),
             ke.getStartTid(),
             ke.getSluttTid(),
+            r.getType(),
             tab.get(0),
             tab.get(1),
             r.getStorrelse()
@@ -629,6 +638,7 @@ public class DBConnectionImpl implements DBConnection{
             ke.getSluttTid(),
             ke.getStartTid(),
             ke.getSluttTid(),
+            r.getType(),
             tab.get(0),
             tab.get(1)
         }, new RomMapper());
@@ -651,6 +661,7 @@ public class DBConnectionImpl implements DBConnection{
             ke.getSluttTid(),
             ke.getStartTid(),
             ke.getSluttTid(),
+            r.getType(),
             tab.get(0),
             tab.get(1),
             tab.get(2),
@@ -665,6 +676,7 @@ public class DBConnectionImpl implements DBConnection{
             ke.getSluttTid(),
             ke.getStartTid(),
             ke.getSluttTid(),
+            r.getType(),
             tab.get(0),
             tab.get(1),
             tab.get(2),
@@ -678,6 +690,7 @@ public class DBConnectionImpl implements DBConnection{
             ke.getSluttTid(),
             ke.getStartTid(),
             ke.getSluttTid(),
+            r.getType(),
             tab.get(0),
             tab.get(1),
             tab.get(2),
@@ -691,6 +704,7 @@ public class DBConnectionImpl implements DBConnection{
             ke.getSluttTid(),
             ke.getStartTid(),
             ke.getSluttTid(),
+            r.getType(),
             tab.get(0),
             tab.get(1),
             tab.get(2),
@@ -714,6 +728,7 @@ public class DBConnectionImpl implements DBConnection{
             ke.getSluttTid(),
             ke.getStartTid(),
             ke.getSluttTid(),
+            r.getType(),
             tab.get(0),
             tab.get(1),
             tab.get(2),
@@ -730,6 +745,7 @@ public class DBConnectionImpl implements DBConnection{
             ke.getSluttTid(),
             ke.getStartTid(),
             ke.getSluttTid(),
+            r.getType(),
             tab.get(0),
             tab.get(1),
             tab.get(2),
@@ -745,6 +761,7 @@ public class DBConnectionImpl implements DBConnection{
             ke.getSluttTid(),
             ke.getStartTid(),
             ke.getSluttTid(),
+            r.getType(),
             tab.get(0),
             tab.get(1),
             tab.get(2),
@@ -760,6 +777,7 @@ public class DBConnectionImpl implements DBConnection{
             ke.getSluttTid(),
             ke.getStartTid(),
             ke.getSluttTid(),
+            r.getType(),
             tab.get(0),
             tab.get(1),
             tab.get(2),
@@ -785,6 +803,7 @@ public class DBConnectionImpl implements DBConnection{
             ke.getSluttTid(),
             ke.getStartTid(),
             ke.getSluttTid(),
+            r.getType(),
             tab.get(0),
             tab.get(1),
             tab.get(2),
@@ -803,6 +822,7 @@ public class DBConnectionImpl implements DBConnection{
             ke.getSluttTid(),
             ke.getStartTid(),
             ke.getSluttTid(),
+            r.getType(),
             tab.get(0),
             tab.get(1),
             tab.get(2),
@@ -820,6 +840,7 @@ public class DBConnectionImpl implements DBConnection{
             ke.getSluttTid(),
             ke.getStartTid(),
             ke.getSluttTid(),
+            r.getType(),
             tab.get(0),
             tab.get(1),
             tab.get(2),
@@ -837,6 +858,7 @@ public class DBConnectionImpl implements DBConnection{
             ke.getSluttTid(),
             ke.getStartTid(),
             ke.getSluttTid(),
+            r.getType(),
             tab.get(0),
             tab.get(1),
             tab.get(2),
