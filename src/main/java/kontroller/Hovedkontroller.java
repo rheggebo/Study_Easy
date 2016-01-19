@@ -74,6 +74,14 @@ public class Hovedkontroller {
         return "Innlogging";
     }
     
+    @RequestMapping(value="Abonnement")
+    public String getSlettAbonnement(HttpSession sess, Model model, HttpServletRequest req) {
+        if("Slett".equals(req.getParameter("slettAbKnapp"))) {
+            
+        }
+        return "MinSide";
+    }
+    
     @RequestMapping("VelgRom")
     public String velgRom(HttpSession sess, Model model){
         BrukerB brukerb = (BrukerB) sess.getAttribute("brukerBean");
