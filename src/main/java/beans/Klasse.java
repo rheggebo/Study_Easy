@@ -13,6 +13,10 @@ public class Klasse {
     public void setFag(ArrayList<Fag> fag) {
         this.fag = fag;
     }
+    
+    public void addFag(Fag fag) {
+        this.fag.add(fag);
+    }
 
     public String getNavn() {
 

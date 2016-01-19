@@ -15,10 +15,11 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">        
     </head>
     <body>
-        HEIHEI
+        <div>
+            
+        </div>
     </body>
 </html>
