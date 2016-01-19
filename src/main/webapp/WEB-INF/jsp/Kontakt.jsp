@@ -7,27 +7,45 @@
 <main>  
     <details>
         <summary>
-            <p1><b>Systemansvarlig <br> Stein-Erik Bjørnnes</b></p1>
+            <p1>&Sc; Systemansvarlig<dd>Stein Erik Bjørnnes</dd></p1> 
         </summary>
-        <p2><dt>
-            <br><b>Kontaktinformasjon</b><br>
-            Tlf:    994 75 118<br>
-            E-post: steinerikbjornnes@gmail.com<br>
-        </dt></p2>
-    </details>
-
-    <br><br>
-
+        <dl>
+            <p2>
+                <dd><b>Kontaktinformasjon:</b></dd>
+                <dd>Tlf:    994 75 118</dd>
+                <dd>E-post: steinerikbjornnes@gmail.com</dd>
+            </p2>
+        </dl>
+     </details>
+    
+    <br>
+    
     <details>
-        <summary><p1><b>Databaseansvarlig <br> Arne Røen</b>
-            </p1>
+        <summary>
+            <p1>&Sc; Databaseansvarlig<dd>Arne Røen</dd></p1>
         </summary>
-        <p2>
-            <dt>
-            <br><b>Kontaktinformasjon</b><br>
-            Tlf:    994 75 118<br>
-            E-post: steinerikbjornnes@gmail.com<br>
-        </dt>
-        </p2>
-        </details>
-    </main>
+        <dl>
+            <p2>
+                <dd><b>Kontaktinformasjon:</b></dd>
+                <dd>Tlf:    900 00 000</dd>
+                <dd>Adresse: Øvre Flatåsvei 71A</dd>
+            </p2>
+        </dl>
+     </details>
+    
+    <br>
+    
+    <details>
+        <summary>
+            <p1>&Sc; &nbsp Utviklerteamet<p1> 
+        </summary>
+        <br>
+            <p2>
+                <dd>Ingvild Gravem</dd>
+                <dd>Ane Sæther</dd>
+                <dd>Sigrid Rein Trustrup</dd>
+                <dd>Kasper Røstvold</dd>
+                <dd>Henrik Bjørkheim</dd>
+                <dd>Erlend Kummeneje Steinset</dd>
+            </p2>
+     </details>
