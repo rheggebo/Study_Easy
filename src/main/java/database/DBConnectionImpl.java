@@ -228,12 +228,10 @@ public class DBConnectionImpl implements DBConnection{
     public List<Klasse> getKlasseSok(String sokeord1) {
         List<Klasse> dbListe =  jT.query(getKlasseSok, new Object[]{sokeord1}, new KlasseFagMapper());
         ArrayList<Klasse> klasseListe = new ArrayList<Klasse>();
-        Klasse klasse;
         boolean finnes = true;
         
         //går gjennom listen hentet fra databasen
         for (int i = 0; i < dbListe.size(); i++) {
-            klasse = new Klasse();
             finnes = false;
             
             //går gjennom den nye listen som skal bli den ferdige listen
