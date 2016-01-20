@@ -123,6 +123,8 @@ public class EventKontroller {
         model.addAttribute("event", ke);
         model.addAttribute("fraDato", fraDato);
         sess.setAttribute("asd", ke);
+        model.addAttribute("sitte", sitteplass);
+        System.out.println(sitteplass);
         /*ke.setNotat(notat);
         ke.setTittel(tittel);*/
         return "FinnRom";

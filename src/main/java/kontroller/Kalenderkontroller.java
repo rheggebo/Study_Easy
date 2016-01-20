@@ -87,6 +87,7 @@ public class Kalenderkontroller {
         for (RomBestilling bestilling : bestillinger){
             String start = "" + bestilling.getStartDato();
             String slutt = "" + bestilling.getSluttDato();
+            
             String descr = "Rom: <a href='" + bestilling.getRomId() + "'>" + bestilling.getRomId() + "</a>";
             descr += "<br>Fra: " + start + "<br>Til: " + slutt;
             

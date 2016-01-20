@@ -11,9 +11,12 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
 
 /**
  *
@@ -26,32 +29,50 @@ public class LeggTilBrukerTest {
     @Test
     public void SokeSide() throws Throwable {   
         
+        Actions action = new Actions(driver);
+        
         driver.get("http://localhost:8084/Study_Easy/");
         
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         driver.findElement(By.id("epostInnlogging")).sendKeys("erlendksteinset@hotmail.com");
         
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         driver.findElement(By.id("passordInnlogging")).sendKeys(".kT?0*CZC_"); 
         
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         driver.findElement(By.id("loggInnKnapp")).click(); 
         
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         driver.findElement(By.id("minSide")).click(); 
-   
-        Thread.sleep(2000);
+        
+        Thread.sleep(1000);
         driver.findElement(By.id("leggTilBruker")).click();
         
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         driver.findElement(By.id("fornavn")).sendKeys("Ling"); 
         
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         driver.findElement(By.id("etternavn")).sendKeys("Ling"); 
         
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         driver.findElement(By.id("epost")).sendKeys("erlendksteinset@hotmail.com"); 
         
+        Thread.sleep(1000);
+        driver.findElement(By.id("tilgangnivaa")).click();
+        
+        //Thread.sleep(2000);
+        //driver.findElement(By.id("timeplansansvarligOption")).click();
+        
+        Thread.sleep(2000);
+        driver.findElement(By.name("timeplansansvarligOption")).click();
+        
+        WebElement element=driver.findElement(By.id("timeplansansvarligOption"));
+        action.doubleClick(element).perform();
+        
+        
+        Thread.sleep(2000);
+        driver.findElement(By.id("leggTil")).click();
+                        
         Thread.sleep(2000);        
     }
     
