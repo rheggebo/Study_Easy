@@ -42,7 +42,7 @@
         
         <form:form modelAttribute="abonemenntListe" action="Abonnement">
         <fieldset>
-            <legend>Fag</legend>
+            <legend>Fag </legend>
             <div class="tab">
                 <table>
                 <c:forEach var="abliste" items="${abonemenntListe}">
@@ -62,51 +62,35 @@
 
         <fieldset>
             <legend>Bruker abonnement</legend>
-                <c:forEach var="abliste" items="${abonemenntListe}">
-                    <c:if test="${abliste.getType() == 0}">
-                        <c:out value ="${abliste}"></c:out>
-                        <input class="slettKnapp" type="submit" name="slettAbKnapp" value="Slett"/><br>
-                            
-                    </c:if>
-                </c:forEach>
-        </fieldset>
-        </form:form>
             
-        <fieldset>
-            <legend>Romreservasjoner</legend>
-            <section class="searchInfo">
-                <table>
-                    <c:forEach var="resliste" items="${reservasjonsliste}">
-                        <tr>
-                            <td><c:out value="${resliste}"></c:out><input class="oversikt" type="submit" value="Slett"/></td>
-                        </tr>
-                    </c:forEach>
-                </table>
-            </section>
             <div class="tab">
                 <table>
-                <c:forEach var="abliste" items="${abonemenntListe}">                   
+                <c:forEach var="abliste" items="${abonemenntListe}">
                     <c:if test="${abliste.getType() == 0}">
                     <tr>
                         <td>
-                        <c:out value ="${abliste}" ></c:out>
-                        <input class="slettknapp" type="submit" name="slettAbKnapp" value="Slett"/><br>                                                 
-                        </td>
-                    </tr>
-                    </c:if> 
-                        
+                        <c:out value ="${abliste}"></c:out>
+                        <input class="slettknapp" type="submit" name="slettAbKnapp" value="Slett"/><br>
+                          </td>
+                    </tr>  
+                    </c:if>
                 </c:forEach>
-                       
                 </table>
-            </div>       
+            </div>
                        
         </fieldset>
         </form:form>
             
         <fieldset>
             <legend>Romreservasjoner</legend>
-
+            <section class="tab">
+                <table>
+                    <c:forEach var="resliste" items="${reservasjonsliste}">
+                        <tr>
+                            <td><c:out value="${resliste}"></c:out><input class="slettknapp" type="submit" value="Slett"/></td>
+                        </tr>
+                    </c:forEach>
+                </table>
+            </section>           
         </fieldset>
-
-    
 </main>
