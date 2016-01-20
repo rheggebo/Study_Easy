@@ -117,7 +117,10 @@ public class Kalenderkontroller {
             }
             
         }
-
+        vis[0] = true;
+        vis[1] = true;
+        vis[2] = true;
+        vis[3] = true;
         // Write JSON string.
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
