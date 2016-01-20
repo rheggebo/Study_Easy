@@ -49,4 +49,8 @@ public class RomBestilling {
         this.tilhorerEvent = tilhorerEvent;
     }
     
+    public String toString(){
+        return "Rom: "+romId+" Start-tid: "+startDato+" Slutt-tid "+sluttDato;
+    }
+    
 }

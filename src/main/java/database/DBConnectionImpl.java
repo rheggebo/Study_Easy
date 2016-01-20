@@ -122,7 +122,7 @@ public class DBConnectionImpl implements DBConnection{
         "WHERE (rom.type <= ? AND ? NOT BETWEEN dato_start AND dato_slutt AND " +
         "? NOT BETWEEN dato_start AND dato_slutt  OR rom_bestilling.romID IS NULL AND rom.type <= ?)";
     
-    private final String getReserverteRom = "SELECT DISTINCT romID, dato_start, dato_slutt FROM rom_bestilling WHERE eierID LIKE ? AND "
+    private final String getReserverteRom = "SELECT DISTINCT * FROM rom_bestilling WHERE eierID LIKE ? AND "
             + "(dato_start >= ? OR (? BETWEEN dato_start AND dato_slutt))";
     
     private DataSource dS;
@@ -912,12 +912,12 @@ public class DBConnectionImpl implements DBConnection{
     }
     
     @Override
-    public List<Rom> getReserverteRom(KalenderEvent ke){
+    public List<RomBestilling> getReserverteRom(KalenderEvent ke){
         return jT.query(getReserverteRom, new Object[]{
             ke.getEpost(),
             ke.getStartTid(),
             ke.getStartTid()
-        }, new RomMapper());
+        }, new RomBestillingMapper());
     }
     //ke.getSluttTid()
 }

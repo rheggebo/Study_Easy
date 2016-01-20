@@ -6,6 +6,7 @@ import beans.BrukerB;
 import beans.KalenderEvent;
 import beans.Passord;
 import beans.Rom;
+import beans.RomBestilling;
 import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Date;
@@ -76,7 +77,7 @@ public class Hovedkontroller {
             ke.setEpost(brukerb.getEpost());
             Date dato = Calendar.getInstance().getTime();
             ke.setStartTid(new Timestamp(dato.getTime()));
-            List<Rom> eventListe = service.getReserverteRom(ke);
+            List<RomBestilling> eventListe = service.getReserverteRom(ke);
             model.addAttribute("reservasjonsliste", eventListe);
             return "MinSide";
         }

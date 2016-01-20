@@ -116,6 +116,6 @@ public interface Service {
     
     public List<Rom> getRomSVG(KalenderEvent ke);
     
-    public List<Rom> getReserverteRom(KalenderEvent ke);
+    public List<RomBestilling> getReserverteRom(KalenderEvent ke);
     
 }

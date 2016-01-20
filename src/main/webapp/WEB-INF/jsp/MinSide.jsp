@@ -72,9 +72,15 @@
             
         <fieldset>
             <legend>Romreservasjoner</legend>
-                <c:forEach var="resliste" items="${reservasjonsliste}">
-                    <c:out value="${resliste}"></c:out><input class="slettKnapp" type="submit" value="Slett"/>
-                </c:forEach>
+            <section class="searchInfo">
+                <table>
+                    <c:forEach var="resliste" items="${reservasjonsliste}">
+                        <tr>
+                            <td><c:out value="${resliste}"></c:out><input class="slettKnapp" type="submit" value="Slett"/></td>
+                        </tr>
+                    </c:forEach>
+                </table>
+            </section>
         </fieldset>
 
     
