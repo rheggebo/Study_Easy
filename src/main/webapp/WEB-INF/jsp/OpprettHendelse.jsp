@@ -12,8 +12,16 @@
         <dl>
             <form:form action="OpprettHendelse" modelAttribute="nyHendelse">
                 
-            <dt><label for="Navn">Navn:<em>*</em></label></dt>
-            <dd><form:input id="navn" type="text" name="navn" placeholder="Skriv inn navn her" autofocus="true" required="true" path="tittel"/></dd>
+            <dt><label for="tittel">Navn:<em>*</em></label></dt>
+            <dd><form:input id="tittel" type="text" name="tittel" placeholder="Skriv inn navn her" autofocus="true" required="true" path="tittel"/></dd>
+            <dt><label for="startdato">Start dato:<em>*</em></label></dt>
+            <dd><input id ="startdato" type="date" name="startdato" required="true"/> </dd>
+            <dt><label for="starttid"> Start tid:<em>*</em></label></dt>
+            <dd><input id="starttid" type="time" name="starttid" required="true"/></dd>
+            <dt><label for="sluttdato">Slutt dato:<em>*</em></label></dt>
+            <dd><input id="sluttdato" type="date" name="sluttdato" required="true"/></dd>
+            <dt><label for="slutttid">Slutt tid:<em>*</em></label></dt>
+            <dd><input id="slutttid" type="time" name="slutttid" required="true"/></dd>
 
             <dt><label for="privatOffentlig">Privat/Offentlig:<em>*</em></label></dt>
             <dd><select name="valg" id="valg" required="true">
