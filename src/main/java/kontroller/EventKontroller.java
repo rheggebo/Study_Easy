@@ -8,9 +8,11 @@ package kontroller;
 import beans.Abonemennt;
 import beans.BrukerB;
 import beans.KalenderEvent;
+import beans.NyEvent;
 import beans.Rom;
-import beans.RomBestilling;
+import java.sql.Time;
 import java.sql.Timestamp;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -28,6 +30,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import service.Service;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  *
@@ -48,11 +51,34 @@ public class EventKontroller {
     @RequestMapping(value="omvei")
     public String omvei(HttpSession sess, Model model){
         
-        model.addAttribute("nyHendelse", new KalenderEvent());
+        model.addAttribute("nyHendelse", new NyEvent());
         return "OpprettHendelse";
     }
     @RequestMapping(value="OpprettHendelse")
-    public String opprettHendelse(@ModelAttribute("nyHendelse") KalenderEvent event, HttpSession sess, Model model){
+    public String opprettHendelse(@ModelAttribute("nyHendelse") KalenderEvent event, @RequestParam("notat")String notat, @RequestParam("valg")String off, @RequestParam("startdato")Date startDato, @RequestParam("starttid")String startTid, @RequestParam("sluttdato")Date sluttDato, @RequestParam("starttid")String sluttTid, HttpSession sess, HttpServletResponse response, Model model, HttpServletRequest request){
+        String stampString = "" + new Timestamp(startDato.getTime());
+        stampString = (stampString.split(" "))[0] + " " + startTid + ":00";
+        Timestamp start = Timestamp.valueOf(stampString);
+        
+        stampString = "" + new Timestamp(sluttDato.getTime());
+        stampString = (stampString.split(" "))[0] + " " + startTid + ":00";
+        Timestamp slutt = Timestamp.valueOf(stampString);
+        
+        //false er offentlig, true er privat
+        boolean privat = false;
+        if (off.equals("Privat")){
+            privat = true;
+        }
+        
+        if (slutt.before(start)){
+            //nei
+        }
+        event.setStartTid(start);
+        event.setSluttTid(slutt);
+        event.setPrivat(privat);
+        System.out.println(notat);
+        
+        
         
         return "OpprettHendelse";
     }

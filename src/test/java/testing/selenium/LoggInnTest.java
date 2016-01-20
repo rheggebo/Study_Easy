@@ -76,6 +76,7 @@ public class LoggInnTest {
     
     @After
     public void tearDown() {
+        driver.close();
     }
 
     // TODO add test methods here.

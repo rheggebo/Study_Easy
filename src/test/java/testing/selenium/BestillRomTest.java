@@ -20,7 +20,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
  * @author Ingvild
  */
 public class BestillRomTest {
-     WebDriver driver = new FirefoxDriver();     
+        WebDriver driver = new FirefoxDriver();     
     
     
     @Test
