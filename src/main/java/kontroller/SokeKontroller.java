@@ -59,6 +59,8 @@ public class SokeKontroller {
            out.println("<td>" + fu.liste.get(i).toString() + "<td>");          
         }
         model.addAttribute("bruker", new BrukerB());
+        model.addAttribute("resultat", new SokeValg());
+
 
         return "SokeSide";  
     }  

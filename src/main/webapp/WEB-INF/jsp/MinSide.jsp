@@ -43,29 +43,41 @@
         <form:form modelAttribute="abonemenntListe" action="Abonnement">
         <fieldset>
             <legend>Fag</legend>
-            
+            <div class="tab">
+                <table>
                 <c:forEach var="abliste" items="${abonemenntListe}">
                     <c:if test="${abliste.getType() == 1}">
+                    <tr>
+                        <td>
                         <c:out value ="${abliste}"></c:out>
                         <input class="slettknapp" type="submit" name="slettAbKnapp" value="Slett"/><br>
-                            
+                          </td>
+                    </tr>  
                     </c:if>
                 </c:forEach>
-            
+                </table>
+            </div>
 
         </fieldset>
 
         <fieldset>
             <legend>Bruker abonnement</legend>
-            
-                <c:forEach var="abliste" items="${abonemenntListe}">
+            <div class="tab">
+                <table>
+                <c:forEach var="abliste" items="${abonemenntListe}">                   
                     <c:if test="${abliste.getType() == 0}">
-                        <c:out value ="${abliste}"></c:out>
-                        <input class="slettknapp" type="submit" name="slettAbKnapp" value="Slett"/><br>
-                            
-                    </c:if>
+                    <tr>
+                        <td>
+                        <c:out value ="${abliste}" ></c:out>
+                        <input class="slettknapp" type="submit" name="slettAbKnapp" value="Slett"/><br>                                                 
+                        </td>
+                    </tr>
+                    </c:if> 
+                        
                 </c:forEach>
-                   
+                       
+                </table>
+            </div>       
                        
         </fieldset>
         </form:form>

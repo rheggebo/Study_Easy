@@ -44,7 +44,6 @@
                 </c:if>
 <div class="searchInfo">
     <table>
-
             <c:forEach var="liste" items="${liste}">
                 <tr>
                     <td><c:out value="${liste}"></c:out>

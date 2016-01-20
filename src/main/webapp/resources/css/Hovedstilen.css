@@ -359,5 +359,12 @@ span[class*="fontawesome-"]:before {
     margin: 2px;
     font-family: Microsoft YaHei Light;  
     cursor: pointer;
-    
+    float: right;
+}
+.tab table td{
+    border-bottom: solid black 1px;
+    border-top: solid black 1px;
+}
+.tab table{
+    width:800px;
 }
