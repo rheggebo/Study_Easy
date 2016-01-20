@@ -68,6 +68,9 @@ public class Hovedkontroller {
             model.addAttribute("bruker", brukerb);
             List<Abonemennt> liste = service.getAbonemenntFraBruker(brukerb);
             model.addAttribute("abonemenntListe", liste);
+            KalenderEvent ke = new KalenderEvent();
+            
+            List<Rom> liste = service.getReserverteRom();
             return "MinSide";
         }
         model.addAttribute("bruker", new Bruker());

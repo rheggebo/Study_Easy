@@ -115,12 +115,15 @@ public class DBConnectionImpl implements DBConnection{
     private final String getKlasseFagSok = "SELECT DISTINCT klasseID FROM klasse_fag WHERE klasseID LIKE ?";
     private final String getKlasseSok = "SELECT * FROM klasse_fag WHERE klasseID LIKE ?";
     
-    private final String leggTilBooking = "INSERT INTO rom_bestilling (romID, dato_start, dato_slutt, eierID) VALUES (?,?,?,?)";
+    private final String leggTilBooking = "INSERT INTO rom_bestilling (romID, dato_start, dato_slutt, eierID, tilhorer_event) VALUES (?,?,?,?,?)";
     
     private final String getRomSVG = "SELECT DISTINCT rom.romID, romnavn, etasje, størrelse, type, sitteplasser FROM rom LEFT OUTER JOIN rom_innhold ON rom.romID = rom_innhold.romID LEFT OUTER JOIN " +
         "rom_bestilling ON rom.romID = rom_bestilling.romID " +
         "WHERE (rom.type <= ? AND ? NOT BETWEEN dato_start AND dato_slutt AND " +
         "? NOT BETWEEN dato_start AND dato_slutt  OR rom_bestilling.romID IS NULL AND rom.type <= ?)";
+    
+    private final String getReserverteRom = "SELECT DISTINCT romID, dato_start, dato_slutt FROM rom_bestilling WHERE eierID LIKE ? AND "
+            + "(dato_start >= ? OR (? BETWEEN dato_start AND dato_slutt))";
     
     private DataSource dS;
     private JdbcTemplate jT;
@@ -893,7 +896,8 @@ public class DBConnectionImpl implements DBConnection{
             ke.getRom(),
             ke.getStartTid(),
             ke.getSluttTid(),
-            ke.getEpost()
+            ke.getEpost(),
+            ke.getTilhorerEvent()
         }));
     }
     
@@ -906,4 +910,13 @@ public class DBConnectionImpl implements DBConnection{
             ke.getType()
         }, new RomMapper());
     }
+    
+    @Override
+    public List<Rom> getReserverteRom(KalenderEvent ke){
+        return jT.query(getReserverteRom, new Object[]{
+            ke.getEpost(),
+            ke.getStartTid()
+        }, new RomMapper());
+    }
+    //ke.getSluttTid()
 }

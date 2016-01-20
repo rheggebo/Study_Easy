@@ -72,7 +72,9 @@
             
         <fieldset>
             <legend>Romreservasjoner</legend>
-
+                <c:forEach var="resliste" items="${reservasjonsliste}">
+                    <c:out value="${resliste}"></c:out><input class="slettKnapp" type="submit" value="Slett"/>
+                </c:forEach>
         </fieldset>
 
     
