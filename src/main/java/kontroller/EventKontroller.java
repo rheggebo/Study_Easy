@@ -10,6 +10,7 @@ import beans.BrukerB;
 import beans.KalenderEvent;
 import beans.NyEvent;
 import beans.Rom;
+import beans.RomBestilling;
 import java.sql.Time;
 import java.sql.Timestamp;
 import java.text.DateFormat;
