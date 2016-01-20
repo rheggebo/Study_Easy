@@ -84,14 +84,7 @@ public class Hovedkontroller {
         BrukerB brukerb = (BrukerB)sess.getAttribute("brukerBean");
         if(brukerb != null && brukerb.isInnlogget()){
             model.addAttribute("bruker", brukerb);
-            List<Abonemennt> liste = service.getAbonemenntFraBruker(brukerb);
-            model.addAttribute("abonemenntListe", liste);
-            KalenderEvent ke = new KalenderEvent();
-            ke.setEpost(brukerb.getEpost());
-            Date dato = Calendar.getInstance().getTime();
-            ke.setStartTid(new Timestamp(dato.getTime()));
-            List<RomBestilling> eventListe = service.getReserverteRom(ke);
-            model.addAttribute("reservasjonsliste", eventListe);
+            returnerMinSide(model, brukerb);
             model.addAttribute("resultat", new SlettAbonnementValg());
             return "MinSide";
         }
@@ -126,35 +119,11 @@ public class Hovedkontroller {
                     model.addAttribute("meldingBruker", "feilmelding.finnesIkkeAbonnement");
                 }
             }
-            
-            List<Abonemennt> liste = service.getAbonemenntFraBruker(brukerb);
-            KalenderEvent ke = new KalenderEvent();
-            ke.setEpost(brukerb.getEpost());
-            Date dato = Calendar.getInstance().getTime();
-            ke.setStartTid(new Timestamp(dato.getTime()));
-            List<RomBestilling> eventListe = service.getReserverteRom(ke);
-            model.addAttribute("abonemenntListe", liste);
-            model.addAttribute("reservasjonsliste", eventListe);
+            returnerMinSide(model, brukerb);
             model.addAttribute("resultat1", new SlettAbonnementValg());
             return "MinSide";
         } 
-        
-        /*
-        if("Slett".equals(req.getParameter("slettAbKnapp"))) {
-            try {
-                
-            } catch (Exception e) {
-                model.addAttribute("melding", "feilmelding.finnesIkkeAbonnement");
-            }
-        }
-        if("Slett".equals(req.getParameter("slettAbKnapp"))) {
-            try {
-                
-            } catch (Exception e) {
-                model.addAttribute("melding", "feilmelding.finnesIkkeAbonnement");
-            }
-        }
-        */
+
         model.addAttribute("bruker", new Bruker()); 
         return "MinSide";
     }
