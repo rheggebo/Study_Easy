@@ -53,7 +53,7 @@ public class EventKontroller {
         return "OpprettHendelse";
     }
     @RequestMapping(value="OpprettHendelse")
-    public String opprettHendelse(@ModelAttribute("nyHendelse") NyEvent event, @RequestParam("startdato")Date startDato, @RequestParam("starttid")String startTid, @RequestParam("sluttdato")Date sluttDato, @RequestParam("starttid")String sluttTid, HttpSession sess, HttpServletResponse response, Model model, HttpServletRequest request){
+    public String opprettHendelse(@ModelAttribute("nyHendelse") KalenderEvent event, @RequestParam("valg")String off, @RequestParam("startdato")Date startDato, @RequestParam("starttid")String startTid, @RequestParam("sluttdato")Date sluttDato, @RequestParam("starttid")String sluttTid, HttpSession sess, HttpServletResponse response, Model model, HttpServletRequest request){
         String stampString = "" + new Timestamp(startDato.getTime());
         stampString = (stampString.split(" "))[0] + " " + startTid + ":00";
         Timestamp start = Timestamp.valueOf(stampString);
@@ -62,10 +62,18 @@ public class EventKontroller {
         stampString = (stampString.split(" "))[0] + " " + startTid + ":00";
         Timestamp slutt = Timestamp.valueOf(stampString);
         
+        //false er offentlig, true er privat
+        boolean privat = false;
+        if (off.equals("Privat")){
+            privat = true;
+        }
+        
         if (slutt.before(start)){
             //nei
         }
-        
+        event.setStartTid(start);
+        event.setSluttTid(slutt);
+        System.out.println(privat);
         
         
         
