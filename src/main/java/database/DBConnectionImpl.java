@@ -80,7 +80,7 @@ public class DBConnectionImpl implements DBConnection{
     private final String slettAbonemenntBruker = "DELETE FROM abonemennt_bruker WHERE eierID = ? AND fagID = ?";
     private final String getAbonemenntFraBruker = "SELECT abonemennt_bruker.eierID, abonemennt_bruker.brukerID AS abonererId, 0 AS abType FROM abonemennt_bruker WHERE abonemennt_bruker.eierID =? UNION "
             + "SELECT abonemennt_fag.eierID, abonemennt_fag.fagID AS abonererId, 1 AS abType FROM abonemennt_fag WHERE abonemennt_fag.eierID =?";
-    private final String getAlleBestillingerFraBruker = "SELECT rom_bestilling.eierID, rom_bestilling.romID, rom_bestilling.dato_start, rom_bestilling.dato_slutt FROM rom_bestilling WHERE rom_bestilling.eierID =?";
+    private final String getAlleBestillingerFraBruker = "SELECT rom_bestilling.eierID, rom_bestilling.romID, rom_bestilling.dato_start, rom_bestilling.dato_slutt, rom_bestilling.tilhorer_event FROM rom_bestilling WHERE rom_bestilling.eierID =?";
     private final String getAlleEventsFraBruker = 
             "SELECT DISTINCT kalender_event.id, kalender_event.tittel, kalender_event.dato_start, kalender_event.dato_slutt, kalender_event.eier, kalender_event.eier_navn, kalender_event.romID, kalender_event.fagID, kalender_event.type, kalender_event.descr, kalender_event.hidden "
             + "FROM kalender_event, brukere WHERE kalender_event.eier =? UNION "
@@ -115,12 +115,15 @@ public class DBConnectionImpl implements DBConnection{
     private final String getKlasseFagSok = "SELECT DISTINCT klasseID FROM klasse_fag WHERE klasseID LIKE ?";
     private final String getKlasseSok = "SELECT * FROM klasse_fag WHERE klasseID LIKE ?";
     
-    private final String leggTilBooking = "INSERT INTO rom_bestilling (romID, dato_start, dato_slutt, eierID) VALUES (?,?,?,?)";
+    private final String leggTilBooking = "INSERT INTO rom_bestilling (romID, dato_start, dato_slutt, eierID, tilhorer_event) VALUES (?,?,?,?,?)";
     
     private final String getRomSVG = "SELECT DISTINCT rom.romID, romnavn, etasje, størrelse, type, sitteplasser FROM rom LEFT OUTER JOIN rom_innhold ON rom.romID = rom_innhold.romID LEFT OUTER JOIN " +
         "rom_bestilling ON rom.romID = rom_bestilling.romID " +
         "WHERE (rom.type <= ? AND ? NOT BETWEEN dato_start AND dato_slutt AND " +
         "? NOT BETWEEN dato_start AND dato_slutt  OR rom_bestilling.romID IS NULL AND rom.type <= ?)";
+    
+    private final String getReserverteRom = "SELECT DISTINCT * FROM rom_bestilling WHERE eierID LIKE ? AND "
+            + "(dato_start >= ? OR (? BETWEEN dato_start AND dato_slutt))";
     
     private DataSource dS;
     private JdbcTemplate jT;
@@ -893,7 +896,8 @@ public class DBConnectionImpl implements DBConnection{
             ke.getRom(),
             ke.getStartTid(),
             ke.getSluttTid(),
-            ke.getEpost()
+            ke.getEpost(),
+            ke.getTilhorerEvent()
         }));
     }
     
@@ -906,4 +910,14 @@ public class DBConnectionImpl implements DBConnection{
             ke.getType()
         }, new RomMapper());
     }
+    
+    @Override
+    public List<RomBestilling> getReserverteRom(KalenderEvent ke){
+        return jT.query(getReserverteRom, new Object[]{
+            ke.getEpost(),
+            ke.getStartTid(),
+            ke.getStartTid()
+        }, new RomBestillingMapper());
+    }
+    //ke.getSluttTid()
 }

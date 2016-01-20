@@ -16,6 +16,7 @@ public class RomBestilling {
     private Timestamp startDato;
     private Timestamp sluttDato;
     private String eierId;
+    private int tilhorerEvent;
     
     public String getRomId(){
         return romId;
@@ -40,6 +41,16 @@ public class RomBestilling {
     }
     public void setEierId(String eierId){
         this.eierId = eierId;
+    }
+    public int getTilhorerEvent(){
+        return tilhorerEvent;
+    }
+    public void setTilhorerEvent(int tilhorerEvent){
+        this.tilhorerEvent = tilhorerEvent;
+    }
+    
+    public String toString(){
+        return "Rom: "+romId+" Start-tid: "+startDato+" Slutt-tid "+sluttDato;
     }
     
 }

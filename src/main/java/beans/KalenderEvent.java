@@ -15,6 +15,7 @@ public class KalenderEvent {
     private boolean privat;
     private String notat;
     private String tittel;
+    private int tilhorerEvent;
     
     public int getId() {
         return id;
@@ -100,4 +101,13 @@ public class KalenderEvent {
     public void setSluttTid(Timestamp sluttTid){
         this.sluttTid = sluttTid;
     }
+
+    public int getTilhorerEvent() {
+        return tilhorerEvent;
+    }
+
+    public void setTilhorerEvent(int tilhorerEvent) {
+        this.tilhorerEvent = tilhorerEvent;
+    }
+    
 }

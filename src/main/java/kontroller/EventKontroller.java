@@ -42,6 +42,18 @@ public class EventKontroller {
             binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
     }
     
+    @RequestMapping(value="omvei")
+    public String omvei(HttpSession sess, Model model){
+        
+        model.addAttribute("nyHendelse", new KalenderEvent());
+        return "OpprettHendelse";
+    }
+    @RequestMapping(value="OpprettHendelse")
+    public String opprettHendelse(@ModelAttribute("nyHendelse") KalenderEvent event, HttpSession sess, Model model){
+        
+        return "OpprettHendelse";
+    }
+    
     @RequestMapping(value="BestilleRom")
     public String bestilleRom(@ModelAttribute("rom") Rom rom, @RequestParam(required=false, value="privat") boolean privat,
             @RequestParam("startDato")Date startDato, @RequestParam("sluttDato")Date sluttDato, @RequestParam("fag")String fag,
@@ -71,7 +83,7 @@ public class EventKontroller {
     
     @RequestMapping("finnromdata")
     public String finnRom(@ModelAttribute("rom") Rom rom, @RequestParam(value="skjerm", required=false)boolean skjerm, 
-            @RequestParam(value="antSkjerm", required=false)Integer antSkjerm, @RequestParam(value="tavle", required=false)boolean tavle, 
+            @RequestParam(value="antSkjerm", required=false)String antSkjerm, @RequestParam(value="tavle", required=false)boolean tavle, 
             @RequestParam(value="antTavle", required=false)Integer antTavle, @RequestParam(value="sitteplass", required=false)boolean sitteplass, 
             @RequestParam(value="antSitteplass", required=false)Integer antSitteplass, @RequestParam(value="prosjektor", required=false)boolean prosjektor, 
             @RequestParam(value="antProsjektor", required=false)Integer antProsjektor, @RequestParam(value="storrelse", required=false)boolean storrelse, 
@@ -123,6 +135,8 @@ public class EventKontroller {
         model.addAttribute("event", ke);
         model.addAttribute("fraDato", fraDato);
         sess.setAttribute("asd", ke);
+        model.addAttribute("sitte", sitteplass);
+        System.out.println(sitteplass);
         /*ke.setNotat(notat);
         ke.setTittel(tittel);*/
         return "FinnRom";

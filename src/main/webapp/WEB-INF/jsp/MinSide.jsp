@@ -62,6 +62,30 @@
 
         <fieldset>
             <legend>Bruker abonnement</legend>
+            
+                <c:forEach var="abliste" items="${abonemenntListe}">
+                    <c:if test="${abliste.getType() == 0}">
+                        <c:out value ="${abliste}"></c:out>
+                        <input class="slettKnapp" type="submit" name="slettAbKnapp" value="Slett"/><br>
+                            
+                    </c:if>
+                </c:forEach>
+                   
+                       
+        </fieldset>
+        </form:form>
+            
+        <fieldset>
+            <legend>Romreservasjoner</legend>
+            <section class="searchInfo">
+                <table>
+                    <c:forEach var="resliste" items="${reservasjonsliste}">
+                        <tr>
+                            <td><c:out value="${resliste}"></c:out><input class="slettKnapp" type="submit" value="Slett"/></td>
+                        </tr>
+                    </c:forEach>
+                </table>
+            </section>
             <div class="tab">
                 <table>
                 <c:forEach var="abliste" items="${abonemenntListe}">                   
