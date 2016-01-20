@@ -19,10 +19,7 @@
 <jsp:useBean id="sokeord" class="beans.Sok"/>
 <jsp:setProperty name="sokeord" property="*"/>
 
-
-<!DOCTYPE html>
-<html lang="no">
-<body>
+<main>
 <div class="searchNav">
     <ul><form action="search" method="POST"  role="search" modelAttribute="soke">
         <li><div>
@@ -47,7 +44,6 @@
                 </c:if>
 <div class="searchInfo">
     <table>
-
             <c:forEach var="liste" items="${liste}">
                 <tr>
                     <td><c:out value="${liste}"></c:out>
@@ -66,5 +62,4 @@
             </c:forEach>                      
     </table>
 </div>         
-</body>
-</html>
+</main>

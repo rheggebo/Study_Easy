@@ -195,7 +195,7 @@ footer{
 }
 
 .searchNav ul li{
-    margin-top: -230px;
+    margin-top: -20px;
     list-style: none;
     /**height: 100px;**/
     width: 260px;
@@ -352,4 +352,19 @@ span[class*="fontawesome-"]:before {
     padding: 0px; 
     width: 900px;
     
+}
+.slettknapp{
+    width: 70px;
+    height: 23px;
+    margin: 2px;
+    font-family: Microsoft YaHei Light;  
+    cursor: pointer;
+    float: right;
+}
+.tab table td{
+    border-bottom: solid black 1px;
+    border-top: solid black 1px;
+}
+.tab table{
+    width:800px;
 }

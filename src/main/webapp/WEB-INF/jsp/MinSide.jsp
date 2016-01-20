@@ -43,15 +43,20 @@
         <form:form modelAttribute="abonemenntListe" action="Abonnement">
         <fieldset>
             <legend>Fag</legend>
-            
+            <div class="tab">
+                <table>
                 <c:forEach var="abliste" items="${abonemenntListe}">
                     <c:if test="${abliste.getType() == 1}">
+                    <tr>
+                        <td>
                         <c:out value ="${abliste}"></c:out>
                         <input class="slettknapp" type="submit" name="slettAbKnapp" value="Slett"/><br>
-                            
+                          </td>
+                    </tr>  
                     </c:if>
                 </c:forEach>
-            
+                </table>
+            </div>
 
         </fieldset>
 
@@ -78,6 +83,29 @@
                     </c:forEach>
                 </table>
             </section>
+            <div class="tab">
+                <table>
+                <c:forEach var="abliste" items="${abonemenntListe}">                   
+                    <c:if test="${abliste.getType() == 0}">
+                    <tr>
+                        <td>
+                        <c:out value ="${abliste}" ></c:out>
+                        <input class="slettknapp" type="submit" name="slettAbKnapp" value="Slett"/><br>                                                 
+                        </td>
+                    </tr>
+                    </c:if> 
+                        
+                </c:forEach>
+                       
+                </table>
+            </div>       
+                       
+        </fieldset>
+        </form:form>
+            
+        <fieldset>
+            <legend>Romreservasjoner</legend>
+
         </fieldset>
 
     
