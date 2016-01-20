@@ -24,11 +24,17 @@ author:    Sindre
 }
 
 .planRomOpptatt{
-    fill: red;
+    fill: #FFA500;
+
 }
 
 .planRom:hover{
-    fill: blue;
+    fill: #00BFFF;
+    cursor:pointer;
+}
+
+.planRomOpptatt:hover{
+    fill: #FFFF00;
     cursor:pointer;
 }
 .plantegning{

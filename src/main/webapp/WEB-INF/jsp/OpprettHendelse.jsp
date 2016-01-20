@@ -9,7 +9,7 @@
 <main>
     <fieldset style = "width:20%">
         <legend>Ny hendelse</legend>
-        <dl>
+        
             <form:form action="OpprettHendelse" modelAttribute="nyHendelse">
                 
             <dt><label for="tittel">Navn:<em>*</em></label></dt>
@@ -23,13 +23,23 @@
             <dt><label for="slutttid">Slutt tid:<em>*</em></label></dt>
             <dd><input id="slutttid" type="time" name="slutttid" required="true"/></dd>
 
+                    <dt><label for="tilTid">Varighet:<em>*</em></label></dt>
+                    <dd><select id="tilTid" name="varighet" required>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    </select></dd>
+
+                </dl>
             <dt><label for="privatOffentlig">Privat/Offentlig:<em>*</em></label></dt>
             <dd><select name="valg" id="valg" required="true">
                     <option value="Offentlig">Offentlig</option>
                     <option value="Privat">Privat</option>
                 </select>
             </dd>
-        </dl>
+            <dt><label for="Notat">Notat:</label></dt>
+            <textarea id="notat" placeholder="Skriv notat her" name="notat" autofocus="true" rows="10" cols="35" ></textarea>
+            
         <p><input type="submit" value="Legg til" onclick=""></p>
         </form:form>
     </fieldset>

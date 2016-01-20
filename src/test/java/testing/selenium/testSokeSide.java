@@ -168,7 +168,6 @@ public class testSokeSide {
     
     @After
     public void tearDown() {
-        WebDriver driver = new ChromeDriver();
         driver.close();
     }
 }

@@ -60,7 +60,7 @@ public class Rom {
     }
     
     public String toString() {
-        return "Rom: " + romID + " " + romNavn + " etasje: " + etasje + " størrelse: " + storrelse;
+        return "Rom: " + romID + "&#9; " + romNavn + "&#9; etasje: " + etasje + "&#9; størrelse: " + storrelse+"m2&#9; sitteplasser: "+antStolplasser;
     }
     
     public int getAntStolplasser(){

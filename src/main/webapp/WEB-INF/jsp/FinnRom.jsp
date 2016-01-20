@@ -41,7 +41,7 @@
                     <dt><label for="checkboxes">Utstyr:</label></dt>
                     <dd><input class="checkboxes" type="checkbox" id="skjerm" name="skjerm">PC-skjerm<input type="number" id="antSkjerm" name="antSkjerm" min="0" value="0" disabled><br> 
                         <input class="checkboxes" type="checkbox" id="tavle" name="tavle">Tavle<input type="number" id="antTavle" name="antTavle" min="0" value="0" disabled><br> 
-                        <input class="checkboxes" type="checkbox" id="sitteplass" name="sitteplass" checked="${sitte}">Sitteplass<input type="number" id="antSitteplass" name="antSitteplass" min="0" value="0" disabled><br> 
+                        <input class="checkboxes" type="checkbox" id="sitteplass" name="sitteplass">Sitteplass<input type="number" id="antSitteplass" name="antSitteplass" min="0" value="0" disabled><br> 
                         <input class="checkboxes" type="checkbox" id="prosjektor" name="prosjektor">Prosjektor<input type="number" id="antProsjektor" name="antProsjektor" min="0" value="0" disabled><br> 
                     </dd>
                     
@@ -94,7 +94,7 @@
                     <tr>
                         <form:input type="hidden" path="rom" value="${liste}"/>
                         <form:input type="hidden" path="epost"/>
-                        <td><c:out value="${liste}"></c:out><input class=oversikt type='submit' value='Book!'/></td>
+                        <pre><td><c:out value="${liste}"></c:out><input class=slettknapp type='submit' value='Book!'/></td></pre>
                     </tr>
                 </form:form>      
             </c:forEach>                      
