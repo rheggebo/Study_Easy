@@ -71,7 +71,7 @@ public class EventKontroller {
     
     @RequestMapping("finnromdata")
     public String finnRom(@ModelAttribute("rom") Rom rom, @RequestParam(value="skjerm", required=false)boolean skjerm, 
-            @RequestParam(value="antSkjerm", required=false)Integer antSkjerm, @RequestParam(value="tavle", required=false)boolean tavle, 
+            @RequestParam(value="antSkjerm", required=false)String antSkjerm, @RequestParam(value="tavle", required=false)boolean tavle, 
             @RequestParam(value="antTavle", required=false)Integer antTavle, @RequestParam(value="sitteplass", required=false)boolean sitteplass, 
             @RequestParam(value="antSitteplass", required=false)Integer antSitteplass, @RequestParam(value="prosjektor", required=false)boolean prosjektor, 
             @RequestParam(value="antProsjektor", required=false)Integer antProsjektor, @RequestParam(value="storrelse", required=false)boolean storrelse, 
