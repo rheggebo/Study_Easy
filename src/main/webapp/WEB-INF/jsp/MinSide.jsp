@@ -57,7 +57,6 @@
 
         <fieldset>
             <legend>Bruker abonnement</legend>
-            
                 <c:forEach var="abliste" items="${abonemenntListe}">
                     <c:if test="${abliste.getType() == 0}">
                         <c:out value ="${abliste}"></c:out>
@@ -65,8 +64,6 @@
                             
                     </c:if>
                 </c:forEach>
-                   
-                       
         </fieldset>
         </form:form>
             
@@ -76,7 +73,7 @@
                 <table>
                     <c:forEach var="resliste" items="${reservasjonsliste}">
                         <tr>
-                            <td><c:out value="${resliste}"></c:out><input class="slettKnapp" type="submit" value="Slett"/></td>
+                            <td><c:out value="${resliste}"></c:out><input class="oversikt" type="submit" value="Slett"/></td>
                         </tr>
                     </c:forEach>
                 </table>
