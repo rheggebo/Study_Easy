@@ -18,7 +18,7 @@
 </script>
 
 <main>
-    <aside>
+    <div style="display: inline-block">
         <form:form action="finnromdata" modelAttribute="rom" method="post" onsubmit="return validate();">
             <fieldset>
                 <legend>Velg ønsket spesifikasjoner:</legend>
@@ -85,8 +85,43 @@
                 <input type="submit" value="Finn ledig rom">
             </fieldset>
         </form:form>
-    </aside>
+</div>
+    <div style = "display: inline-block; float: right">
+        <fieldset >
+        <legend>Ny hendelse</legend>
+            <input type="checkbox" name="leggtil" value="add" required="true">Opprett hendelse i rom-booking<br>
+            <dt><label for="fornavn">Tittel:<em>*</em></label></dt>
+            <dd><input type="text" placeholder="Skriv tittel her"> 
+                
+            </dd>
+            <dt><label for="privatOffentlig">Privat/Offentlig:<em>*</em></label></dt>
+            <dd><select name="valg" id="valg" required="true">
+                    <option value="Offentlig">Offentlig</option>
+                    <option value="Privat">Privat</option>
+                </select>
+            </dd>
+            <dt><label for="romtypeFinnRom">Type:<em>*</em></label></dt>
+                    <dd><select id="romtypeFinnRom" name="romtype" required >
+                        <option value="forelesningssal">Forelesning</option>
+                        <option value="moterom">Møte</option>
+                        <option value="grupperom">Privat</option>
+                    </select>
 
+            <dt><label for="privatOffentlig">Fag:<em>*</em></label></dt>
+            <dd><select name="valg" id="valg" required="true">
+                    <option value="Fag1">Fag 1</option>
+                    <option value="Fag2">Fag 2</option>
+                    <option value="Fag3">Fag 3</option>
+                    <option value="Fag4">Fag 4</option>
+                </select>
+            </dd>
+            
+            <dt><label for="Notat">Notat:</label></dt>
+            <textarea id="notat" placeholder="Skriv notat her" name="notat" autofocus="true" rows="10" cols="55" ></textarea>
+            
+        <p><input type="submit" value="Legg til" onclick=""></p>
+    </fieldset>
+    </div>
     <section class="searchInfo">
         <table>
             <c:forEach var="liste" items="${liste}" varStatus="status">
