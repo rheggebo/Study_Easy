@@ -77,7 +77,7 @@ public class DBConnectionImpl implements DBConnection{
     private final String leggTilAbonemenntBruker = "INSERT INTO abonemennt_bruker (eierID, brukerID) VALUES (?, ?)";
     private final String leggTilAbonemenntFag = "INSERT INTO abonemennt_fag (eierID, fagID) VALUES (?, ?)";
     private final String slettAbonemenntFag = "DELETE FROM abonemennt_fag WHERE eierID = ? AND fagID = ?";
-    private final String slettAbonemenntBruker = "DELETE FROM abonemennt_bruker WHERE eierID = ? AND fagID = ?";
+    private final String slettAbonemenntBruker = "DELETE FROM abonemennt_bruker WHERE eierID = ? AND brukerID = ?";
     private final String getAbonemenntFraBruker = "SELECT abonemennt_bruker.eierID, abonemennt_bruker.brukerID AS abonererId, 0 AS abType FROM abonemennt_bruker WHERE abonemennt_bruker.eierID =? UNION "
             + "SELECT abonemennt_fag.eierID, abonemennt_fag.fagID AS abonererId, 1 AS abType FROM abonemennt_fag WHERE abonemennt_fag.eierID =?";
     private final String getAlleBestillingerFraBruker = "SELECT rom_bestilling.eierID, rom_bestilling.romID, rom_bestilling.dato_start, rom_bestilling.dato_slutt, rom_bestilling.tilhorer_event FROM rom_bestilling WHERE rom_bestilling.eierID =?";

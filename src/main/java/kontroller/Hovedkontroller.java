@@ -7,11 +7,13 @@ import beans.KalenderEvent;
 import beans.Passord;
 import beans.Rom;
 import beans.RomBestilling;
+import beans.SlettAbonnementValg;
 import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -79,14 +81,54 @@ public class Hovedkontroller {
             ke.setStartTid(new Timestamp(dato.getTime()));
             List<RomBestilling> eventListe = service.getReserverteRom(ke);
             model.addAttribute("reservasjonsliste", eventListe);
+            model.addAttribute("resultat", new SlettAbonnementValg());
             return "MinSide";
         }
         model.addAttribute("bruker", new Bruker());
+
         return "Innlogging";
     }
     
-    @RequestMapping(value="Abonnement")
-    public String getSlettAbonnement(HttpSession sess, Model model, HttpServletRequest req) {
+    @RequestMapping(value="slett")
+    public String getSlettAbonnement(@ModelAttribute("resultat") SlettAbonnementValg sa, HttpSession sess, Model model, HttpServletResponse response, HttpServletRequest req) {
+        BrukerB brukerb = (BrukerB)sess.getAttribute("brukerBean");
+        String valgt = sa.getResultat();
+        if(brukerb != null && brukerb.isInnlogget()){
+            model.addAttribute("bruker", brukerb);
+            if("Slett".equals(req.getParameter("slettFagAbKnapp"))) {
+                //prøver å slette abonemennt med brukerepost og den valgte koden,
+                // fanger exception viss ikke
+                try{
+                    service.slettAbonemennt(new Abonemennt(brukerb.getEpost(), valgt, 1));  
+                }
+                catch(Exception e){
+                    model.addAttribute("meldingFag", "feilmelding.finnesIkkeAbonnement");
+                }
+            }
+            if("Slett".equals(req.getParameter("slettBrukerAbKnapp"))) {
+                //prøver å slette abonemennt med brukerepost og den valgte koden,
+                // fanger exception viss ikke
+                try{
+                    service.slettAbonemennt(new Abonemennt(brukerb.getEpost(), valgt, 0));
+                }
+                catch(Exception e){
+                    model.addAttribute("meldingBruker", "feilmelding.finnesIkkeAbonnement");
+                }
+            }
+            
+            List<Abonemennt> liste = service.getAbonemenntFraBruker(brukerb);
+            KalenderEvent ke = new KalenderEvent();
+            ke.setEpost(brukerb.getEpost());
+            Date dato = Calendar.getInstance().getTime();
+            ke.setStartTid(new Timestamp(dato.getTime()));
+            List<RomBestilling> eventListe = service.getReserverteRom(ke);
+            model.addAttribute("abonemenntListe", liste);
+            model.addAttribute("reservasjonsliste", eventListe);
+            model.addAttribute("resultat1", new SlettAbonnementValg());
+            return "MinSide";
+        } 
+        
+        /*
         if("Slett".equals(req.getParameter("slettAbKnapp"))) {
             try {
                 
@@ -101,6 +143,8 @@ public class Hovedkontroller {
                 model.addAttribute("melding", "feilmelding.finnesIkkeAbonnement");
             }
         }
+        */
+        model.addAttribute("bruker", new Bruker()); 
         return "MinSide";
     }
     
