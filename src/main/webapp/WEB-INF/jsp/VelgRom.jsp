@@ -213,30 +213,28 @@
     
     <script>    
         function erLedig(id){
-           alert("testFunksjon"+id);
             if (("${liste}").indexOf(id) !=-1) {
-                alert(id+"er ledig");
+                //alert(id+" er ledig");
                 return 1;
             }
-            alert(id+"er ikke ledig");
+            //alert(id+" er ikke ledig");
             return -1;
         }
+        
         //Setter Ledig:
             //Første Etasje:
-            var aLedig1 = document.getElementById("plantegningEtasje1");
-            aLedig1.addEventListener("load",function(){
-              var svgDocLedig1 = aLedig1.contentDocument;
-              var elsLedig1 = svgDocLedig1.querySelectorAll(".planRomOpptatt");
-              for (var i = 0, length = elsLedig1.length; i < length; i++) {
-                var deltaLedig1= elsLedig1[i];    
-                 deltaLedig1.addEventListener("click", function(){ 
-                    alert("test");
+            var SVGBilde1 = document.getElementById("plantegningEtasje1");
+            SVGBilde1.addEventListener("load",function(){
+                var SVGContent1 = SVGBilde1.contentDocument;
+                var SVGRom1 = SVGContent1.querySelectorAll(".planRomOpptatt");
+                for (var i = 0, length = SVGRom1.length; i < length; i++) {
+                    var deltaLedig1= SVGRom1[i];    
+                    deltaLedig1.addEventListener("click", function(){ 
                     if(erLedig(this.id)>=0){
-                        alert("Setter planrom");
+                        //alert("Setter planrom");
                         $(this).attr("class","planRom");
                     }}, false);
             }},false);
-
             //Andre etasje:
             var aLedig2 = document.getElementById("plantegningEtasje2");
             aLedig2.addEventListener("load",function(){
@@ -245,9 +243,7 @@
               for (var i = 0, length = elsLedig2.length; i < length; i++) {
                 var deltaLedig2= elsLedig2[i];
                 deltaLedig2.addEventListener("click", function(){ 
-                    alert("test");
                     if(erLedig(this.id)>=0){
-                        alert("Setter planrom");
                         $(this).attr("class","planRom");
                     }}, false);
             }},false);
@@ -259,9 +255,7 @@
               for (var i = 0, length = elsLedig3.length; i < length; i++) {
                 var deltaLedig3= elsLedig3[i];
                 deltaLedig3.addEventListener("click", function(){ 
-                    alert("test");
                     if(erLedig(this.id)>=0){
-                        alert("Setter planrom");
                         $(this).attr("class","planRom");
                     }}, false);
             }},false);
@@ -273,9 +267,7 @@
               for (var i = 0, length = elsLedig4.length; i < length; i++) {
                 var deltaLedig4= elsLedig4[i];
                 deltaLedig4.addEventListener("click", function(){ 
-                    alert("test");
                     if(erLedig(this.id)>=0){
-                        alert("Setter planrom");
                         $(this).attr("class","planRom");
                     }}, false);
             } },false);
