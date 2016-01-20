@@ -5,7 +5,14 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
-
+<!--
+        Dette er kodet inn for våre 4 bilder hvis vi utvider til flere bygninger må vi endre løsning:
+        1. Burde loade inn blider med Jquary i objectene våre. 
+        2. Endre løsning på hvilket bile som er øverst selv om vi kan sikkert bruke zIndex.
+        3. SVG fungerer dårlig i firefox 
+-->
+    
+    
 <main>
     <div id="velgRomSøkeBokser">
         <form action="VelgRomSok" method="post" onsubmit=" return validate();">
@@ -58,6 +65,7 @@
                             <td>Rom-id:</td>
                             <td><label id="rom"> </td>
                         </tr>
+                        <!--
                         <tr>
                             <td>Rom navn:</td>
                             <td><label id="okRomNavn"></label></td>
@@ -70,10 +78,7 @@
                             <td>Plasser:</td>
                             <td><label id="okPlasser"></label></td>
                         </tr>
-                        <tr>
-                            <td>Utstyr:</td>
-                            <td><label id="okUtstyr"></label></td>
-                        </tr>
+                        -->
                         <tr>
                             <td>Dato:</td>
                             <td><label id="okDato"></label></td>
@@ -86,12 +91,15 @@
                             <td>Tid til</td>
                             <td><label id="okTidTil"></label></td>
                         </tr>
+                        <tr>
+                            <td></td>
+                            <td><label>${tilbakeMelding}</label></td>
+                        </tr>
                     </table>
                     <input type="submit" value="Reserver rom">
                 </form>
         </fieldset>
     </div>
-    <div id="musOverNavn"><p id="romNavn"></p></div>
     <div id="velgRomSøkeSVG">
         <object id="plantegningEtasje1" class="pantegningObject" style="z-index:9;"
                 data="<c:url value="/resources/SVG/plantegningE1.svg"/>"> Din nettleser støtter ikke SVG </object>
@@ -126,20 +134,12 @@
             </button>
         </li>
     </ul>
-    <div  style="position: absolute; margin-left: 750px; z-index: 10;"><p id="etasjeTeller">1. etg</p> </div>
-    
-                
+    <div  style="position: absolute; margin-left: 0px; z-index: 10;"><p id="romNavn">RomID</p> </div>
+    <div  style="position: absolute; margin-left: 750px; z-index: 10;"><p id="etasjeTeller">1. etg</p> </div>            
 </main>
-    
-    
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
-    <!--
-        Dette er kodet inn for våre 4 bilder hvis vi utvider til flere bygninger må vi endre løsning:
-        1. Burde loade inn blider med Jquary i objectene våre. 
-        2. Endre løsning på hvilket bile som er øverst selv om vi kan sikkert bruke zIndex.
-    -->
-    
     <script>
         function changeZIndexPlantegningerOpp() {
             if( document.getElementById('plantegningEtasje4').style.zIndex!=9){
@@ -189,9 +189,8 @@
         }
     </script>
     
-    
     <script>
-        setLedigeRom();
+        
         //Første etasje:
         var a = document.getElementById("plantegningEtasje1");
         a.addEventListener("load",function(){
@@ -250,54 +249,88 @@
                    document.getElementById('rom').innerHTML=this.id;
             }, false);
         } },false);
+        
+        //Opptatt
+        //Første etasje:
+        var aO1 = document.getElementById("plantegningEtasje1");
+        aO1.addEventListener("load",function(){
+          var svgDoc = aO1.contentDocument;
+          var els = svgDoc.querySelectorAll(".planRomOpptatt");
+          for (var i = 0, length = els.length; i < length; i++) {
+            var delta= els[i];
+            //Mus over:
+            delta.addEventListener("mouseover", function(){ 
+                   document.getElementById('romNavn').innerHTML=this.id;
+            }, false);
+            //KlikkFunksjon:
+            delta.addEventListener("click", function(){ 
+                    document.getElementById('rom').innerHTML=this.id;
+                }, false);
+        }},false);
+        //Andre etasje:
+        var aO2 = document.getElementById("plantegningEtasje2");
+        aO2.addEventListener("load",function(){
+          var svgDocO2 = aO2.contentDocument;
+          var elsO2 = svgDocO2.querySelectorAll(".planRomOpptatt");
+          for (var i = 0, length = elsO2.length; i < length; i++) {
+            var deltaO2= elsO2[i];
+            deltaO2.addEventListener("mouseover", function(){ 
+                   document.getElementById('romNavn').innerHTML=this.id;
+            }, false);
+            deltaO2.addEventListener("click", function(){ 
+                    document.getElementById('rom').innerHTML=this.id;
+                }, false);
+        }},false);
+        //Tredje etasje:    
+        var aO3 = document.getElementById("plantegningEtasje3");
+        aO3.addEventListener("load",function(){
+          var svgDocO3 = aO3.contentDocument;
+          var elsO3 = svgDocO3.querySelectorAll(".planRomOpptatt");
+          for (var i = 0, length = elsO3.length; i < length; i++) {
+            var deltaO3= elsO3[i];
+            deltaO3.addEventListener("mouseover", function(){ 
+                   document.getElementById('romNavn').innerHTML=this.id;
+            }, false);
+            deltaO3.addEventListener("click", function(){ 
+                   document.getElementById('rom').innerHTML=this.id;
+                }, false);
+        }},false);
+        //Fjerde etasje:
+        var aO4 = document.getElementById("plantegningEtasje4");
+        aO4.addEventListener("load",function(){
+          var svgDocO4 = aO4.contentDocument;
+          var elsO4 = svgDocO4.querySelectorAll(".planRomOpptatt");
+          for (var i = 0, length = elsO4.length; i < length; i++) {
+            var deltaO4= elsO4[i];
+            deltaO4.addEventListener("mouseover", function(){ 
+                   document.getElementById('romNavn').innerHTML=this.id;
+            }, false);
+            deltaO4.addEventListener("click", function(){ 
+                   document.getElementById('rom').innerHTML=this.id;
+            }, false);
+        } },false);
+        
     </script>
     
     <script>
-        function setLedigeRom(){
+        function setLedigeRom(liste){
             
-        }
-    </script>
-    <script>
-        function finnPos(liste){
-            
+            for (i=0;i<liste.length;i++){
+                
+            }
         }
     </script>
 
     <script>
-        function bekreftRom(){
-            document.getElementById('okRomNavn').innerHTML=
-            document.getElementById('okEtasje').innerHTML=
-            document.getElementById('okPlasser').innerHTML=
-            document.getElementById('okUtstyr').innerHTML=
-            document.getElementById('okDato').innerHTML=
-            document.getElementById('okTidFra').innerHTML=
-            document.getElementById('okTidTil').innerHTML=
+        function bekreftRom(rom){
+            document.getElementById('okRomNavn').innerHTML=rom.navn();
+            document.getElementById('okEtasje').innerHTML=rom.etasje();
+            document.getElementById('okPlasser').innerHTML=rom.plasser();
+            document.getElementById('okDato').innerHTML=${datoFra};
+            document.getElementById('okTidFra').innerHTML=${datoFra};
+            document.getElementById('okTidTil').innerHTML=${okTid};
         }
     </script>
-    
-    <!--
-    <script>
-        $(window).load(function(){
-            alert("test");
-            $('.pantegningObject').on("click", function(){
-                alert("test");
-            });
-        });
-    </script>
-    -->
-    <!--
-    <script>
-         document.querySelector('object').addEventListener('load',function(){
-         var p = this.contentDocument.documentElement.querySelectorAll('path');
-         for(i=0;i<p.length;i++){
-          p[i].addEventListener('click', function(){ 
-               alert("Hello my name is "+this.id+"…");
-             });
-         }
-         });
-     </script>
-    -->
-
 <!--
 <script>
     var date = new Date();
