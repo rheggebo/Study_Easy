@@ -42,7 +42,7 @@
         
         <form:form modelAttribute="abonemenntListe" action="Abonnement">
         <fieldset>
-            <legend>Fag</legend>
+            <legend>Fag </legend>
             <div class="tab">
                 <table>
                 <c:forEach var="abliste" items="${abonemenntListe}">
@@ -63,14 +63,20 @@
         <fieldset>
             <legend>Bruker abonnement</legend>
             
+            <div class="tab">
+                <table>
                 <c:forEach var="abliste" items="${abonemenntListe}">
                     <c:if test="${abliste.getType() == 0}">
+                    <tr>
+                        <td>
                         <c:out value ="${abliste}"></c:out>
-                        <input class="slettKnapp" type="submit" name="slettAbKnapp" value="Slett"/><br>
-                            
+                        <input class="slettknapp" type="submit" name="slettAbKnapp" value="Slett"/><br>
+                          </td>
+                    </tr>  
                     </c:if>
                 </c:forEach>
-                   
+                </table>
+            </div>
                        
         </fieldset>
         </form:form>
@@ -86,30 +92,11 @@
                     </c:forEach>
                 </table>
             </section>
-            <div class="tab">
-                <table>
-                <c:forEach var="abliste" items="${abonemenntListe}">                   
-                    <c:if test="${abliste.getType() == 0}">
-                    <tr>
-                        <td>
-                        <c:out value ="${abliste}" ></c:out>
-                        <input class="slettknapp" type="submit" name="slettAbKnapp" value="Slett"/><br>                                                 
-                        </td>
-                    </tr>
-                    </c:if> 
-                        
-                </c:forEach>
-                       
-                </table>
-            </div>       
-                       
-        </fieldset>
-        </form:form>
             
-        <fieldset>
-            <legend>Romreservasjoner</legend>
-
+                
+                       
         </fieldset>
+
 
     
 </main>
