@@ -3,8 +3,12 @@
 import beans.Abonemennt;
 import beans.Bruker;
 import beans.BrukerB;
+import beans.KalenderEvent;
 import beans.Passord;
 import beans.Rom;
+import java.sql.Timestamp;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -69,8 +73,11 @@ public class Hovedkontroller {
             List<Abonemennt> liste = service.getAbonemenntFraBruker(brukerb);
             model.addAttribute("abonemenntListe", liste);
             KalenderEvent ke = new KalenderEvent();
-            
-            List<Rom> liste = service.getReserverteRom();
+            ke.setEpost(brukerb.getEpost());
+            Date dato = Calendar.getInstance().getTime();
+            ke.setStartTid(new Timestamp(dato.getTime()));
+            List<Rom> eventListe = service.getReserverteRom(ke);
+            model.addAttribute("reservasjonsliste", eventListe);
             return "MinSide";
         }
         model.addAttribute("bruker", new Bruker());

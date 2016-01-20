@@ -915,6 +915,7 @@ public class DBConnectionImpl implements DBConnection{
     public List<Rom> getReserverteRom(KalenderEvent ke){
         return jT.query(getReserverteRom, new Object[]{
             ke.getEpost(),
+            ke.getStartTid(),
             ke.getStartTid()
         }, new RomMapper());
     }
