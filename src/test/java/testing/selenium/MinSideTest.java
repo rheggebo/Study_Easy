@@ -85,7 +85,6 @@ public class MinSideTest {
     
     @After
     public void tearDown() {
-        WebDriver driver = new ChromeDriver();
         driver.close();
     }
 }

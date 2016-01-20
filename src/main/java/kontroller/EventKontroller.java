@@ -5,12 +5,17 @@
  */
 package kontroller;
 
+import beans.Abonemennt;
 import beans.BrukerB;
 import beans.KalenderEvent;
+import beans.NyEvent;
 import beans.Rom;
+import java.sql.Time;
 import java.sql.Timestamp;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +30,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import service.Service;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  *
@@ -45,11 +51,37 @@ public class EventKontroller {
     @RequestMapping(value="omvei")
     public String omvei(HttpSession sess, Model model){
         
-        model.addAttribute("nyHendelse", new KalenderEvent());
+        model.addAttribute("nyHendelse", new NyEvent());
         return "OpprettHendelse";
     }
     @RequestMapping(value="OpprettHendelse")
-    public String opprettHendelse(@ModelAttribute("nyHendelse") KalenderEvent event, HttpSession sess, Model model){
+    public String opprettHendelse(@ModelAttribute("nyHendelse") KalenderEvent event, @RequestParam("notat")String notat, @RequestParam("valg")String off, @RequestParam("startdato")Date startDato, @RequestParam("starttid")String startTid, @RequestParam("sluttdato")Date sluttDato, @RequestParam("starttid")String sluttTid, HttpSession sess, HttpServletResponse response, Model model, HttpServletRequest request){
+        BrukerB brukerb = (BrukerB) sess.getAttribute("brukerBean");
+        String stampString = "" + new Timestamp(startDato.getTime());
+        stampString = (stampString.split(" "))[0] + " " + startTid + ":00";
+        Timestamp start = Timestamp.valueOf(stampString);
+        
+        stampString = "" + new Timestamp(sluttDato.getTime());
+        stampString = (stampString.split(" "))[0] + " " + startTid + ":00";
+        Timestamp slutt = Timestamp.valueOf(stampString);
+        
+        //false er offentlig, true er privat
+        boolean privat = false;
+        if (off.equals("Privat")){
+            privat = true;
+        }
+        
+        if (slutt.before(start)){
+            //nei
+        }
+        event.setStartTid(start);
+        event.setSluttTid(slutt);
+        event.setPrivat(privat);
+        event.setNotat(notat);
+        event.setEpost(brukerb.getEpost());
+        event.setTilhorerEvent(0);
+        
+        
         
         return "OpprettHendelse";
     }
@@ -103,7 +135,7 @@ public class EventKontroller {
             tilDato = fraDato;
         }
         ke.setStartTid(new Timestamp(fraDato.getTime()+fra*3600000));
-        ke.setSluttTid(new Timestamp(tilDato.getTime()+til*3600000));
+        ke.setSluttTid(new Timestamp(tilDato.getTime()+(fra+til)*3600000));
         ArrayList<String> innhold = new ArrayList<String>();
         System.out.println(skjerm+""+tavle+sitteplass+prosjektor+storrelse);
         if(skjerm){
@@ -135,10 +167,10 @@ public class EventKontroller {
         model.addAttribute("event", ke);
         model.addAttribute("fraDato", fraDato);
         sess.setAttribute("asd", ke);
-        model.addAttribute("sitte", sitteplass);
+        req.setAttribute("sitteplass", true);
         System.out.println(sitteplass);
         /*ke.setNotat(notat);
-        ke.setTittel(tittel);*/
+        ke.setTittel(tittel);*/        
         return "FinnRom";
     }
     
@@ -155,10 +187,22 @@ public class EventKontroller {
         event.setNotat("notatet");
         if(service.leggTilBooking(event)){
             model.addAttribute("bruker", bruker);
+            returnerMinSide(model, bruker);
             return "MinSide";
         }
         model.addAttribute("event", new KalenderEvent());
         return "FinnRom";
+    }
+    
+    private void returnerMinSide(Model model, BrukerB brukerb){
+        List<Abonemennt> liste = service.getAbonemenntFraBruker(brukerb);
+        model.addAttribute("abonemenntListe", liste);
+        KalenderEvent ke = new KalenderEvent();
+        ke.setEpost(brukerb.getEpost());
+        Date dato = Calendar.getInstance().getTime();
+        ke.setStartTid(new Timestamp(dato.getTime()));
+        List<RomBestilling> eventListe = service.getReserverteRom(ke);
+        model.addAttribute("reservasjonsliste", eventListe);
     }
     
     @RequestMapping("VelgRomSok")

@@ -13,7 +13,7 @@
     <div id='calendar'></div>
     
     <ul class="ikonForside" style="list-style-type: none; margin: 0; padding: 0;">
-        <li style="display: inline-block"><button class="knappForside" id="leggTilKnappForside" name="leggTilKnapp"><span class="fontawesome-plus"></span></button></li>
+        <li style="display: inline-block"><a href="omvei"><button class="knappForside" id="leggTilKnappForside" name="leggTilKnapp"><span class="fontawesome-plus"></span></button></a></li>
         <li style="display: inline-block"><button class="knappForside" id="slettKnappForside" name="slettKnappForside"><span class="fontawesome-trash"></span></button></li>
         <li style="display: inline-block"><button class="knappForside" id="søkeKnappForside" name="søkeKnappForside" onclick="location.href='SokeSide'"><span class="fontawesome-search"></span></button></li>
         <li style="display: inline-block">
@@ -27,29 +27,30 @@
         </li>
     </ul>
     
-    <form action="kalenderEventCheck">
+    <form action="kalenderEventCheck" method="POST">
         <ul style="list-style-type: none; margin: 0; padding: 0;">
             <li>
                 <input type="text" class="fargeTekst" disabled="true" style="background-color: #00BFFF;">
                 <label for="checkbox_1">Forelesning</label>
-                <input type="checkbox" class="checkBoxForside" id="checkBoxForside1" value="background-color1"  style="width: 15px; cursor: pointer" checked>
+                <input type="checkbox" class="checkBoxForside" id="checkBoxForside1" name="farger" value="0"  style="width: 15px; cursor: pointer" checked>
             </li>
             <li>
                 <input type="text" class="fargeTekst" disabled="true" style="background-color: #00FF7F;">
                 <label for="checkbox_2">Øving</label>
-                <input type="checkbox" class="checkBoxForside" id="checkBoxForside2" value="background-color2" style="width: 15px; cursor: pointer" checked>
+                <input type="checkbox" class="checkBoxForside" id="checkBoxForside2" name ="farger" value="1" style="width: 15px; cursor: pointer" checked>
             </li>
             <li>
                 <input type="text" class="fargeTekst" disabled="true" style="background-color: #FFA500;">
                 <label for="checkbox_3">Rom reservasjon</label>
-                <input type="checkbox" class="checkBoxForside" id="checkBoxForside3" value="background-color3"  style="width: 15px; cursor: pointer" checked>
+                <input type="checkbox" class="checkBoxForside" id="checkBoxForside3" name="farger" value="3"  style="width: 15px; cursor: pointer" checked>
             </li>
             <li>
                 <input type="text" class="fargeTekst" disabled="true" style="background-color: #FFFF00;">
                 <label for="checkbox_4">Privat hendelse</label>
-                <input type="checkbox" class="checkBoxForside" id="checkBoxForside4" value="background-color4"  style="width: 15px; cursor: pointer" checked>
+                <input type="checkbox" class="checkBoxForside" id="checkBoxForside4" name="farger" value="2"  style="width: 15px; cursor: pointer" checked>
             </li>
         </ul>
+        <p><input type="submit" value="Velg"></p>
     </form>
 </main>
 

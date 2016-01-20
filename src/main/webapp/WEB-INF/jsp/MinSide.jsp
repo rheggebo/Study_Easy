@@ -121,20 +121,14 @@
             
         <fieldset>
             <legend>Romreservasjoner</legend>
-            <section class="searchInfo">
+            <section class="tab">
                 <table>
                     <c:forEach var="resliste" items="${reservasjonsliste}">
                         <tr>
-                            <td><c:out value="${resliste}"></c:out><input class="slettKnapp" type="submit" value="Slett"/></td>
+                            <td><c:out value="${resliste}"></c:out><input class="slettknapp" type="submit" value="Slett"/></td>
                         </tr>
                     </c:forEach>
                 </table>
-            </section>
-            
-                
-                       
+            </section>           
         </fieldset>
-
-
-    
 </main>

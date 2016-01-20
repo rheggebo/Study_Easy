@@ -68,6 +68,17 @@ public class Hovedkontroller {
         return "Innlogging";
     }
     
+    private void returnerMinSide(Model model, BrukerB brukerb){
+        List<Abonemennt> liste = service.getAbonemenntFraBruker(brukerb);
+        model.addAttribute("abonemenntListe", liste);
+        KalenderEvent ke = new KalenderEvent();
+        ke.setEpost(brukerb.getEpost());
+        Date dato = Calendar.getInstance().getTime();
+        ke.setStartTid(new Timestamp(dato.getTime()));
+        List<RomBestilling> eventListe = service.getReserverteRom(ke);
+        model.addAttribute("reservasjonsliste", eventListe);
+    }
+    
     @RequestMapping("MinSide")
     public String minSide(HttpSession sess, Model model, HttpServletRequest req){
         BrukerB brukerb = (BrukerB)sess.getAttribute("brukerBean");
@@ -207,16 +218,16 @@ public class Hovedkontroller {
     @RequestMapping("LeggTilBruker")
     public String leggTilBruker(HttpSession sess, Model model){
         BrukerB brukerb = (BrukerB)sess.getAttribute("brukerBean");
-        if(brukerb.getTilgangsniva()==2){
-            if(brukerb != null && brukerb.isInnlogget()){
+        if(brukerb != null && brukerb.isInnlogget()){
+            if(brukerb.getTilgangsniva()==2){
                 model.addAttribute("nyBruker", new Bruker());
                 model.addAttribute("passord", new Passord());
                 model.addAttribute("bruker", brukerb);
                 return "LeggTilBruker";
+            }else{
+                model.addAttribute("bruker", brukerb);
+                return "MinSide";
             }
-        }else{
-            model.addAttribute("bruker", brukerb);
-            return "MinSide";
         }
         model.addAttribute("bruker", new Bruker());
         return "Innlogging";
