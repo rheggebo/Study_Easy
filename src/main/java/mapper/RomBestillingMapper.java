@@ -23,6 +23,7 @@ public class RomBestillingMapper implements RowMapper<RomBestilling>{
         bestilling.setStartDato(rs.getTimestamp("dato_start"));
         bestilling.setSluttDato(rs.getTimestamp("dato_slutt"));
         bestilling.setEierId(rs.getString("eierID"));
+        bestilling.setTilhorerEvent(rs.getInt("tilhorer_event"));
         return bestilling;
     }
     
