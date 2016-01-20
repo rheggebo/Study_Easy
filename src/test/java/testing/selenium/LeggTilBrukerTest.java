@@ -91,7 +91,6 @@ public class LeggTilBrukerTest {
     
     @After
     public void tearDown() {
-        WebDriver driver = new ChromeDriver();
         driver.close();
     }
     
