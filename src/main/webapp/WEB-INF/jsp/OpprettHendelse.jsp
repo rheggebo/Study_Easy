@@ -9,7 +9,7 @@
 <main>
     <fieldset style = "width:20%">
         <legend>Ny hendelse</legend>
-        <dl>
+        
             <form:form action="OpprettHendelse" modelAttribute="nyHendelse">
                 
             <dt><label for="Navn">Navn:<em>*</em></label></dt>
@@ -21,7 +21,9 @@
                     <option value="Privat">Privat</option>
                 </select>
             </dd>
-        </dl>
+            <dt><label for="Notat">Notat:</label></dt>
+            <textarea id="notat" placeholder="Skriv notat her" name="notat" autofocus="true" rows="10" cols="35" ></textarea>
+            
         <p><input type="submit" value="Legg til" onclick=""></p>
         </form:form>
     </fieldset>
