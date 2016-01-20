@@ -341,6 +341,7 @@
             } },false);
 
         //Klikkhendelser for planRomOpptatt objeckter:
+        //trenger ikke begge siden begge gjør det samme nå, men hvis man vil endre det)
             //Første etasje:
             var aO1 = document.getElementById("plantegningEtasje1");
             aO1.addEventListener("load",function(){
