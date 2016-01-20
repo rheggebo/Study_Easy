@@ -60,17 +60,16 @@ public class LeggTilBrukerTest {
         Thread.sleep(1000);
         driver.findElement(By.id("tilgangnivaa")).click();
         
-        //Thread.sleep(2000);
-        //driver.findElement(By.id("timeplansansvarligOption")).click();
-        
         Thread.sleep(2000);
         driver.findElement(By.name("timeplansansvarligOption")).click();
         
-        WebElement element=driver.findElement(By.id("timeplansansvarligOption"));
-        action.doubleClick(element).perform();
+        Thread.sleep(2000);
+        WebElement element1=driver.findElement(By.id("timeplansansvarligOption"));
+        action.doubleClick(element1).perform();
         
         Thread.sleep(2000);
-        driver.findElement(By.id("leggTil")).click();
+        WebElement element2=driver.findElement(By.id("leggTil"));
+        action.doubleClick(element2).perform();
                         
         Thread.sleep(2000);        
     }
