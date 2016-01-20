@@ -13,7 +13,7 @@
     <div id='calendar'></div>
     
     <ul class="ikonForside" style="list-style-type: none; margin: 0; padding: 0;">
-        <li style="display: inline-block"><button class="knappForside" id="leggTilKnappForside" name="leggTilKnapp"><span class="fontawesome-plus"></span></button></li>
+        <li style="display: inline-block"><a href="OpprettHendelse"><button class="knappForside" id="leggTilKnappForside" name="leggTilKnapp"><span class="fontawesome-plus"></span></button></a></li>
         <li style="display: inline-block"><button class="knappForside" id="slettKnappForside" name="slettKnappForside"><span class="fontawesome-trash"></span></button></li>
         <li style="display: inline-block"><button class="knappForside" id="søkeKnappForside" name="søkeKnappForside" onclick="location.href='SokeSide'"><span class="fontawesome-search"></span></button></li>
         <li style="display: inline-block">
