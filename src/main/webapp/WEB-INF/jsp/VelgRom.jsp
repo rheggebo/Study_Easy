@@ -20,7 +20,7 @@
                 <legend><b>Velg ønsket spesifikasjoner:</b></legend>
                 <dl>
                     <dt><label for="datoFinnRom">Dato:<em>*</em></label></dt>
-                    <dd><input id="datoFinnRom" type="date" name="fraDato" required></dd>
+                    <dd><input id="datoFinnRom" class="min-today" type="date" name="fraDato" required></dd>
                     <dt><label for="fraTid">Tid fra:<em>*</em></label></dt>
                     <dd><select id="fraTid" name="fraTid" required>
                     <option value="1">06.00</option>
@@ -211,6 +211,14 @@
         }
     </script>
     
+    <script>
+        $(function(){
+            $('[type="date"].min-today').prop('min', function(){
+                return new Date().toJSON().split('T')[0];
+            });
+        });
+    </script>
+    
     <script>    
         function erLedig(id){
             if (("${liste}").indexOf(id) !=-1) {
@@ -223,52 +231,52 @@
         
         //Setter Ledig:
             //Første Etasje:
-            var SVGBilde1 = document.getElementById("plantegningEtasje1");
-            SVGBilde1.addEventListener("load",function(){
-                var SVGContent1 = SVGBilde1.contentDocument;
-                var SVGRom1 = SVGContent1.querySelectorAll(".planRomOpptatt");
-                for (var i = 0, length = SVGRom1.length; i < length; i++) {
-                    var deltaLedig1= SVGRom1[i];    
-                    deltaLedig1.addEventListener("click", function(){ 
-                    if(erLedig(this.id)>=0){
+            var sVGBilde1 = document.getElementById("plantegningEtasje1");
+            sVGBilde1.addEventListener("load",function(){
+                var sVGContent1 = sVGBilde1.contentDocument;
+                var sVGRom1 = sVGContent1.querySelectorAll(".planRom");
+                for (var i = 0, length = sVGRom1.length; i < length; i++) {
+                    var rom1= sVGRom1[i];    
+                    rom1.addEventListener("mouseover", function(){ 
+                    if(erLedig(this.id)<=0){
                         //alert("Setter planrom");
-                        $(this).attr("class","planRom");
+                        $(this).attr("class","planRomOpptatt");
                     }}, false);
             }},false);
             //Andre etasje:
             var aLedig2 = document.getElementById("plantegningEtasje2");
             aLedig2.addEventListener("load",function(){
               var svgDocLedig2 = aLedig2.contentDocument;
-              var elsLedig2 = svgDocLedig2.querySelectorAll(".planRomOpptatt");
+              var elsLedig2 = svgDocLedig2.querySelectorAll(".planRom");
               for (var i = 0, length = elsLedig2.length; i < length; i++) {
                 var deltaLedig2= elsLedig2[i];
-                deltaLedig2.addEventListener("click", function(){ 
-                    if(erLedig(this.id)>=0){
-                        $(this).attr("class","planRom");
+                deltaLedig2.addEventListener("mouseover", function(){ 
+                    if(erLedig(this.id)<=0){
+                        $(this).attr("class","planRomOpptatt");
                     }}, false);
             }},false);
             //Tredje etasje:    
             var aLedig3 = document.getElementById("plantegningEtasje3");
             aLedig3.addEventListener("load",function(){
               var svgDocLedig3 = aLedig3.contentDocument;
-              var elsLedig3 = svgDocLedig3.querySelectorAll(".planRomOpptatt");
+              var elsLedig3 = svgDocLedig3.querySelectorAll(".planRom");
               for (var i = 0, length = elsLedig3.length; i < length; i++) {
                 var deltaLedig3= elsLedig3[i];
-                deltaLedig3.addEventListener("click", function(){ 
-                    if(erLedig(this.id)>=0){
-                        $(this).attr("class","planRom");
+                deltaLedig3.addEventListener("mouseover", function(){ 
+                    if(erLedig(this.id)<=0){
+                        $(this).attr("class","planRomOpptatt");
                     }}, false);
             }},false);
             //Fjerde etasje:
             var aLedig4 = document.getElementById("plantegningEtasje4");
             aLedig4.addEventListener("load",function(){
               var svgDocLedig4 = aLedig4.contentDocument;
-              var elsLedig4 = svgDocLedig4.querySelectorAll(".planRomOpptatt");
+              var elsLedig4 = svgDocLedig4.querySelectorAll(".planRom");
               for (var i = 0, length = elsLedig4.length; i < length; i++) {
                 var deltaLedig4= elsLedig4[i];
-                deltaLedig4.addEventListener("click", function(){ 
-                    if(erLedig(this.id)>=0){
-                        $(this).attr("class","planRom");
+                deltaLedig4.addEventListener("mouseover", function(){ 
+                    if(erLedig(this.id)<=0){
+                        $(this).attr("class","planRomOpptatt");
                     }}, false);
             } },false);
 
