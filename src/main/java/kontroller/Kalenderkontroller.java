@@ -85,24 +85,31 @@ public class Kalenderkontroller {
         }
         List<RomBestilling> bestillinger = service.getAlleBestillingerFraBruker(brukerb);
         for (RomBestilling bestilling : bestillinger){
-            String start = "" + bestilling.getStartDato();
-            String slutt = "" + bestilling.getSluttDato();
             
-            String descr = "Rom: <a href='" + bestilling.getRomId() + "'>" + bestilling.getRomId() + "</a>";
-            descr += "<br>Fra: " + start + "<br>Til: " + slutt;
-            
-            Map<String, Object> map = new HashMap<String, Object>();
-            map.put("title", "Rombestilling");
-            map.put("start", start);
-            map.put("slutt", slutt);
-            map.put("color", farger[3]);
-            map.put("description", descr);
-            
-            String json = new Gson().toJson(map);
-            if (!jsonSend.isEmpty()){
-                jsonSend += ", ";
+            if (bestilling.getTilhorerEvent() == 0){
+                
+                String start = "" + bestilling.getStartDato();
+                String slutt = "" + bestilling.getSluttDato();
+
+                String descr = "Rom: <a href='" + bestilling.getRomId() + "'>" + bestilling.getRomId() + "</a>";
+                descr += "<br>Fra: " + start + "<br>Til: " + slutt;
+
+                Map<String, Object> map = new HashMap<String, Object>();
+                map.put("title", "Rombestilling");
+                map.put("start", start);
+                map.put("slutt", slutt);
+                map.put("color", farger[3]);
+                map.put("description", descr);
+
+                String json = new Gson().toJson(map);
+                if (!jsonSend.isEmpty()){
+                    jsonSend += ", ";
+                }
+                jsonSend += json;
             }
-            jsonSend += json;
+            else{
+                
+            }
             
         }
 

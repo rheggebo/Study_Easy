@@ -62,5 +62,9 @@
         <put-attribute name="title"  value="BekreftBestilling"/>
         <put-attribute name="body"   value="/WEB-INF/jsp/BekreftBestilling.jsp"/>    
     </definition>
+    <definition name="OpprettHendelse" extends="baseLayout">
+        <put-attribute name="title"  value="OpprettHendelse"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/OpprettHendelse.jsp"/>    
+    </definition>
    
 </tiles-definitions>

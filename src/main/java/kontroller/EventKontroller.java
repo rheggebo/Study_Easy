@@ -42,6 +42,18 @@ public class EventKontroller {
             binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
     }
     
+    @RequestMapping(value="omvei")
+    public String omvei(HttpSession sess, Model model){
+        
+        model.addAttribute("nyHendelse", new KalenderEvent());
+        return "OpprettHendelse";
+    }
+    @RequestMapping(value="OpprettHendelse")
+    public String opprettHendelse(@ModelAttribute("nyHendelse") KalenderEvent event, HttpSession sess, Model model){
+        
+        return "OpprettHendelse";
+    }
+    
     @RequestMapping(value="BestilleRom")
     public String bestilleRom(@ModelAttribute("rom") Rom rom, @RequestParam(required=false, value="privat") boolean privat,
             @RequestParam("startDato")Date startDato, @RequestParam("sluttDato")Date sluttDato, @RequestParam("fag")String fag,
