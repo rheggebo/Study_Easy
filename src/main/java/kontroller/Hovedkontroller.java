@@ -88,7 +88,18 @@ public class Hovedkontroller {
     @RequestMapping(value="Abonnement")
     public String getSlettAbonnement(HttpSession sess, Model model, HttpServletRequest req) {
         if("Slett".equals(req.getParameter("slettAbKnapp"))) {
-            
+            try {
+                
+            } catch (Exception e) {
+                model.addAttribute("melding", "feilmelding.finnesIkkeAbonnement");
+            }
+        }
+        if("Slett".equals(req.getParameter("slettAbKnapp"))) {
+            try {
+                
+            } catch (Exception e) {
+                model.addAttribute("melding", "feilmelding.finnesIkkeAbonnement");
+            }
         }
         return "MinSide";
     }
