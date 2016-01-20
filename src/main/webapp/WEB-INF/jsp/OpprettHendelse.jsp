@@ -29,6 +29,7 @@
                     <option value="Privat">Privat</option>
                 </select>
             </dd>
+            
             <dt><label for="Notat">Notat:</label></dt>
             <textarea id="notat" placeholder="Skriv notat her" name="notat" autofocus="true" rows="10" cols="55" ></textarea>
             

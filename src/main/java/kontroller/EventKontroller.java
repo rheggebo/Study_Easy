@@ -54,6 +54,7 @@ public class EventKontroller {
     }
     @RequestMapping(value="OpprettHendelse")
     public String opprettHendelse(@ModelAttribute("nyHendelse") KalenderEvent event, @RequestParam("notat")String notat, @RequestParam("valg")String off, @RequestParam("startdato")Date startDato, @RequestParam("starttid")String startTid, @RequestParam("sluttdato")Date sluttDato, @RequestParam("starttid")String sluttTid, HttpSession sess, HttpServletResponse response, Model model, HttpServletRequest request){
+        BrukerB brukerb = (BrukerB) sess.getAttribute("brukerBean");
         String stampString = "" + new Timestamp(startDato.getTime());
         stampString = (stampString.split(" "))[0] + " " + startTid + ":00";
         Timestamp start = Timestamp.valueOf(stampString);
@@ -74,7 +75,9 @@ public class EventKontroller {
         event.setStartTid(start);
         event.setSluttTid(slutt);
         event.setPrivat(privat);
-        System.out.println(notat);
+        event.setNotat(notat);
+        event.setEpost(brukerb.getEpost());
+        event.setTilhorerEvent(0);
         
         
         
