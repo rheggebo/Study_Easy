@@ -22,15 +22,7 @@
             <dd><input id="sluttdato" type="date" name="sluttdato" required="true"/></dd>
             <dt><label for="slutttid">Slutt tid:<em>*</em></label></dt>
             <dd><input id="slutttid" type="time" name="slutttid" required="true"/></dd>
-
-                    <dt><label for="tilTid">Varighet:<em>*</em></label></dt>
-                    <dd><select id="tilTid" name="varighet" required>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    </select></dd>
-
-                </dl>
+            
             <dt><label for="privatOffentlig">Privat/Offentlig:<em>*</em></label></dt>
             <dd><select name="valg" id="valg" required="true">
                     <option value="Offentlig">Offentlig</option>
