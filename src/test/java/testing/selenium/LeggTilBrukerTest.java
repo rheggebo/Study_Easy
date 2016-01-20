@@ -69,7 +69,6 @@ public class LeggTilBrukerTest {
         WebElement element=driver.findElement(By.id("timeplansansvarligOption"));
         action.doubleClick(element).perform();
         
-        
         Thread.sleep(2000);
         driver.findElement(By.id("leggTil")).click();
                         
