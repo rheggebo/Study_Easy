@@ -5,7 +5,6 @@
  */
 package validering;
 
-import beans.Bruker;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
@@ -14,9 +13,10 @@ import org.springframework.validation.Validator;
  * @author Stein-Erik
  */
 public class Passord implements Validator{
-     //@Size(min=8)
-      //@Pattern(regexp="^[a-z]{1,}[A-Z]{1,}[0-9]{1,}[~`!@#$%^&*()\\-\\_=+[{\\]}\\|;:\'\",<\\.>/?]{2,}$")
-        private String passord;
+    //@NotNull
+    //@Size(min=8)
+    //@Pattern(regexp="^[a-z]{1,}[A-Z]{1,}[0-9]{1,}[~`!@#$%^&*()\\-\\_=+[{\\]}\\|;:\'\",<\\.>/?]{2,}$")
+    private String passord;
     private String passord1;
     private String passord2;
     private boolean generert;
@@ -61,7 +61,7 @@ public class Passord implements Validator{
     @Override
     public void validate(Object o, Errors errors) {
         String spesialbok = "~`!@#$%^&*()-_=+[{]}|;:'\",<.>/?]$€£";
-        Passord pass = (Passord) o;
+        beans.Passord pass = (beans.Passord) o;
         String nyttPassord = pass.getPassord1();
         if(nyttPassord.equals(nyttPassord.toLowerCase())||nyttPassord.equals(nyttPassord.toUpperCase())){
             errors.rejectValue("passord", "feilmelding.smastorepassord");
@@ -75,16 +75,16 @@ public class Passord implements Validator{
             }
         }
         if(spesial<2){
-            System.out.println("Passord, spesial");
+            System.out.println("Passord, spesial "+ spesial);
             errors.rejectValue("passord1", "feilmelding.spesialpassord");
         }
         
-        if(passord1.length()<8){
+        if(nyttPassord.length()<8){
             System.out.println("Passord, lengde");
             errors.rejectValue("passord1", "feilmelding.lengdepassord");
         }
         
-        if(!generert && !passord1.equals(passord2)){
+        if(!generert && !nyttPassord.equals(pass.getPassord2())){
             System.out.println("Passord, ulike");
             errors.rejectValue("passord", "feilmelding.ulikepassord");
         }

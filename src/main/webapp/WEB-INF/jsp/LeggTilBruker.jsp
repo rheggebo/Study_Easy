@@ -25,5 +25,10 @@
         </dl>
         <p><input id="leggTil" type="submit" value="Legg til" onclick=""></p>
         </form:form>
+        
     </fieldset>
+    <c:set var="meldingS" value="${melding}"></c:set>
+    <c:if test="${not empty meldingS}">
+        <spring:message code="${melding}" />
+    </c:if>
 </main>
