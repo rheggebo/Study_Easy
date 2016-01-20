@@ -14,10 +14,10 @@
     
     
 <main>
-    <div id="velgRomSøkeBokser">
+    <div id="velgRomSøkeBokser" class="tekst">
         <form action="VelgRomSok" method="post" onsubmit=" return validate();">
             <fieldset>
-                <legend>Velg ønsket spesifikasjoner:</legend>
+                <legend><b>Velg ønsket spesifikasjoner:</b></legend>
                 <dl>
                     <dt><label for="datoFinnRom">Dato:<em>*</em></label></dt>
                     <dd><input id="datoFinnRom" type="date" name="fraDato" required></dd>
@@ -56,9 +56,9 @@
         </form>
     </div>
     
-    <div id="RomInfo">
+    <div id="RomInfo" class="tekst">
         <fieldset>
-            <legend>Rominformasjon:</legend>
+            <legend><b>Rominformasjon:</b></legend>
                 <form action="VelgRomRes" method="post">    
                     <table>
                         <tr>
@@ -96,10 +96,32 @@
                             <td><label>${tilbakeMelding}</label></td>
                         </tr>
                     </table>
-                    <input type="submit" value="Reserver rom">
+                    <input type="submit" id="resRomVelgRom" value="Reserver rom">
+                    <c:set var="tilgang" value="${bruker.getTilgangsniva()}"></c:set>
+                    <c:if test="${tilgang == 1}">
+                    <input type="submit" formaction="OverstyrRomL" value="Overstyr rombestilling">
+                    </c:if>
+                    
+                    <c:if test="${tilgang == 2}">
+                    <input type="submit" formaction="OverstyrRomAdmin" value="Overstyr rombestilling">
+                    </c:if>
+                    
+                    <c:if test="${tilgang == 2}">
+                    <input type="submit" formaction="VelgRomRed" value="Rediger rom informasjon">
+                    </c:if>
                 </form>
         </fieldset>
+        
     </div>
+    
+                
+    <div>
+        <span class="tekst">Du befinner deg i</span>
+            <p id="etasjeTeller">1. etasje</p>
+                <span class="tekst">på&nbsp;<p id="romNavn">(ingen rom valgt)</p></span> 
+    </div>  
+                    
+                    
         <div id="velgRomSøkeSVG">
             <object id="plantegningEtasje1" class="pantegningObject" style="z-index:9;"
                     data="<c:url value="/resources/SVG/plantegningE1.svg"/>"> Din nettleser støtter ikke SVG </object>
@@ -134,8 +156,7 @@
                 </button>
             </li>
         </ul>
-        <div  style="position: absolute; margin-left: 25px; z-index: 10;"><p id="romNavn">RomID</p> </div>
-        <div  style="position: absolute; margin-left: 750px; z-index: 10;"><p id="etasjeTeller">1. etg</p> </div>  
+        
 </main>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -152,16 +173,16 @@
                 
                 if(document.getElementById('plantegningEtasje1').style.zIndex==10){
                      document.getElementById('plantegningEtasje1').style.zIndex = 6;
-                     document.getElementById('etasjeTeller').innerHTML="2. etg";
+                     document.getElementById('etasjeTeller').innerHTML="2. etasje";
                      
                 }
                 if( document.getElementById('plantegningEtasje2').style.zIndex==10){
                      document.getElementById('plantegningEtasje2').style.zIndex = 6;
-                     document.getElementById('etasjeTeller').innerHTML="3. etg";
+                     document.getElementById('etasjeTeller').innerHTML="3. etasje";
                 }
                 if( document.getElementById('plantegningEtasje3').style.zIndex==10){
                      document.getElementById('plantegningEtasje3').style.zIndex = 6;
-                     document.getElementById('etasjeTeller').innerHTML="4. etg";
+                     document.getElementById('etasjeTeller').innerHTML="4. etasje";
                 }
             }
         }
@@ -175,16 +196,16 @@
                 
                 if(document.getElementById('plantegningEtasje1').style.zIndex==5){
                      document.getElementById('plantegningEtasje1').style.zIndex = 9;
-                     document.getElementById('etasjeTeller').innerHTML="1. etg";
+                     document.getElementById('etasjeTeller').innerHTML="1. etasje";
                      
                 }
                 if( document.getElementById('plantegningEtasje2').style.zIndex==5){
                      document.getElementById('plantegningEtasje2').style.zIndex = 9;
-                     document.getElementById('etasjeTeller').innerHTML="2. etg";
+                     document.getElementById('etasjeTeller').innerHTML="2. etasje";
                 }
                 if( document.getElementById('plantegningEtasje3').style.zIndex==5){
                      document.getElementById('plantegningEtasje3').style.zIndex = 9;
-                     document.getElementById('etasjeTeller').innerHTML="3. etg";
+                     document.getElementById('etasjeTeller').innerHTML="3. etasje";
                 }
             }
         }
