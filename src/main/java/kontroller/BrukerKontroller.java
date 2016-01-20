@@ -37,6 +37,7 @@ public class BrukerKontroller {
     private Passordgenerator generator = new Passordgenerator();
     private Bruker testBruker = new Bruker();
     private PasswordHasher hasher = new PasswordHasher();
+    private validering.Passord passV = new validering.Passord();
     
     @RequestMapping(value = "glemtPassord")
     public String glemtPassord(Model model){
@@ -70,14 +71,11 @@ public class BrukerKontroller {
     
     @RequestMapping("EndrePassord")
     public String endrePassord(HttpSession sess, @ModelAttribute("passord") Passord pass, BindingResult error, Model model) throws Exception{
-        System.out.println("Endrer passord*********");
         BrukerB brukerb = (BrukerB) sess.getAttribute("brukerBean");
         Bruker bruker = (Bruker) service.hentBruker(brukerb.getEpost());
         bruker.setEtternavn("asdasd");
         Passord valider = new Passord();
         if(!hasher.check(pass.getPassord(),bruker.getPassord())){
-            System.out.println(bruker.getPassord());
-            System.out.println(pass.getPassord());
             model.addAttribute("melding", "feilmelding.gammeltPassord");
             model.addAttribute("passord", new Passord());
             return "EndrePassordRed";
@@ -89,12 +87,10 @@ public class BrukerKontroller {
             return "EndrePassordRed";
         }else{
             bruker.setPassord(pass.getPassord1());
-            System.out.println("Skal endre passord");
             if(service.endreBruker(bruker)){
                 model.addAttribute("bruker", bruker);
                 return "MinSide";
             }
-            System.out.println("Kunne ikke endre passord");
         }
         model.addAttribute("melding", "feilmelding.passordGenerell");
         model.addAttribute("passord", new Passord());
@@ -115,17 +111,16 @@ public class BrukerKontroller {
     private String genererPassord(BindingResult error){
         String nyttPassord = generator.genererPassord();
         Passord pass = new Passord();
-        pass.setGenerert(true);
         pass.setPassord1(nyttPassord);
-        pass.validate(pass, error);
+        passV.validate(pass, error);
         if(error.hasErrors()){
-            System.out.println(error.getErrorCount()+ nyttPassord);
             nyttPassord = genererPassord(error);
         }
         return nyttPassord;
     }    
     
     private Boolean sendNyPass(Bruker temp, BindingResult error, boolean nyBruker){
+        passV.setGenerert(true);
         String mottaker = temp.getEpost();
         String tema = "Nytt passord for bruker: "+temp.getEpost();
         String tema2 = "Ny bruker opprettet for: "+temp.getEpost()+" hos Study Easy";
@@ -196,9 +191,19 @@ public class BrukerKontroller {
         }else if(tilgang.equals("Timeplansansvarlig")){
             bruker.setTilgangsniva(2);
         }
-        if(sendNyPass(bruker, error, true)){
-            model.addAttribute("bruker", (BrukerB)sess.getAttribute("brukerBean"));
-            return "MinSide";
+        model.addAttribute("passord", new Passord());
+        Bruker b = null;
+        try{
+            b = service.hentBruker(bruker);
+        }catch (Exception e){
+            
+        }
+        if(b == null){
+            System.out.println("B lik null");
+            if(sendNyPass(bruker, error, true)){
+                model.addAttribute("bruker", (BrukerB)sess.getAttribute("brukerBean"));
+                return "MinSide";
+            }
         }
         model.addAttribute("melding", "feilmelding.nyBruker");
         model.addAttribute("nyBruker", new Bruker());

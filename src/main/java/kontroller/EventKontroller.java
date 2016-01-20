@@ -5,12 +5,15 @@
  */
 package kontroller;
 
+import beans.Abonemennt;
 import beans.BrukerB;
 import beans.KalenderEvent;
 import beans.Rom;
+import beans.RomBestilling;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -103,7 +106,7 @@ public class EventKontroller {
             tilDato = fraDato;
         }
         ke.setStartTid(new Timestamp(fraDato.getTime()+fra*3600000));
-        ke.setSluttTid(new Timestamp(tilDato.getTime()+til*3600000));
+        ke.setSluttTid(new Timestamp(tilDato.getTime()+(fra+til)*3600000));
         ArrayList<String> innhold = new ArrayList<String>();
         System.out.println(skjerm+""+tavle+sitteplass+prosjektor+storrelse);
         if(skjerm){
@@ -155,10 +158,22 @@ public class EventKontroller {
         event.setNotat("notatet");
         if(service.leggTilBooking(event)){
             model.addAttribute("bruker", bruker);
+            returnerMinSide(model, bruker);
             return "MinSide";
         }
         model.addAttribute("event", new KalenderEvent());
         return "FinnRom";
+    }
+    
+    private void returnerMinSide(Model model, BrukerB brukerb){
+        List<Abonemennt> liste = service.getAbonemenntFraBruker(brukerb);
+        model.addAttribute("abonemenntListe", liste);
+        KalenderEvent ke = new KalenderEvent();
+        ke.setEpost(brukerb.getEpost());
+        Date dato = Calendar.getInstance().getTime();
+        ke.setStartTid(new Timestamp(dato.getTime()));
+        List<RomBestilling> eventListe = service.getReserverteRom(ke);
+        model.addAttribute("reservasjonsliste", eventListe);
     }
     
     @RequestMapping("VelgRomSok")

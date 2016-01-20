@@ -21,6 +21,7 @@ public class Bruker {
     private int telefonnummer;
     private ArrayList<KalenderEvent> kalenderEvents;
     private String type;
+    private String passord1;
 
     public Date getFodedato() {
         return fodedato;
@@ -114,6 +115,15 @@ public class Bruker {
         }
         return str;
     }
+
+    public String getPassord1() {
+        return passord1;
+    }
+
+    public void setPassord1(String passord1) {
+        this.passord1 = passord1;
+    }
+    
     
     
 }
