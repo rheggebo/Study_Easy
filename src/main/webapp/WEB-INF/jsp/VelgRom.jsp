@@ -43,7 +43,7 @@
                     </tr>
                     <tr>
                         <td colspan="3">
-                            <input class="vanligknapp" type="submit" value="SEND">
+                            <input class="vanligknapp" type="submit" value="Søk">
                         </td>
                     </tr>           
                 </table>
@@ -53,60 +53,64 @@
     
     <div id="RomInfo" class="tekst">
         <fieldset>
-            <legend><b>Rominformasjon:</b></legend>
-                <form action="VelgRomRes" method="post">    
-                    <table>
-                        <tr>
-                            <td>Rom-id:</td>
-                            <td><label id="rom"> </td>
-                        </tr>
-                        <!--
-                        <tr>
-                            <td>Rom navn:</td>
-                            <td><label id="okRomNavn"></label></td>
-                        </tr>
-                        <tr>
-                            <td>Etasje:</td>
-                            <td><label id="okEtasje"></label></td>
-                        </tr>
-                        <tr>
-                            <td>Plasser:</td>
-                            <td><label id="okPlasser"></label></td>
-                        </tr>
-                        -->
-                        <tr>
-                            <td>Dato:</td>
-                            <td><label id="okDato"></label></td>
-                        </tr>
-                        <tr>
-                            <td>Tid fra:</td>
-                            <td><label id="okTidFra"></label></td>
-                        </tr>
-                        <tr>
-                            <td>Tid til</td>
-                            <td><label id="okTidTil"></label></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td><label>${tilbakeMelding}</label></td>
-                        </tr>
-                    </table>
-                    <input type="submit" class="vanligknapp" id="resRomVelgRom" value="Reserver rom">
-                    <c:set var="tilgang" value="${bruker.getTilgangsniva()}"></c:set>
-                    <c:if test="${tilgang == 1}">
-                    <input type="submit" class="vanligknapp" formaction="OverstyrRomL" value="Overstyr rombestilling">
-                    </c:if>
-                    <br>
-                    <c:if test="${tilgang == 2}">
-                    <input type="submit" class="vanligknapp" formaction="OverstyrRomAdmin" value="Overstyr rombestilling">
-                    </c:if>
+            <legend><b>Rom:</b></legend>
+            <form:form modelAttribute="formVelgRom" method="POST">
+                <table>
+                    <tr>
+                        <td>RomID*:</td>
+                        <td><form:input id="rom" path="romId"/></td>
+                        <td><form:errors path="romId" /></td>
+                    </tr>
+                    <tr>
+                        <td>Dato*:</td>
+                        <td><form:input class="min-today" type="Date" path="fraDato"/></td>
+                        <td><form:errors path="fraDato" /></td>
+                    </tr>
+                    <tr>
+                        <td>Tid fra*:</td>
+                        <td>
+                            <form:select path="fraTid">
+                                <form:options items="${formVelgRom.tiderList}"/>
+                            </form:select>
+                        </td>
+                        <td><form:errors path="fraTid"/></td>
+                    </tr>
+                    <tr>
+                        <td>Verighet*:</td>
+                        <td>
+                            <form:select path="varighet" disabled="ture">
+                                <form:options items="${formVelgRom.varighetList}"/>
+                            </form:select>
+                        </td>
+                        <td><form:errors path="varighet"/></td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">
+                            <input class="vanligknapp" formaction="ReserverRom" type="submit" value="Reserver rom">
+                        </td>
+                    </tr>   
+                    <tr>
+                        <c:set var="tilgang" value="${bruker.getTilgangsniva()}"></c:set>
+                        <c:if test="${tilgang == 1}">
+                            <td colspan="3">
+                            <input type="submit" class="vanligknapp" formaction="OverstyrRomL" value="Overstyr rombestilling">
+                        </td>
+                         </c:if>
+                        <c:if test="${tilgang == 2}">
+                        <td>
+                            <input type="submit" class="vanligknapp" formaction="OverstyrRomAdmin" value="Overstyr rombestilling">
+                            
+                        </td>
+                        <td colspan="2">
+                            <input type="submit" class="vanligknapp" formaction="VelgRomRed" value="Rediger rom informasjon">
+                        </td>
+                        </c:if>
+                    </tr>
                     
-                    <c:if test="${tilgang == 2}">
-                    <input type="submit" class="vanligknapp" formaction="VelgRomRed" value="Rediger rom informasjon">
-                    </c:if>
-                </form>
+                    
+                </table>
+            </form:form>
         </fieldset>
-        
     </div>
     
                 
@@ -289,7 +293,7 @@
                 }, false);
                 //KlikkFunksjon:
                 delta.addEventListener("click", function(){ 
-                        document.getElementById('rom').innerHTML=this.id;
+                       document.getElementById('rom').value=this.id;
                     }, false);
             }},false);
             //Andre etasje:
@@ -303,7 +307,7 @@
                        document.getElementById('romNavn').innerHTML=this.id;
                 }, false);
                 delta2.addEventListener("click", function(){ 
-                        document.getElementById('rom').innerHTML=this.id;
+                        document.getElementById('rom').value=this.id;
                     }, false);
             }},false);
             //Tredje etasje:    
@@ -317,7 +321,7 @@
                        document.getElementById('romNavn').innerHTML=this.id;
                 }, false);
                 delta3.addEventListener("click", function(){ 
-                       document.getElementById('rom').innerHTML=this.id;
+                       document.getElementById('rom').value=this.id;
                     }, false);
             }},false);
             //Fjerde etasje:
@@ -331,7 +335,7 @@
                        document.getElementById('romNavn').innerHTML=this.id;
                 }, false);
                 delta4.addEventListener("click", function(){ 
-                       document.getElementById('rom').innerHTML=this.id;
+                       document.getElementById('rom').value=this.id;
                 }, false);
             } },false);
 
@@ -350,7 +354,7 @@
                 }, false);
                 //KlikkFunksjon:
                 delta.addEventListener("click", function(){ 
-                        document.getElementById('rom').innerHTML=this.id;
+                        document.getElementById('rom').value=this.id;
                     }, false);
             }},false);
             //Andre etasje:
@@ -364,7 +368,7 @@
                        document.getElementById('romNavn').innerHTML=this.id;
                 }, false);
                 deltaO2.addEventListener("click", function(){ 
-                        document.getElementById('rom').innerHTML=this.id;
+                        document.getElementById('rom').value=this.id;
                     }, false);
             }},false);
             //Tredje etasje:    
@@ -378,7 +382,7 @@
                        document.getElementById('romNavn').innerHTML=this.id;
                 }, false);
                 deltaO3.addEventListener("click", function(){ 
-                       document.getElementById('rom').innerHTML=this.id;
+                       document.getElementById('rom').value=this.id;
                     }, false);
             }},false);
             //Fjerde etasje:
@@ -392,7 +396,7 @@
                        document.getElementById('romNavn').innerHTML=this.id;
                 }, false);
                 deltaO4.addEventListener("click", function(){ 
-                       document.getElementById('rom').innerHTML=this.id;
+                       document.getElementById('rom').value=this.id;
                 }, false);
             } },false);
     </script>
