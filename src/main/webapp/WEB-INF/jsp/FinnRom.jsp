@@ -19,85 +19,72 @@
 
 <main>
     <div style="display: inline-block">
-        <form:form action="finnromdata" modelAttribute="rom" method="post" onsubmit="return validate();">
-            <fieldset>
-                <legend>Velg ønsket spesifikasjoner:</legend>
-                <dl>
-                    <dt><label for="romtypeFinnRom">Romtype:<em>*</em></label></dt>
-                    <dd><select id="romtypeFinnRom" name="romtype" required >
-                        <option value="forelesningssal">Forelesingssal</option>
-                        <option value="moterom">Møterom</option>
-                        <option value="grupperom">Grupperom</option>
-                    </select>
-
-                    </dd>
-                    <!-- <dd><input type="text" name="romtype" list="ref-romtype" placeholder="Nedtrekksliste"></dd>
-                     <datalist id="ref-romtype">
-                     </datalist> -->
-
-                    <dt><label for="strFinnRom">Størrelse(m<sup>2</sup>):</label><input class="checkboxes" type="checkbox" id="storrelse" value="Skjerm" name="storrelse"></dt>
-                    <dd><form:form id="strFinnRom" name="storrelseNum" type="number" min="5" max="200" value="5"></dd>
-
-                    <dt><label for="checkboxes">Utstyr:</label></dt>
-                    <dd><input class="checkboxes" type="checkbox" id="skjerm" name="skjerm">PC-skjerm<input type="number" id="antSkjerm" name="antSkjerm" min="0" value="0" disabled><br> 
-                        <input class="checkboxes" type="checkbox" id="tavle" name="tavle">Tavle<input type="number" id="antTavle" name="antTavle" min="0" value="0" disabled><br> 
-                        <input class="checkboxes" type="checkbox" id="sitteplass" name="sitteplass">Sitteplass<input type="number" id="antSitteplass" name="antSitteplass" min="0" value="0" disabled><br> 
-                        <input class="checkboxes" type="checkbox" id="prosjektor" name="prosjektor">Prosjektor<input type="number" id="antProsjektor" name="antProsjektor" min="0" value="0" disabled><br> 
-                    </dd>
-                    
-
-                    <dt><label for="datoFinnRom">Dato:<em>*</em></label></dt>
-                    <dd><input class="min-today" id="datoFinnRom" type="date" name="fraDato" value="${fraDato}" required></dd>
-                    
-                    
-                    <dt><label for="fraTid">Tid fra:<em>*</em></label></dt>
-                    <dd><select id="fraTid" name="fraTid" required>
-                    <option value="1">06.00</option>
-                    <option value="2">07.00</option>
-                    <option value="3">08.00</option>
-                    <option value="4">09.00</option>
-                    <option value="5">10.00</option>
-                    <option value="6">11.00</option>
-                    <option value="7">12.00</option>
-                    <option value="8">13.00</option>
-                    <option value="9">14.00</option>
-                    <option value="10">15.00</option>
-                    <option value="11">16.00</option>
-                    <option value="12">17.00</option>
-                    <option value="13">18.00</option>
-                    <option value="14">19.00</option>
-                    <option value="15">20.00</option>
-                    <option value="16">21.00</option>
-                    <option value="17">22.00</option>
-                    </select>
-                    </dd>
-                    
-                    <dt><label for="tilTid">Tid til:<em>*</em></label></dt>
-                    <dd><select id="tilTid" name="varighet" required>
-                    <option value="1">1 time</option>
-                    <option value="2">2 timer</option>
-                    <option value="3">3 timer</option>
-                    </select></dd>
-                    
-
-
-                </dl>
-                <input type="submit" class="vanligknapp" value="Finn ledig rom">
-            </fieldset>
-        </form:form>
-</div>
-    <div style = "display: inline-block; float: right">
-        <fieldset >
-        <legend>Ny hendelse</legend>
+        <fieldset>
+            <legend><b>Velg ønsket spesifikasjoner</b></legend>
             <form:form modelAttribute="formFinnRom" method="POST">
                 <table>
                     <tr>
-                        <td>Tittel:</td>
-                        <td><form:input id="tittel" path="tittel"/></td>
+                        <td>Dato:<em>* </em></td>
+                        <td><form:input class="min-today" type="date" path="fraDato" /></td>
+                        <td><form:errors path="fraDato" /></td>
+                    </tr>
+                    <tr>
+                        <td>Tid fra:<em>* </em></td>
+                        <td>
+                            <form:select path="fraTid">
+                                <form:options items="${formFinnRom.tiderList}"/>
+                            </form:select>
+                        </td>
+                        <td><form:errors path="fraTid"/></td>
+                    </tr>
+                    <tr>
+                        <td>Varighet:<em>* </em></td>
+                        <td>
+                            <form:select path="varighet">
+                                <form:options items="${formFinnRom.varighetList}"/>
+                            </form:select>
+                        </td>
+                        <td><form:errors path="varighet"/></td>
+                    </tr>
+                    <tr>
+                        <td>Romstørrelse(min):<em>* </em></td>
+                        <td><form:input type="number" path="storrelse" /></td>
+                        <td><form:errors path="storrelse" /></td>
+                    </tr>
+                    <tr>
+                        <td>Sitteplasser(min):<em>* </em></td>
+                        <td><form:input type="number" path="sitteplasser" /></td>
+                        <td><form:errors path="skjerm" /></td>
+                    </tr>
+                    <tr>
+                        <td>Skjerm(min):<em>* </em></td>
+                        <td><form:input type="number" path="skjerm" /></td>
+                        <td><form:errors path="skjerm" /></td>
+                    </tr>
+                    <tr>
+                        <td>Tavle(min):<em>* </em></td>
+                        <td><form:input type="number" path="tavle" /></td>
+                        <td><form:errors path="tavle" /></td>
+                    </tr>
+                    <tr>
+                        <td>Projektor(min):<em>* </em></td>
+                        <td><form:input type="number" path="projektor" /></td>
+                        <td><form:errors path="projektor" /></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <input class="defaultKnapp" formaction="finnRomdata" type="submit" value="Søk">
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Tittel:<em>* </em></td>
+                        <td><form:input path="tittel" /></td>
                         <td><form:errors path="tittel" /></td>
                     </tr>
                     <tr>
-                        <td>Type:</td>
+                        <td>Type:<em>* </em></td>
                         <td>
                             <form:select path="type">
                                 <form:options items="${formFinnRom.typeList}"/>
@@ -106,14 +93,29 @@
                         <td><form:errors path="type"/></td>
                     </tr>
                     <tr>
-                        <td colspan="3">
-                            <input class="vanligknapp" type="submit" value="Søk">
+                        <td>Fag:<em>* </em></td>
+                        <td>
+                            <form:select path="fag">
+                                <form:options items="${formFinnRom.fagList}"/>
+                            </form:select>
                         </td>
-                    </tr>           
+                        <td><form:errors path="fag"/></td>
+                    </tr>
+                    <tr>
+                        <td>Notat:<em>* </em></td>
+                        <td><form:textarea path="notat" /></td>
+                        <td><form:errors path="notat" /></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <input class="defaultKnapp" formaction="VelgRomReserverRom" type="submit" value="Bestill">
+                        </td>
+                        <td></td>
+                    </tr>  
                 </table>
             </form:form>
         </fieldset>
-    </div>
     </div>
     <section class="searchInfo">
         <table>
