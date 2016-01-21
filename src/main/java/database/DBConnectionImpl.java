@@ -55,7 +55,7 @@ public class DBConnectionImpl implements DBConnection{
     private final String leggTilFag = "INSERT INTO FAG VALUES(?)";
     private final String leggTilRom = "INSERT INTO ROM VALUES(?,?,?,?,?)";
     private final String leggTilKalenderEvent = "INSERT INTO kalender_event VALUES(DEFAULT,?,?,?,?,?,?,?,?,?,?)";
-    private final String fjernKalenderEvent = "DELETE FROM KALENDER_EVENT WHERE ID=?";
+    private final String fjernKalenderEvent = "DELETE FROM kalender_event WHERE eier = ? AND id = ?";
     private final String getKalenderEventDeltakere = "SELECT DELTAKERID FROM KLANEDER_DELTAKER WHERE EVENTID=?";
     private final String getKalenderEventDeltaker = "SELECT * FROM KALENDER_DELTAKER WHERE EVENTID=? AND DELTAKERID=?";
     private final String getKalenderEventEier = "SELECT *, rom_bestilling.romID FROM kalender_event LEFT OUTER JOIN rom_bestilling ON rom_bestilling.bestillingsID = kalender_event.bestillingsID WHERE EIER=?";
@@ -421,6 +421,7 @@ public class DBConnectionImpl implements DBConnection{
     @Override
     public boolean fjernKalenderEvent(KalenderEvent ke) {
         int antallRader = jT.update(fjernKalenderEvent,new Object[]{
+            ke.getEpost(),
             ke.getId()
         });
         if(antallRader > 0){

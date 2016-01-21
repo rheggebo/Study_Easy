@@ -158,7 +158,7 @@
                         <td>
                             
                             <form:form modelAttribute="resultat" action="slett">
-                            <form:input type="hidden" path="resultat" value="${kalenderEventListe}"/>
+                            <form:input type="hidden" path="resultat" value="${eventliste}"/>
                             
                             <c:out value ="${eventliste}"></c:out> <%-- printer ut listeverdiene--%>
 
