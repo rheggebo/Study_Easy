@@ -7,7 +7,7 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
 <main>
-    <fieldset style = "width:95%">
+    <fieldset class='fieldsetDefault' style = "width:95%">
         <legend>Ny hendelse</legend>
         
                 <c:set var="meldingS" value="${melding}"></c:set>
@@ -43,7 +43,7 @@
             <dt><label for="Notat">Notat:</label></dt>
             <textarea id="notat" placeholder="Skriv notat her" name="notat" autofocus="true" rows="10" cols="55" ></textarea>
             
-        <p><input class="vanligknapp" type="submit" value="Legg til" onclick=""></p>
+        <p><input class="defaultKnapp" type="submit" value="Legg til" onclick=""></p>
         </form:form>
     </fieldset>
 </main>
