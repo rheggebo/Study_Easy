@@ -12,48 +12,44 @@
         3. SVG fungerer dårlig i firefox 
 -->
     
-    
 <main>
     <div id="velgRomSøkeBokser" class="tekst">
-        <form action="VelgRomSok" method="post" onsubmit=" return validate();">
-            <fieldset>
-                <legend><b>Velg ønsket spesifikasjoner:</b></legend>
-                <dl>
-                    <dt><label for="datoFinnRom">Dato:<em>*</em></label></dt>
-                    <dd><input id="datoFinnRom" class="min-today" type="date" name="fraDato" required></dd>
-                    <dt><label for="fraTid">Tid fra:<em>*</em></label></dt>
-                    <dd><select id="fraTid" name="fraTid" required>
-                    <option value="1">06.00</option>
-                    <option value="2">07.00</option>
-                    <option value="3">08.00</option>
-                    <option value="4">09.00</option>
-                    <option value="5">10.00</option>
-                    <option value="6">11.00</option>
-                    <option value="7">12.00</option>
-                    <option value="8">13.00</option>
-                    <option value="9">14.00</option>
-                    <option value="10">15.00</option>
-                    <option value="11">16.00</option>
-                    <option value="12">17.00</option>
-                    <option value="13">18.00</option>
-                    <option value="14">19.00</option>
-                    <option value="15">20.00</option>
-                    <option value="16">21.00</option>
-                    <option value="17">22.00</option>
-                    </select>
-                    </dd>
-
-                    <dt><label for="tilTid">Varighet:<em>*</em></label></dt>
-                    <dd><select id="tilTid" name="varighet" required>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    </select></dd>
-
-                </dl>
-                <input type="submit" value="Finn ledig rom">
-            </fieldset>
-        </form>
+        <fieldset>
+            <legend><b>Velg ønsket spesifikasjoner:</b></legend>
+            <form:form action="VelgRomSok" modelAttribute="formVelgRom" method="POST">
+                <table>
+                    <tr>
+                        <td>Dato*:</td>
+                        <td><form:input path="formVelgRom.fraDato" /></td>
+                        <td><form:errors path="person.fornavn" /></td>
+                    </tr>
+                    <tr>
+                        <td>Tid fra*:</td>
+                        <td>
+                            <form:select path="formVelgRom.fraTid">
+                                <form:options items="${formVelgRom.tiderList}"/>
+                            </form:select>
+                        </td>
+                        <td><form:errors path="formVelgRom.fraTid"/></td>
+                    </tr>
+                    <tr>
+                        <td>Verighet*:</td>
+                        <td>
+                            <form:select path="formVelgRom.varighet">
+                                <form:options items="${formVelgRom.varighetList}"/>
+                            </form:select>
+                        </td>
+                        <td><form:errors path="formVelgRom.varighet"/></td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">
+                            <input type="submit" value="SEND">
+                        </td>
+                    </tr>           
+                </table>
+            </form:form>
+        </fieldset>
+        
     </div>
     
     <div id="RomInfo" class="tekst">
@@ -96,18 +92,18 @@
                             <td><label>${tilbakeMelding}</label></td>
                         </tr>
                     </table>
-                    <input type="submit" id="resRomVelgRom" value="Reserver rom">
+                    <input type="submit" class="vanligknapp" id="resRomVelgRom" value="Reserver rom">
                     <c:set var="tilgang" value="${bruker.getTilgangsniva()}"></c:set>
                     <c:if test="${tilgang == 1}">
-                    <input type="submit" formaction="OverstyrRomL" value="Overstyr rombestilling">
+                    <input type="submit" class="vanligknapp" formaction="OverstyrRomL" value="Overstyr rombestilling">
+                    </c:if>
+                    <br>
+                    <c:if test="${tilgang == 2}">
+                    <input type="submit" class="vanligknapp" formaction="OverstyrRomAdmin" value="Overstyr rombestilling">
                     </c:if>
                     
                     <c:if test="${tilgang == 2}">
-                    <input type="submit" formaction="OverstyrRomAdmin" value="Overstyr rombestilling">
-                    </c:if>
-                    
-                    <c:if test="${tilgang == 2}">
-                    <input type="submit" formaction="VelgRomRed" value="Rediger rom informasjon">
+                    <input type="submit" class="vanligknapp" formaction="VelgRomRed" value="Rediger rom informasjon">
                     </c:if>
                 </form>
         </fieldset>
@@ -341,6 +337,7 @@
             } },false);
 
         //Klikkhendelser for planRomOpptatt objeckter:
+        //trenger ikke begge siden begge gjør det samme nå, men hvis man vil endre det)
             //Første etasje:
             var aO1 = document.getElementById("plantegningEtasje1");
             aO1.addEventListener("load",function(){

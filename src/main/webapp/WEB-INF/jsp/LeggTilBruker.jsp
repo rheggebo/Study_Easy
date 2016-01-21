@@ -23,7 +23,7 @@
                 </select>
             </dd>
         </dl>
-        <p><input id="leggTil" type="submit" value="Legg til" onclick=""></p>
+        <p><input id="leggTil" class="vanligknapp" type="submit" value="Legg til" onclick=""></p>
         </form:form>
         
     </fieldset>

@@ -36,7 +36,7 @@
                      </datalist> -->
 
                     <dt><label for="strFinnRom">Strørrelse(m<sup>2</sup>):</label><input class="checkboxes" type="checkbox" id="storrelse" value="Skjerm" name="storrelse"></dt>
-                    <dd><input id="strFinnRom" name="storrelseNum" type="number" min="5" max="200" value="5" disabled></dd>
+                    <dd><form:form id="strFinnRom" name="storrelseNum" type="number" min="5" max="200" value="5"></dd>
 
                     <dt><label for="checkboxes">Utstyr:</label></dt>
                     <dd><input class="checkboxes" type="checkbox" id="skjerm" name="skjerm">PC-skjerm<input type="number" id="antSkjerm" name="antSkjerm" min="0" value="0" disabled><br> 
@@ -82,7 +82,7 @@
 
 
                 </dl>
-                <input type="submit" value="Finn ledig rom">
+                <input type="submit" class="vanligknapp" value="Finn ledig rom">
             </fieldset>
         </form:form>
 </div>
@@ -91,9 +91,7 @@
         <legend>Ny hendelse</legend>
             <input type="checkbox" name="leggtil" value="add" required="true">Opprett hendelse i rom-booking<br>
             <dt><label for="fornavn">Tittel:<em>*</em></label></dt>
-            <dd><input type="text" placeholder="Skriv tittel her"> 
-                
-            </dd>
+            <dd><form:form type="text" placeholder="Skriv tittel her"></dd>
             <dt><label for="privatOffentlig">Privat/Offentlig:<em>*</em></label></dt>
             <dd><select name="valg" id="valg" required="true">
                     <option value="Offentlig">Offentlig</option>
@@ -119,7 +117,7 @@
             <dt><label for="Notat">Notat:</label></dt>
             <textarea id="notat" placeholder="Skriv notat her" name="notat" autofocus="true" rows="10" cols="55" ></textarea>
             
-        <p><input type="submit" value="Legg til" onclick=""></p>
+        <p><input type="submit" class="vanligknapp" value="Legg til" onclick=""></p>
     </fieldset>
     </div>
     <section class="searchInfo">
