@@ -5,14 +5,17 @@
  */
 package testing.database;
 
+import beans.Abonemennt;
 import database.DBConnectionImpl;
 import beans.Bruker;
+import beans.BrukerB;
 import beans.Fag;
 import beans.KalenderEvent;
 import beans.Klasse;
 import beans.Rom;
 import database.DBConnection;
 import java.sql.Connection;
+import java.sql.Timestamp;
 import org.junit.*;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
@@ -29,11 +32,16 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 public class DBConnectionImplTest {
     DBConnectionImpl dbci;
     static DBConnectionImpl dbc;
+    
+    Abonemennt ab;
+    Abonemennt ac;
     Klasse klasse;
+    Rom rom1; 
     Bruker b;
-    static Bruker nb = new Bruker();
     Bruker bruker;
-    Date fDato;
+    Timestamp fraDato;
+    Timestamp tilDato;
+    
     KalenderEvent kEvent;
     private ArrayList<KalenderEvent> KEliste;
     private ArrayList<Rom> RomListe;
@@ -73,55 +81,36 @@ public class DBConnectionImplTest {
         RomListe = new ArrayList();
         BrukerListe = new ArrayList();
         FagListe = new ArrayList();
+        fraDato = new Timestamp(2016-1-22);
+        tilDato = new Timestamp(2016-1-23);
         
-        Rom rom1 = new Rom();
+        ab = new Abonemennt("test4@aol.com","henrik_bjorkheim@hotmail.com", 0);
+        ac = new Abonemennt("ola@hotmail.com", "TDAT2001", 1);
+        rom1 = new Rom();
         rom1.setRomID("KAUD");
         rom1.setRomNavn("KAUD");
         rom1.setEtasje(3);
         rom1.setType(3);
         rom1.setStorrelse(100);
         rom1.setAntStolplasser(100);
-        
-        Rom rom2 = new Rom();
-        rom2.setRomID("KA-SA235");
-        rom2.setRomNavn("Glass");
-        rom2.setEtasje(2);
-        rom2.setType(3);
-        rom2.setStorrelse(30);
-        rom2.setAntStolplasser(50);
-        
-        Rom rom3 = new Rom();
-        rom3.setRomID("BRM272");
-        rom3.setRomNavn("Vest møterom");
-        rom3.setEtasje(2);
-        rom3.setType(1);
-        rom3.setStorrelse(11);
-        rom3.setAntStolplasser(10);
-        
-        RomListe.add(rom3);
-        RomListe.add(rom2);
-        RomListe.add(rom1);
-        
-            
+             
         Fag fag1 = new Fag();
         fag1.setFagID("TDAT2001");
         fag1.setNavn("Matematikk 1");
-        
-        Fag fag2 = new Fag();
-        fag2.setFagID("TDAT2002");
-        fag2.setNavn("Fysikk 1");
-        
-        Fag fag3 = new Fag();
-        fag3.setFagID("TDAT2003");
-        fag3.setNavn("Matematikk 2");
-        
-        FagListe.add(fag1);
-        FagListe.add(fag2);
-        FagListe.add(fag3);
+       
+        kEvent = new KalenderEvent();
+        kEvent.setEierNavn("Ola Nilsson");
+        kEvent.setEpost("ola@hotmail.com");
+        kEvent.setType(2);
+        kEvent.setStartTid(fraDato);
+        kEvent.setSluttTid(tilDato);
+        kEvent.setTittel("Lekser");
+        kEvent.setRom("GR114");
+        kEvent.setPrivat(true);
+        kEvent.setTilhorerEvent(2);
         
         klasse = new Klasse();
         klasse.setNavn("2.ing");
-        fDato = new Date(1992-1-3);
         b = new Bruker(); 
         b.setFornavn("Ola");
         b.setEtternavn("Aas");
@@ -199,16 +188,75 @@ public class DBConnectionImplTest {
     }
     
     @Test
-    public void test_getAlleRom(){
-        assertEquals(dbc.getAlleRom().toString(), RomListe.toString());
+    public void test_getAlle(){
+        assertEquals(dbc.getAlleRom().size(), 34 );
+        assertEquals(dbc.getAlleFag().size(), 3);
+    
+        int ant = 15;
+        assertEquals(dbc.getAlleBrukere().size(), ant);
+    
     }
     
     @Test
-    public void test_getAlleFag(){
-        System.out.println(FagListe.toString());
-        System.out.println(dbc.getAlleFag().toString());
-        assertEquals(dbc.getAlleFag().toString(), FagListe.toString());
+    public void test_sok(){
+        assertEquals(dbc.getAnsattSok("test", "test", "test").size(), 0);
+        
+        assertEquals(dbc.getFagSok("TDAT2001", "TDAT2001").size(), 1);
+        
+        assertEquals(dbc.getRomSok("KAUD", "KAUD").size(), 1);
+        
+        assertEquals(dbc.getStudentSok("Ola", "Ola", "Ola").size(),1);
+    
+        assertEquals(dbc.getKlasseSok("TDAT").size(), 0);
     }
+       
+    @Test
+    public void test_slettAbonnement(){
+        assertFalse(dbc.slettAbonemennt(ac));
+    }
+    
+    @Test
+    public void test_slettAbonnementFalse(){
+        
+        assertTrue(dbc.slettAbonemennt(ac));
+    }
+    
+    /*@Test
+    public void test_leggTilAbonnementFalse(){
+        assertFalse(dbc.leggTilAbonemennt(ac));
+    }
+    Må dobbeltsjekke metoden at den returnerer riktig false.
+    */
+    
+    @Test
+    public void test_leggTilAbonnement(){
+        assertTrue(dbc.leggTilAbonemennt(ac));
+    }
+    
+    @Test
+    public void test_getRomFraNavn(){
+        assertEquals(dbc.getRomFraNavn(rom1).size(), 1);
+        assertEquals(dbc.getRomFraNavn("KAUD").size(), 1);
+        
+    }
+    
+    /*@Test
+    public void test_getRomFraStr(){
+        assertEquals(dbc.getRomFraStoerrelse(rom1).size(), 1);
+    }
+    skjønner ikke hva som returneres :(  */
+    
+    @Test
+    public void test_slettBooking(){
+        //assertTrue(dbc.slettBooking(kEvent));
+    }
+    
+    @Test
+    public void test_leggTilBooking(){
+        //assertTrue(dbc.leggTilBooking(kEvent));
+    }
+    
+    
     
     @After
     public void tearDown() {

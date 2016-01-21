@@ -12,113 +12,85 @@
         3. SVG fungerer dårlig i firefox 
 -->
     
-    
 <main>
-    <div id="velgRomSøkeBokser" class="tekst">
-        <form action="VelgRomSok" method="post" onsubmit=" return validate();">
-            <fieldset>
-                <legend><b>Velg ønsket spesifikasjoner:</b></legend>
-                <dl>
-                    <dt><label for="datoFinnRom">Dato:<em>*</em></label></dt>
-                    <dd><input id="datoFinnRom" type="date" name="fraDato" required></dd>
-                    <dt><label for="fraTid">Tid fra:<em>*</em></label></dt>
-                    <dd><select id="fraTid" name="fraTid" required>
-                    <option value="1">06.00</option>
-                    <option value="2">07.00</option>
-                    <option value="3">08.00</option>
-                    <option value="4">09.00</option>
-                    <option value="5">10.00</option>
-                    <option value="6">11.00</option>
-                    <option value="7">12.00</option>
-                    <option value="8">13.00</option>
-                    <option value="9">14.00</option>
-                    <option value="10">15.00</option>
-                    <option value="11">16.00</option>
-                    <option value="12">17.00</option>
-                    <option value="13">18.00</option>
-                    <option value="14">19.00</option>
-                    <option value="15">20.00</option>
-                    <option value="16">21.00</option>
-                    <option value="17">22.00</option>
-                    </select>
-                    </dd>
-
-                    <dt><label for="tilTid">Varighet:<em>*</em></label></dt>
-                    <dd><select id="tilTid" name="varighet" required>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    </select></dd>
-
-                </dl>
-                <input type="submit" value="Finn ledig rom">
-            </fieldset>
-        </form>
-    </div>
-    
-    <div id="RomInfo" class="tekst">
+    <div id="velgRomSøkeBokser"  class="tekst">
         <fieldset>
-            <legend><b>Rominformasjon:</b></legend>
-                <form action="VelgRomRes" method="post">    
-                    <table>
-                        <tr>
-                            <td>Rom-id:</td>
-                            <td><label id="rom"> </td>
-                        </tr>
-                        <!--
-                        <tr>
-                            <td>Rom navn:</td>
-                            <td><label id="okRomNavn"></label></td>
-                        </tr>
-                        <tr>
-                            <td>Etasje:</td>
-                            <td><label id="okEtasje"></label></td>
-                        </tr>
-                        <tr>
-                            <td>Plasser:</td>
-                            <td><label id="okPlasser"></label></td>
-                        </tr>
-                        -->
-                        <tr>
-                            <td>Dato:</td>
-                            <td><label id="okDato"></label></td>
-                        </tr>
-                        <tr>
-                            <td>Tid fra:</td>
-                            <td><label id="okTidFra"></label></td>
-                        </tr>
-                        <tr>
-                            <td>Tid til</td>
-                            <td><label id="okTidTil"></label></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td><label>${tilbakeMelding}</label></td>
-                        </tr>
-                    </table>
-                    <input type="submit" id="resRomVelgRom" value="Reserver rom">
+            <legend><b>Velg ønsket spesifikasjoner</b></legend>
+            <form:form modelAttribute="formVelgRom" method="POST">
+                <table>
+                    <tr>
+                        <td>Dato:<em>* </em></td>
+                        <td><form:input class="min-today" type="date" path="fraDato" /></td>
+                        <td><form:errors path="fraDato" /></td>
+                    </tr>
+                    <tr>
+                        <td>Tid fra:<em>* </em></td>
+                        <td>
+                            <form:select path="fraTid">
+                                <form:options items="${formVelgRom.tiderList}"/>
+                            </form:select>
+                        </td>
+                        <td><form:errors path="fraTid"/></td>
+                    </tr>
+                    <tr>
+                        <td>Varighet:<em>* </em></td>
+                        <td>
+                            <form:select path="varighet">
+                                <form:options items="${formVelgRom.varighetList}"/>
+                            </form:select>
+                        </td>
+                        <td><form:errors path="varighet"/></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <input class="defaultKnapp" formaction="VelgRomSok" type="submit" value="Søk">
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>RomID:<em>* </em></td>
+                        <td colspan="2"><form:input id="rom" path="romId"/></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <input class="defaultKnapp" formaction="VelgRomReserverRom" type="submit" value="Bestill">
+                        </td>
+                        <td></td>
+                    </tr>  
                     <c:set var="tilgang" value="${bruker.getTilgangsniva()}"></c:set>
                     <c:if test="${tilgang == 1}">
-                    <input type="submit" formaction="OverstyrRomL" value="Overstyr rombestilling">
-                    </c:if>
-                    
+                        <tr>
+                            <td>
+                            </td>
+                            <td>
+                            <input type="submit" class="vanligknapp" formaction="OverstyrRomL" value="Overstyr rombestilling">
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                     </c:if>
                     <c:if test="${tilgang == 2}">
-                    <input type="submit" formaction="OverstyrRomAdmin" value="Overstyr rombestilling">
-                    </c:if>
-                    
-                    <c:if test="${tilgang == 2}">
-                    <input type="submit" formaction="VelgRomRed" value="Rediger rom informasjon">
-                    </c:if>
-                </form>
+                        <tr><td>
+                            </td>
+                            <td>
+                            <input type="submit" class="defaultKnapp" formaction="OverstyrRomAdmin" value="Overstyr rombestilling">
+                            </td>
+                            <td>
+                            <input type="submit" class="defaultKnapp" formaction="VelgRomRed" value="Rediger rom informasjon">
+                            </td>
+                        </tr>
+                    </c:if> 
+                </table>
+            </form:form>
         </fieldset>
-        
     </div>
-    
                 
     <div>
         <span class="tekst">Du befinner deg i</span>
             <p id="etasjeTeller">1. etasje</p>
-                <span class="tekst">på&nbsp;<p id="romNavn">(ingen rom valgt)</p></span> 
+                <span class="tekst">&nbsp;<p id="romNavn">(ingen rom valgt)</p></span> 
     </div>  
                     
                     
@@ -211,72 +183,72 @@
         }
     </script>
     
+    <script>
+        $(function(){
+            $('[type="date"].min-today').prop('min', function(){
+                return new Date().toJSON().split('T')[0];
+            });
+        });
+    </script>
+    
     <script>    
         function erLedig(id){
-           alert("testFunksjon"+id);
             if (("${liste}").indexOf(id) !=-1) {
-                alert(id+"er ledig");
+                //alert(id+" er ledig");
                 return 1;
             }
-            alert(id+"er ikke ledig");
+            //alert(id+" er ikke ledig");
             return -1;
         }
+        
         //Setter Ledig:
             //Første Etasje:
-            var aLedig1 = document.getElementById("plantegningEtasje1");
-            aLedig1.addEventListener("load",function(){
-              var svgDocLedig1 = aLedig1.contentDocument;
-              var elsLedig1 = svgDocLedig1.querySelectorAll(".planRomOpptatt");
-              for (var i = 0, length = elsLedig1.length; i < length; i++) {
-                var deltaLedig1= elsLedig1[i];    
-                 deltaLedig1.addEventListener("click", function(){ 
-                    alert("test");
-                    if(erLedig(this.id)>=0){
-                        alert("Setter planrom");
-                        $(this).attr("class","planRom");
+            var sVGBilde1 = document.getElementById("plantegningEtasje1");
+            sVGBilde1.addEventListener("load",function(){
+                var sVGContent1 = sVGBilde1.contentDocument;
+                var sVGRom1 = sVGContent1.querySelectorAll(".planRom");
+                for (var i = 0, length = sVGRom1.length; i < length; i++) {
+                    var rom1= sVGRom1[i];    
+                    rom1.addEventListener("mouseover", function(){ 
+                    if(erLedig(this.id)<=0){
+                        //alert("Setter planrom");
+                        $(this).attr("class","planRomOpptatt");
                     }}, false);
             }},false);
-
             //Andre etasje:
             var aLedig2 = document.getElementById("plantegningEtasje2");
             aLedig2.addEventListener("load",function(){
               var svgDocLedig2 = aLedig2.contentDocument;
-              var elsLedig2 = svgDocLedig2.querySelectorAll(".planRomOpptatt");
+              var elsLedig2 = svgDocLedig2.querySelectorAll(".planRom");
               for (var i = 0, length = elsLedig2.length; i < length; i++) {
                 var deltaLedig2= elsLedig2[i];
-                deltaLedig2.addEventListener("click", function(){ 
-                    alert("test");
-                    if(erLedig(this.id)>=0){
-                        alert("Setter planrom");
-                        $(this).attr("class","planRom");
+                deltaLedig2.addEventListener("mouseover", function(){ 
+                    if(erLedig(this.id)<=0){
+                        $(this).attr("class","planRomOpptatt");
                     }}, false);
             }},false);
             //Tredje etasje:    
             var aLedig3 = document.getElementById("plantegningEtasje3");
             aLedig3.addEventListener("load",function(){
               var svgDocLedig3 = aLedig3.contentDocument;
-              var elsLedig3 = svgDocLedig3.querySelectorAll(".planRomOpptatt");
+              var elsLedig3 = svgDocLedig3.querySelectorAll(".planRom");
               for (var i = 0, length = elsLedig3.length; i < length; i++) {
                 var deltaLedig3= elsLedig3[i];
-                deltaLedig3.addEventListener("click", function(){ 
-                    alert("test");
-                    if(erLedig(this.id)>=0){
-                        alert("Setter planrom");
-                        $(this).attr("class","planRom");
+                deltaLedig3.addEventListener("mouseover", function(){ 
+                    if(erLedig(this.id)<=0){
+                        $(this).attr("class","planRomOpptatt");
                     }}, false);
             }},false);
             //Fjerde etasje:
             var aLedig4 = document.getElementById("plantegningEtasje4");
             aLedig4.addEventListener("load",function(){
               var svgDocLedig4 = aLedig4.contentDocument;
-              var elsLedig4 = svgDocLedig4.querySelectorAll(".planRomOpptatt");
+              var elsLedig4 = svgDocLedig4.querySelectorAll(".planRom");
               for (var i = 0, length = elsLedig4.length; i < length; i++) {
                 var deltaLedig4= elsLedig4[i];
-                deltaLedig4.addEventListener("click", function(){ 
-                    alert("test");
-                    if(erLedig(this.id)>=0){
-                        alert("Setter planrom");
-                        $(this).attr("class","planRom");
+                deltaLedig4.addEventListener("mouseover", function(){ 
+                    if(erLedig(this.id)<=0){
+                        $(this).attr("class","planRomOpptatt");
                     }}, false);
             } },false);
 
@@ -294,7 +266,7 @@
                 }, false);
                 //KlikkFunksjon:
                 delta.addEventListener("click", function(){ 
-                        document.getElementById('rom').innerHTML=this.id;
+                       document.getElementById('rom').value=this.id;
                     }, false);
             }},false);
             //Andre etasje:
@@ -308,7 +280,7 @@
                        document.getElementById('romNavn').innerHTML=this.id;
                 }, false);
                 delta2.addEventListener("click", function(){ 
-                        document.getElementById('rom').innerHTML=this.id;
+                        document.getElementById('rom').value=this.id;
                     }, false);
             }},false);
             //Tredje etasje:    
@@ -322,7 +294,7 @@
                        document.getElementById('romNavn').innerHTML=this.id;
                 }, false);
                 delta3.addEventListener("click", function(){ 
-                       document.getElementById('rom').innerHTML=this.id;
+                       document.getElementById('rom').value=this.id;
                     }, false);
             }},false);
             //Fjerde etasje:
@@ -336,11 +308,12 @@
                        document.getElementById('romNavn').innerHTML=this.id;
                 }, false);
                 delta4.addEventListener("click", function(){ 
-                       document.getElementById('rom').innerHTML=this.id;
+                       document.getElementById('rom').value=this.id;
                 }, false);
             } },false);
 
         //Klikkhendelser for planRomOpptatt objeckter:
+        //trenger ikke begge siden begge gjør det samme nå, men hvis man vil endre det)
             //Første etasje:
             var aO1 = document.getElementById("plantegningEtasje1");
             aO1.addEventListener("load",function(){
@@ -354,7 +327,7 @@
                 }, false);
                 //KlikkFunksjon:
                 delta.addEventListener("click", function(){ 
-                        document.getElementById('rom').innerHTML=this.id;
+                        document.getElementById('rom').value=this.id;
                     }, false);
             }},false);
             //Andre etasje:
@@ -368,7 +341,7 @@
                        document.getElementById('romNavn').innerHTML=this.id;
                 }, false);
                 deltaO2.addEventListener("click", function(){ 
-                        document.getElementById('rom').innerHTML=this.id;
+                        document.getElementById('rom').value=this.id;
                     }, false);
             }},false);
             //Tredje etasje:    
@@ -382,7 +355,7 @@
                        document.getElementById('romNavn').innerHTML=this.id;
                 }, false);
                 deltaO3.addEventListener("click", function(){ 
-                       document.getElementById('rom').innerHTML=this.id;
+                       document.getElementById('rom').value=this.id;
                     }, false);
             }},false);
             //Fjerde etasje:
@@ -396,7 +369,7 @@
                        document.getElementById('romNavn').innerHTML=this.id;
                 }, false);
                 deltaO4.addEventListener("click", function(){ 
-                       document.getElementById('rom').innerHTML=this.id;
+                       document.getElementById('rom').value=this.id;
                 }, false);
             } },false);
     </script>

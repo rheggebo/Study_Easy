@@ -7,11 +7,13 @@ import beans.KalenderEvent;
 import beans.Passord;
 import beans.Rom;
 import beans.RomBestilling;
+import beans.SlettAbonnementValg;
 import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +21,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import service.Service;
+import ui.FormVelgRom;
 
 /**
  * 
@@ -76,6 +79,8 @@ public class Hovedkontroller {
         List<RomBestilling> eventListe = service.getReserverteRom(ke);
         model.addAttribute("event", new KalenderEvent());
         model.addAttribute("reservasjonsliste", eventListe);
+        List<KalenderEvent> kalenderEventListe = service.getKalenderEventEier(brukerb);
+        model.addAttribute("kalenderEventListe", kalenderEventListe);
     }
     
     @RequestMapping("MinSide")
@@ -84,33 +89,62 @@ public class Hovedkontroller {
         if(brukerb != null && brukerb.isInnlogget()){
             model.addAttribute("bruker", brukerb);
             returnerMinSide(model, brukerb);
+            model.addAttribute("resultat", new SlettAbonnementValg());
             return "MinSide";
         }
         model.addAttribute("bruker", new Bruker());
+
         return "Innlogging";
     }
     
-    @RequestMapping(value="Abonnement")
-    public String getSlettAbonnement(HttpSession sess, Model model, HttpServletRequest req) {
-        if("Slett".equals(req.getParameter("slettAbKnapp"))) {
-            try {
-                
-            } catch (Exception e) {
-                model.addAttribute("melding", "feilmelding.finnesIkkeAbonnement");
+    @RequestMapping(value="slett")
+    public String getSlettAbonnement(@ModelAttribute("resultat") SlettAbonnementValg sa, HttpSession sess, Model model, HttpServletResponse response, HttpServletRequest req) {
+        BrukerB brukerb = (BrukerB)sess.getAttribute("brukerBean");
+        String valgt = sa.getResultat();
+        if(brukerb != null && brukerb.isInnlogget()){
+            model.addAttribute("bruker", brukerb);
+            if("Slett".equals(req.getParameter("slettFagAbKnapp"))) {
+                //prøver å slette abonemennt med brukerepost og den valgte koden,
+                // fanger exception viss ikke
+                try{
+                    service.slettAbonemennt(new Abonemennt(brukerb.getEpost(), valgt, 1));  
+                }
+                catch(Exception e){
+                    model.addAttribute("meldingFag", "feilmelding.finnesIkkeAbonnement");
+                }
             }
-        }
-        if("Slett".equals(req.getParameter("slettAbKnapp"))) {
-            try {
-                
-            } catch (Exception e) {
-                model.addAttribute("melding", "feilmelding.finnesIkkeAbonnement");
+            if("Slett".equals(req.getParameter("slettBrukerAbKnapp"))) {
+                //prøver å slette abonemennt med brukerepost og den valgte koden,
+                // fanger exception viss ikke
+                try{
+                    service.slettAbonemennt(new Abonemennt(brukerb.getEpost(), valgt, 0));
+                }
+                catch(Exception e){
+                    model.addAttribute("meldingBruker", "feilmelding.finnesIkkeAbonnement");
+                }
             }
-        }
+            if("Slett".equals(req.getParameter("slettHendelseKnapp"))) {
+                //prøver å slette abonemennt med brukerepost og den valgte koden,
+                // fanger exception viss ikke
+                try{
+                    //service.slettAbonemennt(new Abonemennt(brukerb.getEpost(), valgt, 0));
+                    model.addAttribute("meldingHendelse", "feilmelding.finnesIkkeHendelse");
+                }
+                catch(Exception e){
+                    model.addAttribute("meldingHendelse", "feilmelding.finnesIkkeHendelse");
+                }
+            }
+            returnerMinSide(model, brukerb);
+            model.addAttribute("resultat1", new SlettAbonnementValg());
+            return "MinSide";
+        } 
+
+        model.addAttribute("bruker", new Bruker()); 
         return "MinSide";
     }
     
     @RequestMapping("VelgRom")
-    public String velgRom(HttpSession sess, Model model){
+    public String velgRom(@ModelAttribute FormVelgRom fromVelgRom,HttpSession sess, Model model){
         BrukerB brukerb = (BrukerB) sess.getAttribute("brukerBean");
         if(brukerb != null && brukerb.isInnlogget()){
             model.addAttribute("bruker", brukerb);

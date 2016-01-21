@@ -110,4 +110,10 @@ public class KalenderEvent {
         this.tilhorerEvent = tilhorerEvent;
     }
     
+    public String toString() {
+        String str = "";
+        str += tittel + " " + startTid.toString();
+        return str;
+    }
+    
 }

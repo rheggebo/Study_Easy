@@ -21,23 +21,31 @@
 
 <main>
 <div class="searchNav">
-    <ul><form action="search" method="POST"  role="search" modelAttribute="soke">
-        <li><div>
-            <input id="searchFormSokeSide" class="searchForm" type=search name="sokeord" size="30">
-            <input id="searchButtonSokeSide" class="searchButton" value="Søk" type="submit"></div>
-            <br>
-            <div>              
-                    <input class="checkboxes" type="checkbox" id="ansattSokeSide" name="Spes" value="Ansatt">Ansatt
-                    <br>
-                    <input class="checkboxes" type="checkbox" id="studentSokeSide" name="Spes" value="Student">Student
-                    <br>
-                    <input class="checkboxes" type="checkbox" id="fagSokeSide" name="Spes" value="Fag">Fag
-                    <br>
-                    <input class="checkboxes" type="checkbox" id="romSokeSide" name="Spes" value="Rom">Rom
-                    <br>
-                    <input class="checkboxes" type="checkbox" id="klasseSokeSide" name="Spes" value="Klasse">Klasse</form></div>
-        </li></form>               
-    </ul></div>
+        <ul><form action="search" method="POST"  role="search" modelAttribute="soke">
+                <li>
+                    <div>
+                        <input id="searchFormSokeSide" class="searchForm" type=search name="sokeord" size="30" placeholder="Skriv ditt søk her...">
+                        <button id="searchButtonSokeSide" class="defaultKnapp" type="submit"><span class="fontawesome-search"></span></button>
+                        
+                        <br>
+                        <br>
+                        
+                    <div>              
+                            <input class="checkboxes" type="checkbox" id="ansattSokeSide" name="Spes" value="Ansatt">Ansatt
+                            <br>
+                            <input class="checkboxes" type="checkbox" id="studentSokeSide" name="Spes" value="Student">Student
+                            <br>
+                            <input class="checkboxes" type="checkbox" id="fagSokeSide" name="Spes" value="Fag">Fag
+                            <br>
+                            <input class="checkboxes" type="checkbox" id="romSokeSide" name="Spes" value="Rom">Rom
+                            <br>
+                            <input class="checkboxes" type="checkbox" id="klasseSokeSide" name="Spes" value="Klasse">Klasse
+                    </div>
+                        <br>
+                </li>
+            </form>               
+        </ul>
+    </div>
                        <c:set var="meldingS" value="${melding}"></c:set>
                 <c:if test="${not empty meldingS}">
                     <spring:message code="${melding}" />

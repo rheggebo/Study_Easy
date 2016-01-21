@@ -10,6 +10,11 @@
     <fieldset style = "width:95%">
         <legend>Ny hendelse</legend>
         
+                <c:set var="meldingS" value="${melding}"></c:set>
+                <c:if test="${not empty meldingS}">
+                    <spring:message code="${melding}" />
+                </c:if>
+        
             <form:form action="OpprettHendelse" modelAttribute="nyHendelse">
                 
             <dt><label for="tittel">Navn:<em>*</em></label></dt>
@@ -29,10 +34,16 @@
                     <option value="Privat">Privat</option>
                 </select>
             </dd>
+            <dt><label for="type">Type:<em>*</em></label></dt>
+            <dd><select name="type" id="type" required="true">
+                    <option value="0">Møte</option>
+                    <option value="1">Annet</option>
+                </select>
+            
             <dt><label for="Notat">Notat:</label></dt>
             <textarea id="notat" placeholder="Skriv notat her" name="notat" autofocus="true" rows="10" cols="55" ></textarea>
             
-        <p><input type="submit" value="Legg til" onclick=""></p>
+        <p><input class="vanligknapp" type="submit" value="Legg til" onclick=""></p>
         </form:form>
     </fieldset>
 </main>

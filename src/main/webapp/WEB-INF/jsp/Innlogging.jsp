@@ -27,7 +27,7 @@
     </c:if>
     </div>
     <a id="loggInnGlemtPassord" href="glemtPassord" name="glemsk">Glemt passord?</a>
-    <input id="loggInnKnapp" type="submit" value="Logg inn"><br>
+    <input id="loggInnKnapp" class="vanligknapp" type="submit" value="Logg inn"><br>
   </form:form>
 </div>
 <script>
