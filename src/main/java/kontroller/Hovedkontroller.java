@@ -78,6 +78,8 @@ public class Hovedkontroller {
         ke.setStartTid(new Timestamp(dato.getTime()));
         List<RomBestilling> eventListe = service.getReserverteRom(ke);
         model.addAttribute("reservasjonsliste", eventListe);
+        List<KalenderEvent> kalenderEventListe = service.getAlleEventsFraBruker(brukerb);
+        model.addAttribute("kalenderEventListe", kalenderEventListe);
     }
     
     @RequestMapping("MinSide")
