@@ -74,3 +74,8 @@ font: 14px Microsoft YaHei Light;
 .knappVelgRom{
     padding: 10px
 }
+
+.velgRomForm{
+    width: 12em;
+    padding:0 0 .3em 0;
+}
