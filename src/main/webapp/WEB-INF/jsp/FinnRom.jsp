@@ -104,9 +104,10 @@
                     <c:set var="tilgang" value="${bruker.getTilgangsniva()}"></c:set>
                     <c:if test="${tilgang == 1}">
                     <tr>
-                        <td>Fag:<em>* </em></td>
+                        <td>Fag:</td>
                         <td>
                             <form:select class="velgRomForm" path="fag">
+                                <form:option value="" label="Velg fag" />
                                 <form:options items="${formFinnRom.fagList}"/>
                             </form:select>
                         </td>
@@ -114,7 +115,7 @@
                     </tr>
                     </c:if>
                     <tr>
-                        <td>Notat:<em>* </em></td>
+                        <td>Notat:</td>
                         <td><form:textarea id="textareaNotat" placeholder="Utvid for mer skriveplass" class="velgRomForm" path="notat" /></td>
                         <td><form:errors path="notat" /></td>
                     </tr>
