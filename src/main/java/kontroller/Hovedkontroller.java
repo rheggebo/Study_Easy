@@ -21,6 +21,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import service.Service;
+import ui.FormFinnRom;
 import ui.FormVelgRom;
 
 /**
@@ -165,7 +166,7 @@ public class Hovedkontroller {
     }
     
     @RequestMapping("FinnRom")
-    public String finnRom(Model model, HttpSession sess){        
+    public String finnRom(@ModelAttribute FormFinnRom formFinnRom, Model model, HttpSession sess){        
         BrukerB brukerb = (BrukerB) sess.getAttribute("brukerBean");
         if(brukerb != null && brukerb.isInnlogget()){
             model.addAttribute("bruker", brukerb);
