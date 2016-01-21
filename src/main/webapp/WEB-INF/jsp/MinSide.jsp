@@ -133,7 +133,7 @@
                                 
         <fieldset>
 
-            <legend>Bruker abonnement</legend>
+            <legend>Hendelser</legend>
             
             <%-- setter og printer ut eventuell feilmelding --%>
                                 <c:set var="meldingB" value="${meldingBruker}"></c:set>
