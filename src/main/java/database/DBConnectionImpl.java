@@ -930,4 +930,9 @@ public class DBConnectionImpl implements DBConnection{
             ke.getEpost()
         }));
     }
+
+    @Override
+    public boolean leggTilEvent(KalenderEvent ke) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
