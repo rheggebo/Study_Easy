@@ -23,10 +23,20 @@ public class FormFinnRom {
     private int storrelse;
     private String tittel;
     private String type;
+    private String romtype;
     private Date fraDato;
-    private Time fraTid;
+    private int fraTid;
     private int varighet;
     private String fag;
+    
+    public String getRomtype() {
+        return romtype;
+    }
+
+    public void setRomType(String romType) {
+        this.romtype = romType;
+    }
+
 
     public String getNotat() {
         return notat;
@@ -63,6 +73,11 @@ public class FormFinnRom {
 
     public List getTypeList(){
         String[] s = {"Privat","Forelesning","Møte"};
+        return Arrays.asList(s);
+    }
+    
+    public List getRomtypeList(){
+        String[] s = {"Forelesningssal","Moterom","Grupperom"};
         return Arrays.asList(s);
     }
     
@@ -127,7 +142,7 @@ public class FormFinnRom {
         this.fraDato = fraDato;
     }
 
-    public void setFraTid(Time fraTid) {
+    public void setFraTid(int fraTid) {
         this.fraTid = fraTid;
     }
 
@@ -145,7 +160,7 @@ public class FormFinnRom {
         return fraDato;
     }
 
-    public Time getFraTid() {
+    public int getFraTid() {
         return fraTid;
     }
 
