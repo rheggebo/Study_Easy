@@ -107,4 +107,5 @@ public class Funksjoner {
       return null;
   }
   
+  
 }

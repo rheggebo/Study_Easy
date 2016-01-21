@@ -320,6 +320,7 @@ public class ServiceImpl implements Service{
     public boolean slettBooking(KalenderEvent ke){
         return dbc.slettBooking(ke);
     }
+    @Override
     public boolean leggTilEvent (KalenderEvent ke){
         return dbc.leggTilEvent(ke);
     }
