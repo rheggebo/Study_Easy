@@ -14,19 +14,19 @@
     
 <main>
     <div id="velgRomSøkeBokser"  class="tekst">
-        <fieldset>
+        <fieldset class="fieldsetDefault">
             <legend><b>Velg ønsket spesifikasjoner</b></legend>
             <form:form modelAttribute="formVelgRom" method="POST">
                 <table>
                     <tr>
                         <td>Dato:<em>* </em></td>
-                        <td><form:input class="min-today" type="date" path="fraDato" /></td>
+                        <td><form:input class="velgRomForm" type="date" default="today" path="fraDato" /></td>
                         <td><form:errors path="fraDato" /></td>
                     </tr>
                     <tr>
                         <td>Tid fra:<em>* </em></td>
                         <td>
-                            <form:select path="fraTid">
+                            <form:select class="velgRomForm" path="fraTid">
                                 <form:options items="${formVelgRom.tiderList}"/>
                             </form:select>
                         </td>
@@ -35,7 +35,7 @@
                     <tr>
                         <td>Varighet:<em>* </em></td>
                         <td>
-                            <form:select path="varighet">
+                            <form:select class="velgRomForm" path="varighet">
                                 <form:options items="${formVelgRom.varighetList}"/>
                             </form:select>
                         </td>
@@ -50,7 +50,7 @@
                     </tr>
                     <tr>
                         <td>RomID:<em>* </em></td>
-                        <td colspan="2"><form:input id="rom" path="romId" disabled="true"/></td>
+                        <td colspan="2"><form:input class="velgRomForm" id="rom" path="romId" disabled="true"/></td>
                     </tr>
                     <tr>
                         <td></td>
@@ -78,7 +78,7 @@
                             <input type="submit" class="defaultKnapp" formaction="OverstyrRomAdmin" value="Overstyr rombestilling">
                             </td>
                             <td>
-                            <input type="submit" class="defaultKnapp" formaction="VelgRomRed" value="Rediger rom informasjon">
+                            <input type="submit" class="defaultKnapp" formaction="VelgRomRed" value="Rediger rom">
                             </td>
                         </tr>
                     </c:if> 

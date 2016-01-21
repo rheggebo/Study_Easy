@@ -11,6 +11,7 @@ import beans.BrukerB;
 import beans.Rom;
 import beans.Sok;
 import beans.SokeValg;
+import email.Email;
 import java.io.IOException;
 import static java.lang.System.out;
 import java.text.SimpleDateFormat;
@@ -87,6 +88,18 @@ public class SokeKontroller {
                 String[] split2 = (split[1].trim()).split(" ");
                 try{
                     si.leggTilAbonemennt(new Abonemennt(bruker.getEpost(), split2[0].trim(), 1));
+                    
+                   /* Email email = new Email();
+                    String avSender = bruker.getEpost();
+                    String[] mottakerListe = si.getAbonnementDeltakere(bruker.getEpost());
+                    String tema = "Abonnement endret";
+                    String melding = "En av dine abonnementer er blitt endret /n" 
+                    + "Hilsen Study Easy teamet";
+                    
+                    for(int i=0; i>mottakerListe.length; i++){
+                        String mottaker = mottakerListe[i];
+                        email.sendEpost(mottaker, tema, melding);                        
+                    }*/
                 }
                 catch(Exception e){
                     model.addAttribute("melding", "feilmelding.duplikatAbonnement");
