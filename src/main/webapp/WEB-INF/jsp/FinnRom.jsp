@@ -19,7 +19,7 @@
 
 <main>
     <div style="display: inline-block">
-        <fieldset>
+        <fieldset class="fieldsetDefault">
             <legend><b>Velg ønsket spesifikasjoner</b></legend>
             <form:form modelAttribute="formFinnRom" method="POST">
                 <table>
@@ -47,34 +47,43 @@
                         <td><form:errors path="varighet"/></td>
                     </tr>
                     <tr>
-                        <td>Romstørrelse(min):<em>* </em></td>
-                        <td><form:input type="number" path="storrelse" /></td>
+                        <td>Romtype:<em>* </em></td>
+                        <td>
+                            <form:select path="romtype">
+                                <form:options items="${formFinnRom.romtypeList}"/>
+                            </form:select>
+                        </td>
+                        <td><form:errors path="romtype"/></td>
+                    </tr>
+                    <tr>
+                        <td>Romstørrelse m<sup>2</sup>(min):<em>* </em></td>
+                        <td><form:input type="number" min="0" path="storrelse" /></td>
                         <td><form:errors path="storrelse" /></td>
                     </tr>
                     <tr>
                         <td>Sitteplasser(min):<em>* </em></td>
-                        <td><form:input type="number" path="sitteplasser" /></td>
+                        <td><form:input type="number" min="0" path="sitteplasser" /></td>
                         <td><form:errors path="skjerm" /></td>
                     </tr>
                     <tr>
                         <td>Skjerm(min):<em>* </em></td>
-                        <td><form:input type="number" path="skjerm" /></td>
+                        <td><form:input type="number" min="0" path="skjerm" /></td>
                         <td><form:errors path="skjerm" /></td>
                     </tr>
                     <tr>
                         <td>Tavle(min):<em>* </em></td>
-                        <td><form:input type="number" path="tavle" /></td>
+                        <td><form:input type="number" min="0" path="tavle" /></td>
                         <td><form:errors path="tavle" /></td>
                     </tr>
                     <tr>
                         <td>Projektor(min):<em>* </em></td>
-                        <td><form:input type="number" path="projektor" /></td>
+                        <td><form:input type="number" min="0" path="projektor" /></td>
                         <td><form:errors path="projektor" /></td>
                     </tr>
                     <tr>
                         <td></td>
                         <td>
-                            <input class="defaultKnapp" formaction="finnRomdata" type="submit" value="Søk">
+                            <input class="defaultKnapp" formaction="finnromdata" type="submit" value="Søk">
                         </td>
                         <td></td>
                     </tr>
@@ -117,6 +126,7 @@
             </form:form>
         </fieldset>
     </div>
+    <div>
     <section class="searchInfo">
         <table>
             <c:forEach var="liste" items="${liste}" varStatus="status">
@@ -130,6 +140,7 @@
             </c:forEach>                      
         </table>
     </section>
+    </div>
     <script language="JavaScript">
         $(document).ready(function(){
             function skjerm(){
