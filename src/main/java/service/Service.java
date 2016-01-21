@@ -121,5 +121,6 @@ public interface Service {
     public List<RomBestilling> getReserverteRom(KalenderEvent ke);
     
     public boolean slettBooking(KalenderEvent ke);
-      
+    
+    public List<Abonemennt> getAbonnementDeltakere(Abonemennt st);
 }
