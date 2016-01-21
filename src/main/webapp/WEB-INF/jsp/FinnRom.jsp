@@ -89,7 +89,7 @@
                     </tr>
                     <tr>
                         <td>Tittel:<em>* </em></td>
-                        <td><form:input class="velgRomForm" path="tittel" /></td>
+                        <td><form:input class="velgRomForm" placeholder="Skriv inn her" path="tittel" /></td>
                         <td><form:errors path="tittel" /></td>
                     </tr>
                     <tr>
@@ -101,6 +101,8 @@
                         </td>
                         <td><form:errors path="type"/></td>
                     </tr>
+                    <c:set var="tilgang" value="${bruker.getTilgangsniva()}"></c:set>
+                    <c:if test="${tilgang == 1}">
                     <tr>
                         <td>Fag:<em>* </em></td>
                         <td>
@@ -110,9 +112,10 @@
                         </td>
                         <td><form:errors path="fag"/></td>
                     </tr>
+                    </c:if>
                     <tr>
                         <td>Notat:<em>* </em></td>
-                        <td><form:textarea id="textareaNotat" class="velgRomForm" path="notat" /></td>
+                        <td><form:textarea id="textareaNotat" placeholder="Utvid for mer skriveplass" class="velgRomForm" path="notat" /></td>
                         <td><form:errors path="notat" /></td>
                     </tr>
                     <tr>
