@@ -148,7 +148,7 @@ public class EventKontroller {
             //tilDato = fromFinnRom.getFraDato();
         }
         ke.setStartTid(new Timestamp(formFinnRom.getFraDato().getTime()+fra*3600000));
-        ke.setSluttTid(new Timestamp(formFinnRom.getFraDato().getTime()+til*3600000));
+        ke.setSluttTid(new Timestamp(formFinnRom.getFraDato().getTime()+(fra+til)*3600000));
         ArrayList<String> innhold = new ArrayList<String>();
         
         if(formFinnRom.getSkjerm()>0){
@@ -253,6 +253,7 @@ public class EventKontroller {
                 Integer.parseInt(sluttTid[0]), Integer.parseInt(sluttTid[1]), Integer.parseInt(sluttTid[2].substring(0,2)), 0));
         System.out.println("Opprettet timestamp, skal slette booking");
         System.out.println(ke.getRom()+" "+ke.getStartTid()+" "+ke.getEpost());
+        RomBestilling booking = service.getRomBooking(ke);
         if(service.slettBooking(ke)){
             System.out.println("Slettet booking");
             returnerMinSide(model, bruker);

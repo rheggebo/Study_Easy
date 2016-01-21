@@ -134,5 +134,9 @@ public interface DBConnection {
     
     public boolean leggTilEvent (KalenderEvent ke);
     
+    public List<Abonemennt> getAbonnementDeltakere(Abonemennt st);
+    
     public List<Abonemennt> getAbonnementDeltakere(String st);
+    
+    public RomBestilling getRomBooking(KalenderEvent ke);
 }

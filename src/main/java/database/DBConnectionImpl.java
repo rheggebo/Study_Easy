@@ -130,6 +130,8 @@ public class DBConnectionImpl implements DBConnection{
     
     private final String leggTilEvent = "INSERT INTO kalender_event (dato_start, dato_slutt, eier, hidden, type, descr, tittel, eier_navn) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
     
+    private final String getRomBooking = "SELECT * FROM rom_bestilling WHERE romID LIKE ? AND dato_start LIKE ? AND eierID LIKE ?";
+    
     private DataSource dS;
     private JdbcTemplate jT;
     
@@ -966,5 +968,19 @@ public class DBConnectionImpl implements DBConnection{
             return true;
         }
         return false;
+    }
+    
+    @Override
+    public RomBestilling getRomBooking(KalenderEvent ke){
+        return jT.queryForObject(getRomBooking, new Object[]{
+            ke.getRom(),
+            ke.getStartTid(),
+            ke.getEpost()
+        }, new RomBestillingMapper());
+    }
+
+    @Override
+    public List<Abonemennt> getAbonnementDeltakere(Abonemennt st) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
