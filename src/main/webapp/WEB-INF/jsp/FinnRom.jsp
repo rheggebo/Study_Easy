@@ -35,7 +35,7 @@
                      <datalist id="ref-romtype">
                      </datalist> -->
 
-                    <dt><label for="strFinnRom">Strørrelse(m<sup>2</sup>):</label><input class="checkboxes" type="checkbox" id="storrelse" value="Skjerm" name="storrelse"></dt>
+                    <dt><label for="strFinnRom">Størrelse(m<sup>2</sup>):</label><input class="checkboxes" type="checkbox" id="storrelse" value="Skjerm" name="storrelse"></dt>
                     <dd><form:form id="strFinnRom" name="storrelseNum" type="number" min="5" max="200" value="5"></dd>
 
                     <dt><label for="checkboxes">Utstyr:</label></dt>
@@ -89,36 +89,31 @@
     <div style = "display: inline-block; float: right">
         <fieldset >
         <legend>Ny hendelse</legend>
-            <input type="checkbox" name="leggtil" value="add" required="true">Opprett hendelse i rom-booking<br>
-            <dt><label for="fornavn">Tittel:<em>*</em></label></dt>
-            <dd><form:form type="text" placeholder="Skriv tittel her"></dd>
-            <dt><label for="privatOffentlig">Privat/Offentlig:<em>*</em></label></dt>
-            <dd><select name="valg" id="valg" required="true">
-                    <option value="Offentlig">Offentlig</option>
-                    <option value="Privat">Privat</option>
-                </select>
-            </dd>
-            <dt><label for="romtypeFinnRom">Type:<em>*</em></label></dt>
-                    <dd><select id="romtypeFinnRom" name="romtype" required >
-                        <option value="forelesningssal">Forelesning</option>
-                        <option value="moterom">Møte</option>
-                        <option value="grupperom">Privat</option>
-                    </select>
-
-            <dt><label for="privatOffentlig">Fag:<em>*</em></label></dt>
-            <dd><select name="valg" id="valg" required="true">
-                    <option value="Fag1">Fag 1</option>
-                    <option value="Fag2">Fag 2</option>
-                    <option value="Fag3">Fag 3</option>
-                    <option value="Fag4">Fag 4</option>
-                </select>
-            </dd>
-            
-            <dt><label for="Notat">Notat:</label></dt>
-            <textarea id="notat" placeholder="Skriv notat her" name="notat" autofocus="true" rows="10" cols="55" ></textarea>
-            
-        <p><input type="submit" class="vanligknapp" value="Legg til" onclick=""></p>
-    </fieldset>
+            <form:form modelAttribute="formFinnRom" method="POST">
+                <table>
+                    <tr>
+                        <td>Tittel:</td>
+                        <td><form:input id="tittel" path="tittel"/></td>
+                        <td><form:errors path="tittel" /></td>
+                    </tr>
+                    <tr>
+                        <td>Type:</td>
+                        <td>
+                            <form:select path="type">
+                                <form:options items="${formFinnRom.typeList}"/>
+                            </form:select>
+                        </td>
+                        <td><form:errors path="type"/></td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">
+                            <input class="vanligknapp" type="submit" value="Søk">
+                        </td>
+                    </tr>           
+                </table>
+            </form:form>
+        </fieldset>
+    </div>
     </div>
     <section class="searchInfo">
         <table>

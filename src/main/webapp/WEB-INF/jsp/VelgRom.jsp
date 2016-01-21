@@ -50,7 +50,7 @@
                     </tr>
                     <tr>
                         <td>RomID:<em>* </em></td>
-                        <td colspan="2"><form:input id="rom" path="romId"/></td>
+                        <td colspan="2"><form:input id="rom" path="romId" disabled="true"/></td>
                     </tr>
                     <tr>
                         <td></td>
@@ -65,7 +65,7 @@
                             <td>
                             </td>
                             <td>
-                            <input type="submit" class="vanligknapp" formaction="OverstyrRomL" value="Overstyr rombestilling">
+                            <input type="submit" class="defaultKnapp" formaction="OverstyrRomL" value="Overstyr rombestilling">
                             </td>
                             <td>
                             </td>

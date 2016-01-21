@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class FormVelgRom {
     private Date fraDato;
-    private Time fraTid;
+    private int fraTid;
     private int varighet;
     private String romId;
 
@@ -36,11 +36,11 @@ public class FormVelgRom {
         this.fraDato = fraDato;
     }
 
-    public Time getFraTid() {
+    public int getFraTid() {
         return fraTid;
     }
 
-    public void setFraTid(Time fraTid) {
+    public void setFraTid(int fraTid) {
         this.fraTid = fraTid;
     }
 
