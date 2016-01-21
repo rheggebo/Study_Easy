@@ -18,6 +18,15 @@ public class FormVelgRom {
     private Date fraDato;
     private Time fraTid;
     private int varighet;
+    private String romId;
+
+    public String getRomId() {
+        return romId;
+    }
+
+    public void setRomId(String romId) {
+        this.romId = romId;
+    }
 
     public Date getFraDato() {
         return fraDato;
