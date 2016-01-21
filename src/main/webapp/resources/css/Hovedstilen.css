@@ -216,6 +216,12 @@ footer{
     padding:10px;
     overflow:auto;
 }
+.searchInfo2{
+    display: inline-block;
+    width: auto;
+    height: 85%;
+    float: left;
+}
 .oversikt{
     size: 15px;       
     text-align: center;

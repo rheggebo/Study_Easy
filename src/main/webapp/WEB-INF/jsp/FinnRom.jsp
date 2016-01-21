@@ -25,13 +25,13 @@
                 <table>
                     <tr>
                         <td>Dato:<em>* </em></td>
-                        <td><form:input class="min-today" id="datoFraDefault" type="date" path="fraDato" /></td>
+                        <td><form:input class="velgRomForm" id="datoFraDefault" type="date" path="fraDato" /></td>
                         <td><form:errors path="fraDato" /></td>
                     </tr>
                     <tr>
                         <td>Tid fra:<em>* </em></td>
                         <td>
-                            <form:select path="fraTid">
+                            <form:select class="velgRomForm" path="fraTid">
                                 <form:options items="${formFinnRom.tiderList}"/>
                             </form:select>
                         </td>
@@ -40,7 +40,7 @@
                     <tr>
                         <td>Varighet:<em>* </em></td>
                         <td>
-                            <form:select path="varighet">
+                            <form:select class="velgRomForm" path="varighet">
                                 <form:options items="${formFinnRom.varighetList}"/>
                             </form:select>
                         </td>
@@ -49,7 +49,7 @@
                     <tr>
                         <td>Romtype:<em>* </em></td>
                         <td>
-                            <form:select path="romtype">
+                            <form:select class="velgRomForm" path="romtype">
                                 <form:options items="${formFinnRom.romtypeList}"/>
                             </form:select>
                         </td>
@@ -57,27 +57,27 @@
                     </tr>
                     <tr>
                         <td>Romstørrelse m<sup>2</sup>(min):<em>* </em></td>
-                        <td><form:input type="number" min="0" path="storrelse" /></td>
+                        <td><form:input class="velgRomForm" type="number" min="0" path="storrelse" /></td>
                         <td><form:errors path="storrelse" /></td>
                     </tr>
                     <tr>
                         <td>Sitteplasser(min):<em>* </em></td>
-                        <td><form:input type="number" min="0" path="sitteplasser" /></td>
+                        <td><form:input class="velgRomForm" type="number" min="0" path="sitteplasser" /></td>
                         <td><form:errors path="skjerm" /></td>
                     </tr>
                     <tr>
                         <td>Skjerm(min):<em>* </em></td>
-                        <td><form:input type="number" min="0" path="skjerm" /></td>
+                        <td><form:input class="velgRomForm" type="number" min="0" path="skjerm" /></td>
                         <td><form:errors path="skjerm" /></td>
                     </tr>
                     <tr>
                         <td>Tavle(min):<em>* </em></td>
-                        <td><form:input type="number" min="0" path="tavle" /></td>
+                        <td><form:input class="velgRomForm" type="number" min="0" path="tavle" /></td>
                         <td><form:errors path="tavle" /></td>
                     </tr>
                     <tr>
                         <td>Projektor(min):<em>* </em></td>
-                        <td><form:input type="number" min="0" path="projektor" /></td>
+                        <td><form:input class="velgRomForm" type="number" min="0" path="projektor" /></td>
                         <td><form:errors path="projektor" /></td>
                     </tr>
                     <tr>
@@ -89,13 +89,13 @@
                     </tr>
                     <tr>
                         <td>Tittel:<em>* </em></td>
-                        <td><form:input path="tittel" /></td>
+                        <td><form:input class="velgRomForm" path="tittel" /></td>
                         <td><form:errors path="tittel" /></td>
                     </tr>
                     <tr>
                         <td>Type:<em>* </em></td>
                         <td>
-                            <form:select path="type">
+                            <form:select class="velgRomForm" path="type">
                                 <form:options items="${formFinnRom.typeList}"/>
                             </form:select>
                         </td>
@@ -104,7 +104,7 @@
                     <tr>
                         <td>Fag:<em>* </em></td>
                         <td>
-                            <form:select path="fag">
+                            <form:select class="velgRomForm" path="fag">
                                 <form:options items="${formFinnRom.fagList}"/>
                             </form:select>
                         </td>
@@ -112,7 +112,7 @@
                     </tr>
                     <tr>
                         <td>Notat:<em>* </em></td>
-                        <td><form:textarea path="notat" /></td>
+                        <td><form:textarea id="textareaNotat" class="velgRomForm" path="notat" /></td>
                         <td><form:errors path="notat" /></td>
                     </tr>
                     <tr>
@@ -127,7 +127,7 @@
         </fieldset>
     </div>
     <div>
-    <section class="searchInfo">
+    <section class="searchInfo2">
         <table>
             <c:forEach var="liste" items="${liste}" varStatus="status">
                 <form:form modelAttribute="event" action="BookRom">
@@ -185,7 +185,7 @@
     </script>
     <script>
         $(function(){
-            $('[type="date"].min-today').prop('min', function(){
+            $('#datoFraDefault').prop('min', function(){
                 return new Date().toJSON().split('T')[0];
             });
         });
