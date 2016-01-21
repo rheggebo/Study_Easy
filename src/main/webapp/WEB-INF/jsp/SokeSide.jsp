@@ -24,13 +24,13 @@
         <ul class="tekst"><form action="search" method="POST"  role="search" modelAttribute="soke">
                 <li>
                     <div>
-                        <input id="searchFormSokeSide" class="searchForm" type=search name="sokeord" size="30" placeholder="Skriv ditt søk her...">
+                        <input id="searchFormSokeSide" class="searchForm" type=search name="sokeord" size="30" placeholder="Søk her...">
                         <button id="searchButtonSokeSide" class="defaultKnapp" type="submit"><span class="fontawesome-search"></span></button>
                         
                         <br>
                         <br>
                         
-                    <div>              
+                    <div class="tekst">              
                             <input class="checkboxes" type="checkbox" id="ansattSokeSide" name="Spes" value="Ansatt">Ansatt
                             <br>
                             <input class="checkboxes" type="checkbox" id="studentSokeSide" name="Spes" value="Student">Student
