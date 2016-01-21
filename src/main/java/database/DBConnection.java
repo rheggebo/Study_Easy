@@ -130,4 +130,5 @@ public interface DBConnection {
     
     public boolean slettBooking(KalenderEvent ke);
     
+    public boolean leggTilEvent (KalenderEvent ke);
 }

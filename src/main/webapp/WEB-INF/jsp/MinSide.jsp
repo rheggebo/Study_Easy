@@ -125,6 +125,13 @@
                     <c:forEach var="resliste" items="${reservasjonsliste}">
                         <form:form modelAttribute="event" action="SlettBooking">
                         <tr>
+                            <script>
+                                var bestilltTid = "${resliste}.getStartTid()";
+                                <c:out value="${resliste}.getStartTid()"></c:out>
+                                var currentDate = new Date();
+                                var twentyMinutesLater = new Date();
+
+                            </script>
                             <form:input type="hidden" path="rom" value="${resliste}"/>
                             <td><c:out value="${resliste}"></c:out><input class="slettknapp" type="submit" value="Slett"/></td>
                         </tr>
@@ -167,5 +174,6 @@
                 </table>
             </div>
                        
-        </fieldset>   
+        </fieldset>                                       
 </main>
+
