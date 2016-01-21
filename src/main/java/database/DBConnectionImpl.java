@@ -58,8 +58,8 @@ public class DBConnectionImpl implements DBConnection{
     private final String fjernKalenderEvent = "DELETE FROM KALENDER_EVENT WHERE ID=?";
     private final String getKalenderEventDeltakere = "SELECT DELTAKERID FROM KLANEDER_DELTAKER WHERE EVENTID=?";
     private final String getKalenderEventDeltaker = "SELECT * FROM KALENDER_DELTAKER WHERE EVENTID=? AND DELTAKERID=?";
-    private final String getKalenderEventEier = "SELECT * FROM KALENDER_EVENT WHERE EIER=?";
-    private final String getKalenderEventRomID = "SELECT * FROM KALENDER_EVENT WHERE ROMID=?";
+    private final String getKalenderEventEier = "SELECT *, rom_bestilling.romID FROM kalender_event LEFT OUTER JOIN rom_bestilling ON rom_bestilling.bestillingsID = kalender_event.bestillingsID WHERE EIER=?";
+    private final String getKalenderEventRomID = "SELECT *, rom_bestilling.romID FROM kalender_event LEFT OUTER JOIN rom_bestilling ON rom_bestilling.bestillingsID = kalender_event.bestillingsID WHERE ROMID=?";
     private final String getFagLaerer = "SELECT FAGID FROM FAG_LÆRER WHERE BRUKERID=?";
     private final String getRombestilling = "";
     private final String getRomFraNavn = "SELECT * FROM rom WHERE romnavn=?";
@@ -69,6 +69,7 @@ public class DBConnectionImpl implements DBConnection{
     private final String getLaererKlasse = "";
     private final String getKlasseDeltaker = "";
     private final String leggTilAbonnement = "";
+    private final String getAbonnementDeltakere = "SELECT eierID FROM abonemennt_bruker WHERE brukerID=?";
     private final String slettAbonnement = "";
     private final String getAbonnement = "";
     private final String getRomTypeStorrelse = "SELECT type, størrelse FROM rom WHERE type=? AND størrelse=?;";
@@ -449,6 +450,13 @@ public class DBConnectionImpl implements DBConnection{
             b.getEpost()
         }, new KalenderEventMapper());
     }
+    
+    @Override
+    public List<KalenderEvent> getKalenderEventEier(BrukerB b) {
+        return jT.query(getKalenderEventEier, new Object[]{
+            b.getEpost()
+        }, new KalenderEventMapper());
+    }
 
     @Override
     public List<KalenderEvent> getKalenderEventRomID(Rom r) {
@@ -570,6 +578,14 @@ public class DBConnectionImpl implements DBConnection{
             b.getEpost()
         }, new KalenderEventMapper());
     }
+    
+    @Override
+    public List<Abonemennt> getAbonnementDeltakere(Abonemennt ke) {
+        return jT.query(getAbonnementDeltakere, new Object[]{
+            ke.getAbonererId()
+        }, new AbonemenntMapper());
+    }
+    
     @Override
     public List<Abonemennt> getAbonemenntFraBruker(BrukerB b){
         return jT.query(getAbonemenntFraBruker, new Object[]{
@@ -929,5 +945,10 @@ public class DBConnectionImpl implements DBConnection{
             ke.getSluttTid(),
             ke.getEpost()
         }));
+    }
+
+    @Override
+    public boolean leggTilEvent(KalenderEvent ke) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

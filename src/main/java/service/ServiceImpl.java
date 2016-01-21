@@ -324,4 +324,9 @@ public class ServiceImpl implements Service{
         return dbc.leggTilEvent(ke);
     }
     
+       @Override
+   public List<Abonemennt> getAbonnementDeltakere(Abonemennt st){
+       return dbc.getAbonnementDeltakere(st);
+   }
+    
 }
