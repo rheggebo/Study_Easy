@@ -50,7 +50,7 @@
                     </tr>
                     <tr>
                         <td>RomID*:</td>
-                        <td colspan="2"><form:input id="rom" path="romId" disabled="true"/></td>
+                        <td colspan="2"><form:input id="rom" path="romId"/></td>
                     </tr>
                     <tr>
                         <td></td>
