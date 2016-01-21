@@ -11,6 +11,7 @@ import beans.KalenderEvent;
 import beans.NyEvent;
 import beans.Rom;
 import beans.RomBestilling;
+import email.Email;
 import java.sql.Time;
 import java.sql.Timestamp;
 import java.text.DateFormat;
@@ -59,6 +60,7 @@ public class EventKontroller {
     }
     @RequestMapping(value="OpprettHendelse")
     public String opprettHendelse(@ModelAttribute("nyHendelse") KalenderEvent event, @RequestParam("notat")String notat, @RequestParam("valg")String off, @RequestParam("startdato")Date startDato, @RequestParam("starttid")String startTid, @RequestParam("sluttdato")Date sluttDato, @RequestParam("starttid")String sluttTid, HttpSession sess, HttpServletResponse response, Model model, HttpServletRequest request){
+        BrukerB brukerb = (BrukerB) sess.getAttribute("brukerBean");
         String stampString = "" + new Timestamp(startDato.getTime());
         stampString = (stampString.split(" "))[0] + " " + startTid + ":00";
         Timestamp start = Timestamp.valueOf(stampString);
@@ -74,15 +76,31 @@ public class EventKontroller {
         }
         
         if (slutt.before(start)){
-            //nei
+            model.addAttribute("melding", "feilmelding.eventSluttForStart");
         }
-        event.setStartTid(start);
-        event.setSluttTid(slutt);
-        event.setPrivat(privat);
-        System.out.println(notat);
-        
-        
-        
+        else{
+            event.setStartTid(start);
+            event.setSluttTid(slutt);
+            event.setPrivat(privat);
+            event.setNotat(notat);
+            event.setEpost(brukerb.getEpost());
+            event.setTilhorerEvent(0);
+            event.setEierNavn(brukerb.getFornavn() + " " + brukerb.getEtternavn());
+
+            service.leggTilEvent(event);
+        }
+
+        if (!privat){
+            //send epost!
+                    List<Abonemennt> liste = service.getAbonnementDeltakere(brukerb.getEpost());
+                    Email epost = new Email();
+                    String melding = brukerb.getFornavn() + " " + brukerb.getEtternavn() + " har opprettet en hendelse. \n Tittel: " + event.getTittel() + ". Fra: " + event.getStartTid()
+                            + ", slutt: " + event.getSluttTid() + ". Notat: " + event.getNotat();
+                            
+                    for (Abonemennt abn : liste){
+                        epost.sendEpost(abn.getEierid(), "Ny hendelse!", melding);
+                    }
+        }
         return "OpprettHendelse";
     }
     
@@ -130,7 +148,7 @@ public class EventKontroller {
             //tilDato = fromFinnRom.getFraDato();
         }
         ke.setStartTid(new Timestamp(formFinnRom.getFraDato().getTime()+fra*3600000));
-        ke.setSluttTid(new Timestamp(formFinnRom.getFraDato().getTime()+til*3600000));
+        ke.setSluttTid(new Timestamp(formFinnRom.getFraDato().getTime()+(fra+til)*3600000));
         ArrayList<String> innhold = new ArrayList<String>();
         
         if(formFinnRom.getSkjerm()>0){
@@ -235,6 +253,7 @@ public class EventKontroller {
                 Integer.parseInt(sluttTid[0]), Integer.parseInt(sluttTid[1]), Integer.parseInt(sluttTid[2].substring(0,2)), 0));
         System.out.println("Opprettet timestamp, skal slette booking");
         System.out.println(ke.getRom()+" "+ke.getStartTid()+" "+ke.getEpost());
+        RomBestilling booking = service.getRomBooking(ke);
         if(service.slettBooking(ke)){
             System.out.println("Slettet booking");
             returnerMinSide(model, bruker);
