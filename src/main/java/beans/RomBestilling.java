@@ -17,6 +17,7 @@ public class RomBestilling {
     private Timestamp sluttDato;
     private String eierId;
     private int tilhorerEvent;
+    private int bestillingsID;
     
     public String getRomId(){
         return romId;
@@ -47,6 +48,14 @@ public class RomBestilling {
     }
     public void setTilhorerEvent(int tilhorerEvent){
         this.tilhorerEvent = tilhorerEvent;
+    }
+
+    public int getBestillingsID() {
+        return bestillingsID;
+    }
+
+    public void setBestillingsID(int bestillingsID) {
+        this.bestillingsID = bestillingsID;
     }
     
     public String toString(){

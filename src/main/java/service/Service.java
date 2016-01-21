@@ -125,4 +125,6 @@ public interface Service {
     public List<Abonemennt> getAbonnementDeltakere(String st);
     
     public RomBestilling getRomBooking(KalenderEvent ke);
+    
+    public boolean slettKalenderEvent(RomBestilling r);
 }

@@ -334,4 +334,9 @@ public class ServiceImpl implements Service{
         return dbc.getRomBooking(ke);
     }
     
+    @Override
+    public boolean slettKalenderEvent(RomBestilling r){
+        return dbc.slettKalenderEvent(r);
+    }
+    
 }

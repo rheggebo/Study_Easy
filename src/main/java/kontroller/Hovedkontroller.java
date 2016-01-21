@@ -82,6 +82,7 @@ public class Hovedkontroller {
         model.addAttribute("reservasjonsliste", eventListe);
         List<KalenderEvent> kalenderEventListe = service.getKalenderEventEier(brukerb);
         model.addAttribute("kalenderEventListe", kalenderEventListe);
+        model.addAttribute("resultat", new SlettAbonnementValg());
     }
     
     @RequestMapping("MinSide")
@@ -90,7 +91,6 @@ public class Hovedkontroller {
         if(brukerb != null && brukerb.isInnlogget()){
             model.addAttribute("bruker", brukerb);
             returnerMinSide(model, brukerb);
-            model.addAttribute("resultat", new SlettAbonnementValg());
             return "MinSide";
         }
         model.addAttribute("bruker", new Bruker());

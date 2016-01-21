@@ -11,6 +11,7 @@ import beans.KalenderEvent;
 import beans.NyEvent;
 import beans.Rom;
 import beans.RomBestilling;
+import beans.SlettAbonnementValg;
 import java.sql.Time;
 import java.sql.Timestamp;
 import java.text.DateFormat;
@@ -200,6 +201,7 @@ public class EventKontroller {
         model.addAttribute("event", new KalenderEvent());
         model.addAttribute("reservasjonsliste", eventListe);
         model.addAttribute("bruker", brukerb);
+        model.addAttribute("resultat", new SlettAbonnementValg());
     }
     
     @RequestMapping("VelgRomSok")
@@ -236,6 +238,9 @@ public class EventKontroller {
         System.out.println("Opprettet timestamp, skal slette booking");
         System.out.println(ke.getRom()+" "+ke.getStartTid()+" "+ke.getEpost());
         RomBestilling booking = service.getRomBooking(ke);
+        if(booking.getTilhorerEvent() == 1){
+            service.slettKalenderEvent(booking);
+        }
         if(service.slettBooking(ke)){
             System.out.println("Slettet booking");
             returnerMinSide(model, bruker);
