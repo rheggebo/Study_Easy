@@ -580,9 +580,9 @@ public class DBConnectionImpl implements DBConnection{
     }
     
     @Override
-    public List<Abonemennt> getAbonnementDeltakere(Abonemennt ke) {
+    public List<Abonemennt> getAbonnementDeltakere(String ke) {
         return jT.query(getAbonnementDeltakere, new Object[]{
-            ke.getAbonererId()
+            ke
         }, new AbonemenntMapper());
     }
     

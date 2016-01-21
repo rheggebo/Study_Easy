@@ -122,5 +122,5 @@ public interface Service {
     
     public boolean slettBooking(KalenderEvent ke);
     
-    public List<Abonemennt> getAbonnementDeltakere(Abonemennt st);
+    public List<Abonemennt> getAbonnementDeltakere(String st);
 }

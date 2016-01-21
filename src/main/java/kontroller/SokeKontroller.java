@@ -89,9 +89,9 @@ public class SokeKontroller {
                 try{
                     si.leggTilAbonemennt(new Abonemennt(bruker.getEpost(), split2[0].trim(), 1));
                     
-                    Email email = new Email();
-                                        
-                    /*String[] mottakerListe = si.getAbonnementDeltakere(bruker.getEpost());
+                   /* Email email = new Email();
+                    String avSender = bruker.getEpost();
+                    String[] mottakerListe = si.getAbonnementDeltakere(bruker.getEpost());
                     String tema = "Abonnement endret";
                     String melding = "En av dine abonnementer er blitt endret /n" 
                     + "Hilsen Study Easy teamet";
