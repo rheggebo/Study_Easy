@@ -12,7 +12,6 @@
                 <form:form modelAttribute="bruker">
                 <dt><label for="fornavnMinSide">Fornavn:</label></dt>
                 <dd><form:input id="fornavnMinSide" type="text" name="fornavn" path="fornavn" readonly="true"/></dd>
-                
                 <dt><label for="etternavnMinSide">Etternavn:</label></dt>
                 <dd><form:input type="text" name="etternavn" placeholder="Nordmann" path="etternavn" readonly="true"/></dd>
 
