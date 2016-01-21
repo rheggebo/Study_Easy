@@ -182,7 +182,217 @@
     
 
     
+
+    
+    <script>
+        function erLedig(id){
+            if (("${liste}").indexOf(id) !=-1) {
+                return 1;
+            }
+            //alert(id+" er ikke ledig");
+            return -1;
+            
+        }
+        
+        $(window).load(function(){
+            // Get the Object by ID
+            var a = document.getElementById("plantegningEtasje1");
+            // Get the SVG document inside the Object tag
+            var svgDoc = a.contentDocument;
+            // Get one of the SVG items by ID;
+            var svgLayer = svgDoc.getElementsByClassName("planRom");
+            
+            //Av en eller annen grunn skipper noen av forløkkene noen rom så vi må kjøre den 5 ganger......
+            for (i=0; i<svgLayer.length;i++){
+                if (erLedig(svgLayer[i].id)<=0){
+                    svgLayer[i].setAttribute('class','planRomOpptatt');
+                }
+            }
+            for (i=0; i<svgLayer.length;i++){
+                if (erLedig(svgLayer[i].id)<=0){
+                    svgLayer[i].setAttribute('class','planRomOpptatt');
+                }
+            }
+            for (i=0; i<svgLayer.length;i++){
+                if (erLedig(svgLayer[i].id)<=0){
+                    svgLayer[i].setAttribute('class','planRomOpptatt');
+                }
+            }
+            for (i=0; i<svgLayer.length;i++){
+                if (erLedig(svgLayer[i].id)<=0){
+                    svgLayer[i].setAttribute('class','planRomOpptatt');
+                }
+            }
+            for (i=0; i<svgLayer.length;i++){
+                if (erLedig(svgLayer[i].id)<=0){
+                    svgLayer[i].setAttribute('class','planRomOpptatt');
+                }
+            }
+            for (i=0; i<svgLayer.length;i++){
+                if (erLedig(svgLayer[i].id)<=0){
+                    svgLayer[i].setAttribute('class','planRomOpptatt');
+                }
+            }
+            for (i=0; i<svgLayer.length;i++){
+                if (erLedig(svgLayer[i].id)<=0){
+                    svgLayer[i].setAttribute('class','planRomOpptatt');
+                }
+            }
+            for (i=0; i<svgLayer.length;i++){
+                if (erLedig(svgLayer[i].id)<=0){
+                    svgLayer[i].setAttribute('class','planRomOpptatt');
+                }
+            }
+            // etasje 2:
+            var a2 = document.getElementById("plantegningEtasje2");
+            // Get the SVG document inside the Object tag
+            var svgDoc2 = a2.contentDocument;
+            // Get one of the SVG items by ID;
+            var svgLayer2 = svgDoc2.getElementsByClassName("planRom");
+            for (i=0; i<svgLayer2.length;i++){
+                if (erLedig(svgLayer[i].id)<=0){
+                    svgLayer2[i].setAttribute('class','planRomOpptatt');
+                }
+            }
+            for (i=0; i<svgLayer2.length;i++){
+                if (erLedig(svgLayer2[i].id)<=0){
+                    svgLayer2[i].setAttribute('class','planRomOpptatt');
+                }
+            }
+            for (i=0; i<svgLayer2.length;i++){
+                if (erLedig(svgLayer2[i].id)<=0){
+                    svgLayer2[i].setAttribute('class','planRomOpptatt');
+                }
+            }
+            for (i=0; i<svgLayer2.length;i++){
+                if (erLedig(svgLayer2[i].id)<=0){
+                    svgLayer2[i].setAttribute('class','planRomOpptatt');
+                }
+            }
+            for (i=0; i<svgLayer2.length;i++){
+                if (erLedig(svgLayer[i].id)<=0){
+                    svgLayer2[i].setAttribute('class','planRomOpptatt');
+                }
+            }
+            for (i=0; i<svgLayer2.length;i++){
+                if (erLedig(svgLayer2[i].id)<=0){
+                    svgLayer2[i].setAttribute('class','planRomOpptatt');
+                }
+            }
+            for (i=0; i<svgLayer2.length;i++){
+                if (erLedig(svgLayer2[i].id)<=0){
+                    svgLayer2[i].setAttribute('class','planRomOpptatt');
+                }
+            }
+            for (i=0; i<svgLayer2.length;i++){
+                if (erLedig(svgLayer2[i].id)<=0){
+                    svgLayer2[i].setAttribute('class','planRomOpptatt');
+                }
+            }
+            
+            //eatasje 3:
+            var a3 = document.getElementById("plantegningEtasje3");
+            // Get the SVG document inside the Object tag
+            var svgDoc3 = a3.contentDocument;
+            // Get one of the SVG items by ID;
+            var svgLayer3 = svgDoc3.getElementsByClassName("planRom");
+            for (i=0; i<svgLayer3.length;i++){
+                if (erLedig(svgLayer[i].id)<=0){
+                    svgLayer3[i].setAttribute('class','planRomOpptatt');
+                }
+            }
+            for (i=0; i<svgLayer3.length;i++){
+                if (erLedig(svgLayer3[i].id)<=0){
+                    svgLayer3[i].setAttribute('class','planRomOpptatt');
+                }
+            }
+            for (i=0; i<svgLayer3.length;i++){
+                if (erLedig(svgLayer3[i].id)<=0){
+                    svgLayer3[i].setAttribute('class','planRomOpptatt');
+                }
+            }
+            for (i=0; i<svgLayer3.length;i++){
+                if (erLedig(svgLayer3[i].id)<=0){
+                    svgLayer3[i].setAttribute('class','planRomOpptatt');
+                }
+            }
+            for (i=0; i<svgLayer3.length;i++){
+                if (erLedig(svgLayer[i].id)<=0){
+                    svgLayer3[i].setAttribute('class','planRomOpptatt');
+                }
+            }
+            for (i=0; i<svgLayer3.length;i++){
+                if (erLedig(svgLayer3[i].id)<=0){
+                    svgLayer3[i].setAttribute('class','planRomOpptatt');
+                }
+            }
+            for (i=0; i<svgLayer3.length;i++){
+                if (erLedig(svgLayer3[i].id)<=0){
+                    svgLayer3[i].setAttribute('class','planRomOpptatt');
+                }
+            }
+            for (i=0; i<svgLayer3.length;i++){
+                if (erLedig(svgLayer3[i].id)<=0){
+                    svgLayer3[i].setAttribute('class','planRomOpptatt');
+                }
+            }
+            
+            //etasje 4:
+            var a4 = document.getElementById("plantegningEtasje4");
+            // Get the SVG document inside the Object tag
+            var svgDoc4 = a4.contentDocument;
+            // Get one of the SVG items by ID;
+            var svgLayer4 = svgDoc4.getElementsByClassName("planRom");
+            for (i=0; i<svgLayer4.length;i++){
+                if (erLedig(svgLayer[i].id)<=0){
+                    svgLayer4[i].setAttribute('class','planRomOpptatt');
+                }
+            }
+            for (i=0; i<svgLayer4.length;i++){
+                if (erLedig(svgLayer4[i].id)<=0){
+                    svgLayer4[i].setAttribute('class','planRomOpptatt');
+                }
+            }
+            for (i=0; i<svgLayer4.length;i++){
+                if (erLedig(svgLayer4[i].id)<=0){
+                    svgLayer4[i].setAttribute('class','planRomOpptatt');
+                }
+            }
+            for (i=0; i<svgLayer4.length;i++){
+                if (erLedig(svgLayer4[i].id)<=0){
+                    svgLayer4[i].setAttribute('class','planRomOpptatt');
+                }
+            }
+            for (i=0; i<svgLayer4.length;i++){
+                if (erLedig(svgLayer[i].id)<=0){
+                    svgLayer4[i].setAttribute('class','planRomOpptatt');
+                }
+            }
+            for (i=0; i<svgLayer4.length;i++){
+                if (erLedig(svgLayer4[i].id)<=0){
+                    svgLayer4[i].setAttribute('class','planRomOpptatt');
+                }
+            }
+            for (i=0; i<svgLayer4.length;i++){
+                if (erLedig(svgLayer4[i].id)<=0){
+                    svgLayer4[i].setAttribute('class','planRomOpptatt');
+                }
+            }
+            for (i=0; i<svgLayer4.length;i++){
+                if (erLedig(svgLayer4[i].id)<=0){
+                    svgLayer4[i].setAttribute('class','planRomOpptatt');
+                }
+            }
+            
+            
+            
+        });
+        
+            
+    </script>
+    
     <script>    
+        /*
         function erLedig(id){
             if (("${liste}").indexOf(id) !=-1) {
                 //alert(id+" er ledig");
@@ -191,7 +401,8 @@
             //alert(id+" er ikke ledig");
             return -1;
         }
-        
+        */
+        /*
         //Setter Ledig:
             //Første Etasje:
             var sVGBilde1 = document.getElementById("plantegningEtasje1");
@@ -242,7 +453,7 @@
                         $(this).attr("class","planRomOpptatt");
                     }}, false);
             } },false);
-
+        */
         //Klikkhendelser for planRom objeckter:
             //Første etasje:
             var a = document.getElementById("plantegningEtasje1");
