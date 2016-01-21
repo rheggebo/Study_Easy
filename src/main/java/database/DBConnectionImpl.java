@@ -69,6 +69,7 @@ public class DBConnectionImpl implements DBConnection{
     private final String getLaererKlasse = "";
     private final String getKlasseDeltaker = "";
     private final String leggTilAbonnement = "";
+    private final String getAbonnementDeltakere = "SELECT * WHERE eierID=?";
     private final String slettAbonnement = "";
     private final String getAbonnement = "";
     private final String getRomTypeStorrelse = "SELECT type, størrelse FROM rom WHERE type=? AND størrelse=?;";
@@ -577,6 +578,14 @@ public class DBConnectionImpl implements DBConnection{
             b.getEpost()
         }, new KalenderEventMapper());
     }
+    
+    @Override
+    public List<Abonemennt> getAbonnementDeltakere(Abonemennt ke) {
+        return jT.query(getAbonnementDeltakere, new Object[]{
+            ke.getAbonererId()
+        }, new AbonemenntMapper());
+    }
+    
     @Override
     public List<Abonemennt> getAbonemenntFraBruker(BrukerB b){
         return jT.query(getAbonemenntFraBruker, new Object[]{
