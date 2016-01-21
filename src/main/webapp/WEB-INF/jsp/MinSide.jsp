@@ -86,8 +86,7 @@
         </fieldset>
 
         <fieldset>
-            
-            
+
             <legend>Bruker abonnement</legend>
             
             <%-- setter og printer ut eventuell feilmelding --%>
@@ -131,4 +130,37 @@
                 </table>
             </section>           
         </fieldset>
+                                
+        <fieldset>
+
+            <legend>Hendelser</legend>
+            
+            <%-- setter og printer ut eventuell feilmelding --%>
+                                <c:set var="meldingB" value="${meldingBruker}"></c:set>
+                                <c:if test="${not empty meldingB}">
+                                    <spring:message code="${meldingBruker}" />
+                                </c:if>
+            
+            <div class="tab">
+                <table>
+                <c:forEach var="abliste" items="${abonemenntListe}">
+                    <c:if test="${abliste.getType() == 0}">
+                    <tr>
+                            <td>
+                                <form:form modelAttribute="resultat" action="slett">
+                                <form:input type="hidden" path="resultat" value="${abliste}"/>
+                                <c:out value ="${abliste}"></c:out> <%-- printer ut listeverdiene--%>
+
+                                <%-- legger til knappene for slett abonemennt --%>
+                                <input class="slettknapp" type="submit" name="slettBrukerAbKnapp" value="Slett"/>
+
+                                </form:form>
+                            </td>
+                        </tr>   
+                    </c:if>
+                </c:forEach>
+                </table>
+            </div>
+                       
+        </fieldset>   
 </main>
