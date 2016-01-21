@@ -82,7 +82,7 @@
 
 
                 </dl>
-                <input type="submit" value="Finn ledig rom">
+                <input type="submit" class="vanligknapp" value="Finn ledig rom">
             </fieldset>
         </form:form>
 </div>
