@@ -5,14 +5,17 @@
  */
 package testing.database;
 
+import beans.Abonemennt;
 import database.DBConnectionImpl;
 import beans.Bruker;
+import beans.BrukerB;
 import beans.Fag;
 import beans.KalenderEvent;
 import beans.Klasse;
 import beans.Rom;
 import database.DBConnection;
 import java.sql.Connection;
+import java.sql.Timestamp;
 import org.junit.*;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
@@ -30,12 +33,15 @@ public class DBConnectionImplTest {
     DBConnectionImpl dbci;
     static DBConnectionImpl dbc;
     
+    Abonemennt ab;
+    Abonemennt ac;
     Klasse klasse;
+    Rom rom1; 
     Bruker b;
     Bruker bruker;
-    Date fDato;
-    Date fraDato;
-    Date tilDato;
+    Timestamp fraDato;
+    Timestamp tilDato;
+    
     KalenderEvent kEvent;
     private ArrayList<KalenderEvent> KEliste;
     private ArrayList<Rom> RomListe;
@@ -75,8 +81,12 @@ public class DBConnectionImplTest {
         RomListe = new ArrayList();
         BrukerListe = new ArrayList();
         FagListe = new ArrayList();
+        fraDato = new Timestamp(2016-1-22);
+        tilDato = new Timestamp(2016-1-23);
         
-        Rom rom1 = new Rom();
+        ab = new Abonemennt("test4@aol.com","henrik_bjorkheim@hotmail.com", 0);
+        ac = new Abonemennt("ola@hotmail.com", "TDAT2001", 1);
+        rom1 = new Rom();
         rom1.setRomID("KAUD");
         rom1.setRomNavn("KAUD");
         rom1.setEtasje(3);
@@ -92,11 +102,15 @@ public class DBConnectionImplTest {
         kEvent.setEierNavn("Ola Nilsson");
         kEvent.setEpost("ola@hotmail.com");
         kEvent.setType(2);
-        kEvent.setStartTid(null);
+        kEvent.setStartTid(fraDato);
+        kEvent.setSluttTid(tilDato);
+        kEvent.setTittel("Lekser");
+        kEvent.setRom("GR114");
+        kEvent.setPrivat(true);
+        kEvent.setTilhorerEvent(2);
         
         klasse = new Klasse();
         klasse.setNavn("2.ing");
-        fDato = new Date(1992-1-3);
         b = new Bruker(); 
         b.setFornavn("Ola");
         b.setEtternavn("Aas");
@@ -195,12 +209,55 @@ public class DBConnectionImplTest {
     
         assertEquals(dbc.getKlasseSok("TDAT").size(), 0);
     }
+       
+    @Test
+    public void test_slettAbonnement(){
+        assertFalse(dbc.slettAbonemennt(ac));
+    }
     
     @Test
-    public void test_leggTilKalenderEvent(){
+    public void test_slettAbonnementFalse(){
         
-    }  
-       
+        assertTrue(dbc.slettAbonemennt(ac));
+    }
+    
+    /*@Test
+    public void test_leggTilAbonnementFalse(){
+        assertFalse(dbc.leggTilAbonemennt(ac));
+    }
+    Må dobbeltsjekke metoden at den returnerer riktig false.
+    */
+    
+    @Test
+    public void test_leggTilAbonnement(){
+        assertTrue(dbc.leggTilAbonemennt(ac));
+    }
+    
+    @Test
+    public void test_getRomFraNavn(){
+        assertEquals(dbc.getRomFraNavn(rom1).size(), 1);
+        assertEquals(dbc.getRomFraNavn("KAUD").size(), 1);
+        
+    }
+    
+    /*@Test
+    public void test_getRomFraStr(){
+        assertEquals(dbc.getRomFraStoerrelse(rom1).size(), 1);
+    }
+    skjønner ikke hva som returneres :(  */
+    
+    @Test
+    public void test_slettBooking(){
+        //assertTrue(dbc.slettBooking(kEvent));
+    }
+    
+    @Test
+    public void test_leggTilBooking(){
+        //assertTrue(dbc.leggTilBooking(kEvent));
+    }
+    
+    
+    
     @After
     public void tearDown() {
         

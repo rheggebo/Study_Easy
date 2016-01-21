@@ -123,9 +123,12 @@
             <section class="tab">
                 <table>
                     <c:forEach var="resliste" items="${reservasjonsliste}">
+                        <form:form modelAttribute="event" action="SlettBooking">
                         <tr>
+                            <form:input type="hidden" path="rom" value="${resliste}"/>
                             <td><c:out value="${resliste}"></c:out><input class="slettknapp" type="submit" value="Slett"/></td>
                         </tr>
+                        </form:form>
                     </c:forEach>
                 </table>
             </section>           
@@ -136,9 +139,9 @@
             <legend>Hendelser</legend>
             
             <%-- setter og printer ut eventuell feilmelding --%>
-                                <c:set var="meldingB" value="${meldingBruker}"></c:set>
-                                <c:if test="${not empty meldingB}">
-                                    <spring:message code="${meldingBruker}" />
+                                <c:set var="meldingH" value="${meldingHendelse}"></c:set>
+                                <c:if test="${not empty meldingH}">
+                                    <spring:message code="${meldingHendelse}" />
                                 </c:if>
             
             <div class="tab">
@@ -146,18 +149,18 @@
                 <c:forEach var="eventliste" items="${kalenderEventListe}">
                     <tr>
                         <td>
-                            <%--
+                            
                             <form:form modelAttribute="resultat" action="slett">
-                            <form:input type="hidden" path="resultat" value="${abliste}"/>
-                            --%>
+                            <form:input type="hidden" path="resultat" value="${kalenderEventListe}"/>
+                            
                             <c:out value ="${eventliste}"></c:out> <%-- printer ut listeverdiene--%>
 
                             <%-- legger til knappene for slett abonemennt --%>
-                            <input class="slettknapp" type="submit" name="slettBrukerAbKnapp" value="Slett"/>
+                            <input class="slettknapp" type="submit" name="slettHendelseKnapp" value="Slett"/>
                             
-                            <%--
+                            
                             </form:form>
-                            --%>
+                            
                         </td>
                     </tr>   
                 </c:forEach>

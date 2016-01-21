@@ -21,6 +21,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import service.Service;
+import ui.FormFinnRom;
 import ui.FormVelgRom;
 
 /**
@@ -77,6 +78,7 @@ public class Hovedkontroller {
         Date dato = Calendar.getInstance().getTime();
         ke.setStartTid(new Timestamp(dato.getTime()));
         List<RomBestilling> eventListe = service.getReserverteRom(ke);
+        model.addAttribute("event", new KalenderEvent());
         model.addAttribute("reservasjonsliste", eventListe);
         List<KalenderEvent> kalenderEventListe = service.getKalenderEventEier(brukerb);
         model.addAttribute("kalenderEventListe", kalenderEventListe);
@@ -122,6 +124,17 @@ public class Hovedkontroller {
                     model.addAttribute("meldingBruker", "feilmelding.finnesIkkeAbonnement");
                 }
             }
+            if("Slett".equals(req.getParameter("slettHendelseKnapp"))) {
+                //prøver å slette abonemennt med brukerepost og den valgte koden,
+                // fanger exception viss ikke
+                try{
+                    //service.slettAbonemennt(new Abonemennt(brukerb.getEpost(), valgt, 0));
+                    model.addAttribute("meldingHendelse", "feilmelding.finnesIkkeHendelse");
+                }
+                catch(Exception e){
+                    model.addAttribute("meldingHendelse", "feilmelding.finnesIkkeHendelse");
+                }
+            }
             returnerMinSide(model, brukerb);
             model.addAttribute("resultat1", new SlettAbonnementValg());
             return "MinSide";
@@ -165,7 +178,7 @@ public class Hovedkontroller {
     }
     
     @RequestMapping("FinnRom")
-    public String finnRom(Model model, HttpSession sess){        
+    public String finnRom(@ModelAttribute FormFinnRom formFinnRom, Model model, HttpSession sess){        
         BrukerB brukerb = (BrukerB) sess.getAttribute("brukerBean");
         if(brukerb != null && brukerb.isInnlogget()){
             model.addAttribute("bruker", brukerb);

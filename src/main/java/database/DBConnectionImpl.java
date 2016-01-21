@@ -77,7 +77,7 @@ public class DBConnectionImpl implements DBConnection{
     private final String leggTilAbonemenntBruker = "INSERT INTO abonemennt_bruker (eierID, brukerID) VALUES (?, ?)";
     private final String leggTilAbonemenntFag = "INSERT INTO abonemennt_fag (eierID, fagID) VALUES (?, ?)";
     private final String slettAbonemenntFag = "DELETE FROM abonemennt_fag WHERE eierID = ? AND fagID = ?";
-    private final String slettAbonemenntBruker = "DELETE FROM abonemennt_bruker WHERE eierID = ? AND brukerID = ?";
+    private final String slettAbonemenntBruker = "DELETE FROM abonemennt_bruker WHERE eierID = ? AND fagID = ?";
     private final String getAbonemenntFraBruker = "SELECT abonemennt_bruker.eierID, abonemennt_bruker.brukerID AS abonererId, 0 AS abType FROM abonemennt_bruker WHERE abonemennt_bruker.eierID =? UNION "
             + "SELECT abonemennt_fag.eierID, abonemennt_fag.fagID AS abonererId, 1 AS abType FROM abonemennt_fag WHERE abonemennt_fag.eierID =?";
     private final String getAlleBestillingerFraBruker = "SELECT rom_bestilling.eierID, rom_bestilling.romID, rom_bestilling.dato_start, rom_bestilling.dato_slutt, rom_bestilling.tilhorer_event FROM rom_bestilling WHERE rom_bestilling.eierID =?";
@@ -95,7 +95,6 @@ public class DBConnectionImpl implements DBConnection{
         "WHERE (rom.type LIKE ? AND ? NOT BETWEEN dato_start AND dato_slutt AND " +
         "? NOT BETWEEN dato_start AND dato_slutt  OR rom_bestilling.romID IS NULL AND rom.type LIKE ?)";
     
-    private final String leggTilEvent = "INSERT INTO kalender_event (dato_start, dato_slutt, eier, hidden, type, descr, tittel, eier_navn) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
     private final String getRom1Param = getRom0Param +" AND (rom_innhold.innholdID LIKE ? AND rom_innhold.antall>=?)";
     private final String getRom2Param = getRom1Param +getRom1Param;
     private final String getRom3Param = getRom1Param +getRom1Param+getRom1Param;
@@ -125,6 +124,8 @@ public class DBConnectionImpl implements DBConnection{
     
     private final String getReserverteRom = "SELECT DISTINCT * FROM rom_bestilling WHERE eierID LIKE ? AND "
             + "(dato_start >= ? OR (? BETWEEN dato_start AND dato_slutt))";
+    
+    private final String slettBooking = "DELETE FROM rom_bestilling WHERE romID LIKE ? AND dato_start LIKE ? AND dato_slutt LIKE ? AND eierID like ?";
     
     private DataSource dS;
     private JdbcTemplate jT;
@@ -404,12 +405,11 @@ public class DBConnectionImpl implements DBConnection{
             ke.getSluttTid(),
             ke.getEpost(),
             ke.isPrivat(),
-            ke.getRom(),
+            ke.getId(),
             ke.getType(),
             ke.getFag(),
             ke.getNotat(),
-            ke.getTittel(),
-            ke.getEierNavn()
+            ke.getTittel()
         });
         if(antallRader > 0){
             return true;
@@ -445,13 +445,6 @@ public class DBConnectionImpl implements DBConnection{
 
     @Override
     public List<KalenderEvent> getKalenderEventEier(Bruker b) {
-        return jT.query(getKalenderEventEier, new Object[]{
-            b.getEpost()
-        }, new KalenderEventMapper());
-    }
-    
-    @Override
-    public List<KalenderEvent> getKalenderEventEier(BrukerB b) {
         return jT.query(getKalenderEventEier, new Object[]{
             b.getEpost()
         }, new KalenderEventMapper());
@@ -927,24 +920,14 @@ public class DBConnectionImpl implements DBConnection{
             ke.getStartTid()
         }, new RomBestillingMapper());
     }
-    //ke.getSluttTid()
     
     @Override
-    public boolean leggTilEvent (KalenderEvent ke){
-        int antallRader = jT.update(leggTilEvent,new Object[]{
+    public boolean slettBooking(KalenderEvent ke){
+        return(0<jT.update(slettBooking, new Object[]{
+            ke.getRom(),
             ke.getStartTid(),
             ke.getSluttTid(),
-            ke.getEpost(),
-            ke.isPrivat(),
-            ke.getType(),
-            ke.getNotat(),
-            ke.getTittel(),
-            ke.getEierNavn()
-        
-        });
-        if(antallRader > 0){
-            return true;
-        }
-        return false;
+            ke.getEpost()
+        }));
     }
 }

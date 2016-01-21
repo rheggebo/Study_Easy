@@ -175,23 +175,17 @@ footer{
 .searchForm{
     float: left;
     position: relative;
-    border-width: 1px 1px 0px 1px;
-    padding: 2px;
-    background-color: lightgray;
     border-radius: 5px;
-}
-.searchButton{
-    cursor: pointer;
-    outline: medium none;
-    text-align: center;
-    padding-right: 10px;
-    padding-left: 10px;
-    text-transform: uppercase;
-    text-decoration: none;
-    font: bold 12px Microsoft YaHei Light ;
-    color: #FFF;
-    background: #00BFFF;
+    outline:none;
+    background: whitesmoke;
+    border: .2em;
+    border-color: graytext;
+    font-size: 10pt;
+    color: black;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
     border-radius: 5px;
+    width: 10em;
 }
 
 .searchNav ul li{
@@ -232,7 +226,8 @@ footer{
     width: 70px;
     cursor:pointer;
     margin-top:-18px; 
-    }
+}
+    
 .searchInfo table td{
     width: 600px;
     border-top: solid black 1px;
@@ -268,27 +263,34 @@ span[class*="fontawesome-"]:before {
 	padding: 0;
 }
 
+#slettKnappForside, #leggTilKnappForside, #søkeKnappForside{
+    padding-top: .3em;
+}
+
 .ikonForside .knappForside, .infoKnappForside, .lukk {
         cursor:pointer;
 	background: #00BFFF;
 	color: #FFFFFF;
-	padding: .2em 1.2em;
+	padding: .2em .9em;
         border: 0;
-        font-size: 100%;
+        margin: .1em;
+        font-size: 110%;
         text-transform: none;
         text-decoration: none;
         border:none; 
         outline:none; 
-        button:focus(border:none);
+        border-top-right-radius: 4px;
+        border-bottom-right-radius: 4px;
+        border-top-left-radius: 4px;
+        border-bottom-left-radius: 4px;
+        padding-left: .8em;
 }
 
 .ikonForside a:hover{
     background: #3598db;
-    font-size:105%;
 }
 .ikonForside .knappForside:hover {
 	background: #3598db;
-        font-size:105%;
 }
 
 .infoVinduForside {
@@ -362,10 +364,6 @@ span[class*="fontawesome-"]:before {
     cursor: pointer;
     float: right;
 }
-.vanligknapp{
-    font-family: Microsoft YaHei Light;  
-    cursor: pointer;
-}
 
 .tab table td{
     border-bottom: solid black 1px;
@@ -373,4 +371,56 @@ span[class*="fontawesome-"]:before {
 }
 .tab table{
     width:800px;
+}
+
+.defaultKnapp{
+    height: 2em;
+    font-size: 1em;
+    white-space: nowrap;
+    cursor: pointer;
+    background-color: #f5f5f5;
+    background-image: -moz-linear-gradient(top, #ffffff, #e6e6e6);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e6e6e6));
+    background-image: -webkit-linear-gradient(top, #ffffff, #e6e6e6);
+    background-image: -o-linear-gradient(top, #ffffff, #e6e6e6);
+    background-image: linear-gradient(to bottom, #ffffff, #e6e6e6);
+    background-repeat: repeat-x;
+    color: #333;
+    border: 1px solid;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    font-family: Microsoft YaHei Light;  
+}
+.defaultKnapp:hover{
+    color: #333333;
+    background-color: #e6e6e6;
+    color: #333333;
+    text-decoration: none;
+    background-position: 0 -15px;
+    -webkit-transition: background-position 0.1s linear;
+    -moz-transition: background-position 0.1s linear;
+    -o-transition: background-position 0.1s linear;
+    transition: background-position 0.1s linear;
+}
+
+.defaultKnapp:disabled{
+    cursor: default;
+    background-image: none;
+    opacity: 0.65;
+    filter: alpha(opacity=65);
+    box-shadow: none;
+}
+
+.defaultKnapp:active{
+    background-color: #cccccc;
+    background-image: none;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
 }
