@@ -69,7 +69,7 @@ public class DBConnectionImpl implements DBConnection{
     private final String getLaererKlasse = "";
     private final String getKlasseDeltaker = "";
     private final String leggTilAbonnement = "";
-    private final String getAbonnementDeltakere = "SELECT * WHERE eierID=?";
+    private final String getAbonnementDeltakere = "SELECT eierID FROM abonemennt_bruker WHERE brukerID=?";
     private final String slettAbonnement = "";
     private final String getAbonnement = "";
     private final String getRomTypeStorrelse = "SELECT type, størrelse FROM rom WHERE type=? AND størrelse=?;";
