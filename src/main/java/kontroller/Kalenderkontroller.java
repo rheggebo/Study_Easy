@@ -97,11 +97,10 @@ public class Kalenderkontroller {
 
                     String descr = "Rom: <a href='" + bestilling.getRomId() + "'>" + bestilling.getRomId() + "</a>";
                     descr += "<br>Fra: " + start + "<br>Til: " + slutt;
-
                     Map<String, Object> map = new HashMap<String, Object>();
                     map.put("title", "Rombestilling");
                     map.put("start", start);
-                    map.put("slutt", slutt);
+                    map.put("end", slutt);
                     map.put("color", farger[3]);
                     map.put("description", descr);
 
