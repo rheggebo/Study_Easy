@@ -13,43 +13,42 @@
 -->
     
 <main>
-    <div id="velgRomSøkeBokser" class="tekst">
+    <div id="velgRomSøkeBokser"  class="tekst">
         <fieldset>
             <legend><b>Velg ønsket spesifikasjoner:</b></legend>
             <form:form action="VelgRomSok" modelAttribute="formVelgRom" method="POST">
                 <table>
                     <tr>
                         <td>Dato*:</td>
-                        <td><form:input path="formVelgRom.fraDato" /></td>
-                        <td><form:errors path="person.fornavn" /></td>
+                        <td><form:input class="min-today" type="Date" path="fraDato" /></td>
+                        <td><form:errors path="fraDato" /></td>
                     </tr>
                     <tr>
                         <td>Tid fra*:</td>
                         <td>
-                            <form:select path="formVelgRom.fraTid">
+                            <form:select path="fraTid">
                                 <form:options items="${formVelgRom.tiderList}"/>
                             </form:select>
                         </td>
-                        <td><form:errors path="formVelgRom.fraTid"/></td>
+                        <td><form:errors path="fraTid"/></td>
                     </tr>
                     <tr>
                         <td>Verighet*:</td>
                         <td>
-                            <form:select path="formVelgRom.varighet">
+                            <form:select path="varighet">
                                 <form:options items="${formVelgRom.varighetList}"/>
                             </form:select>
                         </td>
-                        <td><form:errors path="formVelgRom.varighet"/></td>
+                        <td><form:errors path="varighet"/></td>
                     </tr>
                     <tr>
                         <td colspan="3">
-                            <input type="submit" value="SEND">
+                            <input class="vanligknapp" type="submit" value="SEND">
                         </td>
                     </tr>           
                 </table>
             </form:form>
         </fieldset>
-        
     </div>
     
     <div id="RomInfo" class="tekst">
