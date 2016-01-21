@@ -361,6 +361,11 @@ span[class*="fontawesome-"]:before {
     cursor: pointer;
     float: right;
 }
+.vanligknapp{
+    font-family: Microsoft YaHei Light;  
+    cursor: pointer;
+}
+
 .tab table td{
     border-bottom: solid black 1px;
     border-top: solid black 1px;

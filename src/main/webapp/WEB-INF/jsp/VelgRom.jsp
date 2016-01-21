@@ -51,7 +51,7 @@
                     </select></dd>
 
                 </dl>
-                <input type="submit" value="Finn ledig rom">
+                <input type="submit" class="vanligknapp" value="Finn ledig rom">
             </fieldset>
         </form>
     </div>
@@ -96,18 +96,18 @@
                             <td><label>${tilbakeMelding}</label></td>
                         </tr>
                     </table>
-                    <input type="submit" id="resRomVelgRom" value="Reserver rom">
+                    <input type="submit" class="vanligknapp" id="resRomVelgRom" value="Reserver rom">
                     <c:set var="tilgang" value="${bruker.getTilgangsniva()}"></c:set>
                     <c:if test="${tilgang == 1}">
-                    <input type="submit" formaction="OverstyrRomL" value="Overstyr rombestilling">
+                    <input type="submit" class="vanligknapp" formaction="OverstyrRomL" value="Overstyr rombestilling">
+                    </c:if>
+                    <br>
+                    <c:if test="${tilgang == 2}">
+                    <input type="submit" class="vanligknapp" formaction="OverstyrRomAdmin" value="Overstyr rombestilling">
                     </c:if>
                     
                     <c:if test="${tilgang == 2}">
-                    <input type="submit" formaction="OverstyrRomAdmin" value="Overstyr rombestilling">
-                    </c:if>
-                    
-                    <c:if test="${tilgang == 2}">
-                    <input type="submit" formaction="VelgRomRed" value="Rediger rom informasjon">
+                    <input type="submit" class="vanligknapp" formaction="VelgRomRed" value="Rediger rom informasjon">
                     </c:if>
                 </form>
         </fieldset>
