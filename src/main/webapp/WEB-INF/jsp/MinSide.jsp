@@ -33,12 +33,12 @@
             <c:set var="tilgang" value="${bruker.getTilgangsniva()}"></c:set>
             <c:if test="${tilgang == 2}">
                 <form action="MinSideRed" id="formen">
-                    <input id="endreOpplysninger" type="submit" value="Endre opplysninger"/>
+                    <input id="endreOpplysninger" class="vanligknapp" type="submit" value="Endre opplysninger"/>
                 </form>
             </c:if>
             <br>
             <form:form action="EndrePassordRed">
-                <input id="endrePassord" type="submit" value="Endre passord"/>
+                <input id="endrePassord" class="vanligknapp" type="submit" value="Endre passord"/>
             </form:form>
         </fieldset>
             
@@ -86,8 +86,7 @@
         </fieldset>
 
         <fieldset>
-            
-            
+
             <legend>Bruker abonnement</legend>
             
             <%-- setter og printer ut eventuell feilmelding --%>
@@ -131,4 +130,39 @@
                 </table>
             </section>           
         </fieldset>
+                                
+        <fieldset>
+
+            <legend>Hendelser</legend>
+            
+            <%-- setter og printer ut eventuell feilmelding --%>
+                                <c:set var="meldingH" value="${meldingHendelse}"></c:set>
+                                <c:if test="${not empty meldingH}">
+                                    <spring:message code="${meldingHendelse}" />
+                                </c:if>
+            
+            <div class="tab">
+                <table>
+                <c:forEach var="eventliste" items="${kalenderEventListe}">
+                    <tr>
+                        <td>
+                            
+                            <form:form modelAttribute="resultat" action="slett">
+                            <form:input type="hidden" path="resultat" value="${kalenderEventListe}"/>
+                            
+                            <c:out value ="${eventliste}"></c:out> <%-- printer ut listeverdiene--%>
+
+                            <%-- legger til knappene for slett abonemennt --%>
+                            <input class="slettknapp" type="submit" name="slettHendelseKnapp" value="Slett"/>
+                            
+                            
+                            </form:form>
+                            
+                        </td>
+                    </tr>   
+                </c:forEach>
+                </table>
+            </div>
+                       
+        </fieldset>   
 </main>

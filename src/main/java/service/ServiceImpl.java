@@ -163,6 +163,11 @@ public class ServiceImpl implements Service{
     public List<KalenderEvent> getKalenderEventEier(Bruker b) {
         return dbc.getKalenderEventEier(b);
     }
+    
+    @Override
+    public List<KalenderEvent> getKalenderEventEier(BrukerB b) {
+        return dbc.getKalenderEventEier(b);
+    }
 
     @Override
     public List<KalenderEvent> getKalenderEventRomID(Rom r) {
@@ -309,6 +314,11 @@ public class ServiceImpl implements Service{
     @Override
     public List<RomBestilling> getReserverteRom(KalenderEvent ke){
         return dbc.getReserverteRom(ke);
+    }
+    
+    @Override
+    public boolean leggTilEvent (KalenderEvent ke){
+        return dbc.leggTilEvent(ke);
     }
     
 }

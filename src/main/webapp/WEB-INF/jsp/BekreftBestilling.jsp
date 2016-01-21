@@ -44,7 +44,7 @@
                     <dd><form:label id="innhold" path="innhold"></form:label>
                     <br>
                 </dl>
-                <input type="submit" value="Bekreft bestilling">
+                <input type="submit" class="vanligknapp" value="Bekreft bestilling">
             </fieldset>
         </form:form>
 </main>

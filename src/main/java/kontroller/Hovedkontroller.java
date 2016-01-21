@@ -21,6 +21,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import service.Service;
+import ui.FormVelgRom;
 
 /**
  * 
@@ -77,6 +78,8 @@ public class Hovedkontroller {
         ke.setStartTid(new Timestamp(dato.getTime()));
         List<RomBestilling> eventListe = service.getReserverteRom(ke);
         model.addAttribute("reservasjonsliste", eventListe);
+        List<KalenderEvent> kalenderEventListe = service.getKalenderEventEier(brukerb);
+        model.addAttribute("kalenderEventListe", kalenderEventListe);
     }
     
     @RequestMapping("MinSide")
@@ -84,14 +87,7 @@ public class Hovedkontroller {
         BrukerB brukerb = (BrukerB)sess.getAttribute("brukerBean");
         if(brukerb != null && brukerb.isInnlogget()){
             model.addAttribute("bruker", brukerb);
-            List<Abonemennt> liste = service.getAbonemenntFraBruker(brukerb);
-            model.addAttribute("abonemenntListe", liste);
-            KalenderEvent ke = new KalenderEvent();
-            ke.setEpost(brukerb.getEpost());
-            Date dato = Calendar.getInstance().getTime();
-            ke.setStartTid(new Timestamp(dato.getTime()));
-            List<RomBestilling> eventListe = service.getReserverteRom(ke);
-            model.addAttribute("reservasjonsliste", eventListe);
+            returnerMinSide(model, brukerb);
             model.addAttribute("resultat", new SlettAbonnementValg());
             return "MinSide";
         }
@@ -126,41 +122,28 @@ public class Hovedkontroller {
                     model.addAttribute("meldingBruker", "feilmelding.finnesIkkeAbonnement");
                 }
             }
-            
-            List<Abonemennt> liste = service.getAbonemenntFraBruker(brukerb);
-            KalenderEvent ke = new KalenderEvent();
-            ke.setEpost(brukerb.getEpost());
-            Date dato = Calendar.getInstance().getTime();
-            ke.setStartTid(new Timestamp(dato.getTime()));
-            List<RomBestilling> eventListe = service.getReserverteRom(ke);
-            model.addAttribute("abonemenntListe", liste);
-            model.addAttribute("reservasjonsliste", eventListe);
+            if("Slett".equals(req.getParameter("slettHendelseKnapp"))) {
+                //prøver å slette abonemennt med brukerepost og den valgte koden,
+                // fanger exception viss ikke
+                try{
+                    //service.slettAbonemennt(new Abonemennt(brukerb.getEpost(), valgt, 0));
+                    model.addAttribute("meldingHendelse", "feilmelding.finnesIkkeHendelse");
+                }
+                catch(Exception e){
+                    model.addAttribute("meldingHendelse", "feilmelding.finnesIkkeHendelse");
+                }
+            }
+            returnerMinSide(model, brukerb);
             model.addAttribute("resultat1", new SlettAbonnementValg());
             return "MinSide";
         } 
-        
-        /*
-        if("Slett".equals(req.getParameter("slettAbKnapp"))) {
-            try {
-                
-            } catch (Exception e) {
-                model.addAttribute("melding", "feilmelding.finnesIkkeAbonnement");
-            }
-        }
-        if("Slett".equals(req.getParameter("slettAbKnapp"))) {
-            try {
-                
-            } catch (Exception e) {
-                model.addAttribute("melding", "feilmelding.finnesIkkeAbonnement");
-            }
-        }
-        */
+
         model.addAttribute("bruker", new Bruker()); 
         return "MinSide";
     }
     
     @RequestMapping("VelgRom")
-    public String velgRom(HttpSession sess, Model model){
+    public String velgRom(@ModelAttribute FormVelgRom fromVelgRom,HttpSession sess, Model model){
         BrukerB brukerb = (BrukerB) sess.getAttribute("brukerBean");
         if(brukerb != null && brukerb.isInnlogget()){
             model.addAttribute("bruker", brukerb);

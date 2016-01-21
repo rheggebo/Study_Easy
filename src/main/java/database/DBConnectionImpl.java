@@ -58,7 +58,7 @@ public class DBConnectionImpl implements DBConnection{
     private final String fjernKalenderEvent = "DELETE FROM KALENDER_EVENT WHERE ID=?";
     private final String getKalenderEventDeltakere = "SELECT DELTAKERID FROM KLANEDER_DELTAKER WHERE EVENTID=?";
     private final String getKalenderEventDeltaker = "SELECT * FROM KALENDER_DELTAKER WHERE EVENTID=? AND DELTAKERID=?";
-    private final String getKalenderEventEier = "SELECT * FROM KALENDER_EVENT WHERE EIER=?";
+    private final String getKalenderEventEier = "SELECT * FROM kalender_event WHERE eier=?";
     private final String getKalenderEventRomID = "SELECT * FROM KALENDER_EVENT WHERE ROMID=?";
     private final String getFagLaerer = "SELECT FAGID FROM FAG_LÆRER WHERE BRUKERID=?";
     private final String getRombestilling = "";
@@ -95,6 +95,7 @@ public class DBConnectionImpl implements DBConnection{
         "WHERE (rom.type LIKE ? AND ? NOT BETWEEN dato_start AND dato_slutt AND " +
         "? NOT BETWEEN dato_start AND dato_slutt  OR rom_bestilling.romID IS NULL AND rom.type LIKE ?)";
     
+    private final String leggTilEvent = "INSERT INTO kalender_event (dato_start, dato_slutt, eier, hidden, type, descr, tittel, eier_navn) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
     private final String getRom1Param = getRom0Param +" AND (rom_innhold.innholdID LIKE ? AND rom_innhold.antall>=?)";
     private final String getRom2Param = getRom1Param +getRom1Param;
     private final String getRom3Param = getRom1Param +getRom1Param+getRom1Param;
@@ -444,6 +445,13 @@ public class DBConnectionImpl implements DBConnection{
 
     @Override
     public List<KalenderEvent> getKalenderEventEier(Bruker b) {
+        return jT.query(getKalenderEventEier, new Object[]{
+            b.getEpost()
+        }, new KalenderEventMapper());
+    }
+    
+    @Override
+    public List<KalenderEvent> getKalenderEventEier(BrukerB b) {
         return jT.query(getKalenderEventEier, new Object[]{
             b.getEpost()
         }, new KalenderEventMapper());
@@ -920,4 +928,23 @@ public class DBConnectionImpl implements DBConnection{
         }, new RomBestillingMapper());
     }
     //ke.getSluttTid()
+    
+    @Override
+    public boolean leggTilEvent (KalenderEvent ke){
+        int antallRader = jT.update(leggTilEvent,new Object[]{
+            ke.getStartTid(),
+            ke.getSluttTid(),
+            ke.getEpost(),
+            ke.isPrivat(),
+            ke.getType(),
+            ke.getNotat(),
+            ke.getTittel(),
+            ke.getEierNavn()
+        
+        });
+        if(antallRader > 0){
+            return true;
+        }
+        return false;
+    }
 }
