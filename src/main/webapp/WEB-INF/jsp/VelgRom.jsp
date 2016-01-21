@@ -19,12 +19,12 @@
             <form:form modelAttribute="formVelgRom" method="POST">
                 <table>
                     <tr>
-                        <td>Dato*:</td>
+                        <td>Dato:<em>* </em></td>
                         <td><form:input class="min-today" type="date" path="fraDato" /></td>
                         <td><form:errors path="fraDato" /></td>
                     </tr>
                     <tr>
-                        <td>Tid fra*:</td>
+                        <td>Tid fra:<em>* </em></td>
                         <td>
                             <form:select path="fraTid">
                                 <form:options items="${formVelgRom.tiderList}"/>
@@ -33,7 +33,7 @@
                         <td><form:errors path="fraTid"/></td>
                     </tr>
                     <tr>
-                        <td>Varighet*:</td>
+                        <td>Varighet:<em>* </em></td>
                         <td>
                             <form:select path="varighet">
                                 <form:options items="${formVelgRom.varighetList}"/>
@@ -44,18 +44,18 @@
                     <tr>
                         <td></td>
                         <td>
-                            <input class="vanligknapp" formaction="VelgRomSok" type="submit" value="Søk">
+                            <input class="defaultKnapp" formaction="VelgRomSok" type="submit" value="Søk">
                         </td>
                         <td></td>
                     </tr>
                     <tr>
-                        <td>RomID*:</td>
+                        <td>RomID:<em>* </em></td>
                         <td colspan="2"><form:input id="rom" path="romId"/></td>
                     </tr>
                     <tr>
                         <td></td>
                         <td>
-                            <input class="vanligknapp" formaction="VelgRomReserverRom" type="submit" value="Betill">
+                            <input class="defaultKnapp" formaction="VelgRomReserverRom" type="submit" value="Bestill">
                         </td>
                         <td></td>
                     </tr>  
@@ -75,10 +75,10 @@
                         <tr><td>
                             </td>
                             <td>
-                            <input type="submit" class="vanligknapp" formaction="OverstyrRomAdmin" value="Overstyr rombestilling">
+                            <input type="submit" class="defaultKnapp" formaction="OverstyrRomAdmin" value="Overstyr rombestilling">
                             </td>
                             <td>
-                            <input type="submit" class="vanligknapp" formaction="VelgRomRed" value="Rediger rom informasjon">
+                            <input type="submit" class="defaultKnapp" formaction="VelgRomRed" value="Rediger rom informasjon">
                             </td>
                         </tr>
                     </c:if> 
