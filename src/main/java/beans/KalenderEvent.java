@@ -112,7 +112,7 @@ public class KalenderEvent {
     
     public String toString() {
         String str = "";
-        str += tittel + " " + startTid.toString();
+        str += id + " " + tittel + " " + startTid.toString();
         return str;
     }
     
