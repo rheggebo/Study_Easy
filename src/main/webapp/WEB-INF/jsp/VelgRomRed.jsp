@@ -10,8 +10,6 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
-<!DOCTYPE html>
-
 <main>
     
     <div id="RomInfoRed">
