@@ -50,7 +50,7 @@
                 <input type="checkbox" class="checkBoxForside" id="checkBoxForside4" name="farger" value="2"  style="width: 15px; cursor: pointer" checked>
             </li>
         </ul>
-        <p><input type="submit" value="Velg"></p>
+        <p><input type="submit" class="vanligknapp" value="Velg"></p>
     </form>
 </main>
 
