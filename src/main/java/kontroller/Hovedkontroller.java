@@ -21,6 +21,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import service.Service;
+import ui.FormVelgRom;
 
 /**
  * 
@@ -129,7 +130,7 @@ public class Hovedkontroller {
     }
     
     @RequestMapping("VelgRom")
-    public String velgRom(HttpSession sess, Model model){
+    public String velgRom(@ModelAttribute FormVelgRom fromVelgRom,HttpSession sess, Model model){
         BrukerB brukerb = (BrukerB) sess.getAttribute("brukerBean");
         if(brukerb != null && brukerb.isInnlogget()){
             model.addAttribute("bruker", brukerb);
