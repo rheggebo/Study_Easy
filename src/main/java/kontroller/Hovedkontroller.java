@@ -78,7 +78,7 @@ public class Hovedkontroller {
         ke.setStartTid(new Timestamp(dato.getTime()));
         List<RomBestilling> eventListe = service.getReserverteRom(ke);
         model.addAttribute("reservasjonsliste", eventListe);
-        List<KalenderEvent> kalenderEventListe = service.getAlleEventsFraBruker(brukerb);
+        List<KalenderEvent> kalenderEventListe = service.getKalenderEventEier(brukerb);
         model.addAttribute("kalenderEventListe", kalenderEventListe);
     }
     
