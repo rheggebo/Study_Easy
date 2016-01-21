@@ -14,7 +14,6 @@ import java.util.Date;
 public class NyEvent {
     
     private String tittel;
-    
     private String rom;
     private String fag;
     private int type;
