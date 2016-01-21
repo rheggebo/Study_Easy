@@ -19,7 +19,7 @@
             <form:form modelAttribute="formVelgRom" method="POST">
                 <table>
                     <tr>
-                        <td>Dato*:</td>
+                        <td>Dato:<em>* </em></td>
                         <td><form:input class="min-today" type="date" path="fraDato" /></td>
                         <td><form:errors path="fraDato" /></td>
                     </tr>
@@ -49,7 +49,7 @@
                         <td></td>
                     </tr>
                     <tr>
-                        <td>RomID*:</td>
+                        <td>RomID:<em>* </em></td>
                         <td colspan="2"><form:input id="rom" path="romId"/></td>
                     </tr>
                     <tr>
