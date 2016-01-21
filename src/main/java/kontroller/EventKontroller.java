@@ -215,7 +215,7 @@ public class EventKontroller {
     public String velgRom(@ModelAttribute FormVelgRom fromVelgRom,HttpSession sess, Model model){
         BrukerB bruker = (BrukerB) sess.getAttribute("brukerBean");
         KalenderEvent ke = new KalenderEvent();
-        int fra = Integer.parseInt(fromVelgRom.getFraTid()+"")/100;
+        int fra = fromVelgRom.getFraTid()/100;
         int til = fromVelgRom.getVarighet();
         ke.setStartTid(new Timestamp(fromVelgRom.getFraDato().getTime()+fra*3600000));
         ke.setSluttTid(new Timestamp(fromVelgRom.getFraDato().getTime()+til*3600000));
