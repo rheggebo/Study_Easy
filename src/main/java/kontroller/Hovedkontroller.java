@@ -127,20 +127,23 @@ public class Hovedkontroller {
             if("Slett".equals(req.getParameter("slettHendelseKnapp"))) {
                 //prøver å slette abonemennt med brukerepost og den valgte koden,
                 // fanger exception viss ikke
-                try{
-                    String[] split = valgt.split(" ");
+                String[] split = valgt.split(" ");
                     KalenderEvent kalenderEvent = new KalenderEvent();
                     kalenderEvent.setId(Integer.parseInt(split[0]));
                     kalenderEvent.setEpost(brukerb.getEpost());
                     service.fjernKalenderEvent(kalenderEvent);
-                    
+                try{
+                    //KalenderEvent kalenderEvent = new KalenderEvent();
+                    //kalenderEvent.setId(Integer.parseInt(split[0]));
+                    //kalenderEvent.setEpost(brukerb.getEpost());
+                    //service.fjernKalenderEvent(kalenderEvent);
                 }
                 catch(Exception e){
                     model.addAttribute("meldingHendelse", "feilmelding.finnesIkkeHendelse");
                 }
             }
             returnerMinSide(model, brukerb);
-            model.addAttribute("resultat1", new SlettAbonnementValg());
+            //model.addAttribute("resultat", new SlettAbonnementValg());
             return "MinSide";
         } 
 
