@@ -122,6 +122,17 @@ public class Hovedkontroller {
                     model.addAttribute("meldingBruker", "feilmelding.finnesIkkeAbonnement");
                 }
             }
+            if("Slett".equals(req.getParameter("slettHendelseKnapp"))) {
+                //prøver å slette abonemennt med brukerepost og den valgte koden,
+                // fanger exception viss ikke
+                try{
+                    //service.slettAbonemennt(new Abonemennt(brukerb.getEpost(), valgt, 0));
+                    model.addAttribute("meldingHendelse", "feilmelding.finnesIkkeHendelse");
+                }
+                catch(Exception e){
+                    model.addAttribute("meldingHendelse", "feilmelding.finnesIkkeHendelse");
+                }
+            }
             returnerMinSide(model, brukerb);
             model.addAttribute("resultat1", new SlettAbonnementValg());
             return "MinSide";
