@@ -18,7 +18,7 @@
                 <table>
                     <tr>
                         <td>Dato:<em>* </em></td>
-                        <td><form:input class="min-today" type="date" id="datoFraDefault" path="fraDato"/></td>
+                        <td><form:input class="velgRomForm" type="date" id="datoFraDefault" path="fraDato"/></td>
                         <td><form:errors path="fraDato" /></td>
                     </tr>
                     <tr>
@@ -303,7 +303,7 @@
 <script>
     // setter dato min til idag
     $(function(){
-        $('[type="date"].min-today').prop('min', function(){
+        $('#datoFraDefault').prop('min', function(){
             return new Date().toJSON().split('T')[0];
         });
     });
