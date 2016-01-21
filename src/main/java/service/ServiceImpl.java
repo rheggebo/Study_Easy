@@ -317,6 +317,9 @@ public class ServiceImpl implements Service{
     }
     
     @Override
+    public boolean slettBooking(KalenderEvent ke){
+        return dbc.slettBooking(ke);
+    }
     public boolean leggTilEvent (KalenderEvent ke){
         return dbc.leggTilEvent(ke);
     }
