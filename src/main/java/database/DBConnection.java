@@ -63,6 +63,8 @@ public interface DBConnection {
     
     public List<KalenderEvent> getKalenderEventEier(Bruker b);
     
+    public List<KalenderEvent> getKalenderEventEier(BrukerB b);
+    
     public List<KalenderEvent> getKalenderEventRomID(Rom r);
     
     public List<Fag> getFagLaerer(Bruker b);

@@ -449,6 +449,13 @@ public class DBConnectionImpl implements DBConnection{
             b.getEpost()
         }, new KalenderEventMapper());
     }
+    
+    @Override
+    public List<KalenderEvent> getKalenderEventEier(BrukerB b) {
+        return jT.query(getKalenderEventEier, new Object[]{
+            b.getEpost()
+        }, new KalenderEventMapper());
+    }
 
     @Override
     public List<KalenderEvent> getKalenderEventRomID(Rom r) {
