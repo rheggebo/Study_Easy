@@ -19,7 +19,7 @@
 
 <main>
     <div style="display: inline-block">
-        <fieldset>
+        <fieldset class="fieldsetDefault">
             <legend><b>Velg ønsket spesifikasjoner</b></legend>
             <form:form modelAttribute="formFinnRom" method="POST">
                 <table>
@@ -49,11 +49,11 @@
                     <tr>
                         <td>Romtype:<em>* </em></td>
                         <td>
-                            <form:select path="type">
+                            <form:select path="romtype">
                                 <form:options items="${formFinnRom.romtypeList}"/>
                             </form:select>
                         </td>
-                        <td><form:errors path="type"/></td>
+                        <td><form:errors path="romtype"/></td>
                     </tr>
                     <tr>
                         <td>Romstørrelse m<sup>2</sup>(min):<em>* </em></td>

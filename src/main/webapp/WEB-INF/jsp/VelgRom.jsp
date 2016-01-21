@@ -14,7 +14,7 @@
     
 <main>
     <div id="velgRomSøkeBokser"  class="tekst">
-        <fieldset>
+        <fieldset class="fieldsetDefault">
             <legend><b>Velg ønsket spesifikasjoner</b></legend>
             <form:form modelAttribute="formVelgRom" method="POST">
                 <table>
