@@ -11,6 +11,7 @@ import beans.KalenderEvent;
 import beans.NyEvent;
 import beans.Rom;
 import beans.RomBestilling;
+import email.Email;
 import java.sql.Time;
 import java.sql.Timestamp;
 import java.text.DateFormat;
@@ -59,6 +60,7 @@ public class EventKontroller {
     }
     @RequestMapping(value="OpprettHendelse")
     public String opprettHendelse(@ModelAttribute("nyHendelse") KalenderEvent event, @RequestParam("notat")String notat, @RequestParam("valg")String off, @RequestParam("startdato")Date startDato, @RequestParam("starttid")String startTid, @RequestParam("sluttdato")Date sluttDato, @RequestParam("starttid")String sluttTid, HttpSession sess, HttpServletResponse response, Model model, HttpServletRequest request){
+        BrukerB brukerb = (BrukerB) sess.getAttribute("brukerBean");
         String stampString = "" + new Timestamp(startDato.getTime());
         stampString = (stampString.split(" "))[0] + " " + startTid + ":00";
         Timestamp start = Timestamp.valueOf(stampString);
@@ -74,15 +76,31 @@ public class EventKontroller {
         }
         
         if (slutt.before(start)){
-            //nei
+            model.addAttribute("melding", "feilmelding.eventSluttForStart");
         }
-        event.setStartTid(start);
-        event.setSluttTid(slutt);
-        event.setPrivat(privat);
-        System.out.println(notat);
-        
-        
-        
+        else{
+            event.setStartTid(start);
+            event.setSluttTid(slutt);
+            event.setPrivat(privat);
+            event.setNotat(notat);
+            event.setEpost(brukerb.getEpost());
+            event.setTilhorerEvent(0);
+            event.setEierNavn(brukerb.getFornavn() + " " + brukerb.getEtternavn());
+
+            service.leggTilEvent(event);
+        }
+
+        if (!privat){
+            //send epost!
+                    List<Abonemennt> liste = service.getAbonnementDeltakere(brukerb.getEpost());
+                    Email epost = new Email();
+                    String melding = brukerb.getFornavn() + " " + brukerb.getEtternavn() + " har opprettet en hendelse. \n Tittel: " + event.getTittel() + ". Fra: " + event.getStartTid()
+                            + ", slutt: " + event.getSluttTid() + ". Notat: " + event.getNotat();
+                            
+                    for (Abonemennt abn : liste){
+                        epost.sendEpost(abn.getEierid(), "Ny hendelse!", melding);
+                    }
+        }
         return "OpprettHendelse";
     }
     

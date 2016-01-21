@@ -69,7 +69,7 @@ public class DBConnectionImpl implements DBConnection{
     private final String getLaererKlasse = "";
     private final String getKlasseDeltaker = "";
     private final String leggTilAbonnement = "";
-    private final String getAbonnementDeltakere = "SELECT eierID FROM abonemennt_bruker WHERE brukerID=?";
+    private final String getAbonnementDeltakere = "SELECT eierID, brukerID as abonererId, 0 AS abType FROM abonemennt_bruker WHERE brukerID=?";
     private final String slettAbonnement = "";
     private final String getAbonnement = "";
     private final String getRomTypeStorrelse = "SELECT type, størrelse FROM rom WHERE type=? AND størrelse=?;";
@@ -127,6 +127,8 @@ public class DBConnectionImpl implements DBConnection{
             + "(dato_start >= ? OR (? BETWEEN dato_start AND dato_slutt))";
     
     private final String slettBooking = "DELETE FROM rom_bestilling WHERE romID LIKE ? AND dato_start LIKE ? AND dato_slutt LIKE ? AND eierID like ?";
+    
+    private final String leggTilEvent = "INSERT INTO kalender_event (dato_start, dato_slutt, eier, hidden, type, descr, tittel, eier_navn) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
     
     private DataSource dS;
     private JdbcTemplate jT;
@@ -948,7 +950,21 @@ public class DBConnectionImpl implements DBConnection{
     }
 
     @Override
-    public boolean leggTilEvent(KalenderEvent ke) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean leggTilEvent (KalenderEvent ke){
+        int antallRader = jT.update(leggTilEvent,new Object[]{
+            ke.getStartTid(),
+            ke.getSluttTid(),
+            ke.getEpost(),
+            ke.isPrivat(),
+            ke.getType(),
+            ke.getNotat(),
+            ke.getTittel(),
+            ke.getEierNavn()
+        
+        });
+        if(antallRader > 0){
+            return true;
+        }
+        return false;
     }
 }
