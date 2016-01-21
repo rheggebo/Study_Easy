@@ -32,6 +32,7 @@ import service.Service;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import ui.FormFinnRom;
 import ui.FormVelgRom;
 
 /**
@@ -113,61 +114,56 @@ public class EventKontroller {
     }
     
     @RequestMapping("finnromdata")
-    public String finnRom(@ModelAttribute("rom") Rom rom, @RequestParam(value="skjerm", required=false)boolean skjerm, 
-            @RequestParam(value="antSkjerm", required=false)String antSkjerm, @RequestParam(value="tavle", required=false)boolean tavle, 
-            @RequestParam(value="antTavle", required=false)Integer antTavle, @RequestParam(value="sitteplass", required=false)boolean sitteplass, 
-            @RequestParam(value="antSitteplass", required=false)Integer antSitteplass, @RequestParam(value="prosjektor", required=false)boolean prosjektor, 
-            @RequestParam(value="antProsjektor", required=false)Integer antProsjektor, @RequestParam(value="storrelse", required=false)boolean storrelse, 
-            @RequestParam(value="storrelseNum", required=false)Integer storrelseNum, @RequestParam("romtype")String romtype, @RequestParam("fraTid")String fraTid,
-            @RequestParam("varighet")String varighet, @RequestParam("fraDato")Date fraDato, @RequestParam(value="tilDato",required=false)Date tilDato, Model model, HttpSession sess, HttpServletRequest req/*, 
+    public String finnRom(@ModelAttribute FormFinnRom formFinnRom, Model model, HttpSession sess, HttpServletRequest req/*, 
             @RequestParam(value="notat", required=false)String notat, @RequestParam(value="tittel",required=false)String tittel, 
             @RequestParam(value="fag", required=false)String fag*/){
         KalenderEvent ke = new KalenderEvent();
+        Rom rom = new Rom();
         BrukerB brukerb = (BrukerB) sess.getAttribute("brukerBean");
         ke.setEpost(brukerb.getEpost());
         ke.setEierNavn(brukerb.getFornavn()+" "+brukerb.getEtternavn());
         ke.setRom(rom.getRomNavn());
         ke.setType(brukerb.getTilgangsniva());
-        int fra = Integer.parseInt(fraTid)+5;
-        int til = Integer.parseInt(varighet);
+        int fra = formFinnRom.getFraTid()/100;
+        int til = formFinnRom.getVarighet();
         if(brukerb.getTilgangsniva()<1){
-            tilDato = fraDato;
+            //tilDato = fromFinnRom.getFraDato();
         }
-        ke.setStartTid(new Timestamp(fraDato.getTime()+fra*3600000));
-        ke.setSluttTid(new Timestamp(tilDato.getTime()+(fra+til)*3600000));
+        ke.setStartTid(new Timestamp(formFinnRom.getFraDato().getTime()+fra*3600000));
+        ke.setSluttTid(new Timestamp(formFinnRom.getFraDato().getTime()+til*3600000));
         ArrayList<String> innhold = new ArrayList<String>();
-        System.out.println(skjerm+""+tavle+sitteplass+prosjektor+storrelse);
-        if(skjerm){
-            innhold.add("skjerm "+antSkjerm);
+        
+        if(formFinnRom.getSkjerm()>0){
+            innhold.add("skjerm "+formFinnRom.getSkjerm());
         }
-        if(tavle){
-            innhold.add("tavle "+tavle);
+        if(formFinnRom.getTavle()>0){
+            innhold.add("tavle "+formFinnRom.getTavle());
         }
-        if(sitteplass){
-            rom.setAntStolplasser(antSitteplass);
+        if(formFinnRom.getSitteplasser()>0){
+            rom.setAntStolplasser(formFinnRom.getSitteplasser());
         }
-        if(prosjektor){
-            innhold.add("prosjektor "+antProsjektor);
+        if(formFinnRom.getProjektor()>0){
+            innhold.add("prosjektor "+formFinnRom.getProjektor());
         }
-        if(storrelse){
-            rom.setStorrelse(storrelseNum);
+        if(formFinnRom.getStorrelse()>0){
+            rom.setStorrelse(formFinnRom.getStorrelse());
         }
-        System.out.println(romtype);
-        if(romtype.equalsIgnoreCase("Forelesningssal")){
+        
+        if(formFinnRom.getRomtype().equalsIgnoreCase("Forelesningssal")){
             rom.setType(3);
-        }else if(romtype.equalsIgnoreCase("Moterom")){
+        }else if(formFinnRom.getRomtype().equalsIgnoreCase("Moterom")){
             rom.setType(2);
-        }else if(romtype.equalsIgnoreCase("Grupperom")){
+        }else if(formFinnRom.getRomtype().equalsIgnoreCase("Grupperom")){
             rom.setType(1);
         }
         rom.setInnhold(innhold);
-        List<Rom> liste = service.getRom(rom, ke, storrelse, sitteplass);
+        List<Rom> liste = service.getRom(rom, ke, (formFinnRom.getStorrelse()>0), (formFinnRom.getSitteplasser()>0));
         model.addAttribute("liste", liste);
         model.addAttribute("event", ke);
-        model.addAttribute("fraDato", fraDato);
+        model.addAttribute("fraDato", formFinnRom.getFraDato());
         sess.setAttribute("asd", ke);
         req.setAttribute("sitteplass", true);
-        System.out.println(sitteplass);
+        System.out.println(formFinnRom.getSitteplasser());
         /*ke.setNotat(notat);
         ke.setTittel(tittel);*/        
         return "FinnRom";

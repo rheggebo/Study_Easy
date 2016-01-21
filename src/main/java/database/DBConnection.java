@@ -136,5 +136,7 @@ public interface DBConnection {
     
     public List<Abonemennt> getAbonnementDeltakere(Abonemennt st);
     
+    public List<Abonemennt> getAbonnementDeltakere(String st);
+    
     public RomBestilling getRomBooking(KalenderEvent ke);
 }
