@@ -19,13 +19,30 @@ public class FormFinnRom {
     private int skjerm;
     private int tavle;
     private int projektor;
-    private int sitteplass;
+    private int sitteplasser;
     private int storrelse;
     private String tittel;
     private String type;
     private Date fraDato;
     private Time fraTid;
     private int varighet;
+    private String fag;
+
+    public String getNotat() {
+        return notat;
+    }
+
+    public void setNotat(String notat) {
+        this.notat = notat;
+    }
+
+    public String getFag() {
+        return fag;
+    }
+
+    public void setFag(String fag) {
+        this.fag = fag;
+    }
 
     public int getStorrelse() {
         return storrelse;
@@ -78,15 +95,15 @@ public class FormFinnRom {
         this.projektor = projektor;
     }
 
-    public int getSitteplass() {
-        return sitteplass;
+    public int getSitteplasser() {
+        return sitteplasser;
     }
 
-    public void setSitteplass(int sitteplass) {
-        this.sitteplass = sitteplass;
+    public void setSitteplasser(int sitteplass) {
+        this.sitteplasser = sitteplass;
     }
     
-        public List getTiderList(){
+    public List getTiderList(){
         String[] s = {"0600","0700","0800","0900","1000","1100","1200","1300","1400","1500","1600","1700","1800","1900","2000","2100","2200","2300"};
         return Arrays.asList(s);
     }
@@ -95,6 +112,12 @@ public class FormFinnRom {
         String[] s = {"1","2","3"};
         return Arrays.asList(s);
     }
+    
+    public List getFagList(){
+        String[] s = {"Fag 1","Fag 2"," Fag 3"};
+        return Arrays.asList(s);
+    }
+    
     
     public void setType(String type) {
         this.type = type;

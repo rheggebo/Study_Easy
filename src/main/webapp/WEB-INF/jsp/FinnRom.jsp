@@ -18,7 +18,7 @@
 </script>
 
 <main>
-    <div id="velgRomSøkeBokser"  class="tekst">
+    <div style="display: inline-block">
         <fieldset>
             <legend><b>Velg ønsket spesifikasjoner</b></legend>
             <form:form modelAttribute="formFinnRom" method="POST">
@@ -47,27 +47,27 @@
                         <td><form:errors path="varighet"/></td>
                     </tr>
                     <tr>
-                        <td>Romstørrelse:<em>* </em></td>
-                        <td><form:input type="number" path="storelse" /></td>
-                        <td><form:errors path="storelse" /></td>
+                        <td>Romstørrelse(min):<em>* </em></td>
+                        <td><form:input type="number" path="storrelse" /></td>
+                        <td><form:errors path="storrelse" /></td>
                     </tr>
                     <tr>
-                        <td>Sitteplasser:<em>* </em></td>
+                        <td>Sitteplasser(min):<em>* </em></td>
                         <td><form:input type="number" path="sitteplasser" /></td>
                         <td><form:errors path="skjerm" /></td>
                     </tr>
                     <tr>
-                        <td>Skjerm:<em>* </em></td>
+                        <td>Skjerm(min):<em>* </em></td>
                         <td><form:input type="number" path="skjerm" /></td>
                         <td><form:errors path="skjerm" /></td>
                     </tr>
                     <tr>
-                        <td>Tavle:<em>* </em></td>
+                        <td>Tavle(min):<em>* </em></td>
                         <td><form:input type="number" path="tavle" /></td>
                         <td><form:errors path="tavle" /></td>
                     </tr>
                     <tr>
-                        <td>Projektor:<em>* </em></td>
+                        <td>Projektor(min):<em>* </em></td>
                         <td><form:input type="number" path="projektor" /></td>
                         <td><form:errors path="projektor" /></td>
                     </tr>
@@ -87,7 +87,7 @@
                         <td>Type:<em>* </em></td>
                         <td>
                             <form:select path="type">
-                                <form:options items="${formFinnRom.typelist}"/>
+                                <form:options items="${formFinnRom.typeList}"/>
                             </form:select>
                         </td>
                         <td><form:errors path="type"/></td>
