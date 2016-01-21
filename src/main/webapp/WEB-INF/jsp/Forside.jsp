@@ -54,7 +54,7 @@
     </form>
 </main>
 
-    <style>@import url(http://weloveiconfonts.com/api/?family=fontawesome);</style>
+    
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="<c:url value="/resources/fullcalendarJS/moment.min.js"/>"></script>
