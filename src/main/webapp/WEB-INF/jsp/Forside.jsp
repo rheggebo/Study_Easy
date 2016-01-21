@@ -13,8 +13,8 @@
     <div id='calendar'></div>
     
     <ul class="ikonForside" style="list-style-type: none; margin: 0; padding: 0;">
-        <li style="display: inline-block"><a href="omvei"><button class="knappForside" id="leggTilKnappForside" name="leggTilKnapp"><span class="fontawesome-plus"></span></button></a></li>
-        <li style="display: inline-block"><button class="knappForside" id="slettKnappForside" name="slettKnappForside"><span class="fontawesome-trash"></span></button></li>
+        <li style="display: inline-block"><button class="knappForside" id="leggTilKnappForside" name="leggTilKnapp" onclick="location.href='omvei'"><span class="fontawesome-plus"></span></button></li>
+        <li style="display: inline-block"><button class="knappForside" id="slettKnappForside" name="slettKnappForside" onclick="location.href='#'"><span class="fontawesome-trash"></span></button></li>
         <li style="display: inline-block"><button class="knappForside" id="søkeKnappForside" name="søkeKnappForside" onclick="location.href='SokeSide'"><span class="fontawesome-search"></span></button></li>
         <li style="display: inline-block">
             <a class="infoKnappForside" href="#infoVindu"><span class="fontawesome-info-sign"></span></a>
@@ -27,7 +27,7 @@
         </li>
     </ul>
     
-    <form action="kalenderEventCheck" method="POST">
+    <form action="kalenderEventCheck" class="tekst" method="POST">
         <ul style="list-style-type: none; margin: 0; padding: 0;">
             <li>
                 <input type="text" class="fargeTekst" disabled="true" style="background-color: #00BFFF;">
@@ -50,11 +50,10 @@
                 <input type="checkbox" class="checkBoxForside" id="checkBoxForside4" name="farger" value="2"  style="width: 15px; cursor: pointer" checked>
             </li>
         </ul>
-        <p><input type="submit" class="vanligknapp" value="Velg"></p>
+        <p><input type="submit" class="defaultKnapp" value="Velg"></p>
     </form>
 </main>
 
-    <style>@import url(http://weloveiconfonts.com/api/?family=fontawesome);</style>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="<c:url value="/resources/fullcalendarJS/moment.min.js"/>"></script>

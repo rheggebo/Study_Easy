@@ -120,7 +120,7 @@ public class RomTest {
     */
     @Test
     public void test_toString(){
-        String rommet = "Rom: KAUD KAUD etasje: 3 størrelse: 100";
+        String rommet = "Rom: KAUD KAUD etasje: 3 størrelse: 100 m2 sitteplasser: 40";
         assertEquals(rom.toString(), rommet);
     }
 

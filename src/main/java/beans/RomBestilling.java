@@ -50,7 +50,7 @@ public class RomBestilling {
     }
     
     public String toString(){
-        return "Rom: "+romId+" Start-tid: "+startDato+" Slutt-tid "+sluttDato;
+        return "Rom: "+romId+" Start-tid: "+startDato+" Slutt-tid: "+sluttDato;
     }
     
 }

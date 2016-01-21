@@ -15,16 +15,16 @@
 <main>
     <div id="velgRomSøkeBokser"  class="tekst">
         <fieldset>
-            <legend><b>Velg ønsket spesifikasjoner:</b></legend>
-            <form:form action="VelgRomSok" modelAttribute="formVelgRom" method="POST">
+            <legend><b>Velg ønsket spesifikasjoner</b></legend>
+            <form:form modelAttribute="formVelgRom" method="POST">
                 <table>
                     <tr>
-                        <td>Dato*:</td>
-                        <td><form:input class="min-today" type="Date" path="fraDato" /></td>
+                        <td>Dato:<em>* </em></td>
+                        <td><form:input class="min-today" type="date" path="fraDato" /></td>
                         <td><form:errors path="fraDato" /></td>
                     </tr>
                     <tr>
-                        <td>Tid fra*:</td>
+                        <td>Tid fra:<em>* </em></td>
                         <td>
                             <form:select path="fraTid">
                                 <form:options items="${formVelgRom.tiderList}"/>
@@ -33,7 +33,7 @@
                         <td><form:errors path="fraTid"/></td>
                     </tr>
                     <tr>
-                        <td>Verighet*:</td>
+                        <td>Varighet:<em>* </em></td>
                         <td>
                             <form:select path="varighet">
                                 <form:options items="${formVelgRom.varighetList}"/>
@@ -42,82 +42,55 @@
                         <td><form:errors path="varighet"/></td>
                     </tr>
                     <tr>
-                        <td colspan="3">
-                            <input class="vanligknapp" type="submit" value="Søk">
+                        <td></td>
+                        <td>
+                            <input class="defaultKnapp" formaction="VelgRomSok" type="submit" value="Søk">
                         </td>
-                    </tr>           
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>RomID:<em>* </em></td>
+                        <td colspan="2"><form:input id="rom" path="romId" disabled="true"/></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <input class="defaultKnapp" formaction="VelgRomReserverRom" type="submit" value="Bestill">
+                        </td>
+                        <td></td>
+                    </tr>  
+                    <c:set var="tilgang" value="${bruker.getTilgangsniva()}"></c:set>
+                    <c:if test="${tilgang == 1}">
+                        <tr>
+                            <td>
+                            </td>
+                            <td>
+                            <input type="submit" class="defaultKnapp" formaction="OverstyrRomL" value="Overstyr rombestilling">
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                     </c:if>
+                    <c:if test="${tilgang == 2}">
+                        <tr><td>
+                            </td>
+                            <td>
+                            <input type="submit" class="defaultKnapp" formaction="OverstyrRomAdmin" value="Overstyr rombestilling">
+                            </td>
+                            <td>
+                            <input type="submit" class="defaultKnapp" formaction="VelgRomRed" value="Rediger rom informasjon">
+                            </td>
+                        </tr>
+                    </c:if> 
                 </table>
             </form:form>
         </fieldset>
     </div>
-    
-    <div id="RomInfo" class="tekst">
-        <fieldset>
-            <legend><b>Rom:</b></legend>
-            <form:form modelAttribute="formVelgRom" method="POST">
-                <table>
-                    <tr>
-                        <td>RomID*:</td>
-                        <td><form:input id="rom" path="romId"/></td>
-                        <td><form:errors path="romId" /></td>
-                    </tr>
-                    <tr>
-                        <td>Dato*:</td>
-                        <td><form:input class="min-today" type="Date" path="fraDato"/></td>
-                        <td><form:errors path="fraDato" /></td>
-                    </tr>
-                    <tr>
-                        <td>Tid fra*:</td>
-                        <td>
-                            <form:select path="fraTid">
-                                <form:options items="${formVelgRom.tiderList}"/>
-                            </form:select>
-                        </td>
-                        <td><form:errors path="fraTid"/></td>
-                    </tr>
-                    <tr>
-                        <td>Verighet*:</td>
-                        <td>
-                            <form:select path="varighet" disabled="ture">
-                                <form:options items="${formVelgRom.varighetList}"/>
-                            </form:select>
-                        </td>
-                        <td><form:errors path="varighet"/></td>
-                    </tr>
-                    <tr>
-                        <td colspan="3">
-                            <input class="vanligknapp" formaction="ReserverRom" type="submit" value="Reserver rom">
-                        </td>
-                    </tr>   
-                    <tr>
-                        <c:set var="tilgang" value="${bruker.getTilgangsniva()}"></c:set>
-                        <c:if test="${tilgang == 1}">
-                            <td colspan="3">
-                            <input type="submit" class="vanligknapp" formaction="OverstyrRomL" value="Overstyr rombestilling">
-                        </td>
-                         </c:if>
-                        <c:if test="${tilgang == 2}">
-                        <td>
-                            <input type="submit" class="vanligknapp" formaction="OverstyrRomAdmin" value="Overstyr rombestilling">
-                            
-                        </td>
-                        <td colspan="2">
-                            <input type="submit" class="vanligknapp" formaction="VelgRomRed" value="Rediger rom informasjon">
-                        </td>
-                        </c:if>
-                    </tr>
-                    
-                    
-                </table>
-            </form:form>
-        </fieldset>
-    </div>
-    
                 
     <div>
         <span class="tekst">Du befinner deg i</span>
             <p id="etasjeTeller">1. etasje</p>
-                <span class="tekst">på&nbsp;<p id="romNavn">(ingen rom valgt)</p></span> 
+                <span class="tekst">&nbsp;<p id="romNavn">(ingen rom valgt)</p></span> 
     </div>  
                     
                     

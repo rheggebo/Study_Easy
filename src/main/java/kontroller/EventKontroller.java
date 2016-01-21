@@ -32,6 +32,7 @@ import service.Service;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import ui.FormVelgRom;
 
 /**
  *
@@ -211,14 +212,14 @@ public class EventKontroller {
     }
     
     @RequestMapping("VelgRomSok")
-    public String velgRom(@RequestParam("fraDato")Date fraDato, @RequestParam("fraTid")String fraTid, 
-            @RequestParam("varighet")String varighet, HttpSession sess, Model model){
+    public String velgRom(@ModelAttribute FormVelgRom fromVelgRom,HttpSession sess, Model model){
         BrukerB bruker = (BrukerB) sess.getAttribute("brukerBean");
         KalenderEvent ke = new KalenderEvent();
-        int fra = Integer.parseInt(fraTid)+5;
-        int til = Integer.parseInt(varighet);
-        ke.setStartTid(new Timestamp(fraDato.getTime()+fra*3600000));
-        ke.setSluttTid(new Timestamp(fraDato.getTime()+til*3600000));
+        int fra = fromVelgRom.getFraTid()/100;
+        int til = fromVelgRom.getVarighet();
+        ke.setStartTid(new Timestamp(fromVelgRom.getFraDato().getTime()+fra*3600000));
+        ke.setSluttTid(new Timestamp(fromVelgRom.getFraDato().getTime()+til*3600000));
+        System.out.println(ke.getSluttTid()+" "+ke.getSluttTid());
         ke.setType(bruker.getTilgangsniva()+1);
         List<Rom> liste = service.getRomSVG(ke);
         model.addAttribute("liste", liste);
