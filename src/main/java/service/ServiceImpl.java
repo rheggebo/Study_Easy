@@ -311,4 +311,9 @@ public class ServiceImpl implements Service{
         return dbc.getReserverteRom(ke);
     }
     
+    @Override
+    public boolean leggTilEvent (KalenderEvent ke){
+        return dbc.leggTilEvent(ke);
+    }
+    
 }

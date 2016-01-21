@@ -73,15 +73,19 @@ public class EventKontroller {
         }
         
         if (slutt.before(start)){
-            //nei
+            model.addAttribute("melding", "feilmelding.eventSluttForStart");
         }
-        event.setStartTid(start);
-        event.setSluttTid(slutt);
-        event.setPrivat(privat);
-        event.setNotat(notat);
-        event.setEpost(brukerb.getEpost());
-        event.setTilhorerEvent(0);
-        
+        else{
+            event.setStartTid(start);
+            event.setSluttTid(slutt);
+            event.setPrivat(privat);
+            event.setNotat(notat);
+            event.setEpost(brukerb.getEpost());
+            event.setTilhorerEvent(0);
+            event.setEierNavn(brukerb.getFornavn() + " " + brukerb.getEtternavn());
+
+            service.leggTilEvent(event);
+        }
         
         
         return "OpprettHendelse";

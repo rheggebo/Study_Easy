@@ -118,4 +118,6 @@ public interface Service {
     
     public List<RomBestilling> getReserverteRom(KalenderEvent ke);
     
+    public boolean leggTilEvent (KalenderEvent ke);
+    
 }
