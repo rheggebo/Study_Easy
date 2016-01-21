@@ -128,8 +128,12 @@ public class Hovedkontroller {
                 //prøver å slette abonemennt med brukerepost og den valgte koden,
                 // fanger exception viss ikke
                 try{
-                    //service.slettAbonemennt(new Abonemennt(brukerb.getEpost(), valgt, 0));
-                    model.addAttribute("meldingHendelse", "feilmelding.finnesIkkeHendelse");
+                    String[] split = valgt.split(" ");
+                    KalenderEvent kalenderEvent = new KalenderEvent();
+                    kalenderEvent.setId(Integer.parseInt(split[0]));
+                    kalenderEvent.setEpost(brukerb.getEpost());
+                    service.fjernKalenderEvent(kalenderEvent);
+                    
                 }
                 catch(Exception e){
                     model.addAttribute("meldingHendelse", "feilmelding.finnesIkkeHendelse");
