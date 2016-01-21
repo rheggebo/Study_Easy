@@ -114,10 +114,11 @@ public class EventKontroller {
     }
     
     @RequestMapping("finnromdata")
-    public String finnRom(@ModelAttribute("rom") Rom rom, @ModelAttribute FormFinnRom formFinnRom, Model model, HttpSession sess, HttpServletRequest req/*, 
+    public String finnRom(@ModelAttribute FormFinnRom formFinnRom, Model model, HttpSession sess, HttpServletRequest req/*, 
             @RequestParam(value="notat", required=false)String notat, @RequestParam(value="tittel",required=false)String tittel, 
             @RequestParam(value="fag", required=false)String fag*/){
         KalenderEvent ke = new KalenderEvent();
+        Rom rom = new Rom();
         BrukerB brukerb = (BrukerB) sess.getAttribute("brukerBean");
         ke.setEpost(brukerb.getEpost());
         ke.setEierNavn(brukerb.getFornavn()+" "+brukerb.getEtternavn());

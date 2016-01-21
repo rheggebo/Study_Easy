@@ -33,8 +33,8 @@ public class FormFinnRom {
         return romtype;
     }
 
-    public void setRomType(String romType) {
-        this.romtype = romType;
+    public void setRomtype(String romtype) {
+        this.romtype = romtype;
     }
 
 
