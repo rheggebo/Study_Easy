@@ -19,16 +19,10 @@
             <form:form modelAttribute="formVelgRom" method="POST">
                 <table>
                     <tr>
-                        <td>RomID*:</td>
-                        <td colspan="2"><form:input id="rom" path="romId"/></td>
-                    </tr>
-
-                    <tr>
                         <td>Dato*:</td>
                         <td><form:input class="min-today" type="date" path="fraDato" /></td>
                         <td><form:errors path="fraDato" /></td>
                     </tr>
-                    
                     <tr>
                         <td>Tid fra*:</td>
                         <td>
@@ -48,20 +42,32 @@
                         <td><form:errors path="varighet"/></td>
                     </tr>
                     <tr>
-                        <td>
-                        </td>
+                        <td></td>
                         <td>
                             <input class="vanligknapp" formaction="VelgRomSok" type="submit" value="Søk">
                         </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>RomID*:</td>
+                        <td colspan="2"><form:input id="rom" path="romId"/></td>
+                    </tr>
+                    <tr>
+                        <td></td>
                         <td>
                             <input class="vanligknapp" formaction="VelgRomReserverRom" type="submit" value="Betill">
                         </td>
+                        <td></td>
                     </tr>  
-                     <c:set var="tilgang" value="${bruker.getTilgangsniva()}"></c:set>
+                    <c:set var="tilgang" value="${bruker.getTilgangsniva()}"></c:set>
                     <c:if test="${tilgang == 1}">
                         <tr>
-                            <td colspan="3">
+                            <td>
+                            </td>
+                            <td>
                             <input type="submit" class="vanligknapp" formaction="OverstyrRomL" value="Overstyr rombestilling">
+                            </td>
+                            <td>
                             </td>
                         </tr>
                      </c:if>
@@ -84,7 +90,7 @@
     <div>
         <span class="tekst">Du befinner deg i</span>
             <p id="etasjeTeller">1. etasje</p>
-                <span class="tekst">på&nbsp;<p id="romNavn">(ingen rom valgt)</p></span> 
+                <span class="tekst">&nbsp;<p id="romNavn">(ingen rom valgt)</p></span> 
     </div>  
                     
                     
