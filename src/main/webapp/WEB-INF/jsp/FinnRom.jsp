@@ -21,11 +21,11 @@
     <div style="display: inline-block">
         <fieldset class="fieldsetDefault">
             <legend><b>Velg ønsket spesifikasjoner</b></legend>
-            <form:form modelAttribute="formFinnRom" method="POST">
+            <form:form modelAttribute="formFinnRom" method="POST" onsubmit="valider()">
                 <table>
                     <tr>
                         <td>Dato:<em>* </em></td>
-                        <td><form:input class="min-today" type="date" path="fraDato" /></td>
+                        <td><form:input class="min-today" id="datoFraDefault" type="date" path="fraDato" /></td>
                         <td><form:errors path="fraDato" /></td>
                     </tr>
                     <tr>
@@ -189,5 +189,18 @@
                 return new Date().toJSON().split('T')[0];
             });
         });
+    </script>
+    <script>var date = new Date();
+
+        var day = date.getDate();
+        var month = date.getMonth() + 1;
+        var year = date.getFullYear();
+
+        if (month < 10) month = "0" + month;
+        if (day < 10) day = "0" + day;
+
+        var today = year + "-" + month + "-" + day;
+
+        document.getElementById('datoFraDefault').value=today;
     </script>
 </main>

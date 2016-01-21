@@ -9,12 +9,14 @@ import java.sql.Time;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import javax.validation.constraints.NotNull;
 
 /**
  *
  * @author Sindre
  */
 public class FormVelgRom {
+    @NotNull
     private Date fraDato;
     private int fraTid;
     private int varighet;

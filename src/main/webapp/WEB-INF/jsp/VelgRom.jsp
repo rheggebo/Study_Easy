@@ -20,7 +20,7 @@
                 <table>
                     <tr>
                         <td>Dato:<em>* </em></td>
-                        <td><form:input class="velgRomForm" type="date" default="today" path="fraDato" /></td>
+                        <td><form:input class="min-today" type="date" id="datoFraDefault" path="fraDato"/></td>
                         <td><form:errors path="fraDato" /></td>
                     </tr>
                     <tr>
@@ -89,46 +89,43 @@
                 
     <div>
         <span class="tekst">Du befinner deg i</span>
-            <p id="etasjeTeller">1. etasje</p>
-                <span class="tekst">&nbsp;<p id="romNavn">(ingen rom valgt)</p></span> 
+        <p id="etasjeTeller">1. etasje</p>
+        <span class="tekst">&nbsp;<p id="romNavn">(ingen rom valgt)</p></span> 
     </div>  
-                    
-                    
-        <div id="velgRomSøkeSVG">
-            <object id="plantegningEtasje1" class="pantegningObject" style="z-index:9;"
-                    data="<c:url value="/resources/SVG/plantegningE1.svg"/>"> Din nettleser støtter ikke SVG </object>
-            <object id="plantegningEtasje2" class="pantegningObject" style="z-index:8;" 
-                    data="<c:url value="/resources/SVG/plantegningE2.svg"/>"> Din nettleser støtter ikke SVG </object>
-            <object id="plantegningEtasje3" class="pantegningObject" style="z-index:7;" 
-                    data="<c:url value="/resources/SVG/plantegningE3.svg"/>"> Din nettleser støtter ikke SVG </object>
-            <object id="plantegningEtasje4" class="pantegningObject" style="z-index:6;" 
-                    data="<c:url value="/resources/SVG/plantegningE4.svg"/>"> Din nettleser støtter ikke SVG </object>
-        </div>
+       
+    <div id="velgRomSøkeSVG">
+        <object id="plantegningEtasje1" class="pantegningObject" style="z-index:9;"
+                data="<c:url value="/resources/SVG/plantegningE1.svg"/>"> Din nettleser støtter ikke SVG </object>
+        <object id="plantegningEtasje2" class="pantegningObject" style="z-index:8;" 
+                data="<c:url value="/resources/SVG/plantegningE2.svg"/>"> Din nettleser støtter ikke SVG </object>
+        <object id="plantegningEtasje3" class="pantegningObject" style="z-index:7;" 
+                data="<c:url value="/resources/SVG/plantegningE3.svg"/>"> Din nettleser støtter ikke SVG </object>
+        <object id="plantegningEtasje4" class="pantegningObject" style="z-index:6;" 
+                data="<c:url value="/resources/SVG/plantegningE4.svg"/>"> Din nettleser støtter ikke SVG </object>
+    </div>
 
-
-         <ul class="ikonForside" style=" z-index:1;">
-            <li class="knappVelgRom">
-                <a class="infoKnappForside" href="#infoVindu2"><span class="fontawesome-info-sign"></span></a>
-                <div id="infoVindu2" class="infoVinduForside">
-                    <div>
-                        <a href="#lukk" title="Lukk" class="lukk">X</a>
-                        <h2>Informasjon</h2>
-                        <p>Trykk på pilene for å endre etasje og på rommet for å få mer informasjon.</p>
-                    </div>
+     <ul class="ikonForside" style=" z-index:1;">
+        <li class="knappVelgRom">
+            <a class="infoKnappForside" href="#infoVindu2"><span class="fontawesome-info-sign"></span></a>
+            <div id="infoVindu2" class="infoVinduForside">
+                <div>
+                    <a href="#lukk" title="Lukk" class="lukk">X</a>
+                    <h2>Informasjon</h2>
+                    <p>Trykk på pilene for å endre etasje og på rommet for å få mer informasjon.</p>
                 </div>
-            </li>
-            <li class="knappVelgRom">
-                <button class="knappForside" id="leggTilKnappForside" onclick="changeZIndexPlantegningerOpp()">
-                    <span class="fontawesome-circle-arrow-up"></span>
-                </button>
-            </li>
-            <li class="knappVelgRom">
-                <button class="knappForside" id="søkeKnappForside"  onclick="changeZIndexPlantegningerNed()">
-                    <span class="fontawesome-circle-arrow-down"></span>
-                </button>
-            </li>
-        </ul>
-        
+            </div>
+        </li>
+        <li class="knappVelgRom">
+            <button class="knappForside" id="leggTilKnappForside" onclick="changeZIndexPlantegningerOpp()">
+                <span class="fontawesome-circle-arrow-up"></span>
+            </button>
+        </li>
+        <li class="knappVelgRom">
+            <button class="knappForside" id="søkeKnappForside"  onclick="changeZIndexPlantegningerNed()">
+                <span class="fontawesome-circle-arrow-down"></span>
+            </button>
+        </li>
+    </ul>     
 </main>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -183,13 +180,7 @@
         }
     </script>
     
-    <script>
-        $(function(){
-            $('[type="date"].min-today').prop('min', function(){
-                return new Date().toJSON().split('T')[0];
-            });
-        });
-    </script>
+
     
     <script>    
         function erLedig(id){
@@ -373,3 +364,29 @@
                 }, false);
             } },false);
     </script>
+     
+    <script>
+        // setter dato min til idag
+        $(function(){
+            $('[type="date"].min-today').prop('min', function(){
+                return new Date().toJSON().split('T')[0];
+            });
+        });
+    </script>
+    
+    <script>
+        // setter dato til idag
+        var date = new Date();
+        
+        var day = date.getDate();
+        var month = date.getMonth() + 1;
+        var year = date.getFullYear();
+
+        if (month < 10) month = "0" + month;
+        if (day < 10) day = "0" + day;
+
+        var today = year + "-" + month + "-" + day;
+
+        document.getElementById('datoFraDefault').value=today;
+    </script>
+

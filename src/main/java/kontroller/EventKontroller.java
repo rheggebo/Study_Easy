@@ -130,7 +130,7 @@ public class EventKontroller {
             //tilDato = fromFinnRom.getFraDato();
         }
         ke.setStartTid(new Timestamp(formFinnRom.getFraDato().getTime()+fra*3600000));
-        ke.setSluttTid(new Timestamp(formFinnRom.getFraDato().getTime()+til*3600000));
+        ke.setSluttTid(new Timestamp(formFinnRom.getFraDato().getTime()+(fra+til)*3600000));
         ArrayList<String> innhold = new ArrayList<String>();
         
         if(formFinnRom.getSkjerm()>0){
