@@ -119,7 +119,7 @@
             <dt><label for="Notat">Notat:</label></dt>
             <textarea id="notat" placeholder="Skriv notat her" name="notat" autofocus="true" rows="10" cols="55" ></textarea>
             
-        <p><input type="submit" value="Legg til" onclick=""></p>
+        <p><input type="submit" class="vanligknapp" value="Legg til" onclick=""></p>
     </fieldset>
     </div>
     <section class="searchInfo">
