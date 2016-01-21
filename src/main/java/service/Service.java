@@ -123,4 +123,6 @@ public interface Service {
     public boolean slettBooking(KalenderEvent ke);
     
     public List<Abonemennt> getAbonnementDeltakere(Abonemennt st);
+    
+    public RomBestilling getRomBooking(KalenderEvent ke);
 }

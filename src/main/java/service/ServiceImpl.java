@@ -328,5 +328,10 @@ public class ServiceImpl implements Service{
    public List<Abonemennt> getAbonnementDeltakere(Abonemennt st){
        return dbc.getAbonnementDeltakere(st);
    }
+
+    @Override
+    public RomBestilling getRomBooking(KalenderEvent ke) {
+        return dbc.getRomBooking(ke);
+    }
     
 }

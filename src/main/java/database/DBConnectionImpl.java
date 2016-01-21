@@ -128,6 +128,8 @@ public class DBConnectionImpl implements DBConnection{
     
     private final String slettBooking = "DELETE FROM rom_bestilling WHERE romID LIKE ? AND dato_start LIKE ? AND dato_slutt LIKE ? AND eierID like ?";
     
+    private final String getRomBooking = "SELECT * FROM rom_bestilling WHERE romID LIKE ? AND dato_start LIKE ? AND eierID LIKE ?";
+    
     private DataSource dS;
     private JdbcTemplate jT;
     
@@ -950,5 +952,14 @@ public class DBConnectionImpl implements DBConnection{
     @Override
     public boolean leggTilEvent(KalenderEvent ke) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    @Override
+    public RomBestilling getRomBooking(KalenderEvent ke){
+        return jT.queryForObject(getRomBooking, new Object[]{
+            ke.getRom(),
+            ke.getStartTid(),
+            ke.getEpost()
+        }, new RomBestillingMapper());
     }
 }
