@@ -58,8 +58,8 @@ public class DBConnectionImpl implements DBConnection{
     private final String fjernKalenderEvent = "DELETE FROM KALENDER_EVENT WHERE ID=?";
     private final String getKalenderEventDeltakere = "SELECT DELTAKERID FROM KLANEDER_DELTAKER WHERE EVENTID=?";
     private final String getKalenderEventDeltaker = "SELECT * FROM KALENDER_DELTAKER WHERE EVENTID=? AND DELTAKERID=?";
-    private final String getKalenderEventEier = "SELECT * FROM KALENDER_EVENT WHERE EIER=?";
-    private final String getKalenderEventRomID = "SELECT * FROM KALENDER_EVENT WHERE ROMID=?";
+    private final String getKalenderEventEier = "SELECT *, rom_bestilling.romID FROM kalender_event LEFT OUTER JOIN rom_bestilling ON rom_bestilling.bestillingsID = kalender_event.bestillingsID WHERE EIER=?";
+    private final String getKalenderEventRomID = "SELECT *, rom_bestilling.romID FROM kalender_event LEFT OUTER JOIN rom_bestilling ON rom_bestilling.bestillingsID = kalender_event.bestillingsID WHERE ROMID=?";
     private final String getFagLaerer = "SELECT FAGID FROM FAG_LÆRER WHERE BRUKERID=?";
     private final String getRombestilling = "";
     private final String getRomFraNavn = "SELECT * FROM rom WHERE romnavn=?";
