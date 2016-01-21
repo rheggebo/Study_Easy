@@ -86,9 +86,12 @@
             <section class="tab">
                 <table>
                     <c:forEach var="resliste" items="${reservasjonsliste}">
+                        <form:form modelAttribute="event" action="SlettBooking">
                         <tr>
+                            <form:input type="hidden" path="rom" value="${resliste}"/>
                             <td><c:out value="${resliste}"></c:out><input class="slettknapp" type="submit" value="Slett"/></td>
                         </tr>
+                        </form:form>
                     </c:forEach>
                 </table>
             </section>           

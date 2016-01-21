@@ -128,4 +128,6 @@ public interface DBConnection {
     
     public List<RomBestilling> getReserverteRom(KalenderEvent ke);
     
+    public boolean slettBooking(KalenderEvent ke);
+    
 }

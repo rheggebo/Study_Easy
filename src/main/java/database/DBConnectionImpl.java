@@ -125,6 +125,8 @@ public class DBConnectionImpl implements DBConnection{
     private final String getReserverteRom = "SELECT DISTINCT * FROM rom_bestilling WHERE eierID LIKE ? AND "
             + "(dato_start >= ? OR (? BETWEEN dato_start AND dato_slutt))";
     
+    private final String slettBooking = "DELETE FROM rom_bestilling WHERE romID LIKE ? AND dato_start LIKE ? AND dato_slutt LIKE ? AND eierID like ?";
+    
     private DataSource dS;
     private JdbcTemplate jT;
     
@@ -403,12 +405,11 @@ public class DBConnectionImpl implements DBConnection{
             ke.getSluttTid(),
             ke.getEpost(),
             ke.isPrivat(),
-            ke.getRom(),
+            ke.getId(),
             ke.getType(),
             ke.getFag(),
             ke.getNotat(),
-            ke.getTittel(),
-            ke.getEierNavn()
+            ke.getTittel()
         });
         if(antallRader > 0){
             return true;
@@ -919,5 +920,14 @@ public class DBConnectionImpl implements DBConnection{
             ke.getStartTid()
         }, new RomBestillingMapper());
     }
-    //ke.getSluttTid()
+    
+    @Override
+    public boolean slettBooking(KalenderEvent ke){
+        return(0<jT.update(slettBooking, new Object[]{
+            ke.getRom(),
+            ke.getStartTid(),
+            ke.getSluttTid(),
+            ke.getEpost()
+        }));
+    }
 }

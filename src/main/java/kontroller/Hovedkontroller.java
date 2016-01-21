@@ -74,6 +74,7 @@ public class Hovedkontroller {
         Date dato = Calendar.getInstance().getTime();
         ke.setStartTid(new Timestamp(dato.getTime()));
         List<RomBestilling> eventListe = service.getReserverteRom(ke);
+        model.addAttribute("event", new KalenderEvent());
         model.addAttribute("reservasjonsliste", eventListe);
     }
     

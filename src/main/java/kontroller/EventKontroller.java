@@ -10,6 +10,7 @@ import beans.BrukerB;
 import beans.KalenderEvent;
 import beans.NyEvent;
 import beans.Rom;
+import beans.RomBestilling;
 import java.sql.Time;
 import java.sql.Timestamp;
 import java.text.DateFormat;
@@ -199,7 +200,9 @@ public class EventKontroller {
         Date dato = Calendar.getInstance().getTime();
         ke.setStartTid(new Timestamp(dato.getTime()));
         List<RomBestilling> eventListe = service.getReserverteRom(ke);
+        model.addAttribute("event", new KalenderEvent());
         model.addAttribute("reservasjonsliste", eventListe);
+        model.addAttribute("bruker", brukerb);
     }
     
     @RequestMapping("VelgRomSok")
@@ -210,10 +213,39 @@ public class EventKontroller {
         int fra = Integer.parseInt(fraTid)+5;
         int til = Integer.parseInt(varighet);
         ke.setStartTid(new Timestamp(fraDato.getTime()+fra*3600000));
-        ke.setSluttTid(new Timestamp(fraDato.getTime()+til*3600000));
+        ke.setSluttTid(new Timestamp(fraDato.getTime()+(fra+til)*3600000));
         ke.setType(bruker.getTilgangsniva()+1);
         List<Rom> liste = service.getRomSVG(ke);
         model.addAttribute("liste", liste);
         return "VelgRom";
+    }
+    
+    @RequestMapping("SlettBooking")
+    public String slettBooking(@ModelAttribute("event")KalenderEvent ke, HttpSession sess, Model model){
+        BrukerB bruker = (BrukerB)sess.getAttribute("brukerBean");
+        String[] info = ke.getRom().split(" ");
+        String rom = info[1];
+        String[] startDato = info[3].split("-");
+        String[] startTid = info[4].split(":");
+        String[] sluttDato = info[6].split("-");
+        String[] sluttTid = info[7].split(":");
+        ke.setEpost(bruker.getEpost());
+        ke.setRom(rom);
+        System.out.println("Oppretter timestamp "+startTid[2].substring(0,2));
+        ke.setStartTid(new Timestamp(Integer.parseInt(startDato[0])-1900,Integer.parseInt(startDato[1])-1,Integer.parseInt(startDato[2]),
+                Integer.parseInt(startTid[0]), Integer.parseInt(startTid[1]), Integer.parseInt(startTid[2].substring(0,2)), 0));
+        ke.setSluttTid(new Timestamp(Integer.parseInt(sluttDato[0])-1900,Integer.parseInt(sluttDato[1])-1,Integer.parseInt(sluttDato[2]),
+                Integer.parseInt(sluttTid[0]), Integer.parseInt(sluttTid[1]), Integer.parseInt(sluttTid[2].substring(0,2)), 0));
+        System.out.println("Opprettet timestamp, skal slette booking");
+        System.out.println(ke.getRom()+" "+ke.getStartTid()+" "+ke.getEpost());
+        if(service.slettBooking(ke)){
+            System.out.println("Slettet booking");
+            returnerMinSide(model, bruker);
+            return "MinSide";
+        }
+        System.out.println("skal legge til feilmelding");
+        model.addAttribute("melding", "feilmelding.slettBooking");
+        returnerMinSide(model, bruker);
+        return "MinSide";
     }
 }
