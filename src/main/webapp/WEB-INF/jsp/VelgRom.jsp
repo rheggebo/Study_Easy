@@ -223,26 +223,6 @@
                     svgLayer[i].setAttribute('class','planRomOpptatt');
                 }
             }
-            for (i=0; i<svgLayer.length;i++){
-                if (erLedig(svgLayer[i].id)<=0){
-                    svgLayer[i].setAttribute('class','planRomOpptatt');
-                }
-            }
-            for (i=0; i<svgLayer.length;i++){
-                if (erLedig(svgLayer[i].id)<=0){
-                    svgLayer[i].setAttribute('class','planRomOpptatt');
-                }
-            }
-            for (i=0; i<svgLayer.length;i++){
-                if (erLedig(svgLayer[i].id)<=0){
-                    svgLayer[i].setAttribute('class','planRomOpptatt');
-                }
-            }
-            for (i=0; i<svgLayer.length;i++){
-                if (erLedig(svgLayer[i].id)<=0){
-                    svgLayer[i].setAttribute('class','planRomOpptatt');
-                }
-            }
             // etasje 2:
             var a2 = document.getElementById("plantegningEtasje2");
             // Get the SVG document inside the Object tag
@@ -250,27 +230,7 @@
             // Get one of the SVG items by ID;
             var svgLayer2 = svgDoc2.getElementsByClassName("planRom");
             for (i=0; i<svgLayer2.length;i++){
-                if (erLedig(svgLayer[i].id)<=0){
-                    svgLayer2[i].setAttribute('class','planRomOpptatt');
-                }
-            }
-            for (i=0; i<svgLayer2.length;i++){
                 if (erLedig(svgLayer2[i].id)<=0){
-                    svgLayer2[i].setAttribute('class','planRomOpptatt');
-                }
-            }
-            for (i=0; i<svgLayer2.length;i++){
-                if (erLedig(svgLayer2[i].id)<=0){
-                    svgLayer2[i].setAttribute('class','planRomOpptatt');
-                }
-            }
-            for (i=0; i<svgLayer2.length;i++){
-                if (erLedig(svgLayer2[i].id)<=0){
-                    svgLayer2[i].setAttribute('class','planRomOpptatt');
-                }
-            }
-            for (i=0; i<svgLayer2.length;i++){
-                if (erLedig(svgLayer[i].id)<=0){
                     svgLayer2[i].setAttribute('class','planRomOpptatt');
                 }
             }
@@ -289,7 +249,6 @@
                     svgLayer2[i].setAttribute('class','planRomOpptatt');
                 }
             }
-            
             //eatasje 3:
             var a3 = document.getElementById("plantegningEtasje3");
             // Get the SVG document inside the Object tag
@@ -297,27 +256,7 @@
             // Get one of the SVG items by ID;
             var svgLayer3 = svgDoc3.getElementsByClassName("planRom");
             for (i=0; i<svgLayer3.length;i++){
-                if (erLedig(svgLayer[i].id)<=0){
-                    svgLayer3[i].setAttribute('class','planRomOpptatt');
-                }
-            }
-            for (i=0; i<svgLayer3.length;i++){
                 if (erLedig(svgLayer3[i].id)<=0){
-                    svgLayer3[i].setAttribute('class','planRomOpptatt');
-                }
-            }
-            for (i=0; i<svgLayer3.length;i++){
-                if (erLedig(svgLayer3[i].id)<=0){
-                    svgLayer3[i].setAttribute('class','planRomOpptatt');
-                }
-            }
-            for (i=0; i<svgLayer3.length;i++){
-                if (erLedig(svgLayer3[i].id)<=0){
-                    svgLayer3[i].setAttribute('class','planRomOpptatt');
-                }
-            }
-            for (i=0; i<svgLayer3.length;i++){
-                if (erLedig(svgLayer[i].id)<=0){
                     svgLayer3[i].setAttribute('class','planRomOpptatt');
                 }
             }
@@ -344,27 +283,7 @@
             // Get one of the SVG items by ID;
             var svgLayer4 = svgDoc4.getElementsByClassName("planRom");
             for (i=0; i<svgLayer4.length;i++){
-                if (erLedig(svgLayer[i].id)<=0){
-                    svgLayer4[i].setAttribute('class','planRomOpptatt');
-                }
-            }
-            for (i=0; i<svgLayer4.length;i++){
                 if (erLedig(svgLayer4[i].id)<=0){
-                    svgLayer4[i].setAttribute('class','planRomOpptatt');
-                }
-            }
-            for (i=0; i<svgLayer4.length;i++){
-                if (erLedig(svgLayer4[i].id)<=0){
-                    svgLayer4[i].setAttribute('class','planRomOpptatt');
-                }
-            }
-            for (i=0; i<svgLayer4.length;i++){
-                if (erLedig(svgLayer4[i].id)<=0){
-                    svgLayer4[i].setAttribute('class','planRomOpptatt');
-                }
-            }
-            for (i=0; i<svgLayer4.length;i++){
-                if (erLedig(svgLayer[i].id)<=0){
                     svgLayer4[i].setAttribute('class','planRomOpptatt');
                 }
             }
@@ -384,7 +303,7 @@
                 }
             }
             
-            
+           
             
         });
         
