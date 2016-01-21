@@ -117,12 +117,13 @@ public class Hovedkontroller {
             if("Slett".equals(req.getParameter("slettBrukerAbKnapp"))) {
                 //prøver å slette abonemennt med brukerepost og den valgte koden,
                 // fanger exception viss ikke
-                try{
+                service.slettAbonemennt(new Abonemennt(brukerb.getEpost(), valgt, 0));
+                /*try{
                     service.slettAbonemennt(new Abonemennt(brukerb.getEpost(), valgt, 0));
                 }
                 catch(Exception e){
                     model.addAttribute("meldingBruker", "feilmelding.finnesIkkeAbonnement");
-                }
+                }*/
             }
             if("Slett".equals(req.getParameter("slettHendelseKnapp"))) {
                 //prøver å slette abonemennt med brukerepost og den valgte koden,
