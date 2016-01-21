@@ -20,7 +20,7 @@
                 <table>
                     <tr>
                         <td>Dato:<em>* </em></td>
-                        <td><form:input class="velgRomForm" type="date" path="fraDato" /></td>
+                        <td><form:input class="velgRomForm" type="date" default="today" path="fraDato" /></td>
                         <td><form:errors path="fraDato" /></td>
                     </tr>
                     <tr>
