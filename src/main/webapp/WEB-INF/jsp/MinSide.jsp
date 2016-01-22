@@ -70,7 +70,7 @@
                                 <c:out value ="${abliste}"></c:out> <%-- printer ut listeverdiene--%>
 
                                 <%-- legger til knappene for slett fag --%>
-                                <button class="slettknappMinSide" id="slettKnapp" type="submit" name="slettFagAbKnapp"/><span class="fontawesome-trash"></span></button>
+                                <button class="slettknappMinSide" type="submit" name="slettFagAbKnapp"/><span class="fontawesome-trash"></span></button>
 
                                 </form:form>
                             </td>
@@ -131,8 +131,8 @@
                                 var twentyMinutesEarlier = new Date().setMinutes(currentDate.getMinutes()-60);
                             </script>-->
                             <form:input type="hidden" path="rom" value="${resliste}"/>
-                            <td><c:out value="${resliste}"></c:out><button class="defaultKnapp" id="slettKnapp" type="submit" name="slettHendelseKnapp"/><span class="fontawesome-trash"></span></button><!--c:if test="{twentyMinutesEarlier le bestilltTid}"-->
-                                <c:if test="${resliste.isKlokkesjekk()}"><input class="defaultKnapp"type="submit" value="Bekreft oppmøte"/>
+                            <td><c:out value="${resliste}"></c:out><button class="slettknappMinSide" type="submit" name="slettHendelseKnapp"/><span class="fontawesome-trash"></span></button><!--c:if test="{twentyMinutesEarlier le bestilltTid}"-->
+                                <c:if test="${resliste.isKlokkesjekk()}"><input class="defaultKnapp" style="float: right" type="submit" value="Bekreft oppmøte"/>
                                 </c:if></td>
                         </tr>
                         </form:form>
