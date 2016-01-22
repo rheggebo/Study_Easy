@@ -157,7 +157,7 @@
                             <c:out value ="${eventliste}"></c:out> <%-- printer ut listeverdiene--%>
 
                             <%-- legger til knappene for slett hendelse --%>
-                            <button class="slettknappMinSide" type="submit" name="slettHendelseKnapp"/><span class="fontawesome-trash"></span></button>
+                            <button class="slettknappMinSide" type="submit" name="slettHendelseKnapp" value="Slett"/><span class="fontawesome-trash"></span></button>
                             
                             
                             </form:form>
