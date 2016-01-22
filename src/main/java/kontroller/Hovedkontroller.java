@@ -164,10 +164,10 @@ public class Hovedkontroller {
                 //prøver å slette abonemennt med brukerepost og den valgte koden,
                 // fanger exception viss ikke
                 try{
-                    service.slettAbonemennt(new Abonemennt(brukerb.getEpost(), valgt, 1));  
+                    service.slettAbonemennt(new Abonemennt(brukerb.getEpost(), valgt, 1));
                 }
                 catch(Exception e){
-                    model.addAttribute("meldingFag", "feilmelding.finnesIkkeAbonnement");
+                    model.addAttribute("slettFeilMelding", "feilmelding.kunneIkkeSletteAbonnement");
                 }
             }
             if("Slett".equals(req.getParameter("slettBrukerAbKnapp"))) {
@@ -177,14 +177,14 @@ public class Hovedkontroller {
                     service.slettAbonemennt(new Abonemennt(brukerb.getEpost(), valgt, 0));
                 }
                 catch(Exception e){
-                    model.addAttribute("meldingBruker", "feilmelding.finnesIkkeAbonnement");
+                    model.addAttribute("slettFeilMelding", "feilmelding.kunneIkkeSletteAbonnement");
                 }
+
             }
             if("Slett".equals(req.getParameter("slettHendelseKnapp"))) {
                 //prøver å slette abonemennt med brukerepost og den valgte koden,
                 // fanger exception viss ikke
                 String[] split = valgt.split(" ");
-
                 try{
                     KalenderEvent kalenderEvent = new KalenderEvent();
                     kalenderEvent.setId(Integer.parseInt(split[0]));
@@ -192,7 +192,7 @@ public class Hovedkontroller {
                     service.fjernKalenderEvent(kalenderEvent);
                 }
                 catch(Exception e){
-                    model.addAttribute("meldingHendelse", "feilmelding.finnesIkkeHendelse");
+                    model.addAttribute("slettFeilMelding", "feilmelding.kunneIkkeSletteHendelse");
                 }
             }
             returnerMinSide(model, brukerb);

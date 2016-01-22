@@ -34,14 +34,17 @@ public class FunksjonerTest {
     public void setUp() throws Exception {
         // Koden her eksekveres f�r hver av testmetodene i klassen
         test=new Funksjoner();
+        si = mock(Service.class);
         ord="Per";
         checkboxValues=null;
+        
+
         
     }
     
     @Test
     public void tester_getAlleSokeTreff (){
-        assertEquals(test.getAlleSokeTreff(ord, si, checkboxValues),true);
+        assertEquals(test.getAlleSokeTreff(ord, si, checkboxValues), true);
     }
     
     @After

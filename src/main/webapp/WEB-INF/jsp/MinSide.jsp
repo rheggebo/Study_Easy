@@ -5,6 +5,15 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
 <main>
+    
+    <%-- setter og printer ut eventuell feilmelding her --%>
+    <fieldset style="color: red">
+            <c:set var="slettFeilMelding" value="${slettFeilMelding}"></c:set>
+            <c:if test="${not empty slettFeilMelding}">
+                <spring:message code="${slettFeilMelding}"/>
+            </c:if>
+    </fieldset>
+            
     <fieldset class="fieldsetDefault">
         <legend>Personopplysninger</legend>
         <dl>
@@ -18,14 +27,6 @@
             <dd><form:input id="emailMinSide" type="email" name="email1" readonly="true" path="epost"/></dd>
 
             <dt><label for="klasseMinSide">Klasse:</label></dt>
-            <%--
-            <dd><form:input id="klasseMinSide" type="text" name="ref"  list="ref-list1" readonly="true" path="klasse"/>
-                <datalist id="ref-list1">
-                    <option value="Dataingeniør">
-                    <option value="Drift av datasystemer">
-                    <option value="IT-støttet bedriftsutvikling">
-                </datalist>
-            --%>
             </form:form>
         </dl>
         <form:form action="EndrePassordRed">
@@ -35,12 +36,6 @@
     
     <fieldset class="fieldsetDefault">
         <legend>Fag </legend>
-            <%-- setter og printer ut eventuell feilmelding --%>
-            <c:set var="meldingFag" value="${meldingFag}"></c:set>
-            <c:if test="${not empty meldingFag}">
-                <spring:message code="${meldingFag}" />
-            </c:if>
-            
         <div class="tab">
             <table>
                 <c:forEach var="abliste" items="${abonemenntListe}">
@@ -65,11 +60,6 @@
     
     <fieldset class="fieldsetDefault">
         <legend>Brukerabonnement</legend>
-            <%-- setter og printer ut eventuell feilmelding --%>
-            <c:set var="meldingB" value="${meldingBruker}"></c:set>
-            <c:if test="${not empty meldingB}">
-                <spring:message code="${meldingBruker}" />
-            </c:if>
             <div class="tab">
                 <table>
                 <c:forEach var="abliste" items="${abonemenntListe}">
@@ -116,11 +106,6 @@
                                 
     <fieldset class="fieldsetDefault">
         <legend>Hendelser</legend>
-            <%-- setter og printer ut eventuell feilmelding --%>
-            <c:set var="meldingH" value="${meldingHendelse}"></c:set>
-            <c:if test="${not empty meldingH}">
-                <spring:message code="${meldingHendelse}" />
-            </c:if>
         <div class="tab">
             <table>
             <c:forEach var="eventliste" items="${kalenderEventListe}">
