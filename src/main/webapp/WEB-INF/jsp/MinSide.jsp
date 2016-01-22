@@ -16,7 +16,7 @@
         </c:if>
             
     <fieldset class="fieldsetDefault">
-        <legend>Personopplysninger</legend>
+        <legend>Personopplysninger</legend>   
         <dl>
             <form:form modelAttribute="bruker">
             <dt><label for="fornavnMinSide">Fornavn:</label></dt>
