@@ -16,6 +16,7 @@
         </p>
         <p>
             Mer informasjon, ønsker alle en god dag.
+            Hvis man har reservert ett rom må mn inn på min side å bekrefte oppmøte.
         </p>
     </div>
     <div id='calendar'></div>
