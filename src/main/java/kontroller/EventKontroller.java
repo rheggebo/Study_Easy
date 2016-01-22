@@ -131,7 +131,7 @@ public class EventKontroller {
             //tilDato = fromFinnRom.getFraDato();
         }
         ke.setStartTid(new Timestamp(formFinnRom.getFraDato().getTime()+fra*3600000));
-        ke.setSluttTid(new Timestamp(formFinnRom.getFraDato().getTime()+til*3600000));
+        ke.setSluttTid(new Timestamp(formFinnRom.getFraDato().getTime()+(fra+til)*3600000));
         ArrayList<String> innhold = new ArrayList<String>();
         
         if(formFinnRom.getSkjerm()>0){
@@ -196,8 +196,16 @@ public class EventKontroller {
         KalenderEvent ke = new KalenderEvent();
         ke.setEpost(brukerb.getEpost());
         Date dato = Calendar.getInstance().getTime();
-        ke.setStartTid(new Timestamp(dato.getTime()));
+        Timestamp now = new Timestamp(dato.getTime());
+        ke.setStartTid(now);
         List<RomBestilling> eventListe = service.getReserverteRom(ke);
+        long msek20Min = 20*60*1000;
+        for (RomBestilling romBestilling : eventListe) {
+            System.out.println(now.getTime()-romBestilling.getStartDato().getTime()+" "+msek20Min);
+            if(now.getTime()-romBestilling.getStartDato().getTime()<msek20Min){
+                romBestilling.setKlokkesjekk(true);
+            }
+        }
         model.addAttribute("event", new KalenderEvent());
         model.addAttribute("reservasjonsliste", eventListe);
         model.addAttribute("bruker", brukerb);

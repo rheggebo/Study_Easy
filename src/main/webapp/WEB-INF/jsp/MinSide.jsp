@@ -49,7 +49,7 @@
             <legend>Fag </legend>
             
             <%-- setter og printer ut eventuell feilmelding --%>
-                                <c:set var="meldingFaf" value="${meldingFag}"></c:set>
+                                <c:set var="meldingFag" value="${meldingFag}"></c:set>
                                 <c:if test="${not empty meldingFag}">
                                     <spring:message code="${meldingFag}" />
                                 </c:if>
@@ -86,7 +86,7 @@
 
         <fieldset>
 
-            <legend>Bruker abonnement</legend>
+            <legend>Brukerabonnement</legend>
             
             <%-- setter og printer ut eventuell feilmelding --%>
                                 <c:set var="meldingB" value="${meldingBruker}"></c:set>
@@ -124,15 +124,16 @@
                     <c:forEach var="resliste" items="${reservasjonsliste}">
                         <form:form modelAttribute="event" action="SlettBooking">
                         <tr>
-                            <script>
-                                var bestilltTid = "${resliste}.getStartTid()";
-                                <c:out value="${resliste}.getStartTid()"></c:out>
+                            <!--<script>
+                                var bestilltTid = new Date();
+                                bestilltTid.setTime("{resliste.getStartDato().getTime()}");
                                 var currentDate = new Date();
-                                var twentyMinutesLater = new Date();
-
-                            </script>
+                                var twentyMinutesEarlier = new Date().setMinutes(currentDate.getMinutes()-60);
+                            </script>-->
                             <form:input type="hidden" path="rom" value="${resliste}"/>
-                            <td><c:out value="${resliste}"></c:out><input class="slettknapp" type="submit" value="Slett"/></td>
+                            <td><c:out value="${resliste}"></c:out><input class="slettknapp" type="submit" value="Slett"/><!--c:if test="{twentyMinutesEarlier le bestilltTid}"-->
+                                <c:if test="${resliste.isKlokkesjekk()}"><input class="slettknapp"type="submit" value="Bekreft oppmøte"/>
+                                </c:if></td>
                         </tr>
                         </form:form>
                     </c:forEach>
