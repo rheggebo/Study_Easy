@@ -5,7 +5,7 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
 <main>
-    <fieldset style = "width:20%">
+    <fieldset class="fieldsetDefault" style = "width:20%">
         <legend>Personopplysninger</legend>
         <dl>
         <form:form action="MinSideRedLagre" modelAttribute="bruker">
@@ -26,7 +26,7 @@
                 <option value="IT-støttet bedriftsutvikling">
             </datalist>
             </dl>
-            <p><input type="submit" value="Lagre"></p>
+            <p><input type="submit" class="defaultKnapp" value="Lagre"></p>
         </form:form>
     </fieldset>
 </main>

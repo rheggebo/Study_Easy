@@ -5,7 +5,7 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
 <main>
-        <fieldset style = "width:20%">
+        <fieldset class="fieldsetDefault" style = "width:20%">
             <legend>Endre passord</legend>
             <dl>
             <form:form modelAttribute="passord" action="EndrePassord" onsubmit="return checkEmail(this)" id="formen">
@@ -14,7 +14,7 @@
                 <form:input id="gnPassord" type="password" placeholder="Gjenta nytt passord" path="passord2" style="width: 420px"/>
             </dl>
 
-            <p><input id="endreGammeltPassord" type="submit" value="Endre passord" onclick="behandle()"></p>
+            <p><input class="defaultKnapp" id="endreGammeltPassord" type="submit" value="Endre passord" onclick="behandle()"></p>
             <div id="tekst">
                 <c:set var="meldingS" value="${melding}"></c:set>
                 <c:if test="${not empty meldingS}">
