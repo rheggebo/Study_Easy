@@ -247,10 +247,15 @@ public class EventKontroller {
         BrukerB bruker = (BrukerB) sess.getAttribute("brukerBean");
         Rom rom = new Rom();
         System.out.println(rom.getRomNavn());
-        rom.setRomID(formVelgRom.getRomId());
-	rom = service.getRom(rom); 
-        System.out.println(rom.getRomNavn());
         model.addAttribute("bruker", bruker);
+        rom.setRomID(formVelgRom.getRomId());
+	try{
+            rom = service.getRom(rom); 
+           // rom.setInnhold(service.getRomInnhold??"?!??");
+        }catch(Exception e){
+            return "VelgRom";
+        }
+        System.out.println(rom.getRomNavn());
         model.addAttribute("rom", rom);
         return "VelgRomRed";
     }

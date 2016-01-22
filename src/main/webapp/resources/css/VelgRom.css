@@ -79,3 +79,8 @@ author:    Sindre
     width: 12em;
     padding:0 0 .3em 0;
 }
+
+#velgRomFarge{
+    float: left; 
+    margin-top: 24em;
+}
