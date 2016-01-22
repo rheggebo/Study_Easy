@@ -91,12 +91,17 @@ public class DBConnectionImpl implements DBConnection{
     "SELECT DISTINCT kalender_event.id, kalender_event.tittel, kalender_event.dato_start, kalender_event.dato_slutt, kalender_event.eier, " +
     "kalender_event.eier_navn, (CASE WHEN kalender_event.bestillingsID IS NOT NULL AND kalender_event.bestillingsID = rom_bestilling.bestillingsID then rom_bestilling.romID else kalender_event.bestillingsID END) as romID, kalender_event.fagID, kalender_event.type, kalender_event.descr, kalender_event.hidden FROM rom_bestilling, kalender_event, brukere, abonemennt_fag WHERE kalender_event.fagID = abonemennt_fag.fagID AND abonemennt_fag.eierID =?;";
     
-    private final String getRom0Param = "SELECT DISTINCT rom.romID, romnavn, etasje, størrelse, type, sitteplasser FROM rom LEFT OUTER JOIN rom_innhold ON rom.romID = rom_innhold.romID LEFT OUTER JOIN " +
-        "rom_bestilling ON rom.romID = rom_bestilling.romID " +
-        "WHERE (rom.type LIKE ? AND ? NOT BETWEEN dato_start AND dato_slutt AND " +
-        "? NOT BETWEEN dato_start AND dato_slutt  OR rom_bestilling.romID IS NULL AND rom.type LIKE ?)";
+    private final String getRomStart = "SELECT DISTINCT rom_bestilling.romID FROM rom, rom_bestilling LEFT OUTER JOIN rom_innhold ON rom_bestilling.romID = rom_innhold.romID WHERE rom.type = ? AND rom.romID = rom_bestilling.romID AND rom_bestilling.romID NOT IN (" +
+        "SELECT rom_bestilling.romID FROM rom_bestilling WHERE (? BETWEEN rom_bestilling.dato_start AND rom_bestilling.dato_slutt) OR " +
+        "(? BETWEEN rom_bestilling.dato_start AND rom_bestilling.dato_slutt) OR (? < rom_bestilling.dato_start AND ? > rom_bestilling.dato_start)) ";
     
-    private final String getRom1Param = getRom0Param +" AND (rom_innhold.innholdID LIKE ? AND rom_innhold.antall>=?)";
+    
+    private final String getRomSlutt = "UNION SELECT DISTINCT rom.romID FROM rom LEFT OUTER JOIN rom_innhold ON rom.romID = rom_innhold.romID WHERE rom.type = ? AND rom.romID NOT IN (SELECT rom_bestilling.romID FROM rom_bestilling) ";
+    private final String getRomMiddelStorrelse = "AND rom.storrelse = ? ";
+    private final String getRomMiddelSitteplasser ="AND rom.sitteplasser >= ? ";
+    
+    private final String getRom1Param = " AND rom_innhold.innholdID = ? AND rom_innhold.antall >= ?";
+    
     private final String getRom2Param = getRom1Param +getRom1Param;
     private final String getRom3Param = getRom1Param +getRom1Param+getRom1Param;
     private final String getRom4Param = getRom1Param +getRom1Param+getRom1Param+getRom1Param;
@@ -618,36 +623,135 @@ public class DBConnectionImpl implements DBConnection{
     
     @Override
     public List<Rom> getRom0Param(Rom r, KalenderEvent ke, boolean storrelse, boolean sitteplasser){
+        String melding = getRomStart;
         if(storrelse && sitteplasser){
-            return jT.query(getRom0Param+ getRomStorrelse + getRomPlasser, new Object[]{
-            r.getType(),
-            ke.getStartTid(),
-            ke.getSluttTid(),
-            r.getType(),
-            r.getStorrelse(),
-            r.getAntStolplasser()
+            melding += getRomMiddelSitteplasser + getRomMiddelStorrelse + getRomSlutt + getRomMiddelSitteplasser + getRomMiddelStorrelse;
+            return jT.query(melding, new Object[]{
+                //finn rekkefølge...
+                /*
+                Start:
+                1: rom type
+                2: nystartdato
+                3: nysluttdato
+                4: nystartdato
+                5: nysluttdato
+                
+                Sitteplasser:
+                1: sitteplasser
+                
+                Størrelse:
+                1: størrelse
+                
+                Slutt:
+                1: type
+                
+                Sitteplasser:
+                1: sitteplasser
+                
+                Størrelse:
+                1: størrelse
+                
+                */
+                //start
+                r.getType(),
+                ke.getStartTid(),
+                ke.getSluttTid(),
+                ke.getStartTid(),
+                ke.getSluttTid(),
+                //størrelse
+                r.getStorrelse(),
+                //sitteplasser
+                r.getAntStolplasser(),
+                //slutt
+                r.getType(),
+                //størrelse
+                r.getStorrelse(),
+                //sitteplasser
+                r.getAntStolplasser()
+                
+
             }, new RomMapper());
         }else if(sitteplasser){
-            System.out.println(getRom0Param+" "+getRomPlasser+" "+r.getAntStolplasser());
-            return jT.query(getRom0Param+getRomPlasser, new Object[]{
-            r.getType(),
-            ke.getStartTid(),
-            ke.getSluttTid(),
-            r.getType(),
-            r.getAntStolplasser()
+            melding += getRomMiddelSitteplasser + getRomSlutt + getRomMiddelSitteplasser;
+            return jT.query(melding, new Object[]{
+                /*
+                Start:
+                1: rom type
+                2: nystartdato
+                3: nysluttdato
+                4: nystartdato
+                5: nysluttdato
+                
+                Sitteplasser:
+                1: sitteplasser
+                
+                Slutt:
+                1: type
+                
+                Sitteplasser:
+                1: sitteplasser
+                
+                */
+                
+                r.getType(),
+                ke.getStartTid(),
+                ke.getSluttTid(),
+                ke.getStartTid(),
+                ke.getSluttTid(),
+                r.getAntStolplasser(),
+                r.getType(),
+                r.getAntStolplasser()
             }, new RomMapper());
         }else if(storrelse){
-            return jT.query(getRom0Param+getRomStorrelse, new Object[]{
+            melding = getRomMiddelStorrelse + getRomSlutt + getRomMiddelStorrelse;
+            return jT.query(melding, new Object[]{
+                /*
+                Start:
+                1: rom type
+                2: nystartdato
+                3: nysluttdato
+                4: nystartdato
+                5: nysluttdato
+                
+                STORRELSE:
+                1: størrelse
+                SLUTT:
+                1: Type
+                
+                STORRELSE:
+                1: størrelse
+                
+                */
+                //start
+                r.getType(),
+                ke.getStartTid(),
+                ke.getSluttTid(),
+                ke.getStartTid(),
+                ke.getSluttTid(),
+                //størrelse
+                r.getStorrelse(),
+                //slutt
+                ke.getType(),
+                //størrelse
+                r.getStorrelse()
+            
+            }, new RomMapper());
+        }
+        return jT.query(melding + getRomSlutt, new Object[]{
+            /*
+            START
+            1: rom type
+            2: nystartdato
+            3: nysluttdato
+            4: nystartdato
+            5: nysluttdato
+            
+            SLUTT:
+            1: Type
+            */
             r.getType(),
             ke.getStartTid(),
             ke.getSluttTid(),
-            r.getType(),
-            r.getStorrelse()
-            }, new RomMapper());
-        }
-        System.out.println("Romtype "+r.getType()+" "+ke.getStartTid()+" "+ke.getSluttTid());
-        return jT.query(getRom0Param, new Object[]{
-            r.getType(),
             ke.getStartTid(),
             ke.getSluttTid(),
             r.getType()
