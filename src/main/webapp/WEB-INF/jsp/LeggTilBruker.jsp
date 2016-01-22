@@ -1,8 +1,8 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
 <main>
-    <fieldset style = "width:20%">
-        <legend>LeggeTilBruker</legend>
+    <fieldset style = "width:20%" class="fieldsetDefault">
+        <legend>Legge Til Bruker</legend>
         <dl>
             <form:form action="LeggTilBrukerLagre" modelAttribute="nyBruker">
                 
@@ -23,7 +23,7 @@
                 </select>
             </dd>
         </dl>
-        <p><input id="leggTil" class="vanligknapp" type="submit" value="Legg til" onclick=""></p>
+        <p><input id="leggTil" class="defaultKnapp" type="submit" value="Legg til" onclick=""></p>
         </form:form>
         
     </fieldset>
