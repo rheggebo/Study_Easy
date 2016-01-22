@@ -969,7 +969,7 @@ public class DBConnectionImpl implements DBConnection{
             return true;
         }
         return false;
-    }
+    } 
     
     @Override
     public RomBestilling getRomBooking(KalenderEvent ke){
