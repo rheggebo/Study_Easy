@@ -252,7 +252,7 @@ public class EventKontroller {
         System.out.println(rom.getRomNavn());
         model.addAttribute("bruker", bruker);
         model.addAttribute("rom", rom);
-        return "velgRomRed";
+        return "VelgRomRed";
     }
     
     @RequestMapping("SlettBooking")
