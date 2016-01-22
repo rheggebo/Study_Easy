@@ -102,7 +102,7 @@
                         <td><form:errors path="type"/></td>
                     </tr>
                     <c:set var="tilgang" value="${bruker.getTilgangsniva()}"></c:set>
-                    <c:if test="${tilgang == 1}">
+                    <c:if test="${tilgang > 1}">
                     <tr>
                         <td>Fag:</td>
                         <td>

@@ -24,6 +24,7 @@ import javax.sql.DataSource;
 import mapper.AbonemenntMapper;
 import mapper.FagMapper;
 import mapper.KalenderEventMapper;
+import mapper.KlasseMapper;
 import mapper.RomBestillingMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -40,11 +41,11 @@ public class DBConnectionImpl implements DBConnection{
     private final String nyBruker = "INSERT INTO brukere VALUES(?,?,?,?,?)";
     private final String slettBruker = "DELETE FROM brukere WHERE EPOST=?";
     private final String alleBrukere = "SELECT * FROM brukere";
-    private final String endreBrukerFag = "UPDATE FAG_LÆRER SET FAGID=? WHERE BRUKERID=?";
+    private final String endreBrukerFag = "UPDATE fag_lærer SET FAGID=? WHERE BRUKERID=?";
     private final String endreBrukerKlasse = "UPDATE KLASSE_DELTAKER SET KLASSEID=? WHERE BRUKERID=?";
     private final String endreKlasseFag = "UPDATE KLASSE_FAG SET FAGID=? WHERE KLASSEID=?";
-    private final String endreRom = "UPDATE ROM SET ROMNAVN=?, TYPE=?, ETASJE=?, STØRRELSE=? WHERE ROMID=?";
-    private final String slettRom = "DELETE FROM ROM WHERE ROMID=?";
+    private final String endreRom = "UPDATE rom SET ROMNAVN=?, TYPE=?, ETASJE=?, STØRRELSE=?, SITTEPLASSER=? WHERE ROMID=?";
+    private final String slettRom = "DELETE FROM rom WHERE ROMID=?";
     private final String slettRomInnhold = "DELETE FROM ROM_INNHOLD WHERE ROMID=? AND INNHOLDID=?";
     private final String leggTilInnhold = "INSERT INTO INNHOLD VALUES(?)";
     private final String slettInnhold = "DELETE FROM INNHOLD WHERE INNHOLDID=?";
@@ -52,8 +53,8 @@ public class DBConnectionImpl implements DBConnection{
     private final String slettBrukerFag = "DELETE FROM FAG_LÆERER WHERE FAGID=? AND BRUKERID=?";
     private final String leggTilKalenderDeltaker = "INSERT INTO KALENDER_DELTAKER VALUES(?,?)";
     private final String fjernKalenderDeltaker = "DELETE FROM KALENDER_DELTAKER WHERE EVENTID=? AND DELTAKERID=?";
-    private final String leggTilFag = "INSERT INTO FAG VALUES(?)";
-    private final String leggTilRom = "INSERT INTO ROM VALUES(?,?,?,?,?)";
+    private final String leggTilFag = "INSERT INTO fag VALUES(?,?)";
+    private final String leggTilRom = "INSERT INTO rom VALUES(?,?,?,?,?,?)";
     private final String leggTilKalenderEvent = "INSERT INTO kalender_event VALUES(DEFAULT,?,?,?,?,?,?,?,?,?,?)";
     private final String fjernKalenderEvent = "DELETE FROM kalender_event WHERE eier = ? AND id = ?";
     private final String getKalenderEventDeltakere = "SELECT DELTAKERID FROM KLANEDER_DELTAKER WHERE EVENTID=?";
@@ -139,6 +140,9 @@ public class DBConnectionImpl implements DBConnection{
     private final String leggTilEvent = "INSERT INTO kalender_event (dato_start, dato_slutt, eier, hidden, type, descr, tittel, eier_navn) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
     
     private final String getBrukerAbonnement = "SELECT eierID, brukerID AS abonererId, 0 AS abType FROM abonemennt_bruker WHERE brukerID = ?";
+    
+    private final String getAlleKLasser = "SELECT DISTINCT klasseID FROM klasse_fag";
+    
     private DataSource dS;
     private JdbcTemplate jT;
     
@@ -312,16 +316,25 @@ public class DBConnectionImpl implements DBConnection{
 
     @Override
     public boolean oppdaterRom(Rom r) {
+        try{
+            System.out.println(r.getRomID() + " "
+            +r.getRomNavn() + " "
+            +r.getType() + " "
+            +r.getEtasje() + " "
+            +r.getStorrelse() + " "
+            +r.getAntStolplasser());
         int antallRader = jT.update(endreRom,new Object[]{
+            r.getRomID(),
             r.getRomNavn(),
             r.getType(),
             r.getEtasje(),
             r.getStorrelse(),
-            r.getRomID()
+            r.getAntStolplasser()
         });
         if(antallRader > 0){
             return true;
         }
+        }catch(Exception e){}
         return false;
     }
 
@@ -387,7 +400,8 @@ public class DBConnectionImpl implements DBConnection{
     @Override
     public boolean leggTilFag(Fag f) {
         int antallRader = jT.update(leggTilFag,new Object[]{
-            f.getFagID()
+            f.getFagID(),
+            f.getNavn()
         });
         if(antallRader > 0){
             return true;
@@ -402,7 +416,8 @@ public class DBConnectionImpl implements DBConnection{
             r.getRomNavn(),
             r.getType(),
             r.getEtasje(),
-            r.getStorrelse()
+            r.getStorrelse(),
+            r.getAntStolplasser()
         });
         if(antallRader > 0){
             return true;
@@ -1104,5 +1119,10 @@ public class DBConnectionImpl implements DBConnection{
         return jT.query(getBrukerAbonnement, new Object[]{
             epost
         }, new AbonemenntMapper());
+    }
+    
+    @Override
+    public List<Klasse> getAlleKlasser(){
+        return jT.query(getAlleKLasser, new KlasseMapper());
     }
 }

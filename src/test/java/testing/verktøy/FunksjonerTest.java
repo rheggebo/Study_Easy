@@ -28,7 +28,6 @@ public class FunksjonerTest {
     public static void setUpClass() throws Exception {
         // Koden her eksekveres f�r f�rste test i klassen
         System.out.println("JUNIT: før FunkjsonTest-klassen.");
-        
     }
     
     @Before

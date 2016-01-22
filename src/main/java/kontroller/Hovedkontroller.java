@@ -3,13 +3,16 @@
 import beans.Abonemennt;
 import beans.Bruker;
 import beans.BrukerB;
+import beans.Fag;
 import beans.KalenderEvent;
+import beans.Klasse;
 import beans.Passord;
 import beans.Rom;
 import beans.RomBestilling;
 import beans.SlettAbonnementValg;
 import static java.lang.Thread.sleep;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -27,6 +30,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import service.Service;
 import ui.FormFinnRom;
 import ui.FormVelgRom;
+import ui.LeggTilFagKlasse;
 
 /**
  * 
@@ -264,6 +268,16 @@ public class Hovedkontroller {
                 model.addAttribute("nyBruker", new Bruker());
                 model.addAttribute("passord", new Passord());
                 model.addAttribute("bruker", brukerb);
+                LeggTilFagKlasse lF = new LeggTilFagKlasse();
+                List<Klasse> liste = service.getAlleKlasser();
+                List<Fag> fagListe = service.getAlleFag();
+                for (Klasse klasse : liste) {
+                    lF.addKlasseListe(klasse.getNavn());
+                };
+                for (Fag fag : fagListe) {
+                    lF.addFagListe(fag.getFagID());
+                }
+                model.addAttribute("nyttFag", lF);
                 return "LeggTilBruker";
             }else{
                 model.addAttribute("bruker", brukerb);
