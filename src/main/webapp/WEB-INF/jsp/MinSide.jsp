@@ -70,7 +70,7 @@
                                 <c:out value ="${abliste}"></c:out> <%-- printer ut listeverdiene--%>
 
                                 <%-- legger til knappene for slett fag --%>
-                                <button class="slettknappMinSide" type="submit" name="slettFagAbKnapp"/><span class="fontawesome-trash"></span></button>
+                                <button class="slettknappMinSide" type="submit" name="slettFagAbKnapp" value="Slett"/><span class="fontawesome-trash"></span></button>
 
                                 </form:form>
                             </td>
@@ -105,7 +105,7 @@
                                 <c:out value ="${abliste}"></c:out> <%-- printer ut listeverdiene--%>
 
                                 <%-- legger til knappene for slett abonemennt --%>
-                                <button class="slettknappMinSide" type="submit" name="slettBrukerAbKnapp"/><span class="fontawesome-trash"></span></button>
+                                <button class="slettknappMinSide" type="submit" name="slettBrukerAbKnapp" value="Slett"/><span class="fontawesome-trash"></span></button>
 
                                 </form:form>
                             </td>
