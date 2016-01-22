@@ -178,20 +178,30 @@
 </script>
 
 <script>
-    if((erLedig(" 3 "))==1){
+    // Veldig dårlig måte å endre brilde når vi kommer fra søk:
+
+    if((erLedig2(" 1 stÃ¸rrelse"))==1){
+    }
+    if((erLedig2(" 2 stÃ¸rrelse")==1)){
+        changeZIndexPlantegningerOpp();
+    }
+    if((erLedig2(" 3 stÃ¸rrelse"))==1){
         changeZIndexPlantegningerOpp();
         changeZIndexPlantegningerOpp();
     }
-    if((erLedig(" 1 "))==1){
-    }
-    if((erLedig(" 2 ")==1)){
-        changeZIndexPlantegningerOpp();
-    }
-    if((erLedig(" 4 "))==1){
+    if((erLedig2(" 4 stÃ¸rrelse"))==1){
         changeZIndexPlantegningerOpp();
         changeZIndexPlantegningerOpp();
         changeZIndexPlantegningerOpp();
     }
+    function erLedig2(id){
+        if (("${liste}").indexOf(id) !=-1) {
+            return 1;
+        }
+        //alert(id+" er ikke ledig");
+        return -1;
+    }
+    
     function erLedig(id){
         if (("${liste}").indexOf(id) !=-1) {
             return 1;
@@ -199,6 +209,8 @@
         //alert(id+" er ikke ledig");
         return -1;
     }
+    
+    alert("${liste}");
 
     $(window).load(function(){
         // Get the Object by ID
