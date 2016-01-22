@@ -6,7 +6,6 @@
 
 
 <main>
-    
     <div>
         <h3>
             Velkommen
@@ -16,6 +15,7 @@
         </p>
         <p>
             Mer informasjon, ønsker alle en god dag.
+            <br>
             Hvis man har reservert ett rom må mn inn på min side å bekrefte oppmøte.
         </p>
     </div>
