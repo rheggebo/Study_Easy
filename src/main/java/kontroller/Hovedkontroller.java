@@ -194,7 +194,27 @@ public class Hovedkontroller {
                 //prøver å slette abonemennt med brukerepost og den valgte koden,
                 // fanger exception viss ikke
                 String[] split = valgt.split(" ");
-                try{
+                
+                
+                        KalenderEvent kalenderEvent = new KalenderEvent();
+                        kalenderEvent.setId(Integer.parseInt(split[0]));
+                        kalenderEvent.setEpost(brukerb.getEpost());
+                        if (service.getKalenderEventHidden(kalenderEvent)){
+                    
+                            service.fjernKalenderEvent(kalenderEvent);
+                            
+                        }else{
+
+                            service.fjernKalenderEvent(kalenderEvent);
+
+                            Email email = new Email();
+                            List<Abonemennt> abonemennt = service.getBrukerAbonnement(brukerb.getEpost());
+                            String melding = "Hendelse slettet av " + brukerb.getFornavn();
+                            for (Abonemennt abn : abonemennt){
+                            email.sendEpost(abn.getEierid(), "Ny hendelse", melding);  
+                        }
+                            
+                          /*  try{
 
                         KalenderEvent kalenderEvent = new KalenderEvent();
                         kalenderEvent.setId(Integer.parseInt(split[0]));
@@ -217,7 +237,9 @@ public class Hovedkontroller {
                 }
                 catch(Exception e){
                     model.addAttribute("slettFeilMelding", "feilmelding.kunneIkkeSletteHendelse");
-                }
+                }*/
+                
+                        }
             }
             returnerMinSide(model, brukerb);
             //model.addAttribute("resultat", new SlettAbonnementValg());
