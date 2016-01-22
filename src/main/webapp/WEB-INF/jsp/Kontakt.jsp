@@ -41,11 +41,12 @@
         </summary>
         <br>
             <p2>
-                <dd>Ingvild Gravem</dd>
+                <dd>Sindre Gjerde</dd>
                 <dd>Ane Sæther</dd>
                 <dd>Sigrid Rein Trustrup</dd>
                 <dd>Kasper Røstvold</dd>
                 <dd>Henrik Bjørkheim</dd>
                 <dd>Erlend Kummeneje Steinset</dd>
+                <dd>Ingvild Gravem</dd>
             </p2>
      </details>

@@ -113,12 +113,13 @@ public class SokeKontroller {
         }
         return "SokeSide";             
         } 
-    @RequestMapping(value="seKart")
+    @RequestMapping(value="sekart")
     public String fetchData2(@ModelAttribute FormVelgRom formVelgRom, @ModelAttribute("resultat") SokeValg sv, HttpSession sess, HttpServletResponse response, Model model, HttpServletRequest request){ 
         BrukerB bruker = (BrukerB) sess.getAttribute("brukerBean");        
         String[] split = sv.getResultat().split(":");
         List<String> liste = Arrays.asList(split);
         model.addAttribute("liste", liste);
+        model.addAttribute("bruker", bruker);
         return "VelgRom";
         } 
     
