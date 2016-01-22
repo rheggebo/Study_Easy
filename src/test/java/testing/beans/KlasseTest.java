@@ -35,9 +35,10 @@ public class KlasseTest {
     public void setUp() throws Exception {
         // Koden her eksekveres f�r hver av testmetodene i klassen
         klasse = new Klasse();
-        klasse.setNavn("2.ing");
+        klasse.setNavn("TDATH14");
         
         fag = new ArrayList();
+        klasse.setFag(fag);
         
         Fag fag1 = new Fag();
         fag1.setFagID("TDAT2001");
@@ -50,18 +51,19 @@ public class KlasseTest {
         Fag fag3 = new Fag();
         fag3.setFagID("TDAT2003");
         fag3.setNavn("Matematikk 2");
+                
+        klasse.addFag(fag1);
+        klasse.addFag(fag2);
+        klasse.addFag(fag3);
         
-        fag.add(fag1);
-        fag.add(fag2);
-        fag.add(fag3);
         
-         klasse.setFag(fag);
         
     }
     
     @Test
     public void tester_getmetoder (){
-        assertEquals(klasse.getNavn(), "2.ing");
+        assertEquals(klasse.getNavn(), "TDATH14");
+        
     }
     
     @Test

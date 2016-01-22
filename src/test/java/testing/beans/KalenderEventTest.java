@@ -23,6 +23,7 @@ public class KalenderEventTest {
     Timestamp fraTid;
     Timestamp tilTid;
     
+    
     @BeforeClass
     public static void setUpClass() throws Exception {
         // Koden her eksekveres f�r f�rste test i klassen
@@ -34,8 +35,8 @@ public class KalenderEventTest {
     public void setUp() throws Exception {
         // Koden her eksekveres f�r hver av testmetodene i klassen
        
-        fraTid = new Timestamp(2016-11-1);
-        tilTid = new Timestamp(2014-1-22);
+        fraTid = Timestamp.valueOf("2016-1-22 09:15:00.0");
+        tilTid = Timestamp.valueOf("2014-1-22 12:00:00.0");
         
         kEvent = new KalenderEvent();
         kEvent.setId(0001);
@@ -49,6 +50,7 @@ public class KalenderEventTest {
         kEvent.setPrivat(false);
         kEvent.setNotat("Hallaballa :) ");
         kEvent.setTittel("Stakk");
+        kEvent.setTilhorerEvent(16);
         
         
     }
@@ -65,8 +67,11 @@ public class KalenderEventTest {
         assertFalse(kEvent.isPrivat());
         assertEquals(kEvent.getNotat(),"Hallaballa :) ");
         assertEquals(kEvent.getTittel(), "Stakk");
+        assertEquals(kEvent.getTilhorerEvent(), 16);
         
-    }
+        String str = "1 Stakk " + kEvent.getStartTid().toString();
+        assertEquals(kEvent.toString(), str);
+    }   
     
     @After
     public void tearDown() throws Exception {

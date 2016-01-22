@@ -45,6 +45,7 @@ public class BrukerTest {
         test.setTilgangsniva(0);
         test.setPassord("passord");
         test.setKalenderEvents(liste);
+        test.setPassord1("passord");
     }
 
     @Test
@@ -56,7 +57,7 @@ public class BrukerTest {
         assertEquals(test.getTilgangsniva(),0);
         assertEquals(test.getPassord(),"passord");
         assertTrue(test.getKalenderEvents().isEmpty());
-        
+        assertEquals(test.getPassord1(), "passord");
     }
     
     @Test
