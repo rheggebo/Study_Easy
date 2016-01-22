@@ -174,7 +174,7 @@ public class ServiceImpl implements Service{
         return dbc.getKalenderEventRomID(r);
     }
     
-    public boolean getKalenderEventHidden(KalenderEvent ke){
+   public List<KalenderEvent> getKalenderEventHidden(KalenderEvent ke) {
         return dbc.getKalenderEventHidden(ke);
     }
 

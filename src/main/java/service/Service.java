@@ -69,7 +69,7 @@ public interface Service {
     
     public List<KalenderEvent> getKalenderEventRomID(Rom r);
     
-    public boolean getKalenderEventHidden(KalenderEvent ke);
+    public List<KalenderEvent> getKalenderEventHidden(KalenderEvent ke);
     
     public List<Fag> getFagLaerer(Bruker b);
     
