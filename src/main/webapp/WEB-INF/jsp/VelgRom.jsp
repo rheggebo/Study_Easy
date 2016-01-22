@@ -210,7 +210,6 @@
         return -1;
     }
     
-    alert("${liste}");
 
     $(window).load(function(){
         // Get the Object by ID
