@@ -435,3 +435,12 @@ span[class*="fontawesome-"]:before {
     font: 14px Microsoft YaHei Light;
     font-weight: bold;
 }
+
+.slettknappMinSide{
+    width: 70px;
+    height: 23px;
+    margin: 2px;
+    font-family: Microsoft YaHei Light;  
+    cursor: pointer;
+    float: right;
+}
