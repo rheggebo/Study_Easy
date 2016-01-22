@@ -123,7 +123,19 @@
                 <span class="fontawesome-circle-arrow-down"></span>
             </button>
         </li>
-    </ul>     
+    </ul>
+    
+    <ul style="list-style-type: none; margin: 0; padding: 0;">
+        <li>
+            <input type="text" class="fargeTekst" disabled="true" style="background-color: #00FF7F;">
+            <label for="checkbox_2">Ledige rom</label>
+        </li>
+        <li>
+            <input type="text" class="fargeTekst" disabled="true" style="background-color: #FFA500;">
+            <label for="checkbox_3">Opptatte rom</label>
+        </li>
+    </ul>
+    
 </main>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

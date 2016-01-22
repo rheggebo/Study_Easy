@@ -133,6 +133,7 @@ public class DBConnectionImpl implements DBConnection{
     
     private final String leggTilEvent = "INSERT INTO kalender_event (dato_start, dato_slutt, eier, hidden, type, descr, tittel, eier_navn) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
     
+    private final String getBrukerAbonnement = "SELECT eierID, brukerID AS abonererId, 0 AS abType FROM abonemennt_bruker WHERE brukerID = ?";
     private DataSource dS;
     private JdbcTemplate jT;
     
@@ -992,5 +993,12 @@ public class DBConnectionImpl implements DBConnection{
             r.getBestillingsID(),
             r.getEierId()
         }));
+    }
+    
+    @Override
+    public List<Abonemennt> getBrukerAbonnement(String epost){
+        return jT.query(getBrukerAbonnement, new Object[]{
+            epost
+        }, new AbonemenntMapper());
     }
 }

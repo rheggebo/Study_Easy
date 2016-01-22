@@ -340,4 +340,9 @@ public class ServiceImpl implements Service{
         return dbc.slettKalenderEvent(r);
     }
     
+    @Override
+    public List<Abonemennt> getBrukerAbonnement(String epost){
+        return dbc.getBrukerAbonnement(epost);
+    }
+    
 }

@@ -12,6 +12,7 @@ import beans.NyEvent;
 import beans.Rom;
 import beans.RomBestilling;
 import beans.SlettAbonnementValg;
+import email.Email;
 import java.sql.Time;
 import java.sql.Timestamp;
 import java.text.DateFormat;
@@ -60,6 +61,7 @@ public class EventKontroller {
     }
     @RequestMapping(value="OpprettHendelse")
     public String opprettHendelse(@ModelAttribute("nyHendelse") KalenderEvent event, @RequestParam("notat")String notat, @RequestParam("valg")String off, @RequestParam("startdato")Date startDato, @RequestParam("starttid")String startTid, @RequestParam("sluttdato")Date sluttDato, @RequestParam("starttid")String sluttTid, HttpSession sess, HttpServletResponse response, Model model, HttpServletRequest request){
+        BrukerB brukerb = (BrukerB) sess.getAttribute("brukerBean");
         String stampString = "" + new Timestamp(startDato.getTime());
         stampString = (stampString.split(" "))[0] + " " + startTid + ":00";
         Timestamp start = Timestamp.valueOf(stampString);
@@ -75,15 +77,27 @@ public class EventKontroller {
         }
         
         if (slutt.before(start)){
-            //nei
+            model.addAttribute("melding", "feilmelding.eventSluttForStart");
         }
-        event.setStartTid(start);
-        event.setSluttTid(slutt);
-        event.setPrivat(privat);
-        System.out.println(notat);
-        
-        
-        
+        else{
+            event.setStartTid(start);
+            event.setSluttTid(slutt);
+            event.setPrivat(privat);
+            event.setNotat(notat);
+            event.setEpost(brukerb.getEpost());
+            event.setTilhorerEvent(0);
+            event.setEierNavn(brukerb.getFornavn() + " " + brukerb.getEtternavn());
+
+            service.leggTilEvent(event);
+            
+            Email email = new Email();
+            List<Abonemennt> abonemennt = service.getBrukerAbonnement(brukerb.getEpost());
+            String melding = "Ny heldelse lagt til av " + brukerb.getFornavn() + " " + brukerb.getEtternavn() + ". Tittel: " + event.getTittel() + ". Start: " + event.getStartTid() +
+                    " , Slutt: " + event.getSluttTid() + ". Notat: " + event.getNotat();
+            for (Abonemennt abn : abonemennt){
+                email.sendEpost(abn.getEierid(), "Ny hendelse", melding);
+            }
+        }
         return "OpprettHendelse";
     }
     
