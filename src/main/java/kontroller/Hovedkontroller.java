@@ -199,7 +199,7 @@ public class Hovedkontroller {
                         KalenderEvent kalenderEvent = new KalenderEvent();
                         kalenderEvent.setId(Integer.parseInt(split[0]));
                         kalenderEvent.setEpost(brukerb.getEpost());
-                        /*if (service.getKalenderEventHidden(kalenderEvent)){
+                        if (brukerb != null && brukerb.isInnlogget()){
                     
                             service.fjernKalenderEvent(kalenderEvent);
                             
@@ -212,7 +212,7 @@ public class Hovedkontroller {
                             String melding = "Hendelse slettet av " + brukerb.getFornavn();
                             for (Abonemennt abn : abonemennt){
                             email.sendEpost(abn.getEierid(), "Ny hendelse", melding);  
-                        }*/
+                        }
                             
                           /*  try{
 
