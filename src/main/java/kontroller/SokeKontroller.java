@@ -16,6 +16,7 @@ import java.io.IOException;
 import static java.lang.System.out;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -32,6 +33,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.tags.Param;
 import service.Service;
+import ui.FormVelgRom;
 
 /**
  *
@@ -109,13 +111,18 @@ public class SokeKontroller {
                 }
             }
         }
-        else if("Se kart".equals(request.getParameter("knappTilKart"))){
-                //sørg for at riktig etasje vises           
-                return "VelgRom";
-            }
         return "SokeSide";             
         } 
-            
+    @RequestMapping(value="sekart")
+    public String fetchData2(@ModelAttribute FormVelgRom formVelgRom, @ModelAttribute("resultat") SokeValg sv, HttpSession sess, HttpServletResponse response, Model model, HttpServletRequest request){ 
+        BrukerB bruker = (BrukerB) sess.getAttribute("brukerBean");        
+        String[] split = sv.getResultat().split(":");
+        List<String> liste = Arrays.asList(split);
+        model.addAttribute("liste", liste);
+        model.addAttribute("bruker", bruker);
+        return "VelgRom";
+        } 
+    
     }
 
 
