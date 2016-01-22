@@ -93,7 +93,7 @@ public class DBConnectionImpl implements DBConnection{
     
     private final String getRom0Param = "SELECT DISTINCT rom.romID, romnavn, etasje, størrelse, type, sitteplasser FROM rom LEFT OUTER JOIN rom_innhold ON rom.romID = rom_innhold.romID LEFT OUTER JOIN " +
         "rom_bestilling ON rom.romID = rom_bestilling.romID " +
-        "WHERE (rom.type LIKE ? AND ? NOT BETWEEN dato_start AND dato_slutt AND " +
+        "WHERE dato_start BETWEEN ? AND ? (rom.type LIKE ? AND ? NOT BETWEEN dato_start AND dato_slutt AND " +
         "? NOT BETWEEN dato_start AND dato_slutt  OR rom_bestilling.romID IS NULL AND rom.type LIKE ?)";
     
     private final String getRom1Param = getRom0Param +" AND (rom_innhold.innholdID LIKE ? AND rom_innhold.antall>=?)";
