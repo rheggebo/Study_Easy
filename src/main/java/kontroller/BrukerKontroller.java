@@ -204,4 +204,9 @@ public class BrukerKontroller {
         model.addAttribute("bruker", new Bruker());
         return "Innlogging";
     }
+    @RequestMapping("LeggTilFagLagre")
+    public String leggTilFagLagre(@Valid @ModelAttribute("nyttFag") Bruker bruker, @RequestParam("tilgangnivaa")String tilgang, Model model, BindingResult error, HttpSession sess){
+    
+        return "habbasuttsutt";
+    }
 }

@@ -3,7 +3,7 @@
 <main>
     <div display="inline block">
     <fieldset style = "width:20%; position: absolute" class="fieldsetDefault">
-        <legend>Legge Til Bruker</legend>
+        <legend>Legg til bruker</legend>
         <dl>
             <form:form action="LeggTilBrukerLagre" modelAttribute="nyBruker">
                 
@@ -31,7 +31,8 @@
      </div>
     <div display="inline block">
      <fieldset style = "width:30%; float: right;" class="fieldsetDefault">       
-        <legend>Legg Til Fag i Klasse</legend>
+        <legend>Legg til fag i klasse</legend>
+        <form:form action="LeggTilFagLagre" modelAttribute="nyttFag"></form:form>
             <br>
             <dt><label for="valgKlasse">Velg klasse:<em>*</em></label></dt>
             <dd><select name="valgKlasse" id="valgKlasse" required="true">
