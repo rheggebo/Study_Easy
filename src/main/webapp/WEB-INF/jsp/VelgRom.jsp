@@ -178,6 +178,20 @@
 </script>
 
 <script>
+    if((erLedig(" 3 "))==1){
+        changeZIndexPlantegningerOpp();
+        changeZIndexPlantegningerOpp();
+    }
+    if((erLedig(" 1 "))==1){
+    }
+    if((erLedig(" 2 ")==1)){
+        changeZIndexPlantegningerOpp();
+    }
+    if((erLedig(" 4 "))==1){
+        changeZIndexPlantegningerOpp();
+        changeZIndexPlantegningerOpp();
+        changeZIndexPlantegningerOpp();
+    }
     function erLedig(id){
         if (("${liste}").indexOf(id) !=-1) {
             return 1;
