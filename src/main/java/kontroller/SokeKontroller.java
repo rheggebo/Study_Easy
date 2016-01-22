@@ -111,10 +111,6 @@ public class SokeKontroller {
                 }
             }
         }
-        else if("Se kart".equals(request.getParameter("knappTilKart"))){
-                //sørg for at riktig etasje vises           
-                return "VelgRom";
-            }
         return "SokeSide";             
         } 
     @RequestMapping(value="seKart")
