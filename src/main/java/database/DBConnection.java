@@ -141,4 +141,6 @@ public interface DBConnection {
     public RomBestilling getRomBooking(KalenderEvent ke);
     
     public boolean slettKalenderEvent(RomBestilling r);
+    
+    public List<Abonemennt> getBrukerAbonnement(String epost);
 }

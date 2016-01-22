@@ -123,7 +123,19 @@
                 <span class="fontawesome-circle-arrow-down"></span>
             </button>
         </li>
-    </ul>     
+    </ul>
+    
+    <ul style="list-style-type: none; margin: 0; padding: 0;">
+        <li>
+            <input type="text" class="fargeTekst" disabled="true" style="background-color: #00FF7F;">
+            <label for="checkbox_2">Ledige rom</label>
+        </li>
+        <li>
+            <input type="text" class="fargeTekst" disabled="true" style="background-color: #FFA500;">
+            <label for="checkbox_3">Opptatte rom</label>
+        </li>
+    </ul>
+    
 </main>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -178,6 +190,30 @@
 </script>
 
 <script>
+    // Veldig dårlig måte å endre brilde når vi kommer fra søk:
+
+    if((erLedig2(" 1 stÃ¸rrelse"))==1){
+    }
+    if((erLedig2(" 2 stÃ¸rrelse")==1)){
+        changeZIndexPlantegningerOpp();
+    }
+    if((erLedig2(" 3 stÃ¸rrelse"))==1){
+        changeZIndexPlantegningerOpp();
+        changeZIndexPlantegningerOpp();
+    }
+    if((erLedig2(" 4 stÃ¸rrelse"))==1){
+        changeZIndexPlantegningerOpp();
+        changeZIndexPlantegningerOpp();
+        changeZIndexPlantegningerOpp();
+    }
+    function erLedig2(id){
+        if (("${liste}").indexOf(id) !=-1) {
+            return 1;
+        }
+        //alert(id+" er ikke ledig");
+        return -1;
+    }
+    
     function erLedig(id){
         if (("${liste}").indexOf(id) !=-1) {
             return 1;
@@ -185,6 +221,7 @@
         //alert(id+" er ikke ledig");
         return -1;
     }
+    
 
     $(window).load(function(){
         // Get the Object by ID

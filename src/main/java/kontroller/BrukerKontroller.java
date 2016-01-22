@@ -150,34 +150,6 @@ public class BrukerKontroller {
         return false; 
     }
 
-    @RequestMapping("MinSideRed")
-    public String minSideRed(HttpSession sess, Model model){
-        BrukerB brukerb = (BrukerB) sess.getAttribute("brukerBean");
-        if(brukerb != null && brukerb.isInnlogget()){
-            model.addAttribute("bruker", brukerb);
-            if(brukerb.getTilgangsniva() == 2){
-                return "MinSideRed";
-            }else{
-                return "MinSide";
-            }
-            
-        }
-        model.addAttribute("bruker", new Bruker());
-        return "Innlogging";
-    }
-    
-    @RequestMapping(value="MinSideRedLagre")
-    public String minSideRedLagre(@ModelAttribute("bruker") BrukerB brukerb, HttpSession sess){
-        System.out.println("MinSideRedLagre************");
-        BrukerB brukerbb = (BrukerB) sess.getAttribute("brukerBean");
-        Bruker nyBrukerInfo = new Bruker();
-        if(brukerbb.getTilgangsniva()==2){
-            nyBrukerInfo.setEpost(brukerbb.getEpost());
-            
-        }
-        return "MinSide";
-    }
-    
     @RequestMapping(value="LeggTilBrukerLagre")
     public String leggTilBrukerLagre(@Valid @ModelAttribute("nyBruker") Bruker bruker, @RequestParam("tilgangnivaa")String tilgang, Model model, BindingResult error, HttpSession sess){
         if(error.hasErrors()){
@@ -231,5 +203,10 @@ public class BrukerKontroller {
         }
         model.addAttribute("bruker", new Bruker());
         return "Innlogging";
+    }
+    @RequestMapping("LeggTilFagLagre")
+    public String leggTilFagLagre(@Valid @ModelAttribute("nyttFag") Bruker bruker, @RequestParam("tilgangnivaa")String tilgang, Model model, BindingResult error, HttpSession sess){
+    
+        return "habbasuttsutt";
     }
 }

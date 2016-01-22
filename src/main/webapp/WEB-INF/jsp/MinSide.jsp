@@ -6,7 +6,7 @@
 
 <main>
     
-        <fieldset>
+        <fieldset class="fieldsetDefault">
             <legend>Personopplysninger</legend>
             <dl>
                 <form:form modelAttribute="bruker">
@@ -29,21 +29,15 @@
                 --%>
             </dl>
             </form:form>
-            <c:set var="tilgang" value="${bruker.getTilgangsniva()}"></c:set>
-            <c:if test="${tilgang == 2}">
-                <form action="MinSideRed" id="formen">
-                    <input id="endreOpplysninger" class="vanligknapp" type="submit" value="Endre opplysninger"/>
-                </form>
-            </c:if>
-            <br>
+            
             <form:form action="EndrePassordRed">
-                <input id="endrePassord" class="vanligknapp" type="submit" value="Endre passord"/>
+                <input id="endrePassord" class="defaultKnapp" type="submit" value="Endre passord"/>
             </form:form>
         </fieldset>
             
 
         
-        <fieldset>
+        <fieldset class="fieldsetDefault">
             
             
             <legend>Fag </legend>
@@ -69,8 +63,8 @@
                                 <form:input type="hidden" path="resultat" value="${abliste}"/>
                                 <c:out value ="${abliste}"></c:out> <%-- printer ut listeverdiene--%>
 
-                                <%-- legger til knappene for slett abonemennt --%>
-                                <input class="slettknapp" type="submit" name="slettFagAbKnapp" value="Slett"/>
+                                <%-- legger til knappene for slett fag --%>
+                                <button class="slettknappMinSide" type="submit" name="slettFagAbKnapp" value="Slett"/><span class="fontawesome-trash"></span></button>
 
                                 </form:form>
                             </td>
@@ -84,7 +78,7 @@
 
         </fieldset>
 
-        <fieldset>
+        <fieldset class="fieldsetDefault">
 
             <legend>Brukerabonnement</legend>
             
@@ -105,7 +99,7 @@
                                 <c:out value ="${abliste}"></c:out> <%-- printer ut listeverdiene--%>
 
                                 <%-- legger til knappene for slett abonemennt --%>
-                                <input class="slettknapp" type="submit" name="slettBrukerAbKnapp" value="Slett"/>
+                                <button class="slettknappMinSide" type="submit" name="slettBrukerAbKnapp" value="Slett"/><span class="fontawesome-trash"></span></button>
 
                                 </form:form>
                             </td>
@@ -117,7 +111,7 @@
                        
         </fieldset>
             
-        <fieldset>
+        <fieldset class="fieldsetDefault">
             <legend>Romreservasjoner</legend>
             <section class="tab">
                 <table>
@@ -131,8 +125,8 @@
                                 var twentyMinutesEarlier = new Date().setMinutes(currentDate.getMinutes()-60);
                             </script>-->
                             <form:input type="hidden" path="rom" value="${resliste}"/>
-                            <td><c:out value="${resliste}"></c:out><input class="slettknapp" type="submit" value="Slett"/><!--c:if test="{twentyMinutesEarlier le bestilltTid}"-->
-                                <c:if test="${resliste.isKlokkesjekk()}"><input class="slettknapp"type="submit" value="Bekreft oppmøte"/>
+                            <td><c:out value="${resliste}"></c:out><button class="slettknappMinSide" type="submit" name="slettHendelseKnapp"/><span class="fontawesome-trash"></span></button><!--c:if test="{twentyMinutesEarlier le bestilltTid}"-->
+                                <c:if test="${resliste.isKlokkesjekk()}"><input class="defaultKnapp" style="float: right" type="submit" value="Bekreft oppmøte"/>
                                 </c:if></td>
                         </tr>
                         </form:form>
@@ -141,7 +135,7 @@
             </section>           
         </fieldset>
                                 
-        <fieldset>
+        <fieldset class="fieldsetDefault">
 
             <legend>Hendelser</legend>
             
@@ -162,8 +156,8 @@
                             
                             <c:out value ="${eventliste}"></c:out> <%-- printer ut listeverdiene--%>
 
-                            <%-- legger til knappene for slett abonemennt --%>
-                            <input class="slettknapp" type="submit" name="slettHendelseKnapp" value="Slett"/>
+                            <%-- legger til knappene for slett hendelse --%>
+                            <button class="slettknappMinSide" type="submit" name="slettHendelseKnapp" value="Slett"/><span class="fontawesome-trash"></span></button>
                             
                             
                             </form:form>
