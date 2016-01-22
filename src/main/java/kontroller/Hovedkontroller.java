@@ -10,6 +10,7 @@ import beans.Passord;
 import beans.Rom;
 import beans.RomBestilling;
 import beans.SlettAbonnementValg;
+import email.Email;
 import static java.lang.Thread.sleep;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -164,9 +165,17 @@ public class Hovedkontroller {
                 //prøver å slette abonemennt med brukerepost og den valgte koden,
                 // fanger exception viss ikke
                 try{
-                    service.slettAbonemennt(new Abonemennt(brukerb.getEpost(), valgt, 1));
-                }
-                catch(Exception e){
+                    service.slettAbonemennt(new Abonemennt(brukerb.getEpost(), valgt, 1));  
+
+                    Email email = new Email();
+                    List<Abonemennt> abonemennt = service.getBrukerAbonnement(brukerb.getEpost());
+                    String melding = "Hendelse slettet av " + brukerb.getFornavn();
+                    for (Abonemennt abn : abonemennt){
+                    email.sendEpost(abn.getEierid(), "Ny hendelse", melding);
+
+                    }
+
+                }                catch(Exception e){
                     model.addAttribute("slettFeilMelding", "feilmelding.kunneIkkeSletteAbonnement");
                 }
             }
@@ -186,10 +195,30 @@ public class Hovedkontroller {
                 // fanger exception viss ikke
                 String[] split = valgt.split(" ");
                 try{
-                    KalenderEvent kalenderEvent = new KalenderEvent();
-                    kalenderEvent.setId(Integer.parseInt(split[0]));
-                    kalenderEvent.setEpost(brukerb.getEpost());
-                    service.fjernKalenderEvent(kalenderEvent);
+
+                        KalenderEvent kev = new KalenderEvent();
+                        kev.setId(Integer.parseInt(split[0]));
+                        kev.setEpost(brukerb.getEpost());
+                        if (service.getKalenderEventHidden(kev)){
+                    
+                            KalenderEvent kalenderEvent = new KalenderEvent();
+                            kalenderEvent.setId(Integer.parseInt(split[0]));
+                            kalenderEvent.setEpost(brukerb.getEpost());
+                            service.fjernKalenderEvent(kalenderEvent);
+                            
+                        }else{
+                            KalenderEvent kalenderEvent = new KalenderEvent();
+                            kalenderEvent.setId(Integer.parseInt(split[0]));
+                            kalenderEvent.setEpost(brukerb.getEpost());
+                            service.fjernKalenderEvent(kalenderEvent);
+
+                            Email email = new Email();
+                            List<Abonemennt> abonemennt = service.getBrukerAbonnement(brukerb.getEpost());
+                            String melding = "Hendelse slettet av " + brukerb.getFornavn();
+                            for (Abonemennt abn : abonemennt){
+                            email.sendEpost(abn.getEierid(), "Ny hendelse", melding);  
+                        }
+                    }
                 }
                 catch(Exception e){
                     model.addAttribute("slettFeilMelding", "feilmelding.kunneIkkeSletteHendelse");

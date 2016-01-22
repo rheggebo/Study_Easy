@@ -61,6 +61,7 @@ public class DBConnectionImpl implements DBConnection{
     private final String getKalenderEventDeltaker = "SELECT * FROM KALENDER_DELTAKER WHERE EVENTID=? AND DELTAKERID=?";
     private final String getKalenderEventEier = "SELECT *, rom_bestilling.romID FROM kalender_event LEFT OUTER JOIN rom_bestilling ON rom_bestilling.bestillingsID = kalender_event.bestillingsID WHERE EIER=?";
     private final String getKalenderEventRomID = "SELECT *, rom_bestilling.romID FROM kalender_event LEFT OUTER JOIN rom_bestilling ON rom_bestilling.bestillingsID = kalender_event.bestillingsID WHERE ROMID=?";
+    private final String getKalenderEventHidden = "SELECT hidden FROM kalender_event Where eier=?";
     private final String getFagLaerer = "SELECT FAGID FROM FAG_LÆRER WHERE BRUKERID=?";
     private final String getRombestilling = "";
     private final String getRomFraNavn = "SELECT * FROM rom WHERE romnavn=?";
@@ -490,6 +491,16 @@ public class DBConnectionImpl implements DBConnection{
         return jT.query(getKalenderEventRomID, new Object[]{
             r.getRomID()
         }, new KalenderEventMapper());
+    }
+    
+    @Override
+    public boolean getKalenderEventHidden(KalenderEvent ke) {
+        int antallRader = jT.update(getKalenderEventHidden,new Object[]{
+            ke.getEpost()});
+        if(antallRader > 0){
+            return true;
+        }
+        return false;
     }
 
     @Override

@@ -69,6 +69,8 @@ public interface Service {
     
     public List<KalenderEvent> getKalenderEventRomID(Rom r);
     
+    public boolean getKalenderEventHidden(KalenderEvent ke);
+    
     public List<Fag> getFagLaerer(Bruker b);
     
     public Rom getRombestilling();
