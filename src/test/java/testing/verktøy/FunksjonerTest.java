@@ -5,6 +5,7 @@
  */
 package testing.verktøy;
 
+import beans.Bruker;
 import verktøy.Funksjoner;
 import org.junit.*;
 import static org.junit.Assert.*;
@@ -22,6 +23,10 @@ public class FunksjonerTest {
     Service si;
     String ord;
     String[] checkboxValues;
+    Bruker bruker1;
+    ArrayList<Bruker> studentListe;
+    ArrayList<Bruker> ansattListe;
+    ArrayList<Bruker> brukerListe;
     
     
     @BeforeClass
@@ -34,14 +39,29 @@ public class FunksjonerTest {
     public void setUp() throws Exception {
         // Koden her eksekveres f�r hver av testmetodene i klassen
         test=new Funksjoner();
+        si = mock(Service.class);
         ord="Per";
         checkboxValues=null;
+        bruker1 = new Bruker();
+        brukerListe = new ArrayList<Bruker>();
+        brukerListe.add(bruker1);
+        
+        
+        when(si.getStudentSok(ord, ord, ord)).thenReturn(brukerListe);
+        when(si.getStudentSok(ord, ord, ord)).thenReturn(brukerListe);
+
         
     }
     
     @Test
-    public void tester_getAlleSokeTreff (){
-        assertEquals(test.getAlleSokeTreff(ord, si, checkboxValues),true);
+    public void test_getAlleSokeTreff (){
+        assertEquals(test.getAlleSokeTreff(ord, si, checkboxValues), true);
+    }
+    
+    @Test
+    public void test_sokStudent (){
+        test.sokStudent(si, ord);
+        assertEquals(test.sokStudent(si, ord), brukerListe);
     }
     
     @After
