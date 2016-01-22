@@ -205,13 +205,14 @@ footer{
 .searchNav {
     float: left;
     display: inline-block;
-    margin-left: -55px;
+    margin-left: -15px;
+    width: 13em;
 }
 .searchInfo{
     display: inline-block;
     margin-left: 190px;
     margin-top: -180px;
-    width: auto;
+    width: 600px;
     height: 85%;
     padding:10px;
     overflow:auto;
@@ -234,7 +235,7 @@ footer{
 }
     
 .searchInfo table td{
-    width: 50em;
+    width: 35em;
     float:right;
     border-top: solid black 1px;
     border-bottom: solid black 1px;
@@ -269,7 +270,7 @@ span[class*="fontawesome-"]:before {
 	padding: 0;
 }
 
-#slettKnappForside, #leggTilKnappForside, #søkeKnappForside{
+#slettKnappForside, #leggTilKnappForside, #sÃ¸keKnappForside{
     padding-top: .3em;
 }
 
