@@ -131,6 +131,8 @@ public class DBConnectionImpl implements DBConnection{
     private final String getRomBooking = "SELECT * FROM rom_bestilling WHERE romID LIKE ? AND dato_start LIKE ? AND eierID LIKE ?";
     private final String slettKalenderEvent = "DELETE FROM kalender_event WHERE bestillingsID LIKE ? AND eier LIKE ?";
     
+    private final String leggTilEvent = "INSERT INTO kalender_event (dato_start, dato_slutt, eier, hidden, type, descr, tittel, eier_navn) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
+    
     private DataSource dS;
     private JdbcTemplate jT;
     
