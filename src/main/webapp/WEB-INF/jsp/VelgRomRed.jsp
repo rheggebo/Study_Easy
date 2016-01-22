@@ -13,7 +13,7 @@
 <main>
     
     <div id="RomInfoRed">
-        <fieldset>
+        <fieldset class="fieldsetDefault">
             <legend>Rominformasjon:</legend>
                 <form action="VelgRomRed" id="velgRomForm1" method="post">    
                     <table>
@@ -50,7 +50,7 @@
                             <td><label id="okTidTil"></label></td>
                         </tr>
                     </table>
-                    <input type="submit" id="resRomVelgRom" value="Reserver rom">
+                    <input type="submit" class="defaultKnapp" id="resRomVelgRom" value="Reserver rom">
                     
                 </form>
         </fieldset>
