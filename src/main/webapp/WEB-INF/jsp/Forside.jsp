@@ -15,7 +15,7 @@
             legg til private hendelser under.
         </p>
         <p>
-            Mer informasjon ønsker alle en god dag.
+            Mer informasjon, ønsker alle en god dag.
         </p>
     </div>
     <div id='calendar'></div>
