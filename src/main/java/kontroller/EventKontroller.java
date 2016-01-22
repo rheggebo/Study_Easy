@@ -242,6 +242,19 @@ public class EventKontroller {
         return "VelgRom";
     }
     
+    @RequestMapping("VelgRomRed")
+    public String velgRomRed(@ModelAttribute FormVelgRom formVelgRom,HttpSession sess, Model model){
+        BrukerB bruker = (BrukerB) sess.getAttribute("brukerBean");
+        Rom rom = new Rom();
+        System.out.println(rom.getRomNavn());
+        rom.setRomID(formVelgRom.getRomId());
+	rom = service.getRom(rom); 
+        System.out.println(rom.getRomNavn());
+        model.addAttribute("bruker", bruker);
+        model.addAttribute("rom", rom);
+        return "velgRomRed";
+    }
+    
     @RequestMapping("SlettBooking")
     public String slettBooking(@ModelAttribute("event")KalenderEvent ke, HttpSession sess, Model model){
         BrukerB bruker = (BrukerB)sess.getAttribute("brukerBean");
