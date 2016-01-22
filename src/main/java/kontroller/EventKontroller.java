@@ -237,6 +237,7 @@ public class EventKontroller {
         System.out.println(ke.getSluttTid()+" "+ke.getSluttTid());
         ke.setType(bruker.getTilgangsniva()+1);
         List<Rom> liste = service.getRomSVG(ke);
+        model.addAttribute("bruker", bruker);
         model.addAttribute("liste", liste);
         return "VelgRom";
     }
