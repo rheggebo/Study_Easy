@@ -119,6 +119,7 @@ public class SokeKontroller {
         String[] split = sv.getResultat().split(":");
         List<String> liste = Arrays.asList(split);
         model.addAttribute("liste", liste);
+        model.addAttribute("bruker", bruker);
         return "VelgRom";
         } 
     
