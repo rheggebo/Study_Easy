@@ -32,24 +32,19 @@
     <div display="inline block">
      <fieldset style = "width:30%; float: right;" class="fieldsetDefault">       
         <legend>Legg til fag i klasse</legend>
-        <form:form action="LeggTilFagLagre" modelAttribute="nyttFag"></form:form>
+        <form:form action="LeggTilFagLagre" modelAttribute="nyttFag">
             <br>
             <dt><label for="valgKlasse">Velg klasse:<em>*</em></label></dt>
-            <dd><select name="valgKlasse" id="valgKlasse" required="true">
-                    <option value="Klasse 1">Klasse 1</option>
-                    <option value="Klasse 2">Klasse 2</option>
-                    <option value="Klasse 3">Klasse 3</option>
-                    <option id="timeplansansvarligOption" name="timeplansansvarligOption" var="timeplansansvarligOption" value="Timeplansansvarlig">Timeplansansvarlig</option>
-                </select>
+            <dd><form:select name="valgKlasse" id="valgKlasse" required="true" path="klasseID">
+                    <form:options items="${nyttFag.getKlasseListe()}"/>
+                </form:select>
             </dd>
             <br>
             <dt><label for="leggTilFag">Legg til fag i klasse:<em>*</em></label></dt>
-            <dd><select name="leggTilFag" id="leggTilFag" required="true">
-                    <option value="Fag 1">Fag 1</option>
-                    <option value="Fag 2">Fag 2</option>
-                    <option value="Fag 3">Fag 3</option>
-                    <option id="timeplansansvarligOption" name="timeplansansvarligOption" var="timeplansansvarligOption" value="Timeplansansvarlig">Timeplansansvarlig</option>
-                </select>
+            <dd><form:select name="leggTilFag" id="leggTilFag" required="true" path="fagID">
+                    <form:options items="${nyttFag.getFagListe()}"/>
+                </form:select>
+        </form:form>
             
         <p><input id="leggTilFag" class="defaultKnapp" type="submit" value="Legg til" onclick=""></p>
     </fieldset>   

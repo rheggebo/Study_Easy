@@ -24,6 +24,7 @@ import javax.sql.DataSource;
 import mapper.AbonemenntMapper;
 import mapper.FagMapper;
 import mapper.KalenderEventMapper;
+import mapper.KlasseMapper;
 import mapper.RomBestillingMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -134,6 +135,9 @@ public class DBConnectionImpl implements DBConnection{
     private final String leggTilEvent = "INSERT INTO kalender_event (dato_start, dato_slutt, eier, hidden, type, descr, tittel, eier_navn) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
     
     private final String getBrukerAbonnement = "SELECT eierID, brukerID AS abonererId, 0 AS abType FROM abonemennt_bruker WHERE brukerID = ?";
+    
+    private final String getAlleKLasser = "SELECT DISTINCT klasseID FROM klasse_fag";
+    
     private DataSource dS;
     private JdbcTemplate jT;
     
@@ -1000,5 +1004,10 @@ public class DBConnectionImpl implements DBConnection{
         return jT.query(getBrukerAbonnement, new Object[]{
             epost
         }, new AbonemenntMapper());
+    }
+    
+    @Override
+    public List<Klasse> getAlleKlasser(){
+        return jT.query(getAlleKLasser, new KlasseMapper());
     }
 }

@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package mapper;
 
 
@@ -25,9 +21,9 @@ public class KlasseFagMapper implements RowMapper<Klasse> {
         
         Klasse klasse = new Klasse();
         ArrayList<Fag> fagListe = new ArrayList<Fag>();
-        klasse.setNavn(rs.getString("klasseid"));
+        klasse.setNavn(rs.getString("klasseID"));
         Fag fag = new Fag();
-        fag.setFagID(rs.getString("fagid"));
+        fag.setFagID(rs.getString("fagID"));
         fagListe.add(fag);
         klasse.setFag(fagListe);
         return klasse;

@@ -143,4 +143,6 @@ public interface DBConnection {
     public boolean slettKalenderEvent(RomBestilling r);
     
     public List<Abonemennt> getBrukerAbonnement(String epost);
+    
+    public List<Klasse> getAlleKlasser();
 }

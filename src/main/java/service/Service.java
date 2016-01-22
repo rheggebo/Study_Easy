@@ -131,4 +131,6 @@ public interface Service {
     
     public List<Abonemennt> getBrukerAbonnement(String epost);
     
+    public List<Klasse> getAlleKlasser();
+    
 }

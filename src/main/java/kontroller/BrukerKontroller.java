@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import service.Service;
+import ui.LeggTilFagKlasse;
 import verktøy.Passordgenerator;
 import verktøy.PasswordHasher;
 
@@ -205,8 +206,8 @@ public class BrukerKontroller {
         return "Innlogging";
     }
     @RequestMapping("LeggTilFagLagre")
-    public String leggTilFagLagre(@Valid @ModelAttribute("nyttFag") Bruker bruker, @RequestParam("tilgangnivaa")String tilgang, Model model, BindingResult error, HttpSession sess){
-    
-        return "habbasuttsutt";
+    public String leggTilFagLagre(@ModelAttribute(value="nyttFag")LeggTilFagKlasse nyttFag ,Model model, BindingResult error, HttpSession sess){
+        
+        return "MinSide";
     }
 }

@@ -345,4 +345,9 @@ public class ServiceImpl implements Service{
         return dbc.getBrukerAbonnement(epost);
     }
     
+    @Override
+    public List<Klasse> getAlleKlasser(){
+        return dbc.getAlleKlasser();
+    }
+    
 }
