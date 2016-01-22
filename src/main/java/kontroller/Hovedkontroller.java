@@ -8,13 +8,17 @@ import beans.Passord;
 import beans.Rom;
 import beans.RomBestilling;
 import beans.SlettAbonnementValg;
+import static java.lang.Thread.sleep;
 import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import konfig.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,6 +37,8 @@ public class Hovedkontroller {
     
     @Autowired
     private Service service;
+    private Test test;
+    
     
     @RequestMapping(value = "/*")
     public String start(Model model, HttpSession sess){
@@ -40,10 +46,8 @@ public class Hovedkontroller {
         
         if(brukerBean != null && brukerBean.isInnlogget()){
             model.addAttribute("bruker", brukerBean);
-            return "Forside";
+            return "Forside";   
         }
-        Bruker bruker = new Bruker();
-        bruker.setTilgangsniva(2);
         model.addAttribute("bruker", new Bruker());
         return "Innlogging";
     }
@@ -76,12 +80,61 @@ public class Hovedkontroller {
         KalenderEvent ke = new KalenderEvent();
         ke.setEpost(brukerb.getEpost());
         Date dato = Calendar.getInstance().getTime();
-        ke.setStartTid(new Timestamp(dato.getTime()));
+        Timestamp now = new Timestamp(dato.getTime());
+        ke.setStartTid(now);
         List<RomBestilling> eventListe = service.getReserverteRom(ke);
+        long msek20Min = 20*60*1000;
+        for (RomBestilling romBestilling : eventListe) {
+            System.out.println(romBestilling.getStartDato().getTime()-now.getTime()+" "+msek20Min);
+            if(romBestilling.getStartDato().getTime()-now.getTime()<msek20Min){
+                romBestilling.setKlokkesjekk(true);
+            }
+        }
         model.addAttribute("event", new KalenderEvent());
         model.addAttribute("reservasjonsliste", eventListe);
         List<KalenderEvent> kalenderEventListe = service.getKalenderEventEier(brukerb);
         model.addAttribute("kalenderEventListe", kalenderEventListe);
+        model.addAttribute("resultat", new SlettAbonnementValg());
+    }
+    
+    private void sjekk(){
+        final KalenderEvent ke = new KalenderEvent();
+        ke.setEpost("steinerikbjornnes@gmail.com");
+        Date dato = Calendar.getInstance().getTime();
+        final Timestamp now = new Timestamp(dato.getTime());
+        ke.setStartTid(now);
+        final int periode = 1000;
+        final int ms10Min = 10*60*1000;
+        final int ms15Min = 15*60*1000;
+        Thread asd = new Thread(){
+            public void run(){
+                try{
+                    ke.setStartTid(new Timestamp(now.getTime()+ms15Min));
+                    List<RomBestilling> eventListe = service.getReserverteRom(ke);
+                    for (RomBestilling romBestilling : eventListe) {
+                        System.out.println(now.getTime());
+                        System.out.println(ke.getStartTid().getTime());
+                        System.out.println(now.getTime()-ke.getStartTid().getTime());
+                        System.out.println(ms10Min);
+                        if(now.getTime()-ke.getStartTid().getTime()>ms10Min && !romBestilling.isSjekketInn()){
+                            KalenderEvent t = new KalenderEvent();
+                            t.setEpost(ke.getEpost());
+                            t.setStartTid(romBestilling.getStartDato());
+                            t.setSluttTid(romBestilling.getSluttDato());
+                            t.setRom(romBestilling.getRomId());
+                            service.slettBooking(ke);
+                            //Legg til anmerkning
+                        }
+                    }
+                    now.setTime(now.getTime()+periode);
+                    sleep(periode);
+                }catch (InterruptedException ex){
+                    Logger.getLogger(Hovedkontroller.class.getName()).log(Level.SEVERE, null, ex);
+
+                }
+            }
+        };
+        asd.run();
     }
     
     @RequestMapping("MinSide")
@@ -90,7 +143,6 @@ public class Hovedkontroller {
         if(brukerb != null && brukerb.isInnlogget()){
             model.addAttribute("bruker", brukerb);
             returnerMinSide(model, brukerb);
-            model.addAttribute("resultat", new SlettAbonnementValg());
             return "MinSide";
         }
         model.addAttribute("bruker", new Bruker());

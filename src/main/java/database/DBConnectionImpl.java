@@ -55,7 +55,7 @@ public class DBConnectionImpl implements DBConnection{
     private final String leggTilFag = "INSERT INTO FAG VALUES(?)";
     private final String leggTilRom = "INSERT INTO ROM VALUES(?,?,?,?,?)";
     private final String leggTilKalenderEvent = "INSERT INTO kalender_event VALUES(DEFAULT,?,?,?,?,?,?,?,?,?,?)";
-    private final String fjernKalenderEvent = "DELETE FROM kalender_event WHERE eier = ? AND id = ?";
+    private final String fjernKalenderEvent = "DELETE FROM KALENDER_EVENT WHERE ID=?";
     private final String getKalenderEventDeltakere = "SELECT DELTAKERID FROM KLANEDER_DELTAKER WHERE EVENTID=?";
     private final String getKalenderEventDeltaker = "SELECT * FROM KALENDER_DELTAKER WHERE EVENTID=? AND DELTAKERID=?";
     private final String getKalenderEventEier = "SELECT *, rom_bestilling.romID FROM kalender_event LEFT OUTER JOIN rom_bestilling ON rom_bestilling.bestillingsID = kalender_event.bestillingsID WHERE EIER=?";
@@ -69,7 +69,7 @@ public class DBConnectionImpl implements DBConnection{
     private final String getLaererKlasse = "";
     private final String getKlasseDeltaker = "";
     private final String leggTilAbonnement = "";
-    private final String getAbonnementDeltakere = "SELECT eierID, brukerID as abonererId, 0 AS abType FROM abonemennt_bruker WHERE brukerID=?";
+    private final String getAbonnementDeltakere = "SELECT eierID FROM abonemennt_bruker WHERE brukerID=?";
     private final String slettAbonnement = "";
     private final String getAbonnement = "";
     private final String getRomTypeStorrelse = "SELECT type, størrelse FROM rom WHERE type=? AND størrelse=?;";
@@ -128,9 +128,8 @@ public class DBConnectionImpl implements DBConnection{
     
     private final String slettBooking = "DELETE FROM rom_bestilling WHERE romID LIKE ? AND dato_start LIKE ? AND dato_slutt LIKE ? AND eierID like ?";
     
-    private final String leggTilEvent = "INSERT INTO kalender_event (dato_start, dato_slutt, eier, hidden, type, descr, tittel, eier_navn) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
-    
     private final String getRomBooking = "SELECT * FROM rom_bestilling WHERE romID LIKE ? AND dato_start LIKE ? AND eierID LIKE ?";
+    private final String slettKalenderEvent = "DELETE FROM kalender_event WHERE bestillingsID LIKE ? AND eier LIKE ?";
     
     private DataSource dS;
     private JdbcTemplate jT;
@@ -425,7 +424,6 @@ public class DBConnectionImpl implements DBConnection{
     @Override
     public boolean fjernKalenderEvent(KalenderEvent ke) {
         int antallRader = jT.update(fjernKalenderEvent,new Object[]{
-            ke.getEpost(),
             ke.getId()
         });
         if(antallRader > 0){
@@ -983,5 +981,13 @@ public class DBConnectionImpl implements DBConnection{
     @Override
     public List<Abonemennt> getAbonnementDeltakere(Abonemennt st) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    @Override
+    public boolean slettKalenderEvent(RomBestilling r){
+        return (0<jT.update(slettKalenderEvent, new Object[]{
+            r.getBestillingsID(),
+            r.getEierId()
+        }));
     }
 }

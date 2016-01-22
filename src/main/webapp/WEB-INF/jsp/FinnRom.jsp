@@ -56,27 +56,27 @@
                         <td><form:errors path="romtype"/></td>
                     </tr>
                     <tr>
-                        <td>Romstørrelse m<sup>2</sup>(min):<em>* </em></td>
+                        <td>Romstørrelse m<sup>2</sup>(min):</td>
                         <td><form:input class="velgRomForm" type="number" min="0" path="storrelse" /></td>
                         <td><form:errors path="storrelse" /></td>
                     </tr>
                     <tr>
-                        <td>Sitteplasser(min):<em>* </em></td>
+                        <td>Sitteplasser(min):</td>
                         <td><form:input class="velgRomForm" type="number" min="0" path="sitteplasser" /></td>
                         <td><form:errors path="skjerm" /></td>
                     </tr>
                     <tr>
-                        <td>Skjerm(min):<em>* </em></td>
+                        <td>Skjerm(min):</td>
                         <td><form:input class="velgRomForm" type="number" min="0" path="skjerm" /></td>
                         <td><form:errors path="skjerm" /></td>
                     </tr>
                     <tr>
-                        <td>Tavle(min):<em>* </em></td>
+                        <td>Tavle(min):</td>
                         <td><form:input class="velgRomForm" type="number" min="0" path="tavle" /></td>
                         <td><form:errors path="tavle" /></td>
                     </tr>
                     <tr>
-                        <td>Projektor(min):<em>* </em></td>
+                        <td>Projektor(min):</td>
                         <td><form:input class="velgRomForm" type="number" min="0" path="projektor" /></td>
                         <td><form:errors path="projektor" /></td>
                     </tr>
@@ -88,8 +88,8 @@
                         <td></td>
                     </tr>
                     <tr>
-                        <td>Tittel:<em>* </em></td>
-                        <td><form:input class="velgRomForm" path="tittel" /></td>
+                        <td>Tittel:</td>
+                        <td><form:input class="velgRomForm" placeholder="Skriv inn her" path="tittel" /></td>
                         <td><form:errors path="tittel" /></td>
                     </tr>
                     <tr>
@@ -101,18 +101,22 @@
                         </td>
                         <td><form:errors path="type"/></td>
                     </tr>
+                    <c:set var="tilgang" value="${bruker.getTilgangsniva()}"></c:set>
+                    <c:if test="${tilgang == 1}">
                     <tr>
-                        <td>Fag:<em>* </em></td>
+                        <td>Fag:</td>
                         <td>
                             <form:select class="velgRomForm" path="fag">
+                                <form:option value="" label="Velg fag" />
                                 <form:options items="${formFinnRom.fagList}"/>
                             </form:select>
                         </td>
                         <td><form:errors path="fag"/></td>
                     </tr>
+                    </c:if>
                     <tr>
-                        <td>Notat:<em>* </em></td>
-                        <td><form:textarea id="textareaNotat" class="velgRomForm" path="notat" /></td>
+                        <td>Notat:</td>
+                        <td><form:textarea id="textareaNotat" placeholder="Utvid for mer skriveplass" class="velgRomForm" path="notat" /></td>
                         <td><form:errors path="notat" /></td>
                     </tr>
                     <tr>

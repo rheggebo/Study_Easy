@@ -11,7 +11,7 @@ import beans.KalenderEvent;
 import beans.NyEvent;
 import beans.Rom;
 import beans.RomBestilling;
-import email.Email;
+import beans.SlettAbonnementValg;
 import java.sql.Time;
 import java.sql.Timestamp;
 import java.text.DateFormat;
@@ -60,7 +60,6 @@ public class EventKontroller {
     }
     @RequestMapping(value="OpprettHendelse")
     public String opprettHendelse(@ModelAttribute("nyHendelse") KalenderEvent event, @RequestParam("notat")String notat, @RequestParam("valg")String off, @RequestParam("startdato")Date startDato, @RequestParam("starttid")String startTid, @RequestParam("sluttdato")Date sluttDato, @RequestParam("starttid")String sluttTid, HttpSession sess, HttpServletResponse response, Model model, HttpServletRequest request){
-        BrukerB brukerb = (BrukerB) sess.getAttribute("brukerBean");
         String stampString = "" + new Timestamp(startDato.getTime());
         stampString = (stampString.split(" "))[0] + " " + startTid + ":00";
         Timestamp start = Timestamp.valueOf(stampString);
@@ -76,31 +75,15 @@ public class EventKontroller {
         }
         
         if (slutt.before(start)){
-            model.addAttribute("melding", "feilmelding.eventSluttForStart");
+            //nei
         }
-        else{
-            event.setStartTid(start);
-            event.setSluttTid(slutt);
-            event.setPrivat(privat);
-            event.setNotat(notat);
-            event.setEpost(brukerb.getEpost());
-            event.setTilhorerEvent(0);
-            event.setEierNavn(brukerb.getFornavn() + " " + brukerb.getEtternavn());
-
-            service.leggTilEvent(event);
-        }
-
-        if (!privat){
-            //send epost!
-                    List<Abonemennt> liste = service.getAbonnementDeltakere(brukerb.getEpost());
-                    Email epost = new Email();
-                    String melding = brukerb.getFornavn() + " " + brukerb.getEtternavn() + " har opprettet en hendelse. \n Tittel: " + event.getTittel() + ". Fra: " + event.getStartTid()
-                            + ", slutt: " + event.getSluttTid() + ". Notat: " + event.getNotat();
-                            
-                    for (Abonemennt abn : liste){
-                        epost.sendEpost(abn.getEierid(), "Ny hendelse!", melding);
-                    }
-        }
+        event.setStartTid(start);
+        event.setSluttTid(slutt);
+        event.setPrivat(privat);
+        System.out.println(notat);
+        
+        
+        
         return "OpprettHendelse";
     }
     
@@ -213,11 +196,20 @@ public class EventKontroller {
         KalenderEvent ke = new KalenderEvent();
         ke.setEpost(brukerb.getEpost());
         Date dato = Calendar.getInstance().getTime();
-        ke.setStartTid(new Timestamp(dato.getTime()));
+        Timestamp now = new Timestamp(dato.getTime());
+        ke.setStartTid(now);
         List<RomBestilling> eventListe = service.getReserverteRom(ke);
+        long msek20Min = 20*60*1000;
+        for (RomBestilling romBestilling : eventListe) {
+            System.out.println(now.getTime()-romBestilling.getStartDato().getTime()+" "+msek20Min);
+            if(now.getTime()-romBestilling.getStartDato().getTime()<msek20Min){
+                romBestilling.setKlokkesjekk(true);
+            }
+        }
         model.addAttribute("event", new KalenderEvent());
         model.addAttribute("reservasjonsliste", eventListe);
         model.addAttribute("bruker", brukerb);
+        model.addAttribute("resultat", new SlettAbonnementValg());
     }
     
     @RequestMapping("VelgRomSok")
@@ -254,6 +246,9 @@ public class EventKontroller {
         System.out.println("Opprettet timestamp, skal slette booking");
         System.out.println(ke.getRom()+" "+ke.getStartTid()+" "+ke.getEpost());
         RomBestilling booking = service.getRomBooking(ke);
+        if(booking.getTilhorerEvent() == 1){
+            service.slettKalenderEvent(booking);
+        }
         if(service.slettBooking(ke)){
             System.out.println("Slettet booking");
             returnerMinSide(model, bruker);

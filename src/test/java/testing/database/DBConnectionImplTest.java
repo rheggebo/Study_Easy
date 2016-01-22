@@ -30,13 +30,14 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
  * @author Sindre
  */
 public class DBConnectionImplTest {
-    DBConnectionImpl dbci;
+    
     static DBConnectionImpl dbc;
     
     Abonemennt ab;
     Abonemennt ac;
     Klasse klasse;
     Rom rom1; 
+    Fag fag1;
     Bruker b;
     Bruker bruker;
     Timestamp fraDato;
@@ -94,9 +95,9 @@ public class DBConnectionImplTest {
         rom1.setStorrelse(100);
         rom1.setAntStolplasser(100);
              
-        Fag fag1 = new Fag();
-        fag1.setFagID("TDAT2001");
-        fag1.setNavn("Matematikk 1");
+        fag1 = new Fag();
+        fag1.setFagID("TDAT2004");
+        fag1.setNavn("Algdat");
        
         kEvent = new KalenderEvent();
         kEvent.setEierNavn("Ola Nilsson");
@@ -106,6 +107,9 @@ public class DBConnectionImplTest {
         kEvent.setSluttTid(tilDato);
         kEvent.setTittel("Lekser");
         kEvent.setRom("GR114");
+        kEvent.setFag("");
+        kEvent.setId(4);
+        kEvent.setNotat("Må gjøre");
         kEvent.setPrivat(true);
         kEvent.setTilhorerEvent(2);
         
@@ -186,15 +190,14 @@ public class DBConnectionImplTest {
         String passord = "Passord78##";
         assertFalse(dbc.sjekkPassord("ola@hotmail.com", passord));
     }
-    
+      
     @Test
     public void test_getAlle(){
         assertEquals(dbc.getAlleRom().size(), 34 );
-        assertEquals(dbc.getAlleFag().size(), 3);
+        assertEquals(dbc.getAlleFag().size(), 4);
     
-        int ant = 15;
+        int ant = 16;
         assertEquals(dbc.getAlleBrukere().size(), ant);
-    
     }
     
     @Test
@@ -209,7 +212,17 @@ public class DBConnectionImplTest {
     
         assertEquals(dbc.getKlasseSok("TDAT").size(), 0);
     }
-       
+    
+    @Test
+    public void testFjernKalenderEvent(){
+        assertTrue(dbc.fjernKalenderEvent(kEvent));
+    }
+    
+    @Test
+    public void testleggTilKalenderEvent(){
+        assertTrue(dbc.leggTilEvent(kEvent));
+    }
+  
     @Test
     public void test_slettAbonnement(){
         assertFalse(dbc.slettAbonemennt(ac));
@@ -217,7 +230,6 @@ public class DBConnectionImplTest {
     
     @Test
     public void test_slettAbonnementFalse(){
-        
         assertTrue(dbc.slettAbonemennt(ac));
     }
     
