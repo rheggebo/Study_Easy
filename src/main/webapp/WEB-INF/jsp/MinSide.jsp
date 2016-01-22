@@ -29,13 +29,7 @@
                 --%>
             </dl>
             </form:form>
-            <c:set var="tilgang" value="${bruker.getTilgangsniva()}"></c:set>
-            <c:if test="${tilgang == 2}">
-                <form action="MinSideRed" id="formen">
-                    <input id="endreOpplysninger" class="defaultKnapp" type="submit" value="Endre opplysninger"/>
-                </form>
-            </c:if>
-            <br>
+            
             <form:form action="EndrePassordRed">
                 <input id="endrePassord" class="defaultKnapp" type="submit" value="Endre passord"/>
             </form:form>
