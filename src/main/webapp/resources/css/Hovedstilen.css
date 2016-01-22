@@ -10,7 +10,7 @@ html {
     
 }
 
-#felmeldingSlett {
+#feilmeldingSlett {
     color: red;
 }
 
@@ -382,7 +382,7 @@ span[class*="fontawesome-"]:before {
     border-top: solid black 1px;
 }
 .tab table{
-    width:800px;
+    width:100%;
 }
 
 .defaultKnapp{
