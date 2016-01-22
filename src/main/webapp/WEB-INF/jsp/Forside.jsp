@@ -7,9 +7,17 @@
 
 <main>
     
-    <br>
-    <br>
-    
+    <div>
+        <h3>
+            Velkommen
+        </h3>
+        <p>
+            legg til private hendelser under.
+        </p>
+        <p>
+            Mer informasjon ønsker alle en god dag.
+        </p>
+    </div>
     <div id='calendar'></div>
     
     <ul class="ikonForside" style="list-style-type: none; margin: 0; padding: 0;">
