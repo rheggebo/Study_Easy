@@ -7,12 +7,13 @@
 <main>
     
     <%-- setter og printer ut eventuell feilmelding her --%>
-    <fieldset style="color: red">
-            <c:set var="slettFeilMelding" value="${slettFeilMelding}"></c:set>
-            <c:if test="${not empty slettFeilMelding}">
-                <spring:message code="${slettFeilMelding}"/>
-            </c:if>
-    </fieldset>
+    <c:set var="slettFeilMelding" value="${slettFeilMelding}"></c:set>
+        <c:if test="${not empty slettFeilMelding}">
+            <fieldset id="feilmeldingSlett">
+            <spring:message code="${slettFeilMelding}"/>
+
+            </fieldset>
+        </c:if>
             
     <fieldset class="fieldsetDefault">
         <legend>Personopplysninger</legend>
