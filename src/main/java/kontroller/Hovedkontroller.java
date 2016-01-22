@@ -196,20 +196,15 @@ public class Hovedkontroller {
                 String[] split = valgt.split(" ");
                 try{
 
-                        KalenderEvent kev = new KalenderEvent();
-                        kev.setId(Integer.parseInt(split[0]));
-                        kev.setEpost(brukerb.getEpost());
-                        if (service.getKalenderEventHidden(kev)){
+                        KalenderEvent kalenderEvent = new KalenderEvent();
+                        kalenderEvent.setId(Integer.parseInt(split[0]));
+                        kalenderEvent.setEpost(brukerb.getEpost());
+                        if (service.getKalenderEventHidden(kalenderEvent)){
                     
-                            KalenderEvent kalenderEvent = new KalenderEvent();
-                            kalenderEvent.setId(Integer.parseInt(split[0]));
-                            kalenderEvent.setEpost(brukerb.getEpost());
                             service.fjernKalenderEvent(kalenderEvent);
                             
                         }else{
-                            KalenderEvent kalenderEvent = new KalenderEvent();
-                            kalenderEvent.setId(Integer.parseInt(split[0]));
-                            kalenderEvent.setEpost(brukerb.getEpost());
+
                             service.fjernKalenderEvent(kalenderEvent);
 
                             Email email = new Email();
