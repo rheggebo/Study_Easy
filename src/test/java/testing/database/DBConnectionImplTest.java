@@ -21,6 +21,7 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.sql.DataSource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -37,14 +38,19 @@ public class DBConnectionImplTest {
     Abonemennt ac;
     Klasse klasse;
     Rom rom1; 
+    Rom rom2;
     Fag fag1;
-    Bruker b;
+    Fag fag2;
+    static Bruker b;
     Bruker bruker;
     Timestamp fraDato;
     Timestamp tilDato;
-    
+    static List<KalenderEvent> a; 
+    static int tall;
+        
     KalenderEvent kEvent;
     private ArrayList<KalenderEvent> KEliste;
+    static ArrayList<KalenderEvent> object;
     private ArrayList<Rom> RomListe;
     private ArrayList<Fag> FagListe;
     private ArrayList<Bruker> BrukerListe;
@@ -68,24 +74,34 @@ public class DBConnectionImplTest {
         }
         return dmds;
     }
+    
+    static int inkrementere(){
+        a = new ArrayList<KalenderEvent>();
+        a = dbc.getKalenderEventEier(b);
+        int bare = a.get(0).getId();
+        //System.out.println(bare);
+        return bare;
+    }
        
     @BeforeClass
     public static void setUpClass() throws Exception{
         dbc = new DBConnectionImpl();
         dbc.setDatabaseSource(dummyDataSource());
+       
     }
     
     @Before
     public void setUp() {
                         
-        KEliste = new ArrayList();
+        /*KEliste = new ArrayList();
         RomListe = new ArrayList();
         BrukerListe = new ArrayList();
         FagListe = new ArrayList();
-        fraDato = new Timestamp(2016-1-22);
-        tilDato = new Timestamp(2016-1-23);
+        */
+        fraDato = Timestamp.valueOf("2016-1-22 09:00:00.0");
+        tilDato = Timestamp.valueOf("2016-1-23 12:30:00.0");
         
-        ab = new Abonemennt("test4@aol.com","henrik_bjorkheim@hotmail.com", 0);
+        ab = new Abonemennt("pedersen@aol.com","test2@aol.com", 0);
         ac = new Abonemennt("ola@hotmail.com", "TDAT2001", 1);
         rom1 = new Rom();
         rom1.setRomID("KAUD");
@@ -93,12 +109,23 @@ public class DBConnectionImplTest {
         rom1.setEtasje(3);
         rom1.setType(3);
         rom1.setStorrelse(100);
-        rom1.setAntStolplasser(100);
+        rom1.setAntStolplasser(102);
+        
+        rom2 = new Rom();
+        rom2.setRomID("KAUD2");
+        rom2.setRomNavn("KAUD2");
+        rom2.setEtasje(3);
+        rom2.setType(3);
+        rom2.setStorrelse(100);
+        rom2.setAntStolplasser(102);
              
         fag1 = new Fag();
         fag1.setFagID("TDAT2004");
         fag1.setNavn("Algdat");
-       
+        
+        fag2 = new Fag();
+        fag2.setFagID("TDAT2001");
+        
         kEvent = new KalenderEvent();
         kEvent.setEierNavn("Ola Nilsson");
         kEvent.setEpost("ola@hotmail.com");
@@ -108,14 +135,13 @@ public class DBConnectionImplTest {
         kEvent.setTittel("Lekser");
         kEvent.setRom("GR114");
         kEvent.setFag("");
-        kEvent.setId(4);
         kEvent.setNotat("Må gjøre");
         kEvent.setPrivat(true);
         kEvent.setTilhorerEvent(2);
         
         klasse = new Klasse();
         klasse.setNavn("2.ing");
-        b = new Bruker(); 
+       b = new Bruker(); 
         b.setFornavn("Ola");
         b.setEtternavn("Aas");
         b.setEpost("ola@hotmail.com");
@@ -136,9 +162,7 @@ public class DBConnectionImplTest {
     public void test_getBruker(){
         String epost = "henrik_bjorkheim@hotmail.com";
         String brukar = "Ansatt: Henrik Pus,  Epost: henrik_bjorkheim@hotmail.com";
-        /*Bruker nb = new Bruker();
-        nb = dbc.getBruker(epost);
-        System.out.print(nb.toString());*/
+               
         try{
            b = dbc.getBruker(epost);
            assertEquals(b.toString(),brukar);
@@ -178,7 +202,7 @@ public class DBConnectionImplTest {
     public void test_oppdaterBrukerFalse(){
         assertFalse(dbc.oppdaterBruker(bruker));
     }
-    
+     
     @Test
     public void test_sjekkPassord(){
         String passord = "Passord79##";
@@ -193,8 +217,8 @@ public class DBConnectionImplTest {
       
     @Test
     public void test_getAlle(){
-        assertEquals(dbc.getAlleRom().size(), 34 );
-        assertEquals(dbc.getAlleFag().size(), 4);
+        assertEquals(dbc.getAlleRom().size(), 34);
+        assertEquals(dbc.getAlleFag().size(), 5);
     
         int ant = 16;
         assertEquals(dbc.getAlleBrukere().size(), ant);
@@ -215,6 +239,7 @@ public class DBConnectionImplTest {
     
     @Test
     public void testFjernKalenderEvent(){
+        kEvent.setId(inkrementere());
         assertTrue(dbc.fjernKalenderEvent(kEvent));
     }
     
@@ -235,9 +260,9 @@ public class DBConnectionImplTest {
     
     /*@Test
     public void test_leggTilAbonnementFalse(){
-        assertFalse(dbc.leggTilAbonemennt(ac));
+        assertFalse(dbc.leggTilAbonemennt(ab));
     }
-    Må dobbeltsjekke metoden at den returnerer riktig false.
+    /*Må dobbeltsjekke metoden at den returnerer riktig false.
     */
     
     @Test
@@ -252,24 +277,37 @@ public class DBConnectionImplTest {
         
     }
     
+    @Test
+    public void test_slettRom(){
+        //lærer tilknyttet fag
+        assertTrue(dbc.slettRom(rom2));
+    }
+    
+    @Test
+    public void test_leggTilOppdater(){
+        //lærer tilknyttet fag
+        assertTrue(dbc.leggTilRom(rom2));
+       
+    }
+    
+    /*@Test
+    public void test_oppdaterRom(){
+        //lærer tilknyttet fag
+        rom1.setAntStolplasser(105);
+        rom1.setEtasje(2);
+        rom1.setType(1);
+        assertTrue(dbc.oppdaterRom(rom1));
+        får ikke til å oppdatere, feil i sql?
+    }*/
+    
+    
     /*@Test
     public void test_getRomFraStr(){
         assertEquals(dbc.getRomFraStoerrelse(rom1).size(), 1);
     }
     skjønner ikke hva som returneres :(  */
     
-    @Test
-    public void test_slettBooking(){
-        //assertTrue(dbc.slettBooking(kEvent));
-    }
-    
-    @Test
-    public void test_leggTilBooking(){
-        //assertTrue(dbc.leggTilBooking(kEvent));
-    }
-    
-    
-    
+
     @After
     public void tearDown() {
         
@@ -277,12 +315,7 @@ public class DBConnectionImplTest {
            
       @AfterClass
     public static void tearDownClass() {
+                       
     }
-    
-    /*public static void main(String[] args) {
-        dbc = new DBConnectionImpl();
-        nb = dbc.getBruker("henrik_bjorkheim@hotmail.com");
-        
-        System.out.println(nb.toString());
-    }*/      
+      
 }
