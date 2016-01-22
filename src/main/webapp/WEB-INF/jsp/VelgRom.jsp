@@ -48,7 +48,11 @@
                     </tr>
                     <tr>
                         <td>RomID:<em>* </em></td>
-                        <td colspan="2"><form:input class="velgRomForm" id="rom" path="romId" disabled="true"/></td>
+                        <td ><label class="velgRomForm" id="romLable"/>
+                        </td>
+                        <td>
+                            <form:input hidden="true" class="velgRomForm" id="rom" path="romId"/>
+                        </td>
                     </tr>
                     <tr>
                         <td></td>
@@ -124,18 +128,18 @@
             </button>
         </li>
     </ul>
-    
-    <ul style="list-style-type: none; margin: 0; padding: 0;">
-        <li>
-            <input type="text" class="fargeTekst" disabled="true" style="background-color: #00FF7F;">
-            <label for="checkbox_2">Ledige rom</label>
-        </li>
-        <li>
-            <input type="text" class="fargeTekst" disabled="true" style="background-color: #FFA500;">
-            <label for="checkbox_3">Opptatte rom</label>
-        </li>
-    </ul>
-    
+    <div id="velgRomFarge">
+        <ul style="list-style-type: none;">
+            <li>
+                <input type="text" class="fargeTekst"  style="background-color: #00FF7F;">
+                <label for="checkbox_2">Ledige rom (eller fra søk)</label>
+            </li>
+            <li>
+                <input type="text" class="fargeTekst"  style="background-color: #FFA500;">
+                <label for="checkbox_3">Opptatte rom</label>
+            </li>
+        </ul>
+    </div>
 </main>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -290,7 +294,8 @@
         }, false);
         //KlikkFunksjon:
         delta.addEventListener("click", function(){ 
-                document.getElementById('rom').value=this.id;
+               document.getElementById('rom').value=this.id;
+               document.getElementById('romLable').innerHTML=this.id;
             }, false);
     }},false);
     //Andre etasje:
@@ -304,7 +309,8 @@
                document.getElementById('romNavn').innerHTML=this.id;
         }, false);
         deltaO2.addEventListener("click", function(){ 
-                document.getElementById('rom').value=this.id;
+               document.getElementById('rom').value=this.id;
+               document.getElementById('romLable').innerHTML=this.id;
             }, false);
     }},false);
     //Tredje etasje:    
@@ -319,6 +325,7 @@
         }, false);
         deltaO3.addEventListener("click", function(){ 
                document.getElementById('rom').value=this.id;
+               document.getElementById('romLable').innerHTML=this.id;
             }, false);
     }},false);
     //Fjerde etasje:
@@ -333,6 +340,7 @@
         }, false);
         deltaO4.addEventListener("click", function(){ 
                document.getElementById('rom').value=this.id;
+               document.getElementById('romLable').innerHTML=this.id;
         }, false);
     } },false);
 </script>

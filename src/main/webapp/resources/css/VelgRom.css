@@ -20,7 +20,7 @@ author:    Sindre
 }
 
 .tekst{
-font: 14px Microsoft YaHei Light;    
+    font: 14px Microsoft YaHei Light;    
 }
 
 #etasjeTeller{
@@ -78,4 +78,9 @@ font: 14px Microsoft YaHei Light;
 .velgRomForm{
     width: 12em;
     padding:0 0 .3em 0;
+}
+
+#velgRomFarge{
+    float: left; 
+    margin-top: 24em;
 }
