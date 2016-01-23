@@ -119,26 +119,19 @@
                         <td><form:textarea id="textareaNotat" placeholder="Utvid for mer skriveplass" class="velgRomForm" path="notat" /></td>
                         <td><form:errors path="notat" /></td>
                     </tr>
-                    <tr>
-                        <td></td>
-                        <td>
-                            <input class="defaultKnapp" formaction="VelgRomReserverRom" type="submit" value="Bestill">
-                        </td>
-                        <td></td>
-                    </tr>  
                 </table>
             </form:form>
         </fieldset>
     </div>
-    <div>
-    <section class="searchInfo2">
+    <div class="tab">
+    <section class="searchFinnRom">
         <table>
             <c:forEach var="liste" items="${liste}" varStatus="status">
                 <form:form modelAttribute="event" action="BookRom">
                     <tr>
                         <form:input type="hidden" path="rom" value="${liste}"/>
                         <form:input type="hidden" path="epost"/>
-                        <pre><td><c:out value="${liste}"></c:out><input class=slettknapp type='submit' value='Book!'/></td></pre>
+                    <pre><td><c:out value="${liste}"></c:out><input class="slettknappMinSide" type='submit' value="Bestill"></td></pre>
                     </tr>
                 </form:form>      
             </c:forEach>                      
@@ -194,17 +187,3 @@
             });
         });
     </script>
-    <script>var date = new Date();
-
-        var day = date.getDate();
-        var month = date.getMonth() + 1;
-        var year = date.getFullYear();
-
-        if (month < 10) month = "0" + month;
-        if (day < 10) day = "0" + day;
-
-        var today = year + "-" + month + "-" + day;
-
-        document.getElementById('datoFraDefault').value=today;
-    </script>
-</main>

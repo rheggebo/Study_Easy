@@ -392,22 +392,6 @@
     });
 </script>
 
-<script>
-    // setter dato til idag
-    var date = new Date();
-
-    var day = date.getDate();
-    var month = date.getMonth() + 1;
-    var year = date.getFullYear();
-
-    if (month < 10) month = "0" + month;
-    if (day < 10) day = "0" + day;
-
-    var today = year + "-" + month + "-" + day;
-
-    document.getElementById('datoFraDefault').value=today;
-</script>
-
 <!--  Hvis man vil ha ulike reaksjoner på planRom og PlanRomOpptatt må gjøres etter ledige rom er satt
 <script>    
     //Klikkhendelser for planRom objeckter:
