@@ -93,13 +93,13 @@ public class DBConnectionImpl implements DBConnection{
     "SELECT DISTINCT kalender_event.id, kalender_event.tittel, kalender_event.dato_start, kalender_event.dato_slutt, kalender_event.eier, " +
     "kalender_event.eier_navn, (CASE WHEN kalender_event.bestillingsID IS NOT NULL AND kalender_event.bestillingsID = rom_bestilling.bestillingsID then rom_bestilling.romID else kalender_event.bestillingsID END) as romID, kalender_event.fagID, kalender_event.type, kalender_event.descr, kalender_event.hidden FROM rom_bestilling, kalender_event, brukere, abonemennt_fag WHERE kalender_event.fagID = abonemennt_fag.fagID AND abonemennt_fag.eierID =?;";
     
-    private final String getRomStart = "SELECT DISTINCT rom_bestilling.romID FROM rom, rom_bestilling LEFT OUTER JOIN rom_innhold ON rom_bestilling.romID = rom_innhold.romID WHERE rom.type = ? AND rom.romID = rom_bestilling.romID AND rom_bestilling.romID NOT IN (" +
+    private final String getRomStart = "SELECT DISTINCT rom_bestilling.romID, rom.romnavn, rom.etasje, rom.type, rom.størrelse, rom.sitteplasser FROM rom, rom_bestilling LEFT OUTER JOIN rom_innhold ON rom_bestilling.romID = rom_innhold.romID WHERE rom.type = ? AND rom.romID = rom_bestilling.romID AND rom_bestilling.romID NOT IN (" +
         "SELECT rom_bestilling.romID FROM rom_bestilling WHERE (? BETWEEN rom_bestilling.dato_start AND rom_bestilling.dato_slutt) OR " +
         "(? BETWEEN rom_bestilling.dato_start AND rom_bestilling.dato_slutt) OR (? < rom_bestilling.dato_start AND ? > rom_bestilling.dato_start)) ";
     
     
-    private final String getRomSlutt = "UNION SELECT DISTINCT rom.romID FROM rom LEFT OUTER JOIN rom_innhold ON rom.romID = rom_innhold.romID WHERE rom.type = ? AND rom.romID NOT IN (SELECT rom_bestilling.romID FROM rom_bestilling) ";
-    private final String getRomMiddelStorrelse = "AND rom.storrelse = ? ";
+    private final String getRomSlutt = "UNION SELECT DISTINCT rom.romID, rom.romnavn, rom.etasje, rom.type, rom.størrelse, rom.sitteplasser FROM rom LEFT OUTER JOIN rom_innhold ON rom.romID = rom_innhold.romID WHERE rom.type = ? AND rom.romID NOT IN (SELECT rom_bestilling.romID FROM rom_bestilling) ";
+    private final String getRomMiddelStorrelse = "AND rom.størrelse >= ? ";
     private final String getRomMiddelSitteplasser ="AND rom.sitteplasser >= ? ";
     
     private final String getRom1Param = " AND rom_innhold.innholdID = ? AND rom_innhold.antall >= ?";
@@ -654,6 +654,7 @@ public class DBConnectionImpl implements DBConnection{
         String melding = getRomStart;
         if(storrelse && sitteplasser){
             melding += getRomMiddelSitteplasser + getRomMiddelStorrelse + getRomSlutt + getRomMiddelSitteplasser + getRomMiddelStorrelse;
+            
             return jT.query(melding, new Object[]{
                 //finn rekkefølge...
                 /*
@@ -701,6 +702,7 @@ public class DBConnectionImpl implements DBConnection{
             }, new RomMapper());
         }else if(sitteplasser){
             melding += getRomMiddelSitteplasser + getRomSlutt + getRomMiddelSitteplasser;
+            System.out.println(melding);
             return jT.query(melding, new Object[]{
                 /*
                 Start:
@@ -731,7 +733,7 @@ public class DBConnectionImpl implements DBConnection{
                 r.getAntStolplasser()
             }, new RomMapper());
         }else if(storrelse){
-            melding = getRomMiddelStorrelse + getRomSlutt + getRomMiddelStorrelse;
+            melding += getRomMiddelStorrelse + getRomSlutt + getRomMiddelStorrelse;
             return jT.query(melding, new Object[]{
                 /*
                 Start:
@@ -756,11 +758,8 @@ public class DBConnectionImpl implements DBConnection{
                 ke.getSluttTid(),
                 ke.getStartTid(),
                 ke.getSluttTid(),
-                //størrelse
                 r.getStorrelse(),
-                //slutt
-                ke.getType(),
-                //størrelse
+                r.getType(),
                 r.getStorrelse()
             
             }, new RomMapper());
@@ -798,7 +797,7 @@ public class DBConnectionImpl implements DBConnection{
         String melding = getRomStart;
         if(storrelse && sitteplasser){
             melding += getRomMiddelStorrelse + getRomMiddelSitteplasser + getRom1Param + getRomSlutt  + getRomMiddelStorrelse + getRomMiddelSitteplasser + getRom1Param;
-            return jT.query(getRom1Param+ getRomStorrelse + getRomPlasser, new Object[]{
+            return jT.query(melding, new Object[]{
                 /*
                 Start:
                 1: rom type
@@ -959,7 +958,7 @@ public class DBConnectionImpl implements DBConnection{
         String melding = getRomStart;
         if(storrelse && sitteplasser){
             melding += getRomMiddelStorrelse + getRomMiddelSitteplasser + getRom2Param + getRomSlutt + getRomMiddelStorrelse + getRomMiddelSitteplasser + getRom2Param;
-            return jT.query(getRom2Param+ getRomStorrelse + getRomPlasser, new Object[]{
+            return jT.query(melding, new Object[]{
                 //start
                 r.getType(),
                 ke.getStartTid(),
@@ -1064,7 +1063,7 @@ public class DBConnectionImpl implements DBConnection{
             }, new RomMapper());
         }
         melding +=  getRom2Param + getRomSlutt + getRom2Param;
-        return jT.query(getRom2Param, new Object[]{
+        return jT.query(melding, new Object[]{
             
                 //start
                 r.getType(),
