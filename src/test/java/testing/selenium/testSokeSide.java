@@ -143,10 +143,10 @@ public class testSokeSide {
         driver.findElement(By.id("klasseSokeSide")).click(); 
         
         Thread.sleep(1000);
-        driver.findElement(By.id("klasseSokeSide")).click();      
-                
+        driver.findElement(By.id("klasseSokeSide")).click();                  
+        
         Thread.sleep(1000);
-        driver.findElement(By.id("klasseSokeSide")).click();
+        driver.findElement(By.id("abonKnapp")).click();
                    
         Thread.sleep(1000);    
     }
