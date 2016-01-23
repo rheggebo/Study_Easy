@@ -34,6 +34,8 @@ import service.Service;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
+import org.springframework.validation.BindingResult;
 import ui.FormFinnRom;
 import ui.FormVelgRom;
 
@@ -225,9 +227,9 @@ public class EventKontroller {
         model.addAttribute("bruker", brukerb);
         model.addAttribute("resultat", new SlettAbonnementValg());
     }
-    
+    // Velg rom siden:
     @RequestMapping("VelgRomSok")
-    public String velgRom(@ModelAttribute FormVelgRom formVelgRom, HttpSession sess, Model model){
+    public String velgRomSoke(@ModelAttribute FormVelgRom formVelgRom, HttpSession sess, Model model){
         BrukerB bruker = (BrukerB) sess.getAttribute("brukerBean");
         KalenderEvent ke = new KalenderEvent();
         int fra = formVelgRom.getFraTid()/100;
@@ -258,6 +260,33 @@ public class EventKontroller {
         System.out.println(rom.getRomNavn());
         model.addAttribute("rom", rom);
         return "VelgRomRed";
+    }
+    
+    @RequestMapping("VelgRomReserver")
+    public String velgRomReserver(@Valid @ModelAttribute FormVelgRom formVelgRom,HttpSession sess, Model model, BindingResult resultat){
+        BrukerB bruker = (BrukerB) sess.getAttribute("brukerBean");
+        model.addAttribute("bruker", bruker);
+        if (resultat.hasErrors()){ 
+            return "VelgRom";
+        }
+        
+        Rom rom = new Rom();
+        rom.setRomID(formVelgRom.getRomId());
+        KalenderEvent ke = new KalenderEvent();
+        ke.setRom(formVelgRom.getRomId());
+        int fra = formVelgRom.getFraTid()/100;
+        int til = formVelgRom.getVarighet();
+        ke.setStartTid(new Timestamp(formVelgRom.getFraDato().getTime()+fra*3600000));
+        ke.setSluttTid(new Timestamp(formVelgRom.getFraDato().getTime()+(fra+til)*3600000));
+        ke.setEpost(bruker.getEpost());
+        ke.setTilhorerEvent(0);
+	try{
+            service.leggTilBooking(ke); 
+        }catch(Exception e){
+            model.addAttribute("feilMeldingReservereRom", "Kunne ikke reservere rommet ");
+            return "VelgRom";
+        }
+        return "MinSide";
     }
     
     @RequestMapping("SlettBooking")
