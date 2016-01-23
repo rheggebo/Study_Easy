@@ -11,6 +11,12 @@
 -->
     
 <main>
+    <c:set var="eilMelding" value="${feilMeldingReservereRom}"></c:set>
+        <c:if test="${not empty feilMeldingReservereRom}">
+            <fieldset class="feilmelding">
+                <spring:message code="${feilMeldingReservereRom}"/>
+            </fieldset>
+        </c:if>
     <div id="velgRomSøkeBokser"  class="tekst">
         <fieldset class="fieldsetDefault">
             <legend><b>Velg ønsket spesifikasjoner</b></legend>

@@ -13,6 +13,9 @@ html {
 #feilmeldingSlett {
     color: red;
 }
+.feilmelding {
+    color: red;
+}
 
 
 #baseLayoutTable{
