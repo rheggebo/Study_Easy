@@ -125,7 +125,10 @@
                 <div>
                     <a href="#lukk" title="Lukk" class="lukk">X</a>
                     <h2>Informasjon</h2>
-                    <p>Trykk på pilene for å endre etasje og på rommet for å få mer informasjon.</p>
+                    <p>Trykk på pilene for å skifte etasje,
+                        og trykk på rommet for å få mer informasjon. Ledige rom vises
+                        ved søk.
+                    </p>
                 </div>
             </div>
         </li>
@@ -144,7 +147,7 @@
         <ul style="list-style-type: none;">
             <li>
                 <input type="text" class="fargeTekst"  style="background-color: #00FF7F;">
-                <label for="checkbox_2">Ledige rom (eller fra søk)</label>
+                <label for="checkbox_2">Ledige rom</label>
             </li>
             <li>
                 <input type="text" class="fargeTekst"  style="background-color: #FFA500;">
