@@ -1,7 +1,7 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
 <main>
-    <div display="inline block">
+    <div>
     <fieldset style = "width:20%; position: absolute" class="fieldsetDefault">
         <legend>Legg til bruker</legend>
         <dl>
@@ -28,32 +28,39 @@
         </dl>
      </fieldset>
      </div>
-    <div display="inline block">
+    <div>
      <fieldset style = "width:30%; float: right;" class="fieldsetDefault">       
         <legend>Legg til fag i klasse</legend>
-        <form:form action="LeggTilFagLagre" modelAttribute="nyttFag">
-            <br>
-            <dt><label for="valgKlasse">Velg klasse:<em>*</em></label></dt>
-            <dd><form:select name="valgKlasse" id="valgKlasse" required="true" path="klasseID">
-                    <form:option value="" label="Velg"/>
-                    <form:options items="${klasseList}"/>
-                </form:select>
-            </dd>
-            <br>
-            <dt><label for="leggTilFag">Legg til fag i klasse:<em>*</em></label></dt>
-            <dd><form:select name="leggTilFag" id="leggTilFag" required="true" path="fagID">
-                    <form:option value="" label="Velg"/>
-                    <form:options items="${fagList}"/>
-                </form:select>
-        
-            
-        <p><input id="leggTilFag" class="defaultKnapp" type="submit" value="Legg til" onclick=""></p>
+        <form:form action="LeggTilFagLagre" modelAttribute="leggTilFagKlasse">
+            <table>
+                <tr>
+                    <td>Velg klasse<em>* </em></td>
+                    <td>
+                       
+                    </td>
+                </tr>
+                <tr>
+                    <td>Legg til fag i klasse:<em>* </em></td>
+                    <td>
+                        
+                    </td>
+                </tr>
+                <tr>
+                    <td><input id="leggTilFag" class="defaultKnapp" type="submit" value="Legg til" onclick=""></td>
+                    <td></td>
+                </tr>
+            </table>
+            <p></p>
         </form:form>
+        <c:set var="meldingS" value="${melding}"></c:set>
+        <c:if test="${not empty meldingS}">
+            <p>
+                <spring:message code="${melding}" />
+            </p>
+        </c:if>
     </fieldset>   
+       
     </div>
    
-    <c:set var="meldingS" value="${melding}"></c:set>
-    <c:if test="${not empty meldingS}">
-        <spring:message code="${melding}" />
-    </c:if>
+    
 </main>
