@@ -210,6 +210,7 @@ public class EventKontroller {
     }
     
     private void returnerMinSide(Model model, BrukerB brukerb){
+        System.out.println("her er jeg");
         List<Abonemennt> liste = service.getAbonemenntFraBruker(brukerb);
         model.addAttribute("abonemenntListe", liste);
         KalenderEvent ke = new KalenderEvent();
@@ -218,6 +219,10 @@ public class EventKontroller {
         Timestamp now = new Timestamp(dato.getTime());
         ke.setStartTid(now);
         List<RomBestilling> eventListe = service.getReserverteRom(ke);
+        System.out.println("hei" + eventListe.size());
+        for(RomBestilling bestilling : eventListe){
+            System.out.println("BEST: " + bestilling.getBestillingsID());
+        }
         long msek20Min = 20*60*1000;
         for (RomBestilling romBestilling : eventListe) {
             System.out.println(now.getTime()-romBestilling.getStartDato().getTime()+" "+msek20Min);

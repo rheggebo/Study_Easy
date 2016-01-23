@@ -62,19 +62,19 @@ public class DBConnectionImpl implements DBConnection{
     private final String getKalenderEventEier = "SELECT *, rom_bestilling.romID FROM kalender_event LEFT OUTER JOIN rom_bestilling ON rom_bestilling.bestillingsID = kalender_event.bestillingsID WHERE EIER=?";
     private final String getKalenderEventRomID = "SELECT *, rom_bestilling.romID FROM kalender_event LEFT OUTER JOIN rom_bestilling ON rom_bestilling.bestillingsID = kalender_event.bestillingsID WHERE ROMID=?";
     private final String getKalenderEventHidden = "SELECT hidden FROM kalender_event Where id = ?";
-    private final String getFagLaerer = "SELECT FAGID FROM FAG_LÆRER WHERE BRUKERID=?";
+    private final String getFagLaerer = "SELECT fagID FROM fag_lærer WHERE brukerID=?";
     private final String getRombestilling = "";
     private final String getRomFraNavn = "SELECT * FROM rom WHERE romnavn=?";
     private final String getRomFraInnhold = "";
-    private final String getRomFraType = "SELECT * FROM ROM WHERE TYPE=?";
-    private final String getRomFraStoerrelse = "SELECT * FROM ROM WHERE STØRRELSE=?";
+    private final String getRomFraType = "SELECT * FROM rom WHERE TYPE=?";
+    private final String getRomFraStoerrelse = "SELECT * FROM rom WHERE STØRRELSE=?";
     private final String getLaererKlasse = "";
     private final String getKlasseDeltaker = "";
     private final String leggTilAbonnement = "";
     private final String getAbonnementDeltakere = "SELECT eierID FROM abonemennt_bruker WHERE brukerID=?";
     private final String slettAbonnement = "";
     private final String getAbonnement = "";
-    private final String getRomTypeStorrelse = "SELECT type, størrelse FROM rom WHERE type=? AND størrelse=?;";
+    private final String getRomTypeStorrelse = "SELECT type, størrelse FROM rom WHERE type=? AND størrelse=?";
     private final String getRom = "SELECT * FROM rom WHERE romID=?";
     
     private final String leggTilAbonemenntBruker = "INSERT INTO abonemennt_bruker (eierID, brukerID) VALUES (?, ?)";
@@ -93,13 +93,13 @@ public class DBConnectionImpl implements DBConnection{
     "SELECT DISTINCT kalender_event.id, kalender_event.tittel, kalender_event.dato_start, kalender_event.dato_slutt, kalender_event.eier, " +
     "kalender_event.eier_navn, (CASE WHEN kalender_event.bestillingsID IS NOT NULL AND kalender_event.bestillingsID = rom_bestilling.bestillingsID then rom_bestilling.romID else kalender_event.bestillingsID END) as romID, kalender_event.fagID, kalender_event.type, kalender_event.descr, kalender_event.hidden FROM rom_bestilling, kalender_event, brukere, abonemennt_fag WHERE kalender_event.fagID = abonemennt_fag.fagID AND abonemennt_fag.eierID =?;";
     
-    private final String getRomStart = "SELECT DISTINCT rom_bestilling.romID FROM rom, rom_bestilling LEFT OUTER JOIN rom_innhold ON rom_bestilling.romID = rom_innhold.romID WHERE rom.type = ? AND rom.romID = rom_bestilling.romID AND rom_bestilling.romID NOT IN (" +
+    private final String getRomStart = "SELECT DISTINCT rom_bestilling.romID, rom.romnavn, rom.etasje, rom.type, rom.størrelse, rom.sitteplasser FROM rom, rom_bestilling LEFT OUTER JOIN rom_innhold ON rom_bestilling.romID = rom_innhold.romID WHERE rom.type = ? AND rom.romID = rom_bestilling.romID AND rom_bestilling.romID NOT IN (" +
         "SELECT rom_bestilling.romID FROM rom_bestilling WHERE (? BETWEEN rom_bestilling.dato_start AND rom_bestilling.dato_slutt) OR " +
         "(? BETWEEN rom_bestilling.dato_start AND rom_bestilling.dato_slutt) OR (? < rom_bestilling.dato_start AND ? > rom_bestilling.dato_start)) ";
     
     
-    private final String getRomSlutt = "UNION SELECT DISTINCT rom.romID FROM rom LEFT OUTER JOIN rom_innhold ON rom.romID = rom_innhold.romID WHERE rom.type = ? AND rom.romID NOT IN (SELECT rom_bestilling.romID FROM rom_bestilling) ";
-    private final String getRomMiddelStorrelse = "AND rom.storrelse = ? ";
+    private final String getRomSlutt = "UNION SELECT DISTINCT rom.romID, rom.romnavn, rom.etasje, rom.type, rom.størrelse, rom.sitteplasser FROM rom LEFT OUTER JOIN rom_innhold ON rom.romID = rom_innhold.romID WHERE rom.type = ? AND rom.romID NOT IN (SELECT rom_bestilling.romID FROM rom_bestilling) ";
+    private final String getRomMiddelStorrelse = "AND rom.størrelse >= ? ";
     private final String getRomMiddelSitteplasser ="AND rom.sitteplasser >= ? ";
     
     private final String getRom1Param = " AND rom_innhold.innholdID = ? AND rom_innhold.antall >= ?";
@@ -503,14 +503,14 @@ public class DBConnectionImpl implements DBConnection{
             ke.getEpost()}, new KalenderEventMapper());
         return liste;
 
-    }
+    } //tatt
 
     @Override
     public List<Fag> getFagLaerer(Bruker b) {
         return jT.query(getFagLaerer, new Object[]{
             b.getEpost()
         }, new FagMapper());
-    }
+    }//Får ikke tatt inn fagnavn til fagmapperen
     
     @Override
     public boolean leggTilAbonemennt(Abonemennt ab){
@@ -529,7 +529,7 @@ public class DBConnectionImpl implements DBConnection{
             return true;
         }
         return false;
-    }
+    }//tatt
     
     @Override
     public boolean slettAbonemennt(Abonemennt ab){
@@ -548,7 +548,7 @@ public class DBConnectionImpl implements DBConnection{
             return true;
         }
         return false;
-    }
+    }//tatt
     
     
 
@@ -558,7 +558,7 @@ public class DBConnectionImpl implements DBConnection{
         
         //}, new RomMapper());
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    }// ikke i bruk??
 
     @Override
     public List<Rom> getRomFraNavn(Rom r) {
@@ -569,7 +569,7 @@ public class DBConnectionImpl implements DBConnection{
             
         }
         return liste;
-    }
+    }//tatt
     
     @Override
     public List<Rom> getRomFraNavn(String navn) {
@@ -581,7 +581,7 @@ public class DBConnectionImpl implements DBConnection{
             
         }
         return liste;
-    }
+    }//tatt
 
     @Override
     public List<Rom> getRomFraInnhold(String[] innhold) {
@@ -589,26 +589,26 @@ public class DBConnectionImpl implements DBConnection{
         
         //}, new RomMapper());
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    }//ikke i bruk??
 
     @Override
     public List<Rom> getRomFraType(Rom r) {
         return jT.query(getRomFraType, new Object[]{
             r.getType()
         }, new RomMapper());
-    }
+    }//tatt
 
     @Override
     public List<Rom> getRomFraStoerrelse(Rom r) {
         return jT.query(getRomFraStoerrelse, new Object[]{
             r.getStorrelse()
         }, new RomMapper());
-    }
+    }//tatt
 
     @Override
     public Klasse getLaererKlasse(Bruker b) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    }//ikke i bruk 
     
     @Override
     public List<KalenderEvent> getAlleEventsFraBruker(BrukerB b){
@@ -617,14 +617,14 @@ public class DBConnectionImpl implements DBConnection{
             b.getEpost(),
             b.getEpost()
         }, new KalenderEventMapper());
-    }
+    }//tatt
     
     @Override
     public List<Abonemennt> getAbonnementDeltakere(String ke) {
         return jT.query(getAbonnementDeltakere, new Object[]{
             ke
         }, new AbonemenntMapper());
-    }
+    }//feil i forhold til det som sendes til mapper
     
     @Override
     public List<Abonemennt> getAbonemenntFraBruker(BrukerB b){
@@ -632,14 +632,14 @@ public class DBConnectionImpl implements DBConnection{
             b.getEpost(),
             b.getEpost()
         }, new AbonemenntMapper());
-    }
+    }//tatt
     
     @Override
     public List<RomBestilling> getAlleBestillingerFraBruker(BrukerB b){
         return jT.query(getAlleBestillingerFraBruker, new Object[]{
             b.getEpost()
         }, new RomBestillingMapper());
-    }
+    }//tatt
     
     @Override
     public List<Rom> getRomTypeStorrelse(Rom r) {
@@ -647,13 +647,14 @@ public class DBConnectionImpl implements DBConnection{
             r.getType(),
             r.getStorrelse()
         }, new RomMapper());
-    }
+    }//får noe feil med romID-en
     
     @Override
     public List<Rom> getRom0Param(Rom r, KalenderEvent ke, boolean storrelse, boolean sitteplasser){
         String melding = getRomStart;
         if(storrelse && sitteplasser){
             melding += getRomMiddelSitteplasser + getRomMiddelStorrelse + getRomSlutt + getRomMiddelSitteplasser + getRomMiddelStorrelse;
+            
             return jT.query(melding, new Object[]{
                 //finn rekkefølge...
                 /*
@@ -701,6 +702,7 @@ public class DBConnectionImpl implements DBConnection{
             }, new RomMapper());
         }else if(sitteplasser){
             melding += getRomMiddelSitteplasser + getRomSlutt + getRomMiddelSitteplasser;
+            System.out.println(melding);
             return jT.query(melding, new Object[]{
                 /*
                 Start:
@@ -731,7 +733,7 @@ public class DBConnectionImpl implements DBConnection{
                 r.getAntStolplasser()
             }, new RomMapper());
         }else if(storrelse){
-            melding = getRomMiddelStorrelse + getRomSlutt + getRomMiddelStorrelse;
+            melding += getRomMiddelStorrelse + getRomSlutt + getRomMiddelStorrelse;
             return jT.query(melding, new Object[]{
                 /*
                 Start:
@@ -756,11 +758,8 @@ public class DBConnectionImpl implements DBConnection{
                 ke.getSluttTid(),
                 ke.getStartTid(),
                 ke.getSluttTid(),
-                //størrelse
                 r.getStorrelse(),
-                //slutt
-                ke.getType(),
-                //størrelse
+                r.getType(),
                 r.getStorrelse()
             
             }, new RomMapper());
@@ -798,7 +797,7 @@ public class DBConnectionImpl implements DBConnection{
         String melding = getRomStart;
         if(storrelse && sitteplasser){
             melding += getRomMiddelStorrelse + getRomMiddelSitteplasser + getRom1Param + getRomSlutt  + getRomMiddelStorrelse + getRomMiddelSitteplasser + getRom1Param;
-            return jT.query(getRom1Param+ getRomStorrelse + getRomPlasser, new Object[]{
+            return jT.query(melding, new Object[]{
                 /*
                 Start:
                 1: rom type
@@ -959,7 +958,7 @@ public class DBConnectionImpl implements DBConnection{
         String melding = getRomStart;
         if(storrelse && sitteplasser){
             melding += getRomMiddelStorrelse + getRomMiddelSitteplasser + getRom2Param + getRomSlutt + getRomMiddelStorrelse + getRomMiddelSitteplasser + getRom2Param;
-            return jT.query(getRom2Param+ getRomStorrelse + getRomPlasser, new Object[]{
+            return jT.query(melding, new Object[]{
                 //start
                 r.getType(),
                 ke.getStartTid(),
@@ -1064,7 +1063,7 @@ public class DBConnectionImpl implements DBConnection{
             }, new RomMapper());
         }
         melding +=  getRom2Param + getRomSlutt + getRom2Param;
-        return jT.query(getRom2Param, new Object[]{
+        return jT.query(melding, new Object[]{
             
                 //start
                 r.getType(),
@@ -1431,7 +1430,7 @@ public class DBConnectionImpl implements DBConnection{
         return jT.queryForObject(getRom, new Object[]{
             r.getRomID()
         }, new RomMapper());
-    }
+    }//tatt
     
     @Override
     public boolean leggTilBooking(KalenderEvent ke){
@@ -1442,7 +1441,7 @@ public class DBConnectionImpl implements DBConnection{
             ke.getEpost(),
             ke.getTilhorerEvent()
         }));
-    }
+    }// tatt
     
     @Override
     public List<Rom> getRomSVG(KalenderEvent ke){
@@ -1452,16 +1451,18 @@ public class DBConnectionImpl implements DBConnection{
             ke.getSluttTid(),
             ke.getType()
         }, new RomMapper());
-    }
+    }//tatt
     
     @Override
     public List<RomBestilling> getReserverteRom(KalenderEvent ke){
+        System.out.println("Epost: " + ke.getEpost());
+        System.out.println("Starttid: " + ke.getStartTid());
         return jT.query(getReserverteRom, new Object[]{
             ke.getEpost(),
             ke.getStartTid(),
             ke.getStartTid()
         }, new RomBestillingMapper());
-    }
+    }//Tatt
     
     @Override
     public boolean slettBooking(KalenderEvent ke){
@@ -1504,7 +1505,7 @@ public class DBConnectionImpl implements DBConnection{
     @Override
     public List<Abonemennt> getAbonnementDeltakere(Abonemennt st) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    }// ikke i bruk
     
     @Override
     public boolean slettKalenderEvent(RomBestilling r){

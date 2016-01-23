@@ -80,6 +80,7 @@ public class Hovedkontroller {
     }
     
     private void returnerMinSide(Model model, BrukerB brukerb){
+        System.out.println("Jeg kjører nå");
         List<Abonemennt> liste = service.getAbonemenntFraBruker(brukerb);
         model.addAttribute("abonemenntListe", liste);
         KalenderEvent ke = new KalenderEvent();
@@ -88,6 +89,10 @@ public class Hovedkontroller {
         Timestamp now = new Timestamp(dato.getTime());
         ke.setStartTid(now);
         List<RomBestilling> eventListe = service.getReserverteRom(ke);
+        System.out.println("Bookinger: " + eventListe.size());
+        for(RomBestilling best : eventListe){
+            System.out.println(best.getBestillingsID());
+        }
         long msek20Min = 20*60*1000;
         for (RomBestilling romBestilling : eventListe) {
             System.out.println(romBestilling.getStartDato().getTime()-now.getTime()+" "+msek20Min);

@@ -8,7 +8,7 @@
 
 <main>
     <fieldset class='fieldsetDefault' style = "width:95%">
-        <legend>Ny hendelse</legend>
+        <legend><b>Ny hendelse</b></legend>
         
                 <c:set var="meldingS" value="${melding}"></c:set>
                 <c:if test="${not empty meldingS}">

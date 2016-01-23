@@ -51,6 +51,10 @@ public class EmailTest {
     public void tester_email2() throws Exception{
         assertEquals(test.sendEpost(null, null, melding), false);
     }
+    @Test
+    public void tester_email3() throws Exception{
+        assertEquals(test.sendEpost(null, null, null), false);
+    }
     
     
     
