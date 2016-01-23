@@ -22,6 +22,7 @@ public class Bruker {
     private ArrayList<KalenderEvent> kalenderEvents;
     private String type;
     private String passord1;
+    
 
     public Date getFodedato() {
         return fodedato;

@@ -25,7 +25,6 @@
             </dd>
             <p><input id="leggTil" class="defaultKnapp" type="submit" value="Legg til" onclick=""></p>
             </form:form>
-            </dd>
         </dl>
      </fieldset>
      </div>
@@ -36,17 +35,20 @@
             <br>
             <dt><label for="valgKlasse">Velg klasse:<em>*</em></label></dt>
             <dd><form:select name="valgKlasse" id="valgKlasse" required="true" path="klasseID">
-                    <form:options items="${nyttFag.getKlasseListe()}"/>
+                    <form:option value="" label="Velg"/>
+                    <form:options items="${klasseList}"/>
                 </form:select>
             </dd>
             <br>
             <dt><label for="leggTilFag">Legg til fag i klasse:<em>*</em></label></dt>
             <dd><form:select name="leggTilFag" id="leggTilFag" required="true" path="fagID">
-                    <form:options items="${nyttFag.getFagListe()}"/>
+                    <form:option value="" label="Velg"/>
+                    <form:options items="${fagList}"/>
                 </form:select>
-        </form:form>
+        
             
         <p><input id="leggTilFag" class="defaultKnapp" type="submit" value="Legg til" onclick=""></p>
+        </form:form>
     </fieldset>   
     </div>
    

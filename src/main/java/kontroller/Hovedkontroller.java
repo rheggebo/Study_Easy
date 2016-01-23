@@ -261,23 +261,17 @@ public class Hovedkontroller {
     }
     
     @RequestMapping("LeggTilBruker")
-    public String leggTilBruker(HttpSession sess, Model model){
+    public String leggTilBruker(@ModelAttribute FormFinnRom formFinnRom,HttpSession sess, Model model){
         BrukerB brukerb = (BrukerB)sess.getAttribute("brukerBean");
         if(brukerb != null && brukerb.isInnlogget()){
             if(brukerb.getTilgangsniva()==2){
                 model.addAttribute("nyBruker", new Bruker());
                 model.addAttribute("passord", new Passord());
-                model.addAttribute("bruker", brukerb);
-                LeggTilFagKlasse lF = new LeggTilFagKlasse();
-                List<Klasse> liste = service.getAlleKlasser();
+                model.addAttribute("bruker", brukerb);;
+                List<Klasse> listeKlasser = service.getAlleKlasser();
                 List<Fag> fagListe = service.getAlleFag();
-                for (Klasse klasse : liste) {
-                    lF.addKlasseListe(klasse.getNavn());
-                };
-                for (Fag fag : fagListe) {
-                    lF.addFagListe(fag.getFagID());
-                }
-                model.addAttribute("nyttFag", lF);
+                model.addAttribute("klasseList", listeKlasser);
+                model.addAttribute("fagList", fagListe);
                 return "LeggTilBruker";
             }else{
                 model.addAttribute("bruker", brukerb);
