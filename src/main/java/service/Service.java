@@ -135,4 +135,6 @@ public interface Service {
     
     public List<Klasse> getAlleKlasser();
     
+    public boolean erRomLedig(KalenderEvent ke);
+    
 }

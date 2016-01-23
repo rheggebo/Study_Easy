@@ -144,6 +144,8 @@ public class DBConnectionImpl implements DBConnection{
     
     private final String getAlleKLasser = "SELECT DISTINCT klasseID FROM klasse_fag";
     
+    private final String erRomLedig = "SELECT * FROM rom_bestilling WHERE romID = ? AND dato_start BETWEEN ? AND ?";
+    
     private DataSource dS;
     private JdbcTemplate jT;
     
@@ -444,6 +446,7 @@ public class DBConnectionImpl implements DBConnection{
         }
         return false;
     }
+    //Bruker metoden leggTilEvent lengre ned i koden
 
     @Override
     public boolean fjernKalenderEvent(KalenderEvent ke) {
@@ -463,6 +466,7 @@ public class DBConnectionImpl implements DBConnection{
             ke.getId()
         }, new BrukerMapper());
     }
+    //sql-tabell finnes ikke i databasen lengre
 
     @Override
     public Bruker getKalenderEventDeltaker(KalenderEvent ke, Bruker b) {
@@ -470,7 +474,7 @@ public class DBConnectionImpl implements DBConnection{
             ke.getId(),
             b.getEpost()
         }, new BrukerMapper());
-    }
+    }//sql-tabell finnes ikke i databasen lengre
 
     @Override
     public List<KalenderEvent> getKalenderEventEier(Bruker b) {
@@ -484,14 +488,14 @@ public class DBConnectionImpl implements DBConnection{
         return jT.query(getKalenderEventEier, new Object[]{
             b.getEpost()
         }, new KalenderEventMapper());
-    }
+    }//tatt
 
     @Override
     public List<KalenderEvent> getKalenderEventRomID(Rom r) {
         return jT.query(getKalenderEventRomID, new Object[]{
             r.getRomID()
         }, new KalenderEventMapper());
-    }
+    }//tatt
     
     @Override
     public List<KalenderEvent> getKalenderEventHidden(KalenderEvent ke) {
@@ -1520,5 +1524,16 @@ public class DBConnectionImpl implements DBConnection{
     @Override
     public List<Klasse> getAlleKlasser(){
         return jT.query(getAlleKLasser, new KlasseMapper());
+    }
+    
+    
+    @Override
+    public boolean erRomLedig(KalenderEvent ke) {
+         RomBestilling temp = jT.queryForObject(erRomLedig,new Object[]{
+            ke.getRom(),
+            ke.getStartTid(),
+            ke.getSluttTid()
+        }, new RomBestillingMapper());
+        return (temp == null);
     }
 }

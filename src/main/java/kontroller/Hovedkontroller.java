@@ -199,7 +199,7 @@ public class Hovedkontroller {
                         KalenderEvent kalenderEvent = new KalenderEvent();
                         kalenderEvent.setId(Integer.parseInt(split[0]));
                         kalenderEvent.setEpost(brukerb.getEpost());
-                        if (service.getKalenderEventHidden(kalenderEvent).equals("1")){
+                        if (service.getKalenderEventHidden(kalenderEvent).equals(true)){
                     
                             service.fjernKalenderEvent(kalenderEvent);
                             

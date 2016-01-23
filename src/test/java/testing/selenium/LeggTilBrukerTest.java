@@ -49,7 +49,7 @@ public class LeggTilBrukerTest {
         driver.findElement(By.id("leggTilBruker")).click();
         
         Thread.sleep(1000);
-        driver.findElement(By.id("fornavn")).sendKeys("Ling"); 
+        driver.findElement(By.id("fornavn")).sendKeys("Ling1"); 
         
         Thread.sleep(1000);
         driver.findElement(By.id("etternavn")).sendKeys("Ling"); 

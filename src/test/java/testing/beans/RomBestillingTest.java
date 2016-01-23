@@ -26,7 +26,7 @@ public class RomBestillingTest {
     RomBestilling romB;
     Timestamp startDato;
     Timestamp sluttDato;
-    
+        
     @BeforeClass
     public static void setUpClass() {
     }
@@ -42,6 +42,9 @@ public class RomBestillingTest {
         romB.setTilhorerEvent(2);
         romB.setStartDato(startDato);
         romB.setSluttDato(sluttDato);
+        romB.setBestillingsID(16);
+        romB.setKlokkesjekk(true);
+        romB.setSjekketInn(false);
         
     }
     
@@ -52,6 +55,9 @@ public class RomBestillingTest {
         assertEquals(romB.getTilhorerEvent(), 2);
         assertEquals(romB.getStartDato(), startDato);
         assertEquals(romB.getSluttDato(), sluttDato);
+        assertEquals(romB.isSjekketInn(), false);
+        assertEquals(romB.getBestillingsID(), 16);
+        assertEquals(romB.isKlokkesjekk(), true);
     }
     
     @Test
