@@ -289,12 +289,9 @@ public class EventKontroller {
     }
     
     @RequestMapping("VelgRomReserver")
-    public String velgRomReserver(@Valid @ModelAttribute FormVelgRom formVelgRom,HttpSession sess, Model model, BindingResult resultat){
+    public String velgRomReserver(@ModelAttribute FormVelgRom formVelgRom,HttpSession sess, Model model){
         BrukerB bruker = (BrukerB) sess.getAttribute("brukerBean");
         model.addAttribute("bruker", bruker);
-        if (resultat.hasErrors()){ 
-            return "VelgRom";
-        }
         
         Rom rom = new Rom();
         rom.setRomID(formVelgRom.getRomId());
@@ -311,14 +308,12 @@ public class EventKontroller {
                 System.out.println("La vi til noe? " + service.leggTilBooking(ke)); 
             }
             else{
-                model.addAttribute("feilMeldingReservereRom", "feilMeldingReservereRom");
+                //model.addAttribute("feilMeldingReservereRom", "feilmelding.feilMeldingReservereRom");
                 return "VelgRom";
             }
         }catch(Exception e){
-            model.addAttribute("feilMeldingReservereRom", "feilMeldingReservereRom");
             return "VelgRom";
         }
-         model.addAttribute("feilMeldingReservereRom", "feilMeldingReservereRom");
         return "VelgRom";
     }
     
