@@ -13,6 +13,7 @@
         <link rel="stylesheet" href="<c:url value="/resources/css/hovedstilen.css"/>">
         <link rel="stylesheet" href="<c:url value="/resources/css/velgRom.css"/>">
         <link rel="stylesheet" href="<c:url value="/resources/css/minSide.css"/>">
+        <link rel="stylesheet" href="<c:url value="/resources/css/sokeSide.css"/>">
         
         <link rel="stylesheet" href="<c:url value="/resources/css/fullcalendar.css"/>">
         <link rel="stylesheet" href="<c:url value="/resources/css/jquery.qtip.css"/>">
