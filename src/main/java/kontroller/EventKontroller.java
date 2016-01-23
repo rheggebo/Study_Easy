@@ -314,14 +314,18 @@ public class EventKontroller {
         ke.setEpost(bruker.getEpost());
         ke.setTilhorerEvent(0);
 	try{
-            System.out.println("La vi til noe?" );
-            service.leggTilBooking(ke);
+            if (service.erRomLedig(ke)){
+                System.out.println("La vi til noe?" );
+                service.leggTilBooking(ke);
+            }else{
+                return "VelgRom";
+            }            
         }catch(Exception e){
-            return "Forside";
+            return "VelgRom";
         }
         return "Forside";
-    }
-    
+    } 
+   
     @RequestMapping("SlettBooking")
     public String slettBooking(@ModelAttribute("event")KalenderEvent ke, HttpSession sess, Model model){
         BrukerB bruker = (BrukerB)sess.getAttribute("brukerBean");

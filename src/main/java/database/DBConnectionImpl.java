@@ -1530,11 +1530,15 @@ public class DBConnectionImpl implements DBConnection{
     
     @Override
     public boolean erRomLedig(KalenderEvent ke) {
-         RomBestilling temp = jT.queryForObject(erRomLedig,new Object[]{
-            ke.getRom(),
-            ke.getStartTid(),
-            ke.getSluttTid()
-        }, new RomBestillingMapper());
-        return (temp == null);
+         try {
+             RomBestilling temp = jT.queryForObject(erRomLedig,new Object[]{
+                ke.getRom(),
+                ke.getStartTid(),
+                ke.getSluttTid()
+                }, new RomBestillingMapper());
+         }catch(Exception e) {
+             System.out.println(e.fillInStackTrace());
+         }
+        return true;
     }
 }
