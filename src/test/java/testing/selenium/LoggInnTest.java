@@ -27,16 +27,16 @@ public class LoggInnTest {
     public void testLoggInn() throws Throwable {   
         driver.get("http://localhost:8084/Study_Easy/");
         
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         driver.findElement(By.id("epostInnlogging")).sendKeys("test1@aol.com");
         
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         driver.findElement(By.id("passordInnlogging")).sendKeys("passord"); 
         
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         driver.findElement(By.id("loggInnKnapp")).click(); 
         
-        Thread.sleep(2000);
+        Thread.sleep(1000);
     } 
     
     @Test
