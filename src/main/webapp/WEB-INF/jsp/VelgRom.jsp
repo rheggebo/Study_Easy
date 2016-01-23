@@ -316,7 +316,7 @@
                     document.getElementById('rom').value=this.id;
                     document.getElementById('romLable').innerHTML=this.id;
                 if (erLedig3(this.id)!=1){
-                    document.getElementById('rom').value=this.id+"Opptatt";
+                    document.getElementById('rom').value=this.id+" Opptatt";
                     document.getElementById('romLable').innerHTML=this.id +" Opptatt";
                 }
             }, false);
@@ -335,7 +335,7 @@
                     document.getElementById('rom').value=this.id;
                     document.getElementById('romLable').innerHTML=this.id;
                 if (erLedig3(this.id)!=1){
-                    document.getElementById('rom').value=this.id+"Opptatt";
+                    document.getElementById('rom').value=this.id+" Opptatt";
                     document.getElementById('romLable').innerHTML=this.id +" Opptatt";
                 }
             }, false);
@@ -373,7 +373,7 @@
                     document.getElementById('rom').value=this.id;
                     document.getElementById('romLable').innerHTML=this.id;
                 if (erLedig3(this.id)!=1){
-                    document.getElementById('rom').value=this.id+"Opptatt";
+                    document.getElementById('rom').value=this.id+" Opptatt";
                     document.getElementById('romLable').innerHTML=this.id+" Opptatt";
                 }
         }, false);
