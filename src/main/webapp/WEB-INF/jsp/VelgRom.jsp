@@ -201,7 +201,6 @@
 
 <script>
     // Veldig dårlig måte å endre brilde når vi kommer fra søk:
-
     if((erLedig2(" 1 stÃ¸rrelse"))==1){
     }
     if((erLedig2(" 2 stÃ¸rrelse")==1)){
@@ -331,7 +330,7 @@
         }, false);
         deltaO3.addEventListener("click", function(){ 
                document.getElementById('rom').value=this.id;
-               document.getElementById('romLable').innerHTML=this.id;
+               document.getElementById('romLable').innerHTML=this.;
             }, false);
     }},false);
     //Fjerde etasje:

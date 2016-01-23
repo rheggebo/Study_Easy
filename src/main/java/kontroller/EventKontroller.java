@@ -315,10 +315,10 @@ public class EventKontroller {
                 return "VelgRom";
             }
         }catch(Exception e){
-            model.addAttribute("feilMeldingReservereRom", "Kunne ikke reservere rommet " + rom.getRomID());
+            model.addAttribute("feilMeldingReservereRom", "feilMeldingReservereRom");
             return "VelgRom";
         }
-         model.addAttribute("feilMeldingReservereRom", "Kunne ikke reservere rommet " + rom.getRomID());
+         model.addAttribute("feilMeldingReservereRom", "feilMeldingReservereRom");
         return "VelgRom";
     }
     
