@@ -16,7 +16,7 @@
         </c:if>
             
     <fieldset class="fieldsetDefault">
-        <legend>Personopplysninger</legend>   
+        <legend><b>Personopplysninger</b></legend>   
         <dl>
             <form:form modelAttribute="bruker">
             <dt><label for="fornavnMinSide">Fornavn:</label></dt>
@@ -36,8 +36,8 @@
     </fieldset>
     
     <fieldset class="fieldsetDefault">
-        <legend>Fag </legend>
-        <div class="tab">
+        <legend><b>Fag</b> </legend>
+        <div class="tabMinSide">
             <table>
                 <c:forEach var="abliste" items="${abonemenntListe}">
                     <c:if test="${abliste.getType() == 1}">
@@ -60,8 +60,8 @@
     </fieldset>
     
     <fieldset class="fieldsetDefault">
-        <legend>Brukerabonnement</legend>
-            <div class="tab">
+        <legend><b>Brukerabonnement</b></legend>
+            <div class="tabMinSide">
                 <table>
                 <c:forEach var="abliste" items="${abonemenntListe}">
                     <c:if test="${abliste.getType() == 0}">
@@ -82,8 +82,8 @@
     </fieldset>
     
     <fieldset class="fieldsetDefault">
-        <legend>Romreservasjoner</legend>
-        <section class="tab">
+        <legend><b>Romreservasjoner</b></legend>
+        <section class="tabMinSide">
             <table>
                 <c:forEach var="resliste" items="${reservasjonsliste}">
                     <form:form modelAttribute="event" action="SlettBooking">
@@ -106,8 +106,8 @@
     </fieldset>
                                 
     <fieldset class="fieldsetDefault">
-        <legend>Hendelser</legend>
-        <div class="tab">
+        <legend><b>Hendelser</b></legend>
+        <div class="tabMinSide">
             <table>
             <c:forEach var="eventliste" items="${kalenderEventListe}">
                 <tr>
