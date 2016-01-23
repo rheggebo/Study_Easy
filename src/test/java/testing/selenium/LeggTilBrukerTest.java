@@ -26,7 +26,7 @@ public class LeggTilBrukerTest {
     
     WebDriver driver = new FirefoxDriver();
      
-    @Test
+    /*@Test
     public void SokeSide() throws Throwable {   
         
         Actions action = new Actions(driver);
@@ -49,7 +49,7 @@ public class LeggTilBrukerTest {
         driver.findElement(By.id("leggTilBruker")).click();
         
         Thread.sleep(1000);
-        driver.findElement(By.id("fornavn")).sendKeys("Ling1"); 
+        driver.findElement(By.id("fornavn")).sendKeys("Ling"); 
         
         Thread.sleep(1000);
         driver.findElement(By.id("etternavn")).sendKeys("Ling"); 
@@ -72,7 +72,7 @@ public class LeggTilBrukerTest {
         action.doubleClick(element2).perform();
                         
         Thread.sleep(2000);        
-    }
+    }*/
     
         public LeggTilBrukerTest() {
     }

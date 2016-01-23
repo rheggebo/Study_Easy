@@ -13,6 +13,7 @@ import beans.Fag;
 import beans.KalenderEvent;
 import beans.Klasse;
 import beans.Rom;
+import beans.RomBestilling;
 import database.DBConnection;
 import java.sql.Connection;
 import java.sql.Timestamp;
@@ -35,6 +36,9 @@ public class DBConnectionImplTest {
     static DBConnectionImpl dbc;
     
     BrukerB brukerB;
+    Bruker brukerC;
+    static Bruker b;
+    Bruker bruker;
     Abonemennt ab;
     Abonemennt ac;
     Klasse klasse;
@@ -43,11 +47,13 @@ public class DBConnectionImplTest {
     Rom rom3;
     Fag fag1;
     Fag fag2;
-    static Bruker b;
-    Bruker bruker;
     Timestamp fraDato;
     Timestamp tilDato;
     List<KalenderEvent> listkEvent; 
+    List<Fag> listFag;
+    List<Rom> listRom;
+    List<Abonemennt> listAbo;
+    List<RomBestilling> listRB;
     static List<KalenderEvent> a; 
     static int tall;
         
@@ -120,6 +126,8 @@ public class DBConnectionImplTest {
         rom2.setType(3);
         rom2.setStorrelse(100);
         rom2.setAntStolplasser(102);
+        
+        rom3 = new Rom();
              
         fag1 = new Fag();
         fag1.setFagID("TDAT2004");
@@ -143,7 +151,9 @@ public class DBConnectionImplTest {
         
         klasse = new Klasse();
         klasse.setNavn("2.ing");
-       b = new Bruker(); 
+        
+        brukerB = new BrukerB();
+        b = new Bruker(); 
         b.setFornavn("Ola");
         b.setEtternavn("Aas");
         b.setEpost("ola@hotmail.com");
@@ -318,16 +328,40 @@ public class DBConnectionImplTest {
     }*/
     
     @Test
+    public void testRomBestillingMapper(){
+        brukerB.setEpost("test1@aol.com");
+        listRB = new ArrayList<RomBestilling>();
+        listRB = dbc.getAlleBestillingerFraBruker(brukerB);
+        
+    }
+    
+    @Test
+    public void testAbonemenntMapper(){
+        brukerB.setEpost("test2@aol.com");
+        listAbo = new ArrayList<Abonemennt>();
+        listAbo = dbc.getAbonemenntFraBruker(brukerB);
+    }
+    
+    @Test
+    public void testRomMapper(){
+        rom3.setRomID("KAUD");
+        listRom = new ArrayList<Rom>();
+        listRom = dbc.getRomFraType(rom1);
+        listRom = dbc.getRomFraStoerrelse(rom1);
+        listRom = dbc.getRomTypeStorrelse(rom3);
+    }
+    
+    @Test
     public void testKalenderEventMapper(){
-        rom3 = new Rom();
         rom3.setRomID("KA-SA235");
-        brukerB = new BrukerB();
+        
         brukerB.setEpost("ola@hotmail.com");
         listkEvent = new ArrayList<KalenderEvent>();
         listkEvent = dbc.getKalenderEventEier(brukerB);
         listkEvent = dbc.getKalenderEventRomID(rom3);
         listkEvent = dbc.getKalenderEventHidden(kEvent);
-        assertEquals(listkEvent.size(), 0);
+        listkEvent = dbc.getAlleEventsFraBruker(brukerB);
+        assertEquals(listkEvent.size(), 5);
     }
     
     @After
