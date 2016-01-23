@@ -1538,7 +1538,8 @@ public class DBConnectionImpl implements DBConnection{
                 }, new RomBestillingMapper());
          }catch(Exception e) {
              System.out.println(e.fillInStackTrace());
+             return true;
          }
-        return true;
+        return false;
     }
 }
