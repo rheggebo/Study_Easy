@@ -556,7 +556,7 @@ public class DBConnectionImpl implements DBConnection{
         
         //}, new RomMapper());
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    }// ikke i bruk??
 
     @Override
     public List<Rom> getRomFraNavn(Rom r) {
@@ -587,7 +587,7 @@ public class DBConnectionImpl implements DBConnection{
         
         //}, new RomMapper());
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }//ikke i bruk
+    }//ikke i bruk??
 
     @Override
     public List<Rom> getRomFraType(Rom r) {
@@ -1429,7 +1429,7 @@ public class DBConnectionImpl implements DBConnection{
         return jT.queryForObject(getRom, new Object[]{
             r.getRomID()
         }, new RomMapper());
-    }
+    }//tatt
     
     @Override
     public boolean leggTilBooking(KalenderEvent ke){
@@ -1440,7 +1440,7 @@ public class DBConnectionImpl implements DBConnection{
             ke.getEpost(),
             ke.getTilhorerEvent()
         }));
-    }
+    }// tatt
     
     @Override
     public List<Rom> getRomSVG(KalenderEvent ke){
@@ -1450,7 +1450,7 @@ public class DBConnectionImpl implements DBConnection{
             ke.getSluttTid(),
             ke.getType()
         }, new RomMapper());
-    }
+    }//tatt
     
     @Override
     public List<RomBestilling> getReserverteRom(KalenderEvent ke){
@@ -1459,7 +1459,7 @@ public class DBConnectionImpl implements DBConnection{
             ke.getStartTid(),
             ke.getStartTid()
         }, new RomBestillingMapper());
-    }
+    }//Tatt
     
     @Override
     public boolean slettBooking(KalenderEvent ke){
@@ -1502,7 +1502,7 @@ public class DBConnectionImpl implements DBConnection{
     @Override
     public List<Abonemennt> getAbonnementDeltakere(Abonemennt st) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    }// ikke i bruk
     
     @Override
     public boolean slettKalenderEvent(RomBestilling r){

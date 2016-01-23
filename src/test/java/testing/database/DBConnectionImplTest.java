@@ -42,9 +42,11 @@ public class DBConnectionImplTest {
     Abonemennt ab;
     Abonemennt ac;
     Klasse klasse;
+    static RomBestilling rb1;
     Rom rom1; 
     Rom rom2;
     Rom rom3;
+    Rom rom4;
     Fag fag1;
     Fag fag2;
     Timestamp fraDato;
@@ -54,10 +56,12 @@ public class DBConnectionImplTest {
     List<Rom> listRom;
     List<Abonemennt> listAbo;
     List<RomBestilling> listRB;
-    static List<KalenderEvent> a; 
+    static List<KalenderEvent> a;
+    static List<RomBestilling> rb; 
     static int tall;
         
-    KalenderEvent kEvent;
+    static KalenderEvent kEvent;
+    static KalenderEvent kEvent1;
     private ArrayList<KalenderEvent> KEliste;
     private ArrayList<Rom> RomListe;
     private ArrayList<Fag> FagListe;
@@ -90,6 +94,14 @@ public class DBConnectionImplTest {
         //System.out.println(bare);
         return bare;
     }
+    
+    static int inkrementere2(){
+        rb = new ArrayList<RomBestilling>();
+        rb = dbc.getReserverteRom(kEvent);
+        int bare1 = rb.get(0).getBestillingsID();
+        System.out.println(rb1.getTilhorerEvent());
+        return bare1;
+    }
        
     @BeforeClass
     public static void setUpClass() throws Exception{
@@ -106,7 +118,7 @@ public class DBConnectionImplTest {
         BrukerListe = new ArrayList();
         FagListe = new ArrayList();
         
-        fraDato = Timestamp.valueOf("2016-1-22 09:00:00.0");
+        fraDato = Timestamp.valueOf("2016-1-23 09:00:00.0");
         tilDato = Timestamp.valueOf("2016-1-23 12:30:00.0");
         
         ab = new Abonemennt("pedersen@aol.com","test2@aol.com", 0);
@@ -128,6 +140,7 @@ public class DBConnectionImplTest {
         rom2.setAntStolplasser(102);
         
         rom3 = new Rom();
+        rb1 = new RomBestilling();
              
         fag1 = new Fag();
         fag1.setFagID("TDAT2004");
@@ -136,6 +149,7 @@ public class DBConnectionImplTest {
         fag2 = new Fag();
         fag2.setFagID("TDAT2001");
         
+        kEvent1 = new KalenderEvent();
         kEvent = new KalenderEvent();
         kEvent.setEierNavn("Ola Nilsson");
         kEvent.setEpost("ola@hotmail.com");
@@ -332,6 +346,11 @@ public class DBConnectionImplTest {
         brukerB.setEpost("test1@aol.com");
         listRB = new ArrayList<RomBestilling>();
         listRB = dbc.getAlleBestillingerFraBruker(brukerB);
+        listRB = dbc.getReserverteRom(kEvent);
+        System.out.println(listRB.get(0).getTilhorerEvent());
+        rb1 = dbc.getRomBooking(kEvent);
+        inkrementere2();
+        //System.out.println(rb1.toString());
         
     }
     
@@ -349,6 +368,7 @@ public class DBConnectionImplTest {
         listRom = dbc.getRomFraType(rom1);
         listRom = dbc.getRomFraStoerrelse(rom1);
         listRom = dbc.getRomTypeStorrelse(rom3);
+        listRom = dbc.getRomSVG(kEvent);
     }
     
     @Test
@@ -364,12 +384,36 @@ public class DBConnectionImplTest {
         assertEquals(listkEvent.size(), 5);
     }
     
+    @Test
+    public void testRom(){
+        rom4 = new Rom();
+        rom4 = dbc.getRom(rom1);
+        //assertEquals(dbc.getRom(rom1), rom4);
+        
+    }
+    
+   /* @Test
+    public void testLeggTilBooking(){
+        kEvent1.setRom("KAUD");
+        kEvent1.setStartTid(fraDato);
+        kEvent1.setSluttTid(tilDato);
+        kEvent1.setEpost("ola@hotmail.com");
+        kEvent1.setTilhorerEvent(2);
+        assertTrue(dbc.leggTilBooking(kEvent1));
+    }*/
+    
+    /*@Test
+    public void testSlettBooking(){
+        kEvent1.setId(inkrementere2());
+        assertTrue(dbc.slettBooking(kEvent1));
+    }*/
+    
     @After
     public void tearDown() {
         
     }
            
-      @AfterClass
+    @AfterClass
     public static void tearDownClass() {
                        
     }
