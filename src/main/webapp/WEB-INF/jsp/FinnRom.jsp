@@ -25,7 +25,7 @@
                 <table>
                     <tr>
                         <td>Dato:<em>* </em></td>
-                        <td><form:input class="velgRomForm" id="datoFraDefault" type="date" path="fraDato" /></td>
+                        <td><form:input class="velgRomForm" id="datoFraDefault" required="true" type="date" path="fraDato" /></td>
                         <td><form:errors path="fraDato" /></td>
                     </tr>
                     <tr>

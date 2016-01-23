@@ -24,7 +24,7 @@
                 <table>
                     <tr>
                         <td>Dato:<em>* </em></td>
-                        <td><form:input class="velgRomForm" type="date" id="datoFraDefault" path="fraDato"/></td>
+                        <td><form:input class="velgRomForm" type="date" id="datoFraDefault" required="true" path="fraDato"/></td>
                         <td><form:errors path="fraDato" /></td>
                     </tr>
                     <tr>
@@ -63,7 +63,7 @@
                     <tr>
                         <td></td>
                         <td>
-                            <input class="defaultKnapp" formaction="VelgRomReserver" type="submit" value="Bestill">
+                            <input class="defaultKnapp" formaction="VelgRomReserverRom" type="submit" value="Bestill">
                         </td>
                         <td></td>
                     </tr>  
