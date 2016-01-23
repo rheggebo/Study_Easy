@@ -307,13 +307,19 @@ public class EventKontroller {
         ke.setEpost(bruker.getEpost());
         ke.setTilhorerEvent(0);
 	try{
-            System.out.println("La vi til noe? " + service.leggTilBooking(ke)); 
-            
+            if (service.erRomLedig(ke)){
+                System.out.println("La vi til noe? " + service.leggTilBooking(ke)); 
+            }
+            else{
+                model.addAttribute("feilMeldingReservereRom", "feilMeldingReservereRom");
+                return "VelgRom";
+            }
         }catch(Exception e){
-            model.addAttribute("feilMeldingReservereRom", "Kunne ikke reservere rommet ");
+            model.addAttribute("feilMeldingReservereRom", "Kunne ikke reservere rommet " + rom.getRomID());
             return "VelgRom";
         }
-        return "MinSide";
+         model.addAttribute("feilMeldingReservereRom", "Kunne ikke reservere rommet " + rom.getRomID());
+        return "VelgRom";
     }
     
     @RequestMapping("SlettBooking")

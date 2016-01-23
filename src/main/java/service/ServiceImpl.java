@@ -353,5 +353,9 @@ public class ServiceImpl implements Service{
     public List<Klasse> getAlleKlasser(){
         return dbc.getAlleKlasser();
     }
-    
+
+    @Override
+    public boolean erRomLedig(KalenderEvent ke) {
+        return dbc.erRomLedig(ke);
+    }
 }

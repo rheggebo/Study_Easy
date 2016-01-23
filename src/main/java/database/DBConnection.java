@@ -147,4 +147,6 @@ public interface DBConnection {
     public List<Abonemennt> getBrukerAbonnement(String epost);
     
     public List<Klasse> getAlleKlasser();
+    
+    public boolean erRomLedig(KalenderEvent ke);
 }

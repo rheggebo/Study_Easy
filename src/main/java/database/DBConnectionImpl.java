@@ -1523,4 +1523,9 @@ public class DBConnectionImpl implements DBConnection{
     public List<Klasse> getAlleKlasser(){
         return jT.query(getAlleKLasser, new KlasseMapper());
     }
+    
+    @Override
+    public boolean erRomLedig(KalenderEvent ke) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
