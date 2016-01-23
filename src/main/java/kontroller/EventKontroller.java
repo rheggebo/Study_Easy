@@ -37,6 +37,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import org.springframework.validation.BindingResult;
 import ui.FormFinnRom;
+import ui.FormRedRom;
 import ui.FormVelgRom;
 
 /**
@@ -260,6 +261,29 @@ public class EventKontroller {
         System.out.println(rom.getRomNavn());
         model.addAttribute("rom", rom);
         return "VelgRomRed";
+    }
+    
+     @RequestMapping("EndreRom")
+    public String velgRomRed(@ModelAttribute FormRedRom formRedRom, @ModelAttribute FormVelgRom formVelgRom, Model model){
+        Rom rom = new Rom();
+        rom.setRomID(formVelgRom.getRomId());
+        FormRedRom rF = null;
+	try{
+            rom = service.getRom(rom); 
+            rF = new FormRedRom();
+            rF.setRomId(rom.getRomID());
+            rF.setRomNavn(rom.getRomNavn());
+            rF.setRomStr(rom.getStorrelse());
+            rF.setRomType(rom.getType());
+            rF.setAntSittePl(rom.getAntStolplasser());
+            
+        }catch(Exception e){       
+            model.addAttribute("redRomForm", new FormVelgRom());
+            return "VelgRom";
+        }
+        model.addAttribute("redRomForm", rF);
+        return "VelgRomRed";
+ 
     }
     
     @RequestMapping("VelgRomReserver")

@@ -14,49 +14,52 @@
     
     <div id="RomInfoRed">
         <fieldset class="fieldsetDefault">
-            <legend>Rominformasjon:</legend>
-                <form action="VelgRomRed" id="velgRomForm1" method="post">    
+            <legend><b>Rominformasjon:</b></legend>
+                <form:form modelAttribute="redRomForm" method="POST" action="redigerRomLagre">
                     <table>
+                        
                         <tr>
                             <td>Rom-id:</td>
-                            <td><label id="rom"> </td>
+                            <td><form:input class="redRomForm" id="redRomId" type="text" value="${rom.getRomID()}" path="romID" /></td>
                         </tr>
+                        
                         <tr>
                             <td>Rom navn:</td>
-                            <td><label id="okRomNavn"></label></td>
+                            <td><form:input class="redRomForm" id="redRomNavn" type="text" value="${rom.getRomNavn()}" path="romNavn" /></td>
+                        </tr>
+                        
+                        <tr>
+                            <td>Rom type:</td>
+                            <td><form:input class="redRomForm" id="redRomType" type="number" min="1" max="3" value="${rom.getType()}" path="romType" /></td>
                         </tr>
                         <tr>
-                            <td>Etasje:</td>
-                            <td><label id="okEtasje"></label></td>
+                            <td>Romstørrelse m<sup>2</sup>:</td>
+                            <td><form:input class="redRomForm" id="redRomStr" type="number" min="${rom.getStorrelse()}" max="${rom.getStorrelse()}" value="${rom.getStorrelse()}" path="romStr"/></td>
                         </tr>
                         <tr>
-                            <td>Plasser:</td>
-                            <td><label id="okPlasser"></label></td>
+                        <td>Antall sitteplasser:</td>
+                            <td><form:input class="redRomForm" id="redRomPlasser" type="number" value="${rom.getAntStolplasser()}" path="antSittePl" /></td>
+                        </tr>
+                         <tr>
+                            <td>Antall skjermer</td>
+                            <td><form:input class="redRomForm" id="redRomId" type="number" value="${rom.getRomID()}" path="romID" /></td>
                         </tr>
                         <tr>
-                            <td>Utstyr:</td>
-                            <td><label id="okUtstyr"></label></td>
+                            <td>Antall tavler:</td>
+                            <td><form:input class="redRomForm" id="redRomId" type="number" value="${rom.getRomID()}" path="romID" /></td>
                         </tr>
                         <tr>
-                            <td>Dato:</td>
-                            <td><label id="okDato"></label></td>
+                            <td>Antall prosjektorer:</td>
+                            <td><form:input class="redRomForm" id="redRomId" type="number" value="${rom.getRomID()}" path="romID" /></td>
                         </tr>
-                        <tr>
-                            <td>Tid fra:</td>
-                            <td><label id="okTidFra"></label></td>
-                        </tr>
-                        <tr>
-                            <td>Tid til</td>
-                            <td><label id="okTidTil"></label></td>
-                        </tr>
+                        
+                           
+                        
                     </table>
-                    <input type="submit" class="defaultKnapp" id="resRomVelgRom" value="Reserver rom">
+                        <input type="submit" class="defaultKnapp" id="resRomVelgRom" formaction="EndreRom" value="Lagre informasjon">
                     
-                </form>
+                </form:form>
         </fieldset>
     </div>
-    
-    
-    
     
 </main>
