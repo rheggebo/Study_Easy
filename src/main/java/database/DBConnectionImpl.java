@@ -1455,6 +1455,8 @@ public class DBConnectionImpl implements DBConnection{
     
     @Override
     public List<RomBestilling> getReserverteRom(KalenderEvent ke){
+        System.out.println("Epost: " + ke.getEpost());
+        System.out.println("Starttid: " + ke.getStartTid());
         return jT.query(getReserverteRom, new Object[]{
             ke.getEpost(),
             ke.getStartTid(),
