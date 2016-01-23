@@ -35,10 +35,10 @@ public class testSokeSide {
         driver.get("http://localhost:8084/Study_Easy/");
         
         Thread.sleep(1000);
-        driver.findElement(By.id("epostInnlogging")).sendKeys("test1@aol.com");
+        driver.findElement(By.id("epostInnlogging")).sendKeys("erlendksteinset@hotmail.com");
         
         Thread.sleep(1000);
-        driver.findElement(By.id("passordInnlogging")).sendKeys("passord"); 
+        driver.findElement(By.id("passordInnlogging")).sendKeys(".kT?0*CZC_"); 
         
         Thread.sleep(1000);
         driver.findElement(By.id("loggInnKnapp")).click(); 
@@ -100,49 +100,49 @@ public class testSokeSide {
         Thread.sleep(1000);
         driver.findElement(By.id("searchFormSokeSide")).sendKeys("a");
         
-        Thread.sleep(1000);
+        Thread.sleep(500);
         driver.findElement(By.id("ansattSokeSide")).click(); 
         
-        Thread.sleep(1000);
+        Thread.sleep(500);
         driver.findElement(By.id("ansattSokeSide")).click(); 
                 
-        Thread.sleep(1000);
+        Thread.sleep(500);
         driver.findElement(By.id("ansattSokeSide")).click(); 
                 
-        Thread.sleep(1000);
+        Thread.sleep(500);
         driver.findElement(By.id("studentSokeSide")).click(); 
                 
-        Thread.sleep(1000);
+        Thread.sleep(500);
         driver.findElement(By.id("studentSokeSide")).click(); 
                         
-        Thread.sleep(1000);
+        Thread.sleep(500);
         driver.findElement(By.id("studentSokeSide")).click(); 
         
-        Thread.sleep(1000);
+        Thread.sleep(500);
         driver.findElement(By.id("fagSokeSide")).click(); 
         
-        Thread.sleep(1000);
+        Thread.sleep(500);
         driver.findElement(By.id("fagSokeSide")).click(); 
         
-        Thread.sleep(1000);
+        Thread.sleep(500);
         driver.findElement(By.id("fagSokeSide")).click(); 
         
-        Thread.sleep(1000);
+        Thread.sleep(500);
         driver.findElement(By.id("romSokeSide")).click(); 
         
-        Thread.sleep(1000);
+        Thread.sleep(500);
         driver.findElement(By.id("romSokeSide")).click(); 
         
-        Thread.sleep(1000);
+        Thread.sleep(500);
         driver.findElement(By.id("romSokeSide")).click(); 
         
-        Thread.sleep(1000);
+        Thread.sleep(500);
         driver.findElement(By.id("klasseSokeSide")).click(); 
         
-        Thread.sleep(1000);
+        Thread.sleep(500);
         driver.findElement(By.id("klasseSokeSide")).click(); 
         
-        Thread.sleep(1000);
+        Thread.sleep(500);
         driver.findElement(By.id("klasseSokeSide")).click();                  
         
         Thread.sleep(1000);
