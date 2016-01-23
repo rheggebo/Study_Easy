@@ -292,9 +292,14 @@ public class EventKontroller {
     public String velgRomReserver(@ModelAttribute FormVelgRom formVelgRom,HttpSession sess, Model model){
         BrukerB bruker = (BrukerB) sess.getAttribute("brukerBean");
         model.addAttribute("bruker", bruker);
-        
+        String [] romID =  formVelgRom.getRomId().split(" ");
+        System.out.println(romID.length+ "er lengden ");
+        if (romID.length==2){
+            model.addAttribute("opptatt", true );
+            return "VelgRom";
+        }
         Rom rom = new Rom();
-        rom.setRomID(formVelgRom.getRomId());
+        rom.setRomID(romID[0]);
         KalenderEvent ke = new KalenderEvent();
         ke.setRom(formVelgRom.getRomId());
         int fra = formVelgRom.getFraTid()/100;
@@ -304,17 +309,14 @@ public class EventKontroller {
         ke.setEpost(bruker.getEpost());
         ke.setTilhorerEvent(0);
 	try{
+            System.out.println("La vi til noe?" );
             if (service.erRomLedig(ke)){
-                System.out.println("La vi til noe? " + service.leggTilBooking(ke)); 
-            }
-            else{
-                //model.addAttribute("feilMeldingReservereRom", "feilmelding.feilMeldingReservereRom");
-                return "VelgRom";
+                System.out.println("La vi til noe? JA " + service.leggTilBooking(ke)); 
             }
         }catch(Exception e){
-            return "VelgRom";
+            return "Forside";
         }
-        return "VelgRom";
+        return "Forside";
     }
     
     @RequestMapping("SlettBooking")

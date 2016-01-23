@@ -53,6 +53,8 @@
                         <td></td>
                     </tr>
                     <c:set var="harSøkt" value="${formVelgRom.getVarighet()}"></c:set>
+                    <c:set var="opptatt" value="${opptatt}"></c:set>
+                    <c:if test="${!opptatt}">
                     <c:if test="${harSøkt >= 1}">
                         <tr>
                             <td>RomID:<em>* </em></td>
@@ -92,6 +94,7 @@
                                 </td>
                             </tr>
                         </c:if> 
+                    </c:if>
                     </c:if>
                 </table>
             </form:form>
