@@ -123,7 +123,7 @@
             </form:form>
         </fieldset>
     </div>
-    <div class="tab">
+    <div class="tabFinnRom">
     <section class="searchFinnRom">
         <table>
             <c:forEach var="liste" items="${liste}" varStatus="status">
@@ -131,7 +131,7 @@
                     <tr>
                         <form:input type="hidden" path="rom" value="${liste}"/>
                         <form:input type="hidden" path="epost"/>
-                    <pre><td><c:out value="${liste}"></c:out><input class="slettknappMinSide" type='submit' value="Bestill"></td></pre>
+                    <pre><td><c:out value="${liste}"></c:out><input class="bestillKnappFinnRom" type='submit' value="Bestill"></td></pre>
                     </tr>
                 </form:form>      
             </c:forEach>                      
