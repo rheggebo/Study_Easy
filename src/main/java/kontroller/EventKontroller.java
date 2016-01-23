@@ -248,12 +248,12 @@ public class EventKontroller {
     }
     
     @RequestMapping("VelgRomRed")
-    public String velgRomRed(@ModelAttribute FormVelgRom formVelgRom,HttpSession sess, Model model){
+    public String velgRomRed(@ModelAttribute FormRedRom formRedRom,@ModelAttribute FormVelgRom formVelgRom,HttpSession sess, Model model){
         BrukerB bruker = (BrukerB) sess.getAttribute("brukerBean");
         Rom rom = new Rom();
         System.out.println(rom.getRomNavn());
         model.addAttribute("bruker", bruker);
-        rom.setRomID(formVelgRom.getRomId());
+        rom.setRomID(formVelgRom.getRomId().split(" ")[0]);
 	try{
             rom = service.getRom(rom); 
            // rom.setInnhold(service.getRomInnhold??"?!??");
@@ -310,9 +310,7 @@ public class EventKontroller {
         ke.setTilhorerEvent(0);
 	try{
             System.out.println("La vi til noe?" );
-            if (service.erRomLedig(ke)){
-                System.out.println("La vi til noe? JA " + service.leggTilBooking(ke)); 
-            }
+            service.leggTilBooking(ke);
         }catch(Exception e){
             return "Forside";
         }

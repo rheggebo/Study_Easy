@@ -15,7 +15,7 @@
     <div id="RomInfoRed">
         <fieldset class="fieldsetDefault">
             <legend><b>Rominformasjon:</b></legend>
-                <form:form modelAttribute="redRomForm" method="POST" action="redigerRomLagre">
+                <form:form modelAttribute="formRedRom" method="POST" action="redigerRomLagre">
                     <table>
                         
                         <tr>
