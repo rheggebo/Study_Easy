@@ -21,6 +21,15 @@ public class FormVelgRom {
     private int fraTid;
     private int varighet;
     private String romId;
+    private String opptatt;
+
+    public String getOpptatt() {
+        return opptatt;
+    }
+
+    public void setOpptatt(String opptatt) {
+        this.opptatt = opptatt;
+    }
 
     public String getRomId() {
         return romId;
