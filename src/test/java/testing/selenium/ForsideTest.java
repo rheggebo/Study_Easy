@@ -32,37 +32,37 @@ public class ForsideTest {
     
         driver.get("http://localhost:8084/Study_Easy/");
         
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         driver.findElement(By.id("epostInnlogging")).sendKeys("test1@aol.com");
         
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         driver.findElement(By.id("passordInnlogging")).sendKeys("passord"); 
         
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         driver.findElement(By.id("loggInnKnapp")).click(); 
         
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         driver.findElement(By.className("fc-next-button")).click(); 
         
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         driver.findElement(By.className("fc-next-button")).click(); 
         
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         driver.findElement(By.className("fc-prev-button")).click(); 
         
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         driver.findElement(By.className("fc-today-button")).click(); 
         
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         driver.findElement(By.className("fc-agendaWeek-button")).click(); 
         
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         driver.findElement(By.className("fc-agendaDay-button")).click(); 
         
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         driver.findElement(By.className("fc-month-button")).click(); 
         
-        Thread.sleep(2000);
+        Thread.sleep(1000);
        
     }
     
