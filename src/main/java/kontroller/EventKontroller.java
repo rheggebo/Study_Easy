@@ -92,12 +92,14 @@ public class EventKontroller {
 
             service.leggTilEvent(event);
             
-            Email email = new Email();
-            List<Abonemennt> abonemennt = service.getBrukerAbonnement(brukerb.getEpost());
-            String melding = "Ny heldelse lagt til av " + brukerb.getFornavn() + " " + brukerb.getEtternavn() + ". Tittel: " + event.getTittel() + ". Start: " + event.getStartTid() +
-                    " , Slutt: " + event.getSluttTid() + ". Notat: " + event.getNotat();
-            for (Abonemennt abn : abonemennt){
-                email.sendEpost(abn.getEierid(), "Ny hendelse", melding);
+            if (!privat){
+                Email email = new Email();
+                List<Abonemennt> abonemennt = service.getBrukerAbonnement(brukerb.getEpost());
+                String melding = "Ny heldelse lagt til av " + brukerb.getFornavn() + " " + brukerb.getEtternavn() + ". Tittel: " + event.getTittel() + ". Start: " + event.getStartTid() +
+                        " , Slutt: " + event.getSluttTid() + ". Notat: " + event.getNotat();
+                for (Abonemennt abn : abonemennt){
+                    email.sendEpost(abn.getEierid(), "Ny hendelse", melding);
+                }
             }
         }
         return "OpprettHendelse";
