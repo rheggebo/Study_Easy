@@ -307,7 +307,8 @@ public class EventKontroller {
         ke.setEpost(bruker.getEpost());
         ke.setTilhorerEvent(0);
 	try{
-            service.leggTilBooking(ke); 
+            System.out.println("La vi til noe? " + service.leggTilBooking(ke)); 
+            
         }catch(Exception e){
             model.addAttribute("feilMeldingReservereRom", "Kunne ikke reservere rommet ");
             return "VelgRom";

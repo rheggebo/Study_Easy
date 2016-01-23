@@ -63,7 +63,7 @@
                     <tr>
                         <td></td>
                         <td>
-                            <input class="defaultKnapp" formaction="VelgRomReserverRom" type="submit" value="Bestill">
+                            <input class="defaultKnapp" formaction="VelgRomReserver" type="submit" value="Bestill">
                         </td>
                         <td></td>
                     </tr>  
