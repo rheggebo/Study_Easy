@@ -144,7 +144,7 @@ public class DBConnectionImpl implements DBConnection{
     
     private final String getAlleKLasser = "SELECT DISTINCT klasseID FROM klasse_fag";
     
-    private final String erRomLedig = "SELECT * FROM rom_bestilling WHERE romID = ? AND ((dato_start BETWEEN ? AND ?) OR (dato_slutt BETWEEN ? AND ?))";
+    private final String erRomLedig = "SELECT * FROM rom_bestilling WHERE romID = ? AND (((dato_start BETWEEN ? AND ?) OR (dato_slutt BETWEEN ? AND ?)) OR  (dato_start < ? AND dato_slutt >?))";
     
     private DataSource dS;
     private JdbcTemplate jT;
@@ -1533,6 +1533,8 @@ public class DBConnectionImpl implements DBConnection{
          try {
              RomBestilling temp = jT.queryForObject(erRomLedig,new Object[]{
                 ke.getRom(),
+                ke.getStartTid(),
+                ke.getSluttTid(),
                 ke.getStartTid(),
                 ke.getSluttTid(),
                 ke.getStartTid(),
