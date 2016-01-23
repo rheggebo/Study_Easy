@@ -29,7 +29,7 @@ public class MinSideTest {
      @Test
     public void SokeSide() throws Throwable {   
         
-        driver.get("http://localhost:8084/Study_Easy/");
+        //driver.get("http://localhost:8084/Study_Easy/");
         
         /*Thread.sleep(500);
         driver.findElement(By.id("epostInnlogging")).sendKeys("erlendksteinset@hotmail.com");
