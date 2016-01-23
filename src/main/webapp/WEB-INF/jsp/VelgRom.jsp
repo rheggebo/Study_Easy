@@ -52,44 +52,50 @@
                         </td>
                         <td></td>
                     </tr>
-                    <tr>
-                        <td>RomID:<em>* </em></td>
-                        <td ><label class="velgRomForm" id="romLable"/>
-                        </td>
-                        <td>
-                            <form:input hidden="true" class="velgRomForm" id="rom" path="romId"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>
-                            <input class="defaultKnapp" formaction="VelgRomReserver" type="submit" value="Bestill">
-                        </td>
-                        <td></td>
-                    </tr>  
-                    <c:set var="tilgang" value="${bruker.getTilgangsniva()}"></c:set>
-                    <c:if test="${tilgang == 1}">
+                    <c:set var="harSøkt" value="${formVelgRom.getVarighet()}"></c:set>
+                    <c:set var="opptatt" value="${opptatt}"></c:set>
+                    <c:if test="${!opptatt}">
+                    <c:if test="${harSøkt >= 1}">
                         <tr>
-                            <td>
+                            <td>RomID:<em>* </em></td>
+                            <td ><label class="velgRomForm" id="romLable"/>
                             </td>
                             <td>
-                            <input type="submit" class="defaultKnapp" formaction="OverstyrRomL" value="Overstyr rombestilling">
-                            </td>
-                            <td>
+                                <form:input hidden="true" class="velgRomForm" id="rom" path="romId"/>
                             </td>
                         </tr>
-                     </c:if>
-                    <c:if test="${tilgang == 2}">
-                        <tr><td>
-                            </td>
+                        <tr>
+                            <td></td>
                             <td>
-                            <input type="submit" class="defaultKnapp" formaction="OverstyrRomAdmin" value="Overstyr rombestilling">
+                                <input class="defaultKnapp" formaction="VelgRomReserver" type="submit" value="Bestill">
                             </td>
-                            <td>
-                            <input type="submit" class="defaultKnapp" formaction="VelgRomRed" value="Rediger rom">
-                            </td>
-                        </tr>
-                    </c:if> 
+                            <td></td>
+                        </tr>  
+                        <c:set var="tilgang" value="${bruker.getTilgangsniva()}"></c:set>
+                        <c:if test="${tilgang == 1}">
+                            <tr>
+                                <td>
+                                </td>
+                                <td>
+                                <input type="submit" class="defaultKnapp" formaction="OverstyrRomL" value="Overstyr rombestilling">
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+                         </c:if>
+                        <c:if test="${tilgang == 2}">
+                            <tr><td>
+                                </td>
+                                <td>
+                                <input type="submit" class="defaultKnapp" formaction="OverstyrRomAdmin" value="Overstyr rombestilling">
+                                </td>
+                                <td>
+                                <input type="submit" class="defaultKnapp" formaction="VelgRomRed" value="Rediger rom">
+                                </td>
+                            </tr>
+                        </c:if> 
+                    </c:if>
+                    </c:if>
                 </table>
             </form:form>
         </fieldset>
@@ -201,6 +207,7 @@
 
 <script>
     // Veldig dårlig måte å endre brilde når vi kommer fra søk:
+
     if((erLedig2(" 1 stÃ¸rrelse"))==1){
     }
     if((erLedig2(" 2 stÃ¸rrelse")==1)){
@@ -285,6 +292,13 @@
     }); 
 </script>
 <script>
+    function erLedig3(id){
+        if (("${liste}").indexOf(id) !=-1) {
+            return 1;
+        }
+        //alert(id+" er ikke ledig");
+        return -1;
+    }
     //Klikkhendelser for planRomOpptatt objeckter(de kommer inn som planOpptatt):
     //Første etasje:
     var aO1 = document.getElementById("plantegningEtasje1");
@@ -299,8 +313,12 @@
         }, false);
         //KlikkFunksjon:
         delta.addEventListener("click", function(){ 
-               document.getElementById('rom').value=this.id;
-               document.getElementById('romLable').innerHTML=this.id;
+                    document.getElementById('rom').value=this.id;
+                    document.getElementById('romLable').innerHTML=this.id;
+                if (erLedig3(this.id)!=1){
+                    document.getElementById('rom').value=this.id+" Opptatt";
+                    document.getElementById('romLable').innerHTML=this.id +" Opptatt";
+                }
             }, false);
     }},false);
     //Andre etasje:
@@ -314,8 +332,12 @@
                document.getElementById('romNavn').innerHTML=this.id;
         }, false);
         deltaO2.addEventListener("click", function(){ 
-               document.getElementById('rom').value=this.id;
-               document.getElementById('romLable').innerHTML=this.id;
+                    document.getElementById('rom').value=this.id;
+                    document.getElementById('romLable').innerHTML=this.id;
+                if (erLedig3(this.id)!=1){
+                    document.getElementById('rom').value=this.id+" Opptatt";
+                    document.getElementById('romLable').innerHTML=this.id +" Opptatt";
+                }
             }, false);
     }},false);
     //Tredje etasje:    
@@ -329,8 +351,12 @@
                document.getElementById('romNavn').innerHTML=this.id;
         }, false);
         deltaO3.addEventListener("click", function(){ 
-               document.getElementById('rom').value=this.id;
-               document.getElementById('romLable').innerHTML=this.;
+                    document.getElementById('rom').value=this.id;
+                    document.getElementById('romLable').innerHTML=this.id;
+                if (erLedig3(this.id)!=1){
+                    document.getElementById('rom').value=this.id+" Opptatt";
+                    document.getElementById('romLable').innerHTML=this.id+" Opptatt";
+                }
             }, false);
     }},false);
     //Fjerde etasje:
@@ -344,8 +370,12 @@
                document.getElementById('romNavn').innerHTML=this.id;
         }, false);
         deltaO4.addEventListener("click", function(){ 
-               document.getElementById('rom').value=this.id;
-               document.getElementById('romLable').innerHTML=this.id;
+                    document.getElementById('rom').value=this.id;
+                    document.getElementById('romLable').innerHTML=this.id;
+                if (erLedig3(this.id)!=1){
+                    document.getElementById('rom').value=this.id+" Opptatt";
+                    document.getElementById('romLable').innerHTML=this.id+" Opptatt";
+                }
         }, false);
     } },false);
 </script>

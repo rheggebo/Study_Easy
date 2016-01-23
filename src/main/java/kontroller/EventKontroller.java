@@ -248,12 +248,12 @@ public class EventKontroller {
     }
     
     @RequestMapping("VelgRomRed")
-    public String velgRomRed(@ModelAttribute FormVelgRom formVelgRom,HttpSession sess, Model model){
+    public String velgRomRed(@ModelAttribute FormRedRom formRedRom,@ModelAttribute FormVelgRom formVelgRom,HttpSession sess, Model model){
         BrukerB bruker = (BrukerB) sess.getAttribute("brukerBean");
         Rom rom = new Rom();
         System.out.println(rom.getRomNavn());
         model.addAttribute("bruker", bruker);
-        rom.setRomID(formVelgRom.getRomId());
+        rom.setRomID(formVelgRom.getRomId().split(" ")[0]);
 	try{
             rom = service.getRom(rom); 
            // rom.setInnhold(service.getRomInnhold??"?!??");
@@ -289,15 +289,17 @@ public class EventKontroller {
     }
     
     @RequestMapping("VelgRomReserver")
-    public String velgRomReserver(@Valid @ModelAttribute FormVelgRom formVelgRom,HttpSession sess, Model model, BindingResult resultat){
+    public String velgRomReserver(@ModelAttribute FormVelgRom formVelgRom,HttpSession sess, Model model){
         BrukerB bruker = (BrukerB) sess.getAttribute("brukerBean");
         model.addAttribute("bruker", bruker);
-        if (resultat.hasErrors()){ 
+        String [] romID =  formVelgRom.getRomId().split(" ");
+        System.out.println(romID.length+ "er lengden ");
+        if (romID.length==2){
+            model.addAttribute("opptatt", true );
             return "VelgRom";
         }
-        
         Rom rom = new Rom();
-        rom.setRomID(formVelgRom.getRomId());
+        rom.setRomID(romID[0]);
         KalenderEvent ke = new KalenderEvent();
         ke.setRom(formVelgRom.getRomId());
         int fra = formVelgRom.getFraTid()/100;
@@ -307,19 +309,12 @@ public class EventKontroller {
         ke.setEpost(bruker.getEpost());
         ke.setTilhorerEvent(0);
 	try{
-            if (service.erRomLedig(ke)){
-                System.out.println("La vi til noe? " + service.leggTilBooking(ke)); 
-            }
-            else{
-                model.addAttribute("feilMeldingReservereRom", "feilMeldingReservereRom");
-                return "VelgRom";
-            }
+            System.out.println("La vi til noe?" );
+            service.leggTilBooking(ke);
         }catch(Exception e){
-            model.addAttribute("feilMeldingReservereRom", "feilMeldingReservereRom");
-            return "VelgRom";
+            return "Forside";
         }
-         model.addAttribute("feilMeldingReservereRom", "feilMeldingReservereRom");
-        return "VelgRom";
+        return "Forside";
     }
     
     @RequestMapping("SlettBooking")

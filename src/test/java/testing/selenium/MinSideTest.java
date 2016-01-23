@@ -31,40 +31,37 @@ public class MinSideTest {
         
         driver.get("http://localhost:8084/Study_Easy/");
         
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         driver.findElement(By.id("epostInnlogging")).sendKeys("erlendksteinset@hotmail.com");
         
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         driver.findElement(By.id("passordInnlogging")).sendKeys(".kT?0*CZC_"); 
         
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         driver.findElement(By.id("loggInnKnapp")).click(); 
         
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         driver.findElement(By.id("minSide")).click(); 
    
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         driver.findElement(By.id("minInfo")).click();
                 
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         driver.findElement(By.id("endrePassord")).click();
           
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         driver.findElement(By.id("gPassord")).sendKeys(".kT?0*CZC_"); 
        
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         driver.findElement(By.id("nPassord")).sendKeys(".kT?0*CZC_"); 
        
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         driver.findElement(By.id("gnPassord")).sendKeys(".kT?0*CZC_"); 
                 
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         driver.findElement(By.id("endreGammeltPassord")).click();
         
-        //Thread.sleep(2000);
-        //driver.findElement(By.id("endreOpplysninger")).click();
-        
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         
     }
     
