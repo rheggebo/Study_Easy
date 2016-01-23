@@ -19,12 +19,11 @@ import javax.mail.MessagingException;
  */
 public class EmailTest {
     
-    String mottaker = "studyeasytest@gmail.com";
-    String tema = "test";
-    String melding = "spamspamspam";
-    
     Email test;
     
+    String mottaker;
+    String tema;
+    String melding;
     
     @BeforeClass
     public static void setUpClass() throws Exception {
@@ -37,18 +36,22 @@ public class EmailTest {
     public void setUp() throws Exception {
         // Koden her eksekveres f�r hver av testmetodene i klassen
         test = new Email();
+        
+        mottaker = "studyeasytest@gmail.com";
+        tema = "test";
+        melding = "spamspamspam";
     }
     
     @Test
     public void tester_email (){
         assertEquals(test.sendEpost(mottaker, tema, melding), true);  
     }
-    /*
-    @Test(expected=NullPointerException.class)
-    public void tester_email2()throws Exception{
-        test.sendEpost(null, tema, melding);
+    
+    @Test
+    public void tester_email2() throws Exception{
+        assertEquals(test.sendEpost(null, null, melding), false);
     }
-    */
+    
     
     
     @After

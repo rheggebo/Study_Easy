@@ -19,7 +19,8 @@ import static org.junit.Assert.*;
  */
 public class AbonemenntTest {
     
-    Abonemennt ab; 
+    Abonemennt ab;
+    Abonemennt ac;
     
     @BeforeClass
     public static void setUpClass() {
@@ -28,7 +29,7 @@ public class AbonemenntTest {
     @Before
     public void setUp() {
         ab = new Abonemennt("ola@hotmail.com", "TDAT2002", 1);
-        
+        ac = new Abonemennt();
     }
     
     @Test
@@ -48,6 +49,10 @@ public class AbonemenntTest {
         ab.setAbonererId("TDAT2001");
         
         assertEquals(ab.toString(), "TDAT2001");
+        
+        ab.setType(0);
+        
+        assertEquals(ab.getType(), 0);
     }
     
     @After

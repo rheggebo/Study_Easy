@@ -61,8 +61,8 @@ public class MinSideTest {
         Thread.sleep(2000);
         driver.findElement(By.id("endreGammeltPassord")).click();
         
-        Thread.sleep(2000);
-        driver.findElement(By.id("endreOpplysninger")).click();
+        //Thread.sleep(2000);
+        //driver.findElement(By.id("endreOpplysninger")).click();
         
         Thread.sleep(2000);
         

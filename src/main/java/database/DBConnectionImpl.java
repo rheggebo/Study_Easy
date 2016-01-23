@@ -444,6 +444,7 @@ public class DBConnectionImpl implements DBConnection{
         }
         return false;
     }
+    //Bruker metoden leggTilEvent lengre ned i koden
 
     @Override
     public boolean fjernKalenderEvent(KalenderEvent ke) {
@@ -463,6 +464,7 @@ public class DBConnectionImpl implements DBConnection{
             ke.getId()
         }, new BrukerMapper());
     }
+    //sql-tabell finnes ikke i databasen lengre
 
     @Override
     public Bruker getKalenderEventDeltaker(KalenderEvent ke, Bruker b) {
@@ -470,7 +472,7 @@ public class DBConnectionImpl implements DBConnection{
             ke.getId(),
             b.getEpost()
         }, new BrukerMapper());
-    }
+    }//sql-tabell finnes ikke i databasen lengre
 
     @Override
     public List<KalenderEvent> getKalenderEventEier(Bruker b) {
@@ -484,14 +486,14 @@ public class DBConnectionImpl implements DBConnection{
         return jT.query(getKalenderEventEier, new Object[]{
             b.getEpost()
         }, new KalenderEventMapper());
-    }
+    }//tatt
 
     @Override
     public List<KalenderEvent> getKalenderEventRomID(Rom r) {
         return jT.query(getKalenderEventRomID, new Object[]{
             r.getRomID()
         }, new KalenderEventMapper());
-    }
+    }//tatt
     
     @Override
     public List<KalenderEvent> getKalenderEventHidden(KalenderEvent ke) {

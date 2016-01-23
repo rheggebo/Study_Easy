@@ -34,23 +34,25 @@ public class DBConnectionImplTest {
     
     static DBConnectionImpl dbc;
     
+    BrukerB brukerB;
     Abonemennt ab;
     Abonemennt ac;
     Klasse klasse;
     Rom rom1; 
     Rom rom2;
+    Rom rom3;
     Fag fag1;
     Fag fag2;
     static Bruker b;
     Bruker bruker;
     Timestamp fraDato;
     Timestamp tilDato;
+    List<KalenderEvent> listkEvent; 
     static List<KalenderEvent> a; 
     static int tall;
         
     KalenderEvent kEvent;
     private ArrayList<KalenderEvent> KEliste;
-    static ArrayList<KalenderEvent> object;
     private ArrayList<Rom> RomListe;
     private ArrayList<Fag> FagListe;
     private ArrayList<Bruker> BrukerListe;
@@ -93,11 +95,11 @@ public class DBConnectionImplTest {
     @Before
     public void setUp() {
                         
-        /*KEliste = new ArrayList();
+        KEliste = new ArrayList();
         RomListe = new ArrayList();
         BrukerListe = new ArrayList();
         FagListe = new ArrayList();
-        */
+        
         fraDato = Timestamp.valueOf("2016-1-22 09:00:00.0");
         tilDato = Timestamp.valueOf("2016-1-23 12:30:00.0");
         
@@ -307,7 +309,27 @@ public class DBConnectionImplTest {
     }
     skjønner ikke hva som returneres :(  */
     
-
+    /*static int inkrementere(){
+        a = new ArrayList<KalenderEvent>();
+        a = dbc.getKalenderEventEier(b);
+        int bare = a.get(0).getId();
+        //System.out.println(bare);
+        return bare;
+    }*/
+    
+    @Test
+    public void testKalenderEventMapper(){
+        rom3 = new Rom();
+        rom3.setRomID("KA-SA235");
+        brukerB = new BrukerB();
+        brukerB.setEpost("ola@hotmail.com");
+        listkEvent = new ArrayList<KalenderEvent>();
+        listkEvent = dbc.getKalenderEventEier(brukerB);
+        listkEvent = dbc.getKalenderEventRomID(rom3);
+        listkEvent = dbc.getKalenderEventHidden(kEvent);
+        assertEquals(listkEvent.size(), 0);
+    }
+    
     @After
     public void tearDown() {
         

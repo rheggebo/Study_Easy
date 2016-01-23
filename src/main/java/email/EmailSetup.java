@@ -12,13 +12,9 @@ import javax.mail.MessagingException;
 
 public class EmailSetup {
    
-
    /* private static String USER_NAME = "andreasbergman93";  // GMail user name (just the part before "@gmail.com")
     private static String PASSWORD = "Fritte9193"; // GMail password
     private static String RECIPIENT = "andreasolof@hotmail.com";*/
-
-    public static void main(String[] args) throws MessagingException {
-    }
 
     public static void sendFromGMail(String from, String pass, String[] to, String subject, String body) throws MessagingException, Exception{
         Properties props = System.getProperties();
