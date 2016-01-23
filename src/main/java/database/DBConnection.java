@@ -67,6 +67,8 @@ public interface DBConnection {
     
     public List<KalenderEvent> getKalenderEventRomID(Rom r);
     
+    public List<KalenderEvent> getKalenderEventHidden(KalenderEvent ke);
+    
     public List<Fag> getFagLaerer(Bruker b);
     
     public Rom getRombestilling();

@@ -61,6 +61,7 @@ public class DBConnectionImpl implements DBConnection{
     private final String getKalenderEventDeltaker = "SELECT * FROM KALENDER_DELTAKER WHERE EVENTID=? AND DELTAKERID=?";
     private final String getKalenderEventEier = "SELECT *, rom_bestilling.romID FROM kalender_event LEFT OUTER JOIN rom_bestilling ON rom_bestilling.bestillingsID = kalender_event.bestillingsID WHERE EIER=?";
     private final String getKalenderEventRomID = "SELECT *, rom_bestilling.romID FROM kalender_event LEFT OUTER JOIN rom_bestilling ON rom_bestilling.bestillingsID = kalender_event.bestillingsID WHERE ROMID=?";
+    private final String getKalenderEventHidden = "SELECT hidden FROM kalender_event Where id = ?";
     private final String getFagLaerer = "SELECT FAGID FROM FAG_LÆRER WHERE BRUKERID=?";
     private final String getRombestilling = "";
     private final String getRomFraNavn = "SELECT * FROM rom WHERE romnavn=?";
@@ -92,12 +93,17 @@ public class DBConnectionImpl implements DBConnection{
     "SELECT DISTINCT kalender_event.id, kalender_event.tittel, kalender_event.dato_start, kalender_event.dato_slutt, kalender_event.eier, " +
     "kalender_event.eier_navn, (CASE WHEN kalender_event.bestillingsID IS NOT NULL AND kalender_event.bestillingsID = rom_bestilling.bestillingsID then rom_bestilling.romID else kalender_event.bestillingsID END) as romID, kalender_event.fagID, kalender_event.type, kalender_event.descr, kalender_event.hidden FROM rom_bestilling, kalender_event, brukere, abonemennt_fag WHERE kalender_event.fagID = abonemennt_fag.fagID AND abonemennt_fag.eierID =?;";
     
-    private final String getRom0Param = "SELECT DISTINCT rom.romID, romnavn, etasje, størrelse, type, sitteplasser FROM rom LEFT OUTER JOIN rom_innhold ON rom.romID = rom_innhold.romID LEFT OUTER JOIN " +
-        "rom_bestilling ON rom.romID = rom_bestilling.romID " +
-        "WHERE dato_start BETWEEN ? AND ? (rom.type LIKE ? AND ? NOT BETWEEN dato_start AND dato_slutt AND " +
-        "? NOT BETWEEN dato_start AND dato_slutt  OR rom_bestilling.romID IS NULL AND rom.type LIKE ?)";
+    private final String getRomStart = "SELECT DISTINCT rom_bestilling.romID FROM rom, rom_bestilling LEFT OUTER JOIN rom_innhold ON rom_bestilling.romID = rom_innhold.romID WHERE rom.type = ? AND rom.romID = rom_bestilling.romID AND rom_bestilling.romID NOT IN (" +
+        "SELECT rom_bestilling.romID FROM rom_bestilling WHERE (? BETWEEN rom_bestilling.dato_start AND rom_bestilling.dato_slutt) OR " +
+        "(? BETWEEN rom_bestilling.dato_start AND rom_bestilling.dato_slutt) OR (? < rom_bestilling.dato_start AND ? > rom_bestilling.dato_start)) ";
     
-    private final String getRom1Param = getRom0Param +" AND (rom_innhold.innholdID LIKE ? AND rom_innhold.antall>=?)";
+    
+    private final String getRomSlutt = "UNION SELECT DISTINCT rom.romID FROM rom LEFT OUTER JOIN rom_innhold ON rom.romID = rom_innhold.romID WHERE rom.type = ? AND rom.romID NOT IN (SELECT rom_bestilling.romID FROM rom_bestilling) ";
+    private final String getRomMiddelStorrelse = "AND rom.storrelse = ? ";
+    private final String getRomMiddelSitteplasser ="AND rom.sitteplasser >= ? ";
+    
+    private final String getRom1Param = " AND rom_innhold.innholdID = ? AND rom_innhold.antall >= ?";
+    
     private final String getRom2Param = getRom1Param +getRom1Param;
     private final String getRom3Param = getRom1Param +getRom1Param+getRom1Param;
     private final String getRom4Param = getRom1Param +getRom1Param+getRom1Param+getRom1Param;
@@ -486,6 +492,14 @@ public class DBConnectionImpl implements DBConnection{
             r.getRomID()
         }, new KalenderEventMapper());
     }
+    
+    @Override
+    public List<KalenderEvent> getKalenderEventHidden(KalenderEvent ke) {
+        List<KalenderEvent> liste = jT.query(getKalenderEventHidden,new Object[]{
+            ke.getEpost()}, new KalenderEventMapper());
+        return liste;
+
+    }
 
     @Override
     public List<Fag> getFagLaerer(Bruker b) {
@@ -633,36 +647,135 @@ public class DBConnectionImpl implements DBConnection{
     
     @Override
     public List<Rom> getRom0Param(Rom r, KalenderEvent ke, boolean storrelse, boolean sitteplasser){
+        String melding = getRomStart;
         if(storrelse && sitteplasser){
-            return jT.query(getRom0Param+ getRomStorrelse + getRomPlasser, new Object[]{
-            r.getType(),
-            ke.getStartTid(),
-            ke.getSluttTid(),
-            r.getType(),
-            r.getStorrelse(),
-            r.getAntStolplasser()
+            melding += getRomMiddelSitteplasser + getRomMiddelStorrelse + getRomSlutt + getRomMiddelSitteplasser + getRomMiddelStorrelse;
+            return jT.query(melding, new Object[]{
+                //finn rekkefølge...
+                /*
+                Start:
+                1: rom type
+                2: nystartdato
+                3: nysluttdato
+                4: nystartdato
+                5: nysluttdato
+                
+                Sitteplasser:
+                1: sitteplasser
+                
+                Størrelse:
+                1: størrelse
+                
+                Slutt:
+                1: type
+                
+                Sitteplasser:
+                1: sitteplasser
+                
+                Størrelse:
+                1: størrelse
+                
+                */
+                //start
+                r.getType(),
+                ke.getStartTid(),
+                ke.getSluttTid(),
+                ke.getStartTid(),
+                ke.getSluttTid(),
+                //størrelse
+                r.getStorrelse(),
+                //sitteplasser
+                r.getAntStolplasser(),
+                //slutt
+                r.getType(),
+                //størrelse
+                r.getStorrelse(),
+                //sitteplasser
+                r.getAntStolplasser()
+                
+
             }, new RomMapper());
         }else if(sitteplasser){
-            System.out.println(getRom0Param+" "+getRomPlasser+" "+r.getAntStolplasser());
-            return jT.query(getRom0Param+getRomPlasser, new Object[]{
-            r.getType(),
-            ke.getStartTid(),
-            ke.getSluttTid(),
-            r.getType(),
-            r.getAntStolplasser()
+            melding += getRomMiddelSitteplasser + getRomSlutt + getRomMiddelSitteplasser;
+            return jT.query(melding, new Object[]{
+                /*
+                Start:
+                1: rom type
+                2: nystartdato
+                3: nysluttdato
+                4: nystartdato
+                5: nysluttdato
+                
+                Sitteplasser:
+                1: sitteplasser
+                
+                Slutt:
+                1: type
+                
+                Sitteplasser:
+                1: sitteplasser
+                
+                */
+                
+                r.getType(),
+                ke.getStartTid(),
+                ke.getSluttTid(),
+                ke.getStartTid(),
+                ke.getSluttTid(),
+                r.getAntStolplasser(),
+                r.getType(),
+                r.getAntStolplasser()
             }, new RomMapper());
         }else if(storrelse){
-            return jT.query(getRom0Param+getRomStorrelse, new Object[]{
+            melding = getRomMiddelStorrelse + getRomSlutt + getRomMiddelStorrelse;
+            return jT.query(melding, new Object[]{
+                /*
+                Start:
+                1: rom type
+                2: nystartdato
+                3: nysluttdato
+                4: nystartdato
+                5: nysluttdato
+                
+                STORRELSE:
+                1: størrelse
+                SLUTT:
+                1: Type
+                
+                STORRELSE:
+                1: størrelse
+                
+                */
+                //start
+                r.getType(),
+                ke.getStartTid(),
+                ke.getSluttTid(),
+                ke.getStartTid(),
+                ke.getSluttTid(),
+                //størrelse
+                r.getStorrelse(),
+                //slutt
+                ke.getType(),
+                //størrelse
+                r.getStorrelse()
+            
+            }, new RomMapper());
+        }
+        return jT.query(melding + getRomSlutt, new Object[]{
+            /*
+            START
+            1: rom type
+            2: nystartdato
+            3: nysluttdato
+            4: nystartdato
+            5: nysluttdato
+            
+            SLUTT:
+            1: Type
+            */
             r.getType(),
             ke.getStartTid(),
             ke.getSluttTid(),
-            r.getType(),
-            r.getStorrelse()
-            }, new RomMapper());
-        }
-        System.out.println("Romtype "+r.getType()+" "+ke.getStartTid()+" "+ke.getSluttTid());
-        return jT.query(getRom0Param, new Object[]{
-            r.getType(),
             ke.getStartTid(),
             ke.getSluttTid(),
             r.getType()
@@ -678,45 +791,154 @@ public class DBConnectionImpl implements DBConnection{
             tab.add(midl[0]);
             tab.add(midl[1]);
         }
+        String melding = getRomStart;
         if(storrelse && sitteplasser){
+            melding += getRomMiddelStorrelse + getRomMiddelSitteplasser + getRom1Param + getRomSlutt  + getRomMiddelStorrelse + getRomMiddelSitteplasser + getRom1Param;
             return jT.query(getRom1Param+ getRomStorrelse + getRomPlasser, new Object[]{
-            r.getType(),
-            ke.getStartTid(),
-            ke.getSluttTid(),
-            r.getType(),
-            tab.get(0),
-            tab.get(1),
-            r.getStorrelse(),
-            r.getAntStolplasser()
+                /*
+                Start:
+                1: rom type
+                2: nystartdato
+                3: nysluttdato
+                4: nystartdato
+                5: nysluttdato
+                
+                Størrelse:
+                1: Størrelse
+                
+                Sitteplasser:
+                1: Sitteplasser
+                
+                param1:
+                1: innholdID
+                2: antall
+                
+                Slutt:
+                1: rom type
+                
+                størrelse:
+                1: størrelse
+                
+                sitteplasser:
+                1: sitteplasser
+                
+                param1:
+                1: innholdID
+                2: antall
+                
+                */
+                
+                //start
+                r.getType(),
+                ke.getStartTid(),
+                ke.getSluttTid(),
+                ke.getStartTid(),
+                ke.getSluttTid(),
+                
+                //størrelse
+                r.getStorrelse(),
+                
+                //sitteplasser
+                r.getAntStolplasser(),
+                
+                //param1
+                tab.get(0),
+                tab.get(1),
+                
+                //slutt
+                r.getType(),
+                
+                //størrelse
+                r.getStorrelse(),
+                
+                //sitteplasser
+                r.getAntStolplasser(),
+                
+                //param1
+                tab.get(0),
+                tab.get(1)
             }, new RomMapper());
         }else if(sitteplasser){
-            return jT.query(getRom1Param+getRomPlasser, new Object[]{
-            r.getType(),
-            ke.getStartTid(),
-            ke.getSluttTid(),
-            r.getType(),
-            tab.get(0),
-            tab.get(1),
-            r.getAntStolplasser()
+            melding += getRomMiddelSitteplasser + getRom1Param + getRomSlutt  + getRomMiddelSitteplasser + getRom1Param;
+            return jT.query(melding, new Object[]{
+                //start
+                r.getType(),
+                ke.getStartTid(),
+                ke.getSluttTid(),
+                ke.getStartTid(),
+                ke.getSluttTid(),
+                
+                
+                //sitteplasser
+                r.getAntStolplasser(),
+                
+                //param1
+                tab.get(0),
+                tab.get(1),
+                
+                //slutt
+                r.getType(),
+                
+                
+                //sitteplasser
+                r.getAntStolplasser(),
+                
+                //param1
+                tab.get(0),
+                tab.get(1)
             }, new RomMapper());
         }else if(storrelse){
-            return jT.query(getRom1Param+getRomStorrelse, new Object[]{
-            r.getType(),
-            ke.getStartTid(),
-            ke.getSluttTid(),
-            r.getType(),
-            tab.get(0),
-            tab.get(1),
-            r.getStorrelse()
+            melding += getRomMiddelStorrelse + getRom1Param + getRomSlutt  + getRomMiddelStorrelse + getRom1Param;
+            return jT.query(melding, new Object[]{
+                //start
+                r.getType(),
+                ke.getStartTid(),
+                ke.getSluttTid(),
+                ke.getStartTid(),
+                ke.getSluttTid(),
+                
+                //størrelse
+                r.getStorrelse(),
+                
+                
+                //param1
+                tab.get(0),
+                tab.get(1),
+                
+                //slutt
+                r.getType(),
+                
+                //størrelse
+                r.getStorrelse(),
+                
+                
+                //param1
+                tab.get(0),
+                tab.get(1)
+                
             }, new RomMapper());
         }
-        return jT.query(getRom1Param, new Object[]{
-            r.getType(),
-            ke.getStartTid(),
-            ke.getSluttTid(),
-            r.getType(),
-            tab.get(0),
-            tab.get(1)
+        melding += getRom1Param + getRomSlutt + getRom1Param;
+        return jT.query(melding, new Object[]{
+            //start
+                r.getType(),
+                ke.getStartTid(),
+                ke.getSluttTid(),
+                ke.getStartTid(),
+                ke.getSluttTid(),
+                
+                
+                //param1
+                tab.get(0),
+                tab.get(1),
+                
+                //slutt
+                r.getType(),
+                
+                
+                //param1
+                tab.get(0),
+                tab.get(1)
         }, new RomMapper());
         
     }
@@ -730,53 +952,140 @@ public class DBConnectionImpl implements DBConnection{
             tab.add(midl[0]);
             tab.add(midl[1]);
         }
+        String melding = getRomStart;
         if(storrelse && sitteplasser){
+            melding += getRomMiddelStorrelse + getRomMiddelSitteplasser + getRom2Param + getRomSlutt + getRomMiddelStorrelse + getRomMiddelSitteplasser + getRom2Param;
             return jT.query(getRom2Param+ getRomStorrelse + getRomPlasser, new Object[]{
-            r.getType(),
-            ke.getStartTid(),
-            ke.getSluttTid(),
-            r.getType(),
-            tab.get(0),
-            tab.get(1),
-            tab.get(2),
-            tab.get(3),
-            r.getStorrelse(),
-            r.getAntStolplasser()
+                //start
+                r.getType(),
+                ke.getStartTid(),
+                ke.getSluttTid(),
+                ke.getStartTid(),
+                ke.getSluttTid(),
+                
+                //storrelse
+                r.getStorrelse(),
+                
+                //sitteplasser
+                r.getAntStolplasser(),
+                
+                //rom2param
+                tab.get(0),
+                tab.get(1),
+                tab.get(2),
+                tab.get(3),
+                
+                //slutt
+                r.getType(),
+                
+                //storrelse
+                r.getStorrelse(),
+                
+                //sitteplasser
+                r.getAntStolplasser(),
+                
+                //rom2param
+                tab.get(0),
+                tab.get(1),
+                tab.get(2),
+                tab.get(3)
             }, new RomMapper());
         }else if(sitteplasser){
-            return jT.query(getRom2Param+getRomPlasser, new Object[]{
-            r.getType(),
-            ke.getStartTid(),
-            ke.getSluttTid(),
-            r.getType(),
-            tab.get(0),
-            tab.get(1),
-            tab.get(2),
-            tab.get(3),
-            r.getAntStolplasser()
+            melding += getRomMiddelSitteplasser + getRom2Param + getRomSlutt + getRomMiddelSitteplasser + getRom2Param;
+            return jT.query(melding, new Object[]{
+                //start
+                r.getType(),
+                ke.getStartTid(),
+                ke.getSluttTid(),
+                ke.getStartTid(),
+                ke.getSluttTid(),
+                
+                
+                //sitteplasser
+                r.getAntStolplasser(),
+                
+                //rom2param
+                tab.get(0),
+                tab.get(1),
+                tab.get(2),
+                tab.get(3),
+                
+                //slutt
+                r.getType(),
+                
+                
+                //sitteplasser
+                r.getAntStolplasser(),
+                
+                //rom2param
+                tab.get(0),
+                tab.get(1),
+                tab.get(2),
+                tab.get(3)
+
             }, new RomMapper());
         }else if(storrelse){
-            return jT.query(getRom2Param+getRomStorrelse, new Object[]{
-            r.getType(),
-            ke.getStartTid(),
-            ke.getSluttTid(),
-            r.getType(),
-            tab.get(0),
-            tab.get(1),
-            tab.get(2),
-            tab.get(3),
-            r.getStorrelse()
+            melding += getRomMiddelStorrelse  + getRom2Param + getRomSlutt + getRomMiddelStorrelse + getRom2Param;
+            return jT.query(melding, new Object[]{
+                
+                //start
+                r.getType(),
+                ke.getStartTid(),
+                ke.getSluttTid(),
+                ke.getStartTid(),
+                ke.getSluttTid(),
+                
+                //storrelse
+                r.getStorrelse(),
+                
+                
+                //rom2param
+                tab.get(0),
+                tab.get(1),
+                tab.get(2),
+                tab.get(3),
+                
+                //slutt
+                r.getType(),
+                
+                //storrelse
+                r.getStorrelse(),
+                
+                
+                //rom2param
+                tab.get(0),
+                tab.get(1),
+                tab.get(2),
+                tab.get(3)
             }, new RomMapper());
         }
+        melding +=  getRom2Param + getRomSlutt + getRom2Param;
         return jT.query(getRom2Param, new Object[]{
-            r.getType(),
-            ke.getStartTid(),
-            ke.getSluttTid(),
-            r.getType(),
-            tab.get(0),
-            tab.get(1),
-            tab.get(2),
-            tab.get(3)
+            
+                //start
+                r.getType(),
+                ke.getStartTid(),
+                ke.getSluttTid(),
+                ke.getStartTid(),
+                ke.getSluttTid(),
+                
+                
+                //rom2param
+                tab.get(0),
+                tab.get(1),
+                tab.get(2),
+                tab.get(3),
+                
+                //slutt
+                r.getType(),
+               
+                
+                
+                //rom2param
+                tab.get(0),
+                tab.get(1),
+                tab.get(2),
+                tab.get(3)
         }, new RomMapper());
     }
 
@@ -789,61 +1098,153 @@ public class DBConnectionImpl implements DBConnection{
             tab.add(midl[0]);
             tab.add(midl[1]);
         }
+        String melding = getRomStart;
         if(storrelse && sitteplasser){
-            return jT.query(getRom3Param+ getRomStorrelse + getRomPlasser, new Object[]{
-            r.getType(),
-            ke.getStartTid(),
-            ke.getSluttTid(),
-            r.getType(),
-            tab.get(0),
-            tab.get(1),
-            tab.get(2),
-            tab.get(3),
-            tab.get(4),
-            tab.get(5),
-            r.getStorrelse(),
-            r.getAntStolplasser()
+            melding += getRomMiddelStorrelse + getRomMiddelSitteplasser + getRom3Param + getRomSlutt + getRomMiddelStorrelse + getRomMiddelSitteplasser + getRom3Param;
+            return jT.query(melding, new Object[]{
+                //start
+                r.getType(),
+                ke.getStartTid(),
+                ke.getSluttTid(),
+                ke.getStartTid(),
+                ke.getSluttTid(),
+                
+                //storrelse
+                r.getStorrelse(),
+                
+                //sitteplasser
+                r.getAntStolplasser(),
+                
+                //rom3param
+                tab.get(0),
+                tab.get(1),
+                tab.get(2),
+                tab.get(3),
+                tab.get(4),
+                tab.get(5),
+                
+                //slutt
+                r.getType(),
+                
+                //storrelse
+                r.getStorrelse(),
+                
+                //sitteplasser
+                r.getAntStolplasser(),
+                
+                //rom3param
+                tab.get(0),
+                tab.get(1),
+                tab.get(2),
+                tab.get(3),
+                tab.get(4),
+                tab.get(5)
+                
             }, new RomMapper());
         }else if(sitteplasser){
-            return jT.query(getRom3Param+getRomPlasser, new Object[]{
-            r.getType(),
-            ke.getStartTid(),
-            ke.getSluttTid(),
-            r.getType(),
-            tab.get(0),
-            tab.get(1),
-            tab.get(2),
-            tab.get(3),
-            tab.get(4),
-            tab.get(5),
-            r.getAntStolplasser()
+            melding += getRomMiddelSitteplasser + getRom3Param + getRomSlutt + getRomMiddelSitteplasser + getRom3Param;
+            return jT.query(melding, new Object[]{
+                //start
+                r.getType(),
+                ke.getStartTid(),
+                ke.getSluttTid(),
+                ke.getStartTid(),
+                ke.getSluttTid(),
+                
+                
+                //sitteplasser
+                r.getAntStolplasser(),
+                
+                //rom3param
+                tab.get(0),
+                tab.get(1),
+                tab.get(2),
+                tab.get(3),
+                tab.get(4),
+                tab.get(5),
+                
+                //slutt
+                r.getType(),
+                
+                
+                //sitteplasser
+                r.getAntStolplasser(),
+                
+                //rom3param
+                tab.get(0),
+                tab.get(1),
+                tab.get(2),
+                tab.get(3),
+                tab.get(4),
+                tab.get(5)
             }, new RomMapper());
         }else if(storrelse){
-            return jT.query(getRom3Param+getRomStorrelse, new Object[]{
-            r.getType(),
-            ke.getStartTid(),
-            ke.getSluttTid(),
-            r.getType(),
-            tab.get(0),
-            tab.get(1),
-            tab.get(2),
-            tab.get(3),
-            tab.get(4),
-            tab.get(5),
-            r.getStorrelse()
+            melding += getRomMiddelStorrelse  + getRom3Param + getRomSlutt + getRomMiddelStorrelse  + getRom3Param;
+            return jT.query(melding, new Object[]{
+                //start
+                r.getType(),
+                ke.getStartTid(),
+                ke.getSluttTid(),
+                ke.getStartTid(),
+                ke.getSluttTid(),
+                
+                //storrelse
+                r.getStorrelse(),
+                
+                
+                //rom3param
+                tab.get(0),
+                tab.get(1),
+                tab.get(2),
+                tab.get(3),
+                tab.get(4),
+                tab.get(5),
+                
+                //slutt
+                r.getType(),
+                
+                //storrelse
+                r.getStorrelse(),
+                
+                
+                //rom3param
+                tab.get(0),
+                tab.get(1),
+                tab.get(2),
+                tab.get(3),
+                tab.get(4),
+                tab.get(5)
             }, new RomMapper());
         }
-        return jT.query(getRom3Param, new Object[]{
-            r.getType(),
-            ke.getStartTid(),
-            ke.getSluttTid(),
-            r.getType(),
-            tab.get(0),
-            tab.get(1),
-            tab.get(2),
-            tab.get(3),
-            tab.get(4),
-            tab.get(5)
+            melding += getRom3Param + getRomSlutt + getRom3Param;
+            return jT.query(melding, new Object[]{
+                //start
+                r.getType(),
+                ke.getStartTid(),
+                ke.getSluttTid(),
+                ke.getStartTid(),
+                ke.getSluttTid(),
+                
+                
+                //rom3param
+                tab.get(0),
+                tab.get(1),
+                tab.get(2),
+                tab.get(3),
+                tab.get(4),
+                tab.get(5),
+                
+                //slutt
+                r.getType(),
+                
+                
+                //rom3param
+                tab.get(0),
+                tab.get(1),
+                tab.get(2),
+                tab.get(3),
+                tab.get(4),
+                tab.get(5)
         }, new RomMapper());
     }
 
@@ -856,69 +1257,168 @@ public class DBConnectionImpl implements DBConnection{
             tab.add(midl[0]);
             tab.add(midl[1]);
         }
+        String melding = getRomStart;
         if(storrelse && sitteplasser){
-            return jT.query(getRom4Param+ getRomStorrelse + getRomPlasser, new Object[]{
-            r.getType(),
-            ke.getStartTid(),
-            ke.getSluttTid(),
-            r.getType(),
-            tab.get(0),
-            tab.get(1),
-            tab.get(2),
-            tab.get(3),
-            tab.get(4),
-            tab.get(5),
-            tab.get(6),
-            tab.get(7),
-            r.getStorrelse(),
-            r.getAntStolplasser()
+            melding += getRomMiddelStorrelse + getRomMiddelSitteplasser + getRom4Param + getRomSlutt + getRomMiddelStorrelse + getRomMiddelSitteplasser + getRom4Param;
+            return jT.query(melding, new Object[]{
+                //start
+                r.getType(),
+                ke.getStartTid(),
+                ke.getSluttTid(),
+                ke.getStartTid(),
+                ke.getSluttTid(),
+                
+                //storrelse
+                r.getStorrelse(),
+                
+                //sitteplasser
+                r.getAntStolplasser(),
+                
+                //rom3param
+                tab.get(0),
+                tab.get(1),
+                tab.get(2),
+                tab.get(3),
+                tab.get(4),
+                tab.get(5),
+                tab.get(6),
+                tab.get(7),
+                
+                //slutt
+                r.getType(),
+                
+                //storrelse
+                r.getStorrelse(),
+                
+                //sitteplasser
+                r.getAntStolplasser(),
+                
+                //rom3param
+                tab.get(0),
+                tab.get(1),
+                tab.get(2),
+                tab.get(3),
+                tab.get(4),
+                tab.get(5),
+                tab.get(6),
+                tab.get(7)
             }, new RomMapper());
         }else if(sitteplasser){
-            return jT.query(getRom4Param+getRomPlasser, new Object[]{
-            r.getType(),
-            ke.getStartTid(),
-            ke.getSluttTid(),
-            r.getType(),
-            tab.get(0),
-            tab.get(1),
-            tab.get(2),
-            tab.get(3),
-            tab.get(4),
-            tab.get(5),
-            tab.get(6),
-            tab.get(7),
-            r.getAntStolplasser()
+            melding +=  getRomMiddelSitteplasser + getRom4Param + getRomSlutt + getRomMiddelSitteplasser + getRom4Param;
+            return jT.query(melding, new Object[]{
+                //start
+                r.getType(),
+                ke.getStartTid(),
+                ke.getSluttTid(),
+                ke.getStartTid(),
+                ke.getSluttTid(),
+                
+                
+                //sitteplasser
+                r.getAntStolplasser(),
+                
+                //rom3param
+                tab.get(0),
+                tab.get(1),
+                tab.get(2),
+                tab.get(3),
+                tab.get(4),
+                tab.get(5),
+                tab.get(6),
+                tab.get(7),
+                
+                //slutt
+                r.getType(),
+                
+                
+                //sitteplasser
+                r.getAntStolplasser(),
+                
+                //rom3param
+                tab.get(0),
+                tab.get(1),
+                tab.get(2),
+                tab.get(3),
+                tab.get(4),
+                tab.get(5),
+                tab.get(6),
+                tab.get(7)
             }, new RomMapper());
         }else if(storrelse){
-            return jT.query(getRom4Param+getRomStorrelse, new Object[]{
-            r.getType(),
-            ke.getStartTid(),
-            ke.getSluttTid(),
-            r.getType(),
-            tab.get(0),
-            tab.get(1),
-            tab.get(2),
-            tab.get(3),
-            tab.get(4),
-            tab.get(5),
-            tab.get(6),
-            tab.get(7),
-            r.getStorrelse()
+            melding += getRomMiddelStorrelse  + getRom4Param + getRomSlutt + getRomMiddelStorrelse  + getRom4Param;
+            return jT.query(melding, new Object[]{
+                //start
+                r.getType(),
+                ke.getStartTid(),
+                ke.getSluttTid(),
+                ke.getStartTid(),
+                ke.getSluttTid(),
+                
+                //storrelse
+                r.getStorrelse(),
+                
+                
+                //rom3param
+                tab.get(0),
+                tab.get(1),
+                tab.get(2),
+                tab.get(3),
+                tab.get(4),
+                tab.get(5),
+                tab.get(6),
+                tab.get(7),
+                
+                //slutt
+                r.getType(),
+                
+                //storrelse
+                r.getStorrelse(),
+                
+                
+                //rom3param
+                tab.get(0),
+                tab.get(1),
+                tab.get(2),
+                tab.get(3),
+                tab.get(4),
+                tab.get(5),
+                tab.get(6),
+                tab.get(7)
             }, new RomMapper());
         }
-        return jT.query(getRom4Param, new Object[]{
-            r.getType(),
-            ke.getStartTid(),
-            ke.getSluttTid(),
-            r.getType(),
-            tab.get(0),
-            tab.get(1),
-            tab.get(2),
-            tab.get(3),
-            tab.get(4),
-            tab.get(5),
-            tab.get(6),
-            tab.get(7)
+            melding += getRom4Param + getRomSlutt + getRom4Param;
+            return jT.query(melding, new Object[]{
+                //start
+                r.getType(),
+                ke.getStartTid(),
+                ke.getSluttTid(),
+                ke.getStartTid(),
+                ke.getSluttTid(),
+                
+                
+                //rom3param
+                tab.get(0),
+                tab.get(1),
+                tab.get(2),
+                tab.get(3),
+                tab.get(4),
+                tab.get(5),
+                tab.get(6),
+                tab.get(7),
+                
+                //slutt
+                r.getType(),
+                
+                
+                //rom3param
+                tab.get(0),
+                tab.get(1),
+                tab.get(2),
+                tab.get(3),
+                tab.get(4),
+                tab.get(5),
+                tab.get(6),
+                tab.get(7)
         }, new RomMapper());
     }
     

@@ -173,6 +173,10 @@ public class ServiceImpl implements Service{
     public List<KalenderEvent> getKalenderEventRomID(Rom r) {
         return dbc.getKalenderEventRomID(r);
     }
+    
+   public List<KalenderEvent> getKalenderEventHidden(KalenderEvent ke) {
+        return dbc.getKalenderEventHidden(ke);
+    }
 
     @Override
     public List<Fag> getFagLaerer(Bruker b) {

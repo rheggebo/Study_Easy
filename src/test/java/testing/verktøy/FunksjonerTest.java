@@ -5,6 +5,10 @@
  */
 package testing.verktøy;
 
+import beans.Bruker;
+import beans.Fag;
+import beans.Klasse;
+import beans.Rom;
 import verktøy.Funksjoner;
 import org.junit.*;
 import static org.junit.Assert.*;
@@ -22,6 +26,11 @@ public class FunksjonerTest {
     Service si;
     String ord;
     String[] checkboxValues;
+    Bruker bruker1;
+    ArrayList<Bruker> brukerListe;
+    ArrayList<Fag> fagListe;
+    ArrayList<Rom> romListe;
+    ArrayList<Klasse> klasseListe;
     
     
     @BeforeClass
@@ -33,15 +42,50 @@ public class FunksjonerTest {
     @Before
     public void setUp() throws Exception {
         // Koden her eksekveres f�r hver av testmetodene i klassen
-        test=new Funksjoner();
+        test=mock(Funksjoner.class);
+        si = mock(Service.class);
+        
         ord="Per";
         checkboxValues=null;
+        bruker1 = new Bruker();
+        brukerListe = new ArrayList<Bruker>();
+        brukerListe.add(bruker1);
+        
+        
+        when(test.sokStudent(si, ord)).thenReturn(brukerListe);
+        when(test.sokAnsatt(si,ord)).thenReturn(brukerListe);
+        when(test.sokRom(si, ord)).thenReturn(romListe);
+        when(test.sokFag(si,ord)).thenReturn(fagListe);
+        when(test.sokKlasse(si,ord)).thenReturn(klasseListe);
+        
+
         
     }
     
+    
     @Test
-    public void tester_getAlleSokeTreff (){
-        assertEquals(test.getAlleSokeTreff(ord, si, checkboxValues),true);
+    public void test_sokStudent(){
+        assertEquals(test.sokStudent(si, ord), brukerListe);
+    }
+    
+    @Test
+    public void test_sokAnsatt(){
+        assertEquals(test.sokAnsatt(si, ord), brukerListe);
+    }
+    
+    @Test
+    public void test_sokRom(){
+        assertEquals(test.sokRom(si, ord), romListe);
+    }
+    
+    @Test
+    public void test_sokFag(){
+        assertEquals(test.sokFag(si, ord), fagListe);
+    }
+    
+    @Test
+    public void test_sokKlasse(){
+        assertEquals(test.sokKlasse(si, ord), klasseListe);
     }
     
     @After
