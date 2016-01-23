@@ -48,7 +48,7 @@
                     <tr>
                         <td></td>
                         <td>
-                            <input class="defaultKnapp" formaction="VelgRomSok" type="submit" value="Søk">
+                            <input class="defaultKnapp" id="sok" formaction="VelgRomSok" type="submit" value="Søk">
                         </td>
                         <td></td>
                     </tr>
@@ -67,7 +67,7 @@
                         <tr>
                             <td></td>
                             <td>
-                                <input class="defaultKnapp" formaction="VelgRomReserver" type="submit" value="Bestill">
+                                <input class="defaultKnapp" id="bestill" formaction="VelgRomReserver" type="submit" value="Bestill">
                             </td>
                             <td></td>
                         </tr>  

@@ -31,15 +31,84 @@ public class MinSideTest {
         
         driver.get("http://localhost:8084/Study_Easy/");
         
-        Thread.sleep(1000);
+        /*Thread.sleep(500);
         driver.findElement(By.id("epostInnlogging")).sendKeys("erlendksteinset@hotmail.com");
         
-        Thread.sleep(1000);
+        Thread.sleep(500);
         driver.findElement(By.id("passordInnlogging")).sendKeys(".kT?0*CZC_"); 
         
-        Thread.sleep(1000);
+        Thread.sleep(500);
         driver.findElement(By.id("loggInnKnapp")).click(); 
         
+        Thread.sleep(500);
+        driver.findElement(By.id("sokeSide")).click(); 
+        
+        Thread.sleep(500);
+        driver.findElement(By.id("searchFormSokeSide")).sendKeys("a");
+        
+        Thread.sleep(500);
+        driver.findElement(By.id("fagSokeSide")).click(); 
+        
+        Thread.sleep(500);
+        driver.findElement(By.id("searchButtonSokeSide")).click();
+        
+        Thread.sleep(500);
+        driver.findElement(By.id("abonKnapp")).click();
+        
+        Thread.sleep(500);
+        driver.findElement(By.id("searchFormSokeSide")).sendKeys("a");
+        
+        Thread.sleep(500);
+        driver.findElement(By.id("ansattSokeSide")).click(); 
+        
+        Thread.sleep(500);
+        driver.findElement(By.id("searchButtonSokeSide")).click();
+        
+        Thread.sleep(500);
+        driver.findElement(By.id("abonKnapp")).click();
+        
+        Thread.sleep(500);
+        driver.findElement(By.id("searchFormSokeSide")).sendKeys("a");
+        
+        Thread.sleep(500);
+        driver.findElement(By.id("romSokeSide")).click(); 
+        
+        Thread.sleep(500);
+        driver.findElement(By.id("searchButtonSokeSide")).click();
+        
+        Thread.sleep(500);
+        driver.findElement(By.id("abonKnapp")).click();
+        
+        Thread.sleep(500);
+        driver.findElement(By.id("sok")).click();
+        
+        Thread.sleep(500);
+        driver.findElement(By.id("bestill")).click();
+        
+        Thread.sleep(500);
+        driver.findElement(By.id("forside")).click(); 
+        
+        /*Thread.sleep(500);
+        driver.findElement(By.id("leggTilKnappForside")).click();
+        
+        Thread.sleep(500);
+        driver.findElement(By.id("tittel")).sendKeys("asdf");
+                
+        Thread.sleep(500);
+        driver.findElement(By.id("startdato")).sendKeys("11112019");
+        
+        Thread.sleep(500);
+        driver.findElement(By.id("starttid")).sendKeys("1111");
+        
+        Thread.sleep(500);
+        driver.findElement(By.id("sluttdato")).sendKeys("11112019");
+        
+        Thread.sleep(1000);
+        driver.findElement(By.id("slutttid")).sendKeys("2222");
+
+        Thread.sleep(4000);
+        driver.findElement(By.id("leggtilPH")).click();
+                
         Thread.sleep(1000);
         driver.findElement(By.id("minSide")).click(); 
    
@@ -60,6 +129,37 @@ public class MinSideTest {
                 
         Thread.sleep(1000);
         driver.findElement(By.id("endreGammeltPassord")).click();
+        
+        Thread.sleep(1000);
+        driver.findElement(By.id("minSide")).click(); 
+   
+        Thread.sleep(1000);
+        driver.findElement(By.id("minInfo")).click();
+                
+        Thread.sleep(1000);
+        driver.findElement(By.id("slettFag")).click(); 
+        
+        Thread.sleep(1000);
+        driver.findElement(By.id("minSide")).click(); 
+   
+        Thread.sleep(1000);
+        driver.findElement(By.id("minInfo")).click();
+        
+        Thread.sleep(1000);
+        driver.findElement(By.id("slettBrukerA")).click(); 
+        
+        Thread.sleep(1000);
+        driver.findElement(By.id("minSide")).click(); 
+   
+        Thread.sleep(1000);
+        driver.findElement(By.id("minInfo")).click();
+        
+        Thread.sleep(1000);
+        //driver.findElement(By.id("slettReservasjon")).click();
+        
+        Thread.sleep(1000);
+        //driver.findElement(By.id("slettHendelse")).click(); */
+
         
         Thread.sleep(1000);
         
