@@ -115,6 +115,7 @@ public class EventKontroller {
         KalenderEvent ke = new KalenderEvent();
         Rom rom = new Rom();
         BrukerB brukerb = (BrukerB) sess.getAttribute("brukerBean");
+        model.addAttribute("bruker", brukerb);
         ke.setEpost(brukerb.getEpost());
         ke.setEierNavn(brukerb.getFornavn()+" "+brukerb.getEtternavn());
         ke.setRom(rom.getRomNavn());
@@ -172,7 +173,7 @@ public class EventKontroller {
         sess.setAttribute("asd", ke);
         model.addAttribute("liste", liste);
         model.addAttribute("formFinnRom", formFinnRom);
-        model.addAttribute("bruker", brukerb);
+        
         model.addAttribute("event", new KalenderEvent());
         sess.setAttribute("fFR", formFinnRom);
         return "FinnRom";
