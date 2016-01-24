@@ -266,6 +266,7 @@ public class EventKontroller {
     @RequestMapping("VelgRomSok")
     public String velgRomSoke(@ModelAttribute FormVelgRom formVelgRom, HttpSession sess, Model model){
         BrukerB bruker = (BrukerB) sess.getAttribute("brukerBean");
+        model.addAttribute("bruker", bruker);
         KalenderEvent ke = new KalenderEvent();
         int fra = formVelgRom.getFraTid()/100;
         int til = formVelgRom.getVarighet();
@@ -280,8 +281,7 @@ public class EventKontroller {
         r.setType(bruker.getTilgangsniva()+1);
         r.setInnhold(new ArrayList<String>(0));
         System.out.println(ke.getStartTid()+" "+ke.getSluttTid()+" "+r.getType());
-        List<Rom> liste = service.getRomSVG(r, ke);
-        model.addAttribute("bruker", bruker);
+        List<Rom> liste = service.getRomSVG(r, ke); 
         model.addAttribute("liste", liste);
         return "VelgRom";
     }
@@ -289,6 +289,7 @@ public class EventKontroller {
     @RequestMapping("VelgRomRed")
     public String velgRomRed(@ModelAttribute FormVelgRom formVelgRom,HttpSession sess, Model model){
         BrukerB bruker = (BrukerB) sess.getAttribute("brukerBean");
+        model.addAttribute("bruker", bruker);
         if(bruker != null && bruker.isInnlogget()){
             System.out.println(bruker.getTilgangsniva());
             if(bruker.getTilgangsniva()>1){

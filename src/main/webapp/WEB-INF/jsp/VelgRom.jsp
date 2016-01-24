@@ -74,12 +74,10 @@
                         <c:set var="tilgang" value="${bruker.getTilgangsniva()}"></c:set>
                         <c:if test="${tilgang == 2}">
                             <tr><td>
+                                </td><td> 
+                                    <input type="submit" class="defaultKnapp" formaction="VelgRomRed" value="Rediger rom">
                                 </td>
-                                <td> 
-                                </td>
-                                <td>
-                                <input type="submit" class="defaultKnapp" formaction="VelgRomRed" value="Rediger rom">
-                                </td>
+                                <td></td>
                             </tr>
                         </c:if> 
                     </c:if>
@@ -199,26 +197,19 @@
 <script>
     // Veldig dårlig måte å endre brilde når vi kommer fra søk:
 
-    if((erLedig2(" 1 stÃ¸rrelse"))==1){
+    if((erLedig(" 1 stÃ¸rrelse"))==1){
     }
-    if((erLedig2(" 2 stÃ¸rrelse")==1)){
-        changeZIndexPlantegningerOpp();
-    }
-    if((erLedig2(" 3 stÃ¸rrelse"))==1){
-        changeZIndexPlantegningerOpp();
+    if((erLedig(" 2 stÃ¸rrelse")==1)){
         changeZIndexPlantegningerOpp();
     }
-    if((erLedig2(" 4 stÃ¸rrelse"))==1){
-        changeZIndexPlantegningerOpp();
+    if((erLedig(" 3 stÃ¸rrelse"))==1){
         changeZIndexPlantegningerOpp();
         changeZIndexPlantegningerOpp();
     }
-    function erLedig2(id){
-        if (("${liste}").indexOf(id) !=-1) {
-            return 1;
-        }
-        //alert(id+" er ikke ledig");
-        return -1;
+    if((erLedig(" 4 stÃ¸rrelse"))==1){
+        changeZIndexPlantegningerOpp();
+        changeZIndexPlantegningerOpp();
+        changeZIndexPlantegningerOpp();
     }
     
     function erLedig(id){
@@ -379,67 +370,3 @@
         });
     });
 </script>
-
-<!--  Hvis man vil ha ulike reaksjoner på planRom og PlanRomOpptatt må gjøres etter ledige rom er satt
-<script>    
-    //Klikkhendelser for planRom objeckter:
-        //Første etasje:
-        var a = document.getElementById("plantegningEtasje1");
-        a.addEventListener("load",function(){
-          var svgDoc = a.contentDocument;
-          var els = svgDoc.querySelectorAll(".planRom");
-          for (var i = 0, length = els.length; i < length; i++) {
-            var delta= els[i];
-            //Mus over:
-            delta.addEventListener("mouseover", function(){ 
-                   document.getElementById('romNavn').innerHTML=this.id;
-            }, false);
-            //KlikkFunksjon:
-            delta.addEventListener("click", function(){ 
-                   document.getElementById('rom').value=this.id;
-                }, false);
-        }},false);
-        //Andre etasje:
-        var a2 = document.getElementById("plantegningEtasje2");
-        a2.addEventListener("load",function(){
-          var svgDoc2 = a2.contentDocument;
-          var els2 = svgDoc2.querySelectorAll(".planRom");
-          for (var i = 0, length = els2.length; i < length; i++) {
-            var delta2= els2[i];
-            delta2.addEventListener("mouseover", function(){ 
-                   document.getElementById('romNavn').innerHTML=this.id;
-            }, false);
-            delta2.addEventListener("click", function(){ 
-                    document.getElementById('rom').value=this.id;
-                }, false);
-        }},false);
-        //Tredje etasje:    
-        var a3 = document.getElementById("plantegningEtasje3");
-        a3.addEventListener("load",function(){
-          var svgDoc3 = a3.contentDocument;
-          var els3 = svgDoc3.querySelectorAll(".planRom");
-          for (var i = 0, length = els3.length; i < length; i++) {
-            var delta3= els3[i];
-            delta3.addEventListener("mouseover", function(){ 
-                   document.getElementById('romNavn').innerHTML=this.id;
-            }, false);
-            delta3.addEventListener("click", function(){ 
-                   document.getElementById('rom').value=this.id;
-                }, false);
-        }},false);
-        //Fjerde etasje:
-        var a4 = document.getElementById("plantegningEtasje4");
-        a4.addEventListener("load",function(){
-          var svgDoc4 = a4.contentDocument;
-          var els4 = svgDoc4.querySelectorAll(".planRom");
-          for (var i = 0, length = els4.length; i < length; i++) {
-            var delta4= els4[i];
-            delta4.addEventListener("mouseover", function(){ 
-                   document.getElementById('romNavn').innerHTML=this.id;
-            }, false);
-            delta4.addEventListener("click", function(){ 
-                   document.getElementById('rom').value=this.id;
-            }, false);
-        } },false);
-</script>
--->
