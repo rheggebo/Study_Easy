@@ -100,14 +100,14 @@ public class Hovedkontroller {
         for (RomBestilling romBestilling : eventListe) {
             System.out.println(romBestilling.getStartDato().getTime()-now.getTime()+" "+msek20Min);
             long diff = romBestilling.getStartDato().getTime()-now.getTime();
-            if(diff<msek20Min/2){
+            /*if(diff<msek20Min/2){
                 KalenderEvent ke2 = new KalenderEvent();
                 ke2.setRom(romBestilling.getRomId());
                 ke2.setStartTid(romBestilling.getStartDato());
                 ke2.setSluttTid(romBestilling.getSluttDato());
                 ke2.setEpost(brukerb.getEpost());
                 service.slettBooking(ke2);
-            }else if(diff<msek20Min){
+            }else*/ if(diff<msek20Min){
                 romBestilling.setKlokkesjekk(true);
                 email.sendEpost(brukerb.getEpost(), tema, melding);
             }

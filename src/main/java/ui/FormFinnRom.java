@@ -75,12 +75,12 @@ public class FormFinnRom {
     }
     
     public List getTypeListScrub(){
-        String[] s = {"Ikke lag hendelse","Privat","Møte"};
+        String[] s = {"Ikke lag hendelse","Privat","Øving"};
         return Arrays.asList(s);
     }
     
     public List getTypeList(){
-        String[] s = {"Ikke lag hendelse","Privat","Forelesning","Møte"};
+        String[] s = {"Ikke lag hendelse","Privat","Forelesning","Øving"};
         return Arrays.asList(s);
     }
     

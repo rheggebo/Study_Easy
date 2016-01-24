@@ -40,7 +40,7 @@
             </li>
             <li>
                 <input type="text" class="fargeTekst" disabled="true" style="background-color: #FFA500;">
-                <label for="checkbox_3">Rom reservasjon</label>
+                <label for="checkbox_3">Romreservasjon</label>
                 <input type="checkbox" class="checkBoxForside" id="checkBoxForside3" name="farger" value="3"  style="width: 15px; cursor: pointer" checked>
             </li>
             <li>

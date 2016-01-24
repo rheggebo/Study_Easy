@@ -36,7 +36,7 @@
             </dd>
             <dt><label for="type">Type:<em>*</em></label></dt>
             <dd><select name="type" id="type" required="true">
-                    <option value="0">Møte</option>
+                    <option value="0">Øving</option>
                     <option value="1">Annet</option>
                 </select>
             

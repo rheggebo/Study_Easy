@@ -59,11 +59,16 @@ public class EventKontroller {
             binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
     }
     
-    /*@RequestMapping(value="omvei")
+    @RequestMapping(value="omvei")
     public String omvei(HttpSession sess, Model model){
-        model.addAttribute("nyHendelse", new NyEvent());
-        return "OpprettHendelse";
-    }*/
+        BrukerB brukerb = (BrukerB)sess.getAttribute("brukerBean");
+        if(brukerb != null && brukerb.isInnlogget()){
+            model.addAttribute("nyHendelse", new NyEvent());
+            return "OpprettHendelse";
+        }
+        model.addAttribute("bruker", new Bruker());
+        return "Innlogging";
+    }
     
     @RequestMapping(value="OpprettHendelse")
     public String opprettHendelse(@ModelAttribute("nyHendelse") KalenderEvent event, @RequestParam("notat")String notat, @RequestParam("valg")String off, @RequestParam("startdato")Date startDato, @RequestParam("starttid")String startTid, @RequestParam("sluttdato")Date sluttDato, @RequestParam("starttid")String sluttTid, HttpSession sess, HttpServletResponse response, Model model, HttpServletRequest request){
@@ -107,7 +112,8 @@ public class EventKontroller {
                 }
             }
         }
-        return "OpprettHendelse";
+        model.addAttribute("bruker", brukerb);
+        return "Forside";
         }
         model.addAttribute("bruker", new Bruker());
         return "Innlogging";
@@ -210,7 +216,7 @@ public class EventKontroller {
         }else if(type.equalsIgnoreCase("Forelesning")){
             event.setPrivat(false);
             event.setType(0);
-        }else if(type.equalsIgnoreCase("MÃ¸te")){
+        }else if(type.equalsIgnoreCase("Ã¸ving")){
             event.setPrivat(false);
             event.setType(1);
         }
@@ -471,7 +477,7 @@ public class EventKontroller {
         return true;
     }
     
-    @RequestMapping("BekreftBooking")
+    @RequestMapping("BekreftOppmote")
     public String bekreftBooking(@ModelAttribute("event")KalenderEvent ke, HttpSession sess, Model model){
         BrukerB brukerb = (BrukerB)sess.getAttribute("brukerBean");
         if(brukerb != null && brukerb.isInnlogget()){
@@ -487,7 +493,8 @@ public class EventKontroller {
                     Integer.parseInt(startTid[0]), Integer.parseInt(startTid[1]), Integer.parseInt(startTid[2].substring(0,2)), 0));
             ke.setSluttTid(new Timestamp(Integer.parseInt(sluttDato[0])-1900,Integer.parseInt(sluttDato[1])-1,Integer.parseInt(sluttDato[2]),
                     Integer.parseInt(sluttTid[0]), Integer.parseInt(sluttTid[1]), Integer.parseInt(sluttTid[2].substring(0,2)), 0));
-            //Bekreft oppmøte for rom. 
+            //Bekreft oppmøte for rom. service.bekreftOppmote(ke);
+            System.out.println("Bekreft oppmøte");
             returnerMinSide(model, brukerb);
             return "MinSide";
         }

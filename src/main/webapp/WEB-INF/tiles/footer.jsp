@@ -6,7 +6,7 @@
     ·
     <a class="footerLenke" href="VelgRom">Bestill rom</a>
     ·
-    <a class="footerLenke" href="Forside">Finn rom</a>
+    <a class="footerLenke" href="FinnRom">Finn rom</a>
     ·
     <a class="footerLenke" href="SokeSide">Søk</a>
     ·

@@ -100,7 +100,7 @@ public class BrukerKontroller {
         }else{
             bruker.setPassord(pass.getPassord1());
             if(service.endreBruker(bruker)){
-                model.addAttribute("bruker", bruker);
+                returnerMinSide(model, brukerb);
                 return "MinSide";
             }
         }
