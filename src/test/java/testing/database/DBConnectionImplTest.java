@@ -378,7 +378,8 @@ public class DBConnectionImplTest {
         listRom = dbc.getRomFraType(rom1);
         listRom = dbc.getRomFraStoerrelse(rom1);
         listRom = dbc.getRomTypeStorrelse(rom3);
-        listRom = dbc.getRomSVG(kEvent);
+        // Denne er blitt endra på
+        //listRom = dbc.getRomSVG(kEvent);
         
         listRom = dbc.getRom0Param(rom1, kEvent, true, true);
         listRom = dbc.getRom0Param(rom1, kEvent, true, false);
