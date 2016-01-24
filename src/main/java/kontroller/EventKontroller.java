@@ -195,56 +195,56 @@ public class EventKontroller {
         BrukerB brukerb = (BrukerB)sess.getAttribute("brukerBean");
         if(brukerb != null && brukerb.isInnlogget()){
             KalenderEvent asd = (KalenderEvent)sess.getAttribute("asd");
-        sess.removeAttribute("asd");
-        FormFinnRom fFR = (FormFinnRom) sess.getAttribute("fFR");
-        sess.removeAttribute("fFR");
-        String rom = event.getRom();
-        String[] tab = rom.split(" ");
-        event = asd;
-        event.setRom(tab[1]);
-        String type = fFR.getType();
-        System.out.println(type);
-        if(type.equalsIgnoreCase("Ikke lag hendelse")){
+            sess.removeAttribute("asd");
+            FormFinnRom fFR = (FormFinnRom) sess.getAttribute("fFR");
+            sess.removeAttribute("fFR");
+            String rom = event.getRom();
+            String[] tab = rom.split(" ");
+            event = asd;
+            event.setRom(tab[1]);
+            String type = fFR.getType();
+            System.out.println(type);
+            if(type.equalsIgnoreCase("Ikke lag hendelse")){
+                if(service.erRomLedig(event)){
+                    if(service.leggTilBooking(event)){
+                        returnerMinSide(model, brukerb);
+                        return "MinSide";
+                    }
+                }
+            }else if(type.equalsIgnoreCase("Privat")){
+                event.setPrivat(true);
+                event.setType(2);
+            }else if(type.equalsIgnoreCase("Forelesning")){
+                event.setPrivat(false);
+                event.setType(0);
+            }else if(type.equalsIgnoreCase("Ã¸ving")){
+                event.setPrivat(false);
+                event.setType(1);
+            }
+            System.out.println(event.getType());
+            event.setTittel(fFR.getTittel());
+            event.setNotat(fFR.getNotat());
+            System.out.println(fFR.getFag());
+            if(!fFR.getFag().equalsIgnoreCase("Velg fag")){
+                event.setFag(fFR.getFag());
+            }else{
+                event.setFag(null);
+            }
+            event.setTilhorerEvent(1);
             if(service.erRomLedig(event)){
                 if(service.leggTilBooking(event)){
-                    returnerMinSide(model, brukerb);
-                    return "MinSide";
+                    RomBestilling rb = service.getRomBooking(event);
+                    event.setBestillingsID(rb.getBestillingsID());
+                    if(service.leggTilEvent(event)){
+                        returnerMinSide(model, brukerb);
+                        return "MinSide";
+                    }
                 }
             }
-        }else if(type.equalsIgnoreCase("Privat")){
-            event.setPrivat(true);
-            event.setType(2);
-        }else if(type.equalsIgnoreCase("Forelesning")){
-            event.setPrivat(false);
-            event.setType(0);
-        }else if(type.equalsIgnoreCase("Ã¸ving")){
-            event.setPrivat(false);
-            event.setType(1);
-        }
-        System.out.println(event.getType());
-        event.setTittel(fFR.getTittel());
-        event.setNotat(fFR.getNotat());
-        System.out.println(fFR.getFag());
-        if(!fFR.getFag().equalsIgnoreCase("Velg fag")){
-            event.setFag(fFR.getFag());
-        }else{
-            event.setFag(null);
-        }
-        event.setTilhorerEvent(1);
-        if(service.erRomLedig(event)){
-            if(service.leggTilBooking(event)){
-                RomBestilling rb = service.getRomBooking(event);
-                event.setBestillingsID(rb.getBestillingsID());
-                if(service.leggTilEvent(event)){
-                    returnerMinSide(model, brukerb);
-                    return "MinSide";
-                }
-            }
-        }
-        model.addAttribute("formFinnRom", new FormFinnRom());
-        model.addAttribute("event", new KalenderEvent());
-        model.addAttribute("bruker", brukerb);
-        return "FinnRom";
+            model.addAttribute("formFinnRom", new FormFinnRom());
+            model.addAttribute("event", new KalenderEvent());
+            model.addAttribute("bruker", brukerb);
+            return "FinnRom";
         }
         model.addAttribute("bruker", new Bruker());
         return "Innlogging";

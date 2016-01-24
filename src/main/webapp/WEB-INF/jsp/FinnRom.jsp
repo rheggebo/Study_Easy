@@ -95,19 +95,8 @@
                     </tr>
                     <tr>
                         <td></td>
-                        <td>
-                            <input class="defaultKnapp" formaction="finnromdata" type="submit" value="Søk">
-                        </td>
+                      
                         <td></td>
-                    </tr>
-                    <c:set var="harSøkt" value="${formFinnRom.getVarighet()}"></c:set>
-                    <c:set var="opptatt" value="${feilISok}"></c:set>
-                    <c:if test="${!opptatt}">
-                    <c:if test="${harSøkt >= 1}">
-                    <tr>
-                        <td>Tittel:</td>
-                        <td><form:input class="velgRomForm" placeholder="Skriv inn her" path="tittel" /></td>
-                        <td><form:errors path="tittel" /></td>
                     </tr>
                     <tr>
                         <td>Type kalenderhendelse:<em>* </em></td>
@@ -123,6 +112,11 @@
                             </form:select>
                         </td>
                         <td><form:errors path="type"/></td>
+                    </tr>
+                    <tr>
+                        <td>Tittel:</td>
+                        <td><form:input class="velgRomForm" placeholder="Skriv inn her" path="tittel" /></td>
+                        <td><form:errors path="tittel" /></td>
                     </tr>
                     <c:set var="tilgang" value="${bruker.getTilgangsniva()}"></c:set>
                     <c:if test="${tilgang > 0}">
@@ -142,8 +136,9 @@
                         <td><form:textarea id="textareaNotat" placeholder="Utvid for mer skriveplass" class="velgRomForm" path="notat" /></td>
                         <td><form:errors path="notat" /></td>
                     </tr>
-                    </c:if>
-                    </c:if>
+                    <td>
+                        <input class="defaultKnapp" formaction="finnromdata" type="submit" value="Søk">
+                    </td>
                 </table>
             </form:form>
         </fieldset>
