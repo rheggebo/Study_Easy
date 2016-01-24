@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.sql.DataSource;
+import mapper.RomMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
@@ -34,7 +35,9 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 public class DBConnectionImplTest {
     
     static DBConnectionImpl dbc;
+    JdbcTemplate jdbc;
     
+    String melding ="heu";
     BrukerB brukerB;
     Bruker brukerC;
     static Bruker b;
@@ -67,6 +70,7 @@ public class DBConnectionImplTest {
     private ArrayList<Rom> RomListe;
     private ArrayList<Fag> FagListe;
     private ArrayList<Bruker> BrukerListe;
+    ArrayList<String> tab;
     
     private DataSource dS;
     private JdbcTemplate jT;
@@ -113,11 +117,14 @@ public class DBConnectionImplTest {
     
     @Before
     public void setUp() {
-                        
+        jdbc = mock(JdbcTemplate.class);
+        
         KEliste = new ArrayList();
         RomListe = new ArrayList();
         BrukerListe = new ArrayList();
         FagListe = new ArrayList();
+        tab = new ArrayList<String>(2);
+        
         
         fraDato = Timestamp.valueOf("2016-1-26 09:00:00.0");
         tilDato = Timestamp.valueOf("2016-1-26 12:30:00.0");
@@ -182,6 +189,19 @@ public class DBConnectionImplTest {
         bruker.setNotat("Jeg liker fotball");
         bruker.setTilgangsniva(3);
         bruker.setPassord("Passord89##");
+        
+        when(jdbc.query(melding, new Object[]{
+            rom1.getType(),
+            kEvent.getStartTid(),
+            kEvent.getSluttTid(),
+            kEvent.getStartTid(),
+            kEvent.getSluttTid(),
+            rom1.getStorrelse(),
+            rom1.getAntStolplasser()
+            /*tab.get(0),
+            tab.get(1)*/
+            
+        }, new RomMapper())).thenReturn(listRom);
                
         }
     
@@ -385,6 +405,8 @@ public class DBConnectionImplTest {
         listRom = dbc.getRom0Param(rom1, kEvent, true, false);
         listRom = dbc.getRom0Param(rom1, kEvent, false, true);
         listRom = dbc.getRom0Param(rom1, kEvent, false, false);
+        
+       // assertEquals(dbc.getRom1Param(rom1, kEvent, true, true), listRom);
         
         /*listRom = dbc.getRom1Param(rom2, kEvent, true, true);
         listRom = dbc.getRom1Param(rom1, kEvent, true, false);
