@@ -33,6 +33,7 @@ public class LeggTilFagKlasseTest {
         lfk = new LeggTilFagKlasse();
         lfk.setFagID("TDAT2001");
         lfk.setKlasseID("TDATH13");
+        lfk.setTest("test");
         
         kListe = new ArrayList();
         fListe = new ArrayList();
@@ -51,6 +52,7 @@ public class LeggTilFagKlasseTest {
         assertEquals(lfk.getKlasseID(), "TDATH13");
         assertEquals(lfk.getFagListe().size(), 1);
         assertEquals(lfk.getKlasseListe().size(), 1);
+        assertEquals(lfk.getTest(), "test");
         
     }
     
