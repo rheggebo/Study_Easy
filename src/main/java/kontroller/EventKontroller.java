@@ -125,7 +125,7 @@ public class EventKontroller {
         ke.setPrivat(privat);
         ke.setNotat(notat);
         ke.setTittel(tittel);
-        if(service.leggTilKalenderEvent(ke)){
+        if(service.leggTilEvent(ke)){
             return "MinSide";
         }else{
             model.addAttribute("rom", rom);

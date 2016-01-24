@@ -53,8 +53,6 @@ public interface DBConnection {
     
     public boolean leggTilRom(Rom r);
     
-    public boolean leggTilKalenderEvent(KalenderEvent ke);
-    
     public boolean fjernKalenderEvent(KalenderEvent ke);
     
     public List<Bruker> getKalenderEventDeltakere(KalenderEvent ke);
@@ -71,19 +69,13 @@ public interface DBConnection {
     
     public List<Fag> getFagLaerer(Bruker b);
     
-    public Rom getRombestilling();
-    
     public List<Rom> getRomFraNavn(Rom r);
     
     public List<Rom> getRomFraNavn(String navn);
     
-    public List<Rom> getRomFraInnhold(String[] innhold);
-    
     public List<Rom> getRomFraType(Rom r);
     
     public List<Rom> getRomFraStoerrelse(Rom r);
-    
-    public Klasse getLaererKlasse(Bruker b);
     
     public List<Rom> getAlleRom();
     
@@ -135,8 +127,6 @@ public interface DBConnection {
     public boolean slettBooking(KalenderEvent ke);
     
     public boolean leggTilEvent (KalenderEvent ke);
-    
-    public List<Abonemennt> getAbonnementDeltakere(Abonemennt st);
     
     public List<Abonemennt> getAbonnementDeltakere(String st);
     

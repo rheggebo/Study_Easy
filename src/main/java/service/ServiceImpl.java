@@ -140,11 +140,6 @@ public class ServiceImpl implements Service{
     }
 
     @Override
-    public boolean leggTilKalenderEvent(KalenderEvent ke) {
-        return dbc.leggTilKalenderEvent(ke);
-    }
-
-    @Override
     public boolean fjernKalenderEvent(KalenderEvent ke) {
         return dbc.fjernKalenderEvent(ke);
     }
@@ -184,18 +179,8 @@ public class ServiceImpl implements Service{
     }
 
     @Override
-    public Rom getRombestilling() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public List<Rom> getRomFraNavn(Rom r) {
         return dbc.getRomFraNavn(r);
-    }
-
-    @Override
-    public List<Rom> getRomFraInnhold(Rom r) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -208,11 +193,6 @@ public class ServiceImpl implements Service{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public List<Klasse> getLaererKlasse(Bruker b) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
     @Override
     public List<KalenderEvent> getAlleEventsFraBruker(BrukerB b){
         return dbc.getAlleEventsFraBruker(b);

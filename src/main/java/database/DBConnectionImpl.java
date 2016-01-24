@@ -435,26 +435,6 @@ public class DBConnectionImpl implements DBConnection{
     }
     
     @Override
-    public boolean leggTilKalenderEvent(KalenderEvent ke) {
-        int antallRader = jT.update(leggTilKalenderEvent,new Object[]{
-            ke.getStartTid(),
-            ke.getSluttTid(),
-            ke.getEpost(),
-            ke.isPrivat(),
-            ke.getId(),
-            ke.getType(),
-            ke.getFag(),
-            ke.getNotat(),
-            ke.getTittel()
-        });
-        if(antallRader > 0){
-            return true;
-        }
-        return false;
-    }
-    //Bruker metoden leggTilEvent lengre ned i koden
-
-    @Override
     public boolean fjernKalenderEvent(KalenderEvent ke) {
         int antallRader = jT.update(fjernKalenderEvent,new Object[]{
             ke.getEpost(),
@@ -556,16 +536,6 @@ public class DBConnectionImpl implements DBConnection{
         return false;
     }//tatt
     
-    
-
-    @Override
-    public Rom getRombestilling() {
-        //return (Rom) jT.queryForObject(getRombestilling, new Object[]{
-        
-        //}, new RomMapper());
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }// ikke i bruk??
-
     @Override
     public List<Rom> getRomFraNavn(Rom r) {
         List<Rom> liste = jT.query(getRomFraNavn, new Object[]{
@@ -590,14 +560,6 @@ public class DBConnectionImpl implements DBConnection{
     }//tatt
 
     @Override
-    public List<Rom> getRomFraInnhold(String[] innhold) {
-        //return (Rom) jT.queryForObject(getRomFraInnhold, Object[]{
-        
-        //}, new RomMapper());
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }//ikke i bruk??
-
-    @Override
     public List<Rom> getRomFraType(Rom r) {
         return jT.query(getRomFraType, new Object[]{
             r.getType()
@@ -611,11 +573,6 @@ public class DBConnectionImpl implements DBConnection{
         }, new RomMapper());
     }//tatt
 
-    @Override
-    public Klasse getLaererKlasse(Bruker b) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }//ikke i bruk 
-    
     @Override
     public List<KalenderEvent> getAlleEventsFraBruker(BrukerB b){
         return jT.query(getAlleEventsFraBruker, new Object[]{
@@ -1471,8 +1428,8 @@ public class DBConnectionImpl implements DBConnection{
     
     @Override
     public List<RomBestilling> getReserverteRom(KalenderEvent ke){
-        System.out.println("Epost: " + ke.getEpost());
-        System.out.println("Starttid: " + ke.getStartTid());
+        //System.out.println("Epost: " + ke.getEpost());
+        //System.out.println("Starttid: " + ke.getStartTid());
         return jT.query(getReserverteRom, new Object[]{
             ke.getEpost(),
             ke.getStartTid(),
@@ -1521,11 +1478,6 @@ public class DBConnectionImpl implements DBConnection{
         }, new RomBestillingMapper());
     }
 
-    @Override
-    public List<Abonemennt> getAbonnementDeltakere(Abonemennt st) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }// ikke i bruk
-    
     @Override
     public boolean slettKalenderEvent(RomBestilling r){
         return (0<jT.update(slettKalenderEvent, new Object[]{
