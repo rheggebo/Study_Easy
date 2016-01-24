@@ -34,11 +34,6 @@
                     <option value="Privat">Privat</option>
                 </select>
             </dd>
-            <dt><label for="type">Type:<em>*</em></label></dt>
-            <dd><select name="type" id="type" required="true">
-                    <option value="0">Møte</option>
-                    <option value="1">Annet</option>
-                </select>
             
             <dt><label for="Notat">Notat:</label></dt>
             <textarea id="notat" placeholder="Skriv notat her" name="notat" autofocus="true" rows="10" cols="55" ></textarea>

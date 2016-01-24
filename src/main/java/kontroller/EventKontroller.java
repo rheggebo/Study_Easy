@@ -59,11 +59,11 @@ public class EventKontroller {
             binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
     }
     
-    /*@RequestMapping(value="omvei")
+    @RequestMapping(value="omvei")
     public String omvei(HttpSession sess, Model model){
         model.addAttribute("nyHendelse", new NyEvent());
         return "OpprettHendelse";
-    }*/
+    }
     
     @RequestMapping(value="OpprettHendelse")
     public String opprettHendelse(@ModelAttribute("nyHendelse") KalenderEvent event, @RequestParam("notat")String notat, @RequestParam("valg")String off, @RequestParam("startdato")Date startDato, @RequestParam("starttid")String startTid, @RequestParam("sluttdato")Date sluttDato, @RequestParam("starttid")String sluttTid, HttpSession sess, HttpServletResponse response, Model model, HttpServletRequest request){
@@ -94,6 +94,7 @@ public class EventKontroller {
             event.setEpost(brukerb.getEpost());
             event.setTilhorerEvent(0);
             event.setEierNavn(brukerb.getFornavn() + " " + brukerb.getEtternavn());
+            event.setType(3);
 
             service.leggTilEvent(event);
             
