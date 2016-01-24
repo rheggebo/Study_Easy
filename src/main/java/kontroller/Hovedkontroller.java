@@ -177,11 +177,10 @@ public class Hovedkontroller {
                     List<Abonemennt> abonemennt = service.getBrukerAbonnement(brukerb.getEpost());
                     String melding = "Hendelse slettet av " + brukerb.getFornavn();
                     for (Abonemennt abn : abonemennt){
-                    email.sendEpost(abn.getEierid(), "Ny hendelse", melding);
-
+                        email.sendEpost(abn.getEierid(), "Ny hendelse", melding);
                     }
 
-                }                catch(Exception e){
+                }catch(Exception e){
                     model.addAttribute("slettFeilMelding", "feilmelding.kunneIkkeSletteAbonnement");
                 }
             }
@@ -223,12 +222,13 @@ public class Hovedkontroller {
                 }
                 catch(Exception e){
                     model.addAttribute("slettFeilMelding", "feilmelding.kunneIkkeSletteHendelse");
+                }
             }
-
+            
             returnerMinSide(model, brukerb);
             //model.addAttribute("resultat", new SlettAbonnementValg());
             return "MinSide";
-            } 
+            
         }
 
         model.addAttribute("bruker", new Bruker()); 
