@@ -9,6 +9,7 @@ import beans.Fag;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -128,7 +129,24 @@ public class FormFinnRom {
     }
     
     public List getTiderList(){
-        String[] s = {"0600","0700","0800","0900","1000","1100","1200","1300","1400","1500","1600","1700","1800","1900","2000","2100","2200","2300"};
+        int tidMin = 6;
+        int tidMax = 23;
+        Calendar rightNow = Calendar.getInstance();
+        int hour = rightNow.get(Calendar.HOUR_OF_DAY)+1;
+        if (hour<tidMin){
+            hour = tidMin;
+        }
+        String[] s = new String[tidMax-hour+1];
+        int time;
+        for (int i = 0; i <= tidMax-hour; i++) {
+            time = hour+i;
+            if (time<10){
+                s[i] = "0"+ time+"00"; 
+                System.out.println("--------------------"+s[i]);
+            } else{
+                s[i] = time+"00"; 
+            }
+        }
         return Arrays.asList(s);
     }
     
