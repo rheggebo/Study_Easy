@@ -18,6 +18,12 @@
 </script>
 
 <main>
+    <c:set var="feilMeldingSokRom" value="${feilMeldingSokRom}"></c:set>
+        <c:if test="${not empty feilMeldingSokRom}">
+            <fieldset class="feilmelding">
+                <spring:message code="${feilMeldingSokRom}"/>
+            </fieldset>
+        </c:if>
     <div style="display: inline-block">
         <fieldset class="fieldsetDefault">
             <legend><b>Velg ønsket spesifikasjoner</b></legend>
@@ -95,6 +101,8 @@
                         <td></td>
                     </tr>
                     <c:set var="harSøkt" value="${formFinnRom.getVarighet()}"></c:set>
+                    <c:set var="opptatt" value="${feilISok}"></c:set>
+                    <c:if test="${!opptatt}">
                     <c:if test="${harSøkt >= 1}">
                     <tr>
                         <td>Tittel:</td>
@@ -128,6 +136,7 @@
                         <td><form:textarea id="textareaNotat" placeholder="Utvid for mer skriveplass" class="velgRomForm" path="notat" /></td>
                         <td><form:errors path="notat" /></td>
                     </tr>
+                    </c:if>
                     </c:if>
                 </table>
             </form:form>

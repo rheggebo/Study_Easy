@@ -121,6 +121,13 @@ public class EventKontroller {
         ke.setType(brukerb.getTilgangsniva());
         int fra = formFinnRom.getFraTid()/100;
         int til = formFinnRom.getVarighet();
+        
+        if (!sjekkDatoTilgang(brukerb, formFinnRom.getFraDato(), fra)){
+            model.addAttribute("feilMeldingSokRom", "feilmelding.feilMeldingSokRom" );
+            model.addAttribute("feilISok", true );
+            return "FinnRom";
+        }
+        
         if(brukerb.getTilgangsniva()<1){
             //tilDato = fromFinnRom.getFraDato();
         }
