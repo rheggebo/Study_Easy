@@ -21,6 +21,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -360,6 +361,10 @@ public class EventKontroller {
         ke.setRom(formVelgRom.getRomId());
         int fra = formVelgRom.getFraTid()/100;
         int til = formVelgRom.getVarighet();
+        if(!sjekkDatoTilgang(bruker, formVelgRom.getFraDato(), fra)) {
+            model.addAttribute("feilMeldingReservereRom", "feilmelding.feilMeldingReservereRom");
+            return "VelgRom";
+        }
         ke.setStartTid(new Timestamp(formVelgRom.getFraDato().getTime()+fra*3600000+1000));
         ke.setSluttTid(new Timestamp(formVelgRom.getFraDato().getTime()+(fra+til)*3600000));
         ke.setEpost(bruker.getEpost());
@@ -410,5 +415,38 @@ public class EventKontroller {
         model.addAttribute("melding", "feilmelding.slettBooking");
         returnerMinSide(model, bruker);
         return "MinSide";
+    }
+    
+    private boolean sjekkDatoTilgang(BrukerB bruker, Date fraDato, int fraTid) {
+        Calendar rightNow = Calendar.getInstance();
+        Calendar gregorian = new GregorianCalendar();
+        gregorian.setTime(rightNow.getTime());
+        gregorian.add(Calendar.DATE, 14);
+        int hour = rightNow.get(Calendar.HOUR_OF_DAY) + 1;
+        Date date = rightNow.getTime();
+        System.out.println("---------------------------- RIGHTNOW:::::   "+date);
+        System.out.println("---------------------------- GREGORIAN GETTIME:   "+gregorian.getTime());
+        System.out.println("---------------------------- HOUR:   "+ hour);
+        System.out.println("---------------------------- FRATID:   "+ fraTid);
+        System.out.println("---------------------------- FRA DATO   "+fraDato);
+        if(fraDato.getYear()==(date.getYear())) {
+            if(fraDato.getMonth() == (date.getMonth())) {
+                if(fraDato.getDay() == (date.getDay())) {
+                    System.out.println("kommer hit 1");
+                    if(hour > fraTid) {
+                        System.out.println("kommer hit 2");
+                        return false;
+                    }
+                }
+            }
+        }
+        
+        if(bruker.getTilgangsniva() == 0) {
+            if(fraDato.after(gregorian.getTime())) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }
