@@ -59,7 +59,7 @@ public class MinSideTest {
         driver.findElement(By.id("sokeSide")).click(); 
         
         Thread.sleep(500);
-        driver.findElement(By.id("searchFormSokeSide")).sendKeys("a");
+        driver.findElement(By.id("searchFormSokeSide")).sendKeys("henrik_bjorkheim@hotmail.com");
         
         Thread.sleep(500);
         driver.findElement(By.id("ansattSokeSide")).click(); 
@@ -120,6 +120,9 @@ public class MinSideTest {
    
         Thread.sleep(1000);
         driver.findElement(By.id("minInfo")).click();
+        
+        Thread.sleep(1000);
+        driver.findElement(By.id("slettBrukerA")).click(); 
         
         Thread.sleep(1000);
         
