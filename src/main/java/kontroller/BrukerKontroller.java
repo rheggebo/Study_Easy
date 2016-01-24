@@ -83,7 +83,8 @@ public class BrukerKontroller {
     @RequestMapping("EndrePassord")
     public String endrePassord(HttpSession sess, @ModelAttribute("passord") Passord pass, BindingResult error, Model model) throws Exception{
         BrukerB brukerb = (BrukerB) sess.getAttribute("brukerBean");
-        Bruker bruker = (Bruker) service.hentBruker(brukerb.getEpost());
+        if(brukerb != null && brukerb.isInnlogget()){
+            Bruker bruker = (Bruker) service.hentBruker(brukerb.getEpost());
         bruker.setEtternavn("asdasd");
         Passord valider = new Passord();
         if(!hasher.check(pass.getPassord(),bruker.getPassord())){
@@ -106,6 +107,9 @@ public class BrukerKontroller {
         model.addAttribute("melding", "feilmelding.passordGenerell");
         model.addAttribute("passord", new Passord());
         return "EndrePassordRed";
+        }
+        model.addAttribute("bruker", new Bruker());
+        return "Innlogging";
     }
     
     @RequestMapping("EndrePassordRed")
@@ -163,7 +167,9 @@ public class BrukerKontroller {
 
     @RequestMapping(value="LeggTilBrukerLagre")
     public String leggTilBrukerLagre(@Valid @ModelAttribute("nyBruker") Bruker bruker, @RequestParam("tilgangnivaa")String tilgang, Model model, BindingResult error, HttpSession sess){
-        if(error.hasErrors()){
+        BrukerB brukerb = (BrukerB) sess.getAttribute("brukerBean");
+        if(brukerb != null && brukerb.isInnlogget()){
+            if(error.hasErrors()){
             model.addAttribute("melding", "feilmelding.nyBrukerValidering");
             return "LeggTilBruker";
         }
@@ -188,21 +194,31 @@ public class BrukerKontroller {
                 return "MinSide";
             }
         }
-        model.addAttribute("melding", "feilmelding.nyBruker");
         model.addAttribute("nyBruker", new Bruker());
         return "LeggTilBruker";
+        }
+        model.addAttribute("bruker", new Bruker());
+        return "Innlogging";
     }
     
     @RequestMapping(value="brukerOversikt")
     public String test(Model model, HttpSession sess){
-        
-        return "BrukerOversikt";
+        BrukerB brukerb = (BrukerB) sess.getAttribute("brukerBean");
+        if(brukerb != null && brukerb.isInnlogget()){
+            return "BrukerOversikt";
+        }
+        model.addAttribute("bruker", new Bruker());
+        return "Innlogging";
     }
     
     @RequestMapping(value="NyttAbonemennt")
     public String nyttAbonemennt(Model model, HttpSession sess){
-
-        return "NyttAbonnement";
+        BrukerB brukerb = (BrukerB) sess.getAttribute("brukerBean");
+        if(brukerb != null && brukerb.isInnlogget()){
+            return "NyttAbonnement";
+        }
+        model.addAttribute("bruker", new Bruker());
+        return "Innlogging";
     }
     
     @RequestMapping("BekreftBestilling")
@@ -276,6 +292,19 @@ public class BrukerKontroller {
                     return "MinSide";
                 }
             }else{
+                returnerMinSide(model, brukerb);
+                return "MinSide";
+            }
+        }
+        model.addAttribute("bruker", new Bruker());
+        return "Innlogging";
+    }
+    
+    @RequestMapping("NyttFag")
+    private String nyttFag(@ModelAttribute("nyttFag")Fag fag, Model model, HttpSession sess){
+        BrukerB brukerb = (BrukerB) sess.getAttribute("brukerBean");
+        if(brukerb != null && brukerb.isInnlogget()){
+            if(service.leggTilFag(fag)){
                 returnerMinSide(model, brukerb);
                 return "MinSide";
             }

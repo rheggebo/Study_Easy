@@ -90,10 +90,6 @@ public class Hovedkontroller {
         Timestamp now = new Timestamp(dato.getTime());
         ke.setStartTid(now);
         List<RomBestilling> eventListe = service.getReserverteRom(ke);
-        System.out.println("Bookinger: " + eventListe.size());
-        for(RomBestilling best : eventListe){
-            System.out.println(best.getBestillingsID());
-        }
         long msek20Min = 20*60*1000;
         for (RomBestilling romBestilling : eventListe) {
             System.out.println(romBestilling.getStartDato().getTime()-now.getTime()+" "+msek20Min);
@@ -157,7 +153,6 @@ public class Hovedkontroller {
             return "MinSide";
         }
         model.addAttribute("bruker", new Bruker());
-
         return "Innlogging";
     }
     
@@ -232,7 +227,7 @@ public class Hovedkontroller {
         }
 
         model.addAttribute("bruker", new Bruker()); 
-        return "MinSide";
+        return "Innlogging";
     }
     
     @RequestMapping("VelgRom")
@@ -335,9 +330,14 @@ public class Hovedkontroller {
     }
     
     @RequestMapping("valgtRom")
-    public String valgtRom(@ModelAttribute("rom")Rom romForm, Model model){
-        Rom rom = service.getRom(romForm);
-        model.addAttribute("rom", rom);
-        return "FinnRom";
+    public String valgtRom(@ModelAttribute("rom")Rom romForm, Model model, HttpSession sess){
+        BrukerB brukerb = (BrukerB) sess.getAttribute("brukerBean");
+        if(brukerb != null && brukerb.isInnlogget()){
+              Rom rom = service.getRom(romForm);
+              model.addAttribute("rom", rom);
+              return "FinnRom";  
+        }
+        model.addAttribute("bruker", new Bruker());
+        return "Innlogging";
     }
 }
