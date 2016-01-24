@@ -182,6 +182,20 @@ public class EventKontroller {
         }
         model.addAttribute("bruker", new Bruker());
         return "Innlogging";
+        
+            System.out.println(formFinnRom.getType());
+            System.out.println(formFinnRom.getTittel());
+            System.out.println(formFinnRom.getFag());
+            System.out.println(formFinnRom.getNotat());
+        
+        List<Rom> liste = service.getRom(rom, ke, (formFinnRom.getStorrelse()>0), (formFinnRom.getSitteplasser()>0));
+        sess.setAttribute("asd", ke);
+        model.addAttribute("liste", liste);
+        model.addAttribute("formFinnRom", formFinnRom);
+        
+        model.addAttribute("event", new KalenderEvent());
+        sess.setAttribute("fFR", formFinnRom);
+        return "FinnRom";
     }
     
     @RequestMapping("BookRom")
