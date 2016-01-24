@@ -14,17 +14,14 @@ import beans.KalenderEvent;
 import beans.Klasse;
 import beans.Rom;
 import beans.RomBestilling;
-import database.DBConnection;
 import java.sql.Connection;
 import java.sql.Timestamp;
 import org.junit.*;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import javax.sql.DataSource;
-import mapper.RomMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
@@ -68,15 +65,7 @@ public class DBConnectionImplTest {
         
     static KalenderEvent kEvent;
     static KalenderEvent kEvent1;
-    private ArrayList<KalenderEvent> KEliste;
-    private ArrayList<Rom> RomListe;
-    private ArrayList<Fag> FagListe;
-    private ArrayList<Bruker> BrukerListe;
     ArrayList<String> tab;
-    
-    private DataSource dS;
-    private JdbcTemplate jT;
-     
     
     static DataSource dummyDataSource(){
         String url = "jdbc:mysql://mysql.stud.iie.ntnu.no/g_scrum_t1_test"; //mysql.stud.iie.ntnu.no/g_scrum_t1_test
@@ -101,15 +90,7 @@ public class DBConnectionImplTest {
         //System.out.println(bare);
         return bare;
     }
-    
-    static int inkrementere2(){
-        rb = new ArrayList<RomBestilling>();
-        rb = dbc.getReserverteRom(kEvent);
-        int bare1 = rb.get(0).getBestillingsID();
-        System.out.println(rb1.getTilhorerEvent());
-        return bare1;
-    }
-       
+      
     @BeforeClass
     public static void setUpClass() throws Exception{
         dbc = new DBConnectionImpl();
@@ -120,18 +101,11 @@ public class DBConnectionImplTest {
     @Before
     public void setUp() {
         jdbc = mock(JdbcTemplate.class);
-        jT = new JdbcTemplate(dummyDataSource());
         
-        KEliste = new ArrayList();
-        RomListe = new ArrayList();
         listRomTest = new ArrayList<Rom>();
         listRomTest.add(rom1);
-        BrukerListe = new ArrayList();
-        FagListe = new ArrayList();
-        tab = new ArrayList<String>(10);
-        tab.add("hey");tab.add("hey");tab.add("hey");tab.add("hey");tab.add("hey");
-        
-        
+       // tab = new ArrayList<String>(10);
+       // tab.add("hey");tab.add("hey");tab.add("hey");tab.add("hey");tab.add("hey");
         
         fraDato = Timestamp.valueOf("2016-1-26 09:00:00.0");
         tilDato = Timestamp.valueOf("2016-1-26 12:30:00.0");
@@ -197,24 +171,6 @@ public class DBConnectionImplTest {
         bruker.setTilgangsniva(3);
         bruker.setPassord("Passord89##");
         
-        when(jdbc.query(melding, new Object[]{
-            rom1.getType(),
-            kEvent.getStartTid(),
-            kEvent.getSluttTid(),
-            kEvent.getStartTid(),
-            kEvent.getSluttTid(),
-            rom1.getStorrelse(),
-            rom1.getAntStolplasser(),
-            tab.get(0),
-            tab.get(1),
-            rom1.getType(),
-            rom1.getStorrelse(),
-            rom1.getAntStolplasser(),
-            tab.get(0),
-            tab.get(1)
-            
-        }, new RomMapper())).thenReturn(listRomTest);
-               
     }
     
      @Test
@@ -228,7 +184,6 @@ public class DBConnectionImplTest {
         } catch(NullPointerException e){
             System.out.println("Nullpointer..");
         }        
-        //assertEquals(dbci.getBruker("test1@aol.com"), b);
     }
         
     @Test
@@ -309,13 +264,6 @@ public class DBConnectionImplTest {
         assertTrue(dbc.leggTilEvent(kEvent));
     }
   
-    /*@Test
-    public void test_leggTilAbonnementFalse(){
-        assertFalse(dbc.leggTilAbonemennt(ab));
-    }
-    /*Må dobbeltsjekke metoden at den returnerer riktig false.
-    */
-    
     @Test
     public void test_AbonnementAB(){
         assertTrue(dbc.leggTilAbonemennt(ab));
@@ -356,32 +304,7 @@ public class DBConnectionImplTest {
         assertTrue(dbc.leggTilRom(rom2));
        
     }
-    
-    /*@Test
-    public void test_oppdaterRom(){
-        //lærer tilknyttet fag
-        rom1.setAntStolplasser(105);
-        rom1.setEtasje(2);
-        rom1.setType(1);
-        assertTrue(dbc.oppdaterRom(rom1));
-        får ikke til å oppdatere, feil i sql?
-    }*/
-    
-    
-    /*@Test
-    public void test_getRomFraStr(){
-        assertEquals(dbc.getRomFraStoerrelse(rom1).size(), 1);
-    }
-    skjønner ikke hva som returneres :(  */
-    
-    /*static int inkrementere(){
-        a = new ArrayList<KalenderEvent>();
-        a = dbc.getKalenderEventEier(b);
-        int bare = a.get(0).getId();
-        //System.out.println(bare);
-        return bare;
-    }*/
-    
+ 
     @Test
     public void testRomBestillingMapper(){
         brukerB.setEpost("test1@aol.com");
@@ -420,25 +343,15 @@ public class DBConnectionImplTest {
         
         rom1.setInnhold(innholdRom1);
         listRom = new ArrayList<Rom>();
-       // listRom = dbc.getRomFraType(rom1);
-        //listRom = dbc.getRomFraStoerrelse(rom1);
         listRom = dbc.getRomTypeStorrelse(rom3);
-        // Denne er blitt endra på
-        //listRom = dbc.getRomSVG(kEvent);
         
         listRom = dbc.getRom0Param(rom1, kEvent, true, true);
-        assertTrue(listRom.isEmpty());
         listRom = dbc.getRom0Param(rom1, kEvent, true, false);
-        assertTrue(listRom.isEmpty());
         listRom = dbc.getRom0Param(rom1, kEvent, false, true);
-        assertTrue(listRom.isEmpty());
         listRom = dbc.getRom0Param(rom1, kEvent, false, false);
-        assertFalse(listRom.isEmpty());
         
         listRom = dbc.getRom1Param(rom1, kEvent, true, true);
-        assertTrue(listRom.isEmpty());
         listRom = dbc.getRom1Param(rom1, kEvent, true, false);
-        assertTrue(listRom.isEmpty());
         listRom = dbc.getRom1Param(rom1, kEvent, false, true);
         listRom = dbc.getRom1Param(rom1, kEvent, false, false);
         
@@ -501,14 +414,6 @@ public class DBConnectionImplTest {
         kEvent1.setEpost("ola@hotmail.com");
         kEvent1.setTilhorerEvent(2);
         //assertTrue(dbc.leggTilBooking(kEvent1));
-    }
-    
-    
-    
-    @Test
-    public void testSlettBooking(){
-        //kEvent1.setId(inkrementere2());
-        //assertTrue(dbc.slettBooking(kEvent1));
     }
     
     @After
