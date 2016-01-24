@@ -27,7 +27,7 @@
             <dt><label for="emailMinSide">E-post:</label></dt>
             <dd><form:input id="emailMinSide" type="email" name="email1" readonly="true" path="epost"/></dd>
 
-            <dt><label for="klasseMinSide">Klasse:</label></dt>
+
             </form:form>
         </dl>
         <form:form action="EndrePassordRed">

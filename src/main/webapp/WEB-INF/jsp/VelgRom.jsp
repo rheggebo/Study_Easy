@@ -72,22 +72,10 @@
                             <td></td>
                         </tr>  
                         <c:set var="tilgang" value="${bruker.getTilgangsniva()}"></c:set>
-                        <c:if test="${tilgang == 1}">
-                            <tr>
-                                <td>
-                                </td>
-                                <td>
-                                <input type="submit" class="defaultKnapp" formaction="OverstyrRomL" value="Overstyr rombestilling">
-                                </td>
-                                <td>
-                                </td>
-                            </tr>
-                         </c:if>
                         <c:if test="${tilgang == 2}">
                             <tr><td>
                                 </td>
-                                <td>
-                                <input type="submit" class="defaultKnapp" formaction="OverstyrRomAdmin" value="Overstyr rombestilling">
+                                <td> 
                                 </td>
                                 <td>
                                 <input type="submit" class="defaultKnapp" formaction="VelgRomRed" value="Rediger rom">
