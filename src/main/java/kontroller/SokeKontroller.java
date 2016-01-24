@@ -140,17 +140,6 @@ public class SokeKontroller {
         Timestamp now = new Timestamp(dato.getTime());
         ke.setStartTid(now);
         List<RomBestilling> eventListe = si.getReserverteRom(ke);
-        System.out.println("Bookinger: " + eventListe.size());
-        for(RomBestilling best : eventListe){
-            System.out.println(best.getBestillingsID());
-        }
-        long msek20Min = 20*60*1000;
-        for (RomBestilling romBestilling : eventListe) {
-            System.out.println(romBestilling.getStartDato().getTime()-now.getTime()+" "+msek20Min);
-            if(romBestilling.getStartDato().getTime()-now.getTime()<msek20Min){
-                romBestilling.setKlokkesjekk(true);
-            }
-        }
         model.addAttribute("event", new KalenderEvent());
         model.addAttribute("reservasjonsliste", eventListe);
         List<KalenderEvent> kalenderEventListe = si.getKalenderEventEier(brukerb);

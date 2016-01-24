@@ -254,13 +254,6 @@ public class EventKontroller {
         Timestamp now = new Timestamp(dato.getTime());
         ke.setStartTid(now);
         List<RomBestilling> eventListe = service.getReserverteRom(ke);
-        long msek20Min = 20*60*1000;
-        for (RomBestilling romBestilling : eventListe) {
-            System.out.println(romBestilling.getStartDato().getTime()-now.getTime()+" "+msek20Min);
-            if(romBestilling.getStartDato().getTime()-now.getTime()<msek20Min){
-                romBestilling.setKlokkesjekk(true);
-            }
-        }
         model.addAttribute("event", new KalenderEvent());
         model.addAttribute("reservasjonsliste", eventListe);
         List<KalenderEvent> kalenderEventListe = service.getKalenderEventEier(brukerb);
@@ -477,5 +470,29 @@ public class EventKontroller {
         }
 
         return true;
+    }
+    
+    @RequestMapping("BekreftBooking")
+    public String bekreftBooking(@ModelAttribute("event")KalenderEvent ke, HttpSession sess, Model model){
+        BrukerB brukerb = (BrukerB)sess.getAttribute("brukerBean");
+        if(brukerb != null && brukerb.isInnlogget()){
+            String[] info = ke.getRom().split(" ");
+            String rom = info[1];
+            String[] startDato = info[3].split("-");
+            String[] startTid = info[4].split(":");
+            String[] sluttDato = info[6].split("-");
+            String[] sluttTid = info[7].split(":");
+            ke.setEpost(brukerb.getEpost());
+            ke.setRom(rom);
+            ke.setStartTid(new Timestamp(Integer.parseInt(startDato[0])-1900,Integer.parseInt(startDato[1])-1,Integer.parseInt(startDato[2]),
+                    Integer.parseInt(startTid[0]), Integer.parseInt(startTid[1]), Integer.parseInt(startTid[2].substring(0,2)), 0));
+            ke.setSluttTid(new Timestamp(Integer.parseInt(sluttDato[0])-1900,Integer.parseInt(sluttDato[1])-1,Integer.parseInt(sluttDato[2]),
+                    Integer.parseInt(sluttTid[0]), Integer.parseInt(sluttTid[1]), Integer.parseInt(sluttTid[2].substring(0,2)), 0));
+            //Bekreft oppmøte for rom. 
+            returnerMinSide(model, brukerb);
+            return "MinSide";
+        }
+        model.addAttribute("bruker", new Bruker());
+        return "Innlogging";
     }
 }

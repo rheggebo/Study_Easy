@@ -371,5 +371,10 @@ public class ServiceImpl implements Service{
         return true;
     }
     
+    @Override
+    public boolean leggTilKlasse(Fag f){
+        return dbc.leggTilKlasse(f);
+    }
+    
     
 }
