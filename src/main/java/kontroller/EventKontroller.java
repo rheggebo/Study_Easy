@@ -269,6 +269,11 @@ public class EventKontroller {
         KalenderEvent ke = new KalenderEvent();
         int fra = formVelgRom.getFraTid()/100;
         int til = formVelgRom.getVarighet();
+        if(!sjekkDatoTilgang(bruker, formVelgRom.getFraDato(), fra)) {
+            model.addAttribute("opptatt", true );
+            model.addAttribute("feilMeldingReservereRom", "feilmelding.feilMeldingSokRom");
+            return "VelgRom";
+        }
         ke.setStartTid(new Timestamp(formVelgRom.getFraDato().getTime()+fra*3600000+1000));
         ke.setSluttTid(new Timestamp(formVelgRom.getFraDato().getTime()+(fra+til)*3600000));
         Rom r = new Rom();
