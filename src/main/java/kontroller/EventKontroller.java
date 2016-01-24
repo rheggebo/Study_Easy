@@ -107,33 +107,6 @@ public class EventKontroller {
         return "OpprettHendelse";
     }
     
-    @RequestMapping(value="BestilleRom")
-    public String bestilleRom(@ModelAttribute("rom") Rom rom, @RequestParam(required=false, value="privat") boolean privat,
-            @RequestParam("startDato")Date startDato, @RequestParam("sluttDato")Date sluttDato, @RequestParam("fag")String fag,
-            @RequestParam("notat")String notat, @RequestParam("tittel")String tittel,HttpSession sess, Model model){
-        KalenderEvent ke = new KalenderEvent();
-        BrukerB brukerb = (BrukerB) sess.getAttribute("brukerBean");
-        ke.setEpost(brukerb.getEpost());
-        ke.setEierNavn(brukerb.getFornavn()+" "+brukerb.getEtternavn());
-        startDato.setTime(startDato.getTime());
-        sluttDato.setTime(0);
-        ke.setStartTid(new Timestamp(startDato.getTime()));
-        ke.setSluttTid(new Timestamp(sluttDato.getTime()));
-        ke.setRom(rom.getRomNavn());
-        ke.setFag(fag);
-        ke.setType(brukerb.getTilgangsniva());
-        ke.setPrivat(privat);
-        ke.setNotat(notat);
-        ke.setTittel(tittel);
-        if(service.leggTilEvent(ke)){
-            return "MinSide";
-        }else{
-            model.addAttribute("rom", rom);
-            model.addAttribute("melding", "feilmelding.rombestillingGenerell");
-            return "BestilleRom";
-        } 
-    }
-    
     @RequestMapping("finnromdata")
     public String finnRom(@ModelAttribute("formFinnRom") FormFinnRom formFinnRom, Model model, HttpSession sess, HttpServletRequest req/*, 
             @RequestParam(value="notat", required=false)String notat, @RequestParam(value="tittel",required=false)String tittel, 
@@ -254,7 +227,7 @@ public class EventKontroller {
     }
     
     private void returnerMinSide(Model model, BrukerB brukerb){
-        System.out.println("her er jeg");
+        System.out.println("Jeg kjører nå");
         List<Abonemennt> liste = service.getAbonemenntFraBruker(brukerb);
         model.addAttribute("abonemenntListe", liste);
         KalenderEvent ke = new KalenderEvent();
@@ -263,20 +236,21 @@ public class EventKontroller {
         Timestamp now = new Timestamp(dato.getTime());
         ke.setStartTid(now);
         List<RomBestilling> eventListe = service.getReserverteRom(ke);
-        System.out.println("hei" + eventListe.size());
-        for(RomBestilling bestilling : eventListe){
-            System.out.println("BEST: " + bestilling.getBestillingsID());
+        System.out.println("Bookinger: " + eventListe.size());
+        for(RomBestilling best : eventListe){
+            System.out.println(best.getBestillingsID());
         }
         long msek20Min = 20*60*1000;
         for (RomBestilling romBestilling : eventListe) {
-            System.out.println(now.getTime()-romBestilling.getStartDato().getTime()+" "+msek20Min);
-            if(now.getTime()-romBestilling.getStartDato().getTime()<msek20Min){
+            System.out.println(romBestilling.getStartDato().getTime()-now.getTime()+" "+msek20Min);
+            if(romBestilling.getStartDato().getTime()-now.getTime()<msek20Min){
                 romBestilling.setKlokkesjekk(true);
             }
         }
         model.addAttribute("event", new KalenderEvent());
         model.addAttribute("reservasjonsliste", eventListe);
-        model.addAttribute("bruker", brukerb);
+        List<KalenderEvent> kalenderEventListe = service.getKalenderEventEier(brukerb);
+        model.addAttribute("kalenderEventListe", kalenderEventListe);
         model.addAttribute("resultat", new SlettAbonnementValg());
         model.addAttribute("bruker", brukerb);
     }
