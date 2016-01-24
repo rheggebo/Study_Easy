@@ -6,17 +6,8 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <link rel="shortcut icon" href="<c:url value="/resources/images/BBIkon2.png"/>">
-        <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/GlemtPassord.css"/>">
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Glemt passord</title>
-    </head>
-    <body>
+<main>
         <div id="boks">
             <form:form action="sendNyttPassord" modelAttribute="bruker">
                 <div id="inputFelt">
@@ -29,15 +20,16 @@
                                 font-size: 18px;
                                 border-radius: 8px;"/>
                 </div>
-                <input type="submit" value="Send nytt passord" style="
+                <input id = "passordInnlogging" type="submit" value="Send nytt passord" style="
                     width: 460px;
                     padding: 15px 10px;
                     position: absolute;
                     top: 215%;
                     left: 50%;
                     margin-left: -230px;
+                    cursor: pointer;
                     margin-top: -240px;
-                    background-color: dodgerblue;
+                    background-color: #00BFFF;
                     color: white;
                     border-radius: 12px;"/>
             </form:form>
@@ -46,5 +38,4 @@
     <c:if test="${not empty meldingS}">
         <spring:message code="${melding}" />
     </c:if>
-    </body>
-</html>
+<main>
