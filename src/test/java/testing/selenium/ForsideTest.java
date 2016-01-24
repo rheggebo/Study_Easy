@@ -26,7 +26,7 @@ import org.openqa.selenium.interactions.Actions;
 public class ForsideTest {
     
     WebDriver driver = new FirefoxDriver();     
-    /*
+    
     @Test
     public void testKalenderen() throws Throwable {
     
@@ -103,7 +103,7 @@ public class ForsideTest {
 
     }
     
-    */
+    
     
     /*
         Thread.sleep(2000); 
