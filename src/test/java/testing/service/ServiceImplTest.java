@@ -117,7 +117,7 @@ public class ServiceImplTest {
         when(dBConnection.slettBrukerFag(sindre, f)).thenReturn(true);
         when(dBConnection.leggTilFag(f)).thenReturn(true);
         when(dBConnection.leggTilRom(rom272)).thenReturn(false);
-        when(dBConnection.leggTilKalenderEvent(ke)).thenReturn(true);
+        when(dBConnection.leggTilEvent(ke)).thenReturn(true);
         when(dBConnection.fjernKalenderEvent(ke)).thenReturn(true);
         when(dBConnection.getKalenderEventDeltakere(ke)).thenReturn(liste);
         when(dBConnection.getKalenderEventDeltaker(ke,sindre)).thenReturn(sindre);
@@ -283,7 +283,7 @@ public class ServiceImplTest {
         test.setDBC(dBConnection);
         
         //Slett liste med bruere:
-        assertEquals(test.leggTilKalenderEvent(ke),true);
+        assertEquals(test.leggTilEvent(ke),true);
     }
     
     @Test

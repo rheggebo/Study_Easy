@@ -56,6 +56,7 @@ public class DBConnectionImplTest {
     List<Rom> listRom;
     List<Abonemennt> listAbo;
     List<RomBestilling> listRB;
+    List<Klasse> listKl;
     static List<KalenderEvent> a;
     static List<RomBestilling> rb; 
     static int tall;
@@ -118,8 +119,8 @@ public class DBConnectionImplTest {
         BrukerListe = new ArrayList();
         FagListe = new ArrayList();
         
-        fraDato = Timestamp.valueOf("2016-1-23 09:00:00.0");
-        tilDato = Timestamp.valueOf("2016-1-23 12:30:00.0");
+        fraDato = Timestamp.valueOf("2016-1-26 09:00:00.0");
+        tilDato = Timestamp.valueOf("2016-1-26 12:30:00.0");
         
         ab = new Abonemennt("pedersen@aol.com","test2@aol.com", 0);
         ac = new Abonemennt("ola@hotmail.com", "TDAT2001", 1);
@@ -261,6 +262,8 @@ public class DBConnectionImplTest {
         assertEquals(dbc.getStudentSok("Ola", "Ola", "Ola").size(),1);
     
         assertEquals(dbc.getKlasseSok("TDAT").size(), 0);
+        
+        assertEquals(dbc.getKlasseSok("TADT").size(), 0);
     }
     
     @Test
@@ -274,16 +277,6 @@ public class DBConnectionImplTest {
         assertTrue(dbc.leggTilEvent(kEvent));
     }
   
-    @Test
-    public void test_slettAbonnement(){
-        assertFalse(dbc.slettAbonemennt(ac));
-    }
-    
-    @Test
-    public void test_slettAbonnementFalse(){
-        assertTrue(dbc.slettAbonemennt(ac));
-    }
-    
     /*@Test
     public void test_leggTilAbonnementFalse(){
         assertFalse(dbc.leggTilAbonemennt(ab));
@@ -292,8 +285,24 @@ public class DBConnectionImplTest {
     */
     
     @Test
-    public void test_leggTilAbonnement(){
+    public void test_AbonnementAB(){
+        assertTrue(dbc.leggTilAbonemennt(ab));
+        //assertTrue(dbc.slettAbonemennt(ab));
+    }
+    @Test
+    public void test_slettAbonnement1(){
+        assertTrue(dbc.slettAbonemennt(ab));
+    }
+    
+    @Test
+    public void test_slettAbonnementFalse(){
+        assertFalse(dbc.slettAbonemennt(ac));
+    }
+    
+    @Test
+    public void test_abonnementAC(){
         assertTrue(dbc.leggTilAbonemennt(ac));
+        assertTrue(dbc.slettAbonemennt(ac));
     }
     
     @Test
@@ -347,9 +356,9 @@ public class DBConnectionImplTest {
         listRB = new ArrayList<RomBestilling>();
         listRB = dbc.getAlleBestillingerFraBruker(brukerB);
         listRB = dbc.getReserverteRom(kEvent);
-        System.out.println(listRB.get(0).getTilhorerEvent());
-        rb1 = dbc.getRomBooking(kEvent);
-        inkrementere2();
+        //System.out.println(listRB.get(0).getTilhorerEvent());
+        //rb1 = dbc.getRomBooking(kEvent);
+        //inkrementere2();
         //System.out.println(rb1.toString());
         
     }
@@ -359,6 +368,7 @@ public class DBConnectionImplTest {
         brukerB.setEpost("test2@aol.com");
         listAbo = new ArrayList<Abonemennt>();
         listAbo = dbc.getAbonemenntFraBruker(brukerB);
+        listAbo = dbc.getBrukerAbonnement("test1@aol.com");
     }
     
     @Test
@@ -369,19 +379,45 @@ public class DBConnectionImplTest {
         listRom = dbc.getRomFraStoerrelse(rom1);
         listRom = dbc.getRomTypeStorrelse(rom3);
         listRom = dbc.getRomSVG(kEvent);
+        
+        listRom = dbc.getRom0Param(rom1, kEvent, true, true);
+        listRom = dbc.getRom0Param(rom1, kEvent, true, false);
+        listRom = dbc.getRom0Param(rom1, kEvent, false, true);
+        
+        /*listRom = dbc.getRom1Param(rom2, kEvent, true, true);
+        listRom = dbc.getRom1Param(rom1, kEvent, true, false);
+        listRom = dbc.getRom1Param(rom1, kEvent, false, true);
+        
+        listRom = dbc.getRom2Param(rom1, kEvent, true, true);
+        listRom = dbc.getRom2Param(rom1, kEvent, true, false);
+        listRom = dbc.getRom2Param(rom1, kEvent, false, true);
+        
+        listRom = dbc.getRom3Param(rom1, kEvent, true, true);
+        listRom = dbc.getRom3Param(rom1, kEvent, true, false);
+        listRom = dbc.getRom3Param(rom1, kEvent, false, true);
+        
+        listRom = dbc.getRom4Param(rom1, kEvent, true, true);
+        listRom = dbc.getRom4Param(rom1, kEvent, true, false);
+        listRom = dbc.getRom4Param(rom1, kEvent, false, true);
+   */
     }
     
     @Test
     public void testKalenderEventMapper(){
         rom3.setRomID("KA-SA235");
-        
         brukerB.setEpost("ola@hotmail.com");
         listkEvent = new ArrayList<KalenderEvent>();
         listkEvent = dbc.getKalenderEventEier(brukerB);
         listkEvent = dbc.getKalenderEventRomID(rom3);
         listkEvent = dbc.getKalenderEventHidden(kEvent);
         listkEvent = dbc.getAlleEventsFraBruker(brukerB);
-        assertEquals(listkEvent.size(), 5);
+        assertEquals(listkEvent.size(), 1);
+    }
+    
+    @Test
+    public void testKlasseMapper(){
+        listKl = new ArrayList<Klasse>();
+        listKl = dbc.getAlleKlasser();
     }
     
     @Test
@@ -389,24 +425,33 @@ public class DBConnectionImplTest {
         rom4 = new Rom();
         rom4 = dbc.getRom(rom1);
         //assertEquals(dbc.getRom(rom1), rom4);
+        assertTrue(dbc.erRomLedig(kEvent));
+        
         
     }
     
-   /* @Test
+    @Test
+    public void testOpptattRom(){
+        assertTrue(dbc.erRomLedig(kEvent1));
+    }
+    
+    @Test
     public void testLeggTilBooking(){
         kEvent1.setRom("KAUD");
         kEvent1.setStartTid(fraDato);
         kEvent1.setSluttTid(tilDato);
         kEvent1.setEpost("ola@hotmail.com");
         kEvent1.setTilhorerEvent(2);
-        assertTrue(dbc.leggTilBooking(kEvent1));
-    }*/
+        //assertTrue(dbc.leggTilBooking(kEvent1));
+    }
     
-    /*@Test
+    
+    
+    @Test
     public void testSlettBooking(){
-        kEvent1.setId(inkrementere2());
-        assertTrue(dbc.slettBooking(kEvent1));
-    }*/
+        //kEvent1.setId(inkrementere2());
+        //assertTrue(dbc.slettBooking(kEvent1));
+    }
     
     @After
     public void tearDown() {
