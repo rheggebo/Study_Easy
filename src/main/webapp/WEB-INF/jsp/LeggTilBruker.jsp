@@ -39,43 +39,7 @@
             </form:form>
         </fieldset>
         </div>
-        <div>
-        <fieldset class="fieldsetDefault">       
-            <legend>Legg til fag i klasse</legend>
-            <form:form action="LeggTilFagLagre" modelAttribute="leggTilFagKlasse">
-                <table>
-                    <tr>
-                        <td>Velg klasse<em>* </em></td>
-                        <td>
-                           <form:select name="valgKlasse" id="valgKlasse" placeholder="KlasseID" required="true" path="klasseID">
-                                <form:options items="${leggTilFagKlasse.getKlasseListe()}"/>
-                            </form:select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Legg til fag i klasse:<em>* </em></td>
-                        <td>
-                            <form:select name="leggTilFag" id="leggTilFag" placeholder="FagID" required="true" path="fagID">
-                                <form:options items="${fagListe}"/>
-                            </form:select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td><input id="leggTilFag" class="defaultKnapp" type="submit" value="Legg til" onclick=""></td>
-                    </tr>
-                </table>
-                <p></p>
-            </form:form>
-            <c:set var="meldingS" value="${melding}"></c:set>
-            <c:if test="${not empty meldingS}">
-                <p>
-                    <spring:message code="${melding}" />
-                </p>
-            </c:if>
-        </fieldset>   
-
-        </div>
+        
         <div>
         <fieldset class="fieldsetDefault">       
             <legend>Legg til nytt fag</legend>
@@ -129,6 +93,43 @@
                 <p></p>
             </form:form>
         </fieldset>     
+        </div>
+        <div>
+        <fieldset class="fieldsetDefault">       
+            <legend>Legg til fag i klasse</legend>
+            <form:form action="LeggTilFagLagre" modelAttribute="leggTilFagKlasse">
+                <table>
+                    <tr>
+                        <td>Velg klasse<em>* </em></td>
+                        <td>
+                           <form:select name="valgKlasse" id="valgKlasse" placeholder="KlasseID" required="true" path="klasseID">
+                                <form:options items="${leggTilFagKlasse.getKlasseListe()}"/>
+                            </form:select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Legg til fag i klasse:<em>* </em></td>
+                        <td>
+                            <form:select name="leggTilFag" id="leggTilFag" placeholder="FagID" required="true" path="fagID">
+                                <form:options items="${fagListe}"/>
+                            </form:select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><input id="leggTilFag" class="defaultKnapp" type="submit" value="Legg til" onclick=""></td>
+                    </tr>
+                </table>
+                <p></p>
+            </form:form>
+            <c:set var="meldingS" value="${melding}"></c:set>
+            <c:if test="${not empty meldingS}">
+                <p>
+                    <spring:message code="${melding}" />
+                </p>
+            </c:if>
+        </fieldset>   
+
         </div>
     </div>
 </main>
