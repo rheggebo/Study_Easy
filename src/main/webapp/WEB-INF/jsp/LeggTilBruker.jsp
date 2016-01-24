@@ -6,37 +6,37 @@
         <div>
         <fieldset class="fieldsetDefault">
             <legend>Legg til bruker</legend>
-                <form:form action="LeggTilBrukerLagre" modelAttribute="nyBruker">
-                    <table>
-                        <tr>
-                            <td><label for="fornavn">Fornavn:<em>*</em> </label></td>
-                            <td><form:input id="fornavn" type="text" name="fornavn" placeholder="Ola" autofocus="true" required="true" path="fornavn"/></td>
-                        </tr>
-                        <tr>
-                            <td><label for="etternavn">Etternavn:<em>*</em></label></td>
-                            <td><form:input id="etternavn" type="text" name="etternavn" placeholder="Nordmann" required="true" path="etternavn"/></td>
-                        </tr>
-                        
-                        <tr>
-                            <td><label for="epost">E-post:<em>*</em></label></td>
-                            <td><form:input type="email" id="epost" placeholder="Skriv inn e-post" required="true" path="epost"/></td>
-                        </tr>
-                        <tr>
-                            <td><label for="tilgangnivaa">Type:<em>*</em></label></td>
-                            <td>
-                                <select name="tilgangnivaa" id="tilgangnivaa" required="true">
-                                    <option value="Elev">Elev</option>
-                                    <option value="Lærer">Lærer</option>
-                                    <option id="timeplansansvarligOption" name="timeplansansvarligOption" var="timeplansansvarligOption" value="Timeplansansvarlig">Timeplansansvarlig</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td><input id="leggTil" class="defaultKnapp" type="submit" value="Legg til" onclick=""></td>
-                        </tr>
-                    </table>
-                </form:form>
+            <form:form action="LeggTilBrukerLagre" modelAttribute="nyBruker">
+                <table>
+                    <tr>
+                        <td><label for="fornavn">Fornavn:<em>*</em> </label></td>
+                        <td><form:input id="fornavn" type="text" name="fornavn" placeholder="Ola" autofocus="true" required="true" path="fornavn"/></td>
+                    </tr>
+                    <tr>
+                        <td><label for="etternavn">Etternavn:<em>*</em></label></td>
+                        <td><form:input id="etternavn" type="text" name="etternavn" placeholder="Nordmann" required="true" path="etternavn"/></td>
+                    </tr>
+
+                    <tr>
+                        <td><label for="epost">E-post:<em>*</em></label></td>
+                        <td><form:input type="email" id="epost" placeholder="Skriv inn e-post" required="true" path="epost"/></td>
+                    </tr>
+                    <tr>
+                        <td><label for="tilgangnivaa">Type:<em>*</em></label></td>
+                        <td>
+                            <select name="tilgangnivaa" id="tilgangnivaa" required="true">
+                                <option value="Elev">Elev</option>
+                                <option value="Lærer">Lærer</option>
+                                <option id="timeplansansvarligOption" name="timeplansansvarligOption" var="timeplansansvarligOption" value="Timeplansansvarlig">Timeplansansvarlig</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><input id="leggTil" class="defaultKnapp" type="submit" value="Legg til" onclick=""></td>
+                    </tr>
+                </table>
+            </form:form>
         </fieldset>
         </div>
         <div>
