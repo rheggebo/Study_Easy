@@ -654,16 +654,16 @@ public class DBConnectionImpl implements DBConnection{
                 ke.getSluttTid(),
                 ke.getStartTid(),
                 ke.getSluttTid(),
-                //størrelse
-                r.getStorrelse(),
                 //sitteplasser
                 r.getAntStolplasser(),
-                //slutt
-                r.getType(),
                 //størrelse
                 r.getStorrelse(),
+                //slutt
+                r.getType(),
                 //sitteplasser
-                r.getAntStolplasser()
+                r.getAntStolplasser(),
+                //størrelse
+                r.getStorrelse()
                 
 
             }, new RomMapper());

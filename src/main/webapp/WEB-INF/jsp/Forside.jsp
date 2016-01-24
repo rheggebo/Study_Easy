@@ -13,7 +13,7 @@
     
     <ul class="ikonForside" style="list-style-type: none; margin: 0; padding: 0;">
         <li style="display: inline-block"><button class="knappForside" id="leggTilKnappForside" name="leggTilKnapp" onclick="location.href='omvei'"><span class="fontawesome-plus"></span></button></li>
-        <li style="display: inline-block"><button class="knappForside" id="slettKnappForside" name="slettKnappForside" onclick="location.href='#'"><span class="fontawesome-trash"></span></button></li>
+        <li style="display: inline-block"><button class="knappForside" id="slettKnappForside" name="slettKnappForside" onclick="location.href='MinSide'"><span class="fontawesome-trash"></span></button></li>
         <li style="display: inline-block"><button class="knappForside" id="søkeKnappForside" name="søkeKnappForside" onclick="location.href='SokeSide'"><span class="fontawesome-search"></span></button></li>
         <li style="display: inline-block">
             <a class="infoKnappForside" href="#infoVindu"><span class="fontawesome-info-sign"></span></a>
