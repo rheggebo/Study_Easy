@@ -57,6 +57,8 @@ public class DBConnectionImplTest {
     List<KalenderEvent> listkEvent; 
     List<Fag> listFag;
     List<Rom> listRom;
+    List<Rom> listeRom;
+    List<Rom> listRomTest;
     List<Abonemennt> listAbo;
     List<RomBestilling> listRB;
     List<Klasse> listKl;
@@ -118,12 +120,18 @@ public class DBConnectionImplTest {
     @Before
     public void setUp() {
         jdbc = mock(JdbcTemplate.class);
+        jT = new JdbcTemplate(dummyDataSource());
+        
         
         KEliste = new ArrayList();
         RomListe = new ArrayList();
+        listRomTest = new ArrayList<Rom>();
+        listRomTest.add(rom1);
         BrukerListe = new ArrayList();
         FagListe = new ArrayList();
-        tab = new ArrayList<String>(2);
+        tab = new ArrayList<String>(10);
+        tab.add("hey");tab.add("hey");tab.add("hey");tab.add("hey");tab.add("hey");
+        
         
         
         fraDato = Timestamp.valueOf("2016-1-26 09:00:00.0");
@@ -197,13 +205,18 @@ public class DBConnectionImplTest {
             kEvent.getStartTid(),
             kEvent.getSluttTid(),
             rom1.getStorrelse(),
-            rom1.getAntStolplasser()
-            /*tab.get(0),
-            tab.get(1)*/
+            rom1.getAntStolplasser(),
+            tab.get(0),
+            tab.get(1),
+            rom1.getType(),
+            rom1.getStorrelse(),
+            rom1.getAntStolplasser(),
+            tab.get(0),
+            tab.get(1)
             
-        }, new RomMapper())).thenReturn(listRom);
+        }, new RomMapper())).thenReturn(listRomTest);
                
-        }
+    }
     
      @Test
     public void test_getBruker(){
@@ -264,7 +277,7 @@ public class DBConnectionImplTest {
       
     @Test
     public void test_getAlle(){
-        assertEquals(dbc.getAlleRom().size(), 34);
+        assertEquals(dbc.getAlleRom().size(), 16);
         assertEquals(dbc.getAlleFag().size(), 5);
     
         int ant = 16;
@@ -394,6 +407,19 @@ public class DBConnectionImplTest {
     @Test
     public void testRomMapper(){
         rom3.setRomID("KAUD");
+        ArrayList<String> innholdRom1 = new ArrayList<String>();
+        innholdRom1.add("prosjekt tor");
+        innholdRom1.add("ape katter");
+        innholdRom1.add("tv tv");
+        innholdRom1.add("tv tv");
+        innholdRom1.add("tv tv");
+        innholdRom1.add("tv tv");
+        innholdRom1.add("tv tv");
+        innholdRom1.add("tv tv");
+        innholdRom1.add("tv tv");
+        innholdRom1.add("tv tv");
+        
+        rom1.setInnhold(innholdRom1);
         listRom = new ArrayList<Rom>();
        // listRom = dbc.getRomFraType(rom1);
         //listRom = dbc.getRomFraStoerrelse(rom1);
@@ -406,9 +432,7 @@ public class DBConnectionImplTest {
         listRom = dbc.getRom0Param(rom1, kEvent, false, true);
         listRom = dbc.getRom0Param(rom1, kEvent, false, false);
         
-       // assertEquals(dbc.getRom1Param(rom1, kEvent, true, true), listRom);
-        
-        /*listRom = dbc.getRom1Param(rom2, kEvent, true, true);
+        listRom = dbc.getRom1Param(rom1, kEvent, true, true);
         listRom = dbc.getRom1Param(rom1, kEvent, true, false);
         listRom = dbc.getRom1Param(rom1, kEvent, false, true);
         
@@ -423,7 +447,13 @@ public class DBConnectionImplTest {
         listRom = dbc.getRom4Param(rom1, kEvent, true, true);
         listRom = dbc.getRom4Param(rom1, kEvent, true, false);
         listRom = dbc.getRom4Param(rom1, kEvent, false, true);
-   */
+                
+   
+    }
+    
+    @Test
+    public void testGetRom1Param() {
+
     }
     
     @Test
