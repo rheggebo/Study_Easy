@@ -128,7 +128,7 @@ public interface DBConnection {
 
     public boolean leggTilBooking(KalenderEvent ke);
     
-    public List<Rom> getRomSVG(KalenderEvent ke);
+    public List<Rom> getRomSVG(Rom r, KalenderEvent ke);
     
     public List<RomBestilling> getReserverteRom(KalenderEvent ke);
     
@@ -149,4 +149,12 @@ public interface DBConnection {
     public List<Klasse> getAlleKlasser();
     
     public boolean erRomLedig(KalenderEvent ke);
+    
+    public List<Fag> getFagKlasse(String klasse);
+    
+    public boolean leggTilFagKlasse(String fag, String klasse);
+    
+    public List<String> getAlleInnholdRom(Rom r);
+    
+    public boolean oppdaterInnholdRom(String romID, String[] innhold);
 }

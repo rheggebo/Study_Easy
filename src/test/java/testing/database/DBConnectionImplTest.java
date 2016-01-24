@@ -368,7 +368,7 @@ public class DBConnectionImplTest {
         listRom = dbc.getRomFraType(rom1);
         listRom = dbc.getRomFraStoerrelse(rom1);
         listRom = dbc.getRomTypeStorrelse(rom3);
-        listRom = dbc.getRomSVG(kEvent);
+        listRom = dbc.getRomSVG(rom1,kEvent);
     }
     
     @Test

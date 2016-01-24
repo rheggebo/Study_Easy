@@ -50,7 +50,14 @@
                         <td>Romtype:<em>* </em></td>
                         <td>
                             <form:select class="velgRomForm" path="romtype">
-                                <form:options items="${formFinnRom.romtypeList}"/>
+                                <c:set var="tilgang" value="${bruker.getTilgangsniva()}"/>
+                                <c:if test= "${tilgang == 0}" >
+                                    <form:options items="${formFinnRom.getRomTypeListScrub()}"/>
+                                </c:if>
+                                <c:if test="${tilgang > 0}">
+                                    <form:options items="${formFinnRom.romtypeList}"/>
+                                </c:if>
+                                
                             </form:select>
                         </td>
                         <td><form:errors path="romtype"/></td>
@@ -93,7 +100,7 @@
                         <td><form:errors path="tittel" /></td>
                     </tr>
                     <tr>
-                        <td>Type:<em>* </em></td>
+                        <td>Type kalenderhendelse:<em>* </em></td>
                         <td>
                             <form:select class="velgRomForm" path="type">
                                 <form:options items="${formFinnRom.typeList}"/>
@@ -102,7 +109,7 @@
                         <td><form:errors path="type"/></td>
                     </tr>
                     <c:set var="tilgang" value="${bruker.getTilgangsniva()}"></c:set>
-                    <c:if test="${tilgang > 1}">
+                    <c:if test="${tilgang > 0}">
                     <tr>
                         <td>Fag:</td>
                         <td>

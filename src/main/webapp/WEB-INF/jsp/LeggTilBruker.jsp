@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
 <main>
@@ -36,13 +37,17 @@
                 <tr>
                     <td>Velg klasse<em>* </em></td>
                     <td>
-                       
+                       <form:select name="valgKlasse" id="valgKlasse" required="true" path="klasseID">
+                            <form:options items="${leggTilFagKlasse.getKlasseListe()}"/>
+                        </form:select>
                     </td>
                 </tr>
                 <tr>
                     <td>Legg til fag i klasse:<em>* </em></td>
                     <td>
-                        
+                        <form:select name="leggTilFag" id="leggTilFag" required="true" path="fagID">
+                            <form:options items="${fagListe}"/>
+                        </form:select>
                     </td>
                 </tr>
                 <tr>

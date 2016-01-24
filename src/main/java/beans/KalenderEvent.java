@@ -16,6 +16,7 @@ public class KalenderEvent {
     private String notat;
     private String tittel;
     private int tilhorerEvent;
+    private int bestillingsID;
     
     public int getId() {
         return id;
@@ -108,6 +109,14 @@ public class KalenderEvent {
 
     public void setTilhorerEvent(int tilhorerEvent) {
         this.tilhorerEvent = tilhorerEvent;
+    }
+
+    public int getBestillingsID() {
+        return bestillingsID;
+    }
+
+    public void setBestillingsID(int bestillingsID) {
+        this.bestillingsID = bestillingsID;
     }
     
     public String toString() {

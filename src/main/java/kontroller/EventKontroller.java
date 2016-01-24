@@ -6,6 +6,7 @@
 package kontroller;
 
 import beans.Abonemennt;
+import beans.Bruker;
 import beans.BrukerB;
 import beans.KalenderEvent;
 import beans.NyEvent;
@@ -134,7 +135,7 @@ public class EventKontroller {
     }
     
     @RequestMapping("finnromdata")
-    public String finnRom(@ModelAttribute FormFinnRom formFinnRom, Model model, HttpSession sess, HttpServletRequest req/*, 
+    public String finnRom(@ModelAttribute("formFinnRom") FormFinnRom formFinnRom, Model model, HttpSession sess, HttpServletRequest req/*, 
             @RequestParam(value="notat", required=false)String notat, @RequestParam(value="tittel",required=false)String tittel, 
             @RequestParam(value="fag", required=false)String fag*/){
         KalenderEvent ke = new KalenderEvent();
@@ -149,7 +150,7 @@ public class EventKontroller {
         if(brukerb.getTilgangsniva()<1){
             //tilDato = fromFinnRom.getFraDato();
         }
-        ke.setStartTid(new Timestamp(formFinnRom.getFraDato().getTime()+fra*3600000));
+        ke.setStartTid(new Timestamp(formFinnRom.getFraDato().getTime()+fra*3600000+1000));
         ke.setSluttTid(new Timestamp(formFinnRom.getFraDato().getTime()+(fra+til)*3600000));
         ArrayList<String> innhold = new ArrayList<String>();
         
@@ -168,24 +169,31 @@ public class EventKontroller {
         if(formFinnRom.getStorrelse()>0){
             rom.setStorrelse(formFinnRom.getStorrelse());
         }
-        
-        if(formFinnRom.getRomtype().equalsIgnoreCase("Forelesningssal")){
+        rom.setInnhold(innhold);
+        if(brukerb.getTilgangsniva()>0){
+            if(formFinnRom.getRomtype().equalsIgnoreCase("Forelesningssal")){
             rom.setType(3);
-        }else if(formFinnRom.getRomtype().equalsIgnoreCase("Moterom")){
-            rom.setType(2);
-        }else if(formFinnRom.getRomtype().equalsIgnoreCase("Grupperom")){
+            }else if(formFinnRom.getRomtype().equalsIgnoreCase("Klasserom")){
+                rom.setType(2);
+            }else if(formFinnRom.getRomtype().equalsIgnoreCase("Grupperom")){
+                rom.setType(1);
+            }
+        }else{
             rom.setType(1);
         }
-        rom.setInnhold(innhold);
+        
+            System.out.println(formFinnRom.getType());
+            System.out.println(formFinnRom.getTittel());
+            System.out.println(formFinnRom.getFag());
+            System.out.println(formFinnRom.getNotat());
+        
         List<Rom> liste = service.getRom(rom, ke, (formFinnRom.getStorrelse()>0), (formFinnRom.getSitteplasser()>0));
-        model.addAttribute("liste", liste);
-        model.addAttribute("event", ke);
-        model.addAttribute("fraDato", formFinnRom.getFraDato());
         sess.setAttribute("asd", ke);
-        req.setAttribute("sitteplass", true);
-        System.out.println(formFinnRom.getSitteplasser());
-        /*ke.setNotat(notat);
-        ke.setTittel(tittel);*/        
+        model.addAttribute("liste", liste);
+        model.addAttribute("formFinnRom", formFinnRom);
+        model.addAttribute("bruker", brukerb);
+        model.addAttribute("event", new KalenderEvent());
+        sess.setAttribute("fFR", formFinnRom);
         return "FinnRom";
     }
     
@@ -194,18 +202,54 @@ public class EventKontroller {
         BrukerB bruker = (BrukerB) sess.getAttribute("brukerBean");
         KalenderEvent asd = (KalenderEvent)sess.getAttribute("asd");
         sess.removeAttribute("asd");
+        FormFinnRom fFR = (FormFinnRom) sess.getAttribute("fFR");
+        sess.removeAttribute("fFR");
         String rom = event.getRom();
         String[] tab = rom.split(" ");
         event = asd;
         event.setRom(tab[1]);
-        event.setTittel("testing");
-        event.setNotat("notatet");
-        if(service.leggTilBooking(event)){
-            model.addAttribute("bruker", bruker);
-            returnerMinSide(model, bruker);
-            return "MinSide";
+        String type = fFR.getType();
+        System.out.println(type);
+        if(type.equalsIgnoreCase("Ikke lag hendelse")){
+            if(service.erRomLedig(event)){
+                if(service.leggTilBooking(event)){
+                    returnerMinSide(model, bruker);
+                    return "MinSide";
+                }
+            }
+        }else if(type.equalsIgnoreCase("Privat")){
+            event.setPrivat(true);
+            event.setType(2);
+        }else if(type.equalsIgnoreCase("Forelesning")){
+            event.setPrivat(false);
+            event.setType(0);
+        }else if(type.equalsIgnoreCase("MÃ¸te")){
+            event.setPrivat(false);
+            event.setType(1);
         }
+        System.out.println(event.getType());
+        event.setTittel(fFR.getTittel());
+        event.setNotat(fFR.getNotat());
+        System.out.println(fFR.getFag());
+        if(!fFR.getFag().equalsIgnoreCase("Velg fag")){
+            event.setFag(fFR.getFag());
+        }else{
+            event.setFag(null);
+        }
+        event.setTilhorerEvent(1);
+        if(service.erRomLedig(event)){
+            if(service.leggTilBooking(event)){
+                RomBestilling rb = service.getRomBooking(event);
+                event.setBestillingsID(rb.getBestillingsID());
+                if(service.leggTilEvent(event)){
+                    returnerMinSide(model, bruker);
+                    return "MinSide";
+                }
+            }
+        }
+        model.addAttribute("formFinnRom", new FormFinnRom());
         model.addAttribute("event", new KalenderEvent());
+        model.addAttribute("bruker", bruker);
         return "FinnRom";
     }
     
@@ -234,6 +278,7 @@ public class EventKontroller {
         model.addAttribute("reservasjonsliste", eventListe);
         model.addAttribute("bruker", brukerb);
         model.addAttribute("resultat", new SlettAbonnementValg());
+        model.addAttribute("bruker", brukerb);
     }
     // Velg rom siden:
     @RequestMapping("VelgRomSok")
@@ -242,54 +287,86 @@ public class EventKontroller {
         KalenderEvent ke = new KalenderEvent();
         int fra = formVelgRom.getFraTid()/100;
         int til = formVelgRom.getVarighet();
-        ke.setStartTid(new Timestamp(formVelgRom.getFraDato().getTime()+fra*3600000));
-        ke.setSluttTid(new Timestamp(formVelgRom.getFraDato().getTime()+til*3600000));
-        System.out.println(ke.getSluttTid()+" "+ke.getSluttTid());
-        ke.setType(bruker.getTilgangsniva()+1);
-        List<Rom> liste = service.getRomSVG(ke);
+        ke.setStartTid(new Timestamp(formVelgRom.getFraDato().getTime()+fra*3600000+1000));
+        ke.setSluttTid(new Timestamp(formVelgRom.getFraDato().getTime()+(fra+til)*3600000));
+        Rom r = new Rom();
+        r.setType(bruker.getTilgangsniva()+1);
+        r.setInnhold(new ArrayList<String>(0));
+        System.out.println(ke.getStartTid()+" "+ke.getSluttTid()+" "+r.getType());
+        List<Rom> liste = service.getRomSVG(r, ke);
         model.addAttribute("bruker", bruker);
         model.addAttribute("liste", liste);
         return "VelgRom";
     }
     
     @RequestMapping("VelgRomRed")
-    public String velgRomRed(@ModelAttribute FormRedRom formRedRom,@ModelAttribute FormVelgRom formVelgRom,HttpSession sess, Model model){
+    public String velgRomRed(@ModelAttribute FormVelgRom formVelgRom,HttpSession sess, Model model){
         BrukerB bruker = (BrukerB) sess.getAttribute("brukerBean");
-        Rom rom = new Rom();
-        System.out.println(rom.getRomNavn());
-        model.addAttribute("bruker", bruker);
-        rom.setRomID(formVelgRom.getRomId().split(" ")[0]);
-	try{
-            rom = service.getRom(rom); 
-           // rom.setInnhold(service.getRomInnhold??"?!??");
-        }catch(Exception e){
-            return "VelgRom";
+        if(bruker != null && bruker.isInnlogget()){
+            System.out.println(bruker.getTilgangsniva());
+            if(bruker.getTilgangsniva()>1){
+                FormRedRom formRedRom = new FormRedRom();
+                try{
+                    Rom rom = new Rom();
+                    System.out.println(formVelgRom.getRomId().split(" ")[0]);
+                    rom.setRomID(formVelgRom.getRomId().split(" ")[0]);
+                    rom = service.getRom(rom); 
+                    formRedRom.setRomId(rom.getRomID());
+                    formRedRom.setRomNavn(rom.getRomNavn());
+                    formRedRom.setRomType(rom.getType());
+                    formRedRom.setAntSittePl(rom.getAntStolplasser());
+                    formRedRom.setRomStr(rom.getStorrelse());
+                    formRedRom.setAntProsjektorer(0);
+                    formRedRom.setAntSkjermer(0);
+                    formRedRom.setAntTavler(0);
+                    List<String> innhold = service.getAlleInnholdRom(rom);
+                    for (String string : innhold) {
+                        String[] tab = string.split(" ");
+                        if(tab[0].equalsIgnoreCase("Skjerm")){
+                            formRedRom.setAntSkjermer(Integer.parseInt(tab[1]));
+                        }else if(tab[0].equalsIgnoreCase("Tavle")){
+                            formRedRom.setAntSkjermer(Integer.parseInt(tab[1]));
+                        }else if(tab[0].equalsIgnoreCase("Prosjektor")){
+                            formRedRom.setAntSkjermer(Integer.parseInt(tab[1]));
+                        }
+                    }
+                }catch(Exception e){
+                    System.out.println(e);
+                    return "VelgRom";
+                }
+                model.addAttribute("formRedRom", formRedRom);
+                sess.setAttribute("romID", formVelgRom.getRomId().split(" ")[0]);
+                return "VelgRomRed";
+            }else{
+                return "VelgRom";
+            }
         }
-        System.out.println(rom.getRomNavn());
-        model.addAttribute("rom", rom);
-        return "VelgRomRed";
+        model.addAttribute("bruker", new Bruker());
+        return "Innlogging";
     }
     
      @RequestMapping("EndreRom")
-    public String velgRomRed(@ModelAttribute FormRedRom formRedRom, @ModelAttribute FormVelgRom formVelgRom, Model model){
+    public String velgRomRed(@ModelAttribute("formRedRom") FormRedRom formRedRom, @ModelAttribute FormVelgRom formVelgRom, Model model, HttpSession sess){
         Rom rom = new Rom();
-        rom.setRomID(formVelgRom.getRomId());
-        FormRedRom rF = null;
+        String romID = (String)sess.getAttribute("romID");
+        sess.removeAttribute("romID");
+        rom.setRomID(romID);
+        formRedRom.setRomId(romID);
+        rom.setRomNavn(formRedRom.getRomNavn());
+        rom.setStorrelse(formRedRom.getRomStr());
+        rom.setAntStolplasser(formRedRom.getAntSittePl());
+        String[] innhold = {"Skjerm", ""+formRedRom.getAntSkjermer(), "Tavle", ""+formRedRom.getAntTavler(),"Prosjektor",""+formRedRom.getAntTavler()};
 	try{
-            rom = service.getRom(rom); 
-            rF = new FormRedRom();
-            rF.setRomId(rom.getRomID());
-            rF.setRomNavn(rom.getRomNavn());
-            rF.setRomStr(rom.getStorrelse());
-            rF.setRomType(rom.getType());
-            rF.setAntSittePl(rom.getAntStolplasser());
+            service.oppdaterRom(rom);
+            service.oppdaterInnholdRom(rom.getRomID(), innhold);
             
         }catch(Exception e){       
-            model.addAttribute("redRomForm", new FormVelgRom());
-            return "VelgRom";
+            model.addAttribute("redRomForm", formRedRom);
+            model.addAttribute("melding", "feilmelding.oppdaterRom");
+            return "VelgRomRed";
         }
-        model.addAttribute("redRomForm", rF);
-        return "VelgRomRed";
+        model.addAttribute("redRomForm", new FormVelgRom());
+        return "VelgRom";
  
     }
     
@@ -309,7 +386,7 @@ public class EventKontroller {
         ke.setRom(formVelgRom.getRomId());
         int fra = formVelgRom.getFraTid()/100;
         int til = formVelgRom.getVarighet();
-        ke.setStartTid(new Timestamp(formVelgRom.getFraDato().getTime()+fra*3600000));
+        ke.setStartTid(new Timestamp(formVelgRom.getFraDato().getTime()+fra*3600000+1000));
         ke.setSluttTid(new Timestamp(formVelgRom.getFraDato().getTime()+(fra+til)*3600000));
         ke.setEpost(bruker.getEpost());
         ke.setTilhorerEvent(0);

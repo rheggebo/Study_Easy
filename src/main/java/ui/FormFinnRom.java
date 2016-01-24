@@ -5,7 +5,9 @@
  */
 package ui;
 
+import beans.Fag;
 import java.sql.Time;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -28,6 +30,8 @@ public class FormFinnRom {
     private int fraTid;
     private int varighet;
     private String fag;
+    private boolean lagHendelse;
+    private ArrayList<String> fagListe = new ArrayList<String>();
     
     public String getRomtype() {
         return romtype;
@@ -72,12 +76,17 @@ public class FormFinnRom {
     
 
     public List getTypeList(){
-        String[] s = {"Privat","Forelesning","Møte"};
+        String[] s = {"Ikke lag hendelse","Privat","Forelesning","Møte"};
+        return Arrays.asList(s);
+    }
+    
+    public List getRomTypeListScrub(){
+        String[] s ={"Grupperom"};
         return Arrays.asList(s);
     }
     
     public List getRomtypeList(){
-        String[] s = {"Forelesningssal","Moterom","Grupperom"};
+        String[] s = {"Forelesningssal","Klasserom","Grupperom"};
         return Arrays.asList(s);
     }
     
@@ -128,9 +137,12 @@ public class FormFinnRom {
         return Arrays.asList(s);
     }
     
-    public List getFagList(){
-        String[] s = {"Fag 1","Fag 2"," Fag 3"};
-        return Arrays.asList(s);
+    public void addFagListe(String item){
+        fagListe.add(item);
+    }
+    
+    public ArrayList<String> getFagList(){
+        return fagListe;
     }
     
     
@@ -167,8 +179,12 @@ public class FormFinnRom {
     public int getVarighet() {
         return varighet;
     }
-    
-    
 
+    public boolean isLagHendelse() {
+        return lagHendelse;
+    }
 
+    public void setLegHendelse(boolean lagHendelse) {
+        this.lagHendelse = lagHendelse;
+    }
 }
