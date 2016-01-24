@@ -91,10 +91,25 @@ public class Hovedkontroller {
         ke.setStartTid(now);
         List<RomBestilling> eventListe = service.getReserverteRom(ke);
         long msek20Min = 20*60*1000;
+        Email email = new Email();
+        String tema = "Husk bekrefting oppmøte på din romreservasjon";
+        String melding="Hei. \n\nDet nå er på tide å bekrefte oppmøte for din romreservasjon. Legg deg inn på http://localhost:8080/Study_Easy/ og gå inn på min side for å bekrefte reservanen."
+                + " Hvis romreservasjon ikke blir bekreftet, "
+                + "vil den bli fjernet og du vil få en anmerkning på din bruker. \nFor mange anmerkninger kan føre til at brukeren blir sperret."
+                + "\n\nHilsen Study Easy teamet.";
         for (RomBestilling romBestilling : eventListe) {
             System.out.println(romBestilling.getStartDato().getTime()-now.getTime()+" "+msek20Min);
-            if(romBestilling.getStartDato().getTime()-now.getTime()<msek20Min){
+            long diff = romBestilling.getStartDato().getTime()-now.getTime();
+            if(diff<msek20Min/2){
+                KalenderEvent ke2 = new KalenderEvent();
+                ke2.setRom(romBestilling.getRomId());
+                ke2.setStartTid(romBestilling.getStartDato());
+                ke2.setSluttTid(romBestilling.getSluttDato());
+                ke2.setEpost(brukerb.getEpost());
+                service.slettBooking(ke2);
+            }else if(diff<msek20Min){
                 romBestilling.setKlokkesjekk(true);
+                email.sendEpost(brukerb.getEpost(), tema, melding);
             }
         }
         model.addAttribute("event", new KalenderEvent());
@@ -105,7 +120,7 @@ public class Hovedkontroller {
         model.addAttribute("bruker", brukerb);
     }
     
-    private void sjekk(){
+    /*private void sjekk(){
         final KalenderEvent ke = new KalenderEvent();
         ke.setEpost("steinerikbjornnes@gmail.com");
         Date dato = Calendar.getInstance().getTime();
@@ -143,7 +158,7 @@ public class Hovedkontroller {
             }
         };
         asd.run();
-    }
+    }*/
     
     @RequestMapping("MinSide")
     public String minSide(HttpSession sess, Model model, HttpServletRequest req){
@@ -297,8 +312,9 @@ public class Hovedkontroller {
                 model.addAttribute("passord", new Passord());
                 model.addAttribute("bruker", brukerb);
                 List<Klasse> listeKlasser = service.getAlleKlasser();
+                ArrayList<String> listeK = new ArrayList<String>();
                 for (Klasse klasse : listeKlasser) {
-                    leggTilFagKlasse.addKlasseListe(klasse.getNavn());
+                    listeK.add(klasse.getNavn());
                 }
                 List<Fag> midlListe = service.getAlleFag();
                 ArrayList<String> fagListe = new ArrayList<String>();
@@ -308,6 +324,7 @@ public class Hovedkontroller {
                 model.addAttribute("nyKlasse", new Fag());
                 model.addAttribute("nyttFag", new Fag());
                 model.addAttribute("fagListe", fagListe);
+                model.addAttribute("klasseListe", listeK);
                 return "LeggTilBruker";
             }else{
                 model.addAttribute("bruker", brukerb);

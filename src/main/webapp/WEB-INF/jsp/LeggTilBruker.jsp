@@ -107,7 +107,7 @@
                         <td>Velg klasse<em>* </em></td>
                         <td>
                            <form:select name="valgKlasse" id="valgKlasse" placeholder="KlasseID" required="true" path="klasseID">
-                                <form:options items="${leggTilFagKlasse.getKlasseListe()}"/>
+                                <form:options items="${klasseListe}"/>
                             </form:select>
                         </td>
                     </tr>

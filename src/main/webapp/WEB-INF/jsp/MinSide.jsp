@@ -86,7 +86,7 @@
         <section class="tabMinSide">
             <table>
                 <c:forEach var="resliste" items="${reservasjonsliste}">
-                    <form:form modelAttribute="event" action="SlettBooking">
+                    <form:form modelAttribute="event">
                     <tr>
                         <!--<script>
                             var bestilltTid = new Date();
@@ -95,8 +95,8 @@
                             var twentyMinutesEarlier = new Date().setMinutes(currentDate.getMinutes()-60);
                         </script>-->
                         <form:input type="hidden" path="rom" value="${resliste}"/>
-                        <td><c:out value="${resliste}"></c:out><button class="slettknappMinSide" type="submit" id="slettReservasjon" name="slettHendelseKnapp"/><span class="fontawesome-trash"></span></button><!--c:if test="{twentyMinutesEarlier le bestilltTid}"-->
-                            <c:if test="${resliste.isKlokkesjekk()}"><input class="defaultKnapp" style="float: right" type="submit" value="Bekreft oppmøte"/>
+                        <td><c:out value="${resliste}"></c:out><button class="slettknappMinSide" type="submit" id="slettReservasjon" name="slettHendelseKnapp" formaction="SlettBooking"/><span class="fontawesome-trash"></span></button><!--c:if test="{twentyMinutesEarlier le bestilltTid}"-->
+                            <c:if test="${resliste.isKlokkesjekk()}"><input class="defaultKnapp" style="float: right" type="submit" value="Bekreft oppmøte" formaction="BekreftOppmote"/>
                             </c:if></td>
                     </tr>
                     </form:form>

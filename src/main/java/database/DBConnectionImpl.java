@@ -80,6 +80,7 @@ public class DBConnectionImpl implements DBConnection{
     private final String leggTilFagKlasse= "INSERT INTO klasse_fag (fagID, klasseID) VALUES(?,?);";
     private final String getAlleInnholdRom= "SELECT innholdID, antall from rom_innhold WHERE romID LIKE ?";
     private final String oppdaterInnholdRom= "INSERT INTO rom_innhold (innholdID, antall, romID) VALUES ((SELECT innhold.innholdID FROM innhold WHERE innhold.innholdID LIKE ?),?,(SELECT rom.romID from rom WHERE rom.romID LIKE ?)) ON DUPLICATE KEY UPDATE antall=VALUES(antall);";
+    private final String leggTilKlasse = "INSERT INTO klasse_fag (klasseID, fagID) VALUES (?, (SELECT fag.fagID FROM fag WHERE fag.fagID LIKE?));";
     
     private final String leggTilAbonemenntBruker = "INSERT INTO abonemennt_bruker (eierID, brukerID) VALUES (?, ?)";
     private final String leggTilAbonemenntFag = "INSERT INTO abonemennt_fag (eierID, fagID) VALUES (?, ?)";
@@ -1550,5 +1551,14 @@ public class DBConnectionImpl implements DBConnection{
             innhold[0],
             innhold[1],
             romID});
+    }
+    
+    @Override
+    public boolean leggTilKlasse(Fag f){
+        return 0<jT.update(leggTilKlasse, new Object[]{
+            f.getNavn(),
+            f.getFagID()
+        });
+        
     }
 }

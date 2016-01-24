@@ -138,4 +138,6 @@ public interface Service {
     
     public boolean oppdaterInnholdRom(String romID, String[] innhold);
     
+    public boolean leggTilKlasse(Fag f);
+    
 }

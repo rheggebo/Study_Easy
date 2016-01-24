@@ -148,4 +148,6 @@ public interface DBConnection {
     public List<String> getAlleInnholdRom(Rom r);
     
     public boolean oppdaterInnholdRom(String romID, String[] innhold);
+    
+    public boolean leggTilKlasse(Fag f);
 }

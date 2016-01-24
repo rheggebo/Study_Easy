@@ -124,13 +124,23 @@ public class BrukerKontroller {
     }
     
     private String genererPassord(BindingResult error){
-        String nyttPassord = generator.genererPassord();
-        Passord pass = new Passord();
+        String nyttPassord = "";
+        while(true){
+            nyttPassord = generator.genererPassord();
+            Passord pass = new Passord();
+            pass.setPassord1(nyttPassord);
+            passV.validate(pass, error);
+            if(!error.hasErrors()){
+                break;
+            }
+            System.out.println("Fikk error");
+        }
+        /*Passord pass = new Passord();
         pass.setPassord1(nyttPassord);
         passV.validate(pass, error);
         if(error.hasErrors()){
             nyttPassord = genererPassord(error);
-        }
+        }*/
         return nyttPassord;
     }    
     
@@ -241,17 +251,6 @@ public class BrukerKontroller {
         Timestamp now = new Timestamp(dato.getTime());
         ke.setStartTid(now);
         List<RomBestilling> eventListe = service.getReserverteRom(ke);
-        System.out.println("Bookinger: " + eventListe.size());
-        for(RomBestilling best : eventListe){
-            System.out.println(best.getBestillingsID());
-        }
-        long msek20Min = 20*60*1000;
-        for (RomBestilling romBestilling : eventListe) {
-            System.out.println(romBestilling.getStartDato().getTime()-now.getTime()+" "+msek20Min);
-            if(romBestilling.getStartDato().getTime()-now.getTime()<msek20Min){
-                romBestilling.setKlokkesjekk(true);
-            }
-        }
         model.addAttribute("event", new KalenderEvent());
         model.addAttribute("reservasjonsliste", eventListe);
         List<KalenderEvent> kalenderEventListe = service.getKalenderEventEier(brukerb);
@@ -301,7 +300,7 @@ public class BrukerKontroller {
     }
     
     @RequestMapping("NyttFag")
-    private String nyttFag(@ModelAttribute("nyttFag")Fag fag, Model model, HttpSession sess){
+    public String nyttFag(@ModelAttribute("nyttFag")Fag fag, Model model, HttpSession sess){
         BrukerB brukerb = (BrukerB) sess.getAttribute("brukerBean");
         if(brukerb != null && brukerb.isInnlogget()){
             if(service.leggTilFag(fag)){
@@ -312,4 +311,18 @@ public class BrukerKontroller {
         model.addAttribute("bruker", new Bruker());
         return "Innlogging";
     }
+    
+    @RequestMapping("NyKlasse")
+    public String nyKlasse(@ModelAttribute("nyKlasse")Fag fag, Model model, HttpSession sess){
+        BrukerB brukerb = (BrukerB) sess.getAttribute("brukerBean");
+        if(brukerb != null && brukerb.isInnlogget()){
+            if(service.leggTilKlasse(fag)){
+                returnerMinSide(model, brukerb);
+                return "MinSide";
+            }
+        }
+        model.addAttribute("bruker", new Bruker());
+        return "Innlogging";
+    }
+    
 }
