@@ -427,25 +427,35 @@ public class DBConnectionImplTest {
         //listRom = dbc.getRomSVG(kEvent);
         
         listRom = dbc.getRom0Param(rom1, kEvent, true, true);
+        assertTrue(listRom.isEmpty());
         listRom = dbc.getRom0Param(rom1, kEvent, true, false);
+        assertTrue(listRom.isEmpty());
         listRom = dbc.getRom0Param(rom1, kEvent, false, true);
+        assertTrue(listRom.isEmpty());
         listRom = dbc.getRom0Param(rom1, kEvent, false, false);
+        assertFalse(listRom.isEmpty());
         
         listRom = dbc.getRom1Param(rom1, kEvent, true, true);
+        assertTrue(listRom.isEmpty());
         listRom = dbc.getRom1Param(rom1, kEvent, true, false);
+        assertTrue(listRom.isEmpty());
         listRom = dbc.getRom1Param(rom1, kEvent, false, true);
+        listRom = dbc.getRom1Param(rom1, kEvent, false, false);
         
         listRom = dbc.getRom2Param(rom1, kEvent, true, true);
         listRom = dbc.getRom2Param(rom1, kEvent, true, false);
         listRom = dbc.getRom2Param(rom1, kEvent, false, true);
+        listRom = dbc.getRom2Param(rom1, kEvent, false, false);
         
         listRom = dbc.getRom3Param(rom1, kEvent, true, true);
         listRom = dbc.getRom3Param(rom1, kEvent, true, false);
         listRom = dbc.getRom3Param(rom1, kEvent, false, true);
+        listRom = dbc.getRom3Param(rom1, kEvent, false, false);
         
         listRom = dbc.getRom4Param(rom1, kEvent, true, true);
         listRom = dbc.getRom4Param(rom1, kEvent, true, false);
         listRom = dbc.getRom4Param(rom1, kEvent, false, true);
+        listRom = dbc.getRom4Param(rom1, kEvent, false, false);
                 
    
     }
