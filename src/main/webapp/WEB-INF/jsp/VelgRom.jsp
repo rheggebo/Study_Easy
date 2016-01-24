@@ -132,11 +132,11 @@
     <div id="velgRomFarge">
         <ul style="list-style-type: none;">
             <li>
-                <input type="text" class="fargeTekst"  style="background-color: #00FF7F;">
+                <input type="text" class="fargeTekst" disabled="true" style="background-color: #00FF7F;">
                 <label for="checkbox_2">Ledige rom</label>
             </li>
             <li>
-                <input type="text" class="fargeTekst"  style="background-color: #FFA500;">
+                <input type="text" class="fargeTekst" disabled="true"  style="background-color: #FFA500;">
                 <label for="checkbox_3">Opptatte rom</label>
             </li>
         </ul>

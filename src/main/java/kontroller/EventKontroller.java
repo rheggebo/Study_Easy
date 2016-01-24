@@ -8,6 +8,7 @@ package kontroller;
 import beans.Abonemennt;
 import beans.Bruker;
 import beans.BrukerB;
+import beans.Fag;
 import beans.KalenderEvent;
 import beans.NyEvent;
 import beans.Rom;
@@ -58,16 +59,17 @@ public class EventKontroller {
             binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
     }
     
-    @RequestMapping(value="omvei")
+    /*@RequestMapping(value="omvei")
     public String omvei(HttpSession sess, Model model){
-        
         model.addAttribute("nyHendelse", new NyEvent());
         return "OpprettHendelse";
-    }
+    }*/
+    
     @RequestMapping(value="OpprettHendelse")
     public String opprettHendelse(@ModelAttribute("nyHendelse") KalenderEvent event, @RequestParam("notat")String notat, @RequestParam("valg")String off, @RequestParam("startdato")Date startDato, @RequestParam("starttid")String startTid, @RequestParam("sluttdato")Date sluttDato, @RequestParam("starttid")String sluttTid, HttpSession sess, HttpServletResponse response, Model model, HttpServletRequest request){
-        BrukerB brukerb = (BrukerB) sess.getAttribute("brukerBean");
-        String stampString = "" + new Timestamp(startDato.getTime());
+        BrukerB brukerb = (BrukerB)sess.getAttribute("brukerBean");
+        if(brukerb != null && brukerb.isInnlogget()){
+            String stampString = "" + new Timestamp(startDato.getTime());
         stampString = (stampString.split(" "))[0] + " " + startTid + ":00";
         Timestamp start = Timestamp.valueOf(stampString);
         
@@ -106,82 +108,86 @@ public class EventKontroller {
             }
         }
         return "OpprettHendelse";
+        }
+        model.addAttribute("bruker", new Bruker());
+        return "Innlogging";
     }
     
     @RequestMapping("finnromdata")
-    public String finnRom(@ModelAttribute("formFinnRom") FormFinnRom formFinnRom, Model model, HttpSession sess, HttpServletRequest req/*, 
-            @RequestParam(value="notat", required=false)String notat, @RequestParam(value="tittel",required=false)String tittel, 
-            @RequestParam(value="fag", required=false)String fag*/){
-        KalenderEvent ke = new KalenderEvent();
-        Rom rom = new Rom();
-        BrukerB brukerb = (BrukerB) sess.getAttribute("brukerBean");
-        ke.setEpost(brukerb.getEpost());
-        ke.setEierNavn(brukerb.getFornavn()+" "+brukerb.getEtternavn());
-        ke.setRom(rom.getRomNavn());
-        ke.setType(brukerb.getTilgangsniva());
-        int fra = formFinnRom.getFraTid()/100;
-        int til = formFinnRom.getVarighet();
-        
-        if (!sjekkDatoTilgang(brukerb, formFinnRom.getFraDato(), fra)){
-            model.addAttribute("feilMeldingSokRom", "feilmelding.feilMeldingSokRom" );
-            model.addAttribute("feilISok", true );
-            return "FinnRom";
-        }
-        
-        if(brukerb.getTilgangsniva()<1){
-            //tilDato = fromFinnRom.getFraDato();
-        }
-        ke.setStartTid(new Timestamp(formFinnRom.getFraDato().getTime()+fra*3600000+1000));
-        ke.setSluttTid(new Timestamp(formFinnRom.getFraDato().getTime()+(fra+til)*3600000));
-        ArrayList<String> innhold = new ArrayList<String>();
-        
-        if(formFinnRom.getSkjerm()>0){
-            innhold.add("skjerm "+formFinnRom.getSkjerm());
-        }
-        if(formFinnRom.getTavle()>0){
-            innhold.add("tavle "+formFinnRom.getTavle());
-        }
-        if(formFinnRom.getSitteplasser()>0){
-            rom.setAntStolplasser(formFinnRom.getSitteplasser());
-        }
-        if(formFinnRom.getProjektor()>0){
-            innhold.add("prosjektor "+formFinnRom.getProjektor());
-        }
-        if(formFinnRom.getStorrelse()>0){
-            rom.setStorrelse(formFinnRom.getStorrelse());
-        }
-        rom.setInnhold(innhold);
-        if(brukerb.getTilgangsniva()>0){
-            if(formFinnRom.getRomtype().equalsIgnoreCase("Forelesningssal")){
-            rom.setType(3);
-            }else if(formFinnRom.getRomtype().equalsIgnoreCase("Klasserom")){
-                rom.setType(2);
-            }else if(formFinnRom.getRomtype().equalsIgnoreCase("Grupperom")){
+    public String finnRom(@ModelAttribute("formFinnRom") FormFinnRom formFinnRom, Model model, HttpSession sess, HttpServletRequest req){
+        BrukerB brukerb = (BrukerB)sess.getAttribute("brukerBean");
+        if(brukerb != null && brukerb.isInnlogget()){
+            KalenderEvent ke = new KalenderEvent();
+            Rom rom = new Rom();
+            ke.setEpost(brukerb.getEpost());
+            ke.setEierNavn(brukerb.getFornavn()+" "+brukerb.getEtternavn());
+            ke.setRom(rom.getRomNavn());
+            ke.setType(brukerb.getTilgangsniva());
+            int fra = formFinnRom.getFraTid()/100;
+            int til = formFinnRom.getVarighet();
+
+            if (!sjekkDatoTilgang(brukerb, formFinnRom.getFraDato(), fra)){
+                model.addAttribute("feilMeldingSokRom", "feilmelding.feilMeldingSokRom" );
+                model.addAttribute("feilISok", true );
+                return "FinnRom";
+            }
+
+            if(brukerb.getTilgangsniva()<1){
+                //tilDato = fromFinnRom.getFraDato();
+            }
+            ke.setStartTid(new Timestamp(formFinnRom.getFraDato().getTime()+fra*3600000+1000));
+            ke.setSluttTid(new Timestamp(formFinnRom.getFraDato().getTime()+(fra+til)*3600000));
+            ArrayList<String> innhold = new ArrayList<String>();
+
+            if(formFinnRom.getSkjerm()>0){
+                innhold.add("skjerm "+formFinnRom.getSkjerm());
+            }
+            if(formFinnRom.getTavle()>0){
+                innhold.add("tavle "+formFinnRom.getTavle());
+            }
+            if(formFinnRom.getSitteplasser()>0){
+                rom.setAntStolplasser(formFinnRom.getSitteplasser());
+            }
+            if(formFinnRom.getProjektor()>0){
+                innhold.add("prosjektor "+formFinnRom.getProjektor());
+            }
+            if(formFinnRom.getStorrelse()>0){
+                rom.setStorrelse(formFinnRom.getStorrelse());
+            }
+            rom.setInnhold(innhold);
+            if(brukerb.getTilgangsniva()>0){
+                if(formFinnRom.getRomtype().equalsIgnoreCase("Forelesningssal")){
+                rom.setType(3);
+                }else if(formFinnRom.getRomtype().equalsIgnoreCase("Klasserom")){
+                    rom.setType(2);
+                }else if(formFinnRom.getRomtype().equalsIgnoreCase("Grupperom")){
+                    rom.setType(1);
+                }
+            }else{
                 rom.setType(1);
             }
-        }else{
-            rom.setType(1);
+            List<Fag> listeFag = service.getAlleFag();
+            for (Fag fag : listeFag) {
+                formFinnRom.addFagListe(fag.getFagID());
+            }
+            List<Rom> liste = service.getRom(rom, ke, (formFinnRom.getStorrelse()>0), (formFinnRom.getSitteplasser()>0));
+            sess.setAttribute("asd", ke);
+            model.addAttribute("liste", liste);
+            model.addAttribute("formFinnRom", formFinnRom);
+            model.addAttribute("bruker", brukerb);
+            model.addAttribute("event", new KalenderEvent());
+            sess.setAttribute("fFR", formFinnRom);
+            return "FinnRom";
         }
-        
-            System.out.println(formFinnRom.getType());
-            System.out.println(formFinnRom.getTittel());
-            System.out.println(formFinnRom.getFag());
-            System.out.println(formFinnRom.getNotat());
-        
-        List<Rom> liste = service.getRom(rom, ke, (formFinnRom.getStorrelse()>0), (formFinnRom.getSitteplasser()>0));
-        sess.setAttribute("asd", ke);
-        model.addAttribute("liste", liste);
-        model.addAttribute("formFinnRom", formFinnRom);
-        model.addAttribute("bruker", brukerb);
-        model.addAttribute("event", new KalenderEvent());
-        sess.setAttribute("fFR", formFinnRom);
-        return "FinnRom";
+        model.addAttribute("bruker", new Bruker());
+        return "Innlogging";
     }
     
     @RequestMapping("BookRom")
     public String bookRom(@ModelAttribute("event")KalenderEvent event, HttpSession sess, Model model, HttpServletRequest req){
-        BrukerB bruker = (BrukerB) sess.getAttribute("brukerBean");
-        KalenderEvent asd = (KalenderEvent)sess.getAttribute("asd");
+        BrukerB brukerb = (BrukerB)sess.getAttribute("brukerBean");
+        if(brukerb != null && brukerb.isInnlogget()){
+            KalenderEvent asd = (KalenderEvent)sess.getAttribute("asd");
         sess.removeAttribute("asd");
         FormFinnRom fFR = (FormFinnRom) sess.getAttribute("fFR");
         sess.removeAttribute("fFR");
@@ -194,7 +200,7 @@ public class EventKontroller {
         if(type.equalsIgnoreCase("Ikke lag hendelse")){
             if(service.erRomLedig(event)){
                 if(service.leggTilBooking(event)){
-                    returnerMinSide(model, bruker);
+                    returnerMinSide(model, brukerb);
                     return "MinSide";
                 }
             }
@@ -223,15 +229,18 @@ public class EventKontroller {
                 RomBestilling rb = service.getRomBooking(event);
                 event.setBestillingsID(rb.getBestillingsID());
                 if(service.leggTilEvent(event)){
-                    returnerMinSide(model, bruker);
+                    returnerMinSide(model, brukerb);
                     return "MinSide";
                 }
             }
         }
         model.addAttribute("formFinnRom", new FormFinnRom());
         model.addAttribute("event", new KalenderEvent());
-        model.addAttribute("bruker", bruker);
+        model.addAttribute("bruker", brukerb);
         return "FinnRom";
+        }
+        model.addAttribute("bruker", new Bruker());
+        return "Innlogging";
     }
     
     private void returnerMinSide(Model model, BrukerB brukerb){
@@ -244,10 +253,6 @@ public class EventKontroller {
         Timestamp now = new Timestamp(dato.getTime());
         ke.setStartTid(now);
         List<RomBestilling> eventListe = service.getReserverteRom(ke);
-        System.out.println("Bookinger: " + eventListe.size());
-        for(RomBestilling best : eventListe){
-            System.out.println(best.getBestillingsID());
-        }
         long msek20Min = 20*60*1000;
         for (RomBestilling romBestilling : eventListe) {
             System.out.println(romBestilling.getStartDato().getTime()-now.getTime()+" "+msek20Min);
@@ -265,12 +270,13 @@ public class EventKontroller {
     // Velg rom siden:
     @RequestMapping("VelgRomSok")
     public String velgRomSoke(@ModelAttribute FormVelgRom formVelgRom, HttpSession sess, Model model){
-        BrukerB bruker = (BrukerB) sess.getAttribute("brukerBean");
-        model.addAttribute("bruker", bruker);
+        BrukerB brukerb = (BrukerB)sess.getAttribute("brukerBean");
+        if(brukerb != null && brukerb.isInnlogget()){
+            model.addAttribute("bruker", brukerb);
         KalenderEvent ke = new KalenderEvent();
         int fra = formVelgRom.getFraTid()/100;
         int til = formVelgRom.getVarighet();
-        if(!sjekkDatoTilgang(bruker, formVelgRom.getFraDato(), fra)) {
+        if(!sjekkDatoTilgang(brukerb, formVelgRom.getFraDato(), fra)) {
             model.addAttribute("opptatt", true );
             model.addAttribute("feilMeldingReservereRom", "feilmelding.feilMeldingSokRom");
             return "VelgRom";
@@ -278,12 +284,15 @@ public class EventKontroller {
         ke.setStartTid(new Timestamp(formVelgRom.getFraDato().getTime()+fra*3600000+1000));
         ke.setSluttTid(new Timestamp(formVelgRom.getFraDato().getTime()+(fra+til)*3600000));
         Rom r = new Rom();
-        r.setType(bruker.getTilgangsniva()+1);
+        r.setType(brukerb.getTilgangsniva()+1);
         r.setInnhold(new ArrayList<String>(0));
         System.out.println(ke.getStartTid()+" "+ke.getSluttTid()+" "+r.getType());
         List<Rom> liste = service.getRomSVG(r, ke); 
         model.addAttribute("liste", liste);
         return "VelgRom";
+        }
+        model.addAttribute("bruker", new Bruker());
+        return "Innlogging";
     }
     
     @RequestMapping("VelgRomRed")
@@ -335,99 +344,112 @@ public class EventKontroller {
     
      @RequestMapping("EndreRom")
     public String velgRomRed(@ModelAttribute("formRedRom") FormRedRom formRedRom, @ModelAttribute FormVelgRom formVelgRom, Model model, HttpSession sess){
-        Rom rom = new Rom();
-        String romID = (String)sess.getAttribute("romID");
-        sess.removeAttribute("romID");
-        rom.setRomID(romID);
-        formRedRom.setRomId(romID);
-        rom.setRomNavn(formRedRom.getRomNavn());
-        rom.setStorrelse(formRedRom.getRomStr());
-        rom.setAntStolplasser(formRedRom.getAntSittePl());
-        String[] innhold = {"Skjerm", ""+formRedRom.getAntSkjermer(), "Tavle", ""+formRedRom.getAntTavler(),"Prosjektor",""+formRedRom.getAntTavler()};
-	try{
-            service.oppdaterRom(rom);
-            service.oppdaterInnholdRom(rom.getRomID(), innhold);
-            
-        }catch(Exception e){       
-            model.addAttribute("redRomForm", formRedRom);
-            model.addAttribute("melding", "feilmelding.oppdaterRom");
-            return "VelgRomRed";
+        BrukerB brukerb = (BrukerB)sess.getAttribute("brukerBean");
+        if(brukerb != null && brukerb.isInnlogget()){
+            Rom rom = new Rom();
+            String romID = (String)sess.getAttribute("romID");
+            sess.removeAttribute("romID");
+            rom.setRomID(romID);
+            formRedRom.setRomId(romID);
+            rom.setRomNavn(formRedRom.getRomNavn());
+            rom.setStorrelse(formRedRom.getRomStr());
+            rom.setAntStolplasser(formRedRom.getAntSittePl());
+            String[] innhold = {"Skjerm", ""+formRedRom.getAntSkjermer(), "Tavle", ""+formRedRom.getAntTavler(),"Prosjektor",""+formRedRom.getAntTavler()};
+            try{
+                service.oppdaterRom(rom);
+                service.oppdaterInnholdRom(rom.getRomID(), innhold);
+
+            }catch(Exception e){       
+                model.addAttribute("redRomForm", formRedRom);
+                model.addAttribute("melding", "feilmelding.oppdaterRom");
+                return "VelgRomRed";
+            }
+            model.addAttribute("redRomForm", new FormVelgRom());
+            return "VelgRom";
         }
-        model.addAttribute("redRomForm", new FormVelgRom());
-        return "VelgRom";
+        model.addAttribute("bruker", new Bruker());
+        return "Innlogging";
  
     }
     
     @RequestMapping("VelgRomReserver")
     public String velgRomReserver(@ModelAttribute FormVelgRom formVelgRom,HttpSession sess, Model model){
-        BrukerB bruker = (BrukerB) sess.getAttribute("brukerBean");
-        model.addAttribute("bruker", bruker);
-        String [] romID =  formVelgRom.getRomId().split(" ");
-        System.out.println(romID.length+ "er lengden ");
-        if (romID.length==2){
-            model.addAttribute("opptatt", true );
-            return "VelgRom";
-        }
-        Rom rom = new Rom();
-        rom.setRomID(romID[0]);
-        KalenderEvent ke = new KalenderEvent();
-        ke.setRom(formVelgRom.getRomId());
-        int fra = formVelgRom.getFraTid()/100;
-        int til = formVelgRom.getVarighet();
-        if(!sjekkDatoTilgang(bruker, formVelgRom.getFraDato(), fra)) {
-            model.addAttribute("feilMeldingReservereRom", "feilmelding.feilMeldingReservereRom");
-            return "VelgRom";
-        }
-        ke.setStartTid(new Timestamp(formVelgRom.getFraDato().getTime()+fra*3600000+1000));
-        ke.setSluttTid(new Timestamp(formVelgRom.getFraDato().getTime()+(fra+til)*3600000));
-        ke.setEpost(bruker.getEpost());
-        ke.setTilhorerEvent(0);
-	try{
-            if (service.erRomLedig(ke)){
-                System.out.println("La vi til noe?" );
-                service.leggTilBooking(ke);
-            }else{
+        BrukerB brukerb = (BrukerB)sess.getAttribute("brukerBean");
+        if(brukerb != null && brukerb.isInnlogget()){
+            model.addAttribute("bruker", brukerb);
+            String [] romID =  formVelgRom.getRomId().split(" ");
+            System.out.println(romID.length+ "er lengden ");
+            if (romID.length==2){
+                model.addAttribute("opptatt", true );
+                return "VelgRom";
+            }
+            Rom rom = new Rom();
+            rom.setRomID(romID[0]);
+            KalenderEvent ke = new KalenderEvent();
+            ke.setRom(formVelgRom.getRomId());
+            int fra = formVelgRom.getFraTid()/100;
+            int til = formVelgRom.getVarighet();
+            if(!sjekkDatoTilgang(brukerb, formVelgRom.getFraDato(), fra)) {
                 model.addAttribute("feilMeldingReservereRom", "feilmelding.feilMeldingReservereRom");
                 return "VelgRom";
-            }            
-        }catch(Exception e){
-            model.addAttribute("feilMeldingReservereRom", "feilmelding.feilMeldingReservereRom");
-            return "VelgRom";
+            }
+            ke.setStartTid(new Timestamp(formVelgRom.getFraDato().getTime()+fra*3600000+1000));
+            ke.setSluttTid(new Timestamp(formVelgRom.getFraDato().getTime()+(fra+til)*3600000));
+            ke.setEpost(brukerb.getEpost());
+            ke.setTilhorerEvent(0);
+            try{
+                if (service.erRomLedig(ke)){
+                    System.out.println("La vi til noe?" );
+                    service.leggTilBooking(ke);
+                }else{
+                    model.addAttribute("feilMeldingReservereRom", "feilmelding.feilMeldingReservereRom");
+                    return "VelgRom";
+                }            
+            }catch(Exception e){
+                model.addAttribute("feilMeldingReservereRom", "feilmelding.feilMeldingReservereRom");
+                return "VelgRom";
+            }
+            return "Forside";
         }
-        return "Forside";
+        model.addAttribute("bruker", new Bruker());
+        return "Innlogging";
     } 
    
     @RequestMapping("SlettBooking")
     public String slettBooking(@ModelAttribute("event")KalenderEvent ke, HttpSession sess, Model model){
-        BrukerB bruker = (BrukerB)sess.getAttribute("brukerBean");
-        String[] info = ke.getRom().split(" ");
-        String rom = info[1];
-        String[] startDato = info[3].split("-");
-        String[] startTid = info[4].split(":");
-        String[] sluttDato = info[6].split("-");
-        String[] sluttTid = info[7].split(":");
-        ke.setEpost(bruker.getEpost());
-        ke.setRom(rom);
-        System.out.println("Oppretter timestamp "+startTid[2].substring(0,2));
-        ke.setStartTid(new Timestamp(Integer.parseInt(startDato[0])-1900,Integer.parseInt(startDato[1])-1,Integer.parseInt(startDato[2]),
-                Integer.parseInt(startTid[0]), Integer.parseInt(startTid[1]), Integer.parseInt(startTid[2].substring(0,2)), 0));
-        ke.setSluttTid(new Timestamp(Integer.parseInt(sluttDato[0])-1900,Integer.parseInt(sluttDato[1])-1,Integer.parseInt(sluttDato[2]),
-                Integer.parseInt(sluttTid[0]), Integer.parseInt(sluttTid[1]), Integer.parseInt(sluttTid[2].substring(0,2)), 0));
-        System.out.println("Opprettet timestamp, skal slette booking");
-        System.out.println(ke.getRom()+" "+ke.getStartTid()+" "+ke.getEpost());
-        RomBestilling booking = service.getRomBooking(ke);
-        if(booking.getTilhorerEvent() == 1){
-            service.slettKalenderEvent(booking);
-        }
-        if(service.slettBooking(ke)){
-            System.out.println("Slettet booking");
-            returnerMinSide(model, bruker);
+        BrukerB brukerb = (BrukerB)sess.getAttribute("brukerBean");
+        if(brukerb != null && brukerb.isInnlogget()){
+            String[] info = ke.getRom().split(" ");
+            String rom = info[1];
+            String[] startDato = info[3].split("-");
+            String[] startTid = info[4].split(":");
+            String[] sluttDato = info[6].split("-");
+            String[] sluttTid = info[7].split(":");
+            ke.setEpost(brukerb.getEpost());
+            ke.setRom(rom);
+            System.out.println("Oppretter timestamp "+startTid[2].substring(0,2));
+            ke.setStartTid(new Timestamp(Integer.parseInt(startDato[0])-1900,Integer.parseInt(startDato[1])-1,Integer.parseInt(startDato[2]),
+                    Integer.parseInt(startTid[0]), Integer.parseInt(startTid[1]), Integer.parseInt(startTid[2].substring(0,2)), 0));
+            ke.setSluttTid(new Timestamp(Integer.parseInt(sluttDato[0])-1900,Integer.parseInt(sluttDato[1])-1,Integer.parseInt(sluttDato[2]),
+                    Integer.parseInt(sluttTid[0]), Integer.parseInt(sluttTid[1]), Integer.parseInt(sluttTid[2].substring(0,2)), 0));
+            System.out.println("Opprettet timestamp, skal slette booking");
+            System.out.println(ke.getRom()+" "+ke.getStartTid()+" "+ke.getEpost());
+            RomBestilling booking = service.getRomBooking(ke);
+            if(booking.getTilhorerEvent() == 1){
+                service.slettKalenderEvent(booking);
+            }
+            if(service.slettBooking(ke)){
+                System.out.println("Slettet booking");
+                returnerMinSide(model, brukerb);
+                return "MinSide";
+            }
+            System.out.println("skal legge til feilmelding");
+            model.addAttribute("melding", "feilmelding.slettBooking");
+            returnerMinSide(model, brukerb);
             return "MinSide";
         }
-        System.out.println("skal legge til feilmelding");
-        model.addAttribute("melding", "feilmelding.slettBooking");
-        returnerMinSide(model, bruker);
-        return "MinSide";
+        model.addAttribute("bruker", new Bruker());
+        return "Innlogging";
     }
     
     private boolean sjekkDatoTilgang(BrukerB bruker, Date fraDato, int fraTid) {

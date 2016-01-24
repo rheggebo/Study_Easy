@@ -57,51 +57,55 @@ public class SokeKontroller {
      
     @RequestMapping(value="search")
     public String searchView(@ModelAttribute(value="soke")Sok sok, Model model, 
-        HttpServletRequest request, HttpServletResponse response) {
-        
-        Funksjoner fu= new Funksjoner();      
-        String [] checkboxes=request.getParameterValues("Spes");       
-       
-        model.addAttribute("liste",fu.getAlleSokeTreff(sok.getSokeord(), si, checkboxes));
-        for(int i=0;i<fu.liste.size();i++){
-           out.println("<td>" + fu.liste.get(i).toString() + "<td>");          
+        HttpServletRequest request, HttpServletResponse response, HttpSession sess) {
+        BrukerB brukerb = (BrukerB)sess.getAttribute("brukerBean");
+        if(brukerb != null && brukerb.isInnlogget()){
+            Funksjoner fu= new Funksjoner();      
+            String [] checkboxes=request.getParameterValues("Spes");       
+
+            model.addAttribute("liste",fu.getAlleSokeTreff(sok.getSokeord(), si, checkboxes));
+            for(int i=0;i<fu.liste.size();i++){
+               out.println("<td>" + fu.liste.get(i).toString() + "<td>");          
+            }
+            model.addAttribute("bruker", new BrukerB());
+            model.addAttribute("resultat", new SokeValg());
+            return "SokeSide";  
         }
-        model.addAttribute("bruker", new BrukerB());
-        model.addAttribute("resultat", new SokeValg());
-
-
-        return "SokeSide";  
+        model.addAttribute("bruker", new Bruker());
+        return "Innlogging";
+        
     }  
     @RequestMapping(value="abonnere")
     public String fetchData1(@ModelAttribute("resultat") SokeValg sv, HttpSession sess, HttpServletResponse response, Model model, HttpServletRequest request){ 
-        BrukerB bruker = (BrukerB) sess.getAttribute("brukerBean"); 
-        String[] split = sv.getResultat().split(":");
+        BrukerB brukerb = (BrukerB)sess.getAttribute("brukerBean");
+        if(brukerb != null && brukerb.isInnlogget()){
+            String[] split = sv.getResultat().split(":");
         if("Abonner".equals(request.getParameter("knappTilAbonnement"))){
             if (split[0].equals("Ansatt") || split[0].equals("Student")){
                 //person
-                if (bruker.getEpost().equals(split[2].trim())){
+                if (brukerb.getEpost().equals(split[2].trim())){
                     model.addAttribute("melding", "feilmelding.duplikatAbonnement");
                     return "SokeSide";
                 }
                 try{
-                    si.leggTilAbonemennt(new Abonemennt(bruker.getEpost(), split[2].trim(), 0));
+                    si.leggTilAbonemennt(new Abonemennt(brukerb.getEpost(), split[2].trim(), 0));
                 }
                 catch(Exception e){
                     model.addAttribute("melding", "feilmelding.duplikatAbonnement");
                 }
-                returnerMinSide(model, bruker);
+                returnerMinSide(model, brukerb);
                 return "MinSide";
             }
             else if (split[0].equals("Fag")){
                 String[] split2 = (split[1].trim()).split(" ");
                 try{
-                    si.leggTilAbonemennt(new Abonemennt(bruker.getEpost(), split2[0].trim(), 1));
+                    si.leggTilAbonemennt(new Abonemennt(brukerb.getEpost(), split2[0].trim(), 1));
                     
                 }
                 catch(Exception e){
                     model.addAttribute("melding", "feilmelding.duplikatAbonnement");
                 }
-                returnerMinSide(model, bruker);
+                returnerMinSide(model, brukerb);
                 return "MinSide";
             }
             else if (split[0].equals("Klasse")){
@@ -110,18 +114,21 @@ public class SokeKontroller {
                 String[] fagsplit = (split[2].trim()).split(" ");
                 for (int i = 0; i < fagsplit.length; i++){
                     try{
-                        si.leggTilAbonemennt(new Abonemennt(bruker.getEpost(), fagsplit[i], 1));
+                        si.leggTilAbonemennt(new Abonemennt(brukerb.getEpost(), fagsplit[i], 1));
                     }
                     catch(Exception e){
                         model.addAttribute("melding", "feilmelding.duplikatAbonnement");
                     }
                 }
-                returnerMinSide(model, bruker);
+                returnerMinSide(model, brukerb);
                 return "MinSide";
             }
         }
-        return "SokeSide";             
-        } 
+        return "SokeSide";
+        }
+        model.addAttribute("bruker", new Bruker());
+        return "Innlogging";             
+    } 
     
     private void returnerMinSide(Model model, BrukerB brukerb){
         System.out.println("Jeg kjører nå");
@@ -154,15 +161,20 @@ public class SokeKontroller {
     
     @RequestMapping(value="sekart")
     public String fetchData2(@ModelAttribute FormVelgRom formVelgRom, @ModelAttribute("resultat") SokeValg sv, HttpSession sess, HttpServletResponse response, Model model, HttpServletRequest request){ 
-        BrukerB bruker = (BrukerB) sess.getAttribute("brukerBean");        
-        String[] split = sv.getResultat().split(":");
-        List<String> liste = Arrays.asList(split);
-        model.addAttribute("liste", liste);
-        model.addAttribute("bruker", bruker);
-        return "VelgRom";
+        BrukerB brukerb = (BrukerB)sess.getAttribute("brukerBean");
+        if(brukerb != null && brukerb.isInnlogget()){
+            String[] split = sv.getResultat().split(":");
+            List<String> liste = Arrays.asList(split);
+            model.addAttribute("liste", liste);
+            model.addAttribute("bruker", brukerb);
+            return "VelgRom";
         } 
+        model.addAttribute("bruker", new Bruker());
+        return "Innlogging";
+    }       
+
     
-    }
+}
 
 
     

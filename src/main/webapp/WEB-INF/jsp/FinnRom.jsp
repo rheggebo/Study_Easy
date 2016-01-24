@@ -113,7 +113,13 @@
                         <td>Type kalenderhendelse:<em>* </em></td>
                         <td>
                             <form:select class="velgRomForm" path="type">
-                                <form:options items="${formFinnRom.typeList}"/>
+                                <c:set var="tilgang" value="${bruker.getTilgangsniva()}"/>
+                                <c:if test= "${tilgang == 0}" >
+                                    <form:options items="${formFinnRom.getTypeListScrub()}"/>
+                                </c:if>
+                                <c:if test="${tilgang > 0}">
+                                    <form:options items="${formFinnRom.getTypeList()}"/>
+                                </c:if>
                             </form:select>
                         </td>
                         <td><form:errors path="type"/></td>
