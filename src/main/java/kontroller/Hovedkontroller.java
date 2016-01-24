@@ -267,11 +267,7 @@ public class Hovedkontroller {
     public String finnRom(Model model, HttpSession sess){        
         BrukerB brukerb = (BrukerB) sess.getAttribute("brukerBean");
         if(brukerb != null && brukerb.isInnlogget()){
-            List<Fag> liste = service.getAlleFag();
             FormFinnRom fFR = new FormFinnRom();
-            for (Fag fag : liste) {
-                fFR.addFagListe(fag.getFagID());
-            }
             model.addAttribute("formFinnRom", fFR);
             model.addAttribute("bruker", brukerb);
             model.addAttribute("rom", new Rom());

@@ -8,6 +8,7 @@ package kontroller;
 import beans.Abonemennt;
 import beans.Bruker;
 import beans.BrukerB;
+import beans.Fag;
 import beans.KalenderEvent;
 import beans.NyEvent;
 import beans.Rom;
@@ -165,12 +166,10 @@ public class EventKontroller {
             }else{
                 rom.setType(1);
             }
-
-                System.out.println(formFinnRom.getType());
-                System.out.println(formFinnRom.getTittel());
-                System.out.println(formFinnRom.getFag());
-                System.out.println(formFinnRom.getNotat());
-
+            List<Fag> listeFag = service.getAlleFag();
+            for (Fag fag : listeFag) {
+                formFinnRom.addFagListe(fag.getFagID());
+            }
             List<Rom> liste = service.getRom(rom, ke, (formFinnRom.getStorrelse()>0), (formFinnRom.getSitteplasser()>0));
             sess.setAttribute("asd", ke);
             model.addAttribute("liste", liste);
