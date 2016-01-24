@@ -94,6 +94,8 @@
                         </td>
                         <td></td>
                     </tr>
+                    <c:set var="harSøkt" value="${formFinnRom.getVarighet()}"></c:set>
+                    <c:if test="${harSøkt >= 1}">
                     <tr>
                         <td>Tittel:</td>
                         <td><form:input class="velgRomForm" placeholder="Skriv inn her" path="tittel" /></td>
@@ -126,6 +128,7 @@
                         <td><form:textarea id="textareaNotat" placeholder="Utvid for mer skriveplass" class="velgRomForm" path="notat" /></td>
                         <td><form:errors path="notat" /></td>
                     </tr>
+                    </c:if>
                 </table>
             </form:form>
         </fieldset>
