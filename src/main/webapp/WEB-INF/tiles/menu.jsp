@@ -19,7 +19,7 @@
                 <c:set var="tilgang" value="${bruker.getTilgangsniva()}"></c:set>
                 <c:if test="${tilgang == 2}">
                 <li>
-                    <a id="leggTilBruker" href="LeggTilBruker">Legg til bruker</a>
+                    <a id="leggTilBruker" href="LeggTilBruker">Administratoroperasjoner</a>
                     
                 </li>
                 </c:if>

@@ -314,6 +314,8 @@ public class Hovedkontroller {
                 for (Fag fag : midlListe) {
                     fagListe.add(fag.getFagID());
                 }
+                model.addAttribute("nyKlasse", new Fag());
+                model.addAttribute("nyttFag", new Fag());
                 model.addAttribute("fagListe", fagListe);
                 return "LeggTilBruker";
             }else{

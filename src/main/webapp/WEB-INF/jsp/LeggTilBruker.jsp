@@ -66,6 +66,61 @@
     </fieldset>   
        
     </div>
+    <div>
+     <fieldset style = "width:30%; float: right;" class="fieldsetDefault">       
+        <legend>Legg til nytt fag</legend>
+        <form:form action="NyttFag" modelAttribute="nyttFag">
+            <table>
+                <tr>
+                    <td>FagID<em>* </em></td>
+                    <td>
+                       <form:input required="true" path="fagID"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Fagnavn:<em>* </em></td>
+                    <td>
+                        <form:input equired="true" path="navn"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input id="leggTilFag" class="defaultKnapp" type="submit" value="Legg til" onclick=""></td>
+                    <td></td>
+                </tr>
+            </table>
+            <p></p>
+        </form:form>
+    </fieldset>     
+    </div>
+    <div>
+     <fieldset style = "width:30%; float: right;" class="fieldsetDefault">       
+        <legend>Legg til ny klasse</legend>
+        <form:form action="NyKlasse" modelAttribute="nyKlasse">
+            <table>
+                <tr>
+                    <td>KlasseID<em>* </em></td>
+                    <td>
+                       <form:input required="true" path="navn"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>:<em>Velg et fag* (En klasse må ha minst ett fag)</em></td>
+                    <td>
+                        <form:select name="leggTilFag" id="leggTilFag" required="true" path="fagID">
+                            <form:options items="${fagListe}"/>
+                        </form:select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input id="leggTilFag" class="defaultKnapp" type="submit" value="Legg til" onclick=""></td>
+                    <td></td>
+                </tr>
+            </table>
+            <p></p>
+        </form:form>
+    </fieldset>     
+    </div>
+        
    
     
 </main>

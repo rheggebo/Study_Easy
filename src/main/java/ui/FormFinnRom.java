@@ -74,7 +74,11 @@ public class FormFinnRom {
         this.tittel = tittel;
     }
     
-
+    public List getTypeListScrub(){
+        String[] s = {"Ikke lag hendelse","Privat","Møte"};
+        return Arrays.asList(s);
+    }
+    
     public List getTypeList(){
         String[] s = {"Ikke lag hendelse","Privat","Forelesning","Møte"};
         return Arrays.asList(s);
