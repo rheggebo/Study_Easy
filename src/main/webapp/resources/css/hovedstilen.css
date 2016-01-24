@@ -16,6 +16,13 @@ html {
     color: red;
 }
 
+input{		
+    border: none;		
+    width: 160px;		
+    padding: 5px 10px;		
+    outline: none;		
+}
+
 
 #baseLayoutTable{
     
