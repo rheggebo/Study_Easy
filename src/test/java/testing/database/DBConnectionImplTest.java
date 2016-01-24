@@ -122,7 +122,6 @@ public class DBConnectionImplTest {
         jdbc = mock(JdbcTemplate.class);
         jT = new JdbcTemplate(dummyDataSource());
         
-        
         KEliste = new ArrayList();
         RomListe = new ArrayList();
         listRomTest = new ArrayList<Rom>();
@@ -449,11 +448,6 @@ public class DBConnectionImplTest {
         listRom = dbc.getRom4Param(rom1, kEvent, false, true);
                 
    
-    }
-    
-    @Test
-    public void testGetRom1Param() {
-
     }
     
     @Test
