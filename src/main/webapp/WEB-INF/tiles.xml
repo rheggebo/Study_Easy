@@ -70,5 +70,9 @@
         <put-attribute name="title"  value="VelgRomRed"/>
         <put-attribute name="body"   value="/WEB-INF/jsp/VelgRomRed.jsp"/>    
     </definition>
+    <definition name="Error" extends="baseLayout">
+        <put-attribute name="title"  value="Error"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/Error.jsp"/>    
+    </definition>
    
 </tiles-definitions>
