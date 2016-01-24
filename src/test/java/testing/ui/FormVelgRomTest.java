@@ -49,6 +49,7 @@ public class FormVelgRomTest {
         fVR.setFraTid(fraTid);
         fVR.setRomId("GR108");
         fVR.setVarighet(2);
+        fVR.setOpptatt("Opptatt");
         
     }
     
@@ -60,6 +61,7 @@ public class FormVelgRomTest {
         assertEquals(fVR.getVarighet(),2);
         assertEquals(fVR.getTiderList().size(), 18);
         assertEquals(fVR.getVarighetList().size(), 3);
+        assertEquals(fVR.getOpptatt(), "Opptatt");
     }
     
     @After

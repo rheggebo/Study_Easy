@@ -53,7 +53,6 @@
         <put-attribute name="title"  value="EndrePassord"/>
         <put-attribute name="body"   value="/WEB-INF/jsp/EndrePassordRed.jsp"/>      
     </definition>
- 
     <definition name="BrukerOversikt" extends="baseLayout">
         <put-attribute name="title" value="BrukerOversikt"/>
         <put-attribute name="body" value="/WEB-INF/jsp/BrukerOversikt.jsp"/>
@@ -69,6 +68,14 @@
     <definition name="VelgRomRed" extends="baseLayout">
         <put-attribute name="title"  value="VelgRomRed"/>
         <put-attribute name="body"   value="/WEB-INF/jsp/VelgRomRed.jsp"/>    
+    </definition>
+    <definition name="Error" extends="baseLayout">
+        <put-attribute name="title"  value="Error"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/Error.jsp"/>    
+    </definition>
+    <definition name="Glemsk" extends="baseLayout">
+        <put-attribute name="title"  value="Glemsk"/>
+        <put-attribute name="body"   value="/WEB-INF/jsp/Glemsk.jsp"/>    
     </definition>
    
 </tiles-definitions>

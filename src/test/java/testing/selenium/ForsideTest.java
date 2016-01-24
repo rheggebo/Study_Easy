@@ -103,6 +103,47 @@ public class ForsideTest {
 
     }
     
+    @Test
+    public void testNyHendelse() throws Throwable {
+    
+        driver.get("http://localhost:8084/Study_Easy/");
+        
+        Thread.sleep(2000);
+        driver.findElement(By.id("epostInnlogging")).sendKeys("test1@aol.com");
+        
+        Thread.sleep(2000);
+        driver.findElement(By.id("passordInnlogging")).sendKeys("passord"); 
+        
+        Thread.sleep(2000);
+        driver.findElement(By.id("loggInnKnapp")).click(); 
+        
+        Thread.sleep(500);
+        driver.findElement(By.id("forside")).click(); 
+        
+        Thread.sleep(500);
+        driver.findElement(By.id("leggTilKnappForside")).click();
+        
+        Thread.sleep(500);
+        driver.findElement(By.id("tittel")).sendKeys("asdf");
+                
+        Thread.sleep(500);
+        driver.findElement(By.id("startdato")).sendKeys("11112019");
+        
+        Thread.sleep(500);
+        driver.findElement(By.id("starttid")).sendKeys("1111");
+        
+        Thread.sleep(500);
+        driver.findElement(By.id("sluttdato")).sendKeys("11112019");
+        
+        Thread.sleep(1000);
+        driver.findElement(By.id("slutttid")).sendKeys("2222");
+
+        Thread.sleep(4000);
+        driver.findElement(By.id("leggtilPH")).click(); 
+        
+        Thread.sleep(2000);
+    }
+    
     
     
     /*

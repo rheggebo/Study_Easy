@@ -140,11 +140,6 @@ public class ServiceImpl implements Service{
     }
 
     @Override
-    public boolean leggTilKalenderEvent(KalenderEvent ke) {
-        return dbc.leggTilKalenderEvent(ke);
-    }
-
-    @Override
     public boolean fjernKalenderEvent(KalenderEvent ke) {
         return dbc.fjernKalenderEvent(ke);
     }
@@ -184,35 +179,24 @@ public class ServiceImpl implements Service{
     }
 
     @Override
-    public Rom getRombestilling() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public List<Rom> getRomFraNavn(Rom r) {
         return dbc.getRomFraNavn(r);
     }
 
-    @Override
-    public List<Rom> getRomFraInnhold(Rom r) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
+    /*
+    Ikke i bruk
     @Override
     public List<Rom> getRomFraType(Rom r) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return dbc.getRomFraType(r);
     }
 
     @Override
     public List<Rom> getRomFraStoerrelse(Rom r) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<Klasse> getLaererKlasse(Bruker b) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return dbc.getRomFraStoerrelse(r);
     }
     
+    */
+
     @Override
     public List<KalenderEvent> getAlleEventsFraBruker(BrukerB b){
         return dbc.getAlleEventsFraBruker(b);
@@ -311,8 +295,8 @@ public class ServiceImpl implements Service{
     }
     
     @Override
-    public List<Rom> getRomSVG(KalenderEvent ke){
-        return dbc.getRomSVG(ke);
+    public List<Rom> getRomSVG(Rom r, KalenderEvent ke){
+        return dbc.getRomSVG(r, ke);
     }
     
     @Override
@@ -332,7 +316,7 @@ public class ServiceImpl implements Service{
     @Override
     public List<Abonemennt> getAbonnementDeltakere(String st){
        return dbc.getAbonnementDeltakere(st);
-   }
+   }//i bruk?
 
     @Override
     public RomBestilling getRomBooking(KalenderEvent ke) {
@@ -358,4 +342,34 @@ public class ServiceImpl implements Service{
     public boolean erRomLedig(KalenderEvent ke) {
         return dbc.erRomLedig(ke);
     }
+    
+    @Override
+    public List<Fag> getFagKlasse(String klasse){
+        return dbc.getFagKlasse(klasse);
+    }
+    
+    @Override
+    public boolean leggTilFagKlasse(String fag, String klasse){
+        return dbc.leggTilFagKlasse(fag, klasse);
+    }
+
+    @Override
+    public List<String> getAlleInnholdRom(Rom r) {
+        return dbc.getAlleInnholdRom(r);
+    }
+
+    @Override
+    public boolean oppdaterInnholdRom(String romID, String[] innhold) {
+        for (int i = 0; i < innhold.length; i+=2) {
+            String[] tab = new String[2];
+            tab[0] = innhold[i];
+            tab[1] = innhold[i+1];
+            if(!dbc.oppdaterInnholdRom(romID, tab)){
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    
 }

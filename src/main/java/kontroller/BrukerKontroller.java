@@ -8,9 +8,19 @@ package kontroller;
 import beans.Abonemennt;
 import beans.Bruker;
 import beans.BrukerB;
+import beans.Fag;
+import beans.KalenderEvent;
+import beans.Klasse;
 import beans.Passord;
 import beans.Rom;
+import beans.RomBestilling;
+import beans.SlettAbonnementValg;
 import email.Email;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -174,7 +184,7 @@ public class BrukerKontroller {
         if(b == null){
             System.out.println("B lik null");
             if(sendNyPass(bruker, error, true)){
-                model.addAttribute("bruker", (BrukerB)sess.getAttribute("brukerBean"));
+                returnerMinSide(model, (BrukerB)sess.getAttribute("brukerBean"));
                 return "MinSide";
             }
         }
@@ -205,9 +215,72 @@ public class BrukerKontroller {
         model.addAttribute("bruker", new Bruker());
         return "Innlogging";
     }
+    private void returnerMinSide(Model model, BrukerB brukerb){
+        System.out.println("Jeg kjører nå");
+        List<Abonemennt> liste = service.getAbonemenntFraBruker(brukerb);
+        model.addAttribute("abonemenntListe", liste);
+        KalenderEvent ke = new KalenderEvent();
+        ke.setEpost(brukerb.getEpost());
+        Date dato = Calendar.getInstance().getTime();
+        Timestamp now = new Timestamp(dato.getTime());
+        ke.setStartTid(now);
+        List<RomBestilling> eventListe = service.getReserverteRom(ke);
+        System.out.println("Bookinger: " + eventListe.size());
+        for(RomBestilling best : eventListe){
+            System.out.println(best.getBestillingsID());
+        }
+        long msek20Min = 20*60*1000;
+        for (RomBestilling romBestilling : eventListe) {
+            System.out.println(romBestilling.getStartDato().getTime()-now.getTime()+" "+msek20Min);
+            if(romBestilling.getStartDato().getTime()-now.getTime()<msek20Min){
+                romBestilling.setKlokkesjekk(true);
+            }
+        }
+        model.addAttribute("event", new KalenderEvent());
+        model.addAttribute("reservasjonsliste", eventListe);
+        List<KalenderEvent> kalenderEventListe = service.getKalenderEventEier(brukerb);
+        model.addAttribute("kalenderEventListe", kalenderEventListe);
+        model.addAttribute("resultat", new SlettAbonnementValg());
+        model.addAttribute("bruker", brukerb);
+    }
     @RequestMapping("LeggTilFagLagre")
-    public String leggTilFagLagre(@ModelAttribute(value="nyttFag")LeggTilFagKlasse nyttFag ,Model model, BindingResult error, HttpSession sess){
-        
-        return "MinSide";
+    public String leggTilFagLagre(@ModelAttribute(value="leggTilFagKlasse")LeggTilFagKlasse nyttFag ,Model model, BindingResult error, HttpSession sess){
+        BrukerB brukerb = (BrukerB)sess.getAttribute("brukerBean");
+        if(brukerb != null && brukerb.isInnlogget()){
+            if(brukerb.getTilgangsniva()==2){
+                List<Fag> fagListe = service.getFagKlasse(nyttFag.getKlasseID());
+                String nyttFagID = nyttFag.getFagID();
+                for (Fag fag : fagListe) {
+                    if(nyttFagID.equalsIgnoreCase(fag.getFagID())){
+                        LeggTilFagKlasse leggTilFagKlasse = new LeggTilFagKlasse();
+                        model.addAttribute("melding", "feilmelding.leggTilNyttFag");
+                        model.addAttribute("nyBruker", new Bruker());
+                        model.addAttribute("passord", new Passord());
+                        model.addAttribute("bruker", brukerb);
+                        List<Klasse> listeKlasser = service.getAlleKlasser();
+                        for (Klasse klasse : listeKlasser) {
+                            leggTilFagKlasse.addKlasseListe(klasse.getNavn());
+                        }
+                        List<Fag> midlListe = service.getAlleFag();
+                        ArrayList<String> fagListe2 = new ArrayList<String>();
+                        for (Fag fag2 : midlListe) {
+                            fagListe2.add(fag2.getFagID());
+                        }
+                        model.addAttribute("leggTilFagKlasse", leggTilFagKlasse);
+                        model.addAttribute("fagListe", fagListe2);
+                        return "LeggTilBruker";
+                    }
+                }
+                if(service.leggTilFagKlasse(nyttFagID, nyttFag.getKlasseID())){
+                    returnerMinSide(model, brukerb);
+                    return "MinSide";
+                }
+            }else{
+                returnerMinSide(model, brukerb);
+                return "MinSide";
+            }
+        }
+        model.addAttribute("bruker", new Bruker());
+        return "Innlogging";
     }
 }

@@ -53,8 +53,6 @@ public interface DBConnection {
     
     public boolean leggTilRom(Rom r);
     
-    public boolean leggTilKalenderEvent(KalenderEvent ke);
-    
     public boolean fjernKalenderEvent(KalenderEvent ke);
     
     public List<Bruker> getKalenderEventDeltakere(KalenderEvent ke);
@@ -71,20 +69,15 @@ public interface DBConnection {
     
     public List<Fag> getFagLaerer(Bruker b);
     
-    public Rom getRombestilling();
-    
     public List<Rom> getRomFraNavn(Rom r);
     
     public List<Rom> getRomFraNavn(String navn);
     
-    public List<Rom> getRomFraInnhold(String[] innhold);
-    
+    /*Ikke i bruk
     public List<Rom> getRomFraType(Rom r);
     
     public List<Rom> getRomFraStoerrelse(Rom r);
-    
-    public Klasse getLaererKlasse(Bruker b);
-    
+    */
     public List<Rom> getAlleRom();
     
     public List<Fag> getAlleFag();
@@ -128,15 +121,13 @@ public interface DBConnection {
 
     public boolean leggTilBooking(KalenderEvent ke);
     
-    public List<Rom> getRomSVG(KalenderEvent ke);
+    public List<Rom> getRomSVG(Rom r, KalenderEvent ke);
     
     public List<RomBestilling> getReserverteRom(KalenderEvent ke);
     
     public boolean slettBooking(KalenderEvent ke);
     
     public boolean leggTilEvent (KalenderEvent ke);
-    
-    public List<Abonemennt> getAbonnementDeltakere(Abonemennt st);
     
     public List<Abonemennt> getAbonnementDeltakere(String st);
     
@@ -149,4 +140,12 @@ public interface DBConnection {
     public List<Klasse> getAlleKlasser();
     
     public boolean erRomLedig(KalenderEvent ke);
+    
+    public List<Fag> getFagKlasse(String klasse);
+    
+    public boolean leggTilFagKlasse(String fag, String klasse);
+    
+    public List<String> getAlleInnholdRom(Rom r);
+    
+    public boolean oppdaterInnholdRom(String romID, String[] innhold);
 }

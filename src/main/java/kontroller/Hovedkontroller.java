@@ -14,6 +14,7 @@ import email.Email;
 import static java.lang.Thread.sleep;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -105,6 +106,7 @@ public class Hovedkontroller {
         List<KalenderEvent> kalenderEventListe = service.getKalenderEventEier(brukerb);
         model.addAttribute("kalenderEventListe", kalenderEventListe);
         model.addAttribute("resultat", new SlettAbonnementValg());
+        model.addAttribute("bruker", brukerb);
     }
     
     private void sjekk(){
@@ -151,7 +153,6 @@ public class Hovedkontroller {
     public String minSide(HttpSession sess, Model model, HttpServletRequest req){
         BrukerB brukerb = (BrukerB)sess.getAttribute("brukerBean");
         if(brukerb != null && brukerb.isInnlogget()){
-            model.addAttribute("bruker", brukerb);
             returnerMinSide(model, brukerb);
             return "MinSide";
         }
@@ -176,11 +177,10 @@ public class Hovedkontroller {
                     List<Abonemennt> abonemennt = service.getBrukerAbonnement(brukerb.getEpost());
                     String melding = "Hendelse slettet av " + brukerb.getFornavn();
                     for (Abonemennt abn : abonemennt){
-                    email.sendEpost(abn.getEierid(), "Ny hendelse", melding);
-
+                        email.sendEpost(abn.getEierid(), "Ny hendelse", melding);
                     }
 
-                }                catch(Exception e){
+                }catch(Exception e){
                     model.addAttribute("slettFeilMelding", "feilmelding.kunneIkkeSletteAbonnement");
                 }
             }
@@ -222,12 +222,13 @@ public class Hovedkontroller {
                 }
                 catch(Exception e){
                     model.addAttribute("slettFeilMelding", "feilmelding.kunneIkkeSletteHendelse");
+                }
             }
-
+            
             returnerMinSide(model, brukerb);
             //model.addAttribute("resultat", new SlettAbonnementValg());
             return "MinSide";
-            } 
+            
         }
 
         model.addAttribute("bruker", new Bruker()); 
@@ -268,9 +269,15 @@ public class Hovedkontroller {
     }
     
     @RequestMapping("FinnRom")
-    public String finnRom(@ModelAttribute FormFinnRom formFinnRom, Model model, HttpSession sess){        
+    public String finnRom(Model model, HttpSession sess){        
         BrukerB brukerb = (BrukerB) sess.getAttribute("brukerBean");
         if(brukerb != null && brukerb.isInnlogget()){
+            List<Fag> liste = service.getAlleFag();
+            FormFinnRom fFR = new FormFinnRom();
+            for (Fag fag : liste) {
+                fFR.addFagListe(fag.getFagID());
+            }
+            model.addAttribute("formFinnRom", fFR);
             model.addAttribute("bruker", brukerb);
             model.addAttribute("rom", new Rom());
             return "FinnRom";
@@ -291,17 +298,23 @@ public class Hovedkontroller {
     }
     
     @RequestMapping("LeggTilBruker")
-    public String leggTilBruker(@ModelAttribute FormFinnRom formFinnRom,HttpSession sess, Model model){
+    public String leggTilBruker(@ModelAttribute LeggTilFagKlasse leggTilFagKlasse,HttpSession sess, Model model){
         BrukerB brukerb = (BrukerB)sess.getAttribute("brukerBean");
         if(brukerb != null && brukerb.isInnlogget()){
             if(brukerb.getTilgangsniva()==2){
                 model.addAttribute("nyBruker", new Bruker());
                 model.addAttribute("passord", new Passord());
-                model.addAttribute("bruker", brukerb);;
+                model.addAttribute("bruker", brukerb);
                 List<Klasse> listeKlasser = service.getAlleKlasser();
-                List<Fag> fagListe = service.getAlleFag();
-                model.addAttribute("klasseList", listeKlasser);
-                model.addAttribute("fagList", fagListe);
+                for (Klasse klasse : listeKlasser) {
+                    leggTilFagKlasse.addKlasseListe(klasse.getNavn());
+                }
+                List<Fag> midlListe = service.getAlleFag();
+                ArrayList<String> fagListe = new ArrayList<String>();
+                for (Fag fag : midlListe) {
+                    fagListe.add(fag.getFagID());
+                }
+                model.addAttribute("fagListe", fagListe);
                 return "LeggTilBruker";
             }else{
                 model.addAttribute("bruker", brukerb);

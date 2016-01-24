@@ -43,7 +43,7 @@
             <dt><label for="Notat">Notat:</label></dt>
             <textarea id="notat" placeholder="Skriv notat her" name="notat" autofocus="true" rows="10" cols="55" ></textarea>
             
-        <p><input class="defaultKnapp" type="submit" value="Legg til" onclick=""></p>
+        <p><input class="defaultKnapp" id="leggtilPH" type="submit" value="Legg til" onclick=""></p>
         </form:form>
     </fieldset>
 </main>

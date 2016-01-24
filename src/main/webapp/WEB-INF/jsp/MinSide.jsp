@@ -27,7 +27,7 @@
             <dt><label for="emailMinSide">E-post:</label></dt>
             <dd><form:input id="emailMinSide" type="email" name="email1" readonly="true" path="epost"/></dd>
 
-            <dt><label for="klasseMinSide">Klasse:</label></dt>
+
             </form:form>
         </dl>
         <form:form action="EndrePassordRed">
@@ -48,7 +48,7 @@
                             <c:out value ="${abliste}"></c:out> <%-- printer ut listeverdiene--%>
 
                             <%-- legger til knappene for slett fag --%>
-                            <button class="slettknappMinSide" type="submit" name="slettFagAbKnapp" value="Slett"/><span class="fontawesome-trash"></span></button>
+                            <button class="slettknappMinSide" id="slettFag" type="submit" name="slettFagAbKnapp" value="Slett"/><span class="fontawesome-trash"></span></button>
 
                             </form:form>
                         </td>
@@ -71,7 +71,7 @@
                                 <form:input type="hidden" path="resultat" value="${abliste}"/>
                                 <c:out value ="${abliste}"></c:out> <%-- printer ut listeverdiene--%>
                                 <%-- legger til knappene for slett abonemennt --%>
-                                <button class="slettknappMinSide" type="submit" name="slettBrukerAbKnapp" value="Slett"/><span class="fontawesome-trash"></span></button>
+                                <button class="slettknappMinSide" id="slettBrukerA" type="submit" name="slettBrukerAbKnapp" value="Slett"/><span class="fontawesome-trash"></span></button>
                                 </form:form>
                             </td>
                         </tr>   
@@ -95,7 +95,7 @@
                             var twentyMinutesEarlier = new Date().setMinutes(currentDate.getMinutes()-60);
                         </script>-->
                         <form:input type="hidden" path="rom" value="${resliste}"/>
-                        <td><c:out value="${resliste}"></c:out><button class="slettknappMinSide" type="submit" name="slettHendelseKnapp"/><span class="fontawesome-trash"></span></button><!--c:if test="{twentyMinutesEarlier le bestilltTid}"-->
+                        <td><c:out value="${resliste}"></c:out><button class="slettknappMinSide" type="submit" id="slettReservasjon" name="slettHendelseKnapp"/><span class="fontawesome-trash"></span></button><!--c:if test="{twentyMinutesEarlier le bestilltTid}"-->
                             <c:if test="${resliste.isKlokkesjekk()}"><input class="defaultKnapp" style="float: right" type="submit" value="Bekreft oppmøte"/>
                             </c:if></td>
                     </tr>
@@ -116,7 +116,7 @@
                         <form:input type="hidden" path="resultat" value="${eventliste}"/>
                         <c:out value ="${eventliste}"></c:out> <%-- printer ut listeverdiene--%>
                         <%-- legger til knappene for slett hendelse --%>
-                        <button class="slettknappMinSide" type="submit" name="slettHendelseKnapp" value="Slett"/><span class="fontawesome-trash"></span></button>
+                        <button class="slettknappMinSide" type="submit" id="slettHendelse" name="slettHendelseKnapp" value="Slett"/><span class="fontawesome-trash"></span></button>
                         </form:form>
                     </td>
                 </tr>   

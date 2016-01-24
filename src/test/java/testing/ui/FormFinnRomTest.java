@@ -36,7 +36,7 @@ public class FormFinnRomTest {
     public void setUp() {
         
         SimpleDateFormat dateformat2 = new SimpleDateFormat("yyyy-mm-dd");
-        String strdate1 = "2016-01-23";
+        String strdate1 = "2016-01-28";
   
         
         try {
@@ -58,6 +58,7 @@ public class FormFinnRomTest {
         ffr.setFraDato(fDato);
         ffr.setFraTid(1120);
         ffr.setNotat("hæ");
+        ffr.setLegHendelse(false);
         
     }
     
@@ -69,7 +70,11 @@ public class FormFinnRomTest {
         assertEquals(ffr.getVarighetList().size(), 3);
         ffr.setVarighet(1);
         assertEquals(ffr.getVarighet(), 1);
-        assertEquals(ffr.getFagList().size(), 3);
+        assertEquals(ffr.getFagList().size(), 0);
+        
+        ffr.addFagListe("TDAT2004");
+        assertEquals(ffr.getFagList().size(), 1);
+        
         assertEquals(ffr.getProjektor(), 0);
         assertEquals(ffr.getTavle(), 1);
         assertEquals(ffr.getSkjerm(), 2);
@@ -82,9 +87,11 @@ public class FormFinnRomTest {
         assertEquals(ffr.getFag(), "Fag 1");
         assertEquals(ffr.getFraTid(), 1120);
         assertEquals(ffr.getNotat(), "hæ");
-        assertEquals(ffr.getTypeList().size(), 3);
+        assertEquals(ffr.getTypeList().size(), 4);
         assertEquals(ffr.getUtstyrList().size(), 4);
         assertEquals(ffr.getTiderList().size(), 18);
+        assertEquals(ffr.getRomTypeListScrub().size(), 1);
+        assertEquals(ffr.isLagHendelse(), false);
          
     }
     

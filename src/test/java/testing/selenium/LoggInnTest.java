@@ -53,7 +53,7 @@ public class LoggInnTest {
         driver.findElement(By.id("loggInnKnapp")).click(); 
         
         Thread.sleep(2000);
-        driver.findElement(By.id("loggInnGlemtPassord")).click(); 
+        //driver.findElement(By.id("loggInnGlemtPassord")).click(); 
         
         Thread.sleep(2000);
     

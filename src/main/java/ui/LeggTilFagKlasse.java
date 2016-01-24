@@ -16,6 +16,7 @@ import java.util.List;
 public class LeggTilFagKlasse {
     private String klasseID;
     private String fagID;
+    private String test;
     private ArrayList<String> klasseListe = new ArrayList<String>();
     private ArrayList<String> fagListe = new ArrayList<String>();
 
@@ -50,4 +51,14 @@ public class LeggTilFagKlasse {
     public void setFagID(String fagID) {
         this.fagID = fagID;
     }
+
+    public String getTest() {
+        return test;
+    }
+
+    public void setTest(String test) {
+        this.test = test;
+    }
+    
+    
 }
