@@ -8,15 +8,20 @@ package kontroller;
 import beans.Abonemennt;
 import beans.Bruker;
 import beans.BrukerB;
+import beans.KalenderEvent;
 import beans.Rom;
+import beans.RomBestilling;
+import beans.SlettAbonnementValg;
 import beans.Sok;
 import beans.SokeValg;
 import email.Email;
 import java.io.IOException;
 import static java.lang.System.out;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -69,7 +74,7 @@ public class SokeKontroller {
     }  
     @RequestMapping(value="abonnere")
     public String fetchData1(@ModelAttribute("resultat") SokeValg sv, HttpSession sess, HttpServletResponse response, Model model, HttpServletRequest request){ 
-        BrukerB bruker = (BrukerB) sess.getAttribute("brukerBean");        
+        BrukerB bruker = (BrukerB) sess.getAttribute("brukerBean"); 
         String[] split = sv.getResultat().split(":");
         if("Abonner".equals(request.getParameter("knappTilAbonnement"))){
             if (split[0].equals("Ansatt") || split[0].equals("Student")){
@@ -84,7 +89,8 @@ public class SokeKontroller {
                 catch(Exception e){
                     model.addAttribute("melding", "feilmelding.duplikatAbonnement");
                 }
-                return "SokeSide";
+                returnerMinSide(model, bruker);
+                return "MinSide";
             }
             else if (split[0].equals("Fag")){
                 String[] split2 = (split[1].trim()).split(" ");
@@ -95,6 +101,8 @@ public class SokeKontroller {
                 catch(Exception e){
                     model.addAttribute("melding", "feilmelding.duplikatAbonnement");
                 }
+                returnerMinSide(model, bruker);
+                return "MinSide";
             }
             else if (split[0].equals("Klasse")){
                 String[] split2 = (split[1].trim()).split(",");
@@ -105,14 +113,45 @@ public class SokeKontroller {
                         si.leggTilAbonemennt(new Abonemennt(bruker.getEpost(), fagsplit[i], 1));
                     }
                     catch(Exception e){
-                        System.out.println("heiho");
                         model.addAttribute("melding", "feilmelding.duplikatAbonnement");
                     }
                 }
+                returnerMinSide(model, bruker);
+                return "MinSide";
             }
         }
         return "SokeSide";             
         } 
+    
+    private void returnerMinSide(Model model, BrukerB brukerb){
+        System.out.println("Jeg kjører nå");
+        List<Abonemennt> liste = si.getAbonemenntFraBruker(brukerb);
+        model.addAttribute("abonemenntListe", liste);
+        KalenderEvent ke = new KalenderEvent();
+        ke.setEpost(brukerb.getEpost());
+        Date dato = Calendar.getInstance().getTime();
+        Timestamp now = new Timestamp(dato.getTime());
+        ke.setStartTid(now);
+        List<RomBestilling> eventListe = si.getReserverteRom(ke);
+        System.out.println("Bookinger: " + eventListe.size());
+        for(RomBestilling best : eventListe){
+            System.out.println(best.getBestillingsID());
+        }
+        long msek20Min = 20*60*1000;
+        for (RomBestilling romBestilling : eventListe) {
+            System.out.println(romBestilling.getStartDato().getTime()-now.getTime()+" "+msek20Min);
+            if(romBestilling.getStartDato().getTime()-now.getTime()<msek20Min){
+                romBestilling.setKlokkesjekk(true);
+            }
+        }
+        model.addAttribute("event", new KalenderEvent());
+        model.addAttribute("reservasjonsliste", eventListe);
+        List<KalenderEvent> kalenderEventListe = si.getKalenderEventEier(brukerb);
+        model.addAttribute("kalenderEventListe", kalenderEventListe);
+        model.addAttribute("resultat", new SlettAbonnementValg());
+        model.addAttribute("bruker", brukerb);
+    }
+    
     @RequestMapping(value="sekart")
     public String fetchData2(@ModelAttribute FormVelgRom formVelgRom, @ModelAttribute("resultat") SokeValg sv, HttpSession sess, HttpServletResponse response, Model model, HttpServletRequest request){ 
         BrukerB bruker = (BrukerB) sess.getAttribute("brukerBean");        
