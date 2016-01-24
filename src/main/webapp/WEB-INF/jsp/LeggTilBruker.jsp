@@ -77,11 +77,10 @@
                            <form:input required="true" placeholder="KlasseID" path="navn"/>
                         </td>
                         <td>
-                            <em>Velg et fag* (En klasse må ha minst ett fag)</em>
                         </td>
                     </tr>
                     <tr>
-                        <td></td>
+                        <td>Med faget</td>
                         <td>
                             <form:select name="leggTilFag" id="leggTilFag" required="true" path="fagID">
                                 <form:options items="${fagListe}"/>
