@@ -437,17 +437,10 @@ public class EventKontroller {
         gregorian.add(Calendar.DATE, 14);
         int hour = rightNow.get(Calendar.HOUR_OF_DAY) + 1;
         Date date = rightNow.getTime();
-        System.out.println("---------------------------- RIGHTNOW:::::   "+date);
-        System.out.println("---------------------------- GREGORIAN GETTIME:   "+gregorian.getTime());
-        System.out.println("---------------------------- HOUR:   "+ hour);
-        System.out.println("---------------------------- FRATID:   "+ fraTid);
-        System.out.println("---------------------------- FRA DATO   "+fraDato);
         if(fraDato.getYear()==(date.getYear())) {
             if(fraDato.getMonth() == (date.getMonth())) {
                 if(fraDato.getDay() == (date.getDay())) {
-                    System.out.println("kommer hit 1");
                     if(hour > fraTid) {
-                        System.out.println("kommer hit 2");
                         return false;
                     }
                 }
