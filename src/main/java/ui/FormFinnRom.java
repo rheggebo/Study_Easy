@@ -9,7 +9,6 @@ import beans.Fag;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -127,7 +126,7 @@ public class FormFinnRom {
     public void setSitteplasser(int sitteplass) {
         this.sitteplasser = sitteplass;
     }
-    
+     /*
     public List getTiderList(){
         int tidMin = 6;
         int tidMax = 23;
@@ -147,6 +146,12 @@ public class FormFinnRom {
                 s[i] = time+"00"; 
             }
         }
+        return Arrays.asList(s);
+    }
+    */
+    
+    public List getTiderList(){
+        String[] s = {"0600","0700","0800","0900","1000","1100","1200","1300","1400","1500","1600","1700","1800","1900","2000","2100","2200","2300"};
         return Arrays.asList(s);
     }
     
