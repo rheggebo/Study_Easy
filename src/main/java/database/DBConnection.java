@@ -73,10 +73,11 @@ public interface DBConnection {
     
     public List<Rom> getRomFraNavn(String navn);
     
+    /*Ikke i bruk
     public List<Rom> getRomFraType(Rom r);
     
     public List<Rom> getRomFraStoerrelse(Rom r);
-    
+    */
     public List<Rom> getAlleRom();
     
     public List<Fag> getAlleFag();

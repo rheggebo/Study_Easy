@@ -183,15 +183,19 @@ public class ServiceImpl implements Service{
         return dbc.getRomFraNavn(r);
     }
 
+    /*
+    Ikke i bruk
     @Override
     public List<Rom> getRomFraType(Rom r) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return dbc.getRomFraType(r);
     }
 
     @Override
     public List<Rom> getRomFraStoerrelse(Rom r) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return dbc.getRomFraStoerrelse(r);
     }
+    
+    */
 
     @Override
     public List<KalenderEvent> getAlleEventsFraBruker(BrukerB b){
@@ -312,7 +316,7 @@ public class ServiceImpl implements Service{
     @Override
     public List<Abonemennt> getAbonnementDeltakere(String st){
        return dbc.getAbonnementDeltakere(st);
-   }
+   }//i bruk?
 
     @Override
     public RomBestilling getRomBooking(KalenderEvent ke) {

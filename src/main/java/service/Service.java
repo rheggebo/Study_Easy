@@ -73,10 +73,11 @@ public interface Service {
     
     public List<Rom> getRomFraNavn(Rom r);
     
+    /*
     public List<Rom> getRomFraType(Rom r);
     
     public List<Rom> getRomFraStoerrelse(Rom r);
-    
+    */
     public List<Rom> getAlleRom();
     
     public List<Fag> getAlleFag();

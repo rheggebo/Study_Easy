@@ -559,6 +559,8 @@ public class DBConnectionImpl implements DBConnection{
         return liste;
     }//tatt
 
+    /*
+    ikke i bruk
     @Override
     public List<Rom> getRomFraType(Rom r) {
         return jT.query(getRomFraType, new Object[]{
@@ -572,6 +574,7 @@ public class DBConnectionImpl implements DBConnection{
             r.getStorrelse()
         }, new RomMapper());
     }//tatt
+    */
 
     @Override
     public List<KalenderEvent> getAlleEventsFraBruker(BrukerB b){

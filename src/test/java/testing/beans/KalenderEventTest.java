@@ -51,6 +51,7 @@ public class KalenderEventTest {
         kEvent.setNotat("Hallaballa :) ");
         kEvent.setTittel("Stakk");
         kEvent.setTilhorerEvent(16);
+        kEvent.setBestillingsID(8);
         
         
     }
@@ -68,6 +69,7 @@ public class KalenderEventTest {
         assertEquals(kEvent.getNotat(),"Hallaballa :) ");
         assertEquals(kEvent.getTittel(), "Stakk");
         assertEquals(kEvent.getTilhorerEvent(), 16);
+        assertEquals(kEvent.getBestillingsID(), 8);
         
         String str = "1 Stakk " + kEvent.getStartTid().toString();
         assertEquals(kEvent.toString(), str);

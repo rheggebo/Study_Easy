@@ -375,8 +375,8 @@ public class DBConnectionImplTest {
     public void testRomMapper(){
         rom3.setRomID("KAUD");
         listRom = new ArrayList<Rom>();
-        listRom = dbc.getRomFraType(rom1);
-        listRom = dbc.getRomFraStoerrelse(rom1);
+       // listRom = dbc.getRomFraType(rom1);
+        //listRom = dbc.getRomFraStoerrelse(rom1);
         listRom = dbc.getRomTypeStorrelse(rom3);
         // Denne er blitt endra på
         //listRom = dbc.getRomSVG(kEvent);
@@ -384,6 +384,7 @@ public class DBConnectionImplTest {
         listRom = dbc.getRom0Param(rom1, kEvent, true, true);
         listRom = dbc.getRom0Param(rom1, kEvent, true, false);
         listRom = dbc.getRom0Param(rom1, kEvent, false, true);
+        listRom = dbc.getRom0Param(rom1, kEvent, false, false);
         
         /*listRom = dbc.getRom1Param(rom2, kEvent, true, true);
         listRom = dbc.getRom1Param(rom1, kEvent, true, false);

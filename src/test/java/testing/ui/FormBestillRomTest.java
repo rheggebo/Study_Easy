@@ -31,6 +31,11 @@ public class FormBestillRomTest {
         fbr = new FormBestillRom();
     }
     
+    @Test
+    public void tester(){
+        
+    }
+    
     @After
     public void tearDown() {
     }
