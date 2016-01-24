@@ -99,6 +99,7 @@ public class EventKontroller {
             event.setEpost(brukerb.getEpost());
             event.setTilhorerEvent(0);
             event.setEierNavn(brukerb.getFornavn() + " " + brukerb.getEtternavn());
+            event.setType(3);
 
             service.leggTilEvent(event);
             
