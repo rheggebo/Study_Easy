@@ -369,9 +369,11 @@ public class EventKontroller {
                 System.out.println("La vi til noe?" );
                 service.leggTilBooking(ke);
             }else{
+                model.addAttribute("feilMeldingReservereRom", "feilmelding.feilMeldingReservereRom");
                 return "VelgRom";
             }            
         }catch(Exception e){
+            model.addAttribute("feilMeldingReservereRom", "feilmelding.feilMeldingReservereRom");
             return "VelgRom";
         }
         return "Forside";

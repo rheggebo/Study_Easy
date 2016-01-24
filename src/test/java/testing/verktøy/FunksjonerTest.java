@@ -31,6 +31,8 @@ public class FunksjonerTest {
     ArrayList<Fag> fagListe;
     ArrayList<Rom> romListe;
     ArrayList<Klasse> klasseListe;
+    ArrayList<Object> sokeKlasse;
+    
     
     
     @BeforeClass
@@ -46,10 +48,12 @@ public class FunksjonerTest {
         si = mock(Service.class);
         
         ord="Per";
-        checkboxValues=null;
+        checkboxValues= new String[5];
         bruker1 = new Bruker();
         brukerListe = new ArrayList<Bruker>();
         brukerListe.add(bruker1);
+        sokeKlasse = new ArrayList<Object>();
+        
         
         
         when(test.sokStudent(si, ord)).thenReturn(brukerListe);
@@ -57,11 +61,14 @@ public class FunksjonerTest {
         when(test.sokRom(si, ord)).thenReturn(romListe);
         when(test.sokFag(si,ord)).thenReturn(fagListe);
         when(test.sokKlasse(si,ord)).thenReturn(klasseListe);
-        
-
+        when(test.getAlleSokeTreff(ord, si, checkboxValues)).thenReturn(sokeKlasse);
         
     }
     
+    @Test
+    public void test_getAlleSokeTreff() {
+        assertEquals(test.getAlleSokeTreff(ord, si, checkboxValues), sokeKlasse);
+    }
     
     @Test
     public void test_sokStudent(){

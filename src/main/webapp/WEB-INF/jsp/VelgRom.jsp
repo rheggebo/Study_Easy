@@ -11,7 +11,7 @@
 -->
     
 <main>
-    <c:set var="eilMelding" value="${feilMeldingReservereRom}"></c:set>
+    <c:set var="feilMeldingReservereRom" value="${feilMeldingReservereRom}"></c:set>
         <c:if test="${not empty feilMeldingReservereRom}">
             <fieldset class="feilmelding">
                 <spring:message code="${feilMeldingReservereRom}"/>
